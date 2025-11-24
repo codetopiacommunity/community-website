@@ -1835,10 +1835,7 @@ function ButtonCodetopia10() {
 
 function Frame7() {
   return (
-    <form
-      className="content-stretch flex gap-[10px] items-center relative shrink-0"
-      onSubmit={(event) => event.preventDefault()}
-    >
+    <form className="content-stretch flex gap-[10px] items-center relative shrink-0">
       <EmailField />
       <ButtonCodetopia10 />
     </form>
