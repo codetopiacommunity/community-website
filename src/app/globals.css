@@ -121,15 +121,6 @@
   }
 }
 
-/* Ensure Figma-exported class names pick up the loaded font families */
-[class*="Space_Grotesk"] {
-  font-family: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
-}
-
-[class*="Archivo"] {
-  font-family: var(--font-archivo), "Archivo", system-ui, sans-serif;
-}
-
-[class*="Inter"] {
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+@theme {
+  --site-max-width: 90%
 }
