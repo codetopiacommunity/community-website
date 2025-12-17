@@ -5,6 +5,12 @@ import { spaceGrotesk } from "../../fonts/fonts";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 type HeroProps = {
   backgroundImage?: string;
@@ -52,7 +58,7 @@ export default function Hero({ backgroundImage }: HeroProps) {
       {!isMobile && (
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
+          style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
         ></div>
       )}
 
@@ -95,11 +101,35 @@ export default function Hero({ backgroundImage }: HeroProps) {
         </div>
       </div>
 
-      <div className="mt-20 capitalize z-10">
-        <h2 className="text-2xl text-white border-b border-white pb-2 mb-6 inline-block font-medium">
+      <div className="mt-30 capitalize z-10">
+        <h2 className="text-2xl text-white border-b-3  border-white pb-2 mb-6 inline-block font-medium">
           Our Partners & Collaborators
         </h2>
-        <div className="partners"></div>
+        <div className="w-screen -mx-4 mt-10">
+          <Carousel
+            className="w-full"
+            plugins={[
+              Autoplay({
+                delay: 5000,
+              }),
+            ]}
+          >
+            <CarouselContent className="flex gap-6">
+              {partnerLogos.map((logo, index) => (
+                <CarouselItem key={index} className="basis-1/4 md:basis-1/8">
+                  <div className="relative w-full h-16">
+                    <Image
+                      src={logo}
+                      alt={`Partner ${index + 1}`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
       </div>
     </section>
   );
