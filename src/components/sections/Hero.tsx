@@ -55,12 +55,27 @@ export default function Hero({ backgroundImage }: HeroProps) {
       }}
       className={`md:min-h-screen bg-center bg-cover md:flex flex-col items-center justify-center relative text-center ${spaceGrotesk.className}`}
     >
-      {!isMobile && (
+      {/* {!isMobile && (
         <div
           className="absolute inset-0"
           style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
         ></div>
-      )}
+      )} */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
+      ></div>
+      <div
+        className="
+    pointer-events-none
+    absolute bottom-0 left-0 w-full h-80
+    bg-gradient-to-t
+    from-black/80
+    via-black/40
+    to-transparent
+    z-20
+  "
+      />
 
       <div className="lg:max-w-[80%] z-10">
         <h1 className="text-4xl font-bold max-w-md mx-auto pt-20 md:max-w-7xl md:text-7xl text-white">
@@ -101,8 +116,8 @@ export default function Hero({ backgroundImage }: HeroProps) {
         </div>
       </div>
 
-      <div className="mt-30 capitalize z-10">
-        <h2 className="text-2xl text-white border-b-3  border-white pb-2 mb-6 inline-block font-medium">
+      <div className="mt-30 capitalize z-30">
+        <h2 className="text-2xl text-white border-b-3  border-white pb-2 mb-6 inline-block font-medium uppercase">
           Our Partners & Collaborators
         </h2>
         <div className="w-screen -mx-4 mt-10">

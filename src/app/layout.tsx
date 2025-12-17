@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${archivo.variable} ${inter.variable} antialiased m-auto overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${archivo.variable} ${inter.variable} antialiased m-auto overflow-x-hidden`}
       >
         {children}
       </body>
