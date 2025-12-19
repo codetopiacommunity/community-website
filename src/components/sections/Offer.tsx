@@ -3,8 +3,26 @@ import { spaceGrotesk } from "../../fonts/fonts";
 
 export default function Offer() {
   return (
-    <section className={`bg-black/90 ${spaceGrotesk.className} p-10 md:p-18`}>
-      <div className="lg:max-w-[80%] mx-auto">
+    <section
+      className={`bg-black/90 ${spaceGrotesk.className} p-3')]`}
+    >
+      <div className="absolute top-1/2 left-0 transform -translate-y-1/2">
+        <img
+          src="/images/codetopia-logo-mark.png"
+          alt="Backend Left"
+          className="h-40 w-40 md:h-72 md:w-72 lg:h-96 lg:w-96 object-contain"
+        />
+      </div>
+
+      {/* Right Image */}
+      <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
+        <img
+          src="/images/codetopia-logo-mark.png"
+          alt="Backend Right"
+          className="h-40 w-40 md:h-72 md:w-72 lg:h-96 lg:w-96 object-contain"
+        />
+      </div>
+      <div className="lg:max-w-[80%] mx-auto p-8">
         <h2 className="text-center mb-10 uppercase">
           <span className="inline-block text-2xl font-medium text-white border-b-2 pb-2">
             What We Offer

@@ -16,7 +16,7 @@ type HeroProps = {
   backgroundImage?: string;
 };
 
-// Import partner images from public folder
+// Partner logos
 const partnerLogos = [
   "/images/partners/Logo.png",
   "/images/partners/Logo1.png",
@@ -48,67 +48,36 @@ export default function Hero({ backgroundImage }: HeroProps) {
 
   return (
     <section
+      className={`relative min-h-[500px] md:min-h-screen bg-center bg-cover flex flex-col items-center justify-center text-center ${spaceGrotesk.className}`}
       style={{
-        backgroundImage: !isMobile
-          ? `url(${backgroundImage || "/images/hero-background.jpg"})`
-          : "none",
+        backgroundImage: `url(${backgroundImage || "/images/hero-background.jpg"})`,
       }}
-      className={`md:min-h-screen bg-center bg-cover md:flex flex-col items-center justify-center relative text-center ${spaceGrotesk.className}`}
     >
-      {/* {!isMobile && (
-        <div
-          className="absolute inset-0"
-          style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
-        ></div>
-      )} */}
-      <div
-        className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
-      ></div>
-      <div
-        className="
-    pointer-events-none
-    absolute bottom-0 left-0 w-full h-80
-    bg-gradient-to-t
-    from-black/80
-    via-black/40
-    to-transparent
-    z-20
-  "
-      />
+      {/* Black overlay */}
+      <div className="absolute inset-0 bg-black/50 md:bg-black/70 z-10"></div>
 
-      <div className="lg:max-w-[80%] z-10">
-        <h1 className="text-4xl font-bold max-w-md mx-auto pt-20 md:max-w-7xl md:text-7xl text-white">
-          Building A Community for the future
+      {/* Gradient at bottom */}
+      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+
+      {/* Content */}
+      <div className="relative z-20 lg:max-w-[80%]">
+        <h1 className="text-4xl md:text-7xl font-bold text-white max-w-md md:max-w-7xl mx-auto pt-20">
+          Building A Community for the Future
         </h1>
-        <p className="mt-5 max-w-3xl mx-auto text-white text-2xl">
+        <p className="mt-5 text-2xl text-white max-w-3xl mx-auto">
           A thriving community where tech enthusiasts come together to learn,
           share and grow
         </p>
-        <div className="flex items-center justify-center gap-8 flex-col md:flex-row mt-10">
+        <div className="flex flex-col md:flex-row gap-8 mt-10 justify-center items-center">
           <Link
             href=""
-            className="
-              bg-black text-white px-4 py-3
-              shadow-[4px_4px_0_0.05rem_rgba(255,255,255,0.4)]
-              transition-all duration-200 ease-out
-              hover:shadow-[2px_2px_0_0.05rem_rgba(255,255,255,0.4)]
-              hover:-translate-x-[1px]
-              hover:-translate-y-[1px]
-            "
+            className="bg-black text-white px-4 py-3 shadow-[4px_4px_0_0.05rem_rgba(255,255,255,0.4)] transition-all duration-200 ease-out hover:shadow-[2px_2px_0_0.05rem_rgba(255,255,255,0.4)] hover:-translate-x-[1px] hover:-translate-y-[1px]"
           >
             JOIN OUR COMMUNITY
           </Link>
           <Link
             href=""
-            className="
-              flex gap-4 bg-transparent outline outline-white text-white px-4 py-3
-              shadow-[4px_4px_0_0.05rem_rgba(255,255,255,0.4)]
-              transition-all duration-200 ease-out
-              hover:shadow-[2px_2px_0_0.05rem_rgba(255,255,255,0.4)]
-              hover:-translate-x-[1px]
-              hover:-translate-y-[1px]
-            "
+            className="flex gap-4 bg-transparent outline outline-white text-white px-4 py-3 shadow-[4px_4px_0_0.05rem_rgba(255,255,255,0.4)] transition-all duration-200 ease-out hover:shadow-[2px_2px_0_0.05rem_rgba(255,255,255,0.4)] hover:-translate-x-[1px] hover:-translate-y-[1px]"
           >
             LEARN MORE
             <ArrowRight />
@@ -116,11 +85,12 @@ export default function Hero({ backgroundImage }: HeroProps) {
         </div>
       </div>
 
-      <div className="mt-30 capitalize z-30">
-        <h2 className="text-2xl text-white border-b-3  border-white pb-2 mb-6 inline-block font-medium uppercase">
+      {/* Partners carousel */}
+      <div className="mt-30 capitalize z-20 relative">
+        <h2 className="text-xl text-white border-b-3 border-white pb-2 mb-6 inline-block font-medium uppercase">
           Our Partners & Collaborators
         </h2>
-        <div className="w-screen -mx-4 mt-10">
+        <div className="w-screen -mx-4 mt-10 mb-10">
           <Carousel
             className="w-full"
             plugins={[
