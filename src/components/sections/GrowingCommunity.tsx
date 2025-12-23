@@ -15,7 +15,10 @@ export default function GrowingCommunity() {
                 <p className="text-center">A thriving tech community where developer, engineers, designers, and tech enthusiasts come together to learn, shrae, and grow</p>
         
                 <div className="">
-                     
+                     <div>
+                        
+                     </div>
+                     <div></div>
                 </div>
               </div>
             </section>
