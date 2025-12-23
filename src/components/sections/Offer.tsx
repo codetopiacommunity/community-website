@@ -8,7 +8,6 @@ export default function Offer() {
     >
       {/* Left Background Image */}
       <div className="absolute top-0 left-[-340px] hidden md:block h-full w-[100%] z-0 bg-[url('/images/codetopia-logo.png')] bg-left bg-contain bg-no-repeat pointer-events-none"></div>
-
       {/* Right Background Image */}
       <div className="absolute top-0 right-[-410px] hidden md:block h-full w-[100%] z-0 bg-[url('/images/codetopia-logo.png')] bg-right bg-contain bg-no-repeat pointer-events-none"></div>
 
