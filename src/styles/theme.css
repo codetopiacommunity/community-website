@@ -1,0 +1,38 @@
+@theme {
+  /* ---------- Text ---------- */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-text-inverse: var(--text-inverse);
+  --color-text-on-surface: var(--text-on-surface);
+  --color-text-on-overlay: var(--text-on-overlay);
+  --color-text-on-brand: var(--text-on-brand);
+  --color-text-on-status: var(--text-on-status);
+
+  /* ---------- Icons ---------- */
+  --color-icon-primary: var(--icon-primary);
+  --color-icon-secondary: var(--icon-secondary);
+  --color-icon-tertiary: var(--icon-tertiary);
+  --color-icon-muted: var(--icon-muted);
+  --color-icon-disabled: var(--icon-disabled);
+
+  --color-icon-inverse: var(--icon-inverse);
+  --color-icon-on-surface: var(--icon-on-surface);
+  --color-icon-on-overlay: var(--icon-on-overlay);
+  --color-icon-on-brand: var(--icon-on-brand);
+  --color-icon-on-status: var(--icon-on-status);
+
+  --color-icon-success: var(--icon-success);
+  --color-icon-warning: var(--icon-warning);
+  --color-icon-info: var(--icon-info);
+  --color-icon-error: var(--icon-error);
+
+  /* ---------- Status ---------- */
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-info: var(--status-info);
+  --color-status-error: var(--status-error);
+}
