@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { spaceGrotesk } from "../../fonts/fonts";
+import { spaceGrotesk } from "@/fonts/fonts";
 
 export default function Offer() {
   return (
