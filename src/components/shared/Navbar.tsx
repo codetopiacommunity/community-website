@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { spaceGrotesk } from "../../fonts/fonts";
+import { spaceGrotesk } from "@/fonts/fonts";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
