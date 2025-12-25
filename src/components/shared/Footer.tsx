@@ -100,7 +100,7 @@ export default function Footer() {
 
 
                 <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-                    <p>© 2025 Codetopia Community. All rights reserved</p>
+                    <p>&copy; 2020 - {new Date().getFullYear()} Codetopia Community</p>
 
                     <div className="flex gap-6 mt-4 md:mt-0">
                         <Link href="#" className="hover:text-white transition">Privacy Policy</Link>
