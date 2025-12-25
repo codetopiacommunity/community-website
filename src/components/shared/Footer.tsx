@@ -19,7 +19,7 @@ export default function Footer() {
             />
 
 
-            <div className="absolute inset-0 bg-black/70" />
+
 
             <div className="relative z-10 container  max-sm:px-4 py-12 md:py-16 md:max-w-8/10 mx-auto w-full">
 

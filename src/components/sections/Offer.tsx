@@ -6,10 +6,14 @@ export default function Offer() {
     <section
       className={`relative bg-black/90 ${spaceGrotesk.className} p-3 overflow-hidden`}
     >
-      {/* Left Background Image */}
-      <div className="absolute top-0 left-[-340px] hidden md:block h-full w-[100%] z-0 bg-[url('/images/codetopia-logo.png')] bg-left bg-contain bg-no-repeat pointer-events-none"></div>
-      {/* Right Background Image */}
-      <div className="absolute top-0 right-[-410px] hidden md:block h-full w-[100%] z-0 bg-[url('/images/codetopia-logo.png')] bg-right bg-contain bg-no-repeat pointer-events-none"></div>
+
+      <Image
+          src="/images/codetopia-bg.jpg"
+          alt="Codetopia background"
+          fill
+          className="object-cover"
+          priority
+      />
 
       {/* Section Content */}
       <div className="relative z-10 lg:max-w-[80%] mx-auto py-20">
