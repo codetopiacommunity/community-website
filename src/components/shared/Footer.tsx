@@ -21,10 +21,10 @@ export default function Footer() {
 
 
 
-            <div className="relative z-10 container  max-sm:px-4 py-12 md:py-16 md:max-w-8/10 mx-auto w-full">
+            <div className="relative z-10   max-lg:px-4 py-12 md:py-16 lg:max-w-8/10 mx-auto w-full">
 
 
-                <div className="grid grid-cols-1 gap-10 md:gap-16 md:grid-cols-[repeat(auto-fit,minmax(256px,1fr))] justify-between">
+                <div className="grid grid-cols-1 md:grid-cols-3  gap-10 md:gap-16 xl:flex flex-wrap xl:justify-between">
 
 
                     <div className="flex flex-col items-start ">

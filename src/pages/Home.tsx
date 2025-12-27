@@ -1,6 +1,8 @@
 import Hero from "@/components/sections/Hero";
 import Offer from "@/components/sections/Offer";
 import GrowingCommunity from "@/components/sections/GrowingCommunity";
+import NewsLetter from "@/components/sections/NewsLetter";
+import JoinCommunity from "@/components/sections/JoinCommunity";
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
       <Hero />
       <Offer />
       <GrowingCommunity />
+      <NewsLetter/>
+      <JoinCommunity/>
     </div>
   );
 }
