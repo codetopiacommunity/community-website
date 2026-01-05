@@ -6,7 +6,10 @@
   --color-text-muted: var(--text-muted);
   --color-text-disabled: var(--text-disabled);
 
-  --color-text-inverse: var(--text-inverse);
+  --color-inverse: var(--text-inverse);
+  --color-inverse-2: var(--text-inverse-2);
+  --color-inverse-3: var(--text-inverse-3);
+  --color-inverse-4: var(--text-inverse-4);
   --color-text-on-surface: var(--text-on-surface);
   --color-text-on-overlay: var(--text-on-overlay);
   --color-text-on-brand: var(--text-on-brand);

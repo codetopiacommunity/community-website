@@ -10,7 +10,7 @@ export default function GrowingCommunity() {
             Our Growing Community
           </span>
         </h2>
-        <p className="text-center mb-5">
+        <p className="text-center text-inverse-2 mb-5">
           A thriving tech community where developer, engineers, designers, and
           tech enthusiasts come together to learn, shrae, and grow
         </p>
