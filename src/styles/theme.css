@@ -1,41 +1,42 @@
 @theme {
   /* ---------- Text ---------- */
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-tertiary: var(--text-tertiary);
-  --color-text-muted: var(--text-muted);
-  --color-text-disabled: var(--text-disabled);
+  --color-ct-primary: var(--text-on-primary);
+  --color-ct-secondary: var(--text-on-secondary);
+  --color-ct-tertiary: var(--text-on-tertiary);
+  --color-ct-muted: var(--text-muted);
+  --color-ct-disabled: var(--text-disabled);
 
-  --color-inverse: var(--text-inverse);
-  --color-inverse-2: var(--text-inverse-2);
-  --color-inverse-3: var(--text-inverse-3);
-  --color-inverse-4: var(--text-inverse-4);
-  --color-text-on-surface: var(--text-on-surface);
-  --color-text-on-overlay: var(--text-on-overlay);
-  --color-text-on-brand: var(--text-on-brand);
-  --color-text-on-status: var(--text-on-status);
+  --color-ct-inverse: var(--text-inverse);
+  --color-ct-inverse-2: var(--text-inverse-2);
+  --color-ct-inverse-3: var(--text-inverse-3);
+  --color-ct-inverse-4: var(--text-inverse-4);
+
+  --color-ct-on-surface: var(--text-on-surface);
+  --color-ct-on-overlay: var(--text-on-overlay);
+  --color-ct-on-brand: var(--text-on-brand);
+  --color-ct-on-status: var(--text-on-status);
 
   /* ---------- Icons ---------- */
-  --color-icon-primary: var(--icon-primary);
-  --color-icon-secondary: var(--icon-secondary);
-  --color-icon-tertiary: var(--icon-tertiary);
-  --color-icon-muted: var(--icon-muted);
-  --color-icon-disabled: var(--icon-disabled);
+  --color-ct-icon-primary: var(--icon-primary);
+  --color-ct-icon-secondary: var(--icon-secondary);
+  --color-ct-icon-tertiary: var(--icon-tertiary);
+  --color-ct-icon-muted: var(--icon-muted);
+  --color-ct-icon-disabled: var(--icon-disabled);
 
-  --color-icon-inverse: var(--icon-inverse);
-  --color-icon-on-surface: var(--icon-on-surface);
-  --color-icon-on-overlay: var(--icon-on-overlay);
-  --color-icon-on-brand: var(--icon-on-brand);
-  --color-icon-on-status: var(--icon-on-status);
+  --color-ct-icon-inverse: var(--icon-inverse);
+  --color-ct-icon-on-surface: var(--icon-on-surface);
+  --color-ct-icon-on-overlay: var(--icon-on-overlay);
+  --color-ct-icon-on-brand: var(--icon-on-brand);
+  --color-ct-icon-on-status: var(--icon-on-status);
 
-  --color-icon-success: var(--icon-success);
-  --color-icon-warning: var(--icon-warning);
-  --color-icon-info: var(--icon-info);
-  --color-icon-error: var(--icon-error);
+  --color-ct-icon-success: var(--icon-success);
+  --color-ct-icon-warning: var(--icon-warning);
+  --color-ct-icon-info: var(--icon-info);
+  --color-ct-icon-error: var(--icon-error);
 
   /* ---------- Status ---------- */
-  --color-status-success: var(--status-success);
-  --color-status-warning: var(--status-warning);
-  --color-status-info: var(--status-info);
-  --color-status-error: var(--status-error);
+  --color-ct-status-success: var(--status-success);
+  --color-ct-status-warning: var(--status-warning);
+  --color-ct-status-info: var(--status-info);
+  --color-ct-status-error: var(--status-error);
 }

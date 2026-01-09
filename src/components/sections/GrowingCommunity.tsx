@@ -2,17 +2,17 @@ import { spaceGrotesk } from "@/fonts/fonts";
 
 export default function GrowingCommunity() {
   return (
-    <section className={`relative bg-white ${spaceGrotesk.className} p-3 `}>
+    <section className={`relative bg-ct-primary ${spaceGrotesk.className} p-3 `}>
       {/* Section Content */}
       <div className="relative z-10 lg:max-w-[80%] mx-auto py-20">
         <h2 className="text-center mb-10 uppercase ">
-          <span className="inline-block text-2xl font-medium text-black border-b-2 border-black pb-2">
+          <span className="inline-block text-2xl font-medium text-ct-inverse border-b-2 border-ct-inverse pb-2">
             Our Growing Community
           </span>
         </h2>
-        <p className="text-center text-inverse-2 mb-5">
+        <p className="text-center text-ct-inverse mb-5 max-w-3xl mx-auto">
           A thriving tech community where developer, engineers, designers, and
-          tech enthusiasts come together to learn, shrae, and grow
+          tech enthusiasts come together to learn, share, and grow
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[300px]">
