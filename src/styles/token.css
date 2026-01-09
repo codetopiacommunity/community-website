@@ -1,13 +1,17 @@
 @layer base {
   :root {
     /* ================= TEXT ================= */
-    --text-primary: #F9FAFB;
-    --text-secondary: #D1D5DB;
-    --text-tertiary: #9CA3AF;
+    --text-on-primary: #F9FAFB;
+    --text-on-secondary: #D1D5DB;
+    --text-on-tertiary: #9CA3AF;
     --text-muted: #6B7280;
     --text-disabled: #4B5563;
 
     --text-inverse: #111827;
+    --text-inverse-2: #474747;
+    --text-inverse-2: #727272;
+    --text-inverse-4: #9F9F9F;
+
     --text-on-surface: #F9FAFB;
     --text-on-overlay: #F9FAFB;
     --text-on-brand: #FFFFFF;

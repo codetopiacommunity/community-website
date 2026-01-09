@@ -32,8 +32,8 @@ export default function Offer() {
               width={50}
               height={50}
             />
-            <h3 className="my-4 font-bold text-[18px]">Events</h3>
-            <p>
+            <h3 className="my-4 text-inverse font-bold text-[18px]">Events</h3>
+            <p className="text-inverse-2">
               Weekly meetups, workshops, and hackathons for all skill levels
             </p>
           </div>
@@ -46,8 +46,8 @@ export default function Offer() {
               width={50}
               height={50}
             />
-            <h3 className="my-4 font-bold text-[18px]">Workshops</h3>
-            <p>
+            <h3 className="my-4 text-inverse font-bold text-[18px]">Workshops</h3>
+            <p className="text-inverse-2">
               Hands-on sessions focused on real-world tools and technologies
             </p>
           </div>
@@ -60,8 +60,8 @@ export default function Offer() {
               width={50}
               height={50}
             />
-            <h3 className="my-4 font-bold text-[18px]">Community</h3>
-            <p>Connect, collaborate, and grow with like-minded developers</p>
+            <h3 className="my-4 text-inverse font-bold text-[18px]">Community</h3>
+            <p className="text-inverse-2">Connect, collaborate, and grow with like-minded developers</p>
           </div>
         </div>
       </div>
