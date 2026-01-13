@@ -6,8 +6,80 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
+
+
+    const communityLinks = [
+        {
+            label: "Code of Conduct",
+            href: "#",
+        },
+        {
+            label: "Become a Sponsor",
+            href: "#",
+        },
+        {
+            label: "Become a Volunteer",
+            href: "#",
+        },
+        {
+            label: "Join Our Discord Server",
+            href: "https://discord.gg/3nBFMfdNmB",
+        },
+        {
+            label: "Join Our WhatsApp Community",
+            href: "https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9",
+        },
+    ];
+
+
+    const socialLinks = [
+        {
+            href: "https://discord.gg/3nBFMfdNmB",
+            Icon: FaDiscord,
+        },
+        {
+            href: "https://www.youtube.com/channel/UCJqs2xW7x-cs1V0bRG7ucXg",
+            Icon: FaYoutube,
+        },
+        {
+            href: "https://gh.linkedin.com/company/codetopia-community",
+            Icon: FaLinkedinIn,
+        },
+        {
+            href: "https://twitter.com/codetopiacom",
+            Icon: FaXTwitter,
+        },
+        {
+            href: "#",
+            Icon: FaBluesky,
+        },
+        {
+            href: "#",
+            Icon: FaThreads,
+        },
+        {
+            href: "https://www.tiktok.com/@codetopiacommunity",
+            Icon: FaTiktok,
+        },
+    ];
+
+    const aboutLinks = [
+        { label: "About Us", href: "#" },
+        { label: "Events", href: "#" },
+        { label: "Articles", href: "#" },
+        { label: "Gallery", href: "#" },
+    ];
+
+    const legalLinks = [
+        { label: "Privacy Policy", href: "#" },
+        { label: "Terms of Service", href: "#" },
+        { label: "Cookies Policy", href: "#" },
+    ];
+
+
+
     return (
-        <footer className={`relative w-full min-h-[400px] md:min-h-[344px] text-gray-300 ${inter.className}`}>
+        <footer className={`relative w-full min-h-[400px] md:min-h-[344px] text-ct-secondary ${inter.className}`}>
 
 
             <Image
@@ -37,36 +109,44 @@ export default function Footer() {
                             />
                         </div>
 
-                        <p className="text-sm mb-6 text-gray-400">
+                        <p className="text-sm mb-6 text-ct-secondary">
                             A utopia for tech enthusiasts
                         </p>
 
                         <div className="flex flex-wrap gap-6">
-                            <Link href="https://discord.gg/3nBFMfdNmB"><FaDiscord className="w-6 h-6 hover:text-white transition" /></Link>
-                            <Link href="https://www.youtube.com/channel/UCJqs2xW7x-cs1V0bRG7ucXg"><FaYoutube className="w-6 h-6 hover:text-white transition" /></Link>
-                            <Link href="https://gh.linkedin.com/company/codetopia-community"><FaLinkedinIn className="w-6 h-6 hover:text-white transition" /></Link>
-                            <Link href="https://twitter.com/codetopiacom"><FaXTwitter className="w-6 h-6 hover:text-white transition" /></Link>
-                            <Link href="#"><FaBluesky className="w-6 h-6 hover:text-white transition" /></Link>
-                            <Link href="#"><FaThreads className="w-6 h-6 hover:text-white transition" /></Link>
-                            <Link href="https://www.tiktok.com/@codetopiacommunity"><FaTiktok className="w-6 h-6 hover:text-white transition" /></Link>
+                            {socialLinks.map(({ href, Icon }, index) => (
+                                <Link key={index} href={href}>
+                                    <Icon className="w-6 h-6 hover:text-ct-primary transition" />
+                                </Link>
+                            ))}
                         </div>
+
                     </div>
 
 
                     <div>
-                        <h3 className="text-lg font-semibold text-white mb-4">Community</h3>
+                        <h3 className="text-lg font-semibold text-ct-primary mb-4">
+                            Community
+                        </h3>
+
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="#" className="hover:text-white transition">Code of Conduct</Link></li>
-                            <li><Link href="#" className="hover:text-white transition">Become a Sponsor</Link></li>
-                            <li><Link href="#" className="hover:text-white transition">Become a Volunteer</Link></li>
-                            <li><Link href="https://discord.gg/3nBFMfdNmB" className="hover:text-white transition">Join Our Discord Server</Link></li>
-                            <li><Link href="https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9" className="hover:text-white transition">Join Our WhatsApp Community</Link></li>
+                            {communityLinks.map((link, index) => (
+                                <li key={index}>
+                                    <Link
+                                        href={link.href}
+                                        className={"hover:text-ct-primary transition"}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
 
+
                     <div>
-                        <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
+                        <h3 className="text-lg font-semibold text-ct-primary mb-4">Contact</h3>
                         <ul className="space-y-3 text-sm">
                             <li className="flex items-center gap-3">
                                 <Mail className="w-4 h-4" />
@@ -89,24 +169,38 @@ export default function Footer() {
                     <div>
                         <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="#" className="hover:text-white transition">About Us</Link></li>
-                            <li><Link href="#" className="hover:text-white transition">Events</Link></li>
-                            <li><Link href="#" className="hover:text-white transition">Articles</Link></li>
-                            <li><Link href="#" className="hover:text-white transition">Gallery</Link></li>
+                            {aboutLinks.map((link, index) => (
+                                <li key={index}>
+                                    <Link
+                                        href={link.href}
+                                        className="hover:text-ct-primary transition"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
+
                     </div>
 
                 </div>
 
 
-                <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-sm text-ct-secondary">
                     <p>&copy; 2020 - {new Date().getFullYear()} Codetopia Community</p>
 
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link href="#" className="hover:text-white transition">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition">Terms of Service</Link>
-                        <Link href="#" className="hover:text-white transition">Cookies Policy</Link>
+                        {legalLinks.map((link, index) => (
+                            <Link
+                                key={index}
+                                href={link.href}
+                                className="hover:text-ct-primary transition"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
+
                 </div>
 
             </div>
