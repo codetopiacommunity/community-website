@@ -3,6 +3,7 @@ import Offer from "@/components/sections/Offer";
 import GrowingCommunity from "@/components/sections/GrowingCommunity";
 import NewsLetter from "@/components/sections/NewsLetter";
 import JoinCommunity from "@/components/sections/JoinCommunity";
+import CommunityEvents from "@/components/sections/CommunityEvents";
 
 export default function Home() {
   return (
@@ -10,8 +11,9 @@ export default function Home() {
       <Hero />
       <Offer />
       <GrowingCommunity />
-      <NewsLetter/>
-      <JoinCommunity/>
+      <CommunityEvents />
+      <NewsLetter />
+      <JoinCommunity />
     </div>
   );
 }

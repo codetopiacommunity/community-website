@@ -60,61 +60,57 @@ export default function Hero({ backgroundImage }: HeroProps) {
       <div className="pointer-events-none absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
 
       {/* Content */}
-      <div className="relative z-20 lg:max-w-[80%]">
-        <h1 className="text-4xl md:text-7xl font-bold text-ct-primary max-w-md md:max-w-7xl mx-auto pt-20">
-          Building A Community for the Future
+      <div className="relative z-20 flex flex-col items-center justify-center flex-grow w-full px-4 mb-20">
+        <h1 className="text-4xl md:text-6xl font-bold text-ct-primary text-center uppercase tracking-wide max-w-5xl leading-tight">
+          Building A Community <br /> For The Future
         </h1>
-        <p className="mt-5 text-2xl text-ct-primary max-w-3xl mx-auto">
-          A thriving community where tech enthusiasts come together to learn,
-          share and grow
+        <p className="mt-8 text-lg md:text-xl text-ct-primary/90 text-center max-w-2xl font-light">
+          A thriving tech community where tech enthusiasts come <br className="hidden md:block" /> together to learn, share, and grow
         </p>
-        <div className="flex flex-col md:flex-row gap-8 mt-10 justify-center items-center">
+
+        <div className="flex flex-col sm:flex-row gap-6 mt-12">
           <Link
             href=""
-            className="bg-black text-ct-primary px-4 py-3 shadow-[4px_4px_0_0.05rem_rgba(255,255,255,0.4)] transition-all duration-200 ease-out hover:shadow-[2px_2px_0_0.05rem_rgba(255,255,255,0.4)] hover:-translate-x-[1px] hover:-translate-y-[1px]"
+            className="bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest border border-transparent shadow-[6px_6px_0_0_rgba(255,255,255,0.3)] hover:shadow-[0_0_0_0_rgba(255,255,255,0.3)] transition-shadow duration-300 ease-in-out"
           >
             JOIN OUR COMMUNITY
           </Link>
+
           <Link
             href=""
-            className="flex gap-4 bg-transparent outline outline-ct-primary text-ct-primary px-4 py-3 shadow-[4px_4px_0_0.05rem_rgba(255,255,255,0.4)] transition-all duration-200 ease-out hover:shadow-[2px_2px_0_0.05rem_rgba(255,255,255,0.4)] hover:-translate-x-[1px] hover:-translate-y-[1px]"
+            className="group flex items-center justify-center gap-2 bg-transparent text-white px-8 py-3 text-xs font-bold uppercase tracking-widest border border-white shadow-[6px_6px_0_0_rgba(255,255,255,0.3)] hover:shadow-[0_0_0_0_rgba(255,255,255,0.3)] transition-shadow duration-300 ease-in-out"
           >
             LEARN MORE
-            <ArrowRight />
+            <ArrowRight className="w-4 h-4 ml-1" />
           </Link>
         </div>
       </div>
 
-      {/* Partners carousel */}
-      <div className="mt-30 capitalize z-20 relative">
-        <h2 className="text-xl text-ct-primary border-b-3 border-ct-primary pb-2 mb-6 inline-block font-medium uppercase">
-          Our Partners & Collaborators
-        </h2>
-        <div className="w-screen -mx-4 mt-10 mb-10">
-          <Carousel
-            className="w-full"
-            plugins={[
-              Autoplay({
-                delay: 5000,
-              }),
-            ]}
-          >
-            <CarouselContent className="flex gap-6">
-              {partnerLogos.map((logo, index) => (
-                <CarouselItem key={index} className="basis-1/4 md:basis-1/8">
-                  <div className="relative w-full h-16">
-                    <Image
-                      src={logo}
-                      alt={`Partner ${index + 1}`}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
+      {/* Partners carousel - Bottom */}
+      <div className="absolute bottom-10 left-0 right-0 z-20 w-full pb-8 md:pb-12 px-4 pt-8">
+        <Carousel
+          className="w-full max-w-6xl mx-auto"
+          plugins={[
+            Autoplay({
+              delay: 4000,
+            }),
+          ]}
+        >
+          <CarouselContent className="flex items-center">
+            {partnerLogos.map((logo, index) => (
+              <CarouselItem key={index} className="basis-1/3 md:basis-1/5 lg:basis-1/6 flex justify-center">
+                <div className="relative w-32 h-10 opacity-70 hover:opacity-100 transition-opacity">
+                  <Image
+                    src={logo}
+                    alt={`Partner ${index + 1}`}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
