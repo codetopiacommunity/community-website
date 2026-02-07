@@ -39,4 +39,25 @@
   --color-ct-status-warning: var(--status-warning);
   --color-ct-status-info: var(--status-info);
   --color-ct-status-error: var(--status-error);
+
+  /* ---------- Backgrounds ---------- */
+  --color-ct-surface: #e9e9e9;
+  --color-ct-bg-dark: #111111;
+  --color-ct-bg-light: #F9FAFB;
+  --color-ct-bg-overlay: rgba(0, 0, 0, 0.4);
+
+  /* ---------- Shadows ---------- */
+  --shadow-ct-hard: 4px 4px 0 0 var(--text-inverse);
+  --shadow-ct-soft: 8px 8px 0 0 rgba(255, 255, 255, 0.1);
+  --shadow-ct-heavy: 12px 12px 0 0 rgba(255, 255, 255, 0.2);
+  --shadow-ct-heavy-hover: 16px 16px 0 0 rgba(255, 255, 255, 0.2);
+  --shadow-ct-card: 8px 8px 0 0 rgba(0, 0, 0, 0.4);
+  --shadow-ct-card-hover: 12px 12px 0 0 rgba(0, 0, 0, 0.4);
+  --shadow-ct-btn: 8px 8px 0 0 #A8A8A8;
+  --shadow-ct-hero-btn: 6px 6px 0 0 rgba(255, 255, 255, 0.3);
+  --shadow-ct-stats: 5px 5px 0 0 rgba(0, 0, 0, 0.4);
+  --shadow-ct-stats-hover: 8px 8px 0 0 rgba(0, 0, 0, 0.4);
+  --shadow-ct-offer: 8px 8px 0 0 #474747;
+  --shadow-ct-offer-hover: 12px 12px 0 0 #474747;
+  --shadow-ct-subtle: 4px 4px 0 0.05rem rgba(255, 255, 255, 0.4);
 }

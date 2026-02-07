@@ -2,7 +2,7 @@ import { spaceGrotesk } from "@/fonts/fonts";
 
 export default function GrowingCommunity() {
   return (
-    <section className={`relative bg-foreground ${spaceGrotesk.className} p-3 `}>
+    <section className={`relative bg-ct-surface ${spaceGrotesk.className} p-3 `}>
       {/* Section Content */}
       <div className="relative z-10 lg:max-w-[80%] mx-auto py-10">
 
@@ -21,8 +21,8 @@ export default function GrowingCommunity() {
 
         <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[300px]">
           {/* Left card */}
-          <div className="relative flex flex-col justify-end p-8 flex-1 bg-[url('/images/stats-bg-1.png')] bg-cover bg-center shadow-[5px_5px_0_0_rgba(0,0,0,0.4)]
-                transition-shadow duration-300 hover:shadow-[3px_3px_0_0_rgba(0,0,0,0.5)]">
+          <div className="relative flex flex-col justify-end p-8 flex-1 bg-[url('/images/stats-bg-1.png')] bg-cover bg-center shadow-ct-stats
+                transition-shadow duration-300 hover:shadow-ct-stats-hover">
             {/* Diagonal overlay */}
             <div className="absolute inset-0 bg-gradient-to-tl from-black/100 to-transparent pointer-events-none"></div>
 
@@ -35,16 +35,16 @@ export default function GrowingCommunity() {
 
           {/* Right column (two stacked cards) */}
           <div className="flex flex-col gap-4 flex-1">
-            <div className="relative flex flex-col  justify-end p-8 flex-1 bg-[url('/images/stats-bg-2.png')] bg-cover bg-center shadow-[5px_5px_0_0_rgba(0,0,0,0.4)]
-                transition-shadow duration-300 hover:shadow-[3px_3px_0_0_rgba(0,0,0,0.5)]">
+            <div className="relative flex flex-col  justify-end p-8 flex-1 bg-[url('/images/stats-bg-2.png')] bg-cover bg-center shadow-ct-stats
+                transition-shadow duration-300 hover:shadow-ct-stats-hover">
               <div className="absolute inset-0 bg-gradient-to-tl from-black/100 to-transparent pointer-events-none"></div>
               <p className="relative text-right text-ct-primary">
                 <span className="block text-4xl font-bold">13+</span>
                 <span className="block text-sm">Workshops &amp; meetups</span>
               </p>
             </div>
-            <div className="relative flex flex-col justify-end p-8 flex-1 bg-[url('/images/stats-bg-2.png')] bg-cover bg-center shadow-[5px_5px_0_0_rgba(0,0,0,0.4)]
-                transition-shadow duration-300 hover:shadow-[3px_3px_0_0_rgba(0,0,0,0.5)]">
+            <div className="relative flex flex-col justify-end p-8 flex-1 bg-[url('/images/stats-bg-2.png')] bg-cover bg-center shadow-ct-stats
+                transition-shadow duration-300 hover:shadow-ct-stats-hover">
               <div className="absolute inset-0 bg-gradient-to-tl from-black/100 to-transparent pointer-events-none"></div>
               <p className="relative text-right text-ct-primary">
                 <span className="block text-4xl font-bold">7+</span>

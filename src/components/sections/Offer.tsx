@@ -12,12 +12,12 @@ export default function Offer() {
     {
       title: "Workshops",
       description: "Hands-on sessions focused on real-world tools and technologies",
-      icon: "/images/icon-events.png",
+      icon: "/images/Web Design.png",
     },
     {
       title: "Community",
       description: "Connect, collaborate, and grow with like-minded developers",
-      icon: "/images/icon-events.png",
+      icon: "/images/Crowd.png",
     },
   ];
 
@@ -27,11 +27,11 @@ export default function Offer() {
     >
 
       <Image
-          src="/images/codetopia-bg.jpg"
-          alt="Codetopia background"
-          fill
-          className="object-cover"
-          priority
+        src="/images/codetopia-bg.jpg"
+        alt="Codetopia background"
+        fill
+        className="object-cover"
+        priority
       />
 
       {/* Section Content */}
@@ -44,25 +44,25 @@ export default function Offer() {
 
         <div className="flex flex-wrap gap-7 justify-center">
           {offerCards.map((card, index) => (
-              <div
-                  key={index}
-                  className="bg-ct-primary basis-[18rem] min-w-[14rem] flex-1 p-10 shadow-[8px_8px_0_0_rgba(255,255,255,0.4)] transition-shadow duration-300 ease-out hover:shadow-[12px_12px_0_0_rgba(255,255,255,0.4)]"
-              >
-                <Image
-                    src={card.icon}
-                    alt={card.title}
-                    width={50}
-                    height={50}
-                />
+            <div
+              key={index}
+              className="bg-ct-primary basis-[18rem] min-w-[14rem] flex-1 p-10 shadow-ct-offer transition-all duration-300 ease-out hover:shadow-ct-offer-hover"
+            >
+              <Image
+                src={card.icon}
+                alt={card.title}
+                width={50}
+                height={50}
+              />
 
-                <h3 className="my-4 text-ct-inverse font-bold text-[18px]">
-                  {card.title}
-                </h3>
+              <h3 className="my-4 text-ct-inverse font-bold text-[18px]">
+                {card.title}
+              </h3>
 
-                <p className="text-ct-inverse-2">
-                  {card.description}
-                </p>
-              </div>
+              <p className="text-ct-inverse-2">
+                {card.description}
+              </p>
+            </div>
           ))}
         </div>
 

@@ -54,10 +54,10 @@ export default function Hero({ backgroundImage }: HeroProps) {
       }}
     >
       {/* Black overlay */}
-      <div className="absolute inset-0 bg-black/50 md:bg-black/70 z-10"></div>
+      <div className="absolute inset-0 bg-ct-bg-dark/50 md:bg-ct-bg-dark/70 z-10"></div>
 
       {/* Gradient at bottom */}
-      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-ct-bg-dark/80 via-ct-bg-dark/40 to-transparent z-10" />
 
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center flex-grow w-full px-4 mb-20">
@@ -71,14 +71,14 @@ export default function Hero({ backgroundImage }: HeroProps) {
         <div className="flex flex-col sm:flex-row gap-6 mt-12">
           <Link
             href=""
-            className="bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest border border-transparent shadow-[6px_6px_0_0_rgba(255,255,255,0.3)] hover:shadow-[0_0_0_0_rgba(255,255,255,0.3)] transition-shadow duration-300 ease-in-out"
+            className="bg-ct-inverse text-ct-primary px-8 py-3 text-xs font-bold uppercase tracking-widest border border-transparent shadow-ct-hero-btn hover:shadow-none transition-shadow duration-300 ease-in-out"
           >
             JOIN OUR COMMUNITY
           </Link>
 
           <Link
             href=""
-            className="group flex items-center justify-center gap-2 bg-transparent text-white px-8 py-3 text-xs font-bold uppercase tracking-widest border border-white shadow-[6px_6px_0_0_rgba(255,255,255,0.3)] hover:shadow-[0_0_0_0_rgba(255,255,255,0.3)] transition-shadow duration-300 ease-in-out"
+            className="group flex items-center justify-center gap-2 bg-transparent text-ct-primary px-8 py-3 text-xs font-bold uppercase tracking-widest border border-ct-primary shadow-ct-hero-btn hover:shadow-none transition-shadow duration-300 ease-in-out"
           >
             LEARN MORE
             <ArrowRight className="w-4 h-4 ml-1" />
@@ -87,7 +87,7 @@ export default function Hero({ backgroundImage }: HeroProps) {
       </div>
 
       {/* Partners carousel - Bottom */}
-      <div className="absolute bottom-10 left-0 right-0 z-20 w-full pb-8 md:pb-12 px-4 pt-8">
+      <div className="absolute bottom-0 md:bottom-10 left-0 right-0 z-20 w-full pb-8 md:pb-12 px-4 pt-8">
         <Carousel
           className="w-full max-w-6xl mx-auto"
           plugins={[
