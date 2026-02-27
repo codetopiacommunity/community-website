@@ -35,3 +35,11 @@ jobs:
 
       - name: Run tests
         run: pnpm test --if-present
+
+      - name: Trigger Staging Deployment
+        if: success() && github.base_ref == 'dev'
+        run: curl -X POST ${{ secrets.VERCEL_DEPLOY_STAGING }}
+
+      - name: Trigger Production Deployment
+        if: success() && github.base_ref == 'main'
+        run: curl -X POST ${{ secrets.VERCEL_DEPLOY_PRODUCTION }}
