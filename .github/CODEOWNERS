@@ -1,19 +1,19 @@
 # Global — core team reviews everything by default
-* @cerebrocerberus @ichigo-k
+* @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey @seth-mensah
 
 # App directory — critical, needs at least 2 eyes
-/app/ @cerebrocerberus @ichigo-k
+/app/ @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
 
 # Config files — sensitive, restrict to leads
-*.config.js @cerebrocerberus @ichigo-k
-next.config.js @cerebrocerberus @ichigo-k
-.env* @cerebrocerberus
+*.config.js @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
+next.config.js @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
+.env* @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
 
 # Components
-/components/ @cerebrocerberus @ichigo-k
+/components/ @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
 
 # Public assets
-/public/ @cerebrocerberus @ichigo-k
+/public/ @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
 
 # Docs
-/docs/ @cerebrocerberus @ichigo-k
+/docs/ @cerebrocerberus @ichigo-k @khali-physi-hacker @papayankey
