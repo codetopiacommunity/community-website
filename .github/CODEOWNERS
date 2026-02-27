@@ -1,0 +1,19 @@
+# Global — core team reviews everything by default
+* @cerebrocerberus @ichigo-k
+
+# App directory — critical, needs at least 2 eyes
+/app/ @cerebrocerberus @ichigo-k
+
+# Config files — sensitive, restrict to leads
+*.config.js @cerebrocerberus @ichigo-k
+next.config.js @cerebrocerberus @ichigo-k
+.env* @cerebrocerberus
+
+# Components
+/components/ @cerebrocerberus @ichigo-k
+
+# Public assets
+/public/ @cerebrocerberus @ichigo-k
+
+# Docs
+/docs/ @cerebrocerberus @ichigo-k
