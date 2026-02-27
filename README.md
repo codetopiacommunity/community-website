@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+
+<!-- Replace with your actual logo -->
+<img src="public/logo.png" alt="Codetopia Logo" width="120" />
+
+# Codetopia Community Website
+
+> *A utopia for tech enthusiasts*
+
+[![CI](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml/badge.svg)](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml)
+
+[🌐 Live Site](https://codetopia.org) · [🚧 Staging](https://staging.codetopia.org) · [💬 Discord](#) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
+
+</div>
+
+---
+
+## About
+
+The Codetopia Community Website is the official online home of Codetopia — an inclusive and collaborative space created to empower aspiring and practicing technologists. The website showcases who we are, what we do, and how anyone can get involved in our growing community.
+
+---
+
+## Built With
+
+| Technology | Purpose |
+|------------|---------|
+| [Next.js](https://nextjs.org) | Framework (App Router) |
+| [shadcn/ui](https://ui.shadcn.com) | UI Components |
+| [Tailwind CSS](https://tailwindcss.com) | Styling |
+| [Biome](https://biomejs.dev) | Linting & Formatting |
+| [pnpm](https://pnpm.io) | Package Manager |
+| [Vercel](https://vercel.com) | Deployment |
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- pnpm
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install -g pnpm
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Fork the repository
+2. Clone your fork
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/YOUR_USERNAME/community-website.git
+cd community-website
+```
 
-## Learn More
+3. Install dependencies
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Start the development server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+We welcome contributions from everyone! Please read our [Contributing Guide](CONTRIBUTING.md) to get started and our [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
+
+> ⚠️ All pull requests should target the `dev` branch, never `main` directly.
+
+---
+
+## Branch Structure
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production — live at codetopia.org |
+| `dev` | Staging — preview at staging.codetopia.org |
+| `feat/*` | Feature branches |
+| `fix/*` | Bug fix branches |
+| `docs/*` | Documentation branches |
+
+---
+
+## Core Maintainers
+
+- [@cerebrocerberus](https://github.com/iamcerebrocerberus) 
+- [@papayankey](https://github.com/papayankey)
+- [@ichigo-k](https://github.com/ichigo-k) 
+- [@larryQuao](https://github.com/larryQuao) 
+- [@kali-physi-hacker](https://github.com/kali-physi-hacker) 
+
+---
+
+## Connect With Us
+
+| Platform | Link |
+|----------|------|
+| 🌍 Website | [codetopia.org](https://codetopia.org) |
+| 💬 Discord | [Join our Discord](#) |
+| 🐦 Twitter/X | [@codetopia](#) |
+| 💼 LinkedIn | [Codetopia](#) |
+
+---
+
+
+
+
+<div align="center">
+
+*Codetopia — Together, we build the future of technology.* 🚀
+
+</div>
