@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "check": "biome check",
+    "check:fix": "biome check --write",
     "lint": "biome check",
     "format": "biome format --write"
   },
