@@ -29,9 +29,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-grey-900 flex flex-col`}
       >
         <Header />
-        <main className="flex-1 w-full">
-          {children}
-        </main>
+        <main className="flex-1 w-full">{children}</main>
       </body>
     </html>
   );
