@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Lint and format check
+        run: pnpm biome check .
+
       - name: Build
         run: pnpm build
 
