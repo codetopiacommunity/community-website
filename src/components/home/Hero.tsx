@@ -9,7 +9,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { OffsetButton } from "@/components/ui/offset-button";
+import { CtaButton } from "@/components/ui/cta-button";
 
 function LogoIpsum() {
   return (
@@ -59,15 +59,15 @@ export function Hero() {
             learn, share, and grow
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center gap-8 md:gap-6">
-            <OffsetButton label="JOIN OUR COMMUNITY" />
-            <OffsetButton
-              className="!bg-transparent border-2 border-solid border-white hover:bg-white/10 hover:text-white !px-10 font-bold"
-              offsetClassName="!bg-transparent border-2 border-solid border-white translate-x-[5px] translate-y-[5px] group-hover:translate-x-0 group-hover:translate-y-0"
+          <div className="mt-10 flex flex-col sm:flex-row items-center gap-8 md:gap-6 w-full sm:w-auto">
+            <CtaButton>JOIN OUR COMMUNITY</CtaButton>
+            <CtaButton
+              className="border-white text-white hover:bg-white/10 !bg-transparent border-2 border-solid !px-10"
+              offsetClassName="border-white translate-x-[5px] translate-y-[5px] !bg-transparent border-2 border-solid"
             >
               LEARN MORE{" "}
               <MoveRight className="ml-2 w-5 h-5" strokeWidth={2.5} />
-            </OffsetButton>
+            </CtaButton>
           </div>
         </Container>
       </div>
