@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { Footer } from "@/components/layout/Footer"; // Added import for Footer
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="flex-1 w-full">{children}</main>
+        <Footer /> {/* Added Footer component */}
       </body>
     </html>
   );

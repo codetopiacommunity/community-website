@@ -2,7 +2,6 @@
 
 import AutoScroll from "embla-carousel-auto-scroll";
 import { MoveRight } from "lucide-react";
-import Link from "next/link";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
 import {
@@ -22,6 +21,7 @@ function LogoIpsum() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <title>Logo Ipsum</title>
         <path
           d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
           stroke="currentColor"
@@ -94,16 +94,19 @@ export function Hero() {
             className="w-full"
           >
             <CarouselContent className="-ml-4 md:-ml-8 flex gap-10">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <CarouselItem
-                  key={i}
-                  className="pl-4 md:pl-8 basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-[12%] flex justify-center"
-                >
-                  <div className="opacity-80 hover:opacity-100 transition-opacity">
-                    <LogoIpsum />
-                  </div>
-                </CarouselItem>
-              ))}
+              {Array.from({ length: 12 }).map((_, i) => {
+                return (
+                  <CarouselItem
+                    // biome-ignore lint/suspicious/noArrayIndexKey: This is a static repeating array of the same logo
+                    key={i}
+                    className="pl-4 md:pl-8 basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-[12%] flex justify-center"
+                  >
+                    <div className="opacity-80 hover:opacity-100 transition-opacity">
+                      <LogoIpsum />
+                    </div>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
           </Carousel>
         </div>
