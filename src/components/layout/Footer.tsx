@@ -15,20 +15,25 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import { SiBluesky } from "react-icons/si";
-import footerBg from "@/assets/images/footer-bg.png";
 import logo from "@/assets/images/logos/Codetopia-Logo-TW.png";
 import { Container } from "@/components/layout/Container";
 
 export function Footer() {
   return (
-    <footer className="relative w-full text-white pt-20 pb-8 mt-auto bg-black overflow-hidden">
-      {/* Background Image & Overlay */}
-      <div
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('${footerBg.src}')` }}
-      />
+    <footer className="relative w-full text-white pb-8 mt-auto bg-grey-900 overflow-hidden border-t border-zinc-900">
+      {/* Logo Typography Background */}
+      <div className="absolute inset-x-0 bottom-0 h-full overflow-hidden pointer-events-none z-0 opacity-5">
+        <div
+          className="absolute left-0 bottom-0 w-1/2 h-full bg-no-repeat bg-[right_center] bg-[length:400%_auto] md:bg-[length:250%_auto] lg:bg-[length:200%_auto]"
+          style={{ backgroundImage: `url('${logo.src}')` }}
+        />
+        <div
+          className="absolute right-0 bottom-0 w-1/2 h-full bg-no-repeat bg-[left_center] bg-[length:400%_auto] md:bg-[length:250%_auto] lg:bg-[length:200%_auto]"
+          style={{ backgroundImage: `url('${logo.src}')` }}
+        />
+      </div>
 
-      <Container className="relative z-10">
+      <Container className="relative z-10 pt-20">
         {/* Top 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Column 1: Brand & Socials */}
@@ -261,6 +266,6 @@ export function Footer() {
           </div>
         </div>
       </Container>
-    </footer>
+    </footer >
   );
 }
