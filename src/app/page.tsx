@@ -1,11 +1,13 @@
 import { Container } from "@/components/layout/Container";
 
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div className="w-full">
       <section className="w-full">
         <Container className="py-12">
-          <div className="text-white">Codetopia Is here</div>
+          <div className="text-white">Codetopia Is here again testing</div>
         </Container>
       </section>
     </div>
