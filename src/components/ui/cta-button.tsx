@@ -39,6 +39,7 @@ export const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(
           )}
         />
         <Comp
+          // biome-ignore lint/suspicious/noExplicitAny: Radix Slot ref typing doesn't always align with button props
           ref={ref as any}
           className={cn(
             "relative z-10 w-full sm:w-auto h-12 flex items-center justify-center px-6 text-sm font-bold tracking-wider rounded-none transition-colors uppercase font-sans border-none bg-[#1B1B1B] text-white hover:bg-black",

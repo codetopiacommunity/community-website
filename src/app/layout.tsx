@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { ContributionBanner } from "@/components/layout/ContributionBanner";
 import { Footer } from "@/components/layout/Footer"; // Added import for Footer
 import { Header } from "@/components/layout/Header";
-import { ContributionBanner } from "@/components/layout/ContributionBanner";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
