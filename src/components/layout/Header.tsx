@@ -35,12 +35,12 @@ export function Header() {
         {/* Right side: Navigation */}
         <div className="flex items-center gap-10">
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8 text">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-xs font-bold tracking-wider text-grey-300 hover:text-grey-50 transition-colors"
+                className="text-base font-bold tracking-wider text-grey-300 hover:text-grey-50 transition-colors"
               >
                 {link.name}
               </Link>
@@ -72,7 +72,7 @@ export function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-sm font-bold tracking-wider text-grey-300 hover:text-grey-50 py-3 border-b border-grey-800/50 last:border-none transition-colors"
+                className="w-full text-base font-bold tracking-wider text-grey-300 hover:text-grey-50 py-3 border-b border-grey-800/50 last:border-none transition-colors"
               >
                 {link.name}
               </Link>

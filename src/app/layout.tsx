@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-grey-900 flex flex-col`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-grey-200 flex flex-col`}
       >
         <Header />
         <main className="flex-1 w-full">{children}</main>

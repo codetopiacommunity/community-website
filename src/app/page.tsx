@@ -1,13 +1,9 @@
-import { Container } from "@/components/layout/Container";
+import { Hero } from "@/components/home/Hero";
 
 export default function Home() {
   return (
-    <div className="w-full">
-      <section className="w-full">
-        <Container className="py-12">
-          <div className="text-white">Codetopia Is here again testing..</div>
-        </Container>
-      </section>
+    <div className="w-full flex flex-col">
+      <Hero />
     </div>
   );
 }
