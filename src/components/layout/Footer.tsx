@@ -236,6 +236,9 @@ export function Footer() {
           <p className="text-zinc-500 text-xs text-center md:text-left">
             © 2025 Codetopia Community. All rights reserved.
           </p>
+          <p className="text-zinc-500 text-xs text-center md:text-left">
+            Built with ❤️ by Codetopia Community | Open Source
+          </p>
           <div className="flex items-center gap-6">
             <Link
               href="#"
