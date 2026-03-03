@@ -1,6 +1,6 @@
+import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { MoveRight } from "lucide-react";
 import codetopiaLogoTw from "@/assets/images/logos/Codetopia-Logo-TW.png";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
