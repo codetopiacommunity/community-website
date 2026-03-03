@@ -4,8 +4,14 @@ import { CtaButton } from "@/components/ui/cta-button";
 export function CTA() {
   return (
     <section className="relative w-full py-24 md:py-32 bg-[#09090b] overflow-hidden flex flex-col items-center justify-center text-center">
-      {/* Background glow or subtle gradient if needed. The design implies a slight lighter center */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/20 via-[#09090b] to-[#09090b] pointer-events-none" />
+      {/* Radial fade background */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 60%)",
+        }}
+      />
 
       <Container className="relative z-10 flex flex-col items-center max-w-4xl px-4 font-sans">
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 uppercase tracking-wider">
