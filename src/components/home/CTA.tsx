@@ -25,13 +25,13 @@ export function CTA() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-4 w-full sm:w-auto">
           <CtaButton
             className="bg-white text-black hover:bg-zinc-200"
-            offsetClassName="bg-zinc-700 hidden sm:block"
+            offsetClassName="border-white"
           >
             JOIN OUR COMMUNITY
           </CtaButton>
           <CtaButton
-            className="border-zinc-600 text-white hover:bg-zinc-900 border-[1px] sm:border-2 !bg-[#09090b] border-solid !px-10"
-            offsetClassName="border-zinc-600 hidden sm:block"
+            className="bg-[#09090b] text-white border border-white hover:bg-zinc-900"
+            offsetClassName="border-white"
           >
             LEARN MORE
           </CtaButton>

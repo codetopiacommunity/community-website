@@ -60,10 +60,15 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center gap-8 md:gap-6 w-full sm:w-auto">
-            <CtaButton>JOIN OUR COMMUNITY</CtaButton>
             <CtaButton
-              className="border-white text-white hover:bg-white/10 !bg-transparent border-2 border-solid !px-10"
-              offsetClassName="border-white translate-x-[5px] translate-y-[5px] !bg-transparent border-2 border-solid"
+              className="bg-white text-black hover:bg-zinc-200"
+              offsetClassName="border-white"
+            >
+              JOIN OUR COMMUNITY
+            </CtaButton>
+            <CtaButton
+              className="bg-transparent border-white text-white hover:bg-white/10 border"
+              offsetClassName="border-white mix-blend-overlay"
             >
               LEARN MORE{" "}
               <MoveRight className="ml-2 w-5 h-5" strokeWidth={2.5} />
