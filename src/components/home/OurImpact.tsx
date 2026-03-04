@@ -1,11 +1,30 @@
 "use client";
 
-import { MoveRight } from "lucide-react";
+import {
+  Calendar,
+  Image as ImageIcon,
+  MapPin,
+  MoveRight,
+  PlayCircle,
+} from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { impactStories } from "@/lib/data/impact-stories";
+
+function getYouTubeEmbedUrl(url: string) {
+  if (!url) return "";
+  const match = url.match(/[?&]v=([^&]+)/);
+  if (match) {
+    return `https://www.youtube.com/embed/${match[1]}?autoplay=1`;
+  }
+  const shortMatch = url.match(/youtu\.be\/([^?]+)/);
+  if (shortMatch) {
+    return `https://www.youtube.com/embed/${shortMatch[1]}?autoplay=1`;
+  }
+  return url;
+}
 
 // Reusable placeholder logo for now
 function LogoIpsum() {
@@ -38,6 +57,7 @@ export function OurImpact() {
   const [selectedStory, setSelectedStory] = useState<
     (typeof impactStories)[0] | null
   >(null);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -45,6 +65,7 @@ export function OurImpact() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
+      setIsPlayingVideo(false);
     }
     return () => {
       document.body.style.overflow = "unset";
@@ -81,14 +102,16 @@ export function OurImpact() {
                   type="button"
                   key={story.id}
                   onClick={() => setSelectedStory(story)}
-                  className="group flex flex-col lg:flex-row w-full shrink-0 h-[220px] border-b-2 border-zinc-800 bg-[#09090b] transition-colors duration-0 hover:bg-white overflow-hidden cursor-crosshair [direction:ltr] text-left"
+                  className="group flex flex-col lg:flex-row w-full shrink-0 h-[220px] border-b-2 border-zinc-800 bg-[#09090b] transition-colors duration-0 hover:bg-white overflow-hidden cursor-pointer [direction:ltr] text-left"
                 >
                   {/* Left Data Column (Date & Location) */}
                   <div className="w-full lg:w-[35%] h-full flex flex-col justify-center p-6 md:p-8 lg:p-12 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 group-hover:border-zinc-300 relative z-20 bg-[#09090b] group-hover:bg-white transition-colors duration-0 shrink-0">
-                    <div className="font-mono text-zinc-500 group-hover:text-zinc-800 text-sm md:text-base tracking-[0.2em] uppercase mb-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                    <div className="flex items-center gap-2 font-mono text-zinc-500 group-hover:text-zinc-800 text-sm md:text-base tracking-[0.2em] uppercase mb-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                       {story.date}
                     </div>
-                    <div className="font-sans font-black text-white group-hover:text-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tighter leading-[1.1] break-words translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150">
+                    <div className="flex items-start gap-2 font-sans font-black text-white group-hover:text-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tighter leading-[1.1] break-words translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150">
+                      <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-1 md:mt-2" />
                       {story.location}
                     </div>
                   </div>
@@ -125,11 +148,20 @@ export function OurImpact() {
                       </h4>
                     </div>
 
-                    {/* Expand badge — slides in from right on hover */}
-                    <div className="absolute top-5 left-5 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm">
+                    <div className="absolute top-5 left-5 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+                      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm flex items-center">
                         EXPAND ↗
                       </span>
+                      {story.link && (
+                        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm flex items-center gap-2">
+                          <PlayCircle className="w-3 h-3" /> MEDIA
+                        </span>
+                      )}
+                      {story.galleryLink && (
+                        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm flex items-center gap-2">
+                          <ImageIcon className="w-3 h-3" /> GALLERY
+                        </span>
+                      )}
                     </div>
                   </div>
                 </button>
@@ -194,50 +226,98 @@ export function OurImpact() {
           >
             {/* Left Data Column (Date & Location) - EXACT TWIN OF ROW */}
             <div className="w-full lg:w-[35%] flex flex-col justify-center p-6 md:p-10 lg:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-[#09090b] shrink-0">
-              <div className="font-mono text-zinc-500 tracking-[0.2em] uppercase mb-4 md:mb-6 text-sm md:text-base">
+              <div className="flex items-center gap-2 font-mono text-zinc-500 tracking-[0.2em] uppercase mb-4 md:mb-6 text-sm md:text-base">
+                <Calendar className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
                 {selectedStory.date}
               </div>
-              <div className="font-sans font-black text-white text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter leading-[1.1] break-words">
+              <div className="flex items-start gap-2 font-sans font-black text-white text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter leading-[1.1] break-words">
+                <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-1 md:mt-2" />
                 {selectedStory.location}
               </div>
             </div>
 
             {/* Right Panoramic View Column (Image & Event Proof) - EXACT TWIN OF ROW */}
             <div className="w-full lg:w-[65%] relative flex flex-col justify-end p-6 md:p-10 lg:p-16 min-h-[450px] md:min-h-[500px] lg:min-h-[600px]">
-              {/* Background Image (Full Color Always) */}
-              <Image
-                src={selectedStory.image as string}
-                alt={selectedStory.title as string}
-                fill
-                unoptimized
-                className="object-cover"
-              />
-
-              {/* Scrim for Text Readability */}
-              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 to-transparent z-10" />
-
-              {/* Top Right Logo Watermark with Protective Scrim */}
-              <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
-                <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
-                <div className="relative z-10">
-                  <LogoIpsum />
+              {isPlayingVideo && selectedStory.link ? (
+                <div className="absolute inset-0 z-30 bg-black flex flex-col animate-in fade-in duration-300">
+                  <button
+                    type="button"
+                    onClick={() => setIsPlayingVideo(false)}
+                    className="absolute top-6 left-6 md:top-8 md:left-8 z-40 font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 md:px-4 md:py-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-colors backdrop-blur-sm flex items-center gap-2 group cursor-pointer"
+                  >
+                    ← BACK TO POST
+                  </button>
+                  <iframe
+                    src={getYouTubeEmbedUrl(selectedStory.link)}
+                    title={selectedStory.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
                 </div>
-              </div>
+              ) : (
+                <>
+                  {/* Background Image (Full Color Always) */}
+                  <Image
+                    src={selectedStory.image as string}
+                    alt={selectedStory.title as string}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
 
-              {/* Event Title & Impact Action (Un-truncated Text Block) */}
-              <div className="relative z-20 max-w-3xl mt-auto pt-16">
-                <h4 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-4 md:mb-6 border-b-2 border-white pb-3 md:pb-4 inline-block drop-shadow-lg">
-                  {selectedStory.title}
-                </h4>
-                <div className="bg-black/80 border border-white backdrop-blur-md drop-shadow-2xl flex flex-col">
-                  <span className="font-mono text-zinc-400 uppercase tracking-[0.2em] text-[10px] md:text-xs lg:text-sm pt-4 px-4 md:pt-6 md:px-6 lg:pt-8 lg:px-8 pb-3 border-b border-zinc-800">
-                    Impact Report
-                  </span>
-                  <p className="block text-white text-sm md:text-lg lg:text-xl font-mono leading-relaxed px-4 md:px-6 lg:px-8 pb-4 md:pb-6 lg:pb-8 pt-4 md:pt-6">
-                    {selectedStory.impact}
-                  </p>
-                </div>
-              </div>
+                  {/* Scrim for Text Readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 to-transparent z-10" />
+
+                  {/* Top Right Logo Watermark with Protective Scrim */}
+                  <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
+                    <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
+                    <div className="relative z-10">
+                      <LogoIpsum />
+                    </div>
+                  </div>
+
+                  {/* Event Title & Impact Action (Un-truncated Text Block) */}
+                  <div className="relative z-20 max-w-3xl mt-auto pt-16">
+                    <h4 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-4 md:mb-6 border-b-2 border-white pb-3 md:pb-4 inline-block drop-shadow-lg font-sans">
+                      {selectedStory.title}
+                    </h4>
+                    <div className="bg-black/80 border border-white backdrop-blur-md drop-shadow-2xl flex flex-col">
+                      <span className="font-mono text-zinc-400 uppercase tracking-[0.2em] text-[10px] md:text-xs lg:text-sm pt-4 px-4 md:pt-6 md:px-6 lg:pt-8 lg:px-8 pb-3 border-b border-zinc-800">
+                        Impact Report
+                      </span>
+                      <p className="block text-white text-sm md:text-lg lg:text-xl font-mono leading-relaxed px-4 md:px-6 lg:px-8 pb-4 md:pb-6 lg:pb-8 pt-4 md:pt-6">
+                        {selectedStory.impact}
+                      </p>
+                      {selectedStory.link && (
+                        <div className="px-4 md:px-6 lg:px-8 pb-6 md:pb-8">
+                          <button
+                            type="button"
+                            onClick={() => setIsPlayingVideo(true)}
+                            className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold uppercase tracking-widest text-xs md:text-sm px-6 py-3 md:px-8 md:py-4 hover:bg-zinc-200 transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
+                          >
+                            <PlayCircle className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:scale-110 transition-transform" />
+                            Watch Video
+                          </button>
+                        </div>
+                      )}
+                      {selectedStory.galleryLink && (
+                        <div className="px-4 md:px-6 lg:px-8 pb-6 md:pb-8">
+                          <a
+                            href={selectedStory.galleryLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-2 bg-transparent text-white border-2 border-white font-bold uppercase tracking-widest text-xs md:text-sm px-6 py-3 md:px-8 md:py-4 hover:bg-white hover:text-black transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
+                          >
+                            <ImageIcon className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:scale-110 transition-transform" />
+                            View Gallery
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

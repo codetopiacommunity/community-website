@@ -6,6 +6,8 @@ export interface ImpactStory {
   logo: string;
   date: string;
   location: string;
+  link?: string;
+  galleryLink?: string;
 }
 
 export const impactStories: ImpactStory[] = [
@@ -19,6 +21,7 @@ export const impactStories: ImpactStory[] = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
     date: "23 - 25 March 2025",
     location: "Koforidua Library",
+    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Sample YouTube link
   },
   {
     id: 2,
@@ -30,6 +33,7 @@ export const impactStories: ImpactStory[] = [
     logo: "https://via.placeholder.com/150/09090b/ffffff?text=Prempeh",
     date: "05 September 2025",
     location: "Prempeh College",
+    galleryLink: "https://unsplash.com/s/photos/high-school", // Sample gallery link
   },
   {
     id: 3,
@@ -41,6 +45,8 @@ export const impactStories: ImpactStory[] = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
     date: "14 August 2025",
     location: "Lagos, Nigeria",
+    link: "https://www.youtube.com/watch?v=ScMzIvxBSi4", // Sample YouTube link
+    galleryLink: "https://unsplash.com/s/photos/high-school",
   },
   {
     id: 4,
@@ -52,6 +58,7 @@ export const impactStories: ImpactStory[] = [
     logo: "https://via.placeholder.com/150/09090b/ffffff?text=ADC",
     date: "01 - 10 July 2025",
     location: "Accra Digital Center",
+    galleryLink: "https://unsplash.com/s/photos/developers", // Sample gallery link
   },
   {
     id: 5,
