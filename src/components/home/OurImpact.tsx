@@ -1,16 +1,11 @@
 "use client";
+import { useState, useEffect } from "react";
 
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { CtaButton } from "@/components/ui/cta-button";
+import { impactStories } from "@/lib/data/impact-stories";
 
 // Reusable placeholder logo for now
 function LogoIpsum() {
@@ -39,131 +34,192 @@ function LogoIpsum() {
   );
 }
 
-const impactStories = [
-  {
-    id: 1,
-    title: "University Hackathon",
-    impact:
-      "Mentored 150+ students in building full-stack applications over a 48-hour intense coding weekend.",
-    image:
-      "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 2,
-    title: "Local High School",
-    impact:
-      "Introduced Python and basic web concepts to 40 seniors, resulting in a 30% increase in CS majors.",
-    image:
-      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 3,
-    title: "Django Girls Bootcamp",
-    impact:
-      "Partnered to teach web fundamentals. Helped over 60 women deploy their first working application online.",
-    image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 4,
-    title: "Developer Hub Accra",
-    impact:
-      "Refactored legacy codebases alongside junior developers, accelerating their transition into mid-level engineering roles.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-  },
-];
+
 
 export function OurImpact() {
+  const [selectedStory, setSelectedStory] = useState<typeof impactStories[0] | null>(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedStory) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedStory]);
+
   return (
-    <section className="w-full py-24 md:py-32 bg-[#09090b] flex flex-col items-center justify-center border-t border-zinc-900 overflow-hidden">
-      <Container className="flex flex-col items-center w-full px-4 font-sans max-w-6xl">
-        <div className="flex flex-col items-center flex-1 text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider mb-4">
-            Our Impact
-          </h2>
-          <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono mb-16">
-            We don't just partner with industry leaders; we actively empower the
-            next generation of developers across schools, bootcamps, and local
-            hubs.
-          </p>
-        </div>
+    <>
+      <section className="w-full py-24 md:py-32 bg-[#09090b] flex flex-col items-center justify-center border-t border-zinc-900 overflow-hidden">
+        <Container className="flex flex-col items-center w-full px-4 font-sans max-w-6xl">
+          <div className="flex flex-col items-center flex-1 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider mb-4">
+              Our Impact
+            </h2>
+            <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono mb-16">
+              We don't just partner with industry leaders; we actively empower the
+              next generation of developers across schools, bootcamps, and local
+              hubs.
+            </p>
+          </div>
 
-        {/* Impact Cards Carousel */}
-        <h3 className="text-zinc-500 text-sm font-bold tracking-[0.2em] mb-12 uppercase text-center font-sans relative z-20">
-          Places We Empower
-        </h3>
-      </Container>
+          {/* Impact Cards Carousel */}
+          <h3 className="text-zinc-500 text-sm font-bold tracking-[0.2em] mb-12 uppercase text-center font-sans relative z-20">
+            Places We Empower
+          </h3>
+        </Container>
 
-      <div className="w-[100vw] relative flex flex-col items-center pb-4 mx-auto px-4 sm:px-12 overflow-hidden">
-        <Carousel
-          opts={{
-            loop: true,
-            align: "center",
-          }}
-          className="w-full mb-8 relative"
-        >
-          <CarouselContent className="flex cursor-grab active:cursor-grabbing">
-            {impactStories.map((story) => (
-              <CarouselItem
-                key={story.id}
-                className="pl-4 sm:pl-6 basis-[100%] md:basis-[80%] lg:basis-[85%] flex"
-              >
-                <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] overflow-hidden group border border-zinc-800 bg-zinc-900 flex flex-col">
-                  {/* Background Image */}
-                  <Image
-                    src={story.image}
-                    alt={story.title}
-                    fill
-                    unoptimized
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-40"
-                  />
+        <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
+          {/* The Brutalist Vertical Impact Log Container */}
+          <div className="w-full max-w-7xl border-2 border-zinc-800">
+            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-600 hover:scrollbar-thumb-white scroll-smooth">
+              {impactStories.map((story) => (
+                <div
+                  key={story.id}
+                  onClick={() => setSelectedStory(story)}
+                  className="group flex flex-col lg:flex-row w-full shrink-0 h-[220px] border-b-2 border-zinc-800 bg-[#09090b] transition-colors duration-0 hover:bg-white overflow-hidden cursor-crosshair [direction:ltr]"
+                >
+                  {/* Left Data Column (Date & Location) */}
+                  <div className="w-full lg:w-[35%] h-full flex flex-col justify-center p-6 md:p-8 lg:p-12 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 group-hover:border-zinc-300 relative z-20 bg-[#09090b] group-hover:bg-white transition-colors duration-0 shrink-0">
+                    <div className="font-mono text-zinc-500 group-hover:text-zinc-800 text-sm md:text-base tracking-[0.2em] uppercase mb-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      {story.date}
+                    </div>
+                    <div className="font-sans font-black text-white group-hover:text-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tighter leading-[1.1] break-words translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150">
+                      {story.location}
+                    </div>
+                  </div>
 
-                  {/* Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/50 opacity-100 transition-opacity duration-300" />
+                  {/* Right Panoramic View Column */}
+                  <div className="w-full lg:w-[65%] relative h-full overflow-hidden">
 
-                  {/* Content Container */}
-                  <div className="relative z-10 flex-1 p-6 md:p-10 lg:p-12 flex flex-col justify-between h-full">
-                    {/* Top Content: Title & Impact Text */}
-                    <div className="transform transition-transform duration-300 translate-y-2 group-hover:translate-y-0 max-w-2xl">
-                      <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
-                        {story.title}
-                      </h4>
-                      <p className="text-zinc-300 text-base md:text-lg lg:text-xl font-mono leading-relaxed line-clamp-3">
-                        {story.impact}
-                      </p>
+                    {/* Background Image: grayscale → color on hover */}
+                    <Image
+                      src={story.image}
+                      alt={story.title}
+                      fill
+                      unoptimized
+                      className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0"
+                    />
+
+                    {/* Dark scrim fades on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent group-hover:from-black/60 group-hover:via-black/20 z-10 transition-all duration-500" />
+
+                    {/* Bottom gradient for title legibility */}
+                    <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10" />
+
+                    {/* Logo watermark top-right */}
+                    <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white">
+                      <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
+                      <div className="relative z-10"><LogoIpsum /></div>
                     </div>
 
-                    {/* Bottom Right: Logo */}
-                    <div className="self-end mt-4">
-                      <LogoIpsum />
+                    {/* Title slides up from bottom on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 z-20 p-5 md:p-7 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                      <h4 className="font-black text-white uppercase tracking-tighter text-xl md:text-2xl truncate drop-shadow-lg">
+                        {story.title}
+                      </h4>
+                    </div>
+
+                    {/* Expand badge — slides in from right on hover */}
+                    <div className="absolute top-5 left-5 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+                      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm">
+                        EXPAND ↗
+                      </span>
                     </div>
                   </div>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+              ))}
+            </div>
+          </div>
+          {/* Global CTA */}
+          <Container className="w-full flex justify-center mt-6">
+            <CtaButton
+              className="bg-white text-black hover:bg-zinc-200 !px-8 text-sm"
+              offsetClassName="bg-zinc-700"
+            >
+              <span className="flex items-center">
+                INVITE US TO YOUR CAMPUS OR HUB
+                <MoveRight className="ml-2 w-4 h-4" strokeWidth={2.5} size={2} />
+              </span>
+            </CtaButton>
+          </Container>
+        </div>
+      </section>
 
-          {/* Aggressive Fading Edge Overlays */}
-          <div className="hidden sm:block absolute top-0 bottom-0 left-0 w-24 md:w-40 lg:w-64 bg-gradient-to-r from-[#09090b] via-[#09090b]/80 to-transparent z-10 pointer-events-none" />
-          <div className="hidden sm:block absolute top-0 bottom-0 right-0 w-24 md:w-40 lg:w-64 bg-gradient-to-l from-[#09090b] via-[#09090b]/80 to-transparent z-10 pointer-events-none" />
-
-          <CarouselPrevious className="hidden sm:flex h-12 w-12 rounded-none border-2 border-zinc-700 bg-black text-white hover:bg-white hover:text-black hover:border-white transition-all left-0 z-20" />
-          <CarouselNext className="hidden sm:flex h-12 w-12 rounded-none border-2 border-zinc-700 bg-black text-white hover:bg-white hover:text-black hover:border-white transition-all right-0 z-20" />
-        </Carousel>
-
-        <Container className="w-full flex justify-center mt-6">
-          <CtaButton
-            className="bg-white text-black hover:bg-zinc-200 !px-8 text-sm"
-            offsetClassName="bg-zinc-700"
+      {/* Centered Brutalist Modal Card */}
+      {selectedStory && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8 cursor-[url('/close-cursor.svg'),_pointer]"
+          onClick={() => setSelectedStory(null)}
+        >
+          {/* Global Screen-Fixed Close Button */}
+          <button
+            onClick={() => setSelectedStory(null)}
+            className="absolute top-4 right-4 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-[#09090b] hover:bg-white hover:text-black p-3 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
           >
-            <span className="flex items-center">
-              INVITE US TO YOUR CAMPUS OR HUB
-              <MoveRight className="ml-2 w-4 h-4" strokeWidth={2.5} size={2} />
-            </span>
-          </CtaButton>
-        </Container>
-      </div>
-    </section>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-90 transition-transform duration-300">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div
+            className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto lg:overflow-hidden max-h-[95vh] lg:max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Left Data Column (Date & Location) - EXACT TWIN OF ROW */}
+            <div className="w-full lg:w-[35%] flex flex-col justify-center p-6 md:p-10 lg:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-[#09090b] shrink-0">
+              <div className="font-mono text-zinc-500 tracking-[0.2em] uppercase mb-4 md:mb-6 text-sm md:text-base">
+                {selectedStory.date}
+              </div>
+              <div className="font-sans font-black text-white text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter leading-[1.1] break-words">
+                {selectedStory.location}
+              </div>
+            </div>
+
+            {/* Right Panoramic View Column (Image & Event Proof) - EXACT TWIN OF ROW */}
+            <div className="w-full lg:w-[65%] relative flex flex-col justify-end p-6 md:p-10 lg:p-16 min-h-[450px] md:min-h-[500px] lg:min-h-[600px]">
+
+              {/* Background Image (Full Color Always) */}
+              <Image
+                src={selectedStory.image as string}
+                alt={selectedStory.title as string}
+                fill
+                unoptimized
+                className="object-cover"
+              />
+
+              {/* Scrim for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 to-transparent z-10" />
+
+              {/* Top Right Logo Watermark with Protective Scrim */}
+              <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
+                <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
+                <div className="relative z-10">
+                  <LogoIpsum />
+                </div>
+              </div>
+
+              {/* Event Title & Impact Action (Un-truncated Text Block) */}
+              <div className="relative z-20 max-w-3xl mt-auto pt-16">
+                <h4 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-4 md:mb-6 border-b-2 border-white pb-3 md:pb-4 inline-block drop-shadow-lg">
+                  {selectedStory.title}
+                </h4>
+                <div className="bg-black/80 border border-white backdrop-blur-md drop-shadow-2xl flex flex-col">
+                  <span className="font-mono text-zinc-400 uppercase tracking-[0.2em] text-[10px] md:text-xs lg:text-sm pt-4 px-4 md:pt-6 md:px-6 lg:pt-8 lg:px-8 pb-3 border-b border-zinc-800">
+                    Impact Report
+                  </span>
+                  <p className="block text-white text-sm md:text-lg lg:text-xl font-mono leading-relaxed px-4 md:px-6 lg:px-8 pb-4 md:pb-6 lg:pb-8 pt-4 md:pt-6">
+                    {selectedStory.impact}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
