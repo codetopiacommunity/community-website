@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-black text-white flex flex-col`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-[#09090b] text-white flex flex-col`}
       >
         <ContributionBanner />
         <Header />

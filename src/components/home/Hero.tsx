@@ -44,7 +44,7 @@ export function Hero() {
         style={{ backgroundImage: `url('${heroBg.src}')` }}
       >
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-[#09090b]/70" />
       </div>
 
       {/* Main Content Area */}
@@ -73,7 +73,7 @@ export function Hero() {
       </div>
 
       {/* Sponsors/Logos Strip at the bottom - Now in normal flow */}
-      <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-black/90 to-transparent mt-auto">
+      <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-[#09090b] to-transparent mt-auto">
         <div className="w-full overflow-hidden flex flex-col items-center">
           <h2 className="text-white text-xl font-bold tracking-[0.2em] mb-8 uppercase text-center font-sans md:text-2xl">
             Our Partners <br className="md:hidden" /> & Collaborators

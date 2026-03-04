@@ -20,7 +20,7 @@ import { Container } from "@/components/layout/Container";
 
 export function Footer() {
   return (
-    <footer className="relative w-full text-white pb-8 mt-auto bg-grey-900 overflow-hidden border-t border-zinc-900">
+    <footer className="relative w-full text-white pb-8 mt-auto bg-[#09090b] overflow-hidden border-t border-zinc-900">
       {/* Logo Typography Background */}
       <div className="absolute inset-x-0 bottom-0 h-full overflow-hidden pointer-events-none z-0 opacity-5">
         <div

@@ -30,7 +30,7 @@ export function CTA() {
             JOIN OUR COMMUNITY
           </CtaButton>
           <CtaButton
-            className="border-zinc-600 text-white hover:bg-zinc-900 border-[1px] sm:border-2 !bg-black border-solid !px-10"
+            className="border-zinc-600 text-white hover:bg-zinc-900 border-[1px] sm:border-2 !bg-[#09090b] border-solid !px-10"
             offsetClassName="border-zinc-600 hidden sm:block"
           >
             LEARN MORE

@@ -31,7 +31,7 @@ const offers = [
 
 export function WhatWeOffer() {
   return (
-    <section className="relative w-full py-24 md:py-32 bg-[#18181b] overflow-hidden flex flex-col items-center justify-center text-center">
+    <section className="relative w-full py-24 md:py-32 bg-[#09090b] overflow-hidden flex flex-col items-center justify-center text-center">
       {/* Watermark Background */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-5">
         <Image
@@ -42,11 +42,14 @@ export function WhatWeOffer() {
       </div>
 
       <Container className="relative z-10 flex flex-col items-center w-full px-4 font-sans">
-        <div className="flex flex-col items-center mb-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider mb-2">
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider mb-4 font-sans">
             What We Offer
           </h2>
-          <div className="w-24 h-1 bg-white" />
+          <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono">
+            Everything you need to accelerate your tech career, expand your
+            network, and build the future.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 w-full max-w-[90rem]">
