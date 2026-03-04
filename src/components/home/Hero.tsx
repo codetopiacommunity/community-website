@@ -78,7 +78,7 @@ export function Hero() {
       </div>
 
       {/* Sponsors/Logos Strip at the bottom - Now in normal flow */}
-      <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-[#09090b] to-transparent mt-auto">
+      <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-[#09090b] to-transparent mt-auto border-b-4 border-zinc-800">
         <div className="w-full overflow-hidden flex flex-col items-center">
           <h2 className="text-white text-xl font-bold tracking-[0.2em] mb-8 uppercase text-center font-sans md:text-2xl">
             Our Partners <br className="md:hidden" /> & Collaborators

@@ -95,7 +95,7 @@ export function OurImpact() {
         </h3>
       </Container>
 
-      <div className="w-full max-w-[95vw] sm:max-w-4xl lg:max-w-6xl relative flex flex-col items-center pb-4 mx-auto px-4 sm:px-12">
+      <div className="w-[100vw] relative flex flex-col items-center pb-4 mx-auto px-4 sm:px-12 overflow-hidden">
         <Carousel
           opts={{
             loop: true,
@@ -107,7 +107,7 @@ export function OurImpact() {
             {impactStories.map((story) => (
               <CarouselItem
                 key={story.id}
-                className="pl-4 sm:pl-6 basis-[100%] md:basis-[90%] lg:basis-[95%] flex"
+                className="pl-4 sm:pl-6 basis-[100%] md:basis-[80%] lg:basis-[85%] flex"
               >
                 <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] overflow-hidden group border border-zinc-800 bg-zinc-900 flex flex-col">
                   {/* Background Image */}
@@ -144,12 +144,12 @@ export function OurImpact() {
             ))}
           </CarouselContent>
 
-          {/* Fading Edge Overlays */}
-          <div className="hidden md:block absolute top-0 bottom-0 left-0 w-6 md:w-10 lg:w-16 bg-gradient-to-r from-[#09090b] to-transparent z-10 pointer-events-none" />
-          <div className="hidden md:block absolute top-0 bottom-0 right-0 w-6 md:w-10 lg:w-16 bg-gradient-to-l from-[#09090b] to-transparent z-10 pointer-events-none" />
+          {/* Aggressive Fading Edge Overlays */}
+          <div className="hidden sm:block absolute top-0 bottom-0 left-0 w-24 md:w-40 lg:w-64 bg-gradient-to-r from-[#09090b] via-[#09090b]/80 to-transparent z-10 pointer-events-none" />
+          <div className="hidden sm:block absolute top-0 bottom-0 right-0 w-24 md:w-40 lg:w-64 bg-gradient-to-l from-[#09090b] via-[#09090b]/80 to-transparent z-10 pointer-events-none" />
 
-          <CarouselPrevious className="hidden sm:flex h-12 w-12 rounded-none border-2 border-zinc-700 bg-black text-white hover:bg-white hover:text-black hover:border-white transition-all -left-6 md:-left-12 lg:-left-20 z-20" />
-          <CarouselNext className="hidden sm:flex h-12 w-12 rounded-none border-2 border-zinc-700 bg-black text-white hover:bg-white hover:text-black hover:border-white transition-all -right-6 md:-right-12 lg:-right-20 z-20" />
+          <CarouselPrevious className="hidden sm:flex h-12 w-12 rounded-none border-2 border-zinc-700 bg-black text-white hover:bg-white hover:text-black hover:border-white transition-all left-0 z-20" />
+          <CarouselNext className="hidden sm:flex h-12 w-12 rounded-none border-2 border-zinc-700 bg-black text-white hover:bg-white hover:text-black hover:border-white transition-all right-0 z-20" />
         </Carousel>
 
         <Container className="w-full flex justify-center mt-6">

@@ -31,21 +31,24 @@ export function Stats() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-200 border border-zinc-200 overflow-hidden w-full">
+        <div className="flex flex-col md:flex-row gap-8 w-full">
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center justify-center p-12 md:p-20 text-center group bg-white hover:bg-zinc-50 transition-colors duration-500"
-            >
-              <span className="text-6xl md:text-8xl font-black font-sans tracking-tighter text-zinc-900 mb-4 md:mb-6 select-none transition-transform duration-500 group-hover:scale-105">
-                {stat.value}
-              </span>
-              <span className="text-zinc-900 text-base md:text-lg lg:text-xl font-sans font-bold uppercase tracking-[0.2em] mb-3">
-                {stat.label}
-              </span>
-              <p className="text-zinc-500 font-mono text-xs md:text-sm max-w-[280px]">
-                {stat.description}
-              </p>
+            <div key={stat.label} className="relative group text-left flex-1">
+              {/* Hollow offset border shadow */}
+              <div className="absolute inset-0 border-2 border-zinc-900 translate-x-[8px] translate-y-[8px] z-0 transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]" />
+
+              {/* Top Interactive Card */}
+              <div className="relative z-10 flex flex-col items-center justify-center p-12 md:p-20 text-center bg-white border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]">
+                <span className="text-6xl md:text-8xl font-black font-sans tracking-tighter text-zinc-900 mb-4 md:mb-6 select-none transition-transform duration-500 group-hover:scale-105">
+                  {stat.value}
+                </span>
+                <span className="text-zinc-900 text-base md:text-lg lg:text-xl font-sans font-bold uppercase tracking-[0.2em] mb-4">
+                  {stat.label}
+                </span>
+                <p className="text-zinc-500 font-mono text-sm leading-relaxed max-w-[280px]">
+                  {stat.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

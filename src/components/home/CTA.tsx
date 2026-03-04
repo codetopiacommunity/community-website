@@ -4,12 +4,13 @@ import { CtaButton } from "@/components/ui/cta-button";
 export function CTA() {
   return (
     <section className="relative w-full py-24 md:py-32 bg-[#09090b] overflow-hidden flex flex-col items-center justify-center text-center">
-      {/* Radial fade background */}
+      {/* Brutalist Grid Background */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
         style={{
-          background:
-            "radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 60%)",
+          backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px),
+                               linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
         }}
       />
 
