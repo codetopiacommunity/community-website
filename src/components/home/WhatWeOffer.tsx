@@ -60,8 +60,8 @@ export function WhatWeOffer() {
                 key={offer.title}
                 className="relative group text-left cursor-pointer"
               >
-                {/* Solid thick brutish shadow behind the card */}
-                <div className="absolute inset-0 bg-zinc-600 translate-x-[8px] translate-y-[8px] z-0 transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]" />
+                {/* Hollow offsetting border shadow */}
+                <div className="absolute inset-0 border border-zinc-500 translate-x-[8px] translate-y-[8px] z-0 transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]" />
 
                 {/* Main Card */}
                 <div className="relative z-10 bg-[#e4e4e7] border border-transparent flex flex-col p-10 md:p-10 h-full transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]">
