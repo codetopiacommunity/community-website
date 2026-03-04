@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
 
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { impactStories } from "@/lib/data/impact-stories";
@@ -34,10 +34,10 @@ function LogoIpsum() {
   );
 }
 
-
-
 export function OurImpact() {
-  const [selectedStory, setSelectedStory] = useState<typeof impactStories[0] | null>(null);
+  const [selectedStory, setSelectedStory] = useState<
+    (typeof impactStories)[0] | null
+  >(null);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -60,9 +60,9 @@ export function OurImpact() {
               Our Impact
             </h2>
             <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono mb-16">
-              We don't just partner with industry leaders; we actively empower the
-              next generation of developers across schools, bootcamps, and local
-              hubs.
+              We don't just partner with industry leaders; we actively empower
+              the next generation of developers across schools, bootcamps, and
+              local hubs.
             </p>
           </div>
 
@@ -77,10 +77,11 @@ export function OurImpact() {
           <div className="w-full max-w-7xl border-2 border-zinc-800">
             <div className="h-[80vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-600 hover:scrollbar-thumb-white scroll-smooth">
               {impactStories.map((story) => (
-                <div
+                <button
+                  type="button"
                   key={story.id}
                   onClick={() => setSelectedStory(story)}
-                  className="group flex flex-col lg:flex-row w-full shrink-0 h-[220px] border-b-2 border-zinc-800 bg-[#09090b] transition-colors duration-0 hover:bg-white overflow-hidden cursor-crosshair [direction:ltr]"
+                  className="group flex flex-col lg:flex-row w-full shrink-0 h-[220px] border-b-2 border-zinc-800 bg-[#09090b] transition-colors duration-0 hover:bg-white overflow-hidden cursor-crosshair [direction:ltr] text-left"
                 >
                   {/* Left Data Column (Date & Location) */}
                   <div className="w-full lg:w-[35%] h-full flex flex-col justify-center p-6 md:p-8 lg:p-12 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 group-hover:border-zinc-300 relative z-20 bg-[#09090b] group-hover:bg-white transition-colors duration-0 shrink-0">
@@ -94,7 +95,6 @@ export function OurImpact() {
 
                   {/* Right Panoramic View Column */}
                   <div className="w-full lg:w-[65%] relative h-full overflow-hidden">
-
                     {/* Background Image: grayscale → color on hover */}
                     <Image
                       src={story.image}
@@ -113,7 +113,9 @@ export function OurImpact() {
                     {/* Logo watermark top-right */}
                     <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white">
                       <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
-                      <div className="relative z-10"><LogoIpsum /></div>
+                      <div className="relative z-10">
+                        <LogoIpsum />
+                      </div>
                     </div>
 
                     {/* Title slides up from bottom on hover */}
@@ -130,7 +132,7 @@ export function OurImpact() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -142,7 +144,11 @@ export function OurImpact() {
             >
               <span className="flex items-center">
                 INVITE US TO YOUR CAMPUS OR HUB
-                <MoveRight className="ml-2 w-4 h-4" strokeWidth={2.5} size={2} />
+                <MoveRight
+                  className="ml-2 w-4 h-4"
+                  strokeWidth={2.5}
+                  size={2}
+                />
               </span>
             </CtaButton>
           </Container>
@@ -151,16 +157,30 @@ export function OurImpact() {
 
       {/* Centered Brutalist Modal Card */}
       {selectedStory && (
+        // biome-ignore lint/a11y/useKeyWithClickEvents: Backdrop does not need keyboard interaction
+        // biome-ignore lint/a11y/noStaticElementInteractions: Backdrop is a presentational element
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8 cursor-[url('/close-cursor.svg'),_pointer]"
           onClick={() => setSelectedStory(null)}
         >
           {/* Global Screen-Fixed Close Button */}
           <button
+            type="button"
             onClick={() => setSelectedStory(null)}
             className="absolute top-4 right-4 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-[#09090b] hover:bg-white hover:text-black p-3 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-90 transition-transform duration-300">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:rotate-90 transition-transform duration-300"
+            >
+              <title>Close Dialog</title>
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
@@ -168,6 +188,9 @@ export function OurImpact() {
           <div
             className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto lg:overflow-hidden max-h-[95vh] lg:max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
           >
             {/* Left Data Column (Date & Location) - EXACT TWIN OF ROW */}
             <div className="w-full lg:w-[35%] flex flex-col justify-center p-6 md:p-10 lg:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-[#09090b] shrink-0">
@@ -181,7 +204,6 @@ export function OurImpact() {
 
             {/* Right Panoramic View Column (Image & Event Proof) - EXACT TWIN OF ROW */}
             <div className="w-full lg:w-[65%] relative flex flex-col justify-end p-6 md:p-10 lg:p-16 min-h-[450px] md:min-h-[500px] lg:min-h-[600px]">
-
               {/* Background Image (Full Color Always) */}
               <Image
                 src={selectedStory.image as string}
