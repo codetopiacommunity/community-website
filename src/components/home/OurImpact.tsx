@@ -95,8 +95,8 @@ export function OurImpact() {
 
         <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
           {/* The Brutalist Vertical Impact Log Container */}
-          <div className="w-full max-w-7xl border-2 border-zinc-800">
-            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-600 hover:scrollbar-thumb-white scroll-smooth">
+          <div className="w-full max-w-7xl border-2 border-zinc-800 bg-[#09090b]">
+            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-1 [&::-webkit-scrollbar]:w-5 [&::-webkit-scrollbar-track]:bg-zinc-950 [&::-webkit-scrollbar-track]:border-l [&::-webkit-scrollbar-track]:border-zinc-800 [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:border-[4px] [&::-webkit-scrollbar-thumb]:border-zinc-950 hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400">
               {impactStories.map((story) => (
                 <button
                   type="button"
@@ -142,12 +142,12 @@ export function OurImpact() {
                     </div>
 
                     {/* Title */}
-                    <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg">
+                    <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg font-sans">
                       {story.title}
                     </h4>
 
                     {/* Meta Info */}
-                    <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md">
+                    <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
                       <div className="flex items-center gap-3">
                         <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                         {story.date}
