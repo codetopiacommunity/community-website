@@ -4,36 +4,11 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import { MoveRight } from "lucide-react";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { CtaButton } from "@/components/ui/cta-button";
+import { partners } from "@/lib/data/partners";
 
-function LogoIpsum() {
-  return (
-    <div className="flex items-center gap-2 text-white/80 hover:text-white transition-colors cursor-pointer">
-      <svg
-        width="44"
-        height="44"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title>Logo Ipsum</title>
-        <path
-          d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="font-medium text-2xl tracking-tight">logoipsum</span>
-    </div>
-  );
-}
 
 export function Hero() {
   return (
@@ -81,7 +56,7 @@ export function Hero() {
       <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-[#09090b] to-transparent mt-auto border-b-4 border-zinc-800">
         <div className="w-full overflow-hidden flex flex-col items-center">
           <h2 className="text-white text-xl font-bold tracking-[0.2em] mb-8 uppercase text-center font-sans md:text-2xl">
-            Our Partners <br className="md:hidden" /> & Collaborators
+            Communities We’ve Worked <br className="md:hidden" /> With & Partners
           </h2>
           <Carousel
             opts={{
@@ -98,20 +73,25 @@ export function Hero() {
             ]}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-8 flex gap-10">
-              {Array.from({ length: 12 }).map((_, i) => {
-                return (
-                  <CarouselItem
-                    // biome-ignore lint/suspicious/noArrayIndexKey: This is a static repeating array of the same logo
-                    key={i}
-                    className="pl-4 md:pl-8 basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-[12%] flex justify-center"
-                  >
-                    <div className="opacity-80 hover:opacity-100 transition-opacity">
-                      <LogoIpsum />
-                    </div>
-                  </CarouselItem>
-                );
-              })}
+            <CarouselContent className="-ml-4 md:-ml-8 flex items-center ">
+              {[...partners, ...partners].map((partner, i) => (
+                <CarouselItem
+                  // biome-ignore lint/suspicious/noArrayIndexKey: Carousel needs duplicates for smooth infinite scroll
+                  key={`${partner.id}-${i}`}
+                  className="pl-4 md:pl-8 basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 flex justify-center items-center"
+                >
+                  <div className="group/logo relative flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer p-4">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={140}
+                      height={60}
+                      className="max-h-12 w-auto object-contain"
+                      unoptimized
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
             </CarouselContent>
           </Carousel>
         </div>

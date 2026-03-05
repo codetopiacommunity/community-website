@@ -15,7 +15,7 @@ export const impactStories: ImpactStory[] = [
     id: 1,
     title: "Django Girls Koforidua",
     impact:
-      "Partnered to teach web fundamentals. Helped over 40 women deploy their first working application online.",
+      "Mentored to teach web fundamentals. Helped over 40 women deploy their first working application online.",
     image:
       "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=800&q=80",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
@@ -39,7 +39,7 @@ export const impactStories: ImpactStory[] = [
     id: 3,
     title: "Django Girls Bootcamp",
     impact:
-      "Partnered to teach web fundamentals. Helped over 60 women deploy their first working application online.",
+      "Mentored to teach web fundamentals. Helped over 60 women deploy their first working application online.",
     image:
       "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
@@ -64,7 +64,7 @@ export const impactStories: ImpactStory[] = [
     id: 5,
     title: "Django Girls Koforidua",
     impact:
-      "Partnered to teach web fundamentals. Helped over 40 women deploy their first working application online.",
+      "Mentored to teach web fundamentals. Helped over 40 women deploy their first working application online.",
     image:
       "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=800&q=80",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
@@ -86,7 +86,7 @@ export const impactStories: ImpactStory[] = [
     id: 7,
     title: "Django Girls Bootcamp",
     impact:
-      "Partnered to teach web fundamentals. Helped over 60 women deploy their first working application online.",
+      "Mentored to teach web fundamentals. Helped over 60 women deploy their first working application online.",
     image:
       "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",

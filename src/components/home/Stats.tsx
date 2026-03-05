@@ -3,15 +3,15 @@ import { Container } from "@/components/layout/Container";
 const stats = [
   {
     value: "500+",
-    label: "Active Codetopians",
+    label: "Active Members",
     description:
-      "Innovators, builders, and creators shaping the tech ecosystem.",
+      "A high-performance network of creators and leaders in the Ghana tech ecosystem.",
   },
   {
     value: "20+",
-    label: "Workshops Hosted",
+    label: "Technical Deployments",
     description:
-      "Hands-on sessions covering everything from software to hardware and design.",
+      "Direct technical sessions and projects that convert knowledge into production-ready skills.",
   },
 ];
 
@@ -22,12 +22,12 @@ export function Stats() {
         {/* Section Header */}
         <div className="flex flex-col items-center flex-1 text-center mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mb-4 font-sans text-black">
-            Our Growing Community
+            Performance & Growth
           </h2>
           <p className="text-zinc-600 text-base md:text-lg max-w-3xl font-mono">
-            A thriving tech community where developers, engineers, designers,
-            tinkeres, tech enthusiasts and professionals come together to learn,
-            share, grow and connect.
+            A disciplined environment where 500+ technologists transition from
+            consumers to creators through structured mentorship and
+            collaborative contribution.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export function Stats() {
               <div className="absolute inset-0 border-2 border-zinc-900 translate-x-[8px] translate-y-[8px] z-0 transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]" />
 
               {/* Top Interactive Card */}
-              <div className="relative z-10 flex flex-col items-center justify-center p-12 md:p-20 text-center bg-white border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]">
+              <div className="relative z-10 flex flex-col items-center justify-center h-full p-12 md:p-20 text-center bg-white border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]">
                 <span className="text-6xl md:text-8xl font-black font-sans tracking-tighter text-zinc-900 mb-4 md:mb-6 select-none transition-transform duration-500 group-hover:scale-105">
                   {stat.value}
                 </span>

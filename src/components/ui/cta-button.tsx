@@ -28,7 +28,7 @@ export const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(
     return (
       <div
         className={cn(
-          "relative group w-full sm:w-auto font-mono",
+          "relative group w-full sm:w-auto font-sans",
           wrapperClassName,
         )}
       >

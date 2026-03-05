@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
+import codetopiaLogoTw from "@/assets/images/logos/Codetopia-Logo-TW.png";
 import { impactStories } from "@/lib/data/impact-stories";
 
 function getYouTubeEmbedUrl(url: string) {
@@ -26,28 +27,19 @@ function getYouTubeEmbedUrl(url: string) {
   return url;
 }
 
-// Reusable placeholder logo for now
-function LogoIpsum() {
+// Codetopia Logo Watermark
+function CodetopiaWatermark() {
   return (
     <div className="flex items-center gap-1.5 text-white opacity-80 group-hover:opacity-100 transition-opacity">
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title>Logo Ipsum</title>
-        <path
-          d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="font-bold text-lg tracking-tight hidden sm:block">
-        logoipsum
+      <Image
+        src={codetopiaLogoTw}
+        alt="Codetopia"
+        width={32}
+        height={32}
+        className="w-8 h-8 object-contain brightness-0 invert"
+      />
+      <span className="font-bold text-lg tracking-tight hidden sm:block uppercase">
+        Codetopia
       </span>
     </div>
   );
@@ -81,7 +73,7 @@ export function OurImpact() {
               Our Impact
             </h2>
             <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono mb-16">
-              We don't just partner with industry leaders; we actively empower
+              We don't just work with industry leaders; we actively empower
               the next generation of developers across schools, bootcamps, and
               local hubs.
             </p>
@@ -93,73 +85,75 @@ export function OurImpact() {
           </h3>
         </Container>
 
-        <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
+        <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden px-4 md:px-8">
           {/* The Brutalist Vertical Impact Log Container */}
-          <div className="w-full max-w-7xl border-2 border-zinc-800 bg-[#09090b]">
-            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-1 [&::-webkit-scrollbar]:w-5 [&::-webkit-scrollbar-track]:bg-zinc-950 [&::-webkit-scrollbar-track]:border-l [&::-webkit-scrollbar-track]:border-zinc-800 [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:border-[4px] [&::-webkit-scrollbar-thumb]:border-zinc-950 hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400">
-              {impactStories.map((story) => (
-                <button
-                  type="button"
-                  key={story.id}
-                  onClick={() => setSelectedStory(story)}
-                  className="group relative flex flex-col w-full shrink-0 h-auto min-h-[300px] lg:min-h-[400px] border-b-2 border-zinc-800 bg-[#09090b] overflow-hidden cursor-pointer [direction:ltr] text-left"
-                >
-                  {/* Background Panoramic Image Layer */}
-                  <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-                    <Image
-                      src={story.image}
-                      alt={story.title}
-                      fill
-                      unoptimized
-                      className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0 opacity-40 group-hover:opacity-100"
-                    />
-                    {/* Dark scrim to guarantee text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/90 to-black/20 group-hover:from-black/90 group-hover:via-black/60 group-hover:to-transparent transition-colors duration-500 z-10" />
-                  </div>
-
-                  {/* Logo watermark top-right */}
-                  <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white hidden md:block">
-                    <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
-                    <div className="relative z-10 scale-[80%] origin-top-right">
-                      <LogoIpsum />
-                    </div>
-                  </div>
-
-                  {/* Content Overlay */}
-                  <div className="relative z-20 w-full lg:w-[60%] flex flex-col justify-center px-6 py-8 md:p-8 lg:p-12 h-full flex-grow">
-                    {/* Badges */}
-                    <div className="flex flex-wrap gap-2 mb-4 md:mb-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      {story.link && (
-                        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                          <PlayCircle className="w-3 h-3" /> VIDEO
-                        </span>
-                      )}
-                      {story.galleryLink && (
-                        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                          <ImageIcon className="w-3 h-3" /> GALLERY
-                        </span>
-                      )}
+          <div className="w-full max-w-7xl">
+            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-4 md:pr-8 [&::-webkit-scrollbar]:w-5 md:[&::-webkit-scrollbar]:w-6 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-track]:border-2 [&::-webkit-scrollbar-track]:border-zinc-800 [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-[#09090b] hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
+              <div className="flex flex-col border-2 border-zinc-800 bg-[#09090b]">
+                {impactStories.map((story) => (
+                  <button
+                    type="button"
+                    key={story.id}
+                    onClick={() => setSelectedStory(story)}
+                    className="group relative flex flex-col w-full shrink-0 h-auto min-h-[300px] lg:min-h-[400px] border-b-2 border-zinc-800 last:border-b-0 bg-[#09090b] overflow-hidden cursor-pointer [direction:ltr] text-left"
+                  >
+                    {/* Background Panoramic Image Layer */}
+                    <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+                      <Image
+                        src={story.image}
+                        alt={story.title}
+                        fill
+                        unoptimized
+                        className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0 opacity-40 group-hover:opacity-100"
+                      />
+                      {/* Dark scrim to guarantee text legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/90 to-black/20 group-hover:from-black/90 group-hover:via-black/60 group-hover:to-transparent transition-colors duration-500 z-10" />
                     </div>
 
-                    {/* Title */}
-                    <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg font-sans">
-                      {story.title}
-                    </h4>
-
-                    {/* Meta Info */}
-                    <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
-                      <div className="flex items-center gap-3">
-                        <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-                        {story.date}
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" />
-                        <span>{story.location}</span>
+                    {/* Logo watermark top-right */}
+                    <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white hidden md:block">
+                      <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
+                      <div className="relative z-10 scale-[80%] origin-top-right">
+                        <CodetopiaWatermark />
                       </div>
                     </div>
-                  </div>
-                </button>
-              ))}
+
+                    {/* Content Overlay */}
+                    <div className="relative z-20 w-full lg:w-[60%] flex flex-col justify-center px-6 py-8 md:p-8 lg:p-12 h-full flex-grow">
+                      {/* Badges */}
+                      <div className="flex flex-wrap gap-2 mb-4 md:mb-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        {story.link && (
+                          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            <PlayCircle className="w-3 h-3" /> VIDEO
+                          </span>
+                        )}
+                        {story.galleryLink && (
+                          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                            <ImageIcon className="w-3 h-3" /> GALLERY
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg font-sans">
+                        {story.title}
+                      </h4>
+
+                      {/* Meta Info */}
+                      <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
+                        <div className="flex items-center gap-3">
+                          <Calendar className="w-4 h-4 md:w-5 md:h-5" />
+                          {story.date}
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" />
+                          <span>{story.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
           {/* Global CTA */}
@@ -267,7 +261,7 @@ export function OurImpact() {
                   <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
                     <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
                     <div className="relative z-10">
-                      <LogoIpsum />
+                      <CodetopiaWatermark />
                     </div>
                   </div>
 

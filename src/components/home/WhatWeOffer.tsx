@@ -1,31 +1,32 @@
-import { BookOpen, Calendar, GraduationCap, Users } from "lucide-react";
+import { Compass, GitPullRequest, Layers, Ticket } from "lucide-react";
 import Image from "next/image";
 import codetopiaLogoTw from "@/assets/images/logos/Codetopia-Logo-TW.png";
 import { Container } from "@/components/layout/Container";
 
 const offers = [
   {
-    title: "Events",
+    title: "Direct Mentorship",
     description:
-      "Weekly meetups, workshops, and hackathons for all skill levels.",
-    icon: Calendar,
+      "1-on-1 guidance from experienced engineers to help you navigate your tech journey.",
+    icon: Compass,
   },
   {
-    title: "Tech Articles",
+    title: "Collaborative Projects",
     description:
-      "Community-written articles on latest technologies and best practices.",
-    icon: BookOpen,
+      "Real-world engineering on community-led systems and open-source contributions.",
+    icon: GitPullRequest,
   },
   {
-    title: "Active Community",
-    description: "Connect with like-minded individuals and grow your network.",
-    icon: Users,
+    title: "Technical Training",
+    description:
+      "Structured learning paths and workshops from fundamentals to advanced architecture.",
+    icon: Layers,
   },
   {
-    title: "Education",
+    title: "Community Events",
     description:
-      "Structured learning paths, bootcamps, and 1-on-1 mentorship programs.",
-    icon: GraduationCap,
+      "Meetups, technical sessions, and hackathons to connect and build together.",
+    icon: Ticket,
   },
 ];
 
@@ -52,7 +53,7 @@ export function WhatWeOffer() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 w-full max-w-[90rem]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-2 w-full max-w-[90rem]">
           {offers.map((offer) => {
             const Icon = offer.icon;
             return (
@@ -64,9 +65,9 @@ export function WhatWeOffer() {
                 <div className="absolute inset-0 border border-zinc-500 translate-x-[8px] translate-y-[8px] z-0 transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]" />
 
                 {/* Main Card */}
-                <div className="relative z-10 bg-[#e4e4e7] border border-transparent flex flex-col p-10 md:p-10 h-full transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]">
-                  <div className="mb-6 md:mb-8 text-[#18181b]">
-                    <Icon size={48} strokeWidth={1.5} />
+                <div className="relative z-10 bg-[#e4e4e7] border border-transparent flex flex-col p-8 md:p-8 h-full transition-transform duration-300 group-hover:translate-x-[4px] group-hover:translate-y-[4px]">
+                  <div className="mb-8 md:mb-10 text-[#18181b]">
+                    <Icon size={64} strokeWidth={1.5} />
                   </div>
                   <h3 className="text-2xl font-bold text-[#18181b] mb-4">
                     {offer.title}
