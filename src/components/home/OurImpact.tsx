@@ -102,66 +102,60 @@ export function OurImpact() {
                   type="button"
                   key={story.id}
                   onClick={() => setSelectedStory(story)}
-                  className="group flex flex-col lg:flex-row w-full shrink-0 h-[220px] border-b-2 border-zinc-800 bg-[#09090b] transition-colors duration-0 hover:bg-white overflow-hidden cursor-pointer [direction:ltr] text-left"
+                  className="group relative flex flex-col w-full shrink-0 h-auto min-h-[300px] lg:min-h-[400px] border-b-2 border-zinc-800 bg-[#09090b] overflow-hidden cursor-pointer [direction:ltr] text-left"
                 >
-                  {/* Left Data Column (Date & Location) */}
-                  <div className="w-full lg:w-[35%] h-full flex flex-col justify-center p-6 md:p-8 lg:p-12 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 group-hover:border-zinc-300 relative z-20 bg-[#09090b] group-hover:bg-white transition-colors duration-0 shrink-0">
-                    <div className="flex items-center gap-2 font-mono text-zinc-500 group-hover:text-zinc-800 text-sm md:text-base tracking-[0.2em] uppercase mb-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                      <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-                      {story.date}
-                    </div>
-                    <div className="flex items-start gap-2 font-sans font-black text-white group-hover:text-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tighter leading-[1.1] break-words translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150">
-                      <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-1 md:mt-2" />
-                      {story.location}
-                    </div>
-                  </div>
-
-                  {/* Right Panoramic View Column */}
-                  <div className="w-full lg:w-[65%] relative h-full overflow-hidden">
-                    {/* Background Image: grayscale → color on hover */}
+                  {/* Background Panoramic Image Layer */}
+                  <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
                     <Image
                       src={story.image}
                       alt={story.title}
                       fill
                       unoptimized
-                      className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0"
+                      className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0 opacity-40 group-hover:opacity-100"
                     />
+                    {/* Dark scrim to guarantee text legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/90 to-black/20 group-hover:from-black/90 group-hover:via-black/60 group-hover:to-transparent transition-colors duration-500 z-10" />
+                  </div>
 
-                    {/* Dark scrim fades on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent group-hover:from-black/60 group-hover:via-black/20 z-10 transition-all duration-500" />
-
-                    {/* Bottom gradient for title legibility */}
-                    <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/90 to-transparent z-10" />
-
-                    {/* Logo watermark top-right */}
-                    <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white">
-                      <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
-                      <div className="relative z-10">
-                        <LogoIpsum />
-                      </div>
+                  {/* Logo watermark top-right */}
+                  <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white hidden md:block">
+                    <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
+                    <div className="relative z-10 scale-[80%] origin-top-right">
+                      <LogoIpsum />
                     </div>
+                  </div>
 
-                    {/* Title slides up from bottom on hover */}
-                    <div className="absolute bottom-0 left-0 right-0 z-20 p-5 md:p-7 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                      <h4 className="font-black text-white uppercase tracking-tighter text-xl md:text-2xl truncate drop-shadow-lg">
-                        {story.title}
-                      </h4>
-                    </div>
-
-                    <div className="absolute top-5 left-5 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm flex items-center">
-                        EXPAND ↗
-                      </span>
+                  {/* Content Overlay */}
+                  <div className="relative z-20 w-full lg:w-[60%] flex flex-col justify-center px-6 py-8 md:p-8 lg:p-12 h-full flex-grow">
+                    {/* Badges */}
+                    <div className="flex flex-wrap gap-2 mb-4 md:mb-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                       {story.link && (
-                        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm flex items-center gap-2">
-                          <PlayCircle className="w-3 h-3" /> MEDIA
+                        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                          <PlayCircle className="w-3 h-3" /> VIDEO
                         </span>
                       )}
                       {story.galleryLink && (
-                        <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 bg-black/60 backdrop-blur-sm flex items-center gap-2">
+                        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                           <ImageIcon className="w-3 h-3" /> GALLERY
                         </span>
                       )}
+                    </div>
+
+                    {/* Title */}
+                    <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg">
+                      {story.title}
+                    </h4>
+
+                    {/* Meta Info */}
+                    <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md">
+                      <div className="flex items-center gap-3">
+                        <Calendar className="w-4 h-4 md:w-5 md:h-5" />
+                        {story.date}
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" />
+                        <span>{story.location}</span>
+                      </div>
                     </div>
                   </div>
                 </button>
