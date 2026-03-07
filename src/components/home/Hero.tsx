@@ -2,13 +2,16 @@
 
 import AutoScroll from "embla-carousel-auto-scroll";
 import { MoveRight } from "lucide-react";
+import Image from "next/image";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
-import Image from "next/image";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { CtaButton } from "@/components/ui/cta-button";
 import { partners } from "@/lib/data/partners";
-
 
 export function Hero() {
   return (
@@ -56,7 +59,8 @@ export function Hero() {
       <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-[#09090b] to-transparent mt-auto border-b-4 border-zinc-800">
         <div className="w-full overflow-hidden flex flex-col items-center">
           <h2 className="text-white text-xl font-bold tracking-[0.2em] mb-8 uppercase text-center font-sans md:text-2xl">
-            Communities We’ve Worked <br className="md:hidden" /> With & Partners
+            Communities We’ve Worked <br className="md:hidden" /> With &
+            Partners
           </h2>
           <Carousel
             opts={{
@@ -76,16 +80,15 @@ export function Hero() {
             <CarouselContent className="-ml-4 md:-ml-8 flex items-center ">
               {[...partners, ...partners].map((partner, i) => (
                 <CarouselItem
-                  // biome-ignore lint/suspicious/noArrayIndexKey: Carousel needs duplicates for smooth infinite scroll
                   key={`${partner.id}-${i}`}
-                  className="pl-4 md:pl-8 basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 flex justify-center items-center"
+                  className="pl-4 md:pl-8 basis-1/4 md:basis-1/7 lg:basis-1/10 xl:basis-1/10 flex justify-center items-center"
                 >
                   <div className="group/logo relative flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer p-4">
                     <Image
                       src={partner.logo}
                       alt={partner.name}
                       width={140}
-                      height={60}
+                      height={120}
                       className="max-h-12 w-auto object-contain"
                       unoptimized
                     />
