@@ -73,9 +73,9 @@ export function OurImpact() {
               Our Impact
             </h2>
             <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono mb-16">
-              We don't just work with industry leaders; we actively empower
-              the next generation of developers across schools, bootcamps, and
-              local hubs.
+              We don't just work with industry leaders; we actively empower the
+              next generation of developers across schools, bootcamps, and local
+              hubs.
             </p>
           </div>
 
