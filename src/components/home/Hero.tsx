@@ -77,19 +77,19 @@ export function Hero() {
             ]}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-8 flex items-center ">
+            <CarouselContent className="-ml-4 md:-ml-8 flex items-center">
               {[...partners, ...partners].map((partner, i) => (
                 <CarouselItem
                   key={`${partner.id}-${i}`}
-                  className="pl-4 md:pl-8 basis-1/4 md:basis-1/7 lg:basis-1/10 xl:basis-1/10 flex justify-center items-center"
+                  className="pl-4 md:pl-8 basis-auto flex justify-center items-center"
                 >
-                  <div className="group/logo relative flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer p-4">
+                  <div className="group/logo flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer px-6 py-3 w-44">
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      width={140}
-                      height={120}
-                      className="max-h-12 w-auto object-contain"
+                      width={160}
+                      height={72}
+                      className="h-14 w-auto object-contain"
                       unoptimized
                     />
                   </div>
