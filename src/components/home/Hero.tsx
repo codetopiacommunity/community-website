@@ -1,17 +1,9 @@
 "use client";
 
-import AutoScroll from "embla-carousel-auto-scroll";
 import { MoveRight } from "lucide-react";
-import Image from "next/image";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { CtaButton } from "@/components/ui/cta-button";
-import { partners } from "@/lib/data/partners";
 
 export function Hero() {
   return (
@@ -53,51 +45,6 @@ export function Hero() {
             </CtaButton>
           </div>
         </Container>
-      </div>
-
-      {/* Sponsors/Logos Strip at the bottom - Now in normal flow */}
-      <div className="relative z-10 w-full pt-9 pb-12 bg-gradient-to-t from-[#09090b] to-transparent mt-auto border-b-4 border-zinc-800">
-        <div className="w-full overflow-hidden flex flex-col items-center">
-          <h2 className="text-white text-xl font-bold tracking-[0.2em] mb-8 uppercase text-center font-sans md:text-2xl">
-            Communities We’ve Worked <br className="md:hidden" /> With &
-            Partners
-          </h2>
-          <Carousel
-            opts={{
-              loop: true,
-              align: "start",
-              dragFree: true,
-            }}
-            plugins={[
-              AutoScroll({
-                speed: 1.5,
-                stopOnInteraction: false,
-                stopOnMouseEnter: true,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4 md:-ml-8 flex items-center">
-              {[...partners, ...partners].map((partner, i) => (
-                <CarouselItem
-                  key={`${partner.id}-${i}`}
-                  className="pl-4 md:pl-8 basis-auto flex justify-center items-center"
-                >
-                  <div className="group/logo flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer px-6 py-3 w-44">
-                    <Image
-                      src={partner.logo}
-                      alt={partner.name}
-                      width={160}
-                      height={72}
-                      className="h-14 w-auto object-contain"
-                      unoptimized
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
       </div>
     </section>
   );
