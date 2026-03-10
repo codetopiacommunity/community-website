@@ -49,7 +49,7 @@ export function Footer() {
               />
             </Link>
             <div className="flex flex-col gap-2">
-              <p className="text-zinc-400 text-sm font-mono">
+              <p className="text-zinc-400 text-sm font-mono italic mb-5">
                 A utopia for tech enthusiasts
               </p>
               <div className="flex items-center gap-2">
@@ -247,7 +247,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4 font-mono">
           <p className="text-zinc-500 text-xs text-center md:text-left">
-            © 2025 Codetopia Community. All rights reserved.
+            &copy; {new Date().getFullYear()} Codetopia Community. All rights reserved.
           </p>
           <p className="text-zinc-500 text-xs text-center md:text-left">
             Built with ❤️ by Codetopia Community | Open Source
