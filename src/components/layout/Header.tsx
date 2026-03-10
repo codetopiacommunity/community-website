@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import logo from "@/assets/images/logos/Codetopia-Logo-TW.png";
+import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "./Container";
 
 const navLinks = [
@@ -25,8 +25,8 @@ export function Header() {
           <Image
             src={logo}
             alt="Codetopia"
-            width={80}
-            height={48}
+            width={150}
+            height={90}
             priority
             className="object-contain"
           />

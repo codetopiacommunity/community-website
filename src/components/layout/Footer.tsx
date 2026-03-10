@@ -15,7 +15,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import { SiBluesky } from "react-icons/si";
-import logo from "@/assets/images/logos/Codetopia-Logo-TW.png";
+import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
 
 export function Footer() {
@@ -42,8 +42,8 @@ export function Footer() {
               <Image
                 src={logo}
                 alt="Codetopia"
-                width={80}
-                height={48}
+                width={150}
+                height={90}
                 priority
                 className="object-contain"
               />

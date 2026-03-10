@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import codetopiaLogoTw from "@/assets/images/logos/Codetopia-Logo-TW.png";
+import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
 import { impactStories } from "@/lib/data/impact-stories";
@@ -86,7 +86,7 @@ export function OurImpact() {
         <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden px-4 md:px-8">
           {/* The Brutalist Vertical Impact Log Container */}
           <div className="w-full max-w-7xl">
-            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-4 md:pr-8 [&::-webkit-scrollbar]:w-5 md:[&::-webkit-scrollbar]:w-6 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-track]:border-2 [&::-webkit-scrollbar-track]:border-zinc-800 [&::-webkit-scrollbar-thumb]:bg-white [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-[#09090b] hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
+            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-4 md:pr-8 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
               <div className="flex flex-col border-2 border-zinc-800 bg-[#09090b]">
                 {impactStories.map((story) => (
                   <button
@@ -188,11 +188,11 @@ export function OurImpact() {
           {/* Codetopia Logo — top-left, mirrors close button */}
           <div className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-8 md:left-8 z-[110] flex items-center justify-center">
             <Image
-              src={codetopiaLogoTw}
+              src={logo}
               alt="Codetopia"
-              width={40}
-              height={40}
-              className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 object-contain brightness-0 invert opacity-70"
+              width={100}
+              height={100}
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain brightness-0 invert opacity-70"
             />
           </div>
 
@@ -220,7 +220,7 @@ export function OurImpact() {
 
           {/* Modal card — scrollable on all breakpoints, max 92dvh tall */}
           <div
-            className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto max-h-[92dvh]"
+            className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto max-h-[92dvh] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none"
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => e.stopPropagation()}
             role="dialog"

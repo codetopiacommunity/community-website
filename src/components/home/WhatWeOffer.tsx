@@ -1,6 +1,6 @@
 import { Compass, GitPullRequest, Layers, Ticket } from "lucide-react";
 import Image from "next/image";
-import codetopiaLogoTw from "@/assets/images/logos/Codetopia-Logo-TW.png";
+import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
 
 const offers = [
@@ -36,7 +36,7 @@ export function WhatWeOffer() {
       {/* Watermark Background */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-5">
         <Image
-          src={codetopiaLogoTw}
+          src={logo}
           alt="Codetopia Watermark"
           className="w-[150%] max-w-none md:w-full object-cover"
         />
