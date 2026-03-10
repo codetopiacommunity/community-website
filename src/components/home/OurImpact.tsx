@@ -112,7 +112,10 @@ export function OurImpact() {
                     <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white hidden md:block">
                       <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
                       <div className="relative z-10 scale-[80%] origin-top-right">
-                        <StoryLogoWatermark logo={story.logo} alt={story.title} />
+                        <StoryLogoWatermark
+                          logo={story.logo}
+                          alt={story.title}
+                        />
                       </div>
                     </div>
 
@@ -272,7 +275,10 @@ export function OurImpact() {
                   <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
                     <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
                     <div className="relative z-10">
-                      <StoryLogoWatermark logo={selectedStory.logo} alt={selectedStory.title} />
+                      <StoryLogoWatermark
+                        logo={selectedStory.logo}
+                        alt={selectedStory.title}
+                      />
                     </div>
                   </div>
 
