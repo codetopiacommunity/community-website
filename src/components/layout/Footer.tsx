@@ -48,9 +48,17 @@ export function Footer() {
                 className="object-contain"
               />
             </Link>
-            <p className="text-zinc-400 text-sm font-mono">
-              A utopia for tech enthusiasts
-            </p>
+            <div className="flex flex-col gap-2">
+              <p className="text-zinc-400 text-sm font-mono">
+                A utopia for tech enthusiasts
+              </p>
+              <div className="flex items-center gap-2">
+                <span className="h-px w-4 bg-zinc-800" />
+                <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-zinc-500 uppercase">
+                  A Codetopia Initiative
+                </span>
+              </div>
+            </div>
             <div className="flex flex-wrap items-center gap-4 mt-2">
               <Link
                 href="#"
