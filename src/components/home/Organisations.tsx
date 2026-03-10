@@ -9,7 +9,7 @@ const workedWith = organisations.filter((o) => o.type === "worked-with");
 
 function OrgLogo({ org }: { org: Organisation }) {
   return (
-    <div className="group/logo flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer px-12 shrink-0">
+    <div className="group/logo flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer px-6 md:px-12 shrink-0">
       <Image
         src={org.logo}
         alt={org.name}
@@ -23,10 +23,10 @@ function OrgLogo({ org }: { org: Organisation }) {
 }
 
 function OrgStrip({ items }: { items: Organisation[] }) {
-  // 1–4 items: static centered row, no scroll needed
+  // 1–4 items: static single-line row, centered
   if (items.length < 5) {
     return (
-      <div className="flex justify-center items-center gap-12 flex-wrap w-full py-4 px-4">
+      <div className="flex justify-center items-center gap-4 md:gap-12 flex-nowrap w-full py-4 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {items.map((org) => (
           <OrgLogo key={org.id} org={org} />
         ))}
