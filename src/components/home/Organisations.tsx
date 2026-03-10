@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { type Organisation, organisations } from "@/lib/data/partners";
 
-const workedWith = organisations.filter((o) => o.type === "worked-with");
-const partners = organisations.filter((o) => o.type === "partner");
-const sponsors = organisations.filter((o) => o.type === "sponsor");
+const workedWith = organisations.filter((o) => o.types.includes("worked-with"));
+const partners = organisations.filter((o) => o.types.includes("partner"));
+const sponsors = organisations.filter((o) => o.types.includes("sponsor"));
 
 function OrgLogo({ org }: { org: Organisation }) {
   return (
@@ -23,10 +23,10 @@ function OrgLogo({ org }: { org: Organisation }) {
 }
 
 function OrgStrip({ items }: { items: Organisation[] }) {
-  // 1–2 items: static centered row, no scroll needed
-  if (items.length < 3) {
+  // 1–4 items: static centered row, no scroll needed
+  if (items.length < 5) {
     return (
-      <div className="flex justify-center items-center gap-8 flex-wrap w-full py-3">
+      <div className="flex justify-center items-center gap-12 flex-wrap w-full py-4 px-4">
         {items.map((org) => (
           <OrgLogo key={org.id} org={org} />
         ))}
@@ -34,16 +34,14 @@ function OrgStrip({ items }: { items: Organisation[] }) {
     );
   }
 
-  // 3+ items: CSS marquee — duplicate once, animate translateX(-50%)
-  // The animation moves the strip by exactly half its width (one full set),
-  // then snaps back — perfectly seamless, no JS, no gap.
+  // 5+ items: CSS marquee — duplicate once, animate translateX(-50%)
   return (
     <div className="w-full overflow-hidden">
       <div
         role="marquee"
         className="flex items-center w-max"
         style={{
-          animation: "marquee 20s linear infinite",
+          animation: "marquee 25s linear infinite",
           willChange: "transform",
         }}
         onMouseEnter={(e) => {
@@ -55,12 +53,10 @@ function OrgStrip({ items }: { items: Organisation[] }) {
             "running";
         }}
       >
-        {/* 6 copies — enough to fill 2× ultra-wide viewport and loop seamlessly */}
-        {Array.from({ length: 6 }, () => items)
-          .flat()
-          .map((org, i) => (
-            <OrgLogo key={`${org.id}-${i}`} org={org} />
-          ))}
+        {/* 2 copies is enough for a seamless loop with translateX(-50%) */}
+        {[...items, ...items].map((org, i) => (
+          <OrgLogo key={`${org.id}-${i}`} org={org} />
+        ))}
       </div>
       <style>{`
         @keyframes marquee {

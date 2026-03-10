@@ -27,20 +27,18 @@ function getYouTubeEmbedUrl(url: string) {
   return url;
 }
 
-// Codetopia Logo Watermark
-function CodetopiaWatermark() {
+// Story Logo Watermark
+function StoryLogoWatermark({ logo, alt }: { logo: string; alt: string }) {
   return (
     <div className="flex items-center gap-1.5 text-white opacity-80 group-hover:opacity-100 transition-opacity">
       <Image
-        src={codetopiaLogoTw}
-        alt="Codetopia"
-        width={32}
-        height={32}
-        className="w-8 h-8 object-contain brightness-0 invert"
+        src={logo}
+        alt={alt}
+        width={60}
+        height={60}
+        unoptimized
+        className="w-15 h-15 object-contain brightness-0 invert"
       />
-      <span className="font-bold text-lg tracking-tight hidden sm:block uppercase">
-        Codetopia
-      </span>
     </div>
   );
 }
@@ -114,7 +112,7 @@ export function OurImpact() {
                     <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white hidden md:block">
                       <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
                       <div className="relative z-10 scale-[80%] origin-top-right">
-                        <CodetopiaWatermark />
+                        <StoryLogoWatermark logo={story.logo} alt={story.title} />
                       </div>
                     </div>
 
@@ -180,18 +178,30 @@ export function OurImpact() {
         // biome-ignore lint/a11y/useKeyWithClickEvents: Backdrop does not need keyboard interaction
         // biome-ignore lint/a11y/noStaticElementInteractions: Backdrop is a presentational element
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8 cursor-[url('/close-cursor.svg'),_pointer]"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 cursor-[url('/close-cursor.svg'),_pointer]"
+          style={{ height: "100dvh" }}
           onClick={() => setSelectedStory(null)}
         >
+          {/* Codetopia Logo — top-left, mirrors close button */}
+          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-8 md:left-8 z-[110] flex items-center justify-center">
+            <Image
+              src={codetopiaLogoTw}
+              alt="Codetopia"
+              width={40}
+              height={40}
+              className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 object-contain brightness-0 invert opacity-70"
+            />
+          </div>
+
           {/* Global Screen-Fixed Close Button */}
           <button
             type="button"
             onClick={() => setSelectedStory(null)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-[#09090b] hover:bg-white hover:text-black p-3 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
+            className="absolute top-3 right-3 sm:top-6 sm:right-6 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-[#09090b] hover:bg-white hover:text-black p-2.5 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
           >
             <svg
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -205,33 +215,34 @@ export function OurImpact() {
             </svg>
           </button>
 
+          {/* Modal card — scrollable on all breakpoints, max 92dvh tall */}
           <div
-            className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto lg:overflow-hidden max-h-[95vh] lg:max-h-[90vh]"
+            className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto max-h-[92dvh]"
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
           >
-            {/* Left Data Column (Date & Location) - EXACT TWIN OF ROW */}
-            <div className="w-full lg:w-[35%] flex flex-col justify-center p-6 md:p-10 lg:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-[#09090b] shrink-0">
-              <div className="flex items-center gap-2 font-mono text-zinc-500 tracking-[0.2em] uppercase mb-4 md:mb-6 text-sm md:text-base">
+            {/* Left Data Column */}
+            <div className="w-full lg:w-[35%] flex flex-col justify-center p-5 sm:p-8 lg:p-12 xl:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-[#09090b] shrink-0">
+              <div className="flex items-center gap-2 font-mono text-zinc-500 tracking-[0.2em] uppercase mb-3 md:mb-6 text-xs sm:text-sm md:text-base">
                 <Calendar className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
                 {selectedStory.date}
               </div>
-              <div className="flex items-start gap-2 font-sans font-black text-white text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter leading-[1.1] break-words">
+              <div className="flex items-start gap-2 font-sans font-black text-white text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl uppercase tracking-tighter leading-[1.1] break-words">
                 <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-1 md:mt-2" />
                 {selectedStory.location}
               </div>
             </div>
 
-            {/* Right Panoramic View Column (Image & Event Proof) - EXACT TWIN OF ROW */}
-            <div className="w-full lg:w-[65%] relative flex flex-col justify-end p-6 md:p-10 lg:p-16 min-h-[450px] md:min-h-[500px] lg:min-h-[600px]">
+            {/* Right Panoramic View Column */}
+            <div className="w-full lg:w-[65%] relative flex flex-col justify-end p-5 sm:p-8 lg:p-12 xl:p-16 min-h-[55vw] sm:min-h-[420px] lg:min-h-0 lg:flex-1">
               {isPlayingVideo && selectedStory.link ? (
                 <div className="absolute inset-0 z-30 bg-black flex flex-col animate-in fade-in duration-300">
                   <button
                     type="button"
                     onClick={() => setIsPlayingVideo(false)}
-                    className="absolute top-6 left-6 md:top-8 md:left-8 z-40 font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 md:px-4 md:py-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-colors backdrop-blur-sm flex items-center gap-2 group cursor-pointer"
+                    className="absolute top-4 left-4 sm:top-6 sm:left-6 z-40 font-mono text-[10px] sm:text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 sm:px-4 sm:py-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-colors backdrop-blur-sm flex items-center gap-2 group cursor-pointer"
                   >
                     ← BACK TO POST
                   </button>
@@ -245,7 +256,7 @@ export function OurImpact() {
                 </div>
               ) : (
                 <>
-                  {/* Background Image (Full Color Always) */}
+                  {/* Background Image */}
                   <Image
                     src={selectedStory.image as string}
                     alt={selectedStory.title as string}
@@ -254,35 +265,35 @@ export function OurImpact() {
                     className="object-cover"
                   />
 
-                  {/* Scrim for Text Readability */}
+                  {/* Scrim */}
                   <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 to-transparent z-10" />
 
-                  {/* Top Right Logo Watermark with Protective Scrim */}
-                  <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
+                  {/* Story Logo Watermark */}
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
                     <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
                     <div className="relative z-10">
-                      <CodetopiaWatermark />
+                      <StoryLogoWatermark logo={selectedStory.logo} alt={selectedStory.title} />
                     </div>
                   </div>
 
-                  {/* Event Title & Impact Action (Un-truncated Text Block) */}
-                  <div className="relative z-20 max-w-3xl mt-auto pt-16">
-                    <h4 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-4 md:mb-6 border-b-2 border-white pb-3 md:pb-4 inline-block drop-shadow-lg font-sans">
+                  {/* Event Title & Impact Report */}
+                  <div className="relative z-20 max-w-3xl mt-auto pt-12 sm:pt-16">
+                    <h4 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-3 md:mb-6 border-b-2 border-white pb-2 md:pb-4 inline-block drop-shadow-lg font-sans">
                       {selectedStory.title}
                     </h4>
                     <div className="bg-black/80 border border-white backdrop-blur-md drop-shadow-2xl flex flex-col">
-                      <span className="font-mono text-zinc-400 uppercase tracking-[0.2em] text-[10px] md:text-xs lg:text-sm pt-4 px-4 md:pt-6 md:px-6 lg:pt-8 lg:px-8 pb-3 border-b border-zinc-800">
+                      <span className="font-mono text-zinc-400 uppercase tracking-[0.2em] text-[10px] md:text-xs lg:text-sm pt-3 px-3 sm:pt-5 sm:px-5 lg:pt-7 lg:px-7 pb-2 sm:pb-3 border-b border-zinc-800">
                         Impact Report
                       </span>
-                      <p className="block text-white text-sm md:text-lg lg:text-xl font-mono leading-relaxed px-4 md:px-6 lg:px-8 pb-4 md:pb-6 lg:pb-8 pt-4 md:pt-6">
+                      <p className="block text-white text-sm md:text-base lg:text-lg font-mono leading-relaxed px-3 sm:px-5 lg:px-7 pb-3 sm:pb-5 lg:pb-7 pt-3 sm:pt-5">
                         {selectedStory.impact}
                       </p>
                       {selectedStory.link && (
-                        <div className="px-4 md:px-6 lg:px-8 pb-6 md:pb-8">
+                        <div className="px-3 sm:px-5 lg:px-7 pb-4 sm:pb-6 lg:pb-8">
                           <button
                             type="button"
                             onClick={() => setIsPlayingVideo(true)}
-                            className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold uppercase tracking-widest text-xs md:text-sm px-6 py-3 md:px-8 md:py-4 hover:bg-zinc-200 transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
+                            className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold uppercase tracking-widest text-xs sm:text-sm px-5 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-4 hover:bg-zinc-200 transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
                           >
                             <PlayCircle className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:scale-110 transition-transform" />
                             Watch Video
@@ -290,12 +301,12 @@ export function OurImpact() {
                         </div>
                       )}
                       {selectedStory.galleryLink && (
-                        <div className="px-4 md:px-6 lg:px-8 pb-6 md:pb-8">
+                        <div className="px-3 sm:px-5 lg:px-7 pb-4 sm:pb-6 lg:pb-8">
                           <a
                             href={selectedStory.galleryLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 bg-transparent text-white border-2 border-white font-bold uppercase tracking-widest text-xs md:text-sm px-6 py-3 md:px-8 md:py-4 hover:bg-white hover:text-black transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
+                            className="inline-flex items-center justify-center gap-2 bg-transparent text-white border-2 border-white font-bold uppercase tracking-widest text-xs sm:text-sm px-5 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-4 hover:bg-white hover:text-black transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
                           >
                             <ImageIcon className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:scale-110 transition-transform" />
                             View Gallery
