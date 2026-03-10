@@ -247,7 +247,8 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4 font-mono">
           <p className="text-zinc-500 text-xs text-center md:text-left">
-            &copy; {new Date().getFullYear()} Codetopia Community. All rights reserved.
+            &copy; {new Date().getFullYear()} Codetopia Community. All rights
+            reserved.
           </p>
           <p className="text-zinc-500 text-xs text-center md:text-left">
             Built with ❤️ by Codetopia Community | Open Source
