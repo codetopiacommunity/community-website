@@ -6,11 +6,11 @@
 
 ## Who We Are
 
-Codetopia is an inclusive and collaborative space created to empower aspiring and practicing technologists. We believe technology is more than a tool — it is the foundation of innovation, creativity, and problem-solving.
+Codetopia Community is an inclusive and collaborative initiative of the mother company **[Codetopia](https://codetopia.org)**. It was created to empower aspiring and practicing technologists. We believe technology is more than a tool — it is the foundation of innovation, creativity, and problem-solving.
 
 Our community is guided by six core values: **Inclusivity, Collaboration, Continuous Learning, Practical Application, Innovation, and Integrity**. These values are not just words — they shape how we treat each other, how we build together, and how we grow as a community.
 
-Whether you are writing your first line of code or exploring tech Codetopia is your home.
+Whether you are writing your first line of code or exploring tech, the Codetopia Community is your home.
 
 ---
 
@@ -113,4 +113,4 @@ This Code of Conduct is an original document written for the Codetopia Community
 
 ---
 
-*Codetopia — A utopia for tech enthusiasts — where everyone belongs.* 
+*Codetopia — Engineering the future.* 🚀

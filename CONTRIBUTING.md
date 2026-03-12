@@ -1,8 +1,8 @@
-# Contributing to Codetopia
+# Contributing to the Codetopia Community
 
 > *A utopia for tech enthusiasts — and we are glad you are here.*
 
-First off, thank you for taking the time to contribute to Codetopia! Every contribution, big or small, helps us build a better community for tech enthusiasts everywhere.
+First off, thank you for taking the time to contribute to the Codetopia Community! Every contribution, big or small, helps us build a better community for tech enthusiasts everywhere.
 
 Please take a moment to read this guide before you get started.
 
@@ -10,7 +10,7 @@ Please take a moment to read this guide before you get started.
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). We are committed to keeping Codetopia a welcoming and inclusive space for everyone.
+By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). We are committed to keeping the Codetopia Community a welcoming and inclusive space for everyone.
 
 ---
 
@@ -85,7 +85,7 @@ git push origin feat/your-feature-name
 
 ### 8. Open a Pull Request
 
-Go to the original Codetopia repository and open a Pull Request from your fork into the **`dev`** branch.
+Go to the original Codetopia Community repository and open a Pull Request from your fork into the **`dev`** branch.
 
 > ⚠️ Never open a Pull Request directly into `main`.
 
@@ -127,7 +127,7 @@ In your PR description, please include:
 If you are stuck or have questions, feel free to:
 
 - Open an issue on GitHub
-- Reach out on our [Discord](#)
+- Reach out on our [Discord](https://discord.gg/3nBFMfdNmB)
 - Visit [codetopia.org](https://codetopia.org)
 
 We are happy to help. Welcome to the community! 🚀
