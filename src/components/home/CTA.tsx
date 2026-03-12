@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
 
@@ -25,16 +26,24 @@ export function CTA() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-4 w-full sm:w-auto">
           <CtaButton
+            asChild
             className="bg-white text-black hover:bg-zinc-200"
             offsetClassName="border-white"
           >
-            JOIN OUR COMMUNITY
+            <a
+              href="https://discord.gg/3nBFMfdNmB"
+              target="_blank"
+              rel="noreferrer"
+            >
+              JOIN OUR COMMUNITY
+            </a>
           </CtaButton>
           <CtaButton
+            asChild
             className="bg-[#09090b] text-white border border-white hover:bg-zinc-900"
             offsetClassName="border-white"
           >
-            LEARN MORE
+            <Link href="/about">LEARN MORE</Link>
           </CtaButton>
         </div>
       </Container>

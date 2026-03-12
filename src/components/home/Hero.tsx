@@ -1,6 +1,7 @@
 "use client";
 
 import { MoveRight } from "lucide-react";
+import Link from "next/link";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
@@ -31,17 +32,27 @@ export function Hero() {
 
           <div className="mt-10 flex flex-col sm:flex-row items-center gap-8 md:gap-6 w-full sm:w-auto">
             <CtaButton
+              asChild
               className="bg-white text-black hover:bg-zinc-200"
               offsetClassName="border-white"
             >
-              JOIN OUR COMMUNITY
+              <a
+                href="https://discord.gg/3nBFMfdNmB"
+                target="_blank"
+                rel="noreferrer"
+              >
+                JOIN OUR COMMUNITY
+              </a>
             </CtaButton>
             <CtaButton
+              asChild
               className="bg-transparent border-white text-white hover:bg-white/10 border"
               offsetClassName="border-white mix-blend-overlay"
             >
-              LEARN MORE{" "}
-              <MoveRight className="ml-2 w-5 h-5" strokeWidth={2.5} />
+              <Link href="/about">
+                LEARN MORE{" "}
+                <MoveRight className="ml-2 w-5 h-5" strokeWidth={2.5} />
+              </Link>
             </CtaButton>
           </div>
         </Container>

@@ -7,7 +7,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaMastodon,
-  FaSnapchat,
+  // FaSnapchat,
   FaThreads,
   FaTiktok,
   FaWhatsapp,
@@ -61,84 +61,95 @@ export function Footer() {
             </div>
             <div className="flex flex-wrap items-center gap-4 mt-2">
               <Link
-                href="#"
+                href="https://discord.gg/3nBFMfdNmB"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">Discord</span>
                 <FaDiscord className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://www.youtube.com/@codetopiacommunity"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">YouTube</span>
                 <FaYoutube className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://www.linkedin.com/company/codetopiacommunity"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">LinkedIn</span>
                 <FaLinkedinIn className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://x.com/codetopiacom"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">X (Twitter)</span>
                 <FaXTwitter className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/codetopiacom/"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">Instagram</span>
                 <FaInstagram className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="http://www.threads.com/codetopiacom/"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">Threads</span>
                 <FaThreads className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://www.tiktok.com/@codetopiacommunity"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">TikTok</span>
                 <FaTiktok className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://bsky.app/profile/codetopiacommunity.bsky.social"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">Bluesky</span>
                 <SiBluesky className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://mastodon.social/@codetopiacommunity"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">Mastodon</span>
                 <FaMastodon className="w-4 h-4 text-zinc-300" />
               </Link>
-              <Link
+              {/* <Link
                 href="#"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">Snapchat</span>
                 <FaSnapchat className="w-4 h-4 text-zinc-300" />
-              </Link>
+              </Link> */}
               <Link
-                href="#"
+                href="https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">WhatsApp</span>
                 <FaWhatsapp className="w-4 h-4 text-zinc-300" />
               </Link>
               <Link
-                href="#"
+                href="https://github.com/codetopiacommunity"
+                target="_blank"
                 className="p-2 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"
               >
                 <span className="sr-only">GitHub</span>
@@ -169,13 +180,15 @@ export function Footer() {
               Become a Volunteer
             </Link>
             <Link
-              href="#"
+              href="https://discord.gg/3nBFMfdNmB"
+              target="_blank"
               className="text-zinc-400 hover:text-white transition-colors text-sm"
             >
               Join Our Discord Server
             </Link>
             <Link
-              href="#"
+              href="https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9"
+              target="_blank"
               className="text-zinc-400 hover:text-white transition-colors text-sm"
             >
               Join Our WhatsApp Community
