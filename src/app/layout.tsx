@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { ContributionBanner } from "@/components/layout/ContributionBanner";
+import { Footer } from "@/components/layout/Footer"; // Added import for Footer
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -26,10 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-grey-900 flex flex-col`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-[#09090b] text-white flex flex-col`}
       >
+        <ContributionBanner />
         <Header />
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full flex flex-col">{children}</main>
+        <Footer /> {/* Added Footer component */}
       </body>
     </html>
   );

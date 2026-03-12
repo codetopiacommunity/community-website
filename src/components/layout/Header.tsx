@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import logo from "@/assets/images/logos/Codetopia-Logo-TW.png";
+import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "./Container";
 
 const navLinks = [
@@ -25,8 +25,8 @@ export function Header() {
           <Image
             src={logo}
             alt="Codetopia"
-            width={80}
-            height={48}
+            width={150}
+            height={90}
             priority
             className="object-contain"
           />
@@ -40,7 +40,7 @@ export function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-xs font-bold tracking-wider text-grey-300 hover:text-grey-50 transition-colors"
+                className="text-sm lg:text-base font-bold tracking-wider text-grey-300 hover:text-grey-50 transition-colors"
               >
                 {link.name}
               </Link>
@@ -72,7 +72,7 @@ export function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-sm font-bold tracking-wider text-grey-300 hover:text-grey-50 py-3 border-b border-grey-800/50 last:border-none transition-colors"
+                className="w-full text-base font-bold tracking-wider text-grey-300 hover:text-grey-50 py-3 border-b border-grey-800/50 last:border-none transition-colors"
               >
                 {link.name}
               </Link>
