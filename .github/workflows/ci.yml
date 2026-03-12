@@ -10,6 +10,9 @@ on:
       - dev
       - main
 
+permissions:
+  contents: read
+
 jobs:
   ci:
     name: Lint & Build
