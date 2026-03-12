@@ -9,7 +9,7 @@ export function Newsletter() {
       <Container className="px-4 w-full flex justify-center">
         <div className="w-full max-w-7xl bg-[#18181b] p-8 py-12 md:p-16 lg:p-24 flex flex-col items-center text-center shadow-2xl">
           <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mb-4 md:mb-6 font-sans">
-            Codetopia Newsletters
+            Codetopia Community Newsletters
           </h2>
           <p className="text-zinc-400 text-sm md:text-base lg:text-lg font-mono max-w-2xl mb-8 md:mb-12 px-2">
             Subscribe to our newsletter to get updates on upcoming events, new
