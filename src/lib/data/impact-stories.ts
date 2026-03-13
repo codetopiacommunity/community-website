@@ -1,3 +1,8 @@
+import djangoGirlsGroupPhoto from "@/assets/images/impact-stories/djangogirlskoforiduagrouppic.jpg";
+import ieeeGroupPhoto from "@/assets/images/impact-stories/ieee-speaker-image.jpg";
+import djangoGirlsLogo from "@/assets/images/orgs-logos/djgirlskoforidua.png";
+import ieeeLogo from "@/assets/images/orgs-logos/IEEE-CS_LogoTM.png";
+
 export interface ImpactStory {
   id: number;
   title: string;
@@ -15,93 +20,24 @@ export const impactStories: ImpactStory[] = [
     id: 1,
     title: "Django Girls Koforidua",
     impact:
-      "Mentored to teach web fundamentals. Helped over 40 women deploy their first working application online.",
-    image:
-      "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=800&q=80",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
-    date: "23 - 25 March 2025",
+      "We mentored aspiring developers through a high-intensity Django bootcamp, transforming raw curiosity into technical self-reliance. By guiding participants from their first line of code to a production-ready deployment, we ensured they didn't just 'learn'—they shipped.",
+    image: djangoGirlsGroupPhoto.src,
+    logo: djangoGirlsLogo.src,
+    galleryLink:
+      "https://photos.google.com/share/AF1QipPGhaXCzuAeXAQBPLukrY12oqzkc7WrxCyJ3_fHhN3GaAsZ2kzUDDgxfUpgpZghJA?key=VUE4N2czMzViTDQ0NE8xQXA5V045dmFXQkhjTi1n",
+    date: "21 - 22 Feb 2025",
     location: "Koforidua Library",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Sample YouTube link
   },
   {
     id: 2,
-    title: "Local High School Initiative",
+    title: "IEEE-CS GCTU Chapter",
     impact:
-      "Introduced Python and basic web concepts to 40 seniors, resulting in a 30% increase in CS majors.",
-    image:
-      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
-    logo: "https://via.placeholder.com/150/09090b/ffffff?text=Prempeh",
-    date: "05 September 2025",
-    location: "Prempeh College",
-    galleryLink: "https://unsplash.com/s/photos/high-school", // Sample gallery link
-  },
-  {
-    id: 3,
-    title: "Django Girls Bootcamp",
-    impact:
-      "Mentored to teach web fundamentals. Helped over 60 women deploy their first working application online.",
-    image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
-    date: "14 August 2025",
-    location: "Lagos, Nigeria",
-    link: "https://www.youtube.com/watch?v=ScMzIvxBSi4", // Sample YouTube link
-    galleryLink: "https://unsplash.com/s/photos/high-school",
-  },
-  {
-    id: 4,
-    title: "Developer Hub Accra",
-    impact:
-      "Refactored legacy codebases alongside junior developers, accelerating their transition into mid-level engineering roles.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-    logo: "https://via.placeholder.com/150/09090b/ffffff?text=ADC",
-    date: "01 - 10 July 2025",
-    location: "Accra Digital Center",
-    galleryLink: "https://unsplash.com/s/photos/developers", // Sample gallery link
-  },
-  {
-    id: 5,
-    title: "Django Girls Koforidua",
-    impact:
-      "Mentored to teach web fundamentals. Helped over 40 women deploy their first working application online.",
-    image:
-      "https://images.unsplash.com/photo-1540317580384-e5d43867caa6?auto=format&fit=crop&w=800&q=80",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
-    date: "23 - 25 March 2025",
-    location: "Koforidua Library",
-  },
-  {
-    id: 6,
-    title: "Local High School Initiative",
-    impact:
-      "Introduced Python and basic web concepts to 40 seniors, resulting in a 30% increase in CS majors.",
-    image:
-      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
-    logo: "https://via.placeholder.com/150/09090b/ffffff?text=Prempeh",
-    date: "05 September 2025",
-    location: "Prempeh College",
-  },
-  {
-    id: 7,
-    title: "Django Girls Bootcamp",
-    impact:
-      "Mentored to teach web fundamentals. Helped over 60 women deploy their first working application online.",
-    image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Django_Girls_logo.svg/1200px-Django_Girls_logo.svg.png",
-    date: "14 August 2025",
-    location: "Lagos, Nigeria",
-  },
-  {
-    id: 8,
-    title: "Developer Hub Accra",
-    impact:
-      "Refactored legacy codebases alongside junior developers, accelerating their transition into mid-level engineering roles.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-    logo: "https://via.placeholder.com/150/09090b/ffffff?text=ADC",
-    date: "01 - 10 July 2025",
-    location: "Accra Digital Center",
+      "Demystified the Django ecosystem for the IEEE-CS GCTU Chapter through a high-stakes workshop and live-coding demonstration. We showcased the framework's architecture and industry-standard workflows, proving that technical complexity is a choice—and clean code is the solution.",
+    image: ieeeGroupPhoto.src,
+    logo: ieeeLogo.src,
+    date: "16 July 2025",
+    location: "GCTU",
+    galleryLink:
+      "https://drive.google.com/drive/folders/1NTUm-B4t_x_EzdfE8TMeOR5vv8dZ9bS8",
   },
 ];

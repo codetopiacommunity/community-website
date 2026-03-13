@@ -8,18 +8,28 @@ const partners = organisations.filter((o) => o.type === "partner");
 const workedWith = organisations.filter((o) => o.type === "worked-with");
 
 function OrgLogo({ org }: { org: Organisation }) {
-  return (
-    <div className="group/logo flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer px-6 md:px-12 shrink-0">
+  const content = (
+    <div className="group/logo flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer px-4 md:px-8 shrink-0">
       <Image
         src={org.logo}
         alt={org.name}
-        width={160}
-        height={72}
-        className="h-14 w-auto object-contain"
+        width={224}
+        height={80}
+        className="h-16 md:h-20 w-40 md:w-56 object-contain"
         unoptimized
       />
     </div>
   );
+
+  if (org.website) {
+    return (
+      <a href={org.website} target="_blank" rel="noopener noreferrer">
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
 
 function OrgStrip({ items }: { items: Organisation[] }) {

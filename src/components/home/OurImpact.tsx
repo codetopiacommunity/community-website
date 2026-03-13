@@ -4,14 +4,14 @@ import {
   Calendar,
   Image as ImageIcon,
   MapPin,
-  MoveRight,
+  // MoveRight,
   PlayCircle,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
-import { CtaButton } from "@/components/ui/cta-button";
+// import { CtaButton } from "@/components/ui/cta-button";
 import { impactStories } from "@/lib/data/impact-stories";
 
 function getYouTubeEmbedUrl(url: string) {
@@ -30,14 +30,14 @@ function getYouTubeEmbedUrl(url: string) {
 // Story Logo Watermark
 function StoryLogoWatermark({ logo, alt }: { logo: string; alt: string }) {
   return (
-    <div className="flex items-center gap-1.5 text-white opacity-80 group-hover:opacity-100 transition-opacity">
+    <div className="flex items-center gap-1.5">
       <Image
         src={logo}
         alt={alt}
-        width={60}
-        height={60}
+        width={80}
+        height={80}
         unoptimized
-        className="w-15 h-15 object-contain brightness-0 invert"
+        className="w-20 h-20 object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.95)]"
       />
     </div>
   );
@@ -109,9 +109,8 @@ export function OurImpact() {
                     </div>
 
                     {/* Logo watermark top-right */}
-                    <div className="absolute top-5 right-5 z-20 opacity-40 group-hover:opacity-90 transition-opacity duration-500 text-white hidden md:block">
-                      <div className="absolute inset-0 bg-black/40 blur-xl scale-150 rounded-full z-0" />
-                      <div className="relative z-10 scale-[80%] origin-top-right">
+                    <div className="absolute top-5 right-5 z-30 opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="relative z-10 scale-[100%] origin-top-right">
                         <StoryLogoWatermark
                           logo={story.logo}
                           alt={story.title}
@@ -158,7 +157,7 @@ export function OurImpact() {
             </div>
           </div>
           {/* Global CTA */}
-          <Container className="w-full flex justify-center mt-6">
+          {/* <Container className="w-full flex justify-center mt-6">
             <CtaButton
               className="bg-white text-black hover:bg-zinc-200 !px-8 text-sm"
               offsetClassName="bg-zinc-700"
@@ -172,7 +171,7 @@ export function OurImpact() {
                 />
               </span>
             </CtaButton>
-          </Container>
+          </Container> */}
         </div>
       </section>
 
@@ -272,8 +271,7 @@ export function OurImpact() {
                   <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 to-transparent z-10" />
 
                   {/* Story Logo Watermark */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 opacity-80 text-white">
-                    <div className="absolute inset-0 bg-black/60 blur-xl scale-150 rounded-full z-0" />
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-30 opacity-100">
                     <div className="relative z-10">
                       <StoryLogoWatermark
                         logo={selectedStory.logo}
