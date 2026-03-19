@@ -1,9 +1,8 @@
-import { CTA } from "@/components/home/CTA";
 import { Hero } from "@/components/home/Hero";
-import { Newsletter } from "@/components/home/Newsletter";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
 import { Stats } from "@/components/home/Stats";
+import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
 import { WhatWeOffer } from "@/components/home/WhatWeOffer";
 
 export default function Home() {
@@ -12,10 +11,9 @@ export default function Home() {
       <Hero />
       <Organisations />
       <Stats />
+      <TechnicalSpotlight />
       <WhatWeOffer />
       <OurImpact />
-      <Newsletter />
-      <CTA />
     </div>
   );
 }

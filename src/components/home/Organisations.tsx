@@ -88,7 +88,7 @@ function SubSection({
   if (items.length === 0) return null;
 
   return (
-    <div className="w-full flex flex-col items-center mb-14 last:mb-0">
+    <div className="w-full flex flex-col items-center mb-14 last:mb-0 px-4 md:px-16 lg:px-24">
       <h3 className="text-white text-sm font-bold tracking-[0.25em] mb-6 uppercase text-center font-sans opacity-50">
         {title}
       </h3>
@@ -99,7 +99,7 @@ function SubSection({
 
 export function Organisations() {
   return (
-    <section className="w-full py-14 bg-[#09090b] border-b-4 border-zinc-800 flex flex-col items-center overflow-hidden">
+    <section className="w-full py-14 bg-black border-b-4 border-zinc-900 flex flex-col items-center overflow-hidden">
       <SubSection title="Sponsors" items={sponsors} />
       <SubSection title="Partners" items={partners} />
       <SubSection title="Organisations We've Worked With" items={workedWith} />

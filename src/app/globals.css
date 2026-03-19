@@ -126,7 +126,7 @@
   --grey-600: #4b5563;
   --grey-700: #374151;
   --grey-800: #1f2937;
-  --grey-900: #121212;
+  --grey-900: #000000;
 
   /* State Primitives */
   --success-50: #ecfdf5;
@@ -303,5 +303,14 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
