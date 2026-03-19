@@ -2,8 +2,27 @@
 
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
+import React, {useState} from "react";
+import {subscribe} from "@/actions/SubscribeNewsletter";
 
 export function Newsletter() {
+
+  const [email, setEmail] = useState("")
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+      e.preventDefault();
+
+      const res = await subscribe(email);
+
+      alert(res.message);
+
+      if (res.message === "Successfully subscribed!") {
+        setEmail("");
+      }
+    }
+  }
+
   return (
     <section className="relative w-full py-24 md:py-32 bg-[#e4e4e7] overflow-hidden flex flex-col items-center justify-center">
       {/* Background Typographic Watermark */}
