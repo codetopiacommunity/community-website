@@ -191,50 +191,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-
-      {/* Core Values Section */}
-      <section className="w-full py-20 md:py-32 bg-[#09090b] flex flex-col items-center justify-center relative overflow-hidden text-white z-20 border-t border-zinc-900">
-        <Container className="w-full px-4 max-w-7xl relative z-10 flex flex-col items-center">
-          {/* Section Header */}
-          <div className="flex flex-col items-center flex-1 text-center mb-16">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 font-sans text-white">
-              CORE VALUES
-            </h2>
-            <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono">
-              The principles that define how we build, learn, and grow as a
-              community.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-            {coreValues.map((value) => (
-              <div
-                key={value.title}
-                className="relative group text-left w-full"
-              >
-                {/* Hollow offset border shadow */}
-                <div className="absolute inset-0 border-2 border-white translate-x-[6px] translate-y-[6px] z-0 transition-transform duration-300 group-hover:translate-x-[3px] group-hover:translate-y-[3px]" />
-
-                {/* Top Interactive Card */}
-                <div className="relative z-10 flex flex-col items-start justify-start p-8 bg-white border-2 border-zinc-900 transition-all duration-300 group-hover:translate-x-[3px] group-hover:translate-y-[3px] h-full">
-                  <div className="flex items-center gap-3 mb-6">
-                    <value.icon
-                      className="w-6 h-6 text-zinc-900"
-                      strokeWidth={2.5}
-                    />
-                    <h3 className="text-xl md:text-2xl font-black font-sans tracking-tight text-zinc-900 uppercase">
-                      {value.title}
-                    </h3>
-                  </div>
-                  <p className="text-zinc-600 font-mono text-sm md:text-base leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
     </>
   );
 }
