@@ -64,36 +64,36 @@ export function OurImpact() {
 
   return (
     <>
-      <section className="w-full py-24 md:py-32 bg-[#09090b] flex flex-col items-center justify-center border-t border-zinc-900 overflow-hidden">
-        <Container className="flex flex-col items-center w-full px-4 font-sans max-w-6xl">
-          <div className="flex flex-col items-center flex-1 text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wider mb-4">
-              Our Impact
+      <section className="w-full py-32 bg-black flex flex-col items-center justify-center border-t border-zinc-900 overflow-hidden">
+        <Container className="flex flex-col items-center w-full px-4 font-sans max-w-7xl relative z-10">
+          <div className="w-full mb-24 text-left">
+            <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter mb-6 leading-none font-sans">
+              THE <span className="text-zinc-600">IMPACT</span>
             </h2>
-            <p className="text-zinc-400 text-base md:text-lg max-w-2xl font-mono mb-16">
-              We don't just work with industry leaders; we actively empower the
-              next generation of developers across schools, bootcamps, and local
-              hubs.
+            <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
+              We don&apos;t just work with industry leaders; we actively empower
+              the next generation of developers across schools, bootcamps, and
+              local hubs.
             </p>
           </div>
 
-          {/* Impact Cards Carousel */}
-          <h3 className="text-zinc-500 text-sm font-bold tracking-[0.2em] mb-12 uppercase text-center font-sans relative z-20">
-            Places We Empower
-          </h3>
+          {/* Impact Cards Carousel Container */}
+          <div className="w-full flex items-center mb-12">
+            <div className="h-[1px] flex-1 bg-zinc-800" />
+          </div>
         </Container>
 
         <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden px-4 md:px-8">
           {/* The Brutalist Vertical Impact Log Container */}
           <div className="w-full max-w-7xl">
             <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-4 md:pr-8 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
-              <div className="flex flex-col border-2 border-zinc-800 bg-[#09090b]">
+              <div className="flex flex-col border-2 border-zinc-800 bg-black">
                 {impactStories.map((story) => (
                   <button
                     type="button"
                     key={story.id}
                     onClick={() => setSelectedStory(story)}
-                    className="group relative flex flex-col w-full shrink-0 h-auto min-h-[300px] lg:min-h-[400px] border-b-2 border-zinc-800 last:border-b-0 bg-[#09090b] overflow-hidden cursor-pointer [direction:ltr] text-left"
+                    className="group relative flex flex-col w-full shrink-0 h-auto min-h-[300px] lg:min-h-[400px] border-b-2 border-zinc-800 last:border-b-0 bg-black overflow-hidden cursor-pointer [direction:ltr] text-left"
                   >
                     {/* Background Panoramic Image Layer */}
                     <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
@@ -199,7 +199,7 @@ export function OurImpact() {
           <button
             type="button"
             onClick={() => setSelectedStory(null)}
-            className="absolute top-3 right-3 sm:top-6 sm:right-6 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-[#09090b] hover:bg-white hover:text-black p-2.5 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
+            className="absolute top-3 right-3 sm:top-6 sm:right-6 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-black hover:bg-white hover:text-black p-2.5 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
           >
             <svg
               width="20"
@@ -219,14 +219,14 @@ export function OurImpact() {
 
           {/* Modal card — scrollable on all breakpoints, max 92dvh tall */}
           <div
-            className="relative w-full max-w-7xl bg-[#09090b] border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto max-h-[92dvh] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none"
+            className="relative w-full max-w-7xl bg-black border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto max-h-[92dvh] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none"
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
           >
             {/* Left Data Column */}
-            <div className="w-full lg:w-[35%] flex flex-col justify-center p-5 sm:p-8 lg:p-12 xl:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-[#09090b] shrink-0">
+            <div className="w-full lg:w-[35%] flex flex-col justify-center p-5 sm:p-8 lg:p-12 xl:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-black shrink-0">
               <div className="flex items-center gap-2 font-mono text-zinc-500 tracking-[0.2em] uppercase mb-3 md:mb-6 text-xs sm:text-sm md:text-base">
                 <Calendar className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
                 {selectedStory.date}
