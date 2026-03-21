@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../../prisma/prisma";
 import { sendVerificationEmail } from "@/lib/email";
 import { generateVerificationToken, getTokenExpiry } from "@/lib/token";
+import { prisma } from "../../../../../prisma/prisma";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -10,32 +10,31 @@ export async function POST(req: Request) {
     const body: unknown = await req.json();
 
     const email =
-        typeof body === "object" &&
-        body !== null &&
-        "email" in body &&
-        typeof body.email === "string"
-            ? body.email.trim().toLowerCase()
-            : "";
+      typeof body === "object" &&
+      body !== null &&
+      "email" in body &&
+      typeof body.email === "string"
+        ? body.email.trim().toLowerCase()
+        : "";
 
     if (!email) {
       return NextResponse.json(
-          { message: "Email is required." },
-          { status: 400 },
+        { message: "Email is required." },
+        { status: 400 },
       );
     }
 
     if (email.length > 254) {
       return NextResponse.json(
-          { message: "Email is too long." },
-          { status: 400 },
+        { message: "Email is too long." },
+        { status: 400 },
       );
     }
 
-    // biome-ignore lint/security/noUnsafeRegex: simple email format check with bounded input length
     if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json(
-          { message: "Please enter a valid email address." },
-          { status: 400 },
+        { message: "Please enter a valid email address." },
+        { status: 400 },
       );
     }
 
@@ -46,8 +45,8 @@ export async function POST(req: Request) {
     if (existing) {
       if (existing.status === "verified") {
         return NextResponse.json(
-            { message: "This email is already subscribed." },
-            { status: 409 },
+          { message: "This email is already subscribed." },
+          { status: 409 },
         );
       }
 
@@ -65,8 +64,11 @@ export async function POST(req: Request) {
       await sendVerificationEmail(email, token);
 
       return NextResponse.json(
-          { message: "A new verification email has been sent. Please check your inbox." },
-          { status: 200 },
+        {
+          message:
+            "A new verification email has been sent. Please check your inbox.",
+        },
+        { status: 200 },
       );
     }
 
@@ -84,15 +86,15 @@ export async function POST(req: Request) {
     await sendVerificationEmail(email, token);
 
     return NextResponse.json(
-        { message: "Please check your email to verify your subscription." },
-        { status: 201 },
+      { message: "Please check your email to verify your subscription." },
+      { status: 201 },
     );
   } catch (error) {
     console.error("Newsletter subscription error:", error);
 
     return NextResponse.json(
-        { message: "Something went wrong. Please try again." },
-        { status: 500 },
+      { message: "Something went wrong. Please try again." },
+      { status: 500 },
     );
   }
 }

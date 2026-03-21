@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../../../prisma/prisma";
+import { type NextRequest, NextResponse } from "next/server";
 import { sendWelcomeEmail } from "@/lib/email";
+import { prisma } from "../../../../../prisma/prisma";
 
 export async function GET(req: NextRequest) {
   try {
@@ -47,7 +47,9 @@ export async function GET(req: NextRequest) {
     console.error("Newsletter verification error:", error);
 
     return NextResponse.json(
-      { message: "Something went wrong during verification. Please try again." },
+      {
+        message: "Something went wrong during verification. Please try again.",
+      },
       { status: 500 },
     );
   }

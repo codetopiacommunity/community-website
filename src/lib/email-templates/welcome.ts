@@ -21,12 +21,12 @@ export function welcomeTemplate(baseUrl: string): string {
             <td style="padding:0 40px 32px 40px;">
               <p style="margin:0 0 20px 0;font-size:16px;line-height:1.6;color:#a1a1aa;">
                 Your email has been verified. You're now subscribed to <strong style="color:#ffffff;">The Dispatch</strong>
-                — Codetopia's newsletter for project updates, engineering insights, and
+                — Codetopia Community's newsletter for project updates, engineering insights, and
                 community announcements.
               </p>
               <a href="${baseUrl}"
                  style="display:inline-block;padding:14px 32px;background-color:#ffffff;color:#000000;font-size:14px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">
-                VISIT CODETOPIA
+                VISIT CODETOPIA COMMUNITY
               </a>
               <p style="margin:24px 0 0 0;font-size:13px;line-height:1.5;color:#52525b;">
                 We only email when we have something worth sharing. No spam, ever.
