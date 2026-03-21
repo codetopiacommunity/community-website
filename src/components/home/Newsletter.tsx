@@ -1,9 +1,12 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
 import React, {useState} from "react";
 import {subscribe} from "@/actions/SubscribeNewsletter";
+
+type SubscribeStatus = "idle" | "loading" | "success" | "error";
 
 export function Newsletter() {
 
@@ -46,23 +49,44 @@ export function Newsletter() {
 
           <form
             className="w-full lg:w-auto flex-1 max-w-xl"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="flex flex-col sm:flex-row gap-4 items-stretch">
               <input
                 type="email"
                 placeholder="EMAIL ADDRESS"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (status !== "idle") {
+                    setStatus("idle");
+                    setMessage("");
+                  }
+                }}
                 className="flex-1 bg-zinc-900 text-white px-8 py-5 h-34 md:h-16 outline-none font-sans text-sm md:text-lg border border-zinc-800 transition-colors focus:border-white rounded-none"
                 required
+                disabled={status === "loading"}
               />
               <CtaButton
                 type="submit"
-                className="bg-white text-black hover:bg-zinc-200 px-10 h-14 md:h-16"
+                className="bg-white text-black hover:bg-zinc-200 px-10 h-14 md:h-16 disabled:opacity-50"
                 offsetClassName="bg-zinc-400"
+                disabled={status === "loading"}
               >
-                SUBMIT
+                {status === "loading" ? "SENDING…" : "SUBMIT"}
               </CtaButton>
             </div>
+
+            {/* Feedback message */}
+            {message && (
+              <p
+                className={`mt-4 text-sm font-sans ${
+                  status === "success" ? "text-green-400" : "text-red-400"
+                }`}
+              >
+                {message}
+              </p>
+            )}
           </form>
         </div>
       </Container>
