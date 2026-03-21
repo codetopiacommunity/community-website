@@ -7,12 +7,15 @@ datasource db {
 }
 
 model Subscriber {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  status    String   @default("subscribed")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id                Int       @id @default(autoincrement())
+  email             String    @unique
+  name              String?
+  status            String    @default("pending")
+  verificationToken String?   @unique @map("verification_token")
+  tokenExpiresAt    DateTime? @map("token_expires_at")
+  verifiedAt        DateTime? @map("verified_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
 
   @@map("subscribers")
 }
