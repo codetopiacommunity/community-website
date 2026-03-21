@@ -168,7 +168,7 @@ export function Footer() {
               >
                 <Mail className="w-6 h-6 shrink-0 transition-transform group-hover:scale-110" />
                 <span className="font-sans text-sm break-all font-normal">
-                  codetopiancommunity@gmail.com
+                  hello@codetopia.org
                 </span>
               </a>
               <div className="flex items-center gap-5 text-zinc-500">
