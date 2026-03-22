@@ -54,10 +54,25 @@ export function verificationTemplate(
           </tr>
 
           <tr>
-            <td style="padding:24px 40px;border-top:1px solid #27272a;">
-              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0;font-size:12px;color:#52525b;">
-                &copy; Codetopia Community &middot; You received this email because someone
-                subscribed with this address.
+            <td style="padding:32px 40px;border-top:1px solid #27272a;text-align:center;">
+              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0 0 16px 0;font-size:12px;color:#a1a1aa;line-height:2;">
+                <a href="https://discord.gg/3nBFMfdNmB" style="color:#a1a1aa;text-decoration:none;">Discord</a> &nbsp;&middot;&nbsp; 
+                <a href="https://github.com/codetopiacommunity" style="color:#a1a1aa;text-decoration:none;">GitHub</a> &nbsp;&middot;&nbsp; 
+                <a href="https://x.com/codetopiacom" style="color:#a1a1aa;text-decoration:none;">X (Twitter)</a> &nbsp;&middot;&nbsp; 
+                <a href="https://www.linkedin.com/company/codetopiacommunity" style="color:#a1a1aa;text-decoration:none;">LinkedIn</a> &nbsp;&middot;&nbsp; 
+                <a href="https://www.youtube.com/@codetopiacommunity" style="color:#a1a1aa;text-decoration:none;">YouTube</a><br/>
+                <a href="https://www.instagram.com/codetopiacom/" style="color:#a1a1aa;text-decoration:none;">Instagram</a> &nbsp;&middot;&nbsp; 
+                <a href="http://www.threads.com/codetopiacom/" style="color:#a1a1aa;text-decoration:none;">Threads</a> &nbsp;&middot;&nbsp; 
+                <a href="https://bsky.app/profile/codetopiacommunity.bsky.social" style="color:#a1a1aa;text-decoration:none;">Bluesky</a><br/>
+                <a href="https://mastodon.social/@codetopiacommunity" style="color:#a1a1aa;text-decoration:none;">Mastodon</a> &nbsp;&middot;&nbsp; 
+                <a href="https://www.tiktok.com/@codetopiacommunity" style="color:#a1a1aa;text-decoration:none;">TikTok</a> &nbsp;&middot;&nbsp; 
+                <a href="https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9" style="color:#a1a1aa;text-decoration:none;">WhatsApp</a>
+              </p>
+              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0 0 8px 0;font-size:12px;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;">
+                A Codetopia Initiative
+              </p>
+              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0;font-size:11px;color:#52525b;">
+                &copy; Codetopia Community &middot; You received this email because someone subscribed with this address.
               </p>
             </td>
           </tr>
