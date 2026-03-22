@@ -1,9 +1,26 @@
-export function verificationTemplate(verifyUrl: string): string {
+import logo from "@/assets/images/logos/codetopia-community.png";
+
+export function verificationTemplate(
+  verifyUrl: string,
+  baseUrl: string,
+): string {
+  const logoUrl = `${baseUrl}${logo.src}`;
   return `
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" /></head>
-<body style="margin:0;padding:0;background-color:#09090b;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Use both link and @import for maximum email client compatibility -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Inter:wght@400;500;700&display=swap');
+    .font-sans { font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+    .font-mono { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+  </style>
+</head>
+<body class="font-mono" style="margin:0;padding:0;background-color:#09090b;font-family:'Inter',system-ui,-apple-system,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#09090b;padding:40px 0;">
     <tr>
       <td align="center">
@@ -11,7 +28,8 @@ export function verificationTemplate(verifyUrl: string): string {
 
           <tr>
             <td style="padding:40px 40px 24px 40px;">
-              <h1 style="margin:0;font-size:28px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;text-transform:uppercase;">
+              <img src="${logoUrl}" alt="Codetopia Community Logo" height="40" style="display:block;margin-bottom:24px;" />
+              <h1 class="font-sans" style="font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;margin:0;font-size:28px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;text-transform:uppercase;">
                 THE <span style="color:#71717a;">DISPATCH</span>
               </h1>
             </td>
@@ -19,15 +37,16 @@ export function verificationTemplate(verifyUrl: string): string {
 
           <tr>
             <td style="padding:0 40px 32px 40px;">
-              <p style="margin:0 0 20px 0;font-size:16px;line-height:1.6;color:#a1a1aa;">
+              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0 0 20px 0;font-size:16px;line-height:1.6;color:#a1a1aa;">
                 Thanks for signing up! Please confirm your email address to start receiving
                 project updates, engineering insights, and community announcements.
               </p>
               <a href="${verifyUrl}"
-                 style="display:inline-block;padding:14px 32px;background-color:#ffffff;color:#000000;font-size:14px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">
+                 class="font-sans"
+                 style="font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;display:inline-block;padding:14px 32px;background-color:#ffffff;color:#000000;font-size:14px;font-weight:700;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">
                 VERIFY EMAIL
               </a>
-              <p style="margin:24px 0 0 0;font-size:13px;line-height:1.5;color:#52525b;">
+              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:24px 0 0 0;font-size:13px;line-height:1.5;color:#52525b;">
                 This link expires in <strong style="color:#a1a1aa;">24 hours</strong>.
                 If you did not request this, you can safely ignore this email.
               </p>
@@ -36,7 +55,7 @@ export function verificationTemplate(verifyUrl: string): string {
 
           <tr>
             <td style="padding:24px 40px;border-top:1px solid #27272a;">
-              <p style="margin:0;font-size:12px;color:#52525b;">
+              <p class="font-mono" style="font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0;font-size:12px;color:#52525b;">
                 &copy; Codetopia Community &middot; You received this email because someone
                 subscribed with this address.
               </p>
