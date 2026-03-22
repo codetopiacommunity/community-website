@@ -43,12 +43,15 @@ export async function GET(req: NextRequest) {
     await sendWelcomeEmail(subscriber.email);
 
     return NextResponse.redirect(`${baseUrl}/newsletter/verified`);
-  } catch (error) {
+    // biome-ignore lint/suspicious/noExplicitAny: error is logged and exposed for debugging
+  } catch (error: any) {
     console.error("Newsletter verification error:", error);
 
     return NextResponse.json(
       {
         message: "Something went wrong during verification. Please try again.",
+        error: error.message || "Unknown error",
+        stack: error.stack,
       },
       { status: 500 },
     );

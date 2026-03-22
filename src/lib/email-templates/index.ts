@@ -1,2 +1,4 @@
-export { VerificationTemplate } from "./verification";
-export { WelcomeTemplate } from "./welcome";
+import { VerificationTemplate } from "./verification";
+import { WelcomeTemplate } from "./welcome";
+
+export { VerificationTemplate, WelcomeTemplate };

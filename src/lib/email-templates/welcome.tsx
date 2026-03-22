@@ -154,6 +154,8 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                             color: "#ffffff",
                             letterSpacing: "-0.5px",
                             textTransform: "uppercase",
+                            fontFamily:
+                              "'Space Grotesk', system-ui, sans-serif",
                           }}
                         >
                           YOU'RE <span style={{ color: "#71717a" }}>IN</span>
@@ -169,6 +171,7 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                             fontSize: "16px",
                             lineHeight: 1.6,
                             color: "#a1a1aa",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           Your email has been verified. You're now subscribed to{" "}
@@ -192,6 +195,8 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                             textDecoration: "none",
                             textTransform: "uppercase",
                             letterSpacing: "0.5px",
+                            fontFamily:
+                              "'Space Grotesk', system-ui, sans-serif",
                           }}
                         >
                           VISIT CODETOPIA COMMUNITY
@@ -203,6 +208,7 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                             fontSize: "13px",
                             lineHeight: 1.5,
                             color: "#52525b",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           We only email when we have something worth sharing. No
@@ -227,6 +233,7 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                             color: "#52525b",
                             textTransform: "uppercase",
                             letterSpacing: "0.1em",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           A Codetopia Initiative
@@ -237,6 +244,7 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                             margin: 0,
                             fontSize: "11px",
                             color: "#52525b",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           &copy; Codetopia Community &middot; You received this

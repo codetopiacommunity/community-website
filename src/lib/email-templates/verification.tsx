@@ -160,6 +160,8 @@ export function VerificationTemplate({
                             color: "#ffffff",
                             letterSpacing: "-0.5px",
                             textTransform: "uppercase",
+                            fontFamily:
+                              "'Space Grotesk', system-ui, sans-serif",
                           }}
                         >
                           THE <span style={{ color: "#71717a" }}>DISPATCH</span>
@@ -175,6 +177,7 @@ export function VerificationTemplate({
                             fontSize: "16px",
                             lineHeight: 1.6,
                             color: "#a1a1aa",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           Thanks for signing up! Please confirm your email
@@ -194,6 +197,8 @@ export function VerificationTemplate({
                             textDecoration: "none",
                             textTransform: "uppercase",
                             letterSpacing: "0.5px",
+                            fontFamily:
+                              "'Space Grotesk', system-ui, sans-serif",
                           }}
                         >
                           VERIFY EMAIL
@@ -205,6 +210,7 @@ export function VerificationTemplate({
                             fontSize: "13px",
                             lineHeight: 1.5,
                             color: "#52525b",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           This link expires in{" "}
@@ -231,6 +237,7 @@ export function VerificationTemplate({
                             color: "#52525b",
                             textTransform: "uppercase",
                             letterSpacing: "0.1em",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           A Codetopia Initiative
@@ -241,6 +248,7 @@ export function VerificationTemplate({
                             margin: 0,
                             fontSize: "11px",
                             color: "#52525b",
+                            fontFamily: "'Inter', system-ui, sans-serif",
                           }}
                         >
                           &copy; Codetopia Community &middot; You received this
