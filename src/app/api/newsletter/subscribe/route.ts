@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     if (existing) {
       if (existing.status === "verified") {
         return NextResponse.json(
-          { message: "This email is already subscribed." },
+          { message: "Email already part of the community." },
           { status: 409 },
         );
       }
@@ -75,8 +75,7 @@ export async function POST(req: Request) {
 
       return NextResponse.json(
         {
-          message:
-            "A new verification email has been sent. Please check your inbox.",
+          message: "Re-sent. Check your email.",
         },
         { status: 200 },
       );
@@ -96,14 +95,14 @@ export async function POST(req: Request) {
     await sendVerificationEmail(email, token);
 
     return NextResponse.json(
-      { message: "Please check your email to verify your subscription." },
+      { message: "Almost there. Check your inbox to verify." },
       { status: 201 },
     );
   } catch (error) {
     console.error("Newsletter subscription error:", error);
 
     return NextResponse.json(
-      { message: "Something went wrong. Please try again." },
+      { message: "Technical error. Please try again." },
       { status: 500 },
     );
   }

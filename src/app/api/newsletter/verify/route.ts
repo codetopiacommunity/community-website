@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
 
     if (!token) {
       return NextResponse.json(
-        { message: "Verification token is missing." },
+        { message: "Verification token missing." },
         { status: 400 },
       );
     }
@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(
       {
-        message: "Something went wrong during verification. Please try again.",
+        message: "Verification failed. System error.",
         error: error.message || "Unknown error",
         stack: error.stack,
       },

@@ -55,8 +55,8 @@ export function Newsletter() {
               THE <span className="text-zinc-600">DISPATCH</span>
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl font-sans max-w-xl">
-              Project updates, engineering insights, and community
-              announcements. Ship directly to your inbox.
+              Project arrivals. Community narratives. <br />
+              The architectural pulse of the builders, delivered directly.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export function Newsletter() {
             <div className="flex flex-col sm:flex-row gap-4 items-stretch">
               <input
                 type="email"
-                placeholder="EMAIL ADDRESS"
+                placeholder="YOUR EMAIL"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -86,7 +86,7 @@ export function Newsletter() {
                 offsetClassName="bg-zinc-400"
                 disabled={status === "loading"}
               >
-                {status === "loading" ? "SENDING…" : "SUBMIT"}
+                {status === "loading" ? "SUBSCRIBING…" : "SUBSCRIBE"}
               </CtaButton>
             </div>
 

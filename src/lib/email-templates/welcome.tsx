@@ -82,8 +82,8 @@ function Socials({ baseUrl }: { baseUrl: string }) {
           <Img
             src={`${baseUrl}/assets/images/icons/socials/${social.network}.png`}
             alt={social.label}
-            width="16"
-            height="16"
+            width="24"
+            height="24"
             style={{ display: "block", border: 0 }}
           />
         </Link>
@@ -178,20 +178,12 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                 fontFamily: "'Inter', system-ui, sans-serif",
               }}
             >
-              Subscription confirmed. You are now part of a community building
-              the next generation of open-source engineering.
-            </Text>
-            <Text
-              style={{
-                margin: "0 0 20px 0",
-                fontSize: "16px",
-                lineHeight: 1.6,
-                color: "#a1a1aa",
-                fontFamily: "'Inter', system-ui, sans-serif",
-              }}
-            >
-              Expect deep dives into our technical architecture, project
-              first-looks, and direct access to community-driven initiatives.
+              Your email has been verified. <br />
+              <br />
+              You're now subscribed to{" "}
+              <strong style={{ color: "#ffffff" }}>The Dispatch</strong> —
+              Codetopia Community's newsletter for project updates, engineering
+              insights, and community announcements.
             </Text>
             <Link
               href={baseUrl}
@@ -231,7 +223,14 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
                 fontFamily: "'Inter', system-ui, sans-serif",
               }}
             >
-              A Codetopia Initiative
+              A{" "}
+              <Link
+                href="https://codetopia.org"
+                style={{ color: "#52525b", textDecoration: "none" }}
+              >
+                Codetopia
+              </Link>{" "}
+              Initiative
             </Text>
             <Text
               style={{

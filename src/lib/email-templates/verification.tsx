@@ -82,8 +82,8 @@ function Socials({ baseUrl }: { baseUrl: string }) {
           <Img
             src={`${baseUrl}/assets/images/icons/socials/${social.network}.png`}
             alt={social.label}
-            width="16"
-            height="16"
+            width="24"
+            height="24"
             style={{ display: "block", border: 0 }}
           />
         </Link>
@@ -184,9 +184,12 @@ export function VerificationTemplate({
                 fontFamily: "'Inter', system-ui, sans-serif",
               }}
             >
-              Thanks for signing up! Please confirm your email address to start
-              receiving project updates, engineering insights, and community
-              announcements.
+              One step remains. <br />
+              <br />
+              Confirm your email to subscribe to{" "}
+              <strong style={{ color: "#ffffff" }}>The Dispatch</strong> —
+              Codetopia Community's newsletter for project updates, engineering
+              insights, and community announcements.
             </Text>
             <Link
               href={verifyUrl}
@@ -239,7 +242,14 @@ export function VerificationTemplate({
                 fontFamily: "'Inter', system-ui, sans-serif",
               }}
             >
-              A Codetopia Initiative
+              A{" "}
+              <Link
+                href="https://codetopia.org"
+                style={{ color: "#52525b", textDecoration: "none" }}
+              >
+                Codetopia
+              </Link>{" "}
+              Initiative
             </Text>
             <Text
               style={{
