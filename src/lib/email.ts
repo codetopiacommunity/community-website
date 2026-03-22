@@ -1,6 +1,6 @@
 import { Resend } from "resend";
-import { verificationTemplate } from "@/lib/email-templates/verification";
-import { welcomeTemplate } from "@/lib/email-templates/welcome";
+import { VerificationTemplate } from "@/lib/email-templates/verification";
+import { WelcomeTemplate } from "@/lib/email-templates/welcome";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -18,7 +18,7 @@ export async function sendVerificationEmail(
     from: FROM_ADDRESS,
     to,
     subject: "Verify your Codetopia newsletter subscription",
-    html: verificationTemplate(verifyUrl, baseUrl),
+    react: VerificationTemplate({ verifyUrl, baseUrl }),
   });
 }
 
@@ -29,6 +29,6 @@ export async function sendWelcomeEmail(to: string): Promise<void> {
     from: FROM_ADDRESS,
     to,
     subject: "Welcome to the Codetopia Community Dispatch!",
-    html: welcomeTemplate(baseUrl),
+    react: WelcomeTemplate({ baseUrl }),
   });
 }
