@@ -21,7 +21,7 @@ export function Hero() {
       {/* Main Content Area */}
       <div className="flex-1 relative z-10 flex flex-col items-center justify-center text-center pt-20 pb-24">
         <Container className="flex flex-col items-center justify-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter uppercase max-w-4xl lg:max-w-6xl xl:max-w-7xl leading-[0.95] font-sans">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter uppercase max-w-4xl lg:max-w-6xl xl:max-w-7xl leading-[0.95] font-sans">
             WHERE BUILDERS <br className="hidden md:block" />{" "}
             <span className="text-zinc-500">GROW, COLLABORATE,</span>{" "}
             <br className="hidden md:block" /> AND LEAD
