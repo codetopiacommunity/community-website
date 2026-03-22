@@ -3,26 +3,39 @@
 import { type FormEvent, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { CtaButton } from "@/components/ui/cta-button";
-import React, {useState} from "react";
-import {subscribe} from "@/actions/SubscribeNewsletter";
 
 type SubscribeStatus = "idle" | "loading" | "success" | "error";
 
 export function Newsletter() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<SubscribeStatus>("idle");
+  const [message, setMessage] = useState("");
 
-  const [email, setEmail] = useState("")
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("loading");
+    setMessage("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-      e.preventDefault();
+    try {
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-      const res = await subscribe(email);
+      const data = await res.json();
 
-      alert(res.message);
-
-      if (res.message === "Successfully subscribed!") {
+      if (res.ok) {
+        setStatus("success");
+        setMessage(data.message);
         setEmail("");
+      } else {
+        setStatus("error");
+        setMessage(data.message ?? "Something went wrong.");
       }
+    } catch {
+      setStatus("error");
+      setMessage("Network error. Please try again.");
     }
   }
 
