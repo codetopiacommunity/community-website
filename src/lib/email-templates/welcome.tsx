@@ -1,3 +1,16 @@
+import {
+  Body,
+  Container,
+  Font,
+  Head,
+  Heading,
+  Html,
+  Img,
+  Link,
+  Preview,
+  Section,
+  Text,
+} from "@react-email/components";
 import logo from "@/assets/images/logos/codetopia-community.png";
 
 const socialIcons = [
@@ -56,29 +69,26 @@ const socialIcons = [
 
 function Socials({ baseUrl }: { baseUrl: string }) {
   return (
-    <div style={{ textAlign: "center", paddingBottom: "8px" }}>
+    <Section style={{ textAlign: "center", paddingBottom: "8px" }}>
       {socialIcons.map((social) => (
-        <a
+        <Link
           key={social.network}
           href={social.href}
           style={{
-            textDecoration: "none",
             display: "inline-block",
             margin: "0 8px 12px 8px",
           }}
-          title={social.label}
         >
-          {/* biome-ignore lint/performance/noImgElement: Email template requires native img */}
-          <img
+          <Img
             src={`${baseUrl}/assets/images/icons/socials/${social.network}.png`}
             alt={social.label}
-            width={16}
-            height={16}
+            width="16"
+            height="16"
             style={{ display: "block", border: 0 }}
           />
-        </a>
+        </Link>
       ))}
-    </div>
+    </Section>
   );
 }
 
@@ -86,179 +96,157 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
   const logoUrl = `${baseUrl}${logo.src}`;
 
   return (
-    <html lang="en" dir="ltr">
-      {/* biome-ignore lint/style/noHeadElement: Email template requires native head */}
-      <head>
-        <meta charSet="UTF-8" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+    <Html lang="en" dir="ltr">
+      <Head>
         <style>
           {`
-          @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Inter:wght@400;500;700&display=swap');
-          .font-sans { font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
-          .font-mono { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+            @font-face {
+              font-family: 'Space Grotesk';
+              font-style: normal;
+              font-weight: 700;
+              src: url('https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVksj.ttf') format('truetype');
+            }
           `}
         </style>
-      </head>
-      <body
-        className="font-mono"
+        <Font
+          fontFamily="Inter"
+          fallbackFontFamily="sans-serif"
+          webFont={{
+            url: "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2",
+            format: "woff2",
+          }}
+          fontWeight={400}
+          fontStyle="normal"
+        />
+      </Head>
+      <Preview>Welcome to the Codetopia Dispatch</Preview>
+      <Body
         style={{
-          margin: 0,
-          padding: 0,
           backgroundColor: "#09090b",
-          fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+          margin: "0 auto",
+          padding: "40px 0",
+          fontFamily: "'Inter', system-ui, sans-serif",
         }}
       >
-        <table
-          role="presentation"
-          width="100%"
-          cellPadding={0}
-          cellSpacing={0}
-          style={{ backgroundColor: "#09090b", padding: "40px 0" }}
+        <Container
+          style={{
+            backgroundColor: "#18181b",
+            border: "1px solid #27272a",
+            borderRadius: "8px",
+            width: "560px",
+            margin: "0 auto",
+            overflow: "hidden",
+          }}
         >
-          <tbody>
-            <tr>
-              <td align="center">
-                <table
-                  role="presentation"
-                  width="560"
-                  cellPadding={0}
-                  cellSpacing={0}
-                  style={{
-                    backgroundColor: "#18181b",
-                    border: "1px solid #27272a",
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <tbody>
-                    <tr>
-                      <td style={{ padding: "40px 40px 24px 40px" }}>
-                        {/* biome-ignore lint/performance/noImgElement: Email template requires native img */}
-                        <img
-                          src={logoUrl}
-                          alt="Codetopia Community Logo"
-                          height="40"
-                          style={{ display: "block", marginBottom: "24px" }}
-                        />
-                        <h1
-                          className="font-sans"
-                          style={{
-                            margin: 0,
-                            fontSize: "28px",
-                            fontWeight: 800,
-                            color: "#ffffff",
-                            letterSpacing: "-0.5px",
-                            textTransform: "uppercase",
-                            fontFamily:
-                              "'Space Grotesk', system-ui, sans-serif",
-                          }}
-                        >
-                          YOU'RE <span style={{ color: "#71717a" }}>IN</span>
-                        </h1>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style={{ padding: "0 40px 32px 40px" }}>
-                        <p
-                          className="font-mono"
-                          style={{
-                            margin: "0 0 20px 0",
-                            fontSize: "16px",
-                            lineHeight: 1.6,
-                            color: "#a1a1aa",
-                            fontFamily: "'Inter', system-ui, sans-serif",
-                          }}
-                        >
-                          Your email has been verified. You're now subscribed to{" "}
-                          <strong style={{ color: "#ffffff" }}>
-                            The Dispatch
-                          </strong>{" "}
-                          — Codetopia Community's newsletter for project
-                          updates, engineering insights, and community
-                          announcements.
-                        </p>
-                        <a
-                          href={baseUrl}
-                          className="font-sans"
-                          style={{
-                            display: "inline-block",
-                            padding: "14px 32px",
-                            backgroundColor: "#ffffff",
-                            color: "#000000",
-                            fontSize: "14px",
-                            fontWeight: 700,
-                            textDecoration: "none",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.5px",
-                            fontFamily:
-                              "'Space Grotesk', system-ui, sans-serif",
-                          }}
-                        >
-                          VISIT CODETOPIA COMMUNITY
-                        </a>
-                        <p
-                          className="font-mono"
-                          style={{
-                            margin: "24px 0 0 0",
-                            fontSize: "13px",
-                            lineHeight: 1.5,
-                            color: "#52525b",
-                            fontFamily: "'Inter', system-ui, sans-serif",
-                          }}
-                        >
-                          We only email when we have something worth sharing. No
-                          spam, ever.
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
-                        style={{
-                          padding: "32px 40px",
-                          borderTop: "1px solid #27272a",
-                          textAlign: "center",
-                        }}
-                      >
-                        <Socials baseUrl={baseUrl} />
-                        <p
-                          className="font-mono"
-                          style={{
-                            margin: "0 0 8px 0",
-                            fontSize: "12px",
-                            color: "#52525b",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            fontFamily: "'Inter', system-ui, sans-serif",
-                          }}
-                        >
-                          A Codetopia Initiative
-                        </p>
-                        <p
-                          className="font-mono"
-                          style={{
-                            margin: 0,
-                            fontSize: "11px",
-                            color: "#52525b",
-                            fontFamily: "'Inter', system-ui, sans-serif",
-                          }}
-                        >
-                          &copy; Codetopia Community &middot; You received this
-                          email because you subscribed to The Dispatch.
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </body>
-    </html>
+          <Section style={{ padding: "40px 40px 24px 40px" }}>
+            <Img
+              src={logoUrl}
+              alt="Codetopia Community Logo"
+              height="40"
+              style={{ display: "block", marginBottom: "24px" }}
+            />
+            <Heading
+              style={{
+                margin: 0,
+                fontSize: "28px",
+                fontWeight: 800,
+                color: "#ffffff",
+                letterSpacing: "-0.5px",
+                textTransform: "uppercase",
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+              }}
+            >
+              YOU'RE{" "}
+              <span
+                style={{
+                  color: "#71717a",
+                  fontFamily: "'Space Grotesk', system-ui, sans-serif",
+                }}
+              >
+                IN
+              </span>
+            </Heading>
+          </Section>
+
+          <Section style={{ padding: "0 40px 32px 40px" }}>
+            <Text
+              style={{
+                margin: "0 0 20px 0",
+                fontSize: "16px",
+                lineHeight: 1.6,
+                color: "#a1a1aa",
+                fontFamily: "'Inter', system-ui, sans-serif",
+              }}
+            >
+              Subscription confirmed. You are now part of a community building
+              the next generation of open-source engineering.
+            </Text>
+            <Text
+              style={{
+                margin: "0 0 20px 0",
+                fontSize: "16px",
+                lineHeight: 1.6,
+                color: "#a1a1aa",
+                fontFamily: "'Inter', system-ui, sans-serif",
+              }}
+            >
+              Expect deep dives into our technical architecture, project
+              first-looks, and direct access to community-driven initiatives.
+            </Text>
+            <Link
+              href={baseUrl}
+              style={{
+                display: "inline-block",
+                padding: "14px 32px",
+                backgroundColor: "#ffffff",
+                color: "#000000",
+                fontSize: "14px",
+                fontWeight: 700,
+                textDecoration: "none",
+                textTransform: "uppercase",
+                letterSpacing: "0.5px",
+                borderRadius: "4px",
+                fontFamily: "'Space Grotesk', system-ui, sans-serif",
+              }}
+            >
+              VISIT CODETOPIA COMMUNITY
+            </Link>
+          </Section>
+
+          <Section
+            style={{
+              padding: "32px 40px",
+              borderTop: "1px solid #27272a",
+              textAlign: "center" as const,
+            }}
+          >
+            <Socials baseUrl={baseUrl} />
+            <Text
+              style={{
+                margin: "0 0 8px 0",
+                fontSize: "12px",
+                color: "#52525b",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                fontFamily: "'Inter', system-ui, sans-serif",
+              }}
+            >
+              A Codetopia Initiative
+            </Text>
+            <Text
+              style={{
+                margin: 0,
+                fontSize: "11px",
+                color: "#52525b",
+                fontFamily: "'Inter', system-ui, sans-serif",
+              }}
+            >
+              © Codetopia Community · You received this email because your
+              subscription was verified.
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
   );
 }
