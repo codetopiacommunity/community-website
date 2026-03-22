@@ -50,6 +50,16 @@ export async function POST(req: Request) {
         );
       }
 
+      if (existing.tokenExpiresAt && existing.tokenExpiresAt > new Date()) {
+        return NextResponse.json(
+          {
+            message:
+              "A verification email was already sent recently. Please check your inbox (and spam folder).",
+          },
+          { status: 200 },
+        );
+      }
+
       const token = generateVerificationToken();
       const expiresAt = getTokenExpiry();
 
