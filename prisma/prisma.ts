@@ -17,12 +17,16 @@ let prisma: PrismaClient;
 if (globalForPrisma.prisma) {
   prisma = globalForPrisma.prisma;
 } else {
+  console.log("Initializing new PrismaClient instance...");
   // Hardened pool for flaky connections
   const pool = new Pool({
     connectionString,
-    connectionTimeoutMillis: 5000, // 5s timeout
+    connectionTimeoutMillis: 15000, // 15s timeout for cold starts
     idleTimeoutMillis: 30000, // 30s idle before closing
     max: 10, // Max 10 connections
+    ssl: {
+      rejectUnauthorized: false, // Often needed for Neon in some environments
+    },
   });
   // biome-ignore lint/suspicious/noExplicitAny: pg type mismatch overrides
   const adapter = new PrismaPg(pool as any);

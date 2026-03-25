@@ -19,3 +19,30 @@ model Subscriber {
 
   @@map("subscribers")
 }
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("admins")
+}
+
+model TeamMember {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  name      String
+  role      String
+  imageUrl  String?  @map("image_url")
+  statement String
+  expertise String[]
+  tier      String   @default("CORE")
+  github    String?
+  linkedin  String?
+  twitter   String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("team_members")
+}
