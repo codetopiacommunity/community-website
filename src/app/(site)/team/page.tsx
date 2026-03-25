@@ -2,23 +2,9 @@
 
 import { Loader2, Users2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { TeamCard } from "@/components/about/TeamCard";
+import { TeamCard, type TeamMember } from "@/components/about/TeamCard";
 import { Container } from "@/components/layout/Container";
 import { cn } from "@/lib/utils";
-
-interface TeamMember {
-  id: number;
-  slug: string;
-  name: string;
-  role: string;
-  imageUrl?: string | null;
-  statement: string;
-  expertise: string[];
-  tier: string;
-  github?: string | null;
-  linkedin?: string | null;
-  twitter?: string | null;
-}
 
 export default function TeamPage() {
   const [activeTier, setActiveTier] = useState<

@@ -1,18 +1,24 @@
 "use client";
 
 import { Github, Linkedin, Twitter } from "lucide-react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import profileSample from "@/assets/images/profile/profile-sample.jpg";
 
-interface TeamMember {
+export interface TeamMember {
   id?: number | string;
   slug?: string;
   name: string;
   role: string;
-  imageUrl?: string | null;
-  image?: string | null;
+  imageUrl?: string | StaticImageData | null;
+  image?: string | StaticImageData | null;
   statement?: string;
   expertise?: string[];
+  tier?: string;
+  socials?: {
+    github?: string | null;
+    linkedin?: string | null;
+    twitter?: string | null;
+  };
   github?: string | null;
   linkedin?: string | null;
   twitter?: string | null;
@@ -24,6 +30,10 @@ interface TeamCardProps {
 
 export function TeamCard({ member }: TeamCardProps) {
   const imageSource = member.imageUrl || member.image || profileSample;
+  const github = member.socials?.github || member.github;
+  const linkedin = member.socials?.linkedin || member.linkedin;
+  const twitter = member.socials?.twitter || member.twitter;
+
   return (
     <div className="group relative bg-black flex flex-col hover:bg-zinc-950 transition-all overflow-hidden border border-zinc-900 aspect-[4/5] w-full">
       {/* Visual Asset: Grayscale Image */}
@@ -81,12 +91,12 @@ export function TeamCard({ member }: TeamCardProps) {
 
                 {/* Social Link Controls */}
                 <div className="flex items-center gap-3 pt-2">
-                  {member.github && member.github !== "#" && (
+                  {github && github !== "#" && (
                     <a
                       href={
-                        member.github.startsWith("http")
-                          ? member.github
-                          : `https://github.com/${member.github}`
+                        github.startsWith("http")
+                          ? github
+                          : `https://github.com/${github}`
                       }
                       target="_blank"
                       rel="noopener noreferrer"
@@ -95,12 +105,12 @@ export function TeamCard({ member }: TeamCardProps) {
                       <Github className="w-4 h-4" />
                     </a>
                   )}
-                  {member.linkedin && member.linkedin !== "#" && (
+                  {linkedin && linkedin !== "#" && (
                     <a
                       href={
-                        member.linkedin.startsWith("http")
-                          ? member.linkedin
-                          : `https://linkedin.com/in/${member.linkedin}`
+                        linkedin.startsWith("http")
+                          ? linkedin
+                          : `https://linkedin.com/in/${linkedin}`
                       }
                       target="_blank"
                       rel="noopener noreferrer"
@@ -109,12 +119,12 @@ export function TeamCard({ member }: TeamCardProps) {
                       <Linkedin className="w-4 h-4" />
                     </a>
                   )}
-                  {member.twitter && member.twitter !== "#" && (
+                  {twitter && twitter !== "#" && (
                     <a
                       href={
-                        member.twitter.startsWith("http")
-                          ? member.twitter
-                          : `https://twitter.com/${member.twitter}`
+                        twitter.startsWith("http")
+                          ? twitter
+                          : `https://twitter.com/${twitter}`
                       }
                       target="_blank"
                       rel="noopener noreferrer"
