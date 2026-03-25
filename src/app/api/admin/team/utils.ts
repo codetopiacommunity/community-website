@@ -14,9 +14,19 @@ export async function processImage(
     throw new Error("Invalid base64 string format");
   }
 
-  // Common extensions extraction (jpeg -> jpg)
-  let extension = matches[1].split("/")[0];
+  // Whitelist allowed extensions for security
+  const allowedExtensions = ["jpg", "jpeg", "png", "webp", "gif", "svg", "svg+xml"];
+  const rawSubtype = matches[1].toLowerCase();
+  
+  // Extract subtype if it's like "image/png" or just use the raw subtype from our regex capture
+  let extension = rawSubtype.split("/")[0];
+  
+  if (!allowedExtensions.includes(extension)) {
+    throw new Error("Unsupported image format");
+  }
+
   if (extension === "jpeg") extension = "jpg";
+  if (extension === "svg+xml") extension = "svg";
 
   const buffer = Buffer.from(matches[2], "base64");
 
@@ -40,7 +50,13 @@ export async function processImage(
   // Create directory if it doesn't exist
   await fs.promises.mkdir(uploadDir, { recursive: true });
 
-  const filePath = path.join(uploadDir, fileName);
+  const filePath = path.join(uploadDir, path.basename(fileName));
+  
+  // Security check: ensure the resulting path is actually within the uploads directory
+  if (!filePath.startsWith(uploadDir)) {
+    throw new Error("Invalid file path attempted for upload");
+  }
+
   await fs.promises.writeFile(filePath, buffer);
 
   // Return the public URL
@@ -51,15 +67,16 @@ export async function deleteImage(imageUrl: string | null) {
   if (!imageUrl) return;
   // Ensure we are only deleting files within the local designated uploads directory
   if (imageUrl.startsWith("/uploads/team-members-images/")) {
-    const fileName = imageUrl.split("/").pop();
+    const fileName = path.basename(imageUrl);
     if (fileName) {
-      const filePath = path.join(
-        process.cwd(),
-        "public",
-        "uploads",
-        "team-members-images",
-        fileName,
-      );
+      const targetDir = path.join(process.cwd(), "public", "uploads", "team-members-images");
+      const filePath = path.join(targetDir, fileName);
+      
+      // Ensure the canonicalized path is within the target directory
+      if (!filePath.startsWith(targetDir)) {
+          return;
+      }
+      
       try {
         await fs.promises.unlink(filePath);
       } catch (err) {
