@@ -15,12 +15,20 @@ export async function processImage(
   }
 
   // Whitelist allowed extensions for security
-  const allowedExtensions = ["jpg", "jpeg", "png", "webp", "gif", "svg", "svg+xml"];
+  const allowedExtensions = [
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "gif",
+    "svg",
+    "svg+xml",
+  ];
   const rawSubtype = matches[1].toLowerCase();
-  
+
   // Extract subtype if it's like "image/png" or just use the raw subtype from our regex capture
   let extension = rawSubtype.split("/")[0];
-  
+
   if (!allowedExtensions.includes(extension)) {
     throw new Error("Unsupported image format");
   }
@@ -51,7 +59,7 @@ export async function processImage(
   await fs.promises.mkdir(uploadDir, { recursive: true });
 
   const filePath = path.join(uploadDir, path.basename(fileName));
-  
+
   // Security check: ensure the resulting path is actually within the uploads directory
   if (!filePath.startsWith(uploadDir)) {
     throw new Error("Invalid file path attempted for upload");
@@ -69,14 +77,19 @@ export async function deleteImage(imageUrl: string | null) {
   if (imageUrl.startsWith("/uploads/team-members-images/")) {
     const fileName = path.basename(imageUrl);
     if (fileName) {
-      const targetDir = path.join(process.cwd(), "public", "uploads", "team-members-images");
+      const targetDir = path.join(
+        process.cwd(),
+        "public",
+        "uploads",
+        "team-members-images",
+      );
       const filePath = path.join(targetDir, fileName);
-      
+
       // Ensure the canonicalized path is within the target directory
       if (!filePath.startsWith(targetDir)) {
-          return;
+        return;
       }
-      
+
       try {
         await fs.promises.unlink(filePath);
       } catch (err) {
