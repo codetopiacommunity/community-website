@@ -19,6 +19,7 @@
     "@react-email/render": "^2.0.4",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
     "dotenv": "^17.3.1",
     "embla-carousel-auto-scroll": "^8.6.0",
