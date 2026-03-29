@@ -21,6 +21,9 @@ jobs:
     env:
      DATABASE_URL: ${{ secrets.DATABASE_URL }}
      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+     CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+     CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+     CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
 
     steps:
       - name: Checkout
