@@ -3,6 +3,8 @@ import heroBg from "@/assets/images/django-girls.jpg";
 import { EventsLedger } from "@/components/events/EventsLedger";
 import { Container } from "@/components/layout/Container";
 
+export const dynamic = "force-dynamic";
+
 export default function EventsPage() {
   return (
     <>
