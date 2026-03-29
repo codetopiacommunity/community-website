@@ -37,12 +37,16 @@ export async function processImage(
  * Deletes an image from Cloudinary
  */
 export async function deleteImage(imageUrl: string | null) {
-  if (!imageUrl || !imageUrl.includes("cloudinary.com")) return;
+  if (!imageUrl) return;
 
   try {
+    const url = new URL(imageUrl);
+    // Robustly check if the hostname is res.cloudinary.com
+    if (url.hostname !== "res.cloudinary.com") return;
+
     // Extract public_id from URL
     // Pattern: .../upload/v123456789/folder/subfolder/public_id.jpg
-    const parts = imageUrl.split("/");
+    const parts = url.pathname.split("/");
     const fileNameWithExt = parts[parts.length - 1];
     const publicIdWithoutExt = fileNameWithExt.split(".")[0];
 
@@ -51,6 +55,7 @@ export async function deleteImage(imageUrl: string | null) {
 
     await cloudinary.uploader.destroy(publicId);
   } catch (error) {
+    // If URL is invalid or deletion fails, we log and skip
     console.error("Cloudinary Deletion Error:", error);
   }
 }

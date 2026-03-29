@@ -8,8 +8,8 @@ export async function getUpcomingEventsCount(): Promise<number> {
     try {
       const count = await prisma.event.count({
         where: {
-          status: {
-            in: ["UPCOMING", "LIVE"],
+          endDate: {
+            gt: new Date(),
           },
         },
       });
