@@ -23,7 +23,10 @@ export async function PATCH(
     });
 
     if (!existingMember) {
-      return NextResponse.json({ error: "Team member not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Team member not found" },
+        { status: 404 },
+      );
     }
 
     if (!data.name || data.name.trim() === "") {
@@ -48,12 +51,12 @@ export async function PATCH(
       if (data.imageUrl?.startsWith("data:image")) {
         // Upload the new one
         processedImageUrl = await processImage(data.imageUrl, data.name);
-        
+
         // Delete the previous one if it exists
         if (existingMember.imageUrl) {
           await deleteImage(existingMember.imageUrl);
         }
-      } 
+      }
       // 3. If the image is being intentionally removed
       else if (!data.imageUrl && existingMember.imageUrl) {
         await deleteImage(existingMember.imageUrl);

@@ -7,7 +7,7 @@ export default function EventsPage() {
   return (
     <>
       {/* Hero Section with Depth */}
-      <div className="relative w-full min-h-[60vh] flex flex-col justify-center overflow-hidden bg-black">
+      <div className="relative w-full min-h-[70vh] flex flex-col pt-32 pb-20 overflow-hidden bg-black">
         {/* Background Image & Overlay */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 grayscale"
@@ -16,7 +16,7 @@ export default function EventsPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black z-0" />
 
         <Container className="flex flex-col items-start text-left px-4 md:px-16 lg:px-24 max-w-none font-sans relative z-10">
-          <div className="mb-8">
+          <div className="mb-10">
             <span className="text-zinc-400 font-mono text-sm uppercase tracking-[0.4em] mb-4 block animate-pulse">
               ● THE SCHEDULE
             </span>

@@ -10,6 +10,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { getUpcomingEventsCount } from "@/actions/event";
 import { getSubscriberCount } from "@/actions/subscriber";
 
 const _stats = [
@@ -105,11 +106,16 @@ export default function AdminDashboard() {
   }, []);
 
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
+  const [upcomingEventsCount, setUpcomingEventsCount] = useState<number | null>(
+    null,
+  );
 
   useEffect(() => {
     async function fetchCounts() {
-      const count = await getSubscriberCount();
-      setSubscriberCount(count);
+      const subCount = await getSubscriberCount();
+      const eventCount = await getUpcomingEventsCount();
+      setSubscriberCount(subCount);
+      setUpcomingEventsCount(eventCount);
     }
     fetchCounts();
   }, []);
@@ -117,16 +123,19 @@ export default function AdminDashboard() {
   const displayStats = [
     {
       name: "Upcoming Events",
-      value: "08",
+      value:
+        upcomingEventsCount === null
+          ? "..."
+          : upcomingEventsCount.toString().padStart(2, "0"),
       icon: Calendar,
-      duration: 1200,
+      duration: 800,
     },
     {
       name: "Newsletter Subscribers",
       value:
         subscriberCount === null ? "..." : subscriberCount.toLocaleString(),
       icon: Mail,
-      duration: 800, // Shorter duration to "snap" into place after loading
+      duration: 800,
     },
   ];
 

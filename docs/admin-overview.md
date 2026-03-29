@@ -26,6 +26,13 @@ Governs the foundational identity layer for backend access:
 - **Zero-Trust Input**: Profile modifications demand re-transmission of the active `Current Password` alongside updates to deter hijacking.
 - **Smart Hot-Swapping**: Instead of booting users back to the login screen after changing critical primary email keys, the backend parses successful requests and transparently hot-swaps the underlying JWT header to maintain continuous interaction.
 
+### Event Management (`/admin/events`)
+A sophisticated scheduling engine used to orchestrate community activities:
+- **Multi-Step Wizard**: High-stakes event creation is broken down into a non-linear flow (`Identity`, `Scheduling`, `Participation`) to ensure data integrity and reduce cognitive load on the admin.
+- **Automated Lifecycle Logic**: Unlike static entries, the system dynamically calculates event status (Upcoming, Live, Past) on the fly by comparing server-side timestamps. 
+- **Platform-Specific Integrations**: Distinguishes between `Online` and `In-Person` formats, conditionally unlocking specialized fields like Zoom/Meet URLs or Physical Location maps.
+- **Post-Event Archival**: Once an event passes its mandatory `End Date`, the system automatically shifts UI focus to the `Recorded Video Link` to maintain a persistent library of community knowledge.
+
 ## 4. UI/UX Design Syntax
 To separate the administrative ecosystem from the public-facing site, the Admin Center adopts a drastically different internal component library:
 - Overrides aggressive brutalist boxes for calculated, modern rounded SaaS borders (`rounded-xl` and `rounded-2xl`).

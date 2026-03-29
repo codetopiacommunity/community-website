@@ -46,3 +46,24 @@ model TeamMember {
 
   @@map("team_members")
 }
+
+model Event {
+  id             Int         @id @default(autoincrement())
+  classification String      
+  title          String
+  description    String
+  startDate      DateTime    @map("start_date")
+  endDate        DateTime    @map("end_date")
+  
+  // New Fields
+  isOnline       Boolean     @default(true) @map("is_online")
+  reserveSpotLink String?    @map("reserve_spot_link")
+  joinMeetingLink String?    @map("join_meeting_link")
+  locationUrl    String?     @map("location_url")
+  recordedVideoLink String?  @map("recorded_video_link")
+
+  createdAt      DateTime    @default(now()) @map("created_at")
+  updatedAt      DateTime    @updatedAt @map("updated_at")
+
+  @@map("events")
+}

@@ -20,7 +20,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-grey-900 text-grey-50 relative font-sans">
+    <header className="sticky top-0 z-50 w-full bg-grey-900 text-grey-50 font-sans">
       <Container className="flex h-20 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center">
