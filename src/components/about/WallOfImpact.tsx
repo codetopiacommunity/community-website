@@ -79,7 +79,7 @@ export function WallOfImpact() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-950 border border-zinc-950 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-zinc-950 border border-zinc-950 overflow-hidden">
           {filteredRecognitions.map((entry) => {
             const Icon = categoryIcons[entry.category];
             return (
