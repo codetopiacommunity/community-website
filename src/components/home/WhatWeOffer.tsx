@@ -56,7 +56,10 @@ export function WhatWeOffer() {
               </span>
 
               <div className="relative z-10 flex items-center gap-6 mb-4 lg:mb-0">
-                <offer.icon className="w-8 h-8 lg:w-12 lg:h-12 text-white shrink-0" strokeWidth={2} />
+                <offer.icon
+                  className="w-8 h-8 lg:w-12 lg:h-12 text-white shrink-0"
+                  strokeWidth={2}
+                />
                 <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter font-sans">
                   {offer.title}
                 </h3>
