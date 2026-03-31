@@ -41,13 +41,15 @@ export function WhatWeOffer() {
             theory to engineering impact.
           </p>
         </div>
+      </Container>
 
-        <div className="flex flex-col border-t border-zinc-900">
-          {offers.map((offer, index) => (
-            <div
-              key={offer.title}
-              className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-16 border-b border-zinc-900 transition-colors hover:bg-zinc-900/50"
-            >
+      <div className="flex flex-col border-t border-zinc-900">
+        {offers.map((offer, index) => (
+          <div
+            key={offer.title}
+            className="group relative border-b border-zinc-900 transition-colors hover:bg-zinc-900/50"
+          >
+            <Container className="relative z-10 w-full px-4 max-w-7xl flex flex-col md:flex-row items-start md:items-center justify-between py-16">
               {/* Massive Architectural Number */}
               <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-black text-white/[0.02] pointer-events-none select-none">
                 0{index + 1}
@@ -62,10 +64,10 @@ export function WhatWeOffer() {
               <p className="relative z-10 text-zinc-500 font-mono text-base md:text-lg max-w-xl md:text-right">
                 {offer.description}
               </p>
-            </div>
-          ))}
-        </div>
-      </Container>
+            </Container>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
