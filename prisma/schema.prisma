@@ -11,14 +11,15 @@ model Subscriber {
   email             String    @unique
   name              String?
   status            String    @default("pending")
-  verificationToken String?   @unique @map("verification_token")
-  tokenExpiresAt    DateTime? @map("token_expires_at")
-  verifiedAt        DateTime? @map("verified_at")
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
+  tokenExpiresAt    DateTime? @map("token_expires_at")
+  verificationToken String?   @unique @map("verification_token")
+  verifiedAt        DateTime? @map("verified_at")
 
   @@map("subscribers")
 }
+
 model Admin {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -48,22 +49,19 @@ model TeamMember {
 }
 
 model Event {
-  id             Int         @id @default(autoincrement())
-  classification String      
-  title          String
-  description    String
-  startDate      DateTime    @map("start_date")
-  endDate        DateTime    @map("end_date")
-  
-  // New Fields
-  isOnline       Boolean     @default(true) @map("is_online")
-  reserveSpotLink String?    @map("reserve_spot_link")
-  joinMeetingLink String?    @map("join_meeting_link")
-  locationUrl    String?     @map("location_url")
+  id                Int      @id @default(autoincrement())
+  classification    String
+  title             String
+  description       String
+  startDate         DateTime @map("start_date")
+  endDate           DateTime @map("end_date")
+  isOnline          Boolean  @default(true) @map("is_online")
+  reserveSpotLink   String?  @map("reserve_spot_link")
+  joinMeetingLink   String?  @map("join_meeting_link")
+  locationUrl       String?  @map("location_url")
   recordedVideoLink String?  @map("recorded_video_link")
-
-  createdAt      DateTime    @default(now()) @map("created_at")
-  updatedAt      DateTime    @updatedAt @map("updated_at")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   @@map("events")
 }

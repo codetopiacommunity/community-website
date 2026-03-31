@@ -12,7 +12,7 @@ export function TechnicalSpotlight() {
   return (
     <section className="w-full bg-black overflow-hidden border-t border-zinc-900 px-0 py-24 md:py-32">
       <Container className="max-w-none px-0">
-        <div className="w-full mb-24 text-left px-4 md:px-16 lg:px-24">
+        <div className="w-full mb-24 text-left px-6 lg:px-12 max-w-screen-2xl mx-auto">
           <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter mb-6 leading-none font-sans">
             SPOTLIGHT
           </h2>
