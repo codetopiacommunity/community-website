@@ -45,8 +45,6 @@ export default function EventsPage() {
           <EventsLedger />
         </Container>
       </section>
-
-
     </>
   );
 }
