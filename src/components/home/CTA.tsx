@@ -6,7 +6,7 @@ import { CtaButton } from "@/components/ui/cta-button";
 
 export function CTA() {
   return (
-    <section className="relative w-full py-48 bg-black overflow-hidden flex flex-col items-center justify-center text-center border-t border-zinc-900">
+    <section className="relative w-full py-48 bg-black overflow-hidden flex flex-col items-center justify-center text-center">
       {/* Background Logo Watermark - Centered Abstract */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
         <Image
