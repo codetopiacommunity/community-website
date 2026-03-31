@@ -123,57 +123,26 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
         </div>
 
         {filteredEvents.length === 0 ? (
-          <div className="w-full relative flex flex-col items-center justify-center py-40 border-b border-zinc-800 overflow-hidden group">
-            {/* Background Decorative Element */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
-              <span className="text-[20rem] font-black font-mono tracking-tighter">
-                NULL
-              </span>
-            </div>
-
-            {/* Content Container */}
-            <div className="relative z-10 flex flex-col items-center text-center max-w-md animate-in fade-in slide-in-from-bottom-8 duration-1000">
-              <div className="h-px w-20 bg-zinc-800 mb-12 group-hover:w-40 transition-all duration-700" />
-
-              <div className="flex flex-col gap-6">
-                <h3 className="text-white font-mono text-xs uppercase tracking-[0.4em] font-black leading-none italic">
-                  OPERATIONAL VOID
-                </h3>
-                <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.2em] leading-relaxed">
-                  No activities intersect with your current selection of{" "}
-                  <span className="text-zinc-300">[{statusFilter}]</span> status
-                  and <span className="text-zinc-300">[{formatFilter}]</span>{" "}
-                  format.
-                </p>
-
-                <div className="mt-8 flex flex-col items-center gap-6">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setStatusFilter("ALL");
-                      setFormatFilter("ALL");
-                    }}
-                    className="group flex flex-col items-center gap-3"
-                  >
-                    <span className="text-white font-mono text-[10px] uppercase tracking-[0.3em] border border-white px-8 py-3 group-hover:bg-white group-hover:text-black transition-all duration-300 active:scale-95">
-                      RESET FILTER CHAIN
-                    </span>
-                    <span className="text-zinc-600 font-mono text-[8px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
-                      RE-SYNCHRONIZING SYSTEM...
-                    </span>
-                  </button>
-                </div>
-              </div>
-
-              <div className="h-px w-20 bg-zinc-800 mt-12 group-hover:w-40 transition-all duration-700" />
-            </div>
-
-            {/* Corner Markers */}
-            <div className="absolute top-8 left-8 text-zinc-900 font-mono text-[8px] tracking-[0.5em] uppercase select-none hidden lg:block">
-              SEARCHING_DATABASE_...
-            </div>
-            <div className="absolute bottom-8 right-8 text-zinc-900 font-mono text-[8px] tracking-[0.5em] uppercase select-none hidden lg:block">
-              [ ERROR 404 / NO_MATCH ]
+          <div className="w-full flex flex-col items-center justify-center py-40 border-b border-zinc-800">
+            <div className="flex flex-col items-center text-center max-w-md gap-6">
+              <h3 className="text-white font-mono text-xs uppercase tracking-[0.4em] font-black">
+                NO EVENTS FOUND
+              </h3>
+              <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.2em] leading-relaxed">
+                No activities match{" "}
+                <span className="text-zinc-300">[{statusFilter}]</span> /{" "}
+                <span className="text-zinc-300">[{formatFilter}]</span>
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setStatusFilter("ALL");
+                  setFormatFilter("ALL");
+                }}
+                className="text-white font-mono text-[10px] uppercase tracking-[0.3em] border border-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300"
+              >
+                CLEAR FILTERS
+              </button>
             </div>
           </div>
         ) : (

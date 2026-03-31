@@ -1,4 +1,3 @@
-import Link from "next/link";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { EventsLedger } from "@/components/events/EventsLedger";
 import { Container } from "@/components/layout/Container";
@@ -47,32 +46,7 @@ export default function EventsPage() {
         </Container>
       </section>
 
-      {/* Suggest Activity Section */}
-      <section className="w-full py-32 bg-white text-black z-20 overflow-hidden relative border-t border-zinc-200">
-        <Container className="w-full px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12 bg-zinc-50 p-12 md:p-20 border border-zinc-200 group hover:border-black transition-colors duration-500">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6 font-sans">
-                HAVE AN IDEA FOR <br />
-                <span className="text-zinc-400">AN ACTIVITY?</span>
-              </h2>
-              <p className="text-zinc-600 font-mono text-lg leading-relaxed">
-                Our community is built on member initiatives. If you want to
-                host a session, lead a sprint, or showcase a project, we want to
-                hear it.
-              </p>
-            </div>
-            <Link
-              href="https://discord.gg/3nBFMfdNmB"
-              target="_blank"
-              className="group relative inline-flex items-center gap-4 px-10 py-5 bg-black text-white font-mono text-xs uppercase tracking-[0.3em] font-black hover:bg-zinc-800 transition-all hover:scale-105"
-            >
-              PROPOSE IN DISCORD
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            </Link>
-          </div>
-        </Container>
-      </section>
+
     </>
   );
 }

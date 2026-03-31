@@ -116,7 +116,7 @@ export default function TeamPage() {
                   className="font-mono text-[9px] text-zinc-700 uppercase tracking-[0.3em] rotate-180 relative z-10"
                   style={{ writingMode: "vertical-rl" }}
                 >
-                  {"CODETOPIA // EMPTY DIRECTORY"}
+                  {"CODETOPIA COMMUNITY // TEAM DIRECTORY"}
                 </div>
               </div>
             </div>

@@ -164,31 +164,33 @@ export default function AboutPage() {
               THE MANIFESTO
             </h2>
           </div>
+        </Container>
 
-          <div className="flex flex-col border-t border-zinc-800">
-            {coreValues.map((value, index) => (
-              <div
-                key={value.title}
-                className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-16 border-b border-zinc-800 transition-colors hover:bg-zinc-900/50"
-              >
+        <div className="flex flex-col border-t border-zinc-800">
+          {coreValues.map((value, index) => (
+            <div
+              key={value.title}
+              className="group relative border-b border-zinc-800 transition-colors hover:bg-zinc-900/50"
+            >
+              <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-16">
                 {/* Massive Architectural Number */}
                 <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-black text-white/[0.03] pointer-events-none select-none">
                   0{index + 1}
                 </span>
 
-                <div className="relative z-10 flex items-center gap-6 mb-4 md:mb-0">
-                  <value.icon className="w-8 h-8 text-white" strokeWidth={2} />
-                  <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter font-sans">
+                <div className="relative z-10 flex items-center gap-6 mb-4 lg:mb-0">
+                  <value.icon className="w-8 h-8 lg:w-12 lg:h-12 text-white shrink-0" strokeWidth={2} />
+                  <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter font-sans">
                     {value.title}
                   </h3>
                 </div>
-                <p className="relative z-10 text-zinc-400 font-mono text-base md:text-lg max-w-xl md:text-right">
+                <p className="relative z-10 text-zinc-400 font-mono text-base lg:text-lg max-w-xl lg:text-right">
                   {value.description}
                 </p>
-              </div>
-            ))}
-          </div>
-        </Container>
+              </Container>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Leadership Brief Section */}
