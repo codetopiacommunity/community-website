@@ -154,153 +154,125 @@ export function OurImpact() {
         </div>
       </section>
 
-      {/* Centered Brutalist Modal Card */}
+      {/* Modal */}
       {selectedStory && (
         // biome-ignore lint/a11y/useKeyWithClickEvents: Backdrop does not need keyboard interaction
         // biome-ignore lint/a11y/noStaticElementInteractions: Backdrop is a presentational element
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 cursor-[url('/close-cursor.svg'),_pointer]"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black cursor-[url('/close-cursor.svg'),_pointer]"
           style={{ height: "100dvh" }}
           onClick={() => setSelectedStory(null)}
         >
-          {/* Codetopia Logo — top-left, mirrors close button */}
-          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-8 md:left-8 z-[110] flex items-center justify-center">
-            <Image
-              src={logo}
-              alt="Codetopia"
-              width={100}
-              height={100}
-              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain brightness-0 invert opacity-70"
-            />
-          </div>
-
-          {/* Global Screen-Fixed Close Button */}
-          <button
-            type="button"
-            onClick={() => setSelectedStory(null)}
-            className="absolute top-3 right-3 sm:top-6 sm:right-6 md:top-8 md:right-8 z-[110] text-white opacity-70 hover:opacity-100 transition-all bg-black hover:bg-white hover:text-black p-2.5 md:p-4 rounded-full border-2 border-zinc-700 hover:border-white shadow-2xl flex items-center justify-center cursor-pointer group"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="group-hover:rotate-90 transition-transform duration-300"
-            >
-              <title>Close Dialog</title>
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-
-          {/* Modal card — scrollable on all breakpoints, max 92dvh tall */}
           <div
-            className="relative w-full max-w-7xl bg-black border-2 border-white shadow-2xl flex flex-col lg:flex-row cursor-default overflow-y-auto max-h-[92dvh] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none"
+            className="relative w-full h-full bg-black cursor-default overflow-hidden animate-in fade-in duration-300"
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
           >
-            {/* Left Data Column */}
-            <div className="w-full lg:w-[35%] flex flex-col justify-center p-5 sm:p-8 lg:p-12 xl:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-zinc-800 relative z-20 bg-black shrink-0">
-              <div className="flex items-center gap-2 font-mono text-zinc-500 tracking-[0.2em] uppercase mb-3 md:mb-6 text-xs sm:text-sm md:text-base">
-                <Calendar className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
-                {selectedStory.date}
+            {isPlayingVideo && selectedStory.link ? (
+              <div className="absolute inset-0 z-30 bg-black flex flex-col">
+                <button
+                  type="button"
+                  onClick={() => setIsPlayingVideo(false)}
+                  className="absolute top-4 left-4 z-40 font-mono text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer"
+                >
+                  ← BACK
+                </button>
+                <iframe
+                  src={getYouTubeEmbedUrl(selectedStory.link)}
+                  title={selectedStory.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
               </div>
-              <div className="flex items-start gap-2 font-sans font-black text-white text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl uppercase tracking-tighter leading-[1.1] break-words">
-                <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-1 md:mt-2" />
-                {selectedStory.location}
-              </div>
-            </div>
+            ) : (
+              <>
+                {/* Full-bleed background image */}
+                <Image
+                  src={selectedStory.image as string}
+                  alt={selectedStory.title as string}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                />
+                {/* Scrim */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20 z-10" />
 
-            {/* Right Panoramic View Column */}
-            <div className="w-full lg:w-[65%] relative flex flex-col justify-end p-5 sm:p-8 lg:p-12 xl:p-16 min-h-[55vw] sm:min-h-[420px] lg:min-h-0 lg:flex-1">
-              {isPlayingVideo && selectedStory.link ? (
-                <div className="absolute inset-0 z-30 bg-black flex flex-col animate-in fade-in duration-300">
+                {/* Top bar */}
+                <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-5">
+                  <Image
+                    src={logo}
+                    alt="Codetopia"
+                    width={80}
+                    height={80}
+                    className="w-28 h-28 object-contain brightness-0 invert opacity-90"
+                  />
                   <button
                     type="button"
-                    onClick={() => setIsPlayingVideo(false)}
-                    className="absolute top-4 left-4 sm:top-6 sm:left-6 z-40 font-mono text-[10px] sm:text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-3 py-1 sm:px-4 sm:py-2 bg-black/60 hover:bg-white hover:text-black hover:border-white transition-colors backdrop-blur-sm flex items-center gap-2 group cursor-pointer"
+                    onClick={() => setSelectedStory(null)}
+                    className="font-mono text-xs tracking-[0.2em] uppercase text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-4 py-2 transition-colors cursor-pointer"
                   >
-                    ← BACK TO POST
+                    CLOSE ✕
                   </button>
-                  <iframe
-                    src={getYouTubeEmbedUrl(selectedStory.link)}
-                    title={selectedStory.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full border-0"
+                </div>
+
+                {/* Story logo watermark */}
+                <div className="absolute top-6 right-6 z-20 mt-20">
+                  <StoryLogoWatermark
+                    logo={selectedStory.logo}
+                    alt={selectedStory.title}
                   />
                 </div>
-              ) : (
-                <>
-                  {/* Background Image */}
-                  <Image
-                    src={selectedStory.image as string}
-                    alt={selectedStory.title as string}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  />
 
-                  {/* Scrim */}
-                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 to-transparent z-10" />
-
-                  {/* Story Logo Watermark */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-30 opacity-100">
-                    <div className="relative z-10">
-                      <StoryLogoWatermark
-                        logo={selectedStory.logo}
-                        alt={selectedStory.title}
-                      />
+                {/* Content overlay at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 z-20 p-8 lg:p-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+                  {/* Left: title + meta */}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-6 mb-4 font-mono text-zinc-400 text-xs uppercase tracking-[0.3em]">
+                      <span className="flex items-center gap-2">
+                        <Calendar className="w-3 h-3" />
+                        {selectedStory.date}
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <MapPin className="w-3 h-3" />
+                        {selectedStory.location}
+                      </span>
                     </div>
-                  </div>
-
-                  {/* Event Title & Impact Report */}
-                  <div className="relative z-20 max-w-3xl mt-auto pt-12 sm:pt-16">
-                    <h4 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter mb-3 md:mb-6 border-b-2 border-white pb-2 md:pb-4 inline-block drop-shadow-lg font-sans">
+                    <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-none font-sans drop-shadow-2xl mb-6">
                       {selectedStory.title}
                     </h4>
-                    <div className="bg-black/80 border border-white backdrop-blur-md drop-shadow-2xl flex flex-col">
-                      <span className="font-mono text-zinc-400 uppercase tracking-[0.2em] text-[10px] md:text-xs lg:text-sm pt-3 px-3 sm:pt-5 sm:px-5 lg:pt-7 lg:px-7 pb-2 sm:pb-3 border-b border-zinc-800">
-                        Impact Report
-                      </span>
-                      <p className="block text-white text-sm md:text-base lg:text-lg font-mono leading-relaxed px-3 sm:px-5 lg:px-7 pb-3 sm:pb-5 lg:pb-7 pt-3 sm:pt-5">
-                        {selectedStory.impact}
-                      </p>
-                      {selectedStory.link && (
-                        <div className="px-3 sm:px-5 lg:px-7 pb-4 sm:pb-6 lg:pb-8">
-                          <button
-                            type="button"
-                            onClick={() => setIsPlayingVideo(true)}
-                            className="inline-flex items-center justify-center gap-2 bg-white text-black font-bold uppercase tracking-widest text-xs sm:text-sm px-5 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-4 hover:bg-zinc-200 transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
-                          >
-                            <PlayCircle className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:scale-110 transition-transform" />
-                            Watch Video
-                          </button>
-                        </div>
-                      )}
-                      {selectedStory.galleryLink && (
-                        <div className="px-3 sm:px-5 lg:px-7 pb-4 sm:pb-6 lg:pb-8">
-                          <a
-                            href={selectedStory.galleryLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 bg-transparent text-white border-2 border-white font-bold uppercase tracking-widest text-xs sm:text-sm px-5 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-4 hover:bg-white hover:text-black transition-colors w-fit group/btn shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
-                          >
-                            <ImageIcon className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:scale-110 transition-transform" />
-                            View Gallery
-                          </a>
-                        </div>
-                      )}
-                    </div>
+                    <p className="font-mono text-zinc-300 text-sm md:text-base leading-relaxed max-w-2xl">
+                      {selectedStory.impact}
+                    </p>
                   </div>
-                </>
-              )}
-            </div>
+
+                  {/* Right: action buttons */}
+                  <div className="flex flex-row lg:flex-col gap-3 shrink-0">
+                    {selectedStory.link && (
+                      <button
+                        type="button"
+                        onClick={() => setIsPlayingVideo(true)}
+                        className="flex items-center gap-3 bg-white text-black font-black uppercase tracking-widest text-xs px-6 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
+                      >
+                        <PlayCircle className="w-4 h-4" /> Watch Video
+                      </button>
+                    )}
+                    {selectedStory.galleryLink && (
+                      <a
+                        href={selectedStory.galleryLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 border border-white text-white font-black uppercase tracking-widest text-xs px-6 py-4 hover:bg-white hover:text-black transition-colors"
+                      >
+                        <ImageIcon className="w-4 h-4" /> View Gallery
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
