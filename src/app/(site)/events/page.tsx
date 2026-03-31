@@ -17,7 +17,7 @@ export default function EventsPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black z-0" />
 
-        <Container className="flex flex-col items-start text-left px-4 md:px-16 lg:px-24 max-w-none font-sans relative z-10">
+        <Container className="flex flex-col items-start text-left px-4 font-sans relative z-10">
           <div className="mb-10">
             <span className="text-zinc-400 font-mono text-sm uppercase tracking-[0.4em] mb-4 block animate-pulse">
               ● THE SCHEDULE
@@ -42,14 +42,14 @@ export default function EventsPage() {
 
       {/* Ledger Section */}
       <section className="w-full py-16 md:py-48 bg-black text-white z-20 overflow-hidden relative border-t border-zinc-900">
-        <Container className="w-full px-4 max-w-7xl relative z-10">
+        <Container className="w-full px-4 relative z-10">
           <EventsLedger />
         </Container>
       </section>
 
       {/* Suggest Activity Section */}
       <section className="w-full py-32 bg-white text-black z-20 overflow-hidden relative border-t border-zinc-200">
-        <Container className="w-full px-4 max-w-7xl relative z-10">
+        <Container className="w-full px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12 bg-zinc-50 p-12 md:p-20 border border-zinc-200 group hover:border-black transition-colors duration-500">
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6 font-sans">

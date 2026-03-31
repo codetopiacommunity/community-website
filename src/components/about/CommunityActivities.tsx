@@ -42,7 +42,7 @@ const activities = [
 export function CommunityActivities() {
   return (
     <section className="w-full py-32 bg-white text-black z-20 border-t border-zinc-200">
-      <Container className="w-full px-4 max-w-7xl relative z-10">
+      <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1">
             <h2 className="text-zinc-500 font-mono text-sm uppercase tracking-[0.3em] mb-4">

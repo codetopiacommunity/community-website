@@ -37,7 +37,7 @@ export function Header() {
         {/* Right side: Navigation */}
         <div className="flex items-center gap-10">
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -51,7 +51,7 @@ export function Header() {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 text-grey-300 hover:text-grey-50 outline-none"
+            className="lg:hidden p-2 text-grey-300 hover:text-grey-50 outline-none"
             aria-label="Menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             type="button"
@@ -67,7 +67,7 @@ export function Header() {
 
       {/* Full-width Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-grey-900 border-b border-grey-800 animate-in slide-in-from-top-2">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-grey-900 border-b border-grey-800 animate-in slide-in-from-top-2">
           <nav className="flex flex-col px-6 py-4">
             {navLinks.map((link) => (
               <Link

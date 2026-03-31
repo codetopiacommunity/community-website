@@ -48,7 +48,7 @@ export function Newsletter() {
         </h2>
       </div>
 
-      <Container className="relative z-10 w-full px-4 max-w-7xl">
+      <Container className="relative z-10 w-full px-4">
         <div className="bg-black p-12 md:p-24 lg:p-32 flex flex-col lg:flex-row items-center justify-between gap-12 border-2 border-zinc-900 shadow-2xl">
           <div className="flex-1 text-center lg:text-left">
             <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-6 font-sans leading-none">
