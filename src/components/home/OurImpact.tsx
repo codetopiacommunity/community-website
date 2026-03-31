@@ -76,15 +76,13 @@ export function OurImpact() {
               local hubs.
             </p>
           </div>
-
-
         </Container>
 
         <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
           {/* The Brutalist Vertical Impact Log Container */}
-        <Container className="w-full px-6 lg:px-12">
-          <div className="h-[1200px] lg:h-[1650px] overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
-          <div className="flex flex-col border-2 border-zinc-800 bg-black">
+          <Container className="w-full px-6 lg:px-12">
+            <div className="h-[1200px] lg:h-[1650px] overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
+              <div className="flex flex-col border-2 border-zinc-800 bg-black">
                 {impactStories.map((story) => (
                   <button
                     type="button"
