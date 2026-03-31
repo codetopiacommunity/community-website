@@ -9,7 +9,7 @@ export default function ImpactPage() {
     <div className="flex-1 bg-black text-white min-h-screen">
       {/* Impact Hero: Mission Alignment */}
       <section className="w-full pt-32 pb-16 bg-black">
-        <Container className="max-w-7xl px-4">
+        <Container className="px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
             <div className="flex-1">
               <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
@@ -32,7 +32,7 @@ export default function ImpactPage() {
       <WallOfImpact />
 
       <section className="pb-32 bg-black border-t border-zinc-900">
-        <Container className="max-w-7xl px-4 mt-16">
+        <Container className="px-4 mt-16">
           <InstitutionalNote />
         </Container>
       </section>

@@ -17,6 +17,7 @@ import { SiBluesky } from "react-icons/si";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { CTA } from "@/components/home/CTA";
 import { Newsletter } from "@/components/home/Newsletter";
+import { Container } from "@/components/layout/Container";
 
 export function Footer() {
   const communityLinks = [
@@ -102,7 +103,7 @@ export function Footer() {
       <Newsletter />
       <CTA />
 
-      <div className="w-full px-4 md:px-12 lg:px-20">
+      <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-24">
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-10">
@@ -261,7 +262,7 @@ export function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

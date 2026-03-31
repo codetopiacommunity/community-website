@@ -34,7 +34,7 @@ export default function TeamPage() {
     <div className="flex-1 bg-black text-white min-h-screen">
       {/* Teams Section: Dynamic Hub */}
       <section className="w-full py-24 md:py-32 bg-black text-white z-20">
-        <Container className="w-full px-4 max-w-7xl relative z-10">
+        <Container className="w-full px-4 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 px-2">
             <div className="flex-1">
               <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">

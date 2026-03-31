@@ -44,7 +44,7 @@ export function WallOfImpact() {
 
   return (
     <section className="w-full pb-24 bg-black font-sans">
-      <Container className="max-w-7xl px-4">
+      <Container className="px-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-12 px-2">
           <div className="flex flex-wrap gap-2 p-1 bg-zinc-950 border border-zinc-900">
             <button

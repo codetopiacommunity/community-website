@@ -132,7 +132,7 @@ export default function AboutPage() {
 
       {/* Vision & Mission: Typographic Statement */}
       <section className="w-full py-32 md:py-48 bg-white text-black z-20 border-t border-zinc-200 relative overflow-hidden">
-        <Container className="w-full px-4 max-w-7xl relative z-10">
+        <Container className="w-full px-4 relative z-10">
           <div className="flex flex-col gap-12">
             <h2 className="text-zinc-400 font-mono text-sm uppercase tracking-[0.3em] mb-4">
               Our Vision
@@ -158,7 +158,7 @@ export default function AboutPage() {
 
       {/* Core Values: Architectural List */}
       <section className="w-full py-32 bg-black text-white z-20 border-t border-zinc-900 overflow-hidden">
-        <Container className="w-full px-4 max-w-7xl relative z-10">
+        <Container className="w-full px-4 relative z-10">
           <div className="mb-24">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 font-sans">
               THE MANIFESTO
@@ -193,7 +193,7 @@ export default function AboutPage() {
 
       {/* Leadership Brief Section */}
       <section className="w-full py-32 bg-black text-white z-20 border-t border-zinc-900">
-        <Container className="w-full px-4 max-w-7xl relative z-10">
+        <Container className="w-full px-4 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
             <div className="flex-1 px-2">
               <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">

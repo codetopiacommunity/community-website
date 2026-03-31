@@ -64,8 +64,8 @@ export function OurImpact() {
 
   return (
     <>
-      <section className="w-full py-32 bg-black flex flex-col items-center justify-center border-t border-zinc-900 overflow-hidden">
-        <Container className="flex flex-col items-center w-full px-4 font-sans max-w-7xl relative z-10">
+      <section className="w-full py-32 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
+        <Container className="w-full px-4 font-sans relative z-10">
           <div className="w-full mb-24 text-left">
             <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter mb-6 leading-none font-sans">
               THE <span className="text-zinc-600">IMPACT</span>
@@ -77,23 +77,20 @@ export function OurImpact() {
             </p>
           </div>
 
-          {/* Impact Cards Carousel Container */}
-          <div className="w-full flex items-center mb-12">
-            <div className="h-[1px] flex-1 bg-zinc-800" />
-          </div>
+
         </Container>
 
-        <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden px-4 md:px-8">
+        <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
           {/* The Brutalist Vertical Impact Log Container */}
-          <div className="w-full max-w-7xl">
-            <div className="h-[80vh] overflow-y-auto overflow-x-hidden scroll-smooth pr-4 md:pr-8 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
-              <div className="flex flex-col border-2 border-zinc-800 bg-black">
+        <Container className="w-full px-6 lg:px-12">
+          <div className="h-[1200px] lg:h-[1650px] overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
+          <div className="flex flex-col border-2 border-zinc-800 bg-black">
                 {impactStories.map((story) => (
                   <button
                     type="button"
                     key={story.id}
                     onClick={() => setSelectedStory(story)}
-                    className="group relative flex flex-col w-full shrink-0 h-auto min-h-[300px] lg:min-h-[400px] border-b-2 border-zinc-800 last:border-b-0 bg-black overflow-hidden cursor-pointer [direction:ltr] text-left"
+                    className="group relative flex flex-col w-full shrink-0 h-auto min-h-[400px] lg:min-h-[550px] border-b-2 border-zinc-800 last:border-b-0 bg-black overflow-hidden cursor-pointer [direction:ltr] text-left"
                   >
                     {/* Background Panoramic Image Layer */}
                     <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
@@ -155,23 +152,7 @@ export function OurImpact() {
                 ))}
               </div>
             </div>
-          </div>
-          {/* Global CTA */}
-          {/* <Container className="w-full flex justify-center mt-6">
-            <CtaButton
-              className="bg-white text-black hover:bg-zinc-200 !px-8 text-sm"
-              offsetClassName="bg-zinc-700"
-            >
-              <span className="flex items-center">
-                INVITE US TO YOUR CAMPUS OR HUB
-                <MoveRight
-                  className="ml-2 w-4 h-4"
-                  strokeWidth={2.5}
-                  size={2}
-                />
-              </span>
-            </CtaButton>
-          </Container> */}
+          </Container>
         </div>
       </section>
 

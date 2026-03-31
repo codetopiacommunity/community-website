@@ -31,7 +31,7 @@ const offers = [
 export function WhatWeOffer() {
   return (
     <section className="relative w-full py-32 bg-black text-white border-t border-zinc-900 overflow-hidden">
-      <Container className="relative z-10 w-full px-4 max-w-7xl">
+      <Container className="relative z-10 w-full px-4">
         <div className="mb-24 text-left">
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-none font-sans">
             WHAT WE <span className="text-zinc-500">OFFER</span>
@@ -49,19 +49,19 @@ export function WhatWeOffer() {
             key={offer.title}
             className="group relative border-b border-zinc-900 transition-colors hover:bg-zinc-900/50"
           >
-            <Container className="relative z-10 w-full px-4 max-w-7xl flex flex-col md:flex-row items-start md:items-center justify-between py-16">
+            <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-16">
               {/* Massive Architectural Number */}
               <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-black text-white/[0.02] pointer-events-none select-none">
                 0{index + 1}
               </span>
 
-              <div className="relative z-10 flex items-center gap-6 mb-4 md:mb-0">
-                <offer.icon className="w-8 h-8 text-white" strokeWidth={2} />
-                <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter font-sans">
+              <div className="relative z-10 flex items-center gap-6 mb-4 lg:mb-0">
+                <offer.icon className="w-8 h-8 lg:w-12 lg:h-12 text-white shrink-0" strokeWidth={2} />
+                <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter font-sans">
                   {offer.title}
                 </h3>
               </div>
-              <p className="relative z-10 text-zinc-500 font-mono text-base md:text-lg max-w-xl md:text-right">
+              <p className="relative z-10 text-zinc-500 font-mono text-base lg:text-lg max-w-xl lg:text-right">
                 {offer.description}
               </p>
             </Container>

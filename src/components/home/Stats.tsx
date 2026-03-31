@@ -18,7 +18,7 @@ const stats = [
 export function Stats() {
   return (
     <section className="w-full py-32 bg-white text-black z-20 border-t border-zinc-100 overflow-hidden">
-      <Container className="w-full px-4 max-w-7xl relative z-10">
+      <Container className="w-full px-4 relative z-10">
         <div className="mb-24 text-left">
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-none font-sans">
             OUR <span className="text-zinc-300">TRACTION</span>
