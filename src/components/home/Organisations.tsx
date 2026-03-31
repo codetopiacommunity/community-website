@@ -88,7 +88,7 @@ function SubSection({
   if (items.length === 0) return null;
 
   return (
-    <div className="w-full flex flex-col items-center mb-14 last:mb-0 px-4 md:px-16 lg:px-24">
+    <div className="w-full flex flex-col items-center mb-14 last:mb-0 px-6 lg:px-12">
       <h3 className="text-white text-sm font-bold tracking-[0.25em] mb-6 uppercase text-center font-sans opacity-50">
         {title}
       </h3>

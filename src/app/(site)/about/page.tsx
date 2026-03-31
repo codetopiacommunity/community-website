@@ -96,7 +96,7 @@ export default function AboutPage() {
   return (
     <>
       <div className="flex-1 flex flex-col items-start justify-center py-24 md:py-32 bg-black relative overflow-hidden">
-        <Container className="flex flex-col items-start text-left px-4 md:px-16 lg:px-24 max-w-none font-sans relative z-10">
+        <Container className="flex flex-col items-start text-left px-4 font-sans relative z-10">
           {/* Community Logo */}
           <div className="mb-12">
             <Image

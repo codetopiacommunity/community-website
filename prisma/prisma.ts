@@ -21,7 +21,7 @@ if (globalForPrisma.prisma) {
   // Hardened pool for flaky connections
   const pool = new Pool({
     connectionString,
-    connectionTimeoutMillis: 15000, // 15s timeout for cold starts
+    connectionTimeoutMillis: 30000, // 30s timeout for cold starts
     idleTimeoutMillis: 30000, // 30s idle before closing
     max: 10, // Max 10 connections
     ssl: {
