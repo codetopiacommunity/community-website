@@ -21,7 +21,7 @@ import { Container } from "@/components/layout/Container";
 
 export function Footer() {
   const communityLinks = [
-    { name: "Code of Conduct", href: "#" },
+    { name: "Code of Conduct", href: "/code-of-conduct" },
     { name: "Become a Sponsor", href: "#" },
     { name: "Become a Volunteer", href: "#" },
     { name: "Join Our Discord Server", href: "https://discord.gg/nPmRWdTQAK" },
