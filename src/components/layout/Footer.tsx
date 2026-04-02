@@ -30,7 +30,7 @@ export function Footer() {
   const quickLinks = [
     { name: "About Us", href: "/about" },
     { name: "The Team", href: "/team" },
-    { name: "The Wall", href: "/impact" },
+    // { name: "The Wall", href: "/impact" },
     { name: "Events", href: "/events" },
     { name: "Articles", href: "/articles" },
     { name: "Gallery", href: "/gallery" },
