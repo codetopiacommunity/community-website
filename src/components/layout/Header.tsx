@@ -10,7 +10,7 @@ import { Container } from "./Container";
 const navLinks = [
   { name: "ABOUT", href: "/about" },
   { name: "TEAM", href: "/team" },
-  { name: "WALL", href: "/impact" },
+  // { name: "WALL", href: "/impact" },
   { name: "EVENT & ACTIVITIES", href: "/events" },
   { name: "ARTICLES", href: "/articles" },
   { name: "GALLERY", href: "/gallery" },
