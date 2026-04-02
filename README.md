@@ -9,7 +9,7 @@
 
 [![CI](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml/badge.svg)](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml)
 
-[🌐 Live Site](https://codetopia.org) · [🚧 Staging](https://staging.codetopia.org) · [💬 Discord](https://discord.gg/3nBFMfdNmB) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
+[🌐 Live Site](https://codetopia.org) · [🚧 Staging](https://staging.codetopia.org) · [💬 Discord](https://discord.gg/nPmRWdTQAK) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
 
 </div>
 
@@ -106,16 +106,16 @@ We welcome contributions from everyone! Please read our [Contributing Guide](CON
 | Platform | Link |
 |----------|------|
 | 🌍 **Website** | [community.codetopia.org](https://community.codetopia.org) |
-| 💬 **Discord** | [Join our Discord](https://discord.gg/3nBFMfdNmB) |
+| 💬 **Discord** | [Join our Discord](https://discord.gg/nPmRWdTQAK) |
 | 📺 **YouTube** | [@codetopiacommunity](https://www.youtube.com/@codetopiacommunity) |
 | 💼 **LinkedIn** | [Codetopia Community](https://www.linkedin.com/company/codetopiacommunity) |
 | 🐦 **Twitter/X** | [@codetopiacom](https://x.com/codetopiacom) |
 | 📸 **Instagram** | [@codetopiacom](https://www.instagram.com/codetopiacom/) |
 | 🧵 **Threads** | [@codetopiacom](http://www.threads.com/codetopiacom/) |
-| 🎵 **TikTok** | [@codetopiacommunity](https://www.tiktok.com/@codetopiacommunity) |
+| 🎵 **TikTok** | [@codetopiacommunity](https://www.tiktok.com/@codetopiacom) |
 | 🦋 **Bluesky** | [@codetopiacommunity](https://bsky.app/profile/codetopiacommunity.bsky.social) |
 | 🐘 **Mastodon** | [@codetopiacommunity](https://mastodon.social/@codetopiacommunity) |
-| 🟢 **WhatsApp** | [Join our Community](https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9) |
+| 🟢 **WhatsApp** | [Join our Community](https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o) |
 | 🐙 **GitHub** | [codetopiacommunity](https://github.com/codetopiacommunity) |
 
 ---

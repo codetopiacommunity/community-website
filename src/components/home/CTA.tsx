@@ -34,7 +34,7 @@ export function CTA() {
             offsetClassName="bg-zinc-600"
           >
             <a
-              href="https://discord.gg/3nBFMfdNmB"
+              href="https://discord.gg/nPmRWdTQAK"
               target="_blank"
               rel="noreferrer"
             >
