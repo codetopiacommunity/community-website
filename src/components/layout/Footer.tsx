@@ -24,11 +24,7 @@ export function Footer() {
     { name: "Code of Conduct", href: "#" },
     { name: "Become a Sponsor", href: "#" },
     { name: "Become a Volunteer", href: "#" },
-    { name: "Join Our Discord Server", href: "https://discord.gg/3nBFMfdNmB" },
-    {
-      name: "Join Our WhatsApp Community",
-      href: "https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9",
-    },
+    { name: "Join Our Discord Server", href: "https://discord.gg/nPmRWdTQAK" },
   ];
 
   const quickLinks = [
@@ -43,7 +39,7 @@ export function Footer() {
   const socialIcons = [
     {
       icon: FaDiscord,
-      href: "https://discord.gg/3nBFMfdNmB",
+      href: "https://discord.gg/nPmRWdTQAK",
       label: "Discord",
     },
     {
@@ -73,7 +69,7 @@ export function Footer() {
     },
     {
       icon: FaTiktok,
-      href: "https://www.tiktok.com/@codetopiacommunity",
+      href: "https://www.tiktok.com/@codetopiacom",
       label: "TikTok",
     },
     {
@@ -88,7 +84,7 @@ export function Footer() {
     },
     {
       icon: FaWhatsapp,
-      href: "https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9",
+      href: "https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o",
       label: "WhatsApp",
     },
     {

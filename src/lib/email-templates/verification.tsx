@@ -16,7 +16,7 @@ import logo from "@/assets/images/logos/codetopia-community.png";
 const socialIcons = [
   {
     network: "discord",
-    href: "https://discord.gg/3nBFMfdNmB",
+    href: "https://discord.gg/nPmRWdTQAK",
     label: "Discord",
   },
   {
@@ -57,12 +57,12 @@ const socialIcons = [
   },
   {
     network: "tiktok",
-    href: "https://www.tiktok.com/@codetopiacommunity",
+    href: "https://www.tiktok.com/@codetopiacom",
     label: "TikTok",
   },
   {
     network: "whatsapp",
-    href: "https://chat.whatsapp.com/LiiirOwOnPz0XQ3vupioi9",
+    href: "https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o",
     label: "WhatsApp",
   },
 ];

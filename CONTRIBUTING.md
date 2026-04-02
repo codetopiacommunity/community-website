@@ -127,7 +127,7 @@ In your PR description, please include:
 If you are stuck or have questions, feel free to:
 
 - Open an issue on GitHub
-- Reach out on our [Discord](https://discord.gg/3nBFMfdNmB)
+- Reach out on our [Discord](https://discord.gg/nPmRWdTQAK)
 - Visit [codetopia.org](https://codetopia.org)
 
 We are happy to help. Welcome to the community! 🚀
