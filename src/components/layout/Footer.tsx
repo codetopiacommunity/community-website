@@ -247,13 +247,13 @@ export function Footer() {
 
           {/* Right Side: Legal Links */}
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-10 gap-y-4 order-1 md:order-2">
-            {["Privacy", "Terms", "Cookies"].map((item) => (
+            {[{ label: "Privacy", href: "/privacy" }].map((item) => (
               <Link
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 className="text-zinc-700 hover:text-white transition-colors font-sans text-[10px] uppercase tracking-[0.1em] whitespace-nowrap font-normal"
               >
-                {item}
+                {item.label}
               </Link>
             ))}
           </div>
