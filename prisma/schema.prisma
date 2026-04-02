@@ -48,6 +48,31 @@ model TeamMember {
   @@map("team_members")
 }
 
+model GalleryAlbum {
+  id         Int            @id @default(autoincrement())
+  slug       String         @unique
+  title      String
+  date       String
+  category   String
+  coverImage String         @map("cover_image")
+  photos     GalleryPhoto[]
+  createdAt  DateTime       @default(now()) @map("created_at")
+  updatedAt  DateTime       @updatedAt @map("updated_at")
+
+  @@map("gallery_albums")
+}
+
+model GalleryPhoto {
+  id        Int          @id @default(autoincrement())
+  src       String
+  alt       String
+  albumId   Int          @map("album_id")
+  album     GalleryAlbum @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  createdAt DateTime     @default(now()) @map("created_at")
+
+  @@map("gallery_photos")
+}
+
 model Event {
   id                Int      @id @default(autoincrement())
   classification    String
