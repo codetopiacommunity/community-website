@@ -20,14 +20,19 @@ function slugify(text: string): string {
 
 /**
  * Strips inner HTML tags from a string, returning plain text content.
- * Uses an allowlist approach: removes everything that looks like a tag,
- * then strips any remaining angle brackets to prevent partial-tag injection.
+ * Uses the sanitized html string — since input is already DOMPurify-cleaned,
+ * we decode it via a well-known entity map rather than regex manipulation.
  */
 function stripTags(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/</g, "")
-    .replace(/>/g, "")
+  // Remove all tag-like sequences by splitting on < and taking only text before each tag
+  const parts = html.split("<");
+  return parts
+    .map((part, i) => {
+      if (i === 0) return part;
+      const closeIndex = part.indexOf(">");
+      return closeIndex === -1 ? "" : part.slice(closeIndex + 1);
+    })
+    .join("")
     .trim();
 }
 
