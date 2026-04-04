@@ -6,8 +6,6 @@ export interface TocEntry {
 
 /**
  * Derives a slug-style id from heading text.
- * Lowercases, strips non-alphanumeric characters (except spaces/hyphens),
- * and replaces spaces with hyphens.
  */
 function slugify(text: string): string {
   return text
@@ -20,11 +18,8 @@ function slugify(text: string): string {
 
 /**
  * Strips inner HTML tags from a string, returning plain text content.
- * Uses the sanitized html string — since input is already DOMPurify-cleaned,
- * we decode it via a well-known entity map rather than regex manipulation.
  */
 function stripTags(html: string): string {
-  // Remove all tag-like sequences by splitting on < and taking only text before each tag
   const parts = html.split("<");
   return parts
     .map((part, i) => {
@@ -34,6 +29,26 @@ function stripTags(html: string): string {
     })
     .join("")
     .trim();
+}
+
+/**
+ * Injects id attributes into h1–h6 tags in an HTML string
+ * so TOC anchor links have targets to scroll to.
+ */
+export function injectHeadingIds(html: string): string {
+  if (!html) return html;
+
+  return html.replace(
+    /<h([1-6])([^>]*)>([\s\S]*?)<\/h\1>/gi,
+    (match, level, attrs, inner) => {
+      const text = stripTags(inner);
+      const id = slugify(text);
+      if (!id) return match;
+      // Strip any existing id attribute and replace with our slugified one
+      const attrsWithoutId = attrs.replace(/\s*id\s*=\s*["'][^"']*["']/gi, "");
+      return `<h${level}${attrsWithoutId} id="${id}">${inner}</h${level}>`;
+    },
+  );
 }
 
 /**

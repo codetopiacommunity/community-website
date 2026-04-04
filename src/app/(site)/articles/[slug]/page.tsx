@@ -1,14 +1,14 @@
-import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import sanitizeHtml from "sanitize-html";
 import { prisma } from "@/../prisma/prisma";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import ArticleContent from "@/components/articles/ArticleContent";
 import { TableOfContents } from "@/components/articles/TableOfContents";
 import { Container } from "@/components/layout/Container";
 import { fetchArticle, fetchArticles } from "@/lib/hashnode";
-import { extractToc } from "@/lib/toc";
+import { extractToc, injectHeadingIds } from "@/lib/toc";
 
 export const dynamic = "force-dynamic";
 
@@ -26,11 +26,30 @@ export default async function ArticleDetailPage({
   const article = await fetchArticle(host, slug);
   if (!article) notFound();
 
-  const sanitizedHtml = DOMPurify.sanitize(article.content.html, {
-    USE_PROFILES: { html: true },
+  const sanitizedHtml = sanitizeHtml(article.content.html, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+      "img",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "pre",
+      "code",
+      "iframe",
+    ]),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      "*": ["class", "id", "style"],
+      a: ["href", "name", "target", "rel"],
+      img: ["src", "alt", "width", "height", "loading"],
+      iframe: ["src", "width", "height", "frameborder", "allowfullscreen"],
+    },
   });
 
-  const toc = extractToc(sanitizedHtml);
+  const htmlWithIds = injectHeadingIds(sanitizedHtml);
+  const toc = extractToc(htmlWithIds);
 
   const allArticles = await fetchArticles(host);
   const articleTagSlugs = new Set(article.tags.map((t) => t.slug));
@@ -134,7 +153,7 @@ export default async function ArticleDetailPage({
             >
               {/* Article Content */}
               <main className="min-w-0">
-                <ArticleContent html={sanitizedHtml} />
+                <ArticleContent html={htmlWithIds} />
               </main>
 
               {/* Sidebar TOC */}
