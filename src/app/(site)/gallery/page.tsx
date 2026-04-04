@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
+import { Images, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -57,9 +57,20 @@ export default function GalleryPage() {
               <Loader2 className="w-8 h-8 animate-spin text-zinc-500" />
             </div>
           ) : albums.length === 0 ? (
-            <p className="text-zinc-600 font-mono text-sm text-center py-24">
-              No albums yet.
-            </p>
+            <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
+              <div className="w-24 h-24 rounded-2xl border border-zinc-800 flex items-center justify-center">
+                <Images className="w-10 h-10 text-zinc-700" />
+              </div>
+              <div className="text-center space-y-2">
+                <p className="text-white font-black uppercase tracking-tighter text-2xl font-sans">
+                  No albums yet
+                </p>
+                <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
+                  The gallery is empty for now — come back soon for photos from
+                  our events.
+                </p>
+              </div>
+            </div>
           ) : (
             <>
               <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-10 px-2">
@@ -79,7 +90,6 @@ export default function GalleryPage() {
                         fill
                         className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                       />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
                       <div className="absolute top-4 left-4">
                         <span className="bg-black/80 text-zinc-400 font-mono text-[10px] uppercase tracking-widest px-3 py-1">
                           {album.category}
