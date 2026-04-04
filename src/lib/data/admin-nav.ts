@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Mail,
   Settings,
+  Star,
   Users,
   Users2,
 } from "lucide-react";
@@ -37,6 +38,11 @@ export const adminNavData = {
           title: "Gallery",
           url: "/admin/gallery",
           icon: ImageIcon,
+        },
+        {
+          title: "Impact",
+          url: "/admin/impact",
+          icon: Star,
         },
       ],
     },

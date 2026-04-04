@@ -11,8 +11,20 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
+
 // import { CtaButton } from "@/components/ui/cta-button";
-import { impactStories } from "@/lib/data/impact-stories";
+
+interface ImpactStory {
+  id: number;
+  title: string;
+  impact: string;
+  imageUrl: string;
+  logoUrl: string;
+  date: string;
+  location: string;
+  link?: string | null;
+  galleryLink?: string | null;
+}
 
 function getYouTubeEmbedUrl(url: string) {
   if (!url) return "";
@@ -44,10 +56,18 @@ function StoryLogoWatermark({ logo, alt }: { logo: string; alt: string }) {
 }
 
 export function OurImpact() {
-  const [selectedStory, setSelectedStory] = useState<
-    (typeof impactStories)[0] | null
-  >(null);
+  const [selectedStory, setSelectedStory] = useState<ImpactStory | null>(null);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [impactStories, setImpactStories] = useState<ImpactStory[]>([]);
+
+  useEffect(() => {
+    fetch("/api/impact")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setImpactStories(data);
+      })
+      .catch(() => {});
+  }, []);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -81,75 +101,122 @@ export function OurImpact() {
         <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
           {/* The Brutalist Vertical Impact Log Container */}
           <Container className="w-full px-6 lg:px-12">
-            <div className="h-[1200px] lg:h-[1650px] overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
-              <div className="flex flex-col border-2 border-zinc-800 bg-black">
-                {impactStories.map((story) => (
-                  <button
-                    type="button"
-                    key={story.id}
-                    onClick={() => setSelectedStory(story)}
-                    className="group relative flex flex-col w-full shrink-0 h-auto min-h-[400px] lg:min-h-[550px] border-b-2 border-zinc-800 last:border-b-0 bg-black overflow-hidden cursor-pointer [direction:ltr] text-left"
-                  >
-                    {/* Background Panoramic Image Layer */}
-                    <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-                      <Image
-                        src={story.image}
-                        alt={story.title}
-                        fill
-                        unoptimized
-                        className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0 opacity-40 group-hover:opacity-100"
-                      />
-                      {/* Dark scrim to guarantee text legibility */}
-                      <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/90 to-black/20 group-hover:from-black/90 group-hover:via-black/60 group-hover:to-transparent transition-colors duration-500 z-10" />
-                    </div>
-
-                    {/* Logo watermark top-right */}
-                    <div className="absolute top-5 right-5 z-30 opacity-90 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="relative z-10 scale-[100%] origin-top-right">
-                        <StoryLogoWatermark
-                          logo={story.logo}
-                          alt={story.title}
+            {impactStories.length === 0 ? (
+              <div className="border-2 border-zinc-800 bg-black flex flex-col items-center justify-center py-32 px-8 text-center gap-8">
+                <div className="flex flex-col items-center gap-6">
+                  <div className="border border-zinc-800 p-6">
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {(
+                        [
+                          "g0",
+                          "g1",
+                          "g2",
+                          "g3",
+                          "g4",
+                          "g5",
+                          "g6",
+                          "g7",
+                          "g8",
+                        ] as const
+                      ).map((key, i) => (
+                        <div
+                          key={key}
+                          className={`h-3 w-3 ${i % 3 === 1 || i === 4 ? "bg-zinc-700" : "bg-zinc-900"}`}
                         />
-                      </div>
+                      ))}
                     </div>
-
-                    {/* Content Overlay */}
-                    <div className="relative z-20 w-full lg:w-[60%] flex flex-col justify-center px-6 py-8 md:p-8 lg:p-12 h-full flex-grow">
-                      {/* Badges */}
-                      <div className="flex flex-wrap gap-2 mb-4 md:mb-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        {story.link && (
-                          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                            <PlayCircle className="w-3 h-3" /> VIDEO
-                          </span>
-                        )}
-                        {story.galleryLink && (
-                          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                            <ImageIcon className="w-3 h-3" /> GALLERY
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Title */}
-                      <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg font-sans">
-                        {story.title}
-                      </h4>
-
-                      {/* Meta Info */}
-                      <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
-                        <div className="flex items-center gap-3">
-                          <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-                          {story.date}
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" />
-                          <span>{story.location}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                ))}
+                  </div>
+                  <div className="space-y-3">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-700">
+                      — LOG EMPTY —
+                    </p>
+                    <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-zinc-800 leading-none font-sans">
+                      NO IMPACT <br /> RECORDED YET
+                    </h3>
+                    <p className="text-zinc-600 font-mono text-xs leading-relaxed max-w-sm">
+                      The community impact log is currently empty. Stories will
+                      appear here as Codetopia continues to grow and make its
+                      mark.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-4 text-zinc-800 font-mono text-[9px] uppercase tracking-[0.4em]">
+                    <span className="h-px w-12 bg-zinc-800" />A CODETOPIA
+                    INITIATIVE
+                    <span className="h-px w-12 bg-zinc-800" />
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="max-h-[1200px] lg:max-h-[1650px] overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
+                <div className="flex flex-col border-2 border-zinc-800 bg-black">
+                  {impactStories.map((story) => (
+                    <button
+                      type="button"
+                      key={story.id}
+                      onClick={() => setSelectedStory(story)}
+                      className="group relative flex flex-col w-full shrink-0 h-auto min-h-[400px] lg:min-h-[550px] border-b-2 border-zinc-800 last:border-b-0 bg-black overflow-hidden cursor-pointer [direction:ltr] text-left"
+                    >
+                      {/* Background Panoramic Image Layer */}
+                      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+                        <Image
+                          src={story.imageUrl}
+                          alt={story.title}
+                          fill
+                          unoptimized
+                          className="object-cover grayscale group-hover:grayscale-0 scale-105 group-hover:scale-100 transition-all duration-700 ease-out z-0 opacity-40 group-hover:opacity-100"
+                        />
+                        {/* Dark scrim to guarantee text legibility */}
+                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/90 to-black/20 group-hover:from-black/90 group-hover:via-black/60 group-hover:to-transparent transition-colors duration-500 z-10" />
+                      </div>
+
+                      {/* Logo watermark top-right */}
+                      <div className="absolute top-5 right-5 z-30 opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="relative z-10 scale-[100%] origin-top-right">
+                          <StoryLogoWatermark
+                            logo={story.logoUrl}
+                            alt={story.title}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Content Overlay */}
+                      <div className="relative z-20 w-full lg:w-[60%] flex flex-col justify-center px-6 py-8 md:p-8 lg:p-12 h-full flex-grow">
+                        {/* Badges */}
+                        <div className="flex flex-wrap gap-2 mb-4 md:mb-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                          {story.link && (
+                            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                              <PlayCircle className="w-3 h-3" /> VIDEO
+                            </span>
+                          )}
+                          {story.galleryLink && (
+                            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                              <ImageIcon className="w-3 h-3" /> GALLERY
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Title */}
+                        <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-5xl lg:text-6xl leading-[1.1] translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75 mb-6 lg:mb-8 max-w-4xl drop-shadow-lg font-sans">
+                          {story.title}
+                        </h4>
+
+                        {/* Meta Info */}
+                        <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
+                          <div className="flex items-center gap-3">
+                            <Calendar className="w-4 h-4 md:w-5 md:h-5" />
+                            {story.date}
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" />
+                            <span>{story.location}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </Container>
         </div>
       </section>
@@ -191,8 +258,8 @@ export function OurImpact() {
               <>
                 {/* Full-bleed background image */}
                 <Image
-                  src={selectedStory.image as string}
-                  alt={selectedStory.title as string}
+                  src={selectedStory.imageUrl}
+                  alt={selectedStory.title}
                   fill
                   unoptimized
                   className="object-cover"
@@ -221,7 +288,7 @@ export function OurImpact() {
                 {/* Story logo watermark */}
                 <div className="absolute top-6 right-6 z-20 mt-20">
                   <StoryLogoWatermark
-                    logo={selectedStory.logo}
+                    logo={selectedStory.logoUrl}
                     alt={selectedStory.title}
                   />
                 </div>
