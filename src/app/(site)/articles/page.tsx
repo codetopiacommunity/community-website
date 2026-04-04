@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { fetchArticles, type HashnodeArticle } from "@/lib/hashnode";
 import { ArticlesGrid } from "./ArticlesGrid";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function ArticlesPage() {
   const config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });

@@ -75,6 +75,7 @@ async function gqlFetch<T>(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query, variables }),
     next: { revalidate: 3600 },
+    signal: AbortSignal.timeout(10_000),
   });
 
   if (!res.ok) {

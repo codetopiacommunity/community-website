@@ -11,6 +11,7 @@ import { fetchArticle, fetchArticles } from "@/lib/hashnode";
 import { extractToc } from "@/lib/toc";
 
 export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function ArticleDetailPage({
   params,
