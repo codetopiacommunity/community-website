@@ -89,6 +89,16 @@ model ImpactStory {
   @@map("impact_stories")
 }
 
+model ArticlesConfig {
+  id            Int      @id @default(autoincrement())
+  hashnodeHost  String   @map("hashnode_host")
+  featuredSlugs String[] @map("featured_slugs")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("articles_config")
+}
+
 model Event {
   id                Int      @id @default(autoincrement())
   classification    String

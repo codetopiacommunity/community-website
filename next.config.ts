@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.hashnode.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "hashnode.com",
+        pathname: "/**",
+      },
     ],
   },
 };
