@@ -20,9 +20,15 @@ function slugify(text: string): string {
 
 /**
  * Strips inner HTML tags from a string, returning plain text content.
+ * Uses an allowlist approach: removes everything that looks like a tag,
+ * then strips any remaining angle brackets to prevent partial-tag injection.
  */
 function stripTags(html: string): string {
-  return html.replace(/<[^>]+>/g, "").trim();
+  return html
+    .replace(/<[^>]*>/g, "")
+    .replace(/</g, "")
+    .replace(/>/g, "")
+    .trim();
 }
 
 /**
