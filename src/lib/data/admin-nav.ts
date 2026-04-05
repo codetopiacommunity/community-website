@@ -1,5 +1,4 @@
 import {
-  Bell,
   Calendar,
   FileText,
   Image as ImageIcon,
@@ -72,11 +71,6 @@ export const adminNavData = {
           title: "Settings",
           url: "/admin/settings",
           icon: Settings,
-        },
-        {
-          title: "Notifications",
-          url: "/admin/notifications",
-          icon: Bell,
         },
       ],
     },
