@@ -29,7 +29,14 @@ export async function POST(request: Request) {
 
   const { email } = await request.json();
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (
+    !email ||
+    !email.includes("@") ||
+    email.indexOf("@") !== email.lastIndexOf("@") ||
+    email.startsWith("@") ||
+    email.endsWith("@") ||
+    email.endsWith(".")
+  ) {
     return NextResponse.json(
       { error: "Valid email is required" },
       { status: 400 },
