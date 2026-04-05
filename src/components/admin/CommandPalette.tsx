@@ -16,6 +16,20 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { COMMAND_DEFS } from "./commandPaletteCommands";
+
+const ICON_MAP: Record<string, React.ReactNode> = {
+  LayoutDashboard: <LayoutDashboard className="h-4 w-4" />,
+  Calendar: <Calendar className="h-4 w-4" />,
+  FileText: <FileText className="h-4 w-4" />,
+  Image: <ImageIcon className="h-4 w-4" />,
+  Star: <Star className="h-4 w-4" />,
+  Users2: <Users2 className="h-4 w-4" />,
+  Mail: <Mail className="h-4 w-4" />,
+  Settings: <Settings className="h-4 w-4" />,
+  Plus: <Plus className="h-4 w-4" />,
+  Trash2: <Trash2 className="h-4 w-4" />,
+};
 
 interface Command {
   id: string;
@@ -41,191 +55,11 @@ export function CommandPalette({
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const commands: Command[] = [
-    // Navigate
-    {
-      id: "nav-dashboard",
-      label: "Go to Dashboard",
-      icon: <LayoutDashboard className="h-4 w-4" />,
-      action: () => router.push("/admin"),
-      keywords: ["dashboard", "home", "overview"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-events",
-      label: "Go to Events",
-      icon: <Calendar className="h-4 w-4" />,
-      action: () => router.push("/admin/events"),
-      keywords: ["events", "calendar"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-articles",
-      label: "Go to Articles",
-      icon: <FileText className="h-4 w-4" />,
-      action: () => router.push("/admin/articles"),
-      keywords: ["articles", "blog", "posts"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-gallery",
-      label: "Go to Gallery",
-      icon: <ImageIcon className="h-4 w-4" />,
-      action: () => router.push("/admin/gallery"),
-      keywords: ["gallery", "images", "photos"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-impact",
-      label: "Go to Impact",
-      icon: <Star className="h-4 w-4" />,
-      action: () => router.push("/admin/impact"),
-      keywords: ["impact", "stories"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-team",
-      label: "Go to Team",
-      icon: <Users2 className="h-4 w-4" />,
-      action: () => router.push("/admin/team"),
-      keywords: ["team", "members", "people"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-newsletter",
-      label: "Go to Newsletter",
-      icon: <Mail className="h-4 w-4" />,
-      action: () => router.push("/admin/newsletter"),
-      keywords: ["newsletter", "email", "broadcast"],
-      group: "Navigate",
-    },
-    {
-      id: "nav-settings",
-      label: "Go to Settings",
-      icon: <Settings className="h-4 w-4" />,
-      action: () => router.push("/admin/settings"),
-      keywords: ["settings", "config"],
-      group: "Navigate",
-    },
-
-    // Create
-    {
-      id: "new-event",
-      label: "Add New Event",
-      description: "Create a new event",
-      icon: <Plus className="h-4 w-4" />,
-      action: () => router.push("/admin/events"),
-      keywords: ["add event", "new event", "create event"],
-      group: "Create",
-    },
-    {
-      id: "new-article",
-      label: "Add New Article",
-      description: "Write a new article",
-      icon: <Plus className="h-4 w-4" />,
-      action: () => router.push("/admin/articles"),
-      keywords: ["add article", "new article", "write", "create article"],
-      group: "Create",
-    },
-    {
-      id: "new-gallery",
-      label: "Add Gallery Album",
-      description: "Upload a new gallery",
-      icon: <Plus className="h-4 w-4" />,
-      action: () => router.push("/admin/gallery"),
-      keywords: ["add gallery", "new gallery", "upload", "album"],
-      group: "Create",
-    },
-    {
-      id: "new-impact",
-      label: "Add Impact Story",
-      description: "Create an impact story",
-      icon: <Plus className="h-4 w-4" />,
-      action: () => router.push("/admin/impact"),
-      keywords: ["add impact", "new impact", "story"],
-      group: "Create",
-    },
-    {
-      id: "new-team",
-      label: "Add Team Member",
-      description: "Add a new team member",
-      icon: <Plus className="h-4 w-4" />,
-      action: () => router.push("/admin/team"),
-      keywords: ["add team", "new member", "add member"],
-      group: "Create",
-    },
-    {
-      id: "new-newsletter",
-      label: "Compose Newsletter",
-      description: "Write a new newsletter",
-      icon: <Plus className="h-4 w-4" />,
-      action: () => router.push("/admin/newsletter/new"),
-      keywords: ["compose", "new newsletter", "write newsletter", "broadcast"],
-      group: "Create",
-    },
-
-    // Delete / Manage
-    {
-      id: "delete-event",
-      label: "Delete an Event",
-      description: "Go to events to delete",
-      icon: <Trash2 className="h-4 w-4" />,
-      action: () => router.push("/admin/events"),
-      keywords: ["delete event", "remove event"],
-      group: "Manage",
-      variant: "danger",
-    },
-    {
-      id: "delete-article",
-      label: "Delete an Article",
-      description: "Go to articles to delete",
-      icon: <Trash2 className="h-4 w-4" />,
-      action: () => router.push("/admin/articles"),
-      keywords: ["delete article", "remove article"],
-      group: "Manage",
-      variant: "danger",
-    },
-    {
-      id: "delete-gallery",
-      label: "Delete a Gallery",
-      description: "Go to gallery to delete",
-      icon: <Trash2 className="h-4 w-4" />,
-      action: () => router.push("/admin/gallery"),
-      keywords: ["delete gallery", "remove gallery"],
-      group: "Manage",
-      variant: "danger",
-    },
-    {
-      id: "delete-impact",
-      label: "Delete Impact Story",
-      description: "Go to impact to delete",
-      icon: <Trash2 className="h-4 w-4" />,
-      action: () => router.push("/admin/impact"),
-      keywords: ["delete impact", "remove story"],
-      group: "Manage",
-      variant: "danger",
-    },
-    {
-      id: "delete-team",
-      label: "Remove Team Member",
-      description: "Go to team to remove",
-      icon: <Trash2 className="h-4 w-4" />,
-      action: () => router.push("/admin/team"),
-      keywords: ["delete team", "remove member"],
-      group: "Manage",
-      variant: "danger",
-    },
-    {
-      id: "delete-newsletter",
-      label: "Delete a Newsletter",
-      description: "Go to newsletter to delete",
-      icon: <Trash2 className="h-4 w-4" />,
-      action: () => router.push("/admin/newsletter"),
-      keywords: ["delete newsletter", "remove newsletter"],
-      group: "Manage",
-      variant: "danger",
-    },
-  ];
+  const commands: Command[] = COMMAND_DEFS.map((def) => ({
+    ...def,
+    icon: ICON_MAP[def.iconName],
+    action: () => router.push(def.path),
+  }));
 
   const filtered = query.trim()
     ? commands.filter((cmd) => {
@@ -239,7 +73,6 @@ export function CommandPalette({
       })
     : commands;
 
-  // Group filtered results
   const grouped = filtered.reduce<Record<string, Command[]>>((acc, cmd) => {
     if (!acc[cmd.group]) acc[cmd.group] = [];
     acc[cmd.group].push(cmd);
@@ -256,14 +89,13 @@ export function CommandPalette({
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        if (open) onClose();
-        else onClose(); // toggle handled by parent
+        onClose();
       }
       if (e.key === "Escape") onClose();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  }, [onClose]);
 
   useEffect(() => {
     if (open) {
@@ -286,7 +118,6 @@ export function CommandPalette({
     }
   }
 
-  // Scroll active item into view
   useEffect(() => {
     const el = listRef.current?.querySelector(`[data-index="${activeIndex}"]`);
     el?.scrollIntoView({ block: "nearest" });
@@ -296,7 +127,6 @@ export function CommandPalette({
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4">
-      {/* Backdrop */}
       <button
         type="button"
         aria-label="Close command palette"
@@ -304,14 +134,12 @@ export function CommandPalette({
         onClick={onClose}
       />
 
-      {/* Panel */}
       <div
         role="dialog"
         aria-modal="true"
         aria-label="Command palette"
         className="relative w-full max-w-xl bg-white rounded-2xl border border-grey-200 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200"
       >
-        {/* Input */}
         <div className="flex items-center gap-3 px-4 py-3.5 border-b border-grey-100">
           <Search className="h-4 w-4 text-grey-400 shrink-0" />
           <input
@@ -327,7 +155,6 @@ export function CommandPalette({
           </kbd>
         </div>
 
-        {/* Results */}
         <div ref={listRef} className="max-h-[380px] overflow-y-auto py-2">
           {flat.length === 0 ? (
             <p className="px-4 py-10 text-center text-[11px] font-mono text-grey-400 uppercase tracking-widest">
@@ -386,7 +213,6 @@ export function CommandPalette({
           )}
         </div>
 
-        {/* Footer */}
         <div className="px-4 py-2.5 border-t border-grey-100 flex items-center gap-4">
           <span className="text-[9px] font-mono text-grey-400 uppercase tracking-widest flex items-center gap-1">
             <kbd className="px-1 py-0.5 rounded border border-grey-200">↑↓</kbd>{" "}

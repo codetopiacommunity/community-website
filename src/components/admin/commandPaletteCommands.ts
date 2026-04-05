@@ -1,0 +1,196 @@
+export interface CommandDef {
+  id: string;
+  label: string;
+  description?: string;
+  iconName: string;
+  path: string;
+  keywords: string[];
+  group: string;
+  variant?: "danger";
+}
+
+export const COMMAND_DEFS: CommandDef[] = [
+  // Navigate
+  {
+    id: "nav-dashboard",
+    label: "Go to Dashboard",
+    iconName: "LayoutDashboard",
+    path: "/admin",
+    keywords: ["dashboard", "home", "overview"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-events",
+    label: "Go to Events",
+    iconName: "Calendar",
+    path: "/admin/events",
+    keywords: ["events", "calendar"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-articles",
+    label: "Go to Articles",
+    iconName: "FileText",
+    path: "/admin/articles",
+    keywords: ["articles", "blog", "posts"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-gallery",
+    label: "Go to Gallery",
+    iconName: "Image",
+    path: "/admin/gallery",
+    keywords: ["gallery", "images", "photos"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-impact",
+    label: "Go to Impact",
+    iconName: "Star",
+    path: "/admin/impact",
+    keywords: ["impact", "stories"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-team",
+    label: "Go to Team",
+    iconName: "Users2",
+    path: "/admin/team",
+    keywords: ["team", "members", "people"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-newsletter",
+    label: "Go to Newsletter",
+    iconName: "Mail",
+    path: "/admin/newsletter",
+    keywords: ["newsletter", "email", "broadcast"],
+    group: "Navigate",
+  },
+  {
+    id: "nav-settings",
+    label: "Go to Settings",
+    iconName: "Settings",
+    path: "/admin/settings",
+    keywords: ["settings", "config"],
+    group: "Navigate",
+  },
+
+  // Create
+  {
+    id: "new-event",
+    label: "Add New Event",
+    description: "Create a new event",
+    iconName: "Plus",
+    path: "/admin/events",
+    keywords: ["add event", "new event", "create event"],
+    group: "Create",
+  },
+  {
+    id: "new-article",
+    label: "Add New Article",
+    description: "Write a new article",
+    iconName: "Plus",
+    path: "/admin/articles",
+    keywords: ["add article", "new article", "write", "create article"],
+    group: "Create",
+  },
+  {
+    id: "new-gallery",
+    label: "Add Gallery Album",
+    description: "Upload a new gallery",
+    iconName: "Plus",
+    path: "/admin/gallery",
+    keywords: ["add gallery", "new gallery", "upload", "album"],
+    group: "Create",
+  },
+  {
+    id: "new-impact",
+    label: "Add Impact Story",
+    description: "Create an impact story",
+    iconName: "Plus",
+    path: "/admin/impact",
+    keywords: ["add impact", "new impact", "story"],
+    group: "Create",
+  },
+  {
+    id: "new-team",
+    label: "Add Team Member",
+    description: "Add a new team member",
+    iconName: "Plus",
+    path: "/admin/team",
+    keywords: ["add team", "new member", "add member"],
+    group: "Create",
+  },
+  {
+    id: "new-newsletter",
+    label: "Compose Newsletter",
+    description: "Write a new newsletter",
+    iconName: "Plus",
+    path: "/admin/newsletter/new",
+    keywords: ["compose", "new newsletter", "write newsletter", "broadcast"],
+    group: "Create",
+  },
+
+  // Manage
+  {
+    id: "delete-event",
+    label: "Delete an Event",
+    description: "Go to events to delete",
+    iconName: "Trash2",
+    path: "/admin/events",
+    keywords: ["delete event", "remove event"],
+    group: "Manage",
+    variant: "danger",
+  },
+  {
+    id: "delete-article",
+    label: "Delete an Article",
+    description: "Go to articles to delete",
+    iconName: "Trash2",
+    path: "/admin/articles",
+    keywords: ["delete article", "remove article"],
+    group: "Manage",
+    variant: "danger",
+  },
+  {
+    id: "delete-gallery",
+    label: "Delete a Gallery",
+    description: "Go to gallery to delete",
+    iconName: "Trash2",
+    path: "/admin/gallery",
+    keywords: ["delete gallery", "remove gallery"],
+    group: "Manage",
+    variant: "danger",
+  },
+  {
+    id: "delete-impact",
+    label: "Delete Impact Story",
+    description: "Go to impact to delete",
+    iconName: "Trash2",
+    path: "/admin/impact",
+    keywords: ["delete impact", "remove story"],
+    group: "Manage",
+    variant: "danger",
+  },
+  {
+    id: "delete-team",
+    label: "Remove Team Member",
+    description: "Go to team to remove",
+    iconName: "Trash2",
+    path: "/admin/team",
+    keywords: ["delete team", "remove member"],
+    group: "Manage",
+    variant: "danger",
+  },
+  {
+    id: "delete-newsletter",
+    label: "Delete a Newsletter",
+    description: "Go to newsletter to delete",
+    iconName: "Trash2",
+    path: "/admin/newsletter",
+    keywords: ["delete newsletter", "remove newsletter"],
+    group: "Manage",
+    variant: "danger",
+  },
+];

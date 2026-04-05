@@ -5,15 +5,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import type { Newsletter } from "./NewsletterComposePage";
 import { NewsletterSendConfirmModal } from "./NewsletterSendConfirmModal";
+import { TestEmailPanel } from "./TestEmailPanel";
 
 interface NewsletterPreviewPageProps {
   newsletter: Newsletter;
 }
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function NewsletterPreviewPage({
   newsletter,
@@ -22,14 +20,6 @@ export function NewsletterPreviewPage({
 
   const [previewHtml, setPreviewHtml] = useState("");
   const [loadingPreview, setLoadingPreview] = useState(true);
-
-  // Test email
-  const [testEmail, setTestEmail] = useState("");
-  const [testEmailError, setTestEmailError] = useState("");
-  const [sendingTest, setSendingTest] = useState(false);
-  const [showTestEmail, setShowTestEmail] = useState(false);
-
-  // Send
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
   const [showSendConfirm, setShowSendConfirm] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -40,16 +30,6 @@ export function NewsletterPreviewPage({
       .then((data) => setSubscriberCount(data.count ?? 0))
       .catch(() => setSubscriberCount(0));
   }, []);
-
-  useEffect(() => {
-    if (!showTestEmail) return;
-    fetch("/api/admin/me")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.email) setTestEmail(data.email);
-      })
-      .catch(() => {});
-  }, [showTestEmail]);
 
   useEffect(() => {
     async function loadPreview() {
@@ -78,38 +58,6 @@ export function NewsletterPreviewPage({
     }
     loadPreview();
   }, [newsletter]);
-
-  async function handleSendTest() {
-    if (!EMAIL_REGEX.test(testEmail)) {
-      setTestEmailError("Please enter a valid email address");
-      return;
-    }
-    setTestEmailError("");
-    setSendingTest(true);
-    try {
-      const res = await fetch("/api/admin/newsletter/test-send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          to: testEmail,
-          subject: newsletter.subject,
-          previewText: newsletter.previewText,
-          markdownContent: newsletter.markdownContent,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.error ?? "Failed to send test email");
-      } else {
-        toast.success("Test email sent");
-        setShowTestEmail(false);
-      }
-    } catch {
-      toast.error("Failed to send test email");
-    } finally {
-      setSendingTest(false);
-    }
-  }
 
   async function handleConfirmSend() {
     setIsSending(true);
@@ -179,50 +127,7 @@ export function NewsletterPreviewPage({
           </div>
         </div>
 
-        {/* Test Email */}
-        <div className="rounded-2xl border border-grey-100 bg-white p-6 space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-[10px] font-black uppercase tracking-widest text-black">
-              TEST EMAIL
-            </p>
-            <button
-              type="button"
-              onClick={() => setShowTestEmail((v) => !v)}
-              className="text-[10px] font-black uppercase tracking-widest text-grey-500 hover:text-black transition-colors"
-            >
-              {showTestEmail ? "CANCEL" : "SEND TEST →"}
-            </button>
-          </div>
-          {showTestEmail && (
-            <div className="flex flex-col gap-2">
-              <div className="flex gap-2">
-                <Input
-                  type="email"
-                  value={testEmail}
-                  onChange={(e) => {
-                    setTestEmail(e.target.value);
-                    if (testEmailError) setTestEmailError("");
-                  }}
-                  placeholder="test@example.com"
-                  className="font-mono text-sm border-black rounded-xl h-11 flex-1"
-                  aria-invalid={!!testEmailError}
-                />
-                <Button
-                  onClick={handleSendTest}
-                  disabled={sendingTest}
-                  className="h-11 rounded-xl bg-black text-white text-[10px] font-black uppercase tracking-widest px-5"
-                >
-                  {sendingTest ? "SENDING..." : "SEND"}
-                </Button>
-              </div>
-              {testEmailError && (
-                <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest">
-                  {testEmailError}
-                </p>
-              )}
-            </div>
-          )}
-        </div>
+        <TestEmailPanel newsletter={newsletter} />
 
         {/* Preview */}
         <div className="rounded-2xl border border-grey-100 bg-white p-6 space-y-3">

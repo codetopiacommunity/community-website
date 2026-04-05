@@ -8,7 +8,13 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_ADDRESS =
   process.env.EMAIL_FROM ?? "Codetopia Community <dispatch@codetopia.org>";
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function isValidEmail(email: string): boolean {
+  const at = email.indexOf("@");
+  if (at <= 0 || at !== email.lastIndexOf("@")) return false;
+  const domain = email.slice(at + 1);
+  const dot = domain.lastIndexOf(".");
+  return dot > 0 && dot < domain.length - 1 && !email.includes(" ");
+}
 
 /**
  * POST: Send a test email to a specified address without persisting any records
@@ -22,7 +28,7 @@ export async function POST(request: Request) {
 
     const { to, subject, previewText, markdownContent } = await request.json();
 
-    if (!to || !EMAIL_REGEX.test(to)) {
+    if (!to || !isValidEmail(to)) {
       return NextResponse.json(
         { error: "Invalid email address" },
         { status: 400 },
