@@ -10,8 +10,8 @@ export default function ManageArticlesPage() {
   const [config, setConfig] = useState<ArticlesConfig | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchConfig = useCallback(async () => {
-    setLoading(true);
+  const fetchConfig = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true);
     try {
       const res = await fetch("/api/admin/articles/config");
       if (res.ok) {
@@ -21,7 +21,7 @@ export default function ManageArticlesPage() {
     } catch {
       toast.error("Failed to load articles config");
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   }, []);
 
@@ -56,7 +56,7 @@ export default function ManageArticlesPage() {
           {!loading && (
             <PublicationHostForm
               hashnodeHost={config?.hashnodeHost ?? null}
-              onSuccess={fetchConfig}
+              onSuccess={() => fetchConfig(true)}
             />
           )}
         </div>
@@ -77,7 +77,7 @@ export default function ManageArticlesPage() {
             <FeaturedArticlesPicker
               hashnodeHost={config.hashnodeHost}
               featuredSlugs={config.featuredSlugs ?? []}
-              onSuccess={fetchConfig}
+              onSuccess={() => fetchConfig(true)}
             />
           ) : (
             <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest py-8 text-center">
