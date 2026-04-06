@@ -147,7 +147,8 @@ export default function AlbumPhotosPage() {
               ? {
                   ...i,
                   status: "error",
-                  errorMsg: err instanceof Error ? err.message : "Upload failed",
+                  errorMsg:
+                    err instanceof Error ? err.message : "Upload failed",
                 }
               : i,
           ),
@@ -197,7 +198,8 @@ export default function AlbumPhotosPage() {
             <span className="text-grey-400">Photos</span>
           </h1>
           <p className="text-grey-500 text-[10px] uppercase tracking-widest pl-1 font-medium font-mono mt-1">
-            {photos.length} photo{photos.length !== 1 ? "s" : ""} · {pendingCount} queued
+            {photos.length} photo{photos.length !== 1 ? "s" : ""} ·{" "}
+            {pendingCount} queued
           </p>
         </div>
       </div>
@@ -207,7 +209,10 @@ export default function AlbumPhotosPage() {
         {/* biome-ignore lint/a11y/noStaticElementInteractions: drag-and-drop zone with click fallback */}
         {/* biome-ignore lint/a11y/useKeyWithClickEvents: drag-and-drop zone */}
         <div
-          onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDragOver(true);
+          }}
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
@@ -217,8 +222,12 @@ export default function AlbumPhotosPage() {
               : "border-grey-200 hover:border-black hover:bg-grey-50/50"
           }`}
         >
-          <div className={`p-4 rounded-2xl transition-colors ${dragOver ? "bg-black" : "bg-grey-100"}`}>
-            <Upload className={`h-6 w-6 transition-colors ${dragOver ? "text-white" : "text-grey-400"}`} />
+          <div
+            className={`p-4 rounded-2xl transition-colors ${dragOver ? "bg-black" : "bg-grey-100"}`}
+          >
+            <Upload
+              className={`h-6 w-6 transition-colors ${dragOver ? "text-white" : "text-grey-400"}`}
+            />
           </div>
           <div className="text-center">
             <p className="text-xs font-black uppercase tracking-widest text-black">
@@ -244,7 +253,9 @@ export default function AlbumPhotosPage() {
             <div className="flex items-center justify-between">
               <p className="text-[10px] font-black uppercase tracking-widest text-black font-mono">
                 Upload Queue
-                <span className="ml-2 text-grey-400 font-bold">({queue.length})</span>
+                <span className="ml-2 text-grey-400 font-bold">
+                  ({queue.length})
+                </span>
               </p>
               {pendingCount > 0 && (
                 <Button
@@ -253,7 +264,9 @@ export default function AlbumPhotosPage() {
                   disabled={isUploading}
                   className="bg-black text-white text-[10px] uppercase px-6 h-9 rounded-xl font-black tracking-widest shadow-none hover:bg-grey-900 flex items-center gap-2 transition-all active:scale-[0.98]"
                 >
-                  {isUploading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+                  {isUploading && (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  )}
                   Upload {pendingCount} Photo{pendingCount !== 1 ? "s" : ""}
                 </Button>
               )}
@@ -274,7 +287,12 @@ export default function AlbumPhotosPage() {
                   }`}
                 >
                   <div className="relative h-12 w-16 rounded-lg overflow-hidden border border-grey-100 shrink-0 bg-grey-50">
-                    <Image src={item.base64} alt="preview" fill className="object-cover" />
+                    <Image
+                      src={item.base64}
+                      alt="preview"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[10px] text-grey-400 font-bold truncate mb-1 uppercase tracking-wider font-mono">
@@ -289,13 +307,21 @@ export default function AlbumPhotosPage() {
                       className="h-8 text-xs border border-grey-200 rounded-lg focus:border-black font-mono bg-white disabled:opacity-60"
                     />
                     {item.status === "error" && (
-                      <p className="text-[10px] text-red-500 font-bold mt-1 font-mono">{item.errorMsg}</p>
+                      <p className="text-[10px] text-red-500 font-bold mt-1 font-mono">
+                        {item.errorMsg}
+                      </p>
                     )}
                   </div>
                   <div className="shrink-0">
-                    {item.status === "uploading" && <Loader2 className="h-4 w-4 animate-spin text-black" />}
-                    {item.status === "done" && <CheckCircle2 className="h-4 w-4 text-green-500" />}
-                    {item.status === "error" && <XCircle className="h-4 w-4 text-red-500" />}
+                    {item.status === "uploading" && (
+                      <Loader2 className="h-4 w-4 animate-spin text-black" />
+                    )}
+                    {item.status === "done" && (
+                      <CheckCircle2 className="h-4 w-4 text-green-500" />
+                    )}
+                    {item.status === "error" && (
+                      <XCircle className="h-4 w-4 text-red-500" />
+                    )}
                     {item.status === "pending" && (
                       <button
                         type="button"
@@ -317,7 +343,9 @@ export default function AlbumPhotosPage() {
       <div className="border border-grey-100 rounded-2xl p-6 bg-white space-y-4">
         <p className="text-[10px] font-black uppercase tracking-widest text-black font-mono">
           Album Photos
-          <span className="ml-2 text-grey-400 font-bold">({photos.length})</span>
+          <span className="ml-2 text-grey-400 font-bold">
+            ({photos.length})
+          </span>
         </p>
 
         {loadingPhotos ? (
@@ -327,7 +355,9 @@ export default function AlbumPhotosPage() {
         ) : photos.length === 0 ? (
           <div className="border border-dashed border-grey-200 rounded-2xl py-14 flex flex-col items-center justify-center gap-3 text-grey-300">
             <ImageIcon className="h-10 w-10" />
-            <p className="text-[10px] font-black uppercase tracking-widest font-mono">No photos yet</p>
+            <p className="text-[10px] font-black uppercase tracking-widest font-mono">
+              No photos yet
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">

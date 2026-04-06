@@ -122,7 +122,9 @@ export function GalleryAlbumTable({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => router.push(`/admin/gallery/${album.id}/photos`)}
+                        onClick={() =>
+                          router.push(`/admin/gallery/${album.id}/photos`)
+                        }
                         className="h-9 px-3 text-[10px] font-black uppercase tracking-widest text-black hover:bg-black hover:text-white border-2 border-transparent hover:border-black transition-all rounded-xl flex items-center gap-1.5"
                         title="Manage photos"
                       >
