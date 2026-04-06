@@ -4,7 +4,8 @@ export interface ImpactStory {
   impact: string;
   imageUrl: string;
   logoUrl: string;
-  date: string;
+  startDate: string;
+  endDate?: string | null;
   location: string;
   link?: string | null;
   galleryLink?: string | null;

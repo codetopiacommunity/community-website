@@ -141,7 +141,8 @@ export function ImpactTable({
                 </td>
                 <td className="px-6 py-4 hidden md:table-cell">
                   <span className="font-mono text-xs text-grey-600">
-                    {story.date}
+                    {story.startDate}
+                    {story.endDate && ` → ${story.endDate}`}
                   </span>
                 </td>
                 <td className="px-6 py-4 hidden lg:table-cell">

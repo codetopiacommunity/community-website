@@ -23,7 +23,7 @@ export async function PATCH(
       "impact",
       "imageUrl",
       "logoUrl",
-      "date",
+      "startDate",
       "location",
     ]);
     if (validationError) return validationError;
@@ -69,7 +69,8 @@ export async function PATCH(
         impact: data.impact.trim(),
         imageUrl,
         logoUrl,
-        date: data.date.trim(),
+        startDate: data.startDate.trim(),
+        endDate: data.endDate?.trim() || null,
         location: data.location.trim(),
         link: data.link?.trim() || null,
         galleryLink: data.galleryLink?.trim() || null,

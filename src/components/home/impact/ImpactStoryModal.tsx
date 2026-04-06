@@ -4,6 +4,7 @@ import { Calendar, Image as ImageIcon, MapPin, PlayCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
+import { formatDateRange } from "@/lib/format-date";
 import type { ImpactStory } from "@/types";
 
 function getYouTubeEmbedUrl(url: string) {
@@ -124,7 +125,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
                 <div className="flex items-center gap-6 mb-4 font-mono text-zinc-400 text-xs uppercase tracking-[0.3em]">
                   <span className="flex items-center gap-2">
                     <Calendar className="w-3 h-3" />
-                    {story.date}
+                    {formatDateRange(story.startDate, story.endDate)}
                   </span>
                   <span className="flex items-center gap-2">
                     <MapPin className="w-3 h-3" />
