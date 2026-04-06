@@ -160,9 +160,19 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
               <div className="relative z-10 flex flex-col items-start gap-4 uppercase font-mono tracking-wider">
                 <div className="space-y-1">
                   <div className="text-zinc-400 text-sm">
-                    {format(new Date(item.startDate), "yyyy.MM.dd // HH:mm")}
+                    {format(new Date(item.startDate), "MMM d, yyyy")}
                   </div>
-                  <div className="text-zinc-500 text-[10px] font-bold">GMT</div>
+                  <div className="text-zinc-500 text-[10px] font-bold">
+                    {format(new Date(item.startDate), "h:mm a")}
+                    {item.endDate &&
+                      format(new Date(item.startDate), "MMM d") !==
+                        format(new Date(item.endDate), "MMM d") && (
+                        <span>
+                          {" "}
+                          – {format(new Date(item.endDate), "MMM d, yyyy")}
+                        </span>
+                      )}
+                  </div>
                 </div>
                 <span
                   className={`inline-flex items-center px-4 py-1 font-mono text-[10px] uppercase tracking-[0.15em] font-bold border rounded-none transition-colors ${

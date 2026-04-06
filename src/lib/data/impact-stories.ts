@@ -9,7 +9,8 @@ export interface ImpactStory {
   impact: string;
   image: string;
   logo: string;
-  date: string;
+  startDate: string;
+  endDate?: string;
   location: string;
   link?: string;
   galleryLink?: string;
@@ -24,8 +25,9 @@ export const impactStories: ImpactStory[] = [
     image: djangoGirlsGroupPhoto.src,
     logo: djangoGirlsLogo.src,
     galleryLink:
-      "https://photos.google.com/share/AF1QipPGhaXCzuAeXAQBPLukrY12oqzkc7WrxCyJ3_fHhN3GaAsZ2kzUDDgxfUpgpZghJA?key=VUE4N2czMzViTDQ0NE8xQXA5V045dmFXQkhjTi1n",
-    date: "21 - 22 Feb 2025",
+      "https://photos.google.com/share/AF1QipPGhaXCzuAeXAQBPLukrY12oqzkc7WrxCyJ3_fHhN3GaAsZ2kzUDDgxfUpgpZghJA?key=VUE4N2czMzViTDQ0NE8xQXA1V045dmFXQkhjTi1n",
+    startDate: "21 Feb 2025",
+    endDate: "22 Feb 2025",
     location: "Koforidua Library",
   },
   {
@@ -35,7 +37,7 @@ export const impactStories: ImpactStory[] = [
       "Demystified the Django ecosystem for the IEEE-CS GCTU Chapter through a high-stakes workshop and live-coding demonstration. We showcased the framework's architecture and industry-standard workflows, proving that technical complexity is a choice—and clean code is the solution.",
     image: ieeeGroupPhoto.src,
     logo: ieeeLogo.src,
-    date: "16 July 2025",
+    startDate: "16 July 2025",
     location: "GCTU",
     galleryLink:
       "https://drive.google.com/drive/folders/1NTUm-B4t_x_EzdfE8TMeOR5vv8dZ9bS8",

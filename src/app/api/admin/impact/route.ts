@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       "impact",
       "imageUrl",
       "logoUrl",
-      "date",
+      "startDate",
       "location",
     ]);
     if (validationError) return validationError;
@@ -55,7 +55,8 @@ export async function POST(request: Request) {
         impact: data.impact.trim(),
         imageUrl: imageUrl as string,
         logoUrl: logoUrl as string,
-        date: data.date.trim(),
+        startDate: data.startDate.trim(),
+        endDate: data.endDate?.trim() || null,
         location: data.location.trim(),
         link: data.link?.trim() || null,
         galleryLink: data.galleryLink?.trim() || null,

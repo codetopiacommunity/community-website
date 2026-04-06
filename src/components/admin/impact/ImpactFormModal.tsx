@@ -20,7 +20,8 @@ import type { ImpactStory } from "@/types";
 const defaultForm = {
   title: "",
   impact: "",
-  date: "",
+  startDate: "",
+  endDate: "",
   location: "",
   link: "",
   galleryLink: "",
@@ -48,7 +49,8 @@ export function ImpactFormModal({
         setForm({
           title: editingStory.title,
           impact: editingStory.impact,
-          date: editingStory.date,
+          startDate: editingStory.startDate,
+          endDate: editingStory.endDate || "",
           location: editingStory.location,
           link: editingStory.link || "",
           galleryLink: editingStory.galleryLink || "",
@@ -174,28 +176,39 @@ export function ImpactFormModal({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="space-y-2">
                 <Label className={labelCls}>
-                  Date <span className="text-red-500">*</span>
+                  Start Date <span className="text-red-500">*</span>
                 </Label>
                 <input
                   type="date"
-                  value={form.date}
-                  onChange={set("date")}
+                  value={form.startDate}
+                  onChange={set("startDate")}
                   required
                   className={`${inputCls} w-full cursor-pointer`}
                 />
               </div>
               <div className="space-y-2">
-                <Label className={labelCls}>
-                  Location <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  value={form.location}
-                  onChange={set("location")}
-                  required
-                  className={inputCls}
-                  placeholder="e.g. Koforidua Library"
+                <Label className={labelCls}>End Date (optional)</Label>
+                <input
+                  type="date"
+                  value={form.endDate}
+                  onChange={set("endDate")}
+                  min={form.startDate || undefined}
+                  className={`${inputCls} w-full cursor-pointer`}
                 />
               </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label className={labelCls}>
+                Location <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                value={form.location}
+                onChange={set("location")}
+                required
+                className={inputCls}
+                placeholder="e.g. Koforidua Library"
+              />
             </div>
 
             <div className="space-y-2">

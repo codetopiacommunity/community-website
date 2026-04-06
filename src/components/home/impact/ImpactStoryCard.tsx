@@ -1,5 +1,6 @@
 import { Calendar, Image as ImageIcon, MapPin, PlayCircle } from "lucide-react";
 import Image from "next/image";
+import { formatDateRange } from "@/lib/format-date";
 import type { ImpactStory } from "@/types";
 
 interface ImpactStoryCardProps {
@@ -75,7 +76,7 @@ export function ImpactStoryCard({ story, onSelect }: ImpactStoryCardProps) {
         <div className="flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base tracking-[0.15em] uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
           <div className="flex items-center gap-3">
             <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-            {story.date}
+            {formatDateRange(story.startDate, story.endDate)}
           </div>
           <div className="flex items-start gap-3">
             <MapPin className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" />
