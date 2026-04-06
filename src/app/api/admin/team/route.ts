@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import {
+  requireAuth,
+  serverError,
+  validateRequired,
+} from "@/lib/api/api-utils";
 import { processImage } from "./utils";
 
 export async function GET() {
@@ -11,37 +15,24 @@ export async function GET() {
     return NextResponse.json(members);
   } catch (error) {
     console.error("GET Team Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch team members" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch team members");
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const data = await request.json();
 
-    if (!data.name || data.name.trim() === "") {
-      return NextResponse.json({ error: "Name is required" }, { status: 400 });
-    }
-    if (!data.role || data.role.trim() === "") {
-      return NextResponse.json({ error: "Role is required" }, { status: 400 });
-    }
-    if (!data.tier || data.tier.trim() === "") {
-      return NextResponse.json({ error: "Tier is required" }, { status: 400 });
-    }
-    if (!data.statement || data.statement.trim() === "") {
-      return NextResponse.json(
-        { error: "Bio / Mission statement is required" },
-        { status: 400 },
-      );
-    }
+    const validationError = validateRequired(data, [
+      "name",
+      "role",
+      "tier",
+      "statement",
+    ]);
+    if (validationError) return validationError;
 
     let processedImageUrl = null;
     try {
@@ -68,9 +59,6 @@ export async function POST(request: Request) {
     return NextResponse.json(member);
   } catch (error) {
     console.error("POST Team Error:", error);
-    return NextResponse.json(
-      { error: "Failed to create team member" },
-      { status: 500 },
-    );
+    return serverError("Failed to create team member");
   }
 }

@@ -1,14 +1,13 @@
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession, login } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
+import { type AdminSession, getSession, login } from "@/lib/auth/auth";
 
 export async function GET() {
-  const session = await getSession();
-
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const authError = await requireAuth();
+  if (authError) return authError;
+  const session = (await getSession()) as AdminSession;
 
   return NextResponse.json({
     email: session.email,
@@ -18,10 +17,9 @@ export async function GET() {
 
 export async function PATCH(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
+    const session = (await getSession()) as AdminSession;
 
     const { email, currentPassword, newPassword } = await request.json();
 
@@ -90,9 +88,6 @@ export async function PATCH(request: Request) {
         { status: 400 },
       );
     }
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 },
-    );
+    return serverError("Internal server error");
   }
 }

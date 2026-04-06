@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import {
+  requireAuth,
+  serverError,
+  validateRequired,
+} from "@/lib/api/api-utils";
 import { deleteImage, processImage } from "../utils";
 
 export async function PATCH(
@@ -8,31 +12,21 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const data = await request.json();
 
-    if (!data.title?.trim())
-      return NextResponse.json({ error: "Title is required" }, { status: 400 });
-    if (!data.impact?.trim())
-      return NextResponse.json(
-        { error: "Impact description is required" },
-        { status: 400 },
-      );
-    if (!data.imageUrl?.trim())
-      return NextResponse.json({ error: "Image is required" }, { status: 400 });
-    if (!data.logoUrl?.trim())
-      return NextResponse.json({ error: "Logo is required" }, { status: 400 });
-    if (!data.date?.trim())
-      return NextResponse.json({ error: "Date is required" }, { status: 400 });
-    if (!data.location?.trim())
-      return NextResponse.json(
-        { error: "Location is required" },
-        { status: 400 },
-      );
+    const validationError = validateRequired(data, [
+      "title",
+      "impact",
+      "imageUrl",
+      "logoUrl",
+      "date",
+      "location",
+    ]);
+    if (validationError) return validationError;
 
     const existing = await prisma.impactStory.findUnique({
       where: { id: Number(id) },
@@ -84,10 +78,7 @@ export async function PATCH(
     return NextResponse.json(story);
   } catch (error) {
     console.error("PATCH Impact Error:", error);
-    return NextResponse.json(
-      { error: "Failed to update impact story" },
-      { status: 500 },
-    );
+    return serverError("Failed to update impact story");
   }
 }
 
@@ -96,9 +87,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const existing = await prisma.impactStory.findUnique({
@@ -114,9 +104,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE Impact Error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete impact story" },
-      { status: 500 },
-    );
+    return serverError("Failed to delete impact story");
   }
 }

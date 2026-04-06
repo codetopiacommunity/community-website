@@ -2,45 +2,39 @@
 
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { NewsletterDeleteModal } from "@/components/admin/newsletter/NewsletterDeleteModal";
 import { NewsletterDeliveryLogs } from "@/components/admin/newsletter/NewsletterDeliveryLogs";
-import type { Newsletter } from "@/components/admin/newsletter/NewsletterTable";
-import { NewsletterTable } from "@/components/admin/newsletter/NewsletterTable";
+import {
+  type NewsletterFull,
+  NewsletterTable,
+} from "@/components/admin/newsletter/NewsletterTable";
 import { Button } from "@/components/ui/button";
+import { useAdminCRUD } from "@/hooks/useAdminCRUD";
+import { useFetchData } from "@/hooks/useFetchData";
 
 const PAGE_SIZE = 10;
 
 export default function ManageNewsletterPage() {
   const router = useRouter();
-  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
-  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [showDelete, setShowDelete] = useState(false);
-  const [deletingId, setDeletingId] = useState<number | null>(null);
+  const {
+    isDeleteOpen,
+    itemToDelete: deletingId,
+    openDelete,
+    closeDelete,
+  } = useAdminCRUD<NewsletterFull>();
 
-  const fetchNewsletters = useCallback(async (p: number) => {
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/admin/newsletter?page=${p}`);
-      if (res.ok) {
-        const data = await res.json();
-        setNewsletters(data.newsletters);
-        setTotal(data.total);
-      }
-    } catch (error) {
-      console.error("Error fetching newsletters:", error);
-      toast.error("Failed to load newsletters");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const { data, loading, refetch } = useFetchData<{
+    newsletters: NewsletterFull[];
+    total: number;
+  }>(`/api/admin/newsletter?page=${page}`, {
+    errorMessage: "Failed to load newsletters",
+  });
 
-  useEffect(() => {
-    fetchNewsletters(page);
-  }, [fetchNewsletters, page]);
+  const newsletters = data?.newsletters ?? [];
+  const total = data?.total ?? 0;
 
   async function handleDuplicate(id: number) {
     try {
@@ -53,7 +47,7 @@ export default function ManageNewsletterPage() {
         return;
       }
       toast.success("Newsletter duplicated");
-      fetchNewsletters(page);
+      refetch();
     } catch {
       toast.error("Failed to duplicate newsletter");
     }
@@ -92,21 +86,18 @@ export default function ManageNewsletterPage() {
           router.push(`/admin/newsletter/${newsletter.id}/edit`)
         }
         onDuplicate={handleDuplicate}
-        onDelete={(id) => {
-          setDeletingId(id);
-          setShowDelete(true);
-        }}
+        onDelete={(id) => openDelete(id)}
       />
 
       <NewsletterDeliveryLogs />
 
       <NewsletterDeleteModal
-        isOpen={showDelete}
-        onClose={() => setShowDelete(false)}
+        isOpen={isDeleteOpen}
+        onClose={() => closeDelete()}
         newsletterId={deletingId}
         onSuccess={() => {
-          setShowDelete(false);
-          fetchNewsletters(page);
+          closeDelete();
+          refetch();
         }}
       />
     </div>

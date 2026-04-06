@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { deleteImage } from "../../utils";
 
 export async function DELETE(
@@ -8,10 +8,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const photoId = parseInt(id, 10);
@@ -38,9 +36,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE Gallery Photo Error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete photo" },
-      { status: 500 },
-    );
+    return serverError("Failed to delete photo");
   }
 }

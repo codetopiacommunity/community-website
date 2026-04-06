@@ -1,15 +1,14 @@
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth } from "@/lib/api/api-utils";
 
 /**
  * GET: List all admin accounts (email + id only, no passwords)
  */
 export async function GET() {
-  const session = await getSession();
-  if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const authError = await requireAuth();
+  if (authError) return authError;
 
   const admins = await prisma.admin.findMany({
     select: { id: true, email: true, createdAt: true },
@@ -23,9 +22,8 @@ export async function GET() {
  * POST: Add a new admin — initial password is set to their email address
  */
 export async function POST(request: Request) {
-  const session = await getSession();
-  if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const authError = await requireAuth();
+  if (authError) return authError;
 
   const { email } = await request.json();
 

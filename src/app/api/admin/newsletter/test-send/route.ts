@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { renderNewsletterHtml } from "@/lib/newsletter";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -21,10 +21,8 @@ function isValidEmail(email: string): boolean {
  */
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { to, subject, previewText, markdownContent } = await request.json();
 
@@ -57,9 +55,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true, id: data?.id });
   } catch (error) {
     console.error("POST Newsletter Test Send Error:", error);
-    return NextResponse.json(
-      { error: "Failed to send test email" },
-      { status: 500 },
-    );
+    return serverError("Failed to send test email");
   }
 }

@@ -3,18 +3,7 @@
 import { Images, Loader2, Pencil, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
-interface GalleryAlbum {
-  id: number;
-  slug: string;
-  title: string;
-  date: string;
-  category: string;
-  coverImage: string;
-  createdAt: string;
-  updatedAt: string;
-  _count?: { photos: number };
-}
+import type { GalleryAlbum } from "@/types";
 
 interface GalleryAlbumTableProps {
   albums: GalleryAlbum[];

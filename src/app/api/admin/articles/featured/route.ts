@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const data = await request.json();
 
@@ -28,9 +27,6 @@ export async function POST(request: Request) {
     return NextResponse.json(config);
   } catch (error) {
     console.error("POST Admin Articles Featured Error:", error);
-    return NextResponse.json(
-      { error: "Failed to update featured slugs" },
-      { status: 500 },
-    );
+    return serverError("Failed to update featured slugs");
   }
 }

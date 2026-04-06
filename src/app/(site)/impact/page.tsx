@@ -1,5 +1,3 @@
-"use client";
-
 import { InstitutionalNote } from "@/components/about/InstitutionalNote";
 import { WallOfImpact } from "@/components/about/WallOfImpact";
 import { Container } from "@/components/layout/Container";

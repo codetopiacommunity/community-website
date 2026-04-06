@@ -1,0 +1,1 @@
+export { OurImpact } from "../OurImpact";

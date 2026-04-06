@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { deleteImage, processImage } from "../../utils";
 
 export async function PATCH(
@@ -8,10 +8,8 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const data = await request.json();
@@ -72,10 +70,7 @@ export async function PATCH(
     return NextResponse.json(album);
   } catch (error) {
     console.error("PATCH Gallery Album Error:", error);
-    return NextResponse.json(
-      { error: "Failed to update gallery album" },
-      { status: 500 },
-    );
+    return serverError("Failed to update gallery album");
   }
 }
 
@@ -84,10 +79,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
 
@@ -116,9 +109,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE Gallery Album Error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete gallery album" },
-      { status: 500 },
-    );
+    return serverError("Failed to delete gallery album");
   }
 }

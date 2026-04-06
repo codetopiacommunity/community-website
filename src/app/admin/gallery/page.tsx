@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { GalleryAlbumDeleteModal } from "@/components/admin/gallery/GalleryAlbumDeleteModal";
 import { GalleryAlbumFormModal } from "@/components/admin/gallery/GalleryAlbumFormModal";
@@ -9,57 +9,38 @@ import { GalleryAlbumTable } from "@/components/admin/gallery/GalleryAlbumTable"
 import { GalleryPhotosModal } from "@/components/admin/gallery/GalleryPhotosModal";
 import { GalleryToolbar } from "@/components/admin/gallery/GalleryToolbar";
 import { Button } from "@/components/ui/button";
-
-interface GalleryAlbum {
-  id: number;
-  slug: string;
-  title: string;
-  date: string;
-  category: string;
-  coverImage: string;
-  createdAt: string;
-  updatedAt: string;
-  _count?: { photos: number };
-}
+import { useAdminCRUD } from "@/hooks/useAdminCRUD";
+import { useFetchData } from "@/hooks/useFetchData";
+import type { GalleryAlbum } from "@/types";
 
 export default function ManageGalleryPage() {
-  const [albums, setAlbums] = useState<GalleryAlbum[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    data: albums,
+    loading,
+    refetch: fetchAlbums,
+  } = useFetchData<GalleryAlbum[]>("/api/admin/gallery/albums", {
+    errorMessage: "Failed to load gallery albums",
+  });
+
+  const {
+    editingItem: editingAlbum,
+    isFormOpen: isFormModalOpen,
+    itemToDelete: albumToDelete,
+    isDeleteOpen: isDeleteModalOpen,
+    openAdd,
+    openEdit,
+    openDelete,
+    closeForm,
+    closeDelete,
+  } = useAdminCRUD<GalleryAlbum, { id: number; title: string }>();
+
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
-
-  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
-  const [editingAlbum, setEditingAlbum] = useState<GalleryAlbum | null>(null);
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [albumToDelete, setAlbumToDelete] = useState<{
-    id: number;
-    title: string;
-  } | null>(null);
 
   const [isPhotosModalOpen, setIsPhotosModalOpen] = useState(false);
   const [photosAlbum, setPhotosAlbum] = useState<GalleryAlbum | null>(null);
 
-  const fetchAlbums = useCallback(async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/admin/gallery/albums");
-      if (res.ok) {
-        setAlbums(await res.json());
-      }
-    } catch (error) {
-      console.error("Error fetching albums:", error);
-      toast.error("Failed to load gallery albums");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchAlbums();
-  }, [fetchAlbums]);
-
-  const filteredAlbums = albums.filter((album) => {
+  const filteredAlbums = (albums ?? []).filter((album) => {
     const matchesSearch =
       search === "" ||
       album.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -69,14 +50,8 @@ export default function ManageGalleryPage() {
     return matchesSearch && matchesCategory;
   });
 
-  function handleAddAlbum() {
-    setEditingAlbum(null);
-    setIsFormModalOpen(true);
-  }
-
   function handleEdit(album: GalleryAlbum) {
-    setEditingAlbum(album);
-    setIsFormModalOpen(true);
+    openEdit(album);
   }
 
   function handleManagePhotos(album: GalleryAlbum) {
@@ -85,10 +60,9 @@ export default function ManageGalleryPage() {
   }
 
   function handleDelete(id: number) {
-    const album = albums.find((a) => a.id === id);
+    const album = (albums ?? []).find((a) => a.id === id);
     if (!album) return;
-    setAlbumToDelete({ id: album.id, title: album.title });
-    setIsDeleteModalOpen(true);
+    openDelete({ id: album.id, title: album.title });
   }
 
   async function handleFormSuccess() {
@@ -120,7 +94,7 @@ export default function ManageGalleryPage() {
         </div>
 
         <Button
-          onClick={handleAddAlbum}
+          onClick={openAdd}
           className="flex items-center justify-center gap-2 bg-black text-white px-8 h-12 rounded-xl text-[10px] uppercase font-mono hover:bg-grey-800 transition-all group active:scale-[0.98] tracking-widest shadow-none"
         >
           <Plus className="h-4 w-4 group-hover:rotate-90 transition-transform" />
@@ -140,20 +114,20 @@ export default function ManageGalleryPage() {
         loading={loading}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        onAddFirst={handleAddAlbum}
+        onAddFirst={openAdd}
         onManagePhotos={handleManagePhotos}
       />
 
       <GalleryAlbumFormModal
         isOpen={isFormModalOpen}
-        onClose={() => setIsFormModalOpen(false)}
+        onClose={closeForm}
         editingAlbum={editingAlbum}
         onSuccess={handleFormSuccess}
       />
 
       <GalleryAlbumDeleteModal
         isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
+        onClose={closeDelete}
         album={albumToDelete}
         onSuccess={handleDeleteSuccess}
       />

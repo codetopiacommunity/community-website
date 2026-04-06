@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import {
+  requireAuth,
+  serverError,
+  validateRequired,
+} from "@/lib/api/api-utils";
 import { processImage } from "./utils";
 
 export async function GET() {
@@ -11,39 +15,26 @@ export async function GET() {
     return NextResponse.json(stories);
   } catch (error) {
     console.error("GET Impact Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch impact stories" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch impact stories");
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const data = await request.json();
 
-    if (!data.title?.trim())
-      return NextResponse.json({ error: "Title is required" }, { status: 400 });
-    if (!data.impact?.trim())
-      return NextResponse.json(
-        { error: "Impact description is required" },
-        { status: 400 },
-      );
-    if (!data.imageUrl?.trim())
-      return NextResponse.json({ error: "Image is required" }, { status: 400 });
-    if (!data.logoUrl?.trim())
-      return NextResponse.json({ error: "Logo is required" }, { status: 400 });
-    if (!data.date?.trim())
-      return NextResponse.json({ error: "Date is required" }, { status: 400 });
-    if (!data.location?.trim())
-      return NextResponse.json(
-        { error: "Location is required" },
-        { status: 400 },
-      );
+    const validationError = validateRequired(data, [
+      "title",
+      "impact",
+      "imageUrl",
+      "logoUrl",
+      "date",
+      "location",
+    ]);
+    if (validationError) return validationError;
 
     let imageUrl: string | null = null;
     let logoUrl: string | null = null;
@@ -73,9 +64,6 @@ export async function POST(request: Request) {
     return NextResponse.json(story);
   } catch (error) {
     console.error("POST Impact Error:", error);
-    return NextResponse.json(
-      { error: "Failed to create impact story" },
-      { status: 500 },
-    );
+    return serverError("Failed to create impact story");
   }
 }

@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 /**
  * GET: Return the count of verified subscribers
  */
 export async function GET() {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const count = await prisma.subscriber.count({
       where: { status: "verified" },
@@ -19,9 +17,6 @@ export async function GET() {
     return NextResponse.json({ count });
   } catch (error) {
     console.error("GET Subscriber Count Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch subscriber count" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch subscriber count");
   }
 }

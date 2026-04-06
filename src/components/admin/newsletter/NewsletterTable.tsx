@@ -10,24 +10,20 @@ import {
   Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { Newsletter } from "@/types";
 
-export interface Newsletter {
-  id: number;
-  subject: string;
+export interface NewsletterFull extends Newsletter {
   previewText: string | null;
   markdownContent: string;
-  status: string;
   recipientCount: number;
   sentAt: Date | null;
   errorMessage: string | null;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 interface NewsletterTableProps {
-  newsletters: Newsletter[];
+  newsletters: NewsletterFull[];
   loading: boolean;
-  onEdit: (n: Newsletter) => void;
+  onEdit: (n: NewsletterFull) => void;
   onDuplicate: (id: number) => void;
   onDelete: (id: number) => void;
   page: number;
