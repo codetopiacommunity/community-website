@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset anchor scroll targets to account for sticky header */
+:target {
+  scroll-margin-top: 6rem;
+}
 
 @custom-variant dark (&:is(.dark *));
 

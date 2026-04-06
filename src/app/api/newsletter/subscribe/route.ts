@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
+import { generateVerificationToken, getTokenExpiry } from "@/lib/auth/token";
 import { sendVerificationEmail } from "@/lib/email";
-import { generateVerificationToken, getTokenExpiry } from "@/lib/token";
 import { prisma } from "../../../../../prisma/prisma";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

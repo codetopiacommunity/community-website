@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import {
+  requireAuth,
+  serverError,
+  validateRequired,
+} from "@/lib/api/api-utils";
 import { deleteImage, processImage } from "../utils";
 
 export async function PATCH(
@@ -8,10 +12,8 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     // Resolve params for Next.js 15+
     const { id } = await params;
@@ -29,21 +31,13 @@ export async function PATCH(
       );
     }
 
-    if (!data.name || data.name.trim() === "") {
-      return NextResponse.json({ error: "Name is required" }, { status: 400 });
-    }
-    if (!data.role || data.role.trim() === "") {
-      return NextResponse.json({ error: "Role is required" }, { status: 400 });
-    }
-    if (!data.tier || data.tier.trim() === "") {
-      return NextResponse.json({ error: "Tier is required" }, { status: 400 });
-    }
-    if (!data.statement || data.statement.trim() === "") {
-      return NextResponse.json(
-        { error: "Bio / Mission statement is required" },
-        { status: 400 },
-      );
-    }
+    const validationError = validateRequired(data, [
+      "name",
+      "role",
+      "tier",
+      "statement",
+    ]);
+    if (validationError) return validationError;
 
     let processedImageUrl = data.imageUrl || null;
     try {
@@ -82,10 +76,7 @@ export async function PATCH(
     return NextResponse.json(member);
   } catch (error) {
     console.error("PATCH Team Error:", error);
-    return NextResponse.json(
-      { error: "Failed to update team member" },
-      { status: 500 },
-    );
+    return serverError("Failed to update team member");
   }
 }
 
@@ -94,10 +85,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
 
@@ -116,9 +105,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE Team Error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete team member" },
-      { status: 500 },
-    );
+    return serverError("Failed to delete team member");
   }
 }

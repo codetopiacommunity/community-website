@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { LatestArticles } from "@/components/home/LatestArticles";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
 import { Stats } from "@/components/home/Stats";
@@ -14,6 +15,7 @@ export default function Home() {
       <TechnicalSpotlight />
       <WhatWeOffer />
       <OurImpact />
+      <LatestArticles />
     </div>
   );
 }

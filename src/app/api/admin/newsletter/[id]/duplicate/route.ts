@@ -1,0 +1,43 @@
+import { NextResponse } from "next/server";
+import { prisma } from "@/../prisma/prisma";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
+
+type RouteContext = { params: Promise<{ id: string }> };
+
+/**
+ * POST: Duplicate a newsletter by ID (creates a new draft with same content)
+ */
+export async function POST(_req: Request, { params }: RouteContext) {
+  try {
+    const authError = await requireAuth();
+    if (authError) return authError;
+
+    const { id } = await params;
+    const newsletterId = parseInt(id, 10);
+
+    const source = await prisma.newsletter.findUnique({
+      where: { id: newsletterId },
+    });
+
+    if (!source) {
+      return NextResponse.json(
+        { error: "Newsletter not found" },
+        { status: 404 },
+      );
+    }
+
+    const newRecord = await prisma.newsletter.create({
+      data: {
+        subject: source.subject,
+        previewText: source.previewText,
+        markdownContent: source.markdownContent,
+        status: "draft",
+      },
+    });
+
+    return NextResponse.json(newRecord, { status: 201 });
+  } catch (error) {
+    console.error("POST Duplicate Newsletter Error:", error);
+    return serverError("Failed to duplicate newsletter");
+  }
+}

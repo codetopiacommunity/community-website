@@ -1,17 +1,30 @@
 "use client";
 
 import {
+  AlertCircle,
   Calendar,
   CheckCircle2,
   Clock,
   ExternalLink,
   Mail,
-  Plus,
   XCircle,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getUpcomingEventsCount } from "@/actions/event";
 import { getSubscriberCount } from "@/actions/subscriber";
+
+type NewsletterLog = {
+  id: string;
+  newsletterId: string;
+  totalRecipients: number;
+  successCount: number;
+  failCount: number;
+  status: string;
+  completedAt: string | null;
+  createdAt: string;
+  newsletter: { subject: string };
+};
 
 const _stats = [
   {
@@ -23,38 +36,6 @@ const _stats = [
     name: "Newsletter Subscribers",
     value: "1,248",
     icon: Mail,
-  },
-];
-
-const newsletterLogs = [
-  {
-    id: "1",
-    subject: "March Community Update",
-    status: "Success",
-    recipients: "1,240",
-    date: "2026-03-22 14:00",
-  },
-  {
-    id: "2",
-    subject: "New Workshop: AI Fundamentals",
-    status: "Success",
-    recipients: "1,235",
-    date: "2026-03-15 09:30",
-  },
-  {
-    id: "3",
-    subject: "Weekend Hackathon Reminder",
-    status: "Failed",
-    recipients: "1,230",
-    date: "2026-03-10 18:45",
-    error: "SMTP Timeout",
-  },
-  {
-    id: "4",
-    subject: "Welcome to Codetopia",
-    status: "Success",
-    recipients: "45",
-    date: "2026-03-05 10:15",
   },
 ];
 
@@ -88,7 +69,9 @@ function Counter({
 }
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [adminEmail, setAdminEmail] = useState<string | null>(null);
+  const [newsletterLogs, setNewsletterLogs] = useState<NewsletterLog[]>([]);
 
   useEffect(() => {
     const fetchAdmin = async () => {
@@ -103,6 +86,21 @@ export default function AdminDashboard() {
       }
     };
     fetchAdmin();
+  }, []);
+
+  useEffect(() => {
+    const fetchLogs = async () => {
+      try {
+        const res = await fetch("/api/admin/newsletter/logs");
+        if (res.ok) {
+          const data = await res.json();
+          setNewsletterLogs(data.logs ?? data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch newsletter logs:", error);
+      }
+    };
+    fetchLogs();
   }, []);
 
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
@@ -163,13 +161,7 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-3 font-mono">
           <button
             type="button"
-            className="flex items-center justify-center gap-2 bg-grey-100 text-black px-4 py-2.5 rounded-lg text-xs font-bold hover:bg-black hover:text-white transition-all"
-          >
-            <Plus className="h-3.5 w-3.5" />
-            New Event
-          </button>
-          <button
-            type="button"
+            onClick={() => router.push("/admin/newsletter")}
             className="flex items-center justify-center gap-2 bg-black text-white px-5 py-2.5 rounded-lg text-xs font-bold hover:bg-grey-800 transition-all shadow-lg border border-white/10"
           >
             <Mail className="h-3.5 w-3.5" />
@@ -220,9 +212,10 @@ export default function AdminDashboard() {
             </h2>
             <button
               type="button"
+              onClick={() => router.push("/admin/newsletter")}
               className="text-sm text-grey-500 hover:text-black transition-colors flex items-center gap-1 font-medium group"
             >
-              Refresh logs
+              View all
               <ExternalLink className="h-3 w-3 group-hover:scale-110 transition-transform" />
             </button>
           </div>
@@ -238,47 +231,64 @@ export default function AdminDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-grey-50">
-                {newsletterLogs.map((log) => (
-                  <tr
-                    key={log.id}
-                    className="hover:bg-grey-50/30 transition-colors"
-                  >
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-grey-900">
-                          {log.subject}
-                        </span>
-                        {log.error && (
-                          <span className="text-[10px] text-red-500 font-medium">
-                            {log.error}
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${
-                          log.status === "Success"
-                            ? "bg-emerald-50 text-emerald-700 border border-emerald-100"
-                            : "bg-red-50 text-red-700 border border-red-100"
-                        }`}
-                      >
-                        {log.status === "Success" ? (
-                          <CheckCircle2 className="h-3 w-3" />
-                        ) : (
-                          <XCircle className="h-3 w-3" />
-                        )}
-                        {log.status}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-grey-600 font-medium">
-                      {log.recipients} users
-                    </td>
-                    <td className="px-6 py-4 text-sm text-grey-400 font-mono text-right">
-                      {log.date}
+                {newsletterLogs.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={4}
+                      className="px-6 py-10 text-center text-sm text-grey-400 font-medium"
+                    >
+                      No broadcast history yet
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  newsletterLogs.map((log) => {
+                    const statusKey = log.status.toLowerCase();
+                    const badgeClass =
+                      statusKey === "sent"
+                        ? "bg-emerald-50 text-emerald-700 border border-emerald-100"
+                        : statusKey === "failed"
+                          ? "bg-red-50 text-red-700 border border-red-100"
+                          : "bg-amber-50 text-amber-700 border border-amber-100";
+                    const StatusIcon =
+                      statusKey === "sent"
+                        ? CheckCircle2
+                        : statusKey === "failed"
+                          ? XCircle
+                          : AlertCircle;
+                    const displayDate = log.completedAt
+                      ? new Date(log.completedAt).toLocaleString()
+                      : new Date(log.createdAt).toLocaleString();
+
+                    return (
+                      <tr
+                        key={log.id}
+                        className="hover:bg-grey-50/30 transition-colors"
+                      >
+                        <td className="px-6 py-4">
+                          <span className="text-sm font-semibold text-grey-900">
+                            {log.newsletter.subject}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${badgeClass}`}
+                          >
+                            <StatusIcon className="h-3 w-3" />
+                            {log.status.charAt(0).toUpperCase() +
+                              log.status.slice(1)}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-grey-600 font-medium">
+                          {log.successCount.toLocaleString()} /{" "}
+                          {log.totalRecipients.toLocaleString()} users
+                        </td>
+                        <td className="px-6 py-4 text-sm text-grey-400 font-mono text-right">
+                          {displayDate}
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
             </table>
           </div>

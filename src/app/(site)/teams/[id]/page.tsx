@@ -1,15 +1,15 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
 import { TeamCard } from "@/components/about/TeamCard";
 import { Container } from "@/components/layout/Container";
 import { teamMembers } from "@/lib/data/team";
 
-export default function TeamDirectoryPage() {
-  const params = useParams();
-  const id = params.id as string;
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+export default async function TeamDirectoryPage({ params }: Props) {
+  const { id } = await params;
   const tier = id?.toUpperCase() as "CORE" | "VOLUNTEER" | "AMBASSADOR";
 
   const filteredMembers = teamMembers.filter((m) => m.tier === tier);

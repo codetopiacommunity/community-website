@@ -73,6 +73,32 @@ model GalleryPhoto {
   @@map("gallery_photos")
 }
 
+model ImpactStory {
+  id          Int      @id @default(autoincrement())
+  title       String
+  impact      String
+  imageUrl    String   @map("image_url")
+  logoUrl     String   @map("logo_url")
+  date        String
+  location    String
+  link        String?
+  galleryLink String?  @map("gallery_link")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("impact_stories")
+}
+
+model ArticlesConfig {
+  id            Int      @id @default(autoincrement())
+  hashnodeHost  String   @map("hashnode_host")
+  featuredSlugs String[] @map("featured_slugs")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("articles_config")
+}
+
 model Event {
   id                Int      @id @default(autoincrement())
   classification    String
@@ -89,4 +115,34 @@ model Event {
   updatedAt         DateTime @updatedAt @map("updated_at")
 
   @@map("events")
+}
+
+model Newsletter {
+  id              Int                     @id @default(autoincrement())
+  subject         String
+  previewText     String?                 @map("preview_text")
+  markdownContent String                  @map("markdown_content")
+  status          String                  @default("draft")
+  recipientCount  Int                     @default(0) @map("recipient_count")
+  sentAt          DateTime?               @map("sent_at")
+  errorMessage    String?                 @map("error_message")
+  createdAt       DateTime                @default(now()) @map("created_at")
+  updatedAt       DateTime                @updatedAt @map("updated_at")
+  deliveryLogs    NewsletterDeliveryLog[]
+
+  @@map("newsletters")
+}
+
+model NewsletterDeliveryLog {
+  id              Int        @id @default(autoincrement())
+  newsletterId    Int        @map("newsletter_id")
+  newsletter      Newsletter @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
+  totalRecipients Int        @map("total_recipients")
+  successCount    Int        @map("success_count")
+  failCount       Int        @map("fail_count")
+  status          String
+  completedAt     DateTime   @map("completed_at")
+  createdAt       DateTime   @default(now()) @map("created_at")
+
+  @@map("newsletter_delivery_logs")
 }

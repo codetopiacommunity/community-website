@@ -1,11 +1,11 @@
 import {
-  Bell,
   Calendar,
   FileText,
   Image as ImageIcon,
   LayoutDashboard,
   Mail,
   Settings,
+  Star,
   Users,
   Users2,
 } from "lucide-react";
@@ -38,6 +38,11 @@ export const adminNavData = {
           url: "/admin/gallery",
           icon: ImageIcon,
         },
+        {
+          title: "Impact",
+          url: "/admin/impact",
+          icon: Star,
+        },
       ],
     },
     {
@@ -66,11 +71,6 @@ export const adminNavData = {
           title: "Settings",
           url: "/admin/settings",
           icon: Settings,
-        },
-        {
-          title: "Notifications",
-          url: "/admin/notifications",
-          icon: Bell,
         },
       ],
     },

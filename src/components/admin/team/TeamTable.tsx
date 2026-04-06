@@ -13,20 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
-interface TeamMember {
-  id: number;
-  slug: string;
-  name: string;
-  role: string;
-  imageUrl?: string | null;
-  statement: string;
-  expertise: string[];
-  tier: string;
-  github?: string | null;
-  linkedin?: string | null;
-  twitter?: string | null;
-}
+import type { TeamMember } from "@/types";
 
 export function TeamTable({
   currentMembers,

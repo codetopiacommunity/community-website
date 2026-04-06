@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Loader2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ImageOff, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { use, useCallback, useEffect, useState } from "react";
@@ -108,39 +108,64 @@ export default function AlbumPage({
       {/* Masonry Grid */}
       <section className="py-12 pb-32">
         <Container className="px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {columns.map((col, colIdx) => (
-              // biome-ignore lint/suspicious/noArrayIndexKey: column index is stable
-              <div key={colIdx} className="flex flex-col gap-3">
-                {col.map((photo) => {
-                  const globalIdx = album.photos.findIndex(
-                    (p) => p.id === photo.id,
-                  );
-                  return (
-                    <button
-                      key={photo.id}
-                      type="button"
-                      onClick={() => setLightboxIndex(globalIdx)}
-                      className="relative overflow-hidden group bg-zinc-900 cursor-zoom-in w-full text-left"
-                    >
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        width={800}
-                        height={600}
-                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                        <span className="text-white font-black font-sans text-xs uppercase tracking-widest border border-white/50 px-4 py-2">
-                          View
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
+          {album.photos.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
+              <div className="relative">
+                <div className="w-24 h-24 rounded-2xl border border-zinc-800 flex items-center justify-center">
+                  <ImageOff className="w-10 h-10 text-zinc-700" />
+                </div>
               </div>
-            ))}
-          </div>
+              <div className="text-center space-y-2">
+                <p className="text-white font-black uppercase tracking-tighter text-2xl font-sans">
+                  No images yet
+                </p>
+                <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
+                  Photos for this album haven't been added yet — check back
+                  soon.
+                </p>
+              </div>
+              <Link
+                href="/gallery"
+                className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 px-5 py-2.5 rounded-none"
+              >
+                ← Back to Gallery
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {columns.map((col, colIdx) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: column index is stable
+                <div key={colIdx} className="flex flex-col gap-3">
+                  {col.map((photo) => {
+                    const globalIdx = album.photos.findIndex(
+                      (p) => p.id === photo.id,
+                    );
+                    return (
+                      <button
+                        key={photo.id}
+                        type="button"
+                        onClick={() => setLightboxIndex(globalIdx)}
+                        className="relative overflow-hidden group bg-zinc-900 cursor-zoom-in w-full text-left"
+                      >
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          width={800}
+                          height={600}
+                          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                          <span className="text-white font-black font-sans text-xs uppercase tracking-widest border border-white/50 px-4 py-2">
+                            View
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          )}
         </Container>
       </section>
 
