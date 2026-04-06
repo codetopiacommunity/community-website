@@ -53,6 +53,8 @@ export interface ArticlesConfig {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Newsletter {
   id: number;
   subject: string;
   status: string;
