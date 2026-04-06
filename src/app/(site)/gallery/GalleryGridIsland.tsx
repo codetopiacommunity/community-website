@@ -5,19 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
-
-type Album = {
-  id: number;
-  slug: string;
-  title: string;
-  date: string;
-  category: string;
-  coverImage: string;
-  photos: { id: number }[];
-};
+import type { GalleryAlbumWithPhotos } from "@/types";
 
 export function GalleryGridIsland() {
-  const [albums, setAlbums] = useState<Album[]>([]);
+  const [albums, setAlbums] = useState<GalleryAlbumWithPhotos[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

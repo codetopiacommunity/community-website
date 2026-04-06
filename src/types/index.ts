@@ -10,6 +10,16 @@ export interface ImpactStory {
   galleryLink?: string | null;
 }
 
+export interface GalleryAlbumWithPhotos {
+  id: number;
+  slug: string;
+  title: string;
+  date: string;
+  category: string;
+  coverImage: string;
+  photos: { id: number }[];
+}
+
 export interface GalleryAlbum {
   id: number;
   slug: string;
