@@ -1,7 +1,7 @@
 import type { Event } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 /**
  * PATCH: Update an existing event
@@ -11,10 +11,8 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const body = await request.json();
@@ -62,10 +60,7 @@ export async function PATCH(
     return NextResponse.json(updatedEvent);
   } catch (error) {
     console.error("PATCH Event Error:", error);
-    return NextResponse.json(
-      { error: "Failed to update event" },
-      { status: 500 },
-    );
+    return serverError("Failed to update event");
   }
 }
 
@@ -77,10 +72,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
 
@@ -91,9 +84,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE Event Error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete event" },
-      { status: 500 },
-    );
+    return serverError("Failed to delete event");
   }
 }

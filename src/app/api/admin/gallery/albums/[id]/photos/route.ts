@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { processImage } from "../../../utils";
 
 export async function GET(
@@ -8,10 +8,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
     const { id } = await params;
     const albumId = parseInt(id, 10);
     const photos = await prisma.galleryPhoto.findMany({
@@ -21,10 +19,7 @@ export async function GET(
     return NextResponse.json(photos);
   } catch (error) {
     console.error("GET Gallery Photos Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch photos" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch photos");
   }
 }
 
@@ -33,10 +28,8 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const albumId = parseInt(id, 10);
@@ -84,9 +77,6 @@ export async function POST(
     return NextResponse.json(photo, { status: 201 });
   } catch (error) {
     console.error("POST Gallery Photo Error:", error);
-    return NextResponse.json(
-      { error: "Failed to add photo to album" },
-      { status: 500 },
-    );
+    return serverError("Failed to add photo to album");
   }
 }

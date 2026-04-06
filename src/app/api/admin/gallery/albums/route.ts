@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import {
+  requireAuth,
+  serverError,
+  validateRequired,
+} from "@/lib/api/api-utils";
 import { processImage } from "../utils";
 
 export async function GET() {
@@ -12,40 +16,24 @@ export async function GET() {
     return NextResponse.json(albums);
   } catch (error) {
     console.error("GET Gallery Albums Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch gallery albums" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch gallery albums");
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const data = await request.json();
 
-    if (!data.title || data.title.trim() === "") {
-      return NextResponse.json({ error: "Title is required" }, { status: 400 });
-    }
-    if (!data.date || data.date.trim() === "") {
-      return NextResponse.json({ error: "Date is required" }, { status: 400 });
-    }
-    if (!data.category || data.category.trim() === "") {
-      return NextResponse.json(
-        { error: "Category is required" },
-        { status: 400 },
-      );
-    }
-    if (!data.coverImage) {
-      return NextResponse.json(
-        { error: "Cover image is required" },
-        { status: 400 },
-      );
-    }
+    const validationError = validateRequired(data, [
+      "title",
+      "date",
+      "category",
+      "coverImage",
+    ]);
+    if (validationError) return validationError;
 
     const slug = data.title
       .trim()
@@ -88,9 +76,6 @@ export async function POST(request: Request) {
       );
     }
     console.error("POST Gallery Albums Error:", error);
-    return NextResponse.json(
-      { error: "Failed to create gallery album" },
-      { status: 500 },
-    );
+    return serverError("Failed to create gallery album");
   }
 }

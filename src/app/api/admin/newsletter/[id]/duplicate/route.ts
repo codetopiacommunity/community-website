@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -9,10 +9,8 @@ type RouteContext = { params: Promise<{ id: string }> };
  */
 export async function POST(_req: Request, { params }: RouteContext) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const newsletterId = parseInt(id, 10);
@@ -40,9 +38,6 @@ export async function POST(_req: Request, { params }: RouteContext) {
     return NextResponse.json(newRecord, { status: 201 });
   } catch (error) {
     console.error("POST Duplicate Newsletter Error:", error);
-    return NextResponse.json(
-      { error: "Failed to duplicate newsletter" },
-      { status: 500 },
-    );
+    return serverError("Failed to duplicate newsletter");
   }
 }

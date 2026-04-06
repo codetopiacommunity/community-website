@@ -2,18 +2,7 @@
 
 import { ExternalLink, Pencil, Sparkles, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-interface ImpactStory {
-  id: number;
-  title: string;
-  impact: string;
-  imageUrl: string;
-  logoUrl: string;
-  date: string;
-  location: string;
-  link?: string | null;
-  galleryLink?: string | null;
-}
+import type { ImpactStory } from "@/types";
 
 interface ImpactTableProps {
   stories: ImpactStory[];

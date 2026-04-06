@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth } from "@/lib/api/api-utils";
+import { type AdminSession, getSession } from "@/lib/auth/auth";
 
 /**
  * DELETE: Remove an admin account (cannot remove yourself)
@@ -9,9 +10,9 @@ export async function DELETE(
   _request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const session = await getSession();
-  if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const authError = await requireAuth();
+  if (authError) return authError;
+  const session = (await getSession()) as AdminSession;
 
   const { id } = await params;
   const adminId = Number(id);

@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 /**
  * GET: List newsletter delivery logs with offset-based pagination (?offset=0)
  */
 export async function GET(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { searchParams } = new URL(request.url);
     const offset = Math.max(0, Number(searchParams.get("offset") ?? "0"));
@@ -34,9 +32,6 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("GET Newsletter Logs Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch delivery logs" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch delivery logs");
   }
 }

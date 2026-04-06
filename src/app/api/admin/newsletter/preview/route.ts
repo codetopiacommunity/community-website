@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { renderNewsletterHtml } from "@/lib/newsletter";
 
 /**
@@ -7,10 +7,8 @@ import { renderNewsletterHtml } from "@/lib/newsletter";
  */
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const data = await request.json();
     const { markdownContent, subject, previewText } = data;
@@ -25,9 +23,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ html });
   } catch (error) {
     console.error("POST Newsletter Preview Error:", error);
-    return NextResponse.json(
-      { error: "Failed to render newsletter preview" },
-      { status: 500 },
-    );
+    return serverError("Failed to render newsletter preview");
   }
 }

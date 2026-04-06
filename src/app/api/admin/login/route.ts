@@ -1,15 +1,18 @@
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { login } from "@/lib/auth";
+import { serverError, validateRequired } from "@/lib/api/api-utils";
+import { login } from "@/lib/auth/auth";
 
 export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
 
-    if (!email || !password) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
-    }
+    const validationError = validateRequired({ email, password }, [
+      "email",
+      "password",
+    ]);
+    if (validationError) return validationError;
 
     const admin = await prisma.admin.findUnique({
       where: { email },
@@ -38,6 +41,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Login Error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return serverError("Server error");
   }
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -9,10 +9,8 @@ type RouteContext = { params: Promise<{ id: string }> };
  */
 export async function GET(_req: Request, { params }: RouteContext) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const newsletterId = parseInt(id, 10);
@@ -31,10 +29,7 @@ export async function GET(_req: Request, { params }: RouteContext) {
     return NextResponse.json(newsletter);
   } catch (error) {
     console.error("GET Newsletter Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch newsletter" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch newsletter");
   }
 }
 
@@ -43,10 +38,8 @@ export async function GET(_req: Request, { params }: RouteContext) {
  */
 export async function PATCH(req: Request, { params }: RouteContext) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const newsletterId = parseInt(id, 10);
@@ -93,10 +86,7 @@ export async function PATCH(req: Request, { params }: RouteContext) {
     return NextResponse.json(updated);
   } catch (error) {
     console.error("PATCH Newsletter Error:", error);
-    return NextResponse.json(
-      { error: "Failed to update newsletter" },
-      { status: 500 },
-    );
+    return serverError("Failed to update newsletter");
   }
 }
 
@@ -105,10 +95,8 @@ export async function PATCH(req: Request, { params }: RouteContext) {
  */
 export async function DELETE(_req: Request, { params }: RouteContext) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { id } = await params;
     const newsletterId = parseInt(id, 10);
@@ -136,9 +124,6 @@ export async function DELETE(_req: Request, { params }: RouteContext) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("DELETE Newsletter Error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete newsletter" },
-      { status: 500 },
-    );
+    return serverError("Failed to delete newsletter");
   }
 }

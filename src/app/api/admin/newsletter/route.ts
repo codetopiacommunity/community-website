@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { getSession } from "@/lib/auth";
+import { requireAuth, serverError } from "@/lib/api/api-utils";
 
 const PAGE_SIZE = 10;
 
@@ -9,10 +9,8 @@ const PAGE_SIZE = 10;
  */
 export async function GET(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const { searchParams } = new URL(request.url);
     const page = Math.max(1, Number(searchParams.get("page") ?? "1"));
@@ -30,10 +28,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ newsletters, total, page, pageSize: PAGE_SIZE });
   } catch (error) {
     console.error("GET Newsletters Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch newsletters" },
-      { status: 500 },
-    );
+    return serverError("Failed to fetch newsletters");
   }
 }
 
@@ -42,10 +37,8 @@ export async function GET(request: Request) {
  */
 export async function POST(request: Request) {
   try {
-    const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = await requireAuth();
+    if (authError) return authError;
 
     const data = await request.json();
     const { subject, previewText, markdownContent } = data;
@@ -84,9 +77,6 @@ export async function POST(request: Request) {
     return NextResponse.json(newsletter, { status: 201 });
   } catch (error) {
     console.error("POST Newsletter Error:", error);
-    return NextResponse.json(
-      { error: "Failed to create newsletter" },
-      { status: 500 },
-    );
+    return serverError("Failed to create newsletter");
   }
 }

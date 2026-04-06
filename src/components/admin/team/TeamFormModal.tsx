@@ -23,20 +23,7 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-
-interface TeamMember {
-  id: number;
-  slug: string;
-  name: string;
-  role: string;
-  imageUrl?: string | null;
-  statement: string;
-  expertise: string[];
-  tier: string;
-  github?: string | null;
-  linkedin?: string | null;
-  twitter?: string | null;
-}
+import type { TeamMember } from "@/types";
 
 export function TeamFormModal({
   editingMember,

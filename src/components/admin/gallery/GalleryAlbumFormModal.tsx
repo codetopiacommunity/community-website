@@ -20,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import type { GalleryAlbum } from "@/types";
 
 const GALLERY_CATEGORIES = [
   "Events",
@@ -29,18 +30,6 @@ const GALLERY_CATEGORIES = [
   "Community",
   "Other",
 ];
-
-interface GalleryAlbum {
-  id: number;
-  slug: string;
-  title: string;
-  date: string;
-  category: string;
-  coverImage: string;
-  createdAt: string;
-  updatedAt: string;
-  _count?: { photos: number };
-}
 
 interface GalleryAlbumFormModalProps {
   isOpen: boolean;
