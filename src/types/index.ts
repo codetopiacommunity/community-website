@@ -46,7 +46,13 @@ export interface TeamMember {
   twitter?: string | null;
 }
 
-export interface Newsletter {
+export interface ArticlesConfig {
+  id: number;
+  hashnodeHost: string;
+  featuredSlugs: string[];
+  createdAt: string;
+  updatedAt: string;
+}
   id: number;
   subject: string;
   status: string;

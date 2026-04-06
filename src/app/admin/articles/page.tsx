@@ -4,14 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FeaturedArticlesPicker } from "@/components/admin/articles/FeaturedArticlesPicker";
 import { PublicationHostForm } from "@/components/admin/articles/PublicationHostForm";
-
-interface ArticlesConfig {
-  id: number;
-  hashnodeHost: string;
-  featuredSlugs: string[];
-  createdAt: string;
-  updatedAt: string;
-}
+import type { ArticlesConfig } from "@/types";
 
 export default function ManageArticlesPage() {
   const [config, setConfig] = useState<ArticlesConfig | null>(null);
