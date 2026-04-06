@@ -2,6 +2,7 @@
 
 import { Images, Loader2, Pencil, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import type { GalleryAlbum } from "@/types";
 
@@ -11,7 +12,6 @@ interface GalleryAlbumTableProps {
   onEdit: (album: GalleryAlbum) => void;
   onDelete: (id: number) => void;
   onAddFirst: () => void;
-  onManagePhotos: (album: GalleryAlbum) => void;
 }
 
 export function GalleryAlbumTable({
@@ -20,8 +20,8 @@ export function GalleryAlbumTable({
   onEdit,
   onDelete,
   onAddFirst,
-  onManagePhotos,
 }: GalleryAlbumTableProps) {
+  const router = useRouter();
   return (
     <div className="rounded-2xl bg-white border border-grey-100 overflow-hidden relative shadow-none">
       <div className="p-6 border-b border-grey-100 bg-white flex items-center justify-between">
@@ -122,7 +122,7 @@ export function GalleryAlbumTable({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => onManagePhotos(album)}
+                        onClick={() => router.push(`/admin/gallery/${album.id}/photos`)}
                         className="h-9 px-3 text-[10px] font-black uppercase tracking-widest text-black hover:bg-black hover:text-white border-2 border-transparent hover:border-black transition-all rounded-xl flex items-center gap-1.5"
                         title="Manage photos"
                       >

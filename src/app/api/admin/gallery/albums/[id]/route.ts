@@ -3,6 +3,28 @@ import { prisma } from "@/../prisma/prisma";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { deleteImage, processImage } from "../../utils";
 
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const authError = await requireAuth();
+    if (authError) return authError;
+    const { id } = await params;
+    const album = await prisma.galleryAlbum.findUnique({
+      where: { id: parseInt(id, 10) },
+      include: { _count: { select: { photos: true } } },
+    });
+    if (!album) {
+      return NextResponse.json({ error: "Album not found" }, { status: 404 });
+    }
+    return NextResponse.json(album);
+  } catch (error) {
+    console.error("GET Gallery Album Error:", error);
+    return serverError("Failed to fetch gallery album");
+  }
+}
+
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> },

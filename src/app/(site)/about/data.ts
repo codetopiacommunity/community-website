@@ -1,4 +1,11 @@
-import { Award, Heart, ShieldCheck, Target, TrendingUp, Users } from "lucide-react";
+import {
+  Award,
+  Heart,
+  ShieldCheck,
+  Target,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 
 export const coreValues = [
   {

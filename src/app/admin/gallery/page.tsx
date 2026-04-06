@@ -6,7 +6,6 @@ import { toast } from "sonner";
 import { GalleryAlbumDeleteModal } from "@/components/admin/gallery/GalleryAlbumDeleteModal";
 import { GalleryAlbumFormModal } from "@/components/admin/gallery/GalleryAlbumFormModal";
 import { GalleryAlbumTable } from "@/components/admin/gallery/GalleryAlbumTable";
-import { GalleryPhotosModal } from "@/components/admin/gallery/GalleryPhotosModal";
 import { GalleryToolbar } from "@/components/admin/gallery/GalleryToolbar";
 import { Button } from "@/components/ui/button";
 import { useAdminCRUD } from "@/hooks/useAdminCRUD";
@@ -37,9 +36,6 @@ export default function ManageGalleryPage() {
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
 
-  const [isPhotosModalOpen, setIsPhotosModalOpen] = useState(false);
-  const [photosAlbum, setPhotosAlbum] = useState<GalleryAlbum | null>(null);
-
   const filteredAlbums = (albums ?? []).filter((album) => {
     const matchesSearch =
       search === "" ||
@@ -52,11 +48,6 @@ export default function ManageGalleryPage() {
 
   function handleEdit(album: GalleryAlbum) {
     openEdit(album);
-  }
-
-  function handleManagePhotos(album: GalleryAlbum) {
-    setPhotosAlbum(album);
-    setIsPhotosModalOpen(true);
   }
 
   function handleDelete(id: number) {
@@ -115,7 +106,6 @@ export default function ManageGalleryPage() {
         onEdit={handleEdit}
         onDelete={handleDelete}
         onAddFirst={openAdd}
-        onManagePhotos={handleManagePhotos}
       />
 
       <GalleryAlbumFormModal
@@ -130,13 +120,6 @@ export default function ManageGalleryPage() {
         onClose={closeDelete}
         album={albumToDelete}
         onSuccess={handleDeleteSuccess}
-      />
-
-      <GalleryPhotosModal
-        isOpen={isPhotosModalOpen}
-        onClose={() => setIsPhotosModalOpen(false)}
-        album={photosAlbum}
-        onPhotosChanged={fetchAlbums}
       />
     </div>
   );
