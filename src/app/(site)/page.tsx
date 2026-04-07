@@ -16,7 +16,7 @@ export default async function Home() {
   const spotlight: Spotlight | null = raw
     ? {
         ...raw,
-        links: raw.links as Spotlight["links"],
+        links: raw.links as unknown as Spotlight["links"],
         createdAt: raw.createdAt.toISOString(),
         updatedAt: raw.updatedAt.toISOString(),
       }
