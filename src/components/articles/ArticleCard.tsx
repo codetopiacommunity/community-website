@@ -18,10 +18,10 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
   return (
     <Link
       href={href}
-      className="group flex flex-col bg-black border border-zinc-800 hover:border-white transition-colors duration-200 overflow-hidden"
+      className="group flex flex-col bg-background border border-border hover:border-foreground transition-colors duration-200 overflow-hidden"
     >
       {/* Cover Image */}
-      <div className="relative w-full aspect-video overflow-hidden bg-zinc-900">
+      <div className="relative w-full aspect-video overflow-hidden bg-muted">
         {article.coverImage?.url ? (
           <Image
             src={article.coverImage.url}
@@ -31,8 +31,8 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="absolute inset-0 bg-zinc-900 flex items-center justify-center">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-700">
+          <div className="absolute inset-0 bg-muted flex items-center justify-center">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               No Cover
             </span>
           </div>
@@ -47,7 +47,7 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
             {visibleTags.map((tag) => (
               <span
                 key={tag.slug}
-                className="font-mono text-[9px] uppercase tracking-[0.25em] text-black bg-white px-2 py-0.5 border border-white"
+                className="font-mono text-[9px] uppercase tracking-[0.25em] text-background bg-foreground px-2 py-0.5 border border-foreground"
               >
                 {tag.name}
               </span>
@@ -56,22 +56,22 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
         )}
 
         {/* Title */}
-        <h3 className="font-black text-white uppercase tracking-tighter text-xl leading-tight font-sans group-hover:text-zinc-200 transition-colors">
+        <h3 className="font-black text-foreground uppercase tracking-tighter text-xl leading-tight font-sans group-hover:text-muted-foreground transition-colors">
           {article.title}
         </h3>
 
         {/* Excerpt */}
-        <p className="font-mono text-zinc-400 text-sm leading-relaxed line-clamp-2">
+        <p className="font-mono text-muted-foreground text-sm leading-relaxed line-clamp-2">
           {article.brief}
         </p>
 
         {/* Meta */}
-        <div className="mt-auto flex flex-col gap-2 pt-3 border-t border-zinc-800">
-          <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+        <div className="mt-auto flex flex-col gap-2 pt-3 border-t border-border">
+          <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
             <span>{formattedDate}</span>
             <span>{article.readTimeInMinutes} min read</span>
           </div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
             {article.author.name}
           </span>
         </div>
