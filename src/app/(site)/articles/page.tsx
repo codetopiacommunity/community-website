@@ -13,35 +13,35 @@ export default async function ArticlesPage() {
 
   if (!hasHost) {
     return (
-    <div className="flex-1 bg-background text-foreground min-h-screen">
-      <section className="w-full pt-32 pb-16 bg-background">
-        <Container className="px-4">
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-            ARTICLES
-          </h1>
-        </Container>
-      </section>
-      <section className="py-16 border-t border-border pb-32">
-        <Container className="px-4">
-          <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
-            <div className="w-24 h-24 border border-border flex items-center justify-center">
-              <span className="font-mono text-muted-foreground text-3xl font-black">
-                {"//"}
-              </span>
+      <div className="flex-1 bg-background text-foreground min-h-screen">
+        <section className="w-full pt-32 pb-16 bg-background">
+          <Container className="px-4">
+            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+              ARTICLES
+            </h1>
+          </Container>
+        </section>
+        <section className="py-16 border-t border-border pb-32">
+          <Container className="px-4">
+            <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
+              <div className="w-24 h-24 border border-border flex items-center justify-center">
+                <span className="font-mono text-muted-foreground text-3xl font-black">
+                  {"//"}
+                </span>
+              </div>
+              <div className="text-center space-y-2">
+                <p className="text-foreground font-black uppercase tracking-tighter text-2xl font-sans">
+                  Not configured
+                </p>
+                <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest max-w-xs">
+                  No Hashnode publication has been linked yet. Configure one in
+                  the admin settings.
+                </p>
+              </div>
             </div>
-            <div className="text-center space-y-2">
-              <p className="text-foreground font-black uppercase tracking-tighter text-2xl font-sans">
-                Not configured
-              </p>
-              <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest max-w-xs">
-                No Hashnode publication has been linked yet. Configure one in
-                the admin settings.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-    </div>
+          </Container>
+        </section>
+      </div>
     );
   }
 
