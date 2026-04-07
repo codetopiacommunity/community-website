@@ -1,6 +1,8 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -18,21 +20,21 @@ export const metadata: Metadata = {
   description: "Codetopia Community Website",
 };
 
-import { Toaster } from "sonner";
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-black text-white flex flex-col overflow-x-hidden`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased min-h-screen bg-background text-foreground flex flex-col overflow-x-hidden`}
       >
-        <Toaster position="top-center" richColors theme="dark" />
-        {children}
-        <Analytics />
+        <ThemeProvider>
+          <Toaster position="top-center" richColors theme="dark" />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

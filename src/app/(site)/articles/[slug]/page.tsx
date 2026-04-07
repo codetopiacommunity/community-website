@@ -67,7 +67,7 @@ export default async function ArticleDetailPage({
   );
 
   return (
-    <div className="flex-1 bg-black text-white min-h-screen">
+    <div className="flex-1 bg-background text-foreground min-h-screen">
       {/* Hero Cover Image */}
       {article.coverImage?.url && (
         <div className="relative h-[50vh] w-full overflow-hidden">
@@ -84,12 +84,12 @@ export default async function ArticleDetailPage({
       )}
 
       {/* Article Header */}
-      <section className="pt-16 pb-8 border-b border-zinc-900">
+      <section className="pt-16 pb-8 border-b border-border">
         <Container className="px-4">
           <div className="max-w-4xl mx-auto px-2">
             <Link
               href="/articles"
-              className="text-zinc-600 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors mb-8 inline-block"
+              className="text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors mb-8 inline-block"
             >
               ← Articles
             </Link>
@@ -101,7 +101,7 @@ export default async function ArticleDetailPage({
             {/* Metadata */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
               {article.author.profilePicture && (
-                <div className="relative w-9 h-9 overflow-hidden border border-zinc-700 flex-shrink-0">
+                <div className="relative w-9 h-9 overflow-hidden border border-border flex-shrink-0">
                   <Image
                     src={article.author.profilePicture}
                     alt={article.author.name}
@@ -112,14 +112,14 @@ export default async function ArticleDetailPage({
                 </div>
               )}
               <div className="flex flex-col gap-0.5">
-                <span className="font-mono text-xs text-white uppercase tracking-widest">
+                <span className="font-mono text-xs text-foreground uppercase tracking-widest">
                   {article.author.name}
                 </span>
-                <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
                   {formattedDate}
                 </span>
               </div>
-              <div className="flex items-center gap-4 ml-auto font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+              <div className="flex items-center gap-4 ml-auto font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 <span>{article.readTimeInMinutes} min read</span>
                 <span>{article.responseCount} comments</span>
                 <span>{article.reactionCount} likes</span>
@@ -133,7 +133,7 @@ export default async function ArticleDetailPage({
                   <Link
                     key={tag.slug}
                     href={`/articles?tag=${tag.slug}`}
-                    className="font-mono text-[9px] uppercase tracking-[0.25em] text-black bg-white px-2 py-0.5 border border-white hover:bg-zinc-200 transition-colors"
+                    className="font-mono text-[9px] uppercase tracking-[0.25em] text-background bg-foreground px-2 py-0.5 border border-foreground hover:opacity-80 transition-opacity"
                   >
                     {tag.name}
                   </Link>
@@ -168,17 +168,17 @@ export default async function ArticleDetailPage({
       </section>
 
       {/* Share + Read on Hashnode */}
-      <section className="py-10 border-t border-zinc-900">
+      <section className="py-10 border-t border-border">
         <Container className="px-4">
           <div className="max-w-4xl mx-auto px-2 flex flex-wrap items-center gap-4">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               Share
             </span>
             <a
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(article.url)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-widest text-zinc-400 border border-zinc-800 px-4 py-2 hover:border-white hover:text-white transition-colors"
+              className="font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors"
             >
               X / Twitter
             </a>
@@ -186,7 +186,7 @@ export default async function ArticleDetailPage({
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(article.url)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-widest text-zinc-400 border border-zinc-800 px-4 py-2 hover:border-white hover:text-white transition-colors"
+              className="font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors"
             >
               LinkedIn
             </a>
@@ -194,7 +194,7 @@ export default async function ArticleDetailPage({
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto font-mono text-xs uppercase tracking-widest text-zinc-400 border border-zinc-800 px-4 py-2 hover:border-white hover:text-white transition-colors"
+              className="ml-auto font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors"
             >
               Read on Hashnode ↗
             </a>
@@ -204,10 +204,10 @@ export default async function ArticleDetailPage({
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="py-12 border-t border-zinc-900 pb-32">
+        <section className="py-12 border-t border-border pb-32">
           <Container className="px-4">
             <div className="max-w-6xl mx-auto px-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-8">
                 Related Articles
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

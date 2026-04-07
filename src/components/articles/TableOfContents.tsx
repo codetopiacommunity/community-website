@@ -19,9 +19,9 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
   return (
     <nav
       aria-label="Table of contents"
-      className="sticky top-8 border border-zinc-800 bg-black p-4 font-mono"
+      className="sticky top-8 border border-border bg-background p-4 font-mono"
     >
-      <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+      <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
         Contents
       </p>
       <ul className="space-y-1">
@@ -29,7 +29,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
           <li key={entry.id} className={indentClass[entry.level] ?? "pl-0"}>
             <a
               href={`#${entry.id}`}
-              className="block text-xs text-zinc-400 hover:text-white transition-colors duration-150 leading-snug py-0.5 truncate"
+              className="block text-xs text-muted-foreground hover:text-foreground transition-colors duration-150 leading-snug py-0.5 truncate"
             >
               {entry.text}
             </a>

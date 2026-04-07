@@ -36,7 +36,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search articles..."
-          className="w-full md:max-w-sm bg-black border border-zinc-800 text-white font-mono text-sm px-4 py-2 placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors"
+          className="w-full md:max-w-sm bg-background border border-border text-foreground font-mono text-sm px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors"
         />
 
         {allTags.length > 0 && (
@@ -46,8 +46,8 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
               onClick={() => setActiveTag(null)}
               className={`font-mono text-[10px] uppercase tracking-[0.25em] px-3 py-1 border transition-colors duration-150 ${
                 activeTag === null
-                  ? "bg-white text-black border-white"
-                  : "bg-transparent text-zinc-400 border-zinc-700 hover:border-zinc-400 hover:text-white"
+                  ? "bg-foreground text-background border-foreground"
+                  : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
               }`}
             >
               All
@@ -61,8 +61,8 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                 }
                 className={`font-mono text-[10px] uppercase tracking-[0.25em] px-3 py-1 border transition-colors duration-150 ${
                   activeTag === tag.slug
-                    ? "bg-white text-black border-white"
-                    : "bg-transparent text-zinc-400 border-zinc-700 hover:border-zinc-400 hover:text-white"
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
                 }`}
               >
                 {tag.name}
@@ -73,23 +73,23 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       </div>
 
       {/* Results count */}
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 px-2">
+      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground px-2">
         {filtered.length} {filtered.length === 1 ? "article" : "articles"}
       </p>
 
       {/* Grid or empty state */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 gap-6 select-none">
-          <div className="w-20 h-20 border border-zinc-800 flex items-center justify-center">
-            <span className="font-mono text-zinc-700 text-2xl font-black">
+          <div className="w-20 h-20 border border-border flex items-center justify-center">
+            <span className="font-mono text-muted-foreground text-2xl font-black">
               ?
             </span>
           </div>
           <div className="text-center space-y-2">
-            <p className="text-white font-black uppercase tracking-tighter text-xl font-sans">
+            <p className="text-foreground font-black uppercase tracking-tighter text-xl font-sans">
               No articles found
             </p>
-            <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
+            <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest max-w-xs">
               Try a different search term or clear the tag filter.
             </p>
           </div>
