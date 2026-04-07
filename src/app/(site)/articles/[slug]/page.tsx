@@ -7,6 +7,7 @@ import { ArticleCard } from "@/components/articles/ArticleCard";
 import ArticleContent from "@/components/articles/ArticleContent";
 import { TableOfContents } from "@/components/articles/TableOfContents";
 import { Container } from "@/components/layout/Container";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { fetchArticle, fetchArticles } from "@/lib/hashnode";
 import { extractToc, injectHeadingIds } from "@/lib/toc";
 
@@ -87,12 +88,15 @@ export default async function ArticleDetailPage({
       <section className="pt-16 pb-8 border-b border-border">
         <Container className="px-4">
           <div className="max-w-6xl mx-auto px-2">
-            <Link
-              href="/articles"
-              className="text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors mb-8 inline-block"
-            >
-              ← Articles
-            </Link>
+            <div className="flex items-center justify-between mb-8">
+              <Link
+                href="/articles"
+                className="text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors inline-block"
+              >
+                ← Articles
+              </Link>
+              <ThemeToggle />
+            </div>
 
             <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none font-sans mb-8">
               {article.title}
