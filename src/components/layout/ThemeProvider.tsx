@@ -1,12 +1,40 @@
 "use client";
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import type { ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+type Theme = "dark" | "light";
+
+const ThemeContext = createContext<{
+  theme: Theme;
+  toggle: () => void;
+}>({ theme: "dark", toggle: () => {} });
+
+export function useContentTheme() {
+  return useContext(ThemeContext);
+}
+
+const STORAGE_KEY = "codetopia-content-theme";
+
+// Wraps only the sections that support theming (articles, spotlight)
+export function ContentThemeProvider({ children }: { children: ReactNode }) {
+  const [theme, setTheme] = useState<Theme>("dark");
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    if (stored === "light" || stored === "dark") setTheme(stored);
+  }, []);
+
+  const toggle = () => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      localStorage.setItem(STORAGE_KEY, next);
+      return next;
+    });
+  };
+
   return (
-    <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem>
-      {children}
-    </NextThemesProvider>
+    <ThemeContext.Provider value={{ theme, toggle }}>
+      <div className={theme}>{children}</div>
+    </ThemeContext.Provider>
   );
 }
