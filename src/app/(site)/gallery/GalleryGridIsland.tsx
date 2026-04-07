@@ -1,5 +1,6 @@
 "use client";
 
+import { FaArrowRight } from "react-icons/fa6";
 import { Images, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -79,9 +80,7 @@ export function GalleryGridIsland() {
                         {album.date}
                       </p>
                     </div>
-                    <span className="text-zinc-700 group-hover:text-white transition-colors text-2xl font-black">
-                      →
-                    </span>
+                    <FaArrowRight className="text-zinc-700 group-hover:text-white transition-colors w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               ))}
