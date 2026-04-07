@@ -32,15 +32,19 @@ export function SpotlightFormModal({
 }) {
   const [form, setForm] = useState(defaultForm);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [links, setLinks] = useState<SpotlightLink[]>([]);
+  const [links, setLinks] = useState<(SpotlightLink & { _key: string })[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       if (editing) {
-        setForm({ name: editing.name, role: editing.role, contribution: editing.contribution });
+        setForm({
+          name: editing.name,
+          role: editing.role,
+          contribution: editing.contribution,
+        });
         setImagePreview(editing.imageUrl);
-        setLinks(editing.links ?? []);
+        setLinks(editing.links.map((l) => ({ ...l, _key: crypto.randomUUID() })));
       } else {
         setForm(defaultForm);
         setImagePreview(null);
@@ -57,28 +61,39 @@ export function SpotlightFormModal({
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 5 * 1024 * 1024) { toast.error("Image must be under 5MB"); return; }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Image must be under 5MB");
+      return;
+    }
     const reader = new FileReader();
     reader.onloadend = () => setImagePreview(reader.result as string);
     reader.readAsDataURL(file);
   };
 
-  const addLink = () => setLinks((prev) => [...prev, { label: "", url: "" }]);
-  const removeLink = (i: number) => setLinks((prev) => prev.filter((_, idx) => idx !== i));
+  const addLink = () => setLinks((prev) => [...prev, { label: "", url: "", _key: crypto.randomUUID() }]);
+  const removeLink = (i: number) =>
+    setLinks((prev) => prev.filter((_, idx) => idx !== i));
   const updateLink = (i: number, field: keyof SpotlightLink, value: string) =>
-    setLinks((prev) => prev.map((l, idx) => (idx === i ? { ...l, [field]: value } : l)));
+    setLinks((prev) =>
+      prev.map((l, idx) => (idx === i ? { ...l, [field]: value } : l)),
+    );
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!imagePreview) { toast.error("Please upload an image"); return; }
+    if (!imagePreview) {
+      toast.error("Please upload an image");
+      return;
+    }
     setIsSubmitting(true);
     try {
-      const url = editing ? `/api/admin/spotlight/${editing.id}` : "/api/admin/spotlight";
+      const url = editing
+        ? `/api/admin/spotlight/${editing.id}`
+        : "/api/admin/spotlight";
       const method = editing ? "PATCH" : "POST";
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, imageUrl: imagePreview, links }),
+        body: JSON.stringify({ ...form, imageUrl: imagePreview, links: links.map(({ _key: _, ...l }) => l) }),
       });
       if (res.ok) {
         toast.success(editing ? "Spotlight updated" : "Spotlight added");
@@ -94,8 +109,10 @@ export function SpotlightFormModal({
     setIsSubmitting(false);
   };
 
-  const inputCls = "rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
-  const labelCls = "text-[10px] uppercase text-grey-500 font-bold tracking-widest";
+  const inputCls =
+    "rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
+  const labelCls =
+    "text-[10px] uppercase text-grey-500 font-bold tracking-widest";
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -105,24 +122,44 @@ export function SpotlightFormModal({
             {editing ? "Edit Spotlight" : "New Spotlight"}
           </DialogTitle>
           <DialogDescription className="text-[10px] font-bold text-grey-400 uppercase tracking-[0.2em] font-mono">
-            {editing ? "Update spotlight details" : "Add a new person to spotlight"}
+            {editing
+              ? "Update spotlight details"
+              : "Add a new person to spotlight"}
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit}>
           <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto">
             <div className="space-y-2">
-              <Label className={labelCls}>Name <span className="text-red-500">*</span></Label>
-              <Input value={form.name} onChange={set("name")} required className={inputCls} placeholder="e.g. Linus Torvalds" />
+              <Label className={labelCls}>
+                Name <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                value={form.name}
+                onChange={set("name")}
+                required
+                className={inputCls}
+                placeholder="e.g. Linus Torvalds"
+              />
             </div>
 
             <div className="space-y-2">
-              <Label className={labelCls}>Role <span className="text-red-500">*</span></Label>
-              <Input value={form.role} onChange={set("role")} required className={inputCls} placeholder="e.g. Open Source Architect" />
+              <Label className={labelCls}>
+                Role <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                value={form.role}
+                onChange={set("role")}
+                required
+                className={inputCls}
+                placeholder="e.g. Open Source Architect"
+              />
             </div>
 
             <div className="space-y-2">
-              <Label className={labelCls}>Contribution <span className="text-red-500">*</span></Label>
+              <Label className={labelCls}>
+                Contribution <span className="text-red-500">*</span>
+              </Label>
               <Textarea
                 value={form.contribution}
                 onChange={set("contribution")}
@@ -133,11 +170,19 @@ export function SpotlightFormModal({
             </div>
 
             <div className="space-y-2">
-              <Label className={labelCls}>Photo <span className="text-red-500">*</span></Label>
+              <Label className={labelCls}>
+                Photo <span className="text-red-500">*</span>
+              </Label>
               <div className="flex items-center gap-4">
                 {imagePreview && (
                   <div className="h-14 w-14 rounded-xl overflow-hidden border border-grey-100 flex-shrink-0 relative bg-grey-50">
-                    <Image src={imagePreview} alt="Preview" fill className="object-cover" unoptimized />
+                    <Image
+                      src={imagePreview}
+                      alt="Preview"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
                   </div>
                 )}
                 <Input
@@ -153,12 +198,16 @@ export function SpotlightFormModal({
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <Label className={labelCls}>Links (optional)</Label>
-                <button type="button" onClick={addLink} className="text-[10px] font-mono uppercase tracking-widest text-black flex items-center gap-1 hover:opacity-70 transition-opacity">
+                <button
+                  type="button"
+                  onClick={addLink}
+                  className="text-[10px] font-mono uppercase tracking-widest text-black flex items-center gap-1 hover:opacity-70 transition-opacity"
+                >
                   <Plus className="h-3 w-3" /> Add
                 </button>
               </div>
               {links.map((link, i) => (
-                <div key={`link-${i}`} className="flex gap-2 items-center">
+                <div key={link._key} className="flex gap-2 items-center">
                   <Input
                     value={link.label}
                     onChange={(e) => updateLink(i, "label", e.target.value)}
@@ -171,7 +220,11 @@ export function SpotlightFormModal({
                     placeholder="https://..."
                     className={`${inputCls} flex-[2]`}
                   />
-                  <button type="button" onClick={() => removeLink(i)} className="text-grey-400 hover:text-red-500 transition-colors p-1">
+                  <button
+                    type="button"
+                    onClick={() => removeLink(i)}
+                    className="text-grey-400 hover:text-red-500 transition-colors p-1"
+                  >
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
@@ -180,11 +233,28 @@ export function SpotlightFormModal({
           </div>
 
           <div className="px-8 py-6 bg-grey-50/30 border-t-2 border-grey-100 flex items-center justify-end gap-4 font-mono">
-            <Button variant="ghost" onClick={onClose} type="button" className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest">
+            <Button
+              variant="ghost"
+              onClick={onClose}
+              type="button"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest"
+            >
               Cancel
             </Button>
-            <Button disabled={isSubmitting} type="submit" className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2">
-              {isSubmitting ? <><Loader2 className="h-3 w-3 animate-spin" /> PROCESSING</> : editing ? "SAVE CHANGES" : "ADD SPOTLIGHT"}
+            <Button
+              disabled={isSubmitting}
+              type="submit"
+              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-3 w-3 animate-spin" /> PROCESSING
+                </>
+              ) : editing ? (
+                "SAVE CHANGES"
+              ) : (
+                "ADD SPOTLIGHT"
+              )}
             </Button>
           </div>
         </form>

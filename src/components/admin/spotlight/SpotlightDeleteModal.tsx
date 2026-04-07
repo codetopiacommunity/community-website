@@ -29,7 +29,9 @@ export function SpotlightDeleteModal({
     if (!spotlightId) return;
     setIsDeleting(true);
     try {
-      const res = await fetch(`/api/admin/spotlight/${spotlightId}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/spotlight/${spotlightId}`, {
+        method: "DELETE",
+      });
       if (res.ok) {
         toast.success("Spotlight deleted");
         onSuccess();
@@ -57,10 +59,16 @@ export function SpotlightDeleteModal({
         </DialogHeader>
         <div className="px-8 py-6 space-y-6">
           <p className="text-sm text-grey-600 font-mono">
-            Are you sure you want to delete this spotlight entry? The image will also be removed.
+            Are you sure you want to delete this spotlight entry? The image will
+            also be removed.
           </p>
           <div className="flex items-center justify-end gap-4 font-mono">
-            <Button variant="ghost" onClick={onClose} type="button" className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest">
+            <Button
+              variant="ghost"
+              onClick={onClose}
+              type="button"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest"
+            >
               Cancel
             </Button>
             <Button
@@ -68,7 +76,13 @@ export function SpotlightDeleteModal({
               onClick={handleDelete}
               className="bg-red-500 text-white text-[10px] uppercase px-8 h-11 rounded-xl hover:bg-red-600 active:scale-[0.98] transition-all font-bold tracking-widest shadow-none flex items-center gap-2"
             >
-              {isDeleting ? <><Loader2 className="h-3 w-3 animate-spin" /> DELETING</> : "DELETE"}
+              {isDeleting ? (
+                <>
+                  <Loader2 className="h-3 w-3 animate-spin" /> DELETING
+                </>
+              ) : (
+                "DELETE"
+              )}
             </Button>
           </div>
         </div>

@@ -14,13 +14,19 @@ export async function PATCH(
     const { id } = await params;
     const data = await request.json();
 
-    const existing = await prisma.spotlight.findUnique({ where: { id: Number(id) } });
-    if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    const existing = await prisma.spotlight.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!existing)
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
 
     let imageUrl = existing.imageUrl;
     if (data.imageUrl && data.imageUrl !== existing.imageUrl) {
       await deleteSpotlightImage(existing.imageUrl);
-      imageUrl = await uploadSpotlightImage(data.imageUrl, data.name ?? existing.name);
+      imageUrl = await uploadSpotlightImage(
+        data.imageUrl,
+        data.name ?? existing.name,
+      );
     }
 
     const updated = await prisma.spotlight.update({
@@ -51,8 +57,11 @@ export async function DELETE(
 
     const { id } = await params;
 
-    const existing = await prisma.spotlight.findUnique({ where: { id: Number(id) } });
-    if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    const existing = await prisma.spotlight.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!existing)
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
 
     await deleteSpotlightImage(existing.imageUrl);
     await prisma.spotlight.delete({ where: { id: Number(id) } });

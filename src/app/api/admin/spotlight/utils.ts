@@ -7,7 +7,10 @@ export async function uploadSpotlightImage(
   if (!base64Str.startsWith("data:image")) return base64Str;
 
   const dateStr = new Date().toISOString().replace(/[:.]/g, "-");
-  const cleanName = name.trim().toLowerCase().replace(/[^a-z0-9]/g, "-");
+  const cleanName = name
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "-");
 
   const result = await cloudinary.uploader.upload(base64Str, {
     folder: "codetopia/spotlight",
@@ -25,7 +28,9 @@ export async function deleteSpotlightImage(imageUrl: string | null) {
     if (url.hostname !== "res.cloudinary.com") return;
     const parts = url.pathname.split("/");
     const publicIdWithoutExt = parts[parts.length - 1].split(".")[0];
-    await cloudinary.uploader.destroy(`codetopia/spotlight/${publicIdWithoutExt}`);
+    await cloudinary.uploader.destroy(
+      `codetopia/spotlight/${publicIdWithoutExt}`,
+    );
   } catch (error) {
     console.error("Cloudinary Deletion Error:", error);
   }

@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
-import { requireAuth, serverError, validateRequired } from "@/lib/api/api-utils";
+import {
+  requireAuth,
+  serverError,
+  validateRequired,
+} from "@/lib/api/api-utils";
 import { uploadSpotlightImage } from "./utils";
 
 export async function GET() {
@@ -22,7 +26,12 @@ export async function POST(request: Request) {
 
     const data = await request.json();
 
-    const validationError = validateRequired(data, ["name", "role", "imageUrl", "contribution"]);
+    const validationError = validateRequired(data, [
+      "name",
+      "role",
+      "imageUrl",
+      "contribution",
+    ]);
     if (validationError) return validationError;
 
     const imageUrl = await uploadSpotlightImage(data.imageUrl, data.name);
