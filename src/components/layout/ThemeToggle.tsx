@@ -12,9 +12,10 @@ export function ThemeToggle() {
       type="button"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={toggle}
-      className="p-2 text-grey-300 hover:text-grey-50 transition-colors outline-none"
+      className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest border border-border text-muted-foreground hover:text-foreground hover:border-foreground px-3 py-2 transition-colors"
     >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {isDark ? "Light" : "Dark"}
     </button>
   );
 }

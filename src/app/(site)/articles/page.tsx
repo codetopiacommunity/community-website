@@ -1,6 +1,7 @@
 import { prisma } from "@/../prisma/prisma";
 import { FeaturedCarousel } from "@/components/articles/FeaturedCarousel";
 import { Container } from "@/components/layout/Container";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { fetchArticles, type HashnodeArticle } from "@/lib/hashnode";
 import { ArticlesGrid } from "./ArticlesGrid";
 
@@ -76,6 +77,7 @@ export default async function ArticlesPage() {
                 Insights, tutorials, and stories from the Codetopia community.
               </p>
             </div>
+            <ThemeToggle />
           </div>
         </Container>
       </section>
