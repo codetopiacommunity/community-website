@@ -1,3 +1,20 @@
+export interface SpotlightLink {
+  label: string;
+  url: string;
+}
+
+export interface Spotlight {
+  id: number;
+  name: string;
+  role: string;
+  imageUrl: string;
+  contribution: string;
+  links: SpotlightLink[];
+  featured: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ImpactStory {
   id: number;
   title: string;
