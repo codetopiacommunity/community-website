@@ -17,9 +17,12 @@ export default async function ArticlesPage() {
       <div className="flex-1 bg-background text-foreground min-h-screen">
         <section className="w-full pt-32 pb-16 bg-background">
           <Container className="px-4">
-            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-              ARTICLES
-            </h1>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
+              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+                ARTICLES
+              </h1>
+              <ThemeToggle />
+            </div>
           </Container>
         </section>
         <section className="py-16 border-t border-border pb-32">
