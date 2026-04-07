@@ -1,8 +1,8 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa6";
-import { ArrowUpRight } from "lucide-react";
 import sanitizeHtml from "sanitize-html";
 import { prisma } from "@/../prisma/prisma";
 import { ArticleCard } from "@/components/articles/ArticleCard";
@@ -203,7 +203,8 @@ export default async function ArticleDetailPage({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 ml-auto font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors group"
             >
-              Read on Hashnode <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Read on Hashnode{" "}
+              <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </Container>

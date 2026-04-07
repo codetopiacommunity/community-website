@@ -1,10 +1,10 @@
 "use client";
 
-import { FaArrowRight } from "react-icons/fa6";
 import { Images, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 import { Container } from "@/components/layout/Container";
 import type { GalleryAlbumWithPhotos } from "@/types";
 

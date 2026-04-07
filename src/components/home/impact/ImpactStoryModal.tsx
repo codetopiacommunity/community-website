@@ -1,9 +1,9 @@
 "use client";
 
-import { FaArrowLeft } from "react-icons/fa6";
 import { Calendar, Image as ImageIcon, MapPin, PlayCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa6";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { formatDateRange } from "@/lib/format-date";
 import type { ImpactStory } from "@/types";
