@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "./Container";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { name: "ABOUT", href: "/about" },
@@ -62,6 +63,8 @@ export function Header() {
               <Menu className="h-6 w-6" />
             )}
           </button>
+
+          <ThemeToggle />
         </div>
       </Container>
 
