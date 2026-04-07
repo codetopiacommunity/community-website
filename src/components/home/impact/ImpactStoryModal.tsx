@@ -1,5 +1,6 @@
 "use client";
 
+import { FaArrowLeft } from "react-icons/fa6";
 import { Calendar, Image as ImageIcon, MapPin, PlayCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -70,9 +71,10 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
             <button
               type="button"
               onClick={() => setIsPlayingVideo(false)}
-              className="absolute top-4 left-4 z-40 font-mono text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 absolute top-4 left-4 z-40 font-mono text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer group"
             >
-              ← BACK
+              <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
+              BACK
             </button>
             <iframe
               src={getYouTubeEmbedUrl(story.link)}

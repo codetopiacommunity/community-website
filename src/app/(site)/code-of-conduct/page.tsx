@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/Container";
+import { FaArrowRight } from "react-icons/fa6";
 import {
   encouragedBehaviours,
   enforcementSteps,
@@ -151,9 +152,9 @@ export default function CodeOfConductPage() {
             </p>
             <a
               href="mailto:codetopiancommunity@gmail.com"
-              className="inline-block bg-white text-black font-black uppercase tracking-tight text-sm px-8 py-4 hover:bg-zinc-200 transition-colors font-sans"
+              className="inline-flex items-center gap-2 bg-white text-black font-black uppercase tracking-tight text-sm px-8 py-4 hover:bg-zinc-200 transition-colors font-sans group"
             >
-              REPORT AN INCIDENT →
+              REPORT AN INCIDENT <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </Container>
