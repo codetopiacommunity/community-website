@@ -9,7 +9,7 @@ export default function SiteLayout({
 }>) {
   return (
     <>
-      <ContributionBanner />
+      {/* <ContributionBanner /> */}
       <Header />
       <main className="flex-1 w-full flex flex-col">{children}</main>
       <Footer />

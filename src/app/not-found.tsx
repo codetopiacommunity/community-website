@@ -11,7 +11,7 @@ import { CtaButton } from "@/components/ui/cta-button";
 export default function NotFound() {
   return (
     <>
-      <ContributionBanner />
+      {/* <ContributionBanner /> */}
       <Header />
       <main className="flex-1 w-full flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center py-24 md:py-32 relative overflow-hidden bg-[#09090b]">
