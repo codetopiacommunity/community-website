@@ -4,7 +4,11 @@ import React from "react";
 import { Container } from "@/components/layout/Container";
 import type { Spotlight } from "@/types";
 
-export function TechnicalSpotlight({ spotlight }: { spotlight: Spotlight | null }) {
+export function TechnicalSpotlight({
+  spotlight,
+}: {
+  spotlight: Spotlight | null;
+}) {
   if (!spotlight) return null;
 
   return (
