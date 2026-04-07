@@ -50,7 +50,8 @@ export async function LatestArticles() {
             href="/articles"
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group"
           >
-            View all articles <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+            View all articles{" "}
+            <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </Container>
