@@ -44,7 +44,9 @@ export function SpotlightFormModal({
           contribution: editing.contribution,
         });
         setImagePreview(editing.imageUrl);
-        setLinks(editing.links.map((l) => ({ ...l, _key: crypto.randomUUID() })));
+        setLinks(
+          editing.links.map((l) => ({ ...l, _key: crypto.randomUUID() })),
+        );
       } else {
         setForm(defaultForm);
         setImagePreview(null);
@@ -70,7 +72,11 @@ export function SpotlightFormModal({
     reader.readAsDataURL(file);
   };
 
-  const addLink = () => setLinks((prev) => [...prev, { label: "", url: "", _key: crypto.randomUUID() }]);
+  const addLink = () =>
+    setLinks((prev) => [
+      ...prev,
+      { label: "", url: "", _key: crypto.randomUUID() },
+    ]);
   const removeLink = (i: number) =>
     setLinks((prev) => prev.filter((_, idx) => idx !== i));
   const updateLink = (i: number, field: keyof SpotlightLink, value: string) =>
@@ -93,7 +99,11 @@ export function SpotlightFormModal({
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, imageUrl: imagePreview, links: links.map(({ _key: _, ...l }) => l) }),
+        body: JSON.stringify({
+          ...form,
+          imageUrl: imagePreview,
+          links: links.map(({ _key: _, ...l }) => l),
+        }),
       });
       if (res.ok) {
         toast.success(editing ? "Spotlight updated" : "Spotlight added");
