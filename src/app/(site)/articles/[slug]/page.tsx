@@ -86,7 +86,7 @@ export default async function ArticleDetailPage({
       {/* Article Header */}
       <section className="pt-16 pb-8 border-b border-border">
         <Container className="px-4">
-          <div className="max-w-4xl mx-auto px-2">
+          <div className="max-w-6xl mx-auto px-2">
             <Link
               href="/articles"
               className="text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors mb-8 inline-block"
@@ -170,7 +170,7 @@ export default async function ArticleDetailPage({
       {/* Share + Read on Hashnode */}
       <section className="py-10 border-t border-border">
         <Container className="px-4">
-          <div className="max-w-4xl mx-auto px-2 flex flex-wrap items-center gap-4">
+          <div className="max-w-6xl mx-auto px-2 flex flex-wrap items-center gap-4">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               Share
             </span>
