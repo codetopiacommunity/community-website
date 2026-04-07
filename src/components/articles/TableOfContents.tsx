@@ -19,7 +19,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
   return (
     <nav
       aria-label="Table of contents"
-      className="sticky top-8 border border-border bg-background p-4 font-mono"
+      className="sticky top-24 border border-border bg-background p-4 font-mono"
     >
       <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
         Contents
