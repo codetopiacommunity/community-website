@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
-import { ContributionBanner } from "@/components/layout/ContributionBanner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CtaButton } from "@/components/ui/cta-button";
