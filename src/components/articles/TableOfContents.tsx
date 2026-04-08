@@ -52,7 +52,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
   return (
     <nav
       aria-label="Table of contents"
-      className={`fixed right-8 top-28 z-20 hidden xl:block w-56 transition-opacity duration-300 ${visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      className={`sticky top-28 hidden xl:block w-56 ml-8 transition-opacity duration-300 ${visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
     >
       <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70 mb-3">
         On this page
