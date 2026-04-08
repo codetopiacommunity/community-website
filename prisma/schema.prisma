@@ -84,8 +84,6 @@ model ImpactStory {
   galleryLink String?  @map("gallery_link")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
-  endDate     String?  @map("end_date")
-  startDate   String   @map("start_date")
 
   @@map("impact_stories")
 }
