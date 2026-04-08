@@ -159,7 +159,7 @@ export default async function ArticleDetailPage({
               className={`flex gap-12 ${toc.length >= 3 ? "lg:grid lg:grid-cols-[1fr_280px]" : ""}`}
             >
               {/* Article Content */}
-              <main className="min-w-0">
+              <main id="article-content" className="min-w-0">
                 <ArticleContent html={htmlWithIds} />
               </main>
 
