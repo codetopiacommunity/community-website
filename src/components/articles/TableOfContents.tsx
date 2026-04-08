@@ -17,7 +17,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
 
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0, rootMargin: "0px 0px -95% 0px" }
+      { threshold: 0, rootMargin: "0px 0px -95% 0px" },
     );
 
     observer.observe(article);
@@ -36,7 +36,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
           }
         }
       },
-      { rootMargin: "0px 0px -80% 0px" }
+      { rootMargin: "0px 0px -80% 0px" },
     );
 
     for (const { id } of entries) {
