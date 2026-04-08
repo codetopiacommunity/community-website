@@ -40,10 +40,8 @@ export default function EventsPage() {
       </div>
 
       {/* Ledger Section */}
-      <section className="w-full py-16 md:py-48 bg-black text-white z-20 overflow-hidden relative border-t border-zinc-900">
-        <Container className="w-full px-4 relative z-10">
-          <EventsLedger />
-        </Container>
+      <section className="w-full bg-black text-white z-20 relative border-t border-zinc-900 pb-24">
+        <EventsLedger />
       </section>
     </>
   );

@@ -10,6 +10,8 @@ interface EventsClientProps {
   initialEvents: Event[];
 }
 
+const cx = "mx-auto w-full max-w-screen-2xl px-6 lg:px-12";
+
 export function EventsClient({ initialEvents }: EventsClientProps) {
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [formatFilter, setFormatFilter] = useState<string>("ALL");
@@ -40,90 +42,89 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
   ];
 
   return (
-    <div className="w-full flex flex-col gap-12">
-      {/* Filtering System */}
-      <div className="w-full border-t border-zinc-800 pt-12 flex flex-col gap-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
-          {/* Status Filter */}
-          <div className="flex flex-col gap-4">
-            <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
-              <span className="text-white/20">01 /</span> STATUS FILTER
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {statusOptions.map((opt) => (
-                <button
-                  type="button"
-                  key={opt.id}
-                  onClick={() => setStatusFilter(opt.id)}
-                  className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-300 ${
-                    statusFilter === opt.id
-                      ? "bg-white text-black border-white"
-                      : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
+    <div className="w-full flex flex-col">
+
+      {/* Filters — full-width top border, content contained */}
+      <div className="w-full border-t border-zinc-800">
+        <div className={`${cx} pt-12 pb-8 flex flex-col gap-8`}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+            <div className="flex flex-col gap-4">
+              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
+                <span className="text-white/20">01 /</span> STATUS FILTER
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {statusOptions.map((opt) => (
+                  <button
+                    type="button"
+                    key={opt.id}
+                    onClick={() => setStatusFilter(opt.id)}
+                    className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-300 ${
+                      statusFilter === opt.id
+                        ? "bg-white text-black border-white"
+                        : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
+                <span className="text-white/20">02 /</span> FORMAT FILTER
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {formatOptions.map((opt) => (
+                  <button
+                    type="button"
+                    key={opt.id}
+                    onClick={() => setFormatFilter(opt.id)}
+                    className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-300 ${
+                      formatFilter === opt.id
+                        ? "bg-white text-black border-white"
+                        : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Format Filter */}
-          <div className="flex flex-col gap-4">
-            <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
-              <span className="text-white/20">02 /</span> FORMAT FILTER
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {formatOptions.map((opt) => (
-                <button
-                  type="button"
-                  key={opt.id}
-                  onClick={() => setFormatFilter(opt.id)}
-                  className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-300 ${
-                    formatFilter === opt.id
-                      ? "bg-white text-black border-white"
-                      : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
+          {(statusFilter !== "ALL" || formatFilter !== "ALL") && (
+            <div className="flex items-center gap-6 animate-in fade-in slide-in-from-left-4 duration-500">
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                ACTIVE SELECTION:
+              </span>
+              <button
+                type="button"
+                onClick={() => { setStatusFilter("ALL"); setFormatFilter("ALL"); }}
+                className="group flex items-center gap-2 font-mono text-[10px] text-white uppercase tracking-[0.2em] border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-all"
+              >
+                CLEAR ALL FILTERS
+                <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
+              </button>
             </div>
-          </div>
+          )}
         </div>
-
-        {/* Active Filters Summary */}
-        {(statusFilter !== "ALL" || formatFilter !== "ALL") && (
-          <div className="flex items-center gap-6 animate-in fade-in slide-in-from-left-4 duration-500">
-            <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
-              ACTIVE SELECTION:
-            </span>
-            <button
-              type="button"
-              onClick={() => {
-                setStatusFilter("ALL");
-                setFormatFilter("ALL");
-              }}
-              className="group flex items-center gap-2 font-mono text-[10px] text-white uppercase tracking-[0.2em] border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-all"
-            >
-              CLEAR ALL FILTERS
-              <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
-            </button>
-          </div>
-        )}
       </div>
 
-      {/* Ledger Grid */}
-      <div className="w-full flex flex-col border-t border-zinc-800">
-        {/* Ledger Header (Hidden on Mobile) */}
-        <div className="hidden lg:grid grid-cols-[1.5fr_2fr_4fr_1fr] gap-6 py-6 border-b border-zinc-800 text-white/30 font-mono text-[10px] uppercase tracking-[0.2em]">
+      {/* Table header — full-width borders, content contained */}
+      <div className="hidden lg:block w-full border-t border-b border-zinc-800">
+        <div className={`${cx} grid grid-cols-[1.5fr_2fr_4fr_1fr] gap-6 py-6 text-white/30 font-mono text-[10px] uppercase tracking-[0.2em]`}>
           <div>Datetime / Status</div>
           <div>Classification</div>
           <div>The Brief</div>
-          <div className="text-right pr-4">Action</div>
+          <div>Action</div>
         </div>
+      </div>
 
-        {filteredEvents.length === 0 ? (
-          <div className="w-full flex flex-col items-center justify-center py-40 border-b border-zinc-800">
+      {/* Rows */}
+      {filteredEvents.length === 0 ? (
+        <div className="w-full border-b border-zinc-800">
+          <div className={`${cx} flex flex-col items-center justify-center py-40`}>
             <div className="flex flex-col items-center text-center max-w-md gap-6">
               <h3 className="text-white font-mono text-xs uppercase tracking-[0.4em] font-black">
                 NO EVENTS FOUND
@@ -135,23 +136,21 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
               </p>
               <button
                 type="button"
-                onClick={() => {
-                  setStatusFilter("ALL");
-                  setFormatFilter("ALL");
-                }}
+                onClick={() => { setStatusFilter("ALL"); setFormatFilter("ALL"); }}
                 className="text-white font-mono text-[10px] uppercase tracking-[0.3em] border border-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300"
               >
                 CLEAR FILTERS
               </button>
             </div>
           </div>
-        ) : (
-          filteredEvents.map((item, index: number) => (
-            <div
-              key={item.id}
-              className="group relative flex flex-col lg:grid lg:grid-cols-[1.5fr_2fr_4fr_1fr] items-start lg:items-center gap-6 py-12 border-b border-zinc-800 transition-colors hover:bg-zinc-900/30 overflow-hidden"
-            >
-              {/* Massive subtle background number on hover across the whole row */}
+        </div>
+      ) : (
+        filteredEvents.map((item, index) => (
+          <div
+            key={item.id}
+            className="group relative w-full border-b border-zinc-800 transition-colors hover:bg-zinc-900/30 overflow-hidden"
+          >
+            <div className={`${cx} flex flex-col lg:grid lg:grid-cols-[1.5fr_2fr_4fr_1fr] items-start lg:items-center gap-6 py-12`}>
               <span className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 text-[8rem] md:text-[12rem] font-black text-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none select-none z-0">
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -167,10 +166,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                     {item.endDate &&
                       format(new Date(item.startDate), "MMM d") !==
                         format(new Date(item.endDate), "MMM d") && (
-                        <span>
-                          {" "}
-                          – {format(new Date(item.endDate), "MMM d, yyyy")}
-                        </span>
+                        <span> – {format(new Date(item.endDate), "MMM d, yyyy")}</span>
                       )}
                   </div>
                 </div>
@@ -204,7 +200,6 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
               <div className="relative z-10 w-full lg:w-48 flex flex-col gap-2 ml-auto">
                 {(() => {
                   const status = getEventStatus(item);
-
                   if (status === "COMPLETED") {
                     if (item.recordedVideoLink) {
                       return (
@@ -225,7 +220,6 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                       </div>
                     );
                   }
-
                   return (
                     <>
                       {status === "UPCOMING" && item.reserveSpotLink && (
@@ -238,22 +232,16 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                           <ArrowUpRight className="w-4 h-4 transition-transform group-hover/reserve:translate-x-0.5 group-hover/reserve:-translate-y-0.5" />
                         </Link>
                       )}
-
-                      {status === "LIVE" &&
-                        (item.joinMeetingLink || item.locationUrl) && (
-                          <Link
-                            href={
-                              (item.joinMeetingLink ||
-                                item.locationUrl) as string
-                            }
-                            target="_blank"
-                            className="group/btn flex items-center justify-between w-full px-6 py-4 font-mono text-[10px] uppercase tracking-[0.2em] font-black transition-all bg-[#00D154] text-black hover:bg-[#00b247]"
-                          >
-                            {item.isOnline ? "JOIN SESSION" : "VIEW LOCATION"}
-                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                          </Link>
-                        )}
-
+                      {status === "LIVE" && (item.joinMeetingLink || item.locationUrl) && (
+                        <Link
+                          href={(item.joinMeetingLink || item.locationUrl) as string}
+                          target="_blank"
+                          className="group/btn flex items-center justify-between w-full px-6 py-4 font-mono text-[10px] uppercase tracking-[0.2em] font-black transition-all bg-[#00D154] text-black hover:bg-[#00b247]"
+                        >
+                          {item.isOnline ? "JOIN SESSION" : "VIEW LOCATION"}
+                          <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                        </Link>
+                      )}
                       {status === "UPCOMING" && !item.reserveSpotLink && (
                         <div className="flex items-center justify-between w-full px-6 py-4 font-mono text-[10px] uppercase tracking-[0.2em] font-black bg-zinc-900 text-zinc-500 border border-zinc-800">
                           COMING SOON
@@ -265,9 +253,9 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                 })()}
               </div>
             </div>
-          ))
-        )}
-      </div>
+          </div>
+        ))
+      )}
     </div>
   );
 }
