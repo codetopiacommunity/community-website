@@ -110,9 +110,9 @@ We welcome contributions from everyone! Please read our [Contributing Guide](CON
 | 📺 **YouTube** | [@codetopiacommunity](https://www.youtube.com/@codetopiacommunity) |
 | 💼 **LinkedIn** | [Codetopia Community](https://www.linkedin.com/company/codetopiacommunity) |
 | 🐦 **Twitter/X** | [@codetopiacom](https://x.com/codetopiacom) |
-| 📸 **Instagram** | [@codetopiacom](https://www.instagram.com/codetopiacom/) |
-| 🧵 **Threads** | [@codetopiacom](http://www.threads.com/codetopiacom/) |
-| 🎵 **TikTok** | [@codetopiacommunity](https://www.tiktok.com/@codetopiacom) |
+| 📸 **Instagram** | [@codetopiacommunity](https://www.instagram.com/codetopiacommunity/) |
+| 🧵 **Threads** | [@codetopiacommunity](http://www.threads.com/codetopiacommunity/) |
+| 🎵 **TikTok** | [@codetopiacommunity](https://www.tiktok.com/@codetopiacommunity) |
 | 🦋 **Bluesky** | [@codetopiacommunity](https://bsky.app/profile/codetopiacommunity.bsky.social) |
 | 🐘 **Mastodon** | [@codetopiacommunity](https://mastodon.social/@codetopiacommunity) |
 | 🟢 **WhatsApp** | [Join our Community](https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o) |

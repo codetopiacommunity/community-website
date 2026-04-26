@@ -36,12 +36,12 @@ const socialIcons = [
   },
   {
     network: "instagram",
-    href: "https://www.instagram.com/codetopiacom/",
+    href: "https://www.instagram.com/codetopiacommunity/",
     label: "Instagram",
   },
   {
     network: "threads",
-    href: "http://www.threads.com/codetopiacom/",
+    href: "http://www.threads.com/codetopiacommunity/",
     label: "Threads",
   },
   {

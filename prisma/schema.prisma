@@ -55,9 +55,9 @@ model GalleryAlbum {
   date       String
   category   String
   coverImage String         @map("cover_image")
-  photos     GalleryPhoto[]
   createdAt  DateTime       @default(now()) @map("created_at")
   updatedAt  DateTime       @updatedAt @map("updated_at")
+  photos     GalleryPhoto[]
 
   @@map("gallery_albums")
 }
@@ -67,8 +67,8 @@ model GalleryPhoto {
   src       String
   alt       String
   albumId   Int          @map("album_id")
-  album     GalleryAlbum @relation(fields: [albumId], references: [id], onDelete: Cascade)
   createdAt DateTime     @default(now()) @map("created_at")
+  album     GalleryAlbum @relation(fields: [albumId], references: [id], onDelete: Cascade)
 
   @@map("gallery_photos")
 }
@@ -151,13 +151,13 @@ model Spotlight {
 model NewsletterDeliveryLog {
   id              Int        @id @default(autoincrement())
   newsletterId    Int        @map("newsletter_id")
-  newsletter      Newsletter @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
   totalRecipients Int        @map("total_recipients")
   successCount    Int        @map("success_count")
   failCount       Int        @map("fail_count")
   status          String
   completedAt     DateTime   @map("completed_at")
   createdAt       DateTime   @default(now()) @map("created_at")
+  newsletter      Newsletter @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
 
   @@map("newsletter_delivery_logs")
 }

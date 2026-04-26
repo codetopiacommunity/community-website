@@ -59,17 +59,17 @@ export function Footer() {
     },
     {
       icon: FaInstagram,
-      href: "https://www.instagram.com/codetopiacom/",
+      href: "https://www.instagram.com/codetopiacommunity/",
       label: "Instagram",
     },
     {
       icon: FaThreads,
-      href: "http://www.threads.com/codetopiacom/",
+      href: "http://www.threads.com/codetopiacommunity/",
       label: "Threads",
     },
     {
       icon: FaTiktok,
-      href: "https://www.tiktok.com/@codetopiacom",
+      href: "https://www.tiktok.com/@codetopiacommunity",
       label: "TikTok",
     },
     {

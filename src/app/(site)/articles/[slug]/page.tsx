@@ -1,6 +1,8 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa6";
 import sanitizeHtml from "sanitize-html";
 import { prisma } from "@/../prisma/prisma";
 import { ArticleCard } from "@/components/articles/ArticleCard";
@@ -91,9 +93,10 @@ export default async function ArticleDetailPage({
             <div className="flex items-center justify-between mb-8">
               <Link
                 href="/articles"
-                className="text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors inline-block"
+                className="inline-flex items-center gap-2 text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors group"
               >
-                ← Articles
+                <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
+                Articles
               </Link>
               <ThemeToggle />
             </div>
@@ -156,7 +159,7 @@ export default async function ArticleDetailPage({
               className={`flex gap-12 ${toc.length >= 3 ? "lg:grid lg:grid-cols-[1fr_280px]" : ""}`}
             >
               {/* Article Content */}
-              <main className="min-w-0">
+              <main id="article-content" className="min-w-0">
                 <ArticleContent html={htmlWithIds} />
               </main>
 
@@ -198,9 +201,10 @@ export default async function ArticleDetailPage({
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 ml-auto font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors group"
             >
-              Read on Hashnode ↗
+              Read on Hashnode{" "}
+              <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </Container>
