@@ -52,7 +52,9 @@ export function EventsTable({
         {events.length === 0 && !loading ? (
           <div className="text-center py-20">
             <Calendar className="h-8 w-8 mx-auto text-zinc-200 mb-3" />
-            <p className="font-mono text-sm font-semibold text-zinc-900">No events scheduled</p>
+            <p className="font-mono text-sm font-semibold text-zinc-900">
+              No events scheduled
+            </p>
             <p className="font-mono text-xs text-zinc-400 mt-1 uppercase tracking-widest">
               Ready for something new in the community?
             </p>
@@ -93,15 +95,21 @@ export function EventsTable({
                             : "bg-white text-zinc-600 border-zinc-200"
                         }`}
                       >
-                        {status === "LIVE" && <Clock className="h-2.5 w-2.5 animate-pulse" />}
-                        {status === "COMPLETED" && <CheckCircle className="h-2.5 w-2.5" />}
+                        {status === "LIVE" && (
+                          <Clock className="h-2.5 w-2.5 animate-pulse" />
+                        )}
+                        {status === "COMPLETED" && (
+                          <CheckCircle className="h-2.5 w-2.5" />
+                        )}
                         {status}
                       </span>
                       <span className="font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 border border-zinc-200 text-zinc-500">
                         {event.isOnline ? "Online" : "In-Person"}
                       </span>
                     </div>
-                    <p className="font-mono font-semibold text-sm text-zinc-900">{event.title}</p>
+                    <p className="font-mono font-semibold text-sm text-zinc-900">
+                      {event.title}
+                    </p>
                     <p className="font-mono text-xs text-zinc-400 mt-0.5 line-clamp-1 max-w-xl">
                       {event.description}
                     </p>

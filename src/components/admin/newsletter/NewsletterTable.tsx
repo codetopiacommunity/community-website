@@ -5,7 +5,6 @@ import {
   ChevronRight,
   Copy,
   Edit2,
-  Loader2,
   Mail,
   Trash2,
 } from "lucide-react";
@@ -41,7 +40,9 @@ const statusStyles: Record<string, string> = {
 
 function StatusBadge({ status }: { status: string }) {
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest border ${statusStyles[status] ?? "bg-zinc-100 text-zinc-600 border-zinc-200"}`}>
+    <span
+      className={`inline-flex items-center px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest border ${statusStyles[status] ?? "bg-zinc-100 text-zinc-600 border-zinc-200"}`}
+    >
       {status}
     </span>
   );
@@ -81,7 +82,7 @@ export function NewsletterTable({
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-100">
-            {loading && (
+            {loading &&
               [...Array(3)].map((_, i) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: skeleton
                 <tr key={i}>
@@ -92,14 +93,15 @@ export function NewsletterTable({
                     </td>
                   ))}
                 </tr>
-              ))
-            )}
+              ))}
 
             {!loading && newsletters.length === 0 && (
               <tr>
                 <td colSpan={5} className="px-6 py-16 text-center">
                   <Mail className="h-8 w-8 mx-auto text-zinc-200 mb-3" />
-                  <p className="font-mono text-sm font-semibold text-zinc-900">No newsletters yet</p>
+                  <p className="font-mono text-sm font-semibold text-zinc-900">
+                    No newsletters yet
+                  </p>
                   <p className="font-mono text-xs text-zinc-400 mt-1 uppercase tracking-widest">
                     Create your first newsletter to get started
                   </p>
@@ -107,64 +109,71 @@ export function NewsletterTable({
               </tr>
             )}
 
-            {!loading && newsletters.map((newsletter) => {
-              const isDraft = newsletter.status === "draft";
-              return (
-                <tr key={newsletter.id} className="hover:bg-zinc-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <span className="font-mono font-semibold text-sm text-zinc-900 line-clamp-1 max-w-xs block">
-                      {newsletter.subject}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <StatusBadge status={newsletter.status} />
-                  </td>
-                  <td className="px-6 py-4 font-mono text-xs text-zinc-600">
-                    {newsletter.recipientCount.toLocaleString()}
-                  </td>
-                  <td className="px-6 py-4 font-mono text-xs text-zinc-400">
-                    {newsletter.sentAt
-                      ? new Date(newsletter.sentAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })
-                      : "—"}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-end gap-1">
-                      {isDraft && (
+            {!loading &&
+              newsletters.map((newsletter) => {
+                const isDraft = newsletter.status === "draft";
+                return (
+                  <tr
+                    key={newsletter.id}
+                    className="hover:bg-zinc-50 transition-colors"
+                  >
+                    <td className="px-6 py-4">
+                      <span className="font-mono font-semibold text-sm text-zinc-900 line-clamp-1 max-w-xs block">
+                        {newsletter.subject}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <StatusBadge status={newsletter.status} />
+                    </td>
+                    <td className="px-6 py-4 font-mono text-xs text-zinc-600">
+                      {newsletter.recipientCount.toLocaleString()}
+                    </td>
+                    <td className="px-6 py-4 font-mono text-xs text-zinc-400">
+                      {newsletter.sentAt
+                        ? new Date(newsletter.sentAt).toLocaleDateString(
+                            undefined,
+                            { year: "numeric", month: "short", day: "numeric" },
+                          )
+                        : "—"}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-end gap-1">
+                        {isDraft && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => onEdit(newsletter)}
+                            className="h-7 px-2 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+                          >
+                            <Edit2 className="h-3 w-3 mr-1" />
+                            Edit
+                          </Button>
+                        )}
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => onEdit(newsletter)}
+                          onClick={() => onDuplicate(newsletter.id)}
                           className="h-7 px-2 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
                         >
-                          <Edit2 className="h-3 w-3 mr-1" />
-                          Edit
+                          <Copy className="h-3 w-3 mr-1" />
+                          Dupe
                         </Button>
-                      )}
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onDuplicate(newsletter.id)}
-                        className="h-7 px-2 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
-                      >
-                        <Copy className="h-3 w-3 mr-1" />
-                        Dupe
-                      </Button>
-                      {isDraft && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => onDelete(newsletter.id)}
-                          className="h-7 px-2 font-mono text-[10px] font-bold uppercase tracking-widest text-red-600 hover:bg-red-500 hover:text-white transition-colors"
-                        >
-                          <Trash2 className="h-3 w-3 mr-1" />
-                          Del
-                        </Button>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                        {isDraft && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => onDelete(newsletter.id)}
+                            className="h-7 px-2 font-mono text-[10px] font-bold uppercase tracking-widest text-red-600 hover:bg-red-500 hover:text-white transition-colors"
+                          >
+                            <Trash2 className="h-3 w-3 mr-1" />
+                            Del
+                          </Button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

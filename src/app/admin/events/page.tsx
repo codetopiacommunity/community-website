@@ -51,7 +51,8 @@ export default function ManageEventsPage() {
             Manage Events
           </h1>
           <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest mt-1">
-            Schedule community activities, coworking sessions, and open source sprints
+            Schedule community activities, coworking sessions, and open source
+            sprints
           </p>
         </div>
 

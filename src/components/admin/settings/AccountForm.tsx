@@ -18,8 +18,14 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!currentPassword) { toast.error("Current password is required."); return; }
-    if (newPassword && newPassword !== confirmPassword) { toast.error("New passwords do not match."); return; }
+    if (!currentPassword) {
+      toast.error("Current password is required.");
+      return;
+    }
+    if (newPassword && newPassword !== confirmPassword) {
+      toast.error("New passwords do not match.");
+      return;
+    }
     setSaving(true);
     try {
       const res = await fetch("/api/admin/me", {
@@ -31,9 +37,13 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
       if (!res.ok) throw new Error(data.error || "Failed to update settings");
       toast.success("Account settings updated.");
       onEmailSaved(email);
-      setCurrentPassword(""); setNewPassword(""); setConfirmPassword("");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "An unexpected error occurred.");
+      toast.error(
+        err instanceof Error ? err.message : "An unexpected error occurred.",
+      );
     } finally {
       setSaving(false);
     }
@@ -52,7 +62,10 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
           </p>
         </div>
         <div className="bg-white border border-zinc-200 p-6 space-y-3">
-          <label htmlFor="email-address" className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
+          <label
+            htmlFor="email-address"
+            className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
+          >
             Email Address
           </label>
           <input
@@ -73,7 +86,8 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
             <ShieldCheck className="w-4 h-4" /> Access Credentials
           </h2>
           <p className="font-mono text-xs text-zinc-400 mt-0.5">
-            Update your password. Current password is required to save any changes.
+            Update your password. Current password is required to save any
+            changes.
           </p>
         </div>
         <div className="bg-white border border-zinc-200 p-6 grid md:grid-cols-2 gap-8">
@@ -81,11 +95,15 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
             <div className="border border-zinc-200 bg-zinc-50 p-3 flex gap-2">
               <Lock className="w-4 h-4 text-zinc-600 shrink-0 mt-0.5" />
               <p className="font-mono text-xs text-zinc-700">
-                You must verify your current password to save <strong>any</strong> changes.
+                You must verify your current password to save{" "}
+                <strong>any</strong> changes.
               </p>
             </div>
             <div className="space-y-2">
-              <label htmlFor="current-password" className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
+              <label
+                htmlFor="current-password"
+                className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
+              >
                 Current Password *
               </label>
               <div className="relative">
@@ -104,7 +122,10 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
           </div>
           <div className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="new-password" className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
+              <label
+                htmlFor="new-password"
+                className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
+              >
                 New Password
               </label>
               <input
@@ -117,7 +138,10 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="confirm-password" className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
+              <label
+                htmlFor="confirm-password"
+                className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
+              >
                 Confirm New Password
               </label>
               <input
@@ -139,7 +163,13 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
           disabled={saving || !currentPassword}
           className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {saving ? <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Saving...</> : "Save Changes"}
+          {saving ? (
+            <>
+              <Loader2 className="h-3.5 w-3.5 animate-spin" /> Saving...
+            </>
+          ) : (
+            "Save Changes"
+          )}
         </button>
       </div>
     </form>

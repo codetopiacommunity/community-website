@@ -230,7 +230,10 @@ export default function AdminDashboard() {
               <tbody className="divide-y divide-zinc-100">
                 {newsletterLogs.length === 0 ? (
                   <tr>
-                    <td colSpan={4} className="px-6 py-10 text-center font-mono text-sm text-zinc-400">
+                    <td
+                      colSpan={4}
+                      className="px-6 py-10 text-center font-mono text-sm text-zinc-400"
+                    >
                       No broadcast history yet
                     </td>
                   </tr>
@@ -244,24 +247,34 @@ export default function AdminDashboard() {
                           ? "bg-red-50 text-red-700 border border-red-200"
                           : "bg-amber-50 text-amber-700 border border-amber-200";
                     const StatusIcon =
-                      statusKey === "sent" ? CheckCircle2 : statusKey === "failed" ? XCircle : AlertCircle;
+                      statusKey === "sent"
+                        ? CheckCircle2
+                        : statusKey === "failed"
+                          ? XCircle
+                          : AlertCircle;
                     const displayDate = log.completedAt
                       ? new Date(log.completedAt).toLocaleString()
                       : new Date(log.createdAt).toLocaleString();
 
                     return (
-                      <tr key={log.id} className="hover:bg-zinc-50 transition-colors">
+                      <tr
+                        key={log.id}
+                        className="hover:bg-zinc-50 transition-colors"
+                      >
                         <td className="px-6 py-4 font-mono text-sm font-semibold text-zinc-900">
                           {log.newsletter.subject}
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-widest border ${badgeClass}`}>
+                          <span
+                            className={`inline-flex items-center gap-1.5 px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-widest border ${badgeClass}`}
+                          >
                             <StatusIcon className="h-3 w-3" />
                             {log.status}
                           </span>
                         </td>
                         <td className="px-6 py-4 font-mono text-sm text-zinc-600">
-                          {log.successCount.toLocaleString()} / {log.totalRecipients.toLocaleString()}
+                          {log.successCount.toLocaleString()} /{" "}
+                          {log.totalRecipients.toLocaleString()}
                         </td>
                         <td className="px-6 py-4 font-mono text-xs text-zinc-400 text-right">
                           {displayDate}

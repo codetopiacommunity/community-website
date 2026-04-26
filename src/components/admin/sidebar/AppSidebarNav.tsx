@@ -36,7 +36,10 @@ export function AppSidebarNav() {
                         tooltip={item.title}
                         className="h-9 rounded-none transition-all duration-150 text-zinc-400 hover:text-white hover:bg-zinc-900 data-[active=true]:!bg-white data-[active=true]:!text-black data-[active=true]:shadow-sm"
                       >
-                        <Link href={item.url} className="flex items-center gap-3 px-3">
+                        <Link
+                          href={item.url}
+                          className="flex items-center gap-3 px-3"
+                        >
                           <item.icon className="h-4 w-4 shrink-0" />
                           <span className="font-mono text-[11px] uppercase tracking-wider">
                             {item.title}
@@ -54,7 +57,10 @@ export function AppSidebarNav() {
                     tooltip={group.title}
                     className="h-9 rounded-none transition-all duration-150 text-zinc-400 hover:text-white hover:bg-zinc-900 data-[active=true]:!bg-white data-[active=true]:!text-black data-[active=true]:shadow-sm"
                   >
-                    <Link href={group.url} className="flex items-center gap-3 px-3">
+                    <Link
+                      href={group.url}
+                      className="flex items-center gap-3 px-3"
+                    >
                       <group.icon className="h-4 w-4 shrink-0" />
                       <span className="font-mono text-[11px] uppercase tracking-wider">
                         {group.title}

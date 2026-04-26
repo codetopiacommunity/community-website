@@ -27,23 +27,30 @@ export function NewsletterDeliveryLogs() {
   const [hasMore, setHasMore] = useState(false);
   const [offset, setOffset] = useState(0);
 
-  const fetchLogs = useCallback(async (currentOffset: number, append: boolean) => {
-    if (append) setLoadingMore(true);
-    else setLoading(true);
-    try {
-      const res = await fetch(`/api/admin/newsletter/logs?offset=${currentOffset}`);
-      if (!res.ok) return;
-      const data = await res.json();
-      setLogs((prev) => (append ? [...prev, ...data.logs] : data.logs));
-      setHasMore(data.hasMore);
-      setOffset(currentOffset + data.logs.length);
-    } finally {
-      setLoading(false);
-      setLoadingMore(false);
-    }
-  }, []);
+  const fetchLogs = useCallback(
+    async (currentOffset: number, append: boolean) => {
+      if (append) setLoadingMore(true);
+      else setLoading(true);
+      try {
+        const res = await fetch(
+          `/api/admin/newsletter/logs?offset=${currentOffset}`,
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        setLogs((prev) => (append ? [...prev, ...data.logs] : data.logs));
+        setHasMore(data.hasMore);
+        setOffset(currentOffset + data.logs.length);
+      } finally {
+        setLoading(false);
+        setLoadingMore(false);
+      }
+    },
+    [],
+  );
 
-  useEffect(() => { fetchLogs(0, false); }, [fetchLogs]);
+  useEffect(() => {
+    fetchLogs(0, false);
+  }, [fetchLogs]);
 
   return (
     <div className="bg-white border border-zinc-200 overflow-hidden">
@@ -60,7 +67,9 @@ export function NewsletterDeliveryLogs() {
       ) : logs.length === 0 ? (
         <div className="flex flex-col items-center gap-3 py-16">
           <Activity className="h-8 w-8 text-zinc-200" />
-          <p className="font-mono text-sm font-semibold text-zinc-900">No logs yet</p>
+          <p className="font-mono text-sm font-semibold text-zinc-900">
+            No logs yet
+          </p>
           <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
             Logs appear after sending a newsletter
           </p>
@@ -71,19 +80,30 @@ export function NewsletterDeliveryLogs() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-black text-[10px] font-mono font-bold uppercase tracking-widest text-white">
-                  {["Subject", "Status", "Sent", "Failed", "Completed"].map((h) => (
-                    <th key={h} className="px-6 py-3 text-left">{h}</th>
-                  ))}
+                  {["Subject", "Status", "Sent", "Failed", "Completed"].map(
+                    (h) => (
+                      <th key={h} className="px-6 py-3 text-left">
+                        {h}
+                      </th>
+                    ),
+                  )}
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100">
                 {logs.map((log) => (
-                  <tr key={log.id} className="hover:bg-zinc-50 transition-colors">
+                  <tr
+                    key={log.id}
+                    className="hover:bg-zinc-50 transition-colors"
+                  >
                     <td className="px-6 py-4 font-mono font-semibold text-sm text-zinc-900 max-w-xs">
-                      <span className="line-clamp-1 block">{log.newsletter.subject}</span>
+                      <span className="line-clamp-1 block">
+                        {log.newsletter.subject}
+                      </span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`inline-flex items-center px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest border ${statusStyles[log.status] ?? "bg-zinc-100 text-zinc-600 border-zinc-200"}`}>
+                      <span
+                        className={`inline-flex items-center px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest border ${statusStyles[log.status] ?? "bg-zinc-100 text-zinc-600 border-zinc-200"}`}
+                      >
                         {log.status}
                       </span>
                     </td>
@@ -94,7 +114,11 @@ export function NewsletterDeliveryLogs() {
                       {log.failCount.toLocaleString()}
                     </td>
                     <td className="px-6 py-4 font-mono text-xs text-zinc-400">
-                      {new Date(log.completedAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
+                      {new Date(log.completedAt).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </td>
                   </tr>
                 ))}
@@ -110,7 +134,11 @@ export function NewsletterDeliveryLogs() {
                 disabled={loadingMore}
                 className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-zinc-900 transition-colors disabled:opacity-50"
               >
-                {loadingMore ? <Loader2 className="h-3 w-3 animate-spin" /> : <ChevronDown className="h-3 w-3" />}
+                {loadingMore ? (
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                ) : (
+                  <ChevronDown className="h-3 w-3" />
+                )}
                 {loadingMore ? "Loading..." : "Load More"}
               </button>
             </div>

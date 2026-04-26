@@ -12,7 +12,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 
-const GALLERY_CATEGORIES = ["Events", "Workshops", "Meetups", "Hackathons", "Community", "Other"];
+const GALLERY_CATEGORIES = [
+  "Events",
+  "Workshops",
+  "Meetups",
+  "Hackathons",
+  "Community",
+  "Other",
+];
 
 export function GalleryToolbar({
   search,
@@ -55,10 +62,15 @@ export function GalleryToolbar({
           >
             <Filter className="h-3.5 w-3.5" />
             Filter
-            {filterCategory && <span className="absolute -top-1 -right-1 h-2 w-2 bg-black" />}
+            {filterCategory && (
+              <span className="absolute -top-1 -right-1 h-2 w-2 bg-black" />
+            )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-44 bg-white border border-zinc-200 p-1 font-mono shadow-lg">
+        <DropdownMenuContent
+          align="end"
+          className="w-44 bg-white border border-zinc-200 p-1 font-mono shadow-lg"
+        >
           <DropdownMenuLabel className="font-mono text-[10px] uppercase text-zinc-400 tracking-widest px-2 py-1.5">
             Filter by Category
           </DropdownMenuLabel>

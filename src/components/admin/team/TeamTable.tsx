@@ -72,7 +72,9 @@ export function TeamTable({
               <tr>
                 <td colSpan={4} className="px-6 py-16 text-center">
                   <Users2 className="h-8 w-8 mx-auto text-zinc-200 mb-3" />
-                  <p className="font-mono text-sm font-semibold text-zinc-900">No team members found</p>
+                  <p className="font-mono text-sm font-semibold text-zinc-900">
+                    No team members found
+                  </p>
                   <p className="font-mono text-xs text-zinc-400 mt-1">
                     {search
                       ? `No results for "${search}"`
@@ -91,28 +93,46 @@ export function TeamTable({
               </tr>
             ) : (
               currentMembers.map((member) => (
-                <tr key={member.id} className="hover:bg-zinc-50 transition-colors group">
+                <tr
+                  key={member.id}
+                  className="hover:bg-zinc-50 transition-colors group"
+                >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="h-9 w-9 border border-zinc-200 overflow-hidden flex items-center justify-center text-zinc-400 relative shrink-0">
                         {member.imageUrl ? (
-                          <Image src={member.imageUrl} alt={member.name} fill className="object-cover" />
+                          <Image
+                            src={member.imageUrl}
+                            alt={member.name}
+                            fill
+                            className="object-cover"
+                          />
                         ) : (
                           <Users2 className="h-4 w-4" />
                         )}
                       </div>
                       <div>
-                        <p className="font-mono font-semibold text-sm text-zinc-900">{member.name}</p>
+                        <p className="font-mono font-semibold text-sm text-zinc-900">
+                          {member.name}
+                        </p>
                         <div className="flex items-center gap-1.5 mt-0.5">
-                          {member.github && <Github className="h-3 w-3 text-zinc-400" />}
-                          {member.linkedin && <Linkedin className="h-3 w-3 text-zinc-400" />}
-                          {member.twitter && <Twitter className="h-3 w-3 text-zinc-400" />}
+                          {member.github && (
+                            <Github className="h-3 w-3 text-zinc-400" />
+                          )}
+                          {member.linkedin && (
+                            <Linkedin className="h-3 w-3 text-zinc-400" />
+                          )}
+                          {member.twitter && (
+                            <Twitter className="h-3 w-3 text-zinc-400" />
+                          )}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <p className="font-mono text-xs font-bold text-zinc-900 uppercase tracking-tight">{member.role}</p>
+                    <p className="font-mono text-xs font-bold text-zinc-900 uppercase tracking-tight">
+                      {member.role}
+                    </p>
                     <span
                       className={`inline-flex items-center gap-1 mt-1 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest border ${
                         member.tier === "CORE"
@@ -122,14 +142,21 @@ export function TeamTable({
                             : "text-indigo-700 border-indigo-200 bg-indigo-50"
                       }`}
                     >
-                      {member.tier === "CORE" ? <Shield className="h-2.5 w-2.5" /> : <Star className="h-2.5 w-2.5" />}
+                      {member.tier === "CORE" ? (
+                        <Shield className="h-2.5 w-2.5" />
+                      ) : (
+                        <Star className="h-2.5 w-2.5" />
+                      )}
                       {member.tier}
                     </span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex flex-wrap gap-1 max-w-[220px]">
                       {member.expertise?.map((exp: string) => (
-                        <span key={exp} className="font-mono text-[10px] text-zinc-600 border border-zinc-200 px-1.5 py-0.5">
+                        <span
+                          key={exp}
+                          className="font-mono text-[10px] text-zinc-600 border border-zinc-200 px-1.5 py-0.5"
+                        >
                           {exp}
                         </span>
                       ))}
@@ -167,12 +194,16 @@ export function TeamTable({
       {filteredMembers.length > 0 && (
         <div className="px-6 py-3 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-3 bg-zinc-50">
           <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
-            Showing {(currentPage - 1) * itemsPerPage + 1}–{Math.min(currentPage * itemsPerPage, filteredMembers.length)} of {filteredMembers.length}
+            Showing {(currentPage - 1) * itemsPerPage + 1}–
+            {Math.min(currentPage * itemsPerPage, filteredMembers.length)} of{" "}
+            {filteredMembers.length}
           </p>
           <div className="flex items-center gap-1">
             <button
               type="button"
-              onClick={() => setCurrentPage((p) => Math.max((p as number) - 1, 1))}
+              onClick={() =>
+                setCurrentPage((p) => Math.max((p as number) - 1, 1))
+              }
               disabled={currentPage === 1}
               className="px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest border border-zinc-200 text-zinc-900 hover:border-zinc-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors bg-white"
             >
@@ -190,7 +221,9 @@ export function TeamTable({
             ))}
             <button
               type="button"
-              onClick={() => setCurrentPage((p) => Math.min((p as number) + 1, totalPages))}
+              onClick={() =>
+                setCurrentPage((p) => Math.min((p as number) + 1, totalPages))
+              }
               disabled={currentPage === totalPages || totalPages === 0}
               className="px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest border border-zinc-200 text-zinc-900 hover:border-zinc-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors bg-white"
             >

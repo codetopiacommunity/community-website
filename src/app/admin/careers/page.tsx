@@ -48,7 +48,8 @@ export default function ManageCareersPage() {
             Manage Careers
           </h1>
           <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest mt-1">
-            Post internships, job offers, and project opportunities for the community
+            Post internships, job offers, and project opportunities for the
+            community
           </p>
         </div>
 

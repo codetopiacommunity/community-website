@@ -57,8 +57,12 @@ export function GalleryAlbumTable({
               <tr>
                 <td colSpan={6} className="px-6 py-16 text-center">
                   <Images className="h-8 w-8 mx-auto text-zinc-200 mb-3" />
-                  <p className="font-mono text-sm font-semibold text-zinc-900">No albums found</p>
-                  <p className="font-mono text-xs text-zinc-400 mt-1">Your gallery is empty.</p>
+                  <p className="font-mono text-sm font-semibold text-zinc-900">
+                    No albums found
+                  </p>
+                  <p className="font-mono text-xs text-zinc-400 mt-1">
+                    Your gallery is empty.
+                  </p>
                   <button
                     type="button"
                     onClick={onAddFirst}
@@ -70,11 +74,19 @@ export function GalleryAlbumTable({
               </tr>
             ) : (
               albums.map((album) => (
-                <tr key={album.id} className="hover:bg-zinc-50 transition-colors group">
+                <tr
+                  key={album.id}
+                  className="hover:bg-zinc-50 transition-colors group"
+                >
                   <td className="px-6 py-4">
                     <div className="h-10 w-14 border border-zinc-200 overflow-hidden flex items-center justify-center text-zinc-400 relative">
                       {album.coverImage ? (
-                        <Image src={album.coverImage} alt={album.title} fill className="object-cover" />
+                        <Image
+                          src={album.coverImage}
+                          alt={album.title}
+                          fill
+                          className="object-cover"
+                        />
                       ) : (
                         <Images className="h-4 w-4" />
                       )}
@@ -99,7 +111,9 @@ export function GalleryAlbumTable({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => router.push(`/admin/gallery/${album.id}/photos`)}
+                        onClick={() =>
+                          router.push(`/admin/gallery/${album.id}/photos`)
+                        }
                         className="h-7 px-2 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
                       >
                         <Plus className="h-3 w-3 mr-1" />

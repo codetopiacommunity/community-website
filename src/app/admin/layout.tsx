@@ -58,7 +58,10 @@ function Breadcrumbs({ pathname }: { pathname: string }) {
 
   return (
     <div className="flex items-center gap-1.5">
-      <Link href="/admin" className="text-zinc-400 hover:text-zinc-900 transition-colors">
+      <Link
+        href="/admin"
+        className="text-zinc-400 hover:text-zinc-900 transition-colors"
+      >
         <Home className="w-3 h-3" />
       </Link>
       {crumbs.slice(1).map((crumb) => (
@@ -168,9 +171,7 @@ export default function AdminLayout({
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:40px_40px]" />
             </div>
             <main className="relative z-10 flex flex-col min-h-full w-full">
-              <div className="p-6 lg:p-10 w-full max-w-none">
-                {children}
-              </div>
+              <div className="p-6 lg:p-10 w-full max-w-none">{children}</div>
             </main>
           </div>
         </SidebarInset>

@@ -19,7 +19,12 @@ interface CareersToolbarProps {
   setStatusFilter: (value: string | null) => void;
 }
 
-export function CareersToolbar({ search, setSearch, statusFilter, setStatusFilter }: CareersToolbarProps) {
+export function CareersToolbar({
+  search,
+  setSearch,
+  statusFilter,
+  setStatusFilter,
+}: CareersToolbarProps) {
   return (
     <div className="flex flex-col sm:flex-row gap-3 items-center">
       <div className="relative flex-1 w-full">
@@ -31,8 +36,11 @@ export function CareersToolbar({ search, setSearch, statusFilter, setStatusFilte
           className="w-full bg-white border border-zinc-200 pl-9 pr-9 font-mono text-xs text-zinc-900 placeholder:text-zinc-400 h-9 focus:border-zinc-900 focus:ring-0 transition-colors"
         />
         {search && (
-          <button type="button" onClick={() => setSearch("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900 transition-colors">
+          <button
+            type="button"
+            onClick={() => setSearch("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900 transition-colors"
+          >
             <X className="h-3.5 w-3.5" />
           </button>
         )}
@@ -40,14 +48,21 @@ export function CareersToolbar({ search, setSearch, statusFilter, setStatusFilte
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline"
-            className="relative flex items-center gap-2 border border-zinc-200 px-4 h-9 font-mono text-xs uppercase tracking-widest text-zinc-900 hover:border-zinc-900 hover:bg-white transition-colors bg-white font-bold">
+          <Button
+            variant="outline"
+            className="relative flex items-center gap-2 border border-zinc-200 px-4 h-9 font-mono text-xs uppercase tracking-widest text-zinc-900 hover:border-zinc-900 hover:bg-white transition-colors bg-white font-bold"
+          >
             <Filter className="h-3.5 w-3.5" />
             {statusFilter ? statusFilter : "Status"}
-            {statusFilter && <span className="absolute -top-1 -right-1 h-2 w-2 bg-black" />}
+            {statusFilter && (
+              <span className="absolute -top-1 -right-1 h-2 w-2 bg-black" />
+            )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-40 bg-white border border-zinc-200 p-1 font-mono shadow-lg">
+        <DropdownMenuContent
+          align="end"
+          className="w-40 bg-white border border-zinc-200 p-1 font-mono shadow-lg"
+        >
           <DropdownMenuLabel className="font-mono text-[10px] uppercase text-zinc-400 tracking-widest px-2 py-1.5">
             Filter by Status
           </DropdownMenuLabel>
