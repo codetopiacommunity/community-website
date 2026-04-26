@@ -224,7 +224,7 @@ function ToolbarDropdown({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-widest transition-all ${
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-none border text-[10px] font-black uppercase tracking-widest transition-all ${
           open
             ? "border-black bg-black text-white"
             : "border-grey-200 text-grey-600 hover:border-black hover:text-black hover:bg-grey-50"
@@ -238,7 +238,7 @@ function ToolbarDropdown({
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1 z-50 min-w-[180px] rounded-xl border border-grey-200 bg-white shadow-lg overflow-hidden">
+        <div className="absolute top-full left-0 mt-1 z-50 min-w-[180px] rounded-none border border-grey-200 bg-white shadow-lg overflow-hidden">
           {group.items.map((item) => (
             <button
               key={item.title}

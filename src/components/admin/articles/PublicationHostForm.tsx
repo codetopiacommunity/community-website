@@ -13,7 +13,7 @@ interface PublicationHostFormProps {
 }
 
 const inputCls =
-  "rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
+  "rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
 const labelCls =
   "text-[10px] uppercase text-grey-500 font-bold tracking-widest";
 
@@ -90,7 +90,7 @@ export function PublicationHostForm({
         <Button
           disabled={isSubmitting}
           type="submit"
-          className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-zinc-900 font-bold tracking-widest shadow-none flex items-center gap-2 font-mono"
+          className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-zinc-900 font-bold tracking-widest shadow-none flex items-center gap-2 font-mono"
         >
           {isSubmitting ? (
             <>

@@ -36,19 +36,19 @@ export function EventParticipationStep({
             }))
           }
         >
-          <SelectTrigger className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono">
+          <SelectTrigger className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono">
             <SelectValue placeholder="Select Format" />
           </SelectTrigger>
-          <SelectContent className="bg-white border border-black rounded-xl p-1 font-mono">
+          <SelectContent className="bg-white border border-black rounded-none p-1 font-mono">
             <SelectItem
               value="online"
-              className="text-xs text-black focus:bg-black focus:text-white rounded-md"
+              className="text-xs text-black focus:bg-black focus:text-white rounded-none"
             >
               ONLINE EVENT
             </SelectItem>
             <SelectItem
               value="in_person"
-              className="text-xs text-black focus:bg-black focus:text-white rounded-md"
+              className="text-xs text-black focus:bg-black focus:text-white rounded-none"
             >
               IN-PERSON EVENT
             </SelectItem>
@@ -71,7 +71,7 @@ export function EventParticipationStep({
                 }))
               }
               placeholder="https://..."
-              className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+              className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
             />
           </div>
           <div className="space-y-2">
@@ -87,7 +87,7 @@ export function EventParticipationStep({
                 }))
               }
               placeholder="https://..."
-              className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+              className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
             />
           </div>
           <div className="space-y-2">
@@ -103,7 +103,7 @@ export function EventParticipationStep({
                 }))
               }
               placeholder="https://youtube.com/..."
-              className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+              className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
             />
           </div>
         </>
@@ -121,7 +121,7 @@ export function EventParticipationStep({
               }))
             }
             placeholder="https://maps.google.com/..."
-            className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+            className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
           />
         </div>
       )}

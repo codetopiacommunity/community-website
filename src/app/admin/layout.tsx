@@ -1,6 +1,7 @@
 "use client";
 
-import { Search, User } from "lucide-react";
+import { ChevronRight, Home, Search, User } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AppSidebar } from "@/components/admin/AppSidebar";
@@ -11,6 +12,79 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
+const routeLabels: Record<string, string> = {
+  admin: "Admin",
+  articles: "Articles",
+  events: "Events",
+  gallery: "Gallery",
+  impact: "Impact",
+  newsletter: "Newsletter",
+  settings: "Settings",
+  spotlight: "Spotlight",
+  team: "Team",
+  careers: "Careers",
+  new: "New",
+  edit: "Edit",
+  preview: "Preview",
+};
+
+function resolveLabel(seg: string): string {
+  return (
+    routeLabels[seg] ??
+    seg.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+  );
+}
+
+function Breadcrumbs({ pathname }: { pathname: string }) {
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments.length <= 1) {
+    return (
+      <div className="flex items-center gap-1.5">
+        <Home className="w-3 h-3 text-zinc-400" />
+        <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">
+          Dashboard
+        </span>
+      </div>
+    );
+  }
+
+  const crumbs = segments.map((seg, idx) => {
+    const href = `/${segments.slice(0, idx + 1).join("/")}`;
+    const label = resolveLabel(seg);
+    const isLast = idx === segments.length - 1;
+    return { href, label, isLast };
+  });
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <Link
+        href="/admin"
+        className="text-zinc-400 hover:text-zinc-900 transition-colors"
+      >
+        <Home className="w-3 h-3" />
+      </Link>
+      {crumbs.slice(1).map((crumb) => (
+        <span key={crumb.href} className="flex items-center gap-1.5">
+          <ChevronRight className="w-3 h-3 text-zinc-300" />
+          {crumb.isLast ? (
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900">
+              {crumb.label}
+            </span>
+          ) : (
+            <Link
+              href={crumb.href}
+              className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 hover:text-zinc-900 transition-colors"
+            >
+              {crumb.label}
+            </Link>
+          )}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function AdminLayout({
   children,
 }: Readonly<{
@@ -19,18 +93,8 @@ export default function AdminLayout({
   const pathname = usePathname();
   const isLoginPage = pathname === "/admin/login";
 
-  const getPageTitle = (path: string) => {
-    if (!path || path === "/admin") return "Dashboard";
-    const pathName = path.replace("/admin/", "").replace(/-/g, " ");
-    return pathName
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
-
   const [paletteOpen, setPaletteOpen] = useState(false);
 
-  // Cmd+K / Ctrl+K global toggle
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -44,7 +108,7 @@ export default function AdminLayout({
 
   if (isLoginPage) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center font-sans overflow-hidden">
+      <div className="min-h-screen bg-black flex items-center justify-center font-mono overflow-hidden">
         {children}
       </div>
     );
@@ -54,7 +118,6 @@ export default function AdminLayout({
     <SidebarProvider
       style={
         {
-          // Override sidebar colors specifically for the admin section
           "--sidebar": "#000000",
           "--sidebar-foreground": "#f3f4f6",
           "--sidebar-primary": "#ffffff",
@@ -66,40 +129,33 @@ export default function AdminLayout({
         } as React.CSSProperties
       }
     >
-      <div className="flex min-h-screen w-full bg-white text-black font-sans">
+      <div className="flex min-h-screen w-full bg-white text-zinc-900 selection:bg-black selection:text-white font-mono overflow-hidden">
         <AppSidebar />
-        <SidebarInset className="flex flex-col bg-white">
-          {/* Top Bar / Header within the workspace */}
-          <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-grey-100 bg-white px-6">
+        <SidebarInset className="flex-1 flex flex-col min-w-0 w-full bg-[#f9fafb] relative h-screen overflow-hidden">
+          {/* Header */}
+          <header className="h-16 border-b border-zinc-200 bg-white/80 backdrop-blur-xl flex items-center justify-between px-6 relative z-40 shrink-0">
             <div className="flex items-center gap-4">
-              <SidebarTrigger className="-ml-2 hover:bg-grey-100 text-grey-600" />
-              <div className="h-4 w-px bg-grey-200" />
-              <div className="flex items-center gap-2 text-sm text-grey-500 font-medium whitespace-nowrap overflow-hidden">
-                <span className="hidden sm:inline">Admin Center</span>
-                <span className="hidden sm:inline">/</span>
-                <span className="text-black font-semibold">
-                  {getPageTitle(pathname)}
-                </span>
-              </div>
+              <SidebarTrigger className="text-zinc-500 hover:text-zinc-900 transition-colors" />
+              <Breadcrumbs pathname={pathname} />
             </div>
 
             <div className="flex items-center gap-4">
               <div className="relative hidden md:block">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-grey-400" />
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-400" />
                 <button
                   type="button"
                   onClick={() => setPaletteOpen(true)}
-                  className="h-9 w-64 rounded-lg bg-grey-50 pl-9 pr-4 text-sm text-grey-400 font-mono border border-transparent hover:border-grey-200 transition-all text-left flex items-center"
+                  className="h-9 w-64 bg-zinc-50 pl-9 pr-4 text-sm text-zinc-400 font-mono border border-transparent hover:border-zinc-200 transition-all text-left flex items-center"
                 >
                   Search anything...
-                  <kbd className="ml-auto text-[10px] px-1.5 py-0.5 rounded border border-grey-200 text-grey-400">
+                  <kbd className="ml-auto text-[10px] px-1.5 py-0.5 border border-zinc-200 text-zinc-400">
                     ⌘K
                   </kbd>
                 </button>
               </div>
 
-              <div className="h-8 w-8 rounded-full bg-grey-100 border border-grey-200 flex items-center justify-center cursor-pointer hover:bg-grey-200 transition-colors">
-                <User className="h-4 w-4 text-grey-600" />
+              <div className="h-8 w-8 bg-zinc-100 border border-zinc-200 flex items-center justify-center cursor-pointer hover:bg-zinc-200 transition-colors">
+                <User className="h-4 w-4 text-zinc-600" />
               </div>
             </div>
           </header>
@@ -108,7 +164,16 @@ export default function AdminLayout({
             open={paletteOpen}
             onClose={() => setPaletteOpen(false)}
           />
-          <main className="flex-1 w-full p-6 lg:p-10">{children}</main>
+
+          {/* Scrollable content area with grid overlay */}
+          <div className="flex-1 overflow-y-auto relative min-h-0 w-full">
+            <div className="absolute inset-0 pointer-events-none z-0">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:40px_40px]" />
+            </div>
+            <main className="relative z-10 flex flex-col min-h-full w-full">
+              <div className="p-6 lg:p-10 w-full max-w-none">{children}</div>
+            </main>
+          </div>
         </SidebarInset>
       </div>
     </SidebarProvider>

@@ -164,7 +164,7 @@ export function NewsletterComposePage({
           <button
             type="button"
             onClick={() => router.push("/admin/newsletter")}
-            className="mt-1 p-2 rounded-xl border border-grey-200 hover:border-black hover:bg-black hover:text-white transition-all"
+            className="mt-1 p-2 rounded-none border border-grey-200 hover:border-black hover:bg-black hover:text-white transition-all"
             aria-label="Back to newsletters"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -193,14 +193,14 @@ export function NewsletterComposePage({
             variant="outline"
             onClick={handleSaveDraft}
             disabled={savingDraft}
-            className="h-11 rounded-xl border-black text-[10px] font-black uppercase tracking-widest"
+            className="h-11 rounded-none border-black text-[10px] font-black uppercase tracking-widest"
           >
             {savingDraft ? "SAVING..." : "SAVE DRAFT"}
           </Button>
           <Button
             onClick={handlePreviewClick}
             disabled={savingDraft}
-            className="h-11 rounded-xl bg-black text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-2"
+            className="h-11 rounded-none bg-black text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-2"
           >
             <Eye className="h-3.5 w-3.5" />
             PREVIEW & SEND

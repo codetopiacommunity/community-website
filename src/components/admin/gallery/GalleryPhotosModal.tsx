@@ -195,7 +195,7 @@ export function GalleryPhotosModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-3xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl max-h-[90vh] flex flex-col">
+      <DialogContent className="max-w-3xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl max-h-[90vh] flex flex-col">
         {/* Header */}
         <DialogHeader className="px-8 py-7 border-b border-grey-100 bg-white shrink-0">
           <div className="flex flex-col gap-1 text-center sm:text-left">
@@ -203,7 +203,7 @@ export function GalleryPhotosModal({
               {album?.title ?? "Photos"}
             </DialogTitle>
             <DialogDescription className="text-[10px] font-bold text-grey-400 uppercase tracking-[0.2em] flex items-center gap-3 font-mono">
-              <span className="px-2 py-1 bg-black rounded-lg text-white font-mono leading-none tracking-normal">
+              <span className="px-2 py-1 bg-black rounded-none text-white font-mono leading-none tracking-normal">
                 PHOTOS
               </span>
               {photos.length} UPLOADED · {pendingCount} QUEUED
@@ -224,14 +224,14 @@ export function GalleryPhotosModal({
               onDragLeave={() => setDragOver(false)}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`relative border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
+              className={`relative border-2 border-dashed rounded-none p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
                 dragOver
                   ? "border-black bg-grey-50 scale-[1.01]"
                   : "border-grey-200 hover:border-black hover:bg-grey-50/50"
               }`}
             >
               <div
-                className={`p-4 rounded-2xl transition-colors ${dragOver ? "bg-black" : "bg-grey-100"}`}
+                className={`p-4 rounded-none transition-colors ${dragOver ? "bg-black" : "bg-grey-100"}`}
               >
                 <Upload
                   className={`h-6 w-6 transition-colors ${dragOver ? "text-white" : "text-grey-400"}`}
@@ -270,7 +270,7 @@ export function GalleryPhotosModal({
                       type="button"
                       onClick={uploadAll}
                       disabled={isUploading}
-                      className="bg-black text-white text-[10px] uppercase px-6 h-9 rounded-xl font-black tracking-widest shadow-none hover:bg-grey-900 flex items-center gap-2 transition-all active:scale-[0.98]"
+                      className="bg-black text-white text-[10px] uppercase px-6 h-9 rounded-none font-black tracking-widest shadow-none hover:bg-grey-900 flex items-center gap-2 transition-all active:scale-[0.98]"
                     >
                       {isUploading && (
                         <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -284,7 +284,7 @@ export function GalleryPhotosModal({
                   {queue.map((item) => (
                     <div
                       key={item.id}
-                      className={`flex items-center gap-3 p-3 rounded-xl border transition-colors ${
+                      className={`flex items-center gap-3 p-3 rounded-none border transition-colors ${
                         item.status === "done"
                           ? "border-green-200 bg-green-50"
                           : item.status === "error"
@@ -295,7 +295,7 @@ export function GalleryPhotosModal({
                       }`}
                     >
                       {/* Thumbnail */}
-                      <div className="relative h-12 w-16 rounded-lg overflow-hidden border border-grey-100 shrink-0 bg-grey-50">
+                      <div className="relative h-12 w-16 rounded-none overflow-hidden border border-grey-100 shrink-0 bg-grey-50">
                         <Image
                           src={item.base64}
                           alt="preview"
@@ -315,7 +315,7 @@ export function GalleryPhotosModal({
                           onChange={(e) => updateAlt(item.id, e.target.value)}
                           placeholder="Alt text..."
                           disabled={item.status !== "pending"}
-                          className="h-8 text-xs border border-grey-200 rounded-lg focus:border-black font-mono bg-white disabled:opacity-60"
+                          className="h-8 text-xs border border-grey-200 rounded-none focus:border-black font-mono bg-white disabled:opacity-60"
                         />
                         {item.status === "error" && (
                           <p className="text-[10px] text-red-500 font-bold mt-1">
@@ -339,7 +339,7 @@ export function GalleryPhotosModal({
                           <button
                             type="button"
                             onClick={() => removeFromQueue(item.id)}
-                            className="h-7 w-7 rounded-lg flex items-center justify-center text-grey-400 hover:text-black hover:bg-grey-100 transition-all"
+                            className="h-7 w-7 rounded-none flex items-center justify-center text-grey-400 hover:text-black hover:bg-grey-100 transition-all"
                           >
                             <X className="h-3.5 w-3.5" />
                           </button>
@@ -365,7 +365,7 @@ export function GalleryPhotosModal({
                   <Loader2 className="h-6 w-6 animate-spin text-black" />
                 </div>
               ) : photos.length === 0 ? (
-                <div className="border border-dashed border-grey-200 rounded-2xl py-14 flex flex-col items-center justify-center gap-3 text-grey-300">
+                <div className="border border-dashed border-grey-200 rounded-none py-14 flex flex-col items-center justify-center gap-3 text-grey-300">
                   <ImageIcon className="h-10 w-10" />
                   <p className="text-[10px] font-black uppercase tracking-widest font-mono">
                     No photos yet
@@ -378,7 +378,7 @@ export function GalleryPhotosModal({
                       key={photo.id}
                       className="relative group aspect-square"
                     >
-                      <div className="relative h-full w-full rounded-xl overflow-hidden border border-grey-100 bg-grey-50">
+                      <div className="relative h-full w-full rounded-none overflow-hidden border border-grey-100 bg-grey-50">
                         <Image
                           src={photo.src}
                           alt={photo.alt}
@@ -386,7 +386,7 @@ export function GalleryPhotosModal({
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                         {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-xl" />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-none" />
                       </div>
                       {/* Alt text tooltip */}
                       <div className="absolute bottom-0 left-0 right-0 px-2 pb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -399,7 +399,7 @@ export function GalleryPhotosModal({
                         type="button"
                         onClick={() => handleDelete(photo.id)}
                         disabled={deletingId === photo.id}
-                        className="absolute top-2 right-2 h-7 w-7 rounded-lg bg-white border border-grey-200 flex items-center justify-center text-grey-400 hover:text-white hover:bg-red-500 hover:border-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm"
+                        className="absolute top-2 right-2 h-7 w-7 rounded-none bg-white border border-grey-200 flex items-center justify-center text-grey-400 hover:text-white hover:bg-red-500 hover:border-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm"
                         aria-label={`Delete ${photo.alt}`}
                       >
                         {deletingId === photo.id ? (
@@ -424,7 +424,7 @@ export function GalleryPhotosModal({
           <Button
             type="button"
             onClick={onClose}
-            className="bg-black text-white text-[10px] uppercase px-8 h-10 rounded-xl font-black tracking-widest shadow-none hover:bg-grey-900 transition-all active:scale-[0.98]"
+            className="bg-black text-white text-[10px] uppercase px-8 h-10 rounded-none font-black tracking-widest shadow-none hover:bg-grey-900 transition-all active:scale-[0.98]"
           >
             Done
           </Button>

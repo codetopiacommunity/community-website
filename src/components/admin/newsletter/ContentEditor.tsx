@@ -28,7 +28,7 @@ export function ContentEditor({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   return (
-    <div className="rounded-2xl border border-grey-100 bg-white p-6 space-y-3">
+    <div className="rounded-none border border-grey-100 bg-white p-6 space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-[10px] font-black uppercase tracking-widest text-black">
           CONTENT
@@ -59,7 +59,7 @@ export function ContentEditor({
 
       {showPreview ? (
         <div
-          className="min-h-[520px] rounded-xl border border-black p-6 prose prose-sm max-w-none text-sm"
+          className="min-h-[520px] rounded-none border border-black p-6 prose prose-sm max-w-none text-sm"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled markdown preview
           dangerouslySetInnerHTML={{ __html: previewHtml }}
         />
@@ -71,17 +71,17 @@ export function ContentEditor({
           placeholder={
             "Write your newsletter content in Markdown...\n\n## Hello readers\n\nStart typing here."
           }
-          className="w-full min-h-[520px] rounded-xl border border-black p-4 font-mono text-sm resize-y focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 placeholder:text-grey-300 leading-relaxed"
+          className="w-full min-h-[520px] rounded-none border border-black p-4 font-mono text-sm resize-y focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 placeholder:text-grey-300 leading-relaxed"
           spellCheck
         />
       )}
 
-      <div className="border border-grey-100 rounded-xl p-4 bg-grey-50">
+      <div className="border border-grey-100 rounded-none p-4 bg-grey-50">
         <p className="text-[10px] font-black uppercase tracking-widest text-black mb-3">
           TEMPLATE VARIABLES
         </p>
         <div className="flex items-center gap-3">
-          <code className="bg-black text-white text-[10px] font-mono px-2 py-1 rounded-md tracking-wider">
+          <code className="bg-black text-white text-[10px] font-mono px-2 py-1 rounded-none tracking-wider">
             {"{{base_url}}"}
           </code>
           <span className="text-[10px] font-mono text-grey-500 uppercase tracking-widest">

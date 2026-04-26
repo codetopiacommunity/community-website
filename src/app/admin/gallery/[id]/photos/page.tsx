@@ -205,7 +205,7 @@ export default function AlbumPhotosPage() {
       </div>
 
       {/* Drop zone */}
-      <div className="border border-grey-100 rounded-2xl p-6 bg-white space-y-6">
+      <div className="border border-grey-100 rounded-none p-6 bg-white space-y-6">
         {/* biome-ignore lint/a11y/noStaticElementInteractions: drag-and-drop zone with click fallback */}
         {/* biome-ignore lint/a11y/useKeyWithClickEvents: drag-and-drop zone */}
         <div
@@ -216,14 +216,14 @@ export default function AlbumPhotosPage() {
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
+          className={`relative border-2 border-dashed rounded-none p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
             dragOver
               ? "border-black bg-grey-50 scale-[1.01]"
               : "border-grey-200 hover:border-black hover:bg-grey-50/50"
           }`}
         >
           <div
-            className={`p-4 rounded-2xl transition-colors ${dragOver ? "bg-black" : "bg-grey-100"}`}
+            className={`p-4 rounded-none transition-colors ${dragOver ? "bg-black" : "bg-grey-100"}`}
           >
             <Upload
               className={`h-6 w-6 transition-colors ${dragOver ? "text-white" : "text-grey-400"}`}
@@ -262,7 +262,7 @@ export default function AlbumPhotosPage() {
                   type="button"
                   onClick={uploadAll}
                   disabled={isUploading}
-                  className="bg-black text-white text-[10px] uppercase px-6 h-9 rounded-xl font-black tracking-widest shadow-none hover:bg-grey-900 flex items-center gap-2 transition-all active:scale-[0.98]"
+                  className="bg-black text-white text-[10px] uppercase px-6 h-9 rounded-none font-black tracking-widest shadow-none hover:bg-grey-900 flex items-center gap-2 transition-all active:scale-[0.98]"
                 >
                   {isUploading && (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -276,7 +276,7 @@ export default function AlbumPhotosPage() {
               {queue.map((item) => (
                 <div
                   key={item.id}
-                  className={`flex items-center gap-3 p-3 rounded-xl border transition-colors ${
+                  className={`flex items-center gap-3 p-3 rounded-none border transition-colors ${
                     item.status === "done"
                       ? "border-green-200 bg-green-50"
                       : item.status === "error"
@@ -286,7 +286,7 @@ export default function AlbumPhotosPage() {
                           : "border-grey-100 bg-white"
                   }`}
                 >
-                  <div className="relative h-12 w-16 rounded-lg overflow-hidden border border-grey-100 shrink-0 bg-grey-50">
+                  <div className="relative h-12 w-16 rounded-none overflow-hidden border border-grey-100 shrink-0 bg-grey-50">
                     <Image
                       src={item.base64}
                       alt="preview"
@@ -304,7 +304,7 @@ export default function AlbumPhotosPage() {
                       onChange={(e) => updateAlt(item.id, e.target.value)}
                       placeholder="Alt text..."
                       disabled={item.status !== "pending"}
-                      className="h-8 text-xs border border-grey-200 rounded-lg focus:border-black font-mono bg-white disabled:opacity-60"
+                      className="h-8 text-xs border border-grey-200 rounded-none focus:border-black font-mono bg-white disabled:opacity-60"
                     />
                     {item.status === "error" && (
                       <p className="text-[10px] text-red-500 font-bold mt-1 font-mono">
@@ -326,7 +326,7 @@ export default function AlbumPhotosPage() {
                       <button
                         type="button"
                         onClick={() => removeFromQueue(item.id)}
-                        className="h-7 w-7 rounded-lg flex items-center justify-center text-grey-400 hover:text-black hover:bg-grey-100 transition-all"
+                        className="h-7 w-7 rounded-none flex items-center justify-center text-grey-400 hover:text-black hover:bg-grey-100 transition-all"
                       >
                         <X className="h-3.5 w-3.5" />
                       </button>
@@ -340,7 +340,7 @@ export default function AlbumPhotosPage() {
       </div>
 
       {/* Existing photos */}
-      <div className="border border-grey-100 rounded-2xl p-6 bg-white space-y-4">
+      <div className="border border-grey-100 rounded-none p-6 bg-white space-y-4">
         <p className="text-[10px] font-black uppercase tracking-widest text-black font-mono">
           Album Photos
           <span className="ml-2 text-grey-400 font-bold">
@@ -353,7 +353,7 @@ export default function AlbumPhotosPage() {
             <Loader2 className="h-6 w-6 animate-spin text-black" />
           </div>
         ) : photos.length === 0 ? (
-          <div className="border border-dashed border-grey-200 rounded-2xl py-14 flex flex-col items-center justify-center gap-3 text-grey-300">
+          <div className="border border-dashed border-grey-200 rounded-none py-14 flex flex-col items-center justify-center gap-3 text-grey-300">
             <ImageIcon className="h-10 w-10" />
             <p className="text-[10px] font-black uppercase tracking-widest font-mono">
               No photos yet
@@ -363,14 +363,14 @@ export default function AlbumPhotosPage() {
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
             {photos.map((photo) => (
               <div key={photo.id} className="relative group aspect-square">
-                <div className="relative h-full w-full rounded-xl overflow-hidden border border-grey-100 bg-grey-50">
+                <div className="relative h-full w-full rounded-none overflow-hidden border border-grey-100 bg-grey-50">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-xl" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-none" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 px-2 pb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <p className="text-[9px] text-white font-bold uppercase tracking-wider truncate leading-tight drop-shadow-lg">
@@ -381,7 +381,7 @@ export default function AlbumPhotosPage() {
                   type="button"
                   onClick={() => handleDelete(photo.id)}
                   disabled={deletingId === photo.id}
-                  className="absolute top-2 right-2 h-7 w-7 rounded-lg bg-white border border-grey-200 flex items-center justify-center text-grey-400 hover:text-white hover:bg-red-500 hover:border-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm"
+                  className="absolute top-2 right-2 h-7 w-7 rounded-none bg-white border border-grey-200 flex items-center justify-center text-grey-400 hover:text-white hover:bg-red-500 hover:border-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm"
                   aria-label={`Delete ${photo.alt}`}
                 >
                   {deletingId === photo.id ? (

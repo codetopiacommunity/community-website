@@ -26,7 +26,7 @@ export function EventIdentityStep({
             setFormData((prev) => ({ ...prev, title: e.target.value }))
           }
           placeholder="e.g. Weekend Co-Working"
-          className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+          className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
           required
         />
       </div>
@@ -43,7 +43,7 @@ export function EventIdentityStep({
             }))
           }
           placeholder="e.g. BUILD TOGETHER"
-          className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+          className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
           required
         />
       </div>
@@ -60,7 +60,7 @@ export function EventIdentityStep({
             }))
           }
           placeholder="Tell us what's happening..."
-          className="rounded-xl min-h-[120px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
+          className="rounded-none min-h-[120px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
           required
         />
       </div>

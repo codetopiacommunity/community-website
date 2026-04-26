@@ -3,7 +3,6 @@
 import { KeyRound, Loader2, Lock, Mail, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 
 interface AccountFormProps {
   initialEmail: string;
@@ -20,7 +19,7 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentPassword) {
-      toast.error("Current password is required to save changes.");
+      toast.error("Current password is required.");
       return;
     }
     if (newPassword && newPassword !== confirmPassword) {
@@ -51,85 +50,81 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
   };
 
   return (
-    <form onSubmit={handleUpdate} className="space-y-8">
+    <form onSubmit={handleUpdate} className="space-y-6">
       {/* Email */}
-      <div className="bg-white rounded-2xl border border-grey-200 overflow-hidden shadow-sm">
-        <div className="border-b border-grey-100 bg-grey-50/50 p-6">
-          <h2 className="text-lg font-bold text-grey-900 flex items-center gap-2">
-            <Mail className="w-5 h-5 text-grey-600" />
-            Primary Identity
+      <section className="space-y-3">
+        <div>
+          <h2 className="font-sans font-black uppercase text-sm tracking-widest text-zinc-900 flex items-center gap-2">
+            <Mail className="w-4 h-4" /> Primary Identity
           </h2>
-          <p className="text-sm text-grey-500 mt-1">
+          <p className="font-mono text-xs text-zinc-400 mt-0.5">
             The email address used to log into this dashboard.
           </p>
         </div>
-        <div className="p-6">
-          <div className="max-w-md space-y-3">
-            <label
-              htmlFor="email-address"
-              className="text-xs font-bold text-grey-700 uppercase tracking-wide"
-            >
-              Email Address
-            </label>
-            <input
-              id="email-address"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-11 bg-white border border-grey-300 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent rounded-lg transition-shadow text-grey-900 font-medium"
-            />
-          </div>
+        <div className="bg-white border border-zinc-200 p-6 space-y-3">
+          <label
+            htmlFor="email-address"
+            className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
+          >
+            Email Address
+          </label>
+          <input
+            id="email-address"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full max-w-md h-10 bg-white border border-zinc-200 px-3 font-mono text-sm focus:outline-none focus:border-zinc-900 transition-colors text-zinc-900"
+          />
         </div>
-      </div>
+      </section>
 
       {/* Password */}
-      <div className="bg-white rounded-2xl border border-grey-200 overflow-hidden shadow-sm">
-        <div className="border-b border-grey-100 bg-grey-50/50 p-6">
-          <h2 className="text-lg font-bold text-grey-900 flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-grey-600" />
-            Access Credentials
+      <section className="space-y-3">
+        <div>
+          <h2 className="font-sans font-black uppercase text-sm tracking-widest text-zinc-900 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4" /> Access Credentials
           </h2>
-          <p className="text-sm text-grey-500 mt-1">
+          <p className="font-mono text-xs text-zinc-400 mt-0.5">
             Update your password. Current password is required to save any
             changes.
           </p>
         </div>
-        <div className="p-6 grid md:grid-cols-2 gap-8">
-          <div className="space-y-6 md:border-r border-grey-100 md:pr-8">
-            <div className="rounded-xl border border-grey-300 bg-grey-50/50 p-4 flex gap-3">
-              <Lock className="w-5 h-5 text-grey-700 shrink-0 mt-0.5" />
-              <p className="text-sm text-grey-800 leading-relaxed font-medium">
+        <div className="bg-white border border-zinc-200 p-6 grid md:grid-cols-2 gap-8">
+          <div className="space-y-4 md:border-r border-zinc-100 md:pr-8">
+            <div className="border border-zinc-200 bg-zinc-50 p-3 flex gap-2">
+              <Lock className="w-4 h-4 text-zinc-600 shrink-0 mt-0.5" />
+              <p className="font-mono text-xs text-zinc-700">
                 You must verify your current password to save{" "}
                 <strong>any</strong> changes.
               </p>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <label
                 htmlFor="current-password"
-                className="text-xs font-bold text-grey-700 uppercase tracking-wide"
+                className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
               >
                 Current Password *
               </label>
               <div className="relative">
-                <KeyRound className="w-4 h-4 text-grey-400 absolute left-3.5 top-3.5" />
+                <KeyRound className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-3" />
                 <input
                   id="current-password"
                   type="password"
                   required
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="w-full h-11 bg-white border border-grey-300 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent rounded-lg transition-shadow text-grey-900"
+                  className="w-full h-10 bg-white border border-zinc-200 pl-9 pr-3 font-mono text-sm focus:outline-none focus:border-zinc-900 transition-colors text-zinc-900"
                   placeholder="Enter current password"
                 />
               </div>
             </div>
           </div>
-          <div className="space-y-6">
-            <div className="space-y-3">
+          <div className="space-y-4">
+            <div className="space-y-2">
               <label
                 htmlFor="new-password"
-                className="text-xs font-bold text-grey-700 uppercase tracking-wide"
+                className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
               >
                 New Password
               </label>
@@ -138,14 +133,14 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full h-11 bg-white border border-grey-300 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent rounded-lg transition-shadow placeholder:text-grey-400 font-medium"
+                className="w-full h-10 bg-white border border-zinc-200 px-3 font-mono text-sm focus:outline-none focus:border-zinc-900 transition-colors placeholder:text-zinc-400"
                 placeholder="Leave blank to keep unchanged"
               />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <label
                 htmlFor="confirm-password"
-                className="text-xs font-bold text-grey-700 uppercase tracking-wide"
+                className="font-mono text-[10px] font-bold text-zinc-600 uppercase tracking-widest"
               >
                 Confirm New Password
               </label>
@@ -154,28 +149,28 @@ export function AccountForm({ initialEmail, onEmailSaved }: AccountFormProps) {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full h-11 bg-white border border-grey-300 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent rounded-lg transition-shadow placeholder:text-grey-400 font-medium"
+                className="w-full h-10 bg-white border border-zinc-200 px-3 font-mono text-sm focus:outline-none focus:border-zinc-900 transition-colors placeholder:text-zinc-400"
                 placeholder="Repeat new password"
               />
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="pt-2 flex justify-end">
-        <Button
+      <div className="flex justify-end">
+        <button
           type="submit"
           disabled={saving || !currentPassword}
-          className="flex items-center justify-center gap-2 bg-black text-white px-8 h-12 rounded-xl text-sm font-semibold hover:bg-grey-900 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {saving ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Saving...
+              <Loader2 className="h-3.5 w-3.5 animate-spin" /> Saving...
             </>
           ) : (
-            "Save Profile Changes"
+            "Save Changes"
           )}
-        </Button>
+        </button>
       </div>
     </form>
   );

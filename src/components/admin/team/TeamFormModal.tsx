@@ -129,14 +129,14 @@ export function TeamFormModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
+      <DialogContent className="max-w-xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
         <DialogHeader className="px-8 py-10 border-b border-grey-50 bg-white">
           <div className="flex flex-col gap-1 text-center sm:text-left">
             <DialogTitle className="text-4xl font-black text-black uppercase tracking-tighter font-sans">
               {editingMember ? "Update Profile" : "New Contributor"}
             </DialogTitle>
             <DialogDescription className="text-[10px] font-bold text-grey-400 uppercase tracking-[0.2em] flex items-center justify-center sm:justify-start gap-3 font-mono">
-              <span className="px-2 py-1 bg-black rounded-lg text-white font-mono leading-none tracking-normal">
+              <span className="px-2 py-1 bg-black rounded-none text-white font-mono leading-none tracking-normal">
                 {activeTab === "profile"
                   ? "PART 01"
                   : activeTab === "expertise"
@@ -173,7 +173,7 @@ export function TeamFormModal({
                         }))
                       }
                       required
-                      className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-[11px] text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+                      className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-[11px] text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
                       placeholder="e.g. Seth Mensah"
                     />
                   </div>
@@ -191,7 +191,7 @@ export function TeamFormModal({
                         }))
                       }
                       required
-                      className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+                      className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
                       placeholder="e.g. Community Lead"
                     />
                   </div>
@@ -206,25 +206,25 @@ export function TeamFormModal({
                         setFormValues((prev) => ({ ...prev, tier: val }))
                       }
                     >
-                      <SelectTrigger className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono">
+                      <SelectTrigger className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono">
                         <SelectValue placeholder="Select Tier" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white border border-black rounded-xl p-1 font-mono">
+                      <SelectContent className="bg-white border border-black rounded-none p-1 font-mono">
                         <SelectItem
                           value="CORE"
-                          className="text-xs text-black focus:bg-black focus:text-white rounded-md"
+                          className="text-xs text-black focus:bg-black focus:text-white rounded-none"
                         >
                           CORE
                         </SelectItem>
                         <SelectItem
                           value="VOLUNTEER"
-                          className="text-xs text-black focus:bg-black focus:text-white rounded-md"
+                          className="text-xs text-black focus:bg-black focus:text-white rounded-none"
                         >
                           VOLUNTEER
                         </SelectItem>
                         <SelectItem
                           value="AMBASSADOR"
-                          className="text-xs text-black focus:bg-black focus:text-white rounded-md"
+                          className="text-xs text-black focus:bg-black focus:text-white rounded-none"
                         >
                           AMBASSADOR
                         </SelectItem>
@@ -237,7 +237,7 @@ export function TeamFormModal({
                     </Label>
                     <div className="flex items-center gap-4">
                       {imagePreview && (
-                        <div className="h-11 w-11 rounded-xl overflow-hidden border border-grey-100 flex-shrink-0 bg-grey-50 relative">
+                        <div className="h-11 w-11 rounded-none overflow-hidden border border-grey-100 flex-shrink-0 bg-grey-50 relative">
                           <Image
                             src={imagePreview}
                             alt="Preview"
@@ -263,7 +263,7 @@ export function TeamFormModal({
                             reader.readAsDataURL(file);
                           }
                         }}
-                        className="flex-1 rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 py-2.5 text-xs font-medium text-black focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono file:bg-transparent file:border-0 file:text-xs file:font-medium file:text-grey-500 cursor-pointer"
+                        className="flex-1 rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 py-2.5 text-xs font-medium text-black focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono file:bg-transparent file:border-0 file:text-xs file:font-medium file:text-grey-500 cursor-pointer"
                       />
                     </div>
                   </div>
@@ -279,7 +279,7 @@ export function TeamFormModal({
                     <Label className="text-[10px] uppercase text-grey-500 font-bold tracking-widest">
                       Skills / Expertise
                     </Label>
-                    <div className="flex flex-wrap gap-2 p-2 rounded-xl border border-grey-100 bg-grey-50/50 focus-within:border-black focus-within:bg-white transition-all min-h-[44px]">
+                    <div className="flex flex-wrap gap-2 p-2 rounded-none border border-grey-100 bg-grey-50/50 focus-within:border-black focus-within:bg-white transition-all min-h-[44px]">
                       {expertise.map((skill) => (
                         <span
                           key={`skill-${skill}`}
@@ -359,7 +359,7 @@ export function TeamFormModal({
                           statement: e.target.value,
                         }))
                       }
-                      className="rounded-xl min-h-[140px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
+                      className="rounded-none min-h-[140px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
                       placeholder="Tell us about their contribution or mission..."
                     />
                   </div>
@@ -371,7 +371,7 @@ export function TeamFormModal({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label className="text-[10px] uppercase text-grey-500 font-bold tracking-widest flex items-center gap-2">
-                        <span className="p-1.5 bg-black rounded-lg text-white">
+                        <span className="p-1.5 bg-black rounded-none text-white">
                           <Github className="h-3 w-3" />
                         </span>
                         GITHUB LINK
@@ -385,13 +385,13 @@ export function TeamFormModal({
                             github: e.target.value,
                           }))
                         }
-                        className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+                        className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
                         placeholder="e.g. https://github.com/sethmensah"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label className="text-[10px] uppercase text-grey-500 font-bold tracking-widest flex items-center gap-2">
-                        <span className="p-1.5 bg-black rounded-lg text-white">
+                        <span className="p-1.5 bg-black rounded-none text-white">
                           <Linkedin className="h-3 w-3" />
                         </span>
                         LINKEDIN PROFILE
@@ -405,13 +405,13 @@ export function TeamFormModal({
                             linkedin: e.target.value,
                           }))
                         }
-                        className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+                        className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
                         placeholder="e.g. seth-mensah"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label className="text-[10px] uppercase text-grey-500 font-bold tracking-widest flex items-center gap-2">
-                        <span className="p-1.5 bg-black rounded-lg text-white">
+                        <span className="p-1.5 bg-black rounded-none text-white">
                           <Twitter className="h-3 w-3" />
                         </span>
                         TWITTER HANDLE
@@ -425,7 +425,7 @@ export function TeamFormModal({
                             twitter: e.target.value,
                           }))
                         }
-                        className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
+                        className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono"
                         placeholder="e.g. seth_mensah"
                       />
                     </div>
@@ -437,13 +437,13 @@ export function TeamFormModal({
             <div className="px-8 py-8 bg-grey-50/30 border-t-2 border-grey-100 flex items-center justify-between mt-4">
               <div className="flex gap-3">
                 <div
-                  className={`h-2.5 w-10 rounded-full transition-all duration-300 border-2 ${activeTab === "profile" ? "bg-black border-black" : "bg-white border-grey-200"}`}
+                  className={`h-2.5 w-10 rounded-none transition-all duration-300 border-2 ${activeTab === "profile" ? "bg-black border-black" : "bg-white border-grey-200"}`}
                 />
                 <div
-                  className={`h-2.5 w-10 rounded-full transition-all duration-300 border-2 ${activeTab === "expertise" ? "bg-black border-black" : "bg-white border-grey-200"}`}
+                  className={`h-2.5 w-10 rounded-none transition-all duration-300 border-2 ${activeTab === "expertise" ? "bg-black border-black" : "bg-white border-grey-200"}`}
                 />
                 <div
-                  className={`h-2.5 w-10 rounded-full transition-all duration-300 border-2 ${activeTab === "socials" ? "bg-black border-black" : "bg-white border-grey-200"}`}
+                  className={`h-2.5 w-10 rounded-none transition-all duration-300 border-2 ${activeTab === "socials" ? "bg-black border-black" : "bg-white border-grey-200"}`}
                 />
               </div>
 
@@ -454,14 +454,14 @@ export function TeamFormModal({
                       variant="ghost"
                       onClick={onClose}
                       type="button"
-                      className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest transition-all"
+                      className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest transition-all"
                     >
                       Cancel
                     </Button>
                     <Button
                       onClick={() => setActiveTab("expertise")}
                       type="button"
-                      className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none"
+                      className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none"
                     >
                       Next Step
                     </Button>
@@ -473,14 +473,14 @@ export function TeamFormModal({
                       variant="ghost"
                       onClick={() => setActiveTab("profile")}
                       type="button"
-                      className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest transition-all"
+                      className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest transition-all"
                     >
                       Back
                     </Button>
                     <Button
                       onClick={() => setActiveTab("socials")}
                       type="button"
-                      className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none"
+                      className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none"
                     >
                       Next Step
                     </Button>
@@ -492,14 +492,14 @@ export function TeamFormModal({
                       variant="ghost"
                       onClick={() => setActiveTab("expertise")}
                       type="button"
-                      className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest transition-all"
+                      className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest transition-all"
                     >
                       Back
                     </Button>
                     <Button
                       disabled={isSubmitting}
                       type="submit"
-                      className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none text-center flex items-center justify-center gap-2"
+                      className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none text-center flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? (
                         <>

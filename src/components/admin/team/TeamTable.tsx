@@ -41,72 +41,65 @@ export function TeamTable({
   onAddFirst: () => void;
 }) {
   return (
-    <div className="rounded-2xl bg-white border border-grey-100 overflow-hidden relative shadow-none">
-      <div className="p-6 border-b border-grey-100 bg-white flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-black rounded-lg">
-            <Users2 className="h-4 w-4 text-white" />
-          </div>
-          <h2 className="text-xl font-bold text-black uppercase tracking-tight font-sans">
-            Active Directory
-          </h2>
-        </div>
-        <span className="text-[10px] font-mono font-bold bg-grey-50 px-3 py-1.5 rounded-lg text-black uppercase tracking-widest border border-grey-100">
-          {filteredMembers.length} Members Total
+    <div className="bg-white border border-zinc-200 overflow-hidden">
+      <div className="px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
+        <h2 className="font-sans font-black uppercase text-sm tracking-widest text-zinc-900">
+          Active Directory
+        </h2>
+        <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
+          {filteredMembers.length} Members
         </span>
       </div>
 
       {loading && (
-        <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-10 flex items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-black" />
+        <div className="p-20 flex items-center justify-center">
+          <Loader2 className="h-6 w-6 animate-spin text-zinc-400" />
         </div>
       )}
 
       <div className="overflow-x-auto">
         <table className="w-full text-left font-mono">
           <thead>
-            <tr className="bg-grey-50 text-[10px] font-bold uppercase tracking-[0.2em] text-grey-500 border-b border-grey-100">
-              <th className="px-6 py-5">TEAM MEMBER</th>
-              <th className="px-6 py-5">ROLE & TIER</th>
-              <th className="px-6 py-5">EXPERTISE</th>
-              <th className="px-6 py-5 text-right">CONTROLS</th>
+            <tr className="bg-black text-[10px] font-bold uppercase tracking-widest text-white">
+              <th className="px-6 py-3">Member</th>
+              <th className="px-6 py-3">Role & Tier</th>
+              <th className="px-6 py-3">Expertise</th>
+              <th className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-grey-50 text-xs">
+          <tbody className="divide-y divide-zinc-100 text-xs">
             {currentMembers.length === 0 && !loading ? (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center">
-                  <div className="flex flex-col items-center justify-center space-y-4">
-                    <div className="space-y-1">
-                      <h3 className="text-black font-black uppercase tracking-tight text-lg">
-                        No team members found
-                      </h3>
-                      <p className="text-grey-400 text-sm max-w-[300px] mx-auto font-medium">
-                        {search
-                          ? `We couldn't find anyone matching "${search}". Try another keyword or clear the search.`
-                          : "Your team directory is currently empty. Start by adding your first contributor."}
-                      </p>
-                    </div>
-                    {!search && (
-                      <Button
-                        onClick={onAddFirst}
-                        className="mt-4 text-xs font-black uppercase tracking-widest bg-black text-white px-8 h-12 rounded-xl hover:bg-grey-800 transition-all active:scale-[0.98]"
-                      >
-                        Add Your First Member
-                      </Button>
-                    )}
-                  </div>
+                <td colSpan={4} className="px-6 py-16 text-center">
+                  <Users2 className="h-8 w-8 mx-auto text-zinc-200 mb-3" />
+                  <p className="font-mono text-sm font-semibold text-zinc-900">
+                    No team members found
+                  </p>
+                  <p className="font-mono text-xs text-zinc-400 mt-1">
+                    {search
+                      ? `No results for "${search}"`
+                      : "Your team directory is empty."}
+                  </p>
+                  {!search && (
+                    <button
+                      type="button"
+                      onClick={onAddFirst}
+                      className="mt-4 inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors"
+                    >
+                      Add First Member
+                    </button>
+                  )}
                 </td>
               </tr>
             ) : (
               currentMembers.map((member) => (
                 <tr
                   key={member.id}
-                  className="hover:bg-grey-50/40 transition-colors group"
+                  className="hover:bg-zinc-50 transition-colors group"
                 >
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-4">
-                      <div className="h-10 w-10 rounded-lg bg-grey-50 border border-grey-100 overflow-hidden flex items-center justify-center text-grey-400 group-hover:bg-black group-hover:text-white transition-all relative">
+                    <div className="flex items-center gap-3">
+                      <div className="h-9 w-9 border border-zinc-200 overflow-hidden flex items-center justify-center text-zinc-400 relative shrink-0">
                         {member.imageUrl ? (
                           <Image
                             src={member.imageUrl}
@@ -115,75 +108,79 @@ export function TeamTable({
                             className="object-cover"
                           />
                         ) : (
-                          <Users2 className="h-5 w-5" />
+                          <Users2 className="h-4 w-4" />
                         )}
                       </div>
-                      <div className="flex flex-col">
-                        <span className="text-sm font-bold text-black">
+                      <div>
+                        <p className="font-mono font-semibold text-sm text-zinc-900">
                           {member.name}
-                        </span>
-                        <div className="flex items-center gap-2 mt-0.5">
+                        </p>
+                        <div className="flex items-center gap-1.5 mt-0.5">
                           {member.github && (
-                            <Github className="h-3 w-3 text-grey-400 hover:text-black cursor-pointer" />
+                            <Github className="h-3 w-3 text-zinc-400" />
                           )}
                           {member.linkedin && (
-                            <Linkedin className="h-3 w-3 text-grey-400 hover:text-black cursor-pointer" />
+                            <Linkedin className="h-3 w-3 text-zinc-400" />
                           )}
                           {member.twitter && (
-                            <Twitter className="h-3 w-3 text-grey-400 hover:text-black cursor-pointer" />
+                            <Twitter className="h-3 w-3 text-zinc-400" />
                           )}
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-5">
-                    <div className="flex flex-col gap-2">
-                      <span className="text-xs font-bold text-black uppercase tracking-tight leading-none font-mono">
-                        {member.role}
-                      </span>
-                      <div
-                        className={`inline-flex items-center w-fit gap-1.5 px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider font-mono ${member.tier === "CORE" ? "bg-black text-white" : member.tier === "VOLUNTEER" ? "bg-white text-emerald-600 border border-emerald-100" : "bg-white text-indigo-600 border border-indigo-100"}`}
-                      >
-                        {member.tier === "CORE" ? (
-                          <Shield className="h-3 w-3" />
-                        ) : (
-                          <Star className="h-3 w-3" />
-                        )}
-                        {member.tier}
-                      </div>
-                    </div>
+                  <td className="px-6 py-4">
+                    <p className="font-mono text-xs font-bold text-zinc-900 uppercase tracking-tight">
+                      {member.role}
+                    </p>
+                    <span
+                      className={`inline-flex items-center gap-1 mt-1 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest border ${
+                        member.tier === "CORE"
+                          ? "bg-black text-white border-black"
+                          : member.tier === "VOLUNTEER"
+                            ? "text-emerald-700 border-emerald-200 bg-emerald-50"
+                            : "text-indigo-700 border-indigo-200 bg-indigo-50"
+                      }`}
+                    >
+                      {member.tier === "CORE" ? (
+                        <Shield className="h-2.5 w-2.5" />
+                      ) : (
+                        <Star className="h-2.5 w-2.5" />
+                      )}
+                      {member.tier}
+                    </span>
                   </td>
-                  <td className="px-6 py-5">
-                    <div className="flex flex-wrap gap-1.5 max-w-[240px]">
+                  <td className="px-6 py-4">
+                    <div className="flex flex-wrap gap-1 max-w-[220px]">
                       {member.expertise?.map((exp: string) => (
                         <span
                           key={exp}
-                          className="text-[10px] font-medium text-black bg-grey-50 px-2 py-1 rounded border border-grey-200 font-mono"
+                          className="font-mono text-[10px] text-zinc-600 border border-zinc-200 px-1.5 py-0.5"
                         >
                           {exp}
                         </span>
                       ))}
                     </div>
                   </td>
-                  <td className="px-6 py-5 text-right">
-                    <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-40 sm:group-hover:opacity-100 transition-all duration-300">
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex items-center justify-end gap-1">
                       <Button
                         variant="ghost"
                         size="icon"
                         onClick={() => onEdit(member)}
-                        className="h-9 w-9 text-black hover:bg-black hover:text-white border-2 border-transparent hover:border-black transition-all rounded-xl"
+                        className="h-8 w-8 hover:bg-zinc-100 transition-colors"
                         title="Edit member"
                       >
-                        <Pencil className="h-4 w-4" />
+                        <Pencil className="h-3.5 w-3.5" />
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
                         onClick={() => onDelete(member.id)}
-                        className="h-9 w-9 text-grey-400 hover:text-white hover:bg-red-500 border-2 border-transparent hover:border-black transition-all rounded-xl"
+                        className="h-8 w-8 text-zinc-400 hover:text-red-600 hover:bg-red-50 transition-colors"
                         title="Remove member"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-3.5 w-3.5" />
                       </Button>
                     </div>
                   </td>
@@ -194,53 +191,47 @@ export function TeamTable({
         </table>
       </div>
 
-      <div className="px-6 py-4 bg-grey-50 border-t border-grey-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-[10px] font-mono text-grey-400 uppercase tracking-widest">
-          Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
-          {Math.min(currentPage * itemsPerPage, filteredMembers.length)} of{" "}
-          {filteredMembers.length} members
-        </p>
-
-        <div className="flex items-center gap-1.5">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              setCurrentPage((prev) => Math.max((prev as number) - 1, 1))
-            }
-            disabled={currentPage === 1}
-            className="text-[10px] font-bold uppercase tracking-widest h-8 text-black border-grey-200"
-          >
-            Previous
-          </Button>
-          <div className="flex items-center gap-1 mx-2">
+      {filteredMembers.length > 0 && (
+        <div className="px-6 py-3 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-3 bg-zinc-50">
+          <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+            Showing {(currentPage - 1) * itemsPerPage + 1}–
+            {Math.min(currentPage * itemsPerPage, filteredMembers.length)} of{" "}
+            {filteredMembers.length}
+          </p>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() =>
+                setCurrentPage((p) => Math.max((p as number) - 1, 1))
+              }
+              disabled={currentPage === 1}
+              className="px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest border border-zinc-200 text-zinc-900 hover:border-zinc-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors bg-white"
+            >
+              Prev
+            </button>
             {[...Array(totalPages)].map((_, i) => (
-              <Button
+              <button
                 key={`page-${i + 1}`}
-                variant={currentPage === i + 1 ? "default" : "ghost"}
-                size="icon"
+                type="button"
                 onClick={() => setCurrentPage(i + 1)}
-                className={`h-8 w-8 text-[10px] font-bold ${currentPage === i + 1 ? "bg-black text-white" : "text-grey-400 hover:text-black"}`}
+                className={`w-8 h-8 font-mono text-xs font-bold transition-colors ${currentPage === i + 1 ? "bg-black text-white" : "border border-zinc-200 text-zinc-600 hover:border-zinc-900 bg-white"}`}
               >
                 {i + 1}
-              </Button>
+              </button>
             ))}
+            <button
+              type="button"
+              onClick={() =>
+                setCurrentPage((p) => Math.min((p as number) + 1, totalPages))
+              }
+              disabled={currentPage === totalPages || totalPages === 0}
+              className="px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest border border-zinc-200 text-zinc-900 hover:border-zinc-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors bg-white"
+            >
+              Next
+            </button>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              setCurrentPage((prev) =>
-                Math.min((prev as number) + 1, totalPages),
-              )
-            }
-            disabled={currentPage === totalPages || totalPages === 0}
-            className="text-[10px] font-bold uppercase tracking-widest h-8 text-black border-grey-200"
-          >
-            Next
-          </Button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

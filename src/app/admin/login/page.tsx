@@ -75,7 +75,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full bg-zinc-950 border border-zinc-900 h-12 pl-12 pr-4 rounded-xl text-xs font-mono text-white placeholder:text-zinc-700 focus:outline-none focus:border-white focus:bg-black transition-all"
+              className="w-full bg-zinc-950 border border-zinc-900 h-12 pl-12 pr-4 rounded-none text-xs font-mono text-white placeholder:text-zinc-700 focus:outline-none focus:border-white focus:bg-black transition-all"
               placeholder="admin@codetopia.community"
             />
           </div>
@@ -96,14 +96,14 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full bg-zinc-950 border border-zinc-900 h-12 pl-12 pr-4 rounded-xl text-xs font-mono text-white placeholder:text-zinc-700 focus:outline-none focus:border-white focus:bg-black transition-all"
+              className="w-full bg-zinc-950 border border-zinc-900 h-12 pl-12 pr-4 rounded-none text-xs font-mono text-white placeholder:text-zinc-700 focus:outline-none focus:border-white focus:bg-black transition-all"
               placeholder="••••••••"
             />
           </div>
         </div>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest py-3.5 px-4 rounded-xl text-center">
+          <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest py-3.5 px-4 rounded-none text-center">
             {error}
           </div>
         )}
@@ -111,7 +111,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-white text-black font-black py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-grey-200 transition-all active:scale-[0.98] disabled:opacity-50 group uppercase tracking-widest text-[11px] mt-4"
+          className="w-full bg-white text-black font-black py-4 rounded-none flex items-center justify-center gap-2 hover:bg-grey-200 transition-all active:scale-[0.98] disabled:opacity-50 group uppercase tracking-widest text-[11px] mt-4"
         >
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin font-black" />
