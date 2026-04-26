@@ -126,7 +126,7 @@ export function GalleryPhotoManager({
           size="sm"
           onClick={() => fileInputRef.current?.click()}
           disabled={!!pending || uploading}
-          className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border border-grey-200 rounded-xl h-9 px-4 hover:border-black transition-all"
+          className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border border-grey-200 rounded-none h-9 px-4 hover:border-black transition-all"
         >
           <Upload className="h-3.5 w-3.5" />
           Add Photo
@@ -142,9 +142,9 @@ export function GalleryPhotoManager({
 
       {/* Pending upload — alt text prompt */}
       {pending && (
-        <div className="border border-black rounded-xl p-4 bg-grey-50 space-y-3">
+        <div className="border border-black rounded-none p-4 bg-grey-50 space-y-3">
           <div className="flex items-start gap-3">
-            <div className="relative h-16 w-20 rounded-lg overflow-hidden border border-grey-200 flex-shrink-0 bg-white">
+            <div className="relative h-16 w-20 rounded-none overflow-hidden border border-grey-200 flex-shrink-0 bg-white">
               <Image
                 src={pending.base64}
                 alt="Preview"
@@ -165,7 +165,7 @@ export function GalleryPhotoManager({
                     prev ? { ...prev, alt: e.target.value } : prev,
                   )
                 }
-                className="text-xs h-9 border border-grey-200 rounded-xl focus:border-black font-mono"
+                className="text-xs h-9 border border-grey-200 rounded-none focus:border-black font-mono"
                 autoFocus
               />
             </div>
@@ -185,7 +185,7 @@ export function GalleryPhotoManager({
               size="sm"
               onClick={cancelPending}
               disabled={uploading}
-              className="text-xs font-bold uppercase tracking-widest h-9 px-4 rounded-xl border border-grey-200 hover:border-black transition-all"
+              className="text-xs font-bold uppercase tracking-widest h-9 px-4 rounded-none border border-grey-200 hover:border-black transition-all"
             >
               Cancel
             </Button>
@@ -194,7 +194,7 @@ export function GalleryPhotoManager({
               size="sm"
               onClick={handleUpload}
               disabled={uploading || !pending.alt.trim()}
-              className="text-xs font-black uppercase tracking-widest h-9 px-4 rounded-xl bg-black text-white hover:bg-grey-800 transition-all flex items-center gap-2"
+              className="text-xs font-black uppercase tracking-widest h-9 px-4 rounded-none bg-black text-white hover:bg-grey-800 transition-all flex items-center gap-2"
             >
               {uploading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
               Upload
@@ -205,14 +205,14 @@ export function GalleryPhotoManager({
 
       {/* Error message */}
       {error && (
-        <p className="text-xs font-bold text-red-500 font-mono bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+        <p className="text-xs font-bold text-red-500 font-mono bg-red-50 border border-red-200 rounded-none px-4 py-2.5">
           {error}
         </p>
       )}
 
       {/* Thumbnail grid */}
       {photos.length === 0 && !pending ? (
-        <div className="border border-dashed border-grey-200 rounded-xl py-10 flex flex-col items-center justify-center gap-2 text-grey-400">
+        <div className="border border-dashed border-grey-200 rounded-none py-10 flex flex-col items-center justify-center gap-2 text-grey-400">
           <ImageIcon className="h-8 w-8" />
           <p className="text-xs font-bold uppercase tracking-widest font-mono">
             No photos yet
@@ -222,7 +222,7 @@ export function GalleryPhotoManager({
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
           {photos.map((photo) => (
             <div key={photo.id} className="relative group aspect-square">
-              <div className="relative h-full w-full rounded-xl overflow-hidden border border-grey-100 bg-grey-50">
+              <div className="relative h-full w-full rounded-none overflow-hidden border border-grey-100 bg-grey-50">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
@@ -234,7 +234,7 @@ export function GalleryPhotoManager({
                 type="button"
                 onClick={() => handleDelete(photo.id)}
                 disabled={deletingId === photo.id}
-                className="absolute top-1.5 right-1.5 h-7 w-7 rounded-lg bg-white border border-grey-200 flex items-center justify-center text-grey-400 hover:text-white hover:bg-red-500 hover:border-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm"
+                className="absolute top-1.5 right-1.5 h-7 w-7 rounded-none bg-white border border-grey-200 flex items-center justify-center text-grey-400 hover:text-white hover:bg-red-500 hover:border-red-500 transition-all opacity-0 group-hover:opacity-100 shadow-sm"
                 aria-label={`Delete photo: ${photo.alt}`}
               >
                 {deletingId === photo.id ? (

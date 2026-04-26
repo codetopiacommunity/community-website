@@ -18,7 +18,7 @@ export function EmailDetailsForm({
   onPreviewTextChange,
 }: EmailDetailsFormProps) {
   return (
-    <div className="rounded-2xl border border-grey-100 bg-white p-6 space-y-4">
+    <div className="rounded-none border border-grey-100 bg-white p-6 space-y-4">
       <p className="text-[10px] font-black uppercase tracking-widest text-black">
         EMAIL DETAILS
       </p>
@@ -36,7 +36,7 @@ export function EmailDetailsForm({
           onChange={(e) => onSubjectChange(e.target.value)}
           maxLength={200}
           placeholder="Enter newsletter subject..."
-          className="font-mono text-sm border-black rounded-xl h-11"
+          className="font-mono text-sm border-black rounded-none h-11"
           aria-invalid={!!subjectError}
         />
         {subjectError && (
@@ -65,7 +65,7 @@ export function EmailDetailsForm({
           onChange={(e) => onPreviewTextChange(e.target.value)}
           maxLength={150}
           placeholder="Short preview shown in email clients..."
-          className="font-mono text-sm border-black rounded-xl h-11"
+          className="font-mono text-sm border-black rounded-none h-11"
         />
         <p className="text-grey-400 text-[10px] font-mono">
           {previewText.length}/150

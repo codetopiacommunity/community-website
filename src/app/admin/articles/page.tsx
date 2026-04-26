@@ -30,29 +30,27 @@ export default function ManageArticlesPage() {
   }, [fetchConfig]);
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
-      <div>
-        <h1 className="text-4xl font-bold tracking-tighter text-black uppercase font-sans">
-          Manage <span className="text-grey-400">Articles</span>
+    <div className="space-y-8 max-w-7xl mx-auto pb-20">
+      <div className="pb-8 border-b border-zinc-100">
+        <h1 className="font-sans font-black uppercase text-2xl tracking-widest text-zinc-900">
+          Manage Articles
         </h1>
-        <div className="flex items-center gap-2 mt-1 font-mono">
-          <p className="text-grey-500 text-[10px] uppercase tracking-widest pl-1 font-medium">
-            Configure Hashnode integration and manage featured articles
-          </p>
-        </div>
+        <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest mt-1">
+          Configure Hashnode integration and manage featured articles
+        </p>
       </div>
 
       {/* Publication Host Section */}
-      <div className="space-y-4">
+      <section className="space-y-3">
         <div>
-          <h2 className="text-xs font-bold uppercase tracking-widest font-mono text-black">
+          <h2 className="font-sans font-black uppercase text-sm tracking-widest text-zinc-900">
             Publication Host
           </h2>
-          <p className="text-[10px] text-grey-400 font-mono mt-0.5">
+          <p className="font-mono text-xs text-zinc-400 mt-0.5">
             Set your Hashnode publication host to enable article fetching
           </p>
         </div>
-        <div className="border border-zinc-100 rounded-2xl p-6 bg-white">
+        <div className="border border-zinc-200 p-6 bg-white">
           {!loading && (
             <PublicationHostForm
               hashnodeHost={config?.hashnodeHost ?? null}
@@ -60,19 +58,19 @@ export default function ManageArticlesPage() {
             />
           )}
         </div>
-      </div>
+      </section>
 
       {/* Featured Articles Section */}
-      <div className="space-y-4">
+      <section className="space-y-3">
         <div>
-          <h2 className="text-xs font-bold uppercase tracking-widest font-mono text-black">
+          <h2 className="font-sans font-black uppercase text-sm tracking-widest text-zinc-900">
             Featured Articles
           </h2>
-          <p className="text-[10px] text-grey-400 font-mono mt-0.5">
+          <p className="font-mono text-xs text-zinc-400 mt-0.5">
             Select up to 3 articles to feature on the articles page
           </p>
         </div>
-        <div className="border border-zinc-100 rounded-2xl p-6 bg-white">
+        <div className="border border-zinc-200 p-6 bg-white">
           {loading ? null : config?.hashnodeHost ? (
             <FeaturedArticlesPicker
               hashnodeHost={config.hashnodeHost}
@@ -80,12 +78,12 @@ export default function ManageArticlesPage() {
               onSuccess={() => fetchConfig(true)}
             />
           ) : (
-            <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest py-8 text-center">
+            <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest py-8 text-center">
               Configure a publication host above to manage featured articles
             </p>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

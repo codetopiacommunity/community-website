@@ -26,7 +26,7 @@ export function EventSchedulingStep({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, startDate: e.target.value }))
           }
-          className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono"
+          className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono"
           required
         />
       </div>
@@ -40,7 +40,7 @@ export function EventSchedulingStep({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, endDate: e.target.value }))
           }
-          className="rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono"
+          className="rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:border-black focus:bg-white transition-all font-mono"
           required
         />
       </div>

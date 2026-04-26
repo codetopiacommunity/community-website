@@ -42,7 +42,7 @@ export function AdminHeader() {
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-3 hover:bg-grey-800/50 p-2 rounded-lg transition-colors border border-transparent hover:border-grey-700 outline-none"
+            className="flex items-center gap-3 hover:bg-grey-800/50 p-2 rounded-none transition-colors border border-transparent hover:border-grey-700 outline-none"
             type="button"
           >
             <div className="hidden md:flex flex-col items-end">
@@ -51,14 +51,14 @@ export function AdminHeader() {
               </span>
               <span className="text-xs text-grey-400">{dummyUser.role}</span>
             </div>
-            <div className="h-10 w-10 rounded-full bg-grey-800 flex items-center justify-center border border-grey-700">
+            <div className="h-10 w-10 rounded-none bg-grey-800 flex items-center justify-center border border-grey-700">
               <User className="h-5 w-5 text-grey-300" />
             </div>
           </button>
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-56 bg-grey-900 rounded-lg border border-grey-800 shadow-xl overflow-hidden animate-in slide-in-from-top-2">
+            <div className="absolute right-0 mt-2 w-56 bg-grey-900 rounded-none border border-grey-800 shadow-xl overflow-hidden animate-in slide-in-from-top-2">
               <div className="px-4 py-3 border-b border-grey-800 md:hidden">
                 <p className="text-sm font-medium text-white">
                   {dummyUser.name}

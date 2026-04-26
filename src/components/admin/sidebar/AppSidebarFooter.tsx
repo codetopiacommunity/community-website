@@ -49,7 +49,7 @@ export function AppSidebarFooter() {
     <SidebarFooter className="border-t border-grey-800 p-4 bg-black">
       <div className="group-data-[collapsible=icon]:hidden space-y-4">
         <div className="flex items-center gap-3 px-2">
-          <div className="h-10 w-10 rounded-full bg-grey-900 border border-grey-800 flex items-center justify-center shrink-0">
+          <div className="h-10 w-10 rounded-none bg-grey-900 border border-grey-800 flex items-center justify-center shrink-0">
             <Users className="h-5 w-5 text-grey-400" />
           </div>
           <div className="flex flex-col overflow-hidden">
@@ -65,7 +65,7 @@ export function AppSidebarFooter() {
         <div className="flex flex-col gap-2">
           <Link
             href="/admin/settings"
-            className="flex items-center gap-2.5 px-3 py-2 text-sm text-grey-400 hover:text-white hover:bg-grey-800 rounded-xl transition-all border border-transparent hover:border-grey-700"
+            className="flex items-center gap-2.5 px-3 py-2 text-sm text-grey-400 hover:text-white hover:bg-grey-800 rounded-none transition-all border border-transparent hover:border-grey-700"
           >
             <Settings className="h-4 w-4" />
             <span>Account Settings</span>
@@ -74,7 +74,7 @@ export function AppSidebarFooter() {
             type="button"
             onClick={handleLogout}
             disabled={isLoggingOut}
-            className="flex items-center justify-center gap-2.5 w-full mt-2 px-3 py-2.5 text-sm font-bold text-red-100 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 hover:border-red-500/40 rounded-xl transition-all group/logout disabled:opacity-50"
+            className="flex items-center justify-center gap-2.5 w-full mt-2 px-3 py-2.5 text-sm font-bold text-red-100 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 hover:border-red-500/40 rounded-none transition-all group/logout disabled:opacity-50"
           >
             {isLoggingOut ? (
               <Loader2 className="h-4 w-4 animate-spin text-red-400" />
@@ -92,7 +92,7 @@ export function AppSidebarFooter() {
           onClick={handleLogout}
           disabled={isLoggingOut}
           title="Log out"
-          className="p-2.5 text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 border border-red-500/10 hover:border-red-500/30 rounded-xl transition-all disabled:opacity-50"
+          className="p-2.5 text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 border border-red-500/10 hover:border-red-500/30 rounded-none transition-all disabled:opacity-50"
         >
           {isLoggingOut ? (
             <Loader2 className="h-5 w-5 animate-spin" />

@@ -124,14 +124,14 @@ export function EventsFormModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
+      <DialogContent className="max-w-xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
         <DialogHeader className="px-8 py-10 border-b border-grey-50 bg-white">
           <div className="flex flex-col gap-1 text-center sm:text-left">
             <DialogTitle className="text-4xl font-black text-black uppercase tracking-tighter font-sans">
               {editingEvent ? "Update Event" : "New Activity"}
             </DialogTitle>
             <DialogDescription className="text-[10px] font-bold text-grey-400 uppercase tracking-[0.2em] flex items-center justify-center sm:justify-start gap-3 font-mono">
-              <span className="px-2 py-1 bg-black rounded-lg text-white font-mono leading-none tracking-normal">
+              <span className="px-2 py-1 bg-black rounded-none text-white font-mono leading-none tracking-normal">
                 {activeTab === "core"
                   ? "PART 01"
                   : activeTab === "timing"

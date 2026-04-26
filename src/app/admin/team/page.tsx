@@ -62,23 +62,21 @@ export default function ManageTeamPage() {
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-zinc-100">
         <div>
-          <h1 className="text-4xl font-bold tracking-tighter text-black uppercase font-sans">
+          <h1 className="font-sans font-black uppercase text-2xl tracking-widest text-zinc-900">
             Manage Team
           </h1>
-          <div className="flex items-center gap-2 mt-1">
-            <p className="text-grey-500 text-[10px] font-mono uppercase tracking-widest pl-1 font-medium">
-              Directory of community contributors and core team
-            </p>
-          </div>
+          <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest mt-1">
+            Directory of community contributors and core team
+          </p>
         </div>
         <Button
           onClick={openAdd}
-          className="flex items-center justify-center gap-2 bg-black text-white px-8 h-12 rounded-xl text-[10px] uppercase font-mono hover:bg-grey-800 transition-all group active:scale-[0.98] tracking-widest shadow-none"
+          className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors shadow-none rounded-none h-auto"
         >
-          <Plus className="h-4 w-4 group-hover:rotate-90 transition-transform" />
-          ADD NEW MEMBER
+          <Plus className="h-3.5 w-3.5" />
+          Add New Member
         </Button>
       </div>
 

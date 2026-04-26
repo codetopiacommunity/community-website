@@ -47,7 +47,7 @@ const defaultForm = {
 };
 
 const inputCls =
-  "rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
+  "rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
 const labelCls =
   "text-[10px] uppercase text-grey-500 font-bold tracking-widest";
 
@@ -139,7 +139,7 @@ export function CareersFormModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
+      <DialogContent className="max-w-2xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
         <DialogHeader className="px-8 py-8 border-b border-grey-50 bg-white">
           <DialogTitle className="text-4xl font-black text-black uppercase tracking-tighter font-sans">
             {editingCareer ? "Edit Opportunity" : "Post Opportunity"}
@@ -198,10 +198,10 @@ export function CareersFormModal({
                     setFormData({ ...formData, type: val })
                   }
                 >
-                  <SelectTrigger className="h-11 rounded-xl border border-grey-100 bg-grey-50/50 text-xs font-mono text-black focus:border-black focus:bg-white transition-all">
+                  <SelectTrigger className="h-11 rounded-none border border-grey-100 bg-grey-50/50 text-xs font-mono text-black focus:border-black focus:bg-white transition-all">
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-grey-100 rounded-xl shadow-xl">
+                  <SelectContent className="bg-white border-grey-100 rounded-none shadow-xl">
                     {EMPLOYMENT_TYPES.map((type) => (
                       <SelectItem
                         key={type}
@@ -273,12 +273,12 @@ export function CareersFormModal({
                 />
               </div>
               {formData.requirements.length > 0 && (
-                <div className="flex flex-wrap gap-2 p-4 bg-grey-50/30 rounded-2xl border border-dashed border-grey-200">
+                <div className="flex flex-wrap gap-2 p-4 bg-grey-50/30 rounded-none border border-dashed border-grey-200">
                   {formData.requirements.map((req, idx) => (
                     <div
                       // biome-ignore lint/suspicious/noArrayIndexKey: requirements are ordered by position
                       key={idx}
-                      className="flex items-center gap-2 bg-white border border-grey-100 px-3 py-1.5 rounded-lg shadow-sm"
+                      className="flex items-center gap-2 bg-white border border-grey-100 px-3 py-1.5 rounded-none shadow-sm"
                     >
                       <span className="text-xs font-medium text-grey-700 font-mono">
                         {req}
@@ -326,7 +326,7 @@ export function CareersFormModal({
             </div>
 
             {/* Featured toggle */}
-            <div className="flex items-center justify-between p-4 bg-grey-50/50 rounded-2xl border border-grey-100">
+            <div className="flex items-center justify-between p-4 bg-grey-50/50 rounded-none border border-grey-100">
               <div className="space-y-0.5">
                 <Label className="text-xs font-bold text-black uppercase tracking-tight font-sans">
                   Featured Opportunity
@@ -350,14 +350,14 @@ export function CareersFormModal({
               onClick={onClose}
               type="button"
               disabled={loading}
-              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest"
             >
               Cancel
             </Button>
             <Button
               disabled={loading}
               type="submit"
-              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
+              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
             >
               {loading ? (
                 <>

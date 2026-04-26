@@ -93,7 +93,7 @@ export function NewsletterPreviewPage({
               onClick={() =>
                 router.push(`/admin/newsletter/${newsletter.id}/edit`)
               }
-              className="mt-1 p-2 rounded-xl border border-grey-200 hover:border-black hover:bg-black hover:text-white transition-all"
+              className="mt-1 p-2 rounded-none border border-grey-200 hover:border-black hover:bg-black hover:text-white transition-all"
               aria-label="Back to editor"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -119,7 +119,7 @@ export function NewsletterPreviewPage({
             <Button
               onClick={() => setShowSendConfirm(true)}
               disabled={noSubscribers || isSending || subscriberCount === null}
-              className="h-11 rounded-xl bg-black text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-2"
+              className="h-11 rounded-none bg-black text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-2"
             >
               <Send className="h-3.5 w-3.5" />
               {noSubscribers ? "NO SUBSCRIBERS" : "SEND TO SUBSCRIBERS"}
@@ -130,7 +130,7 @@ export function NewsletterPreviewPage({
         <TestEmailPanel newsletter={newsletter} />
 
         {/* Preview */}
-        <div className="rounded-2xl border border-grey-100 bg-white p-6 space-y-3">
+        <div className="rounded-none border border-grey-100 bg-white p-6 space-y-3">
           <p className="text-[10px] font-black uppercase tracking-widest text-black">
             EMAIL PREVIEW
           </p>
@@ -141,7 +141,7 @@ export function NewsletterPreviewPage({
               </span>
             </div>
           ) : (
-            <div className="border border-black rounded-xl overflow-hidden">
+            <div className="border border-black rounded-none overflow-hidden">
               <iframe
                 srcDoc={previewHtml}
                 title="Newsletter Preview"

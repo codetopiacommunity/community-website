@@ -58,9 +58,9 @@ export function GalleryAlbumDeleteModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
+      <DialogContent className="max-w-md p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
         <div className="p-8 text-center space-y-4">
-          <div className="mx-auto flex items-center justify-center p-4 bg-red-100/50 w-16 h-16 rounded-2xl mb-2">
+          <div className="mx-auto flex items-center justify-center p-4 bg-red-100/50 w-16 h-16 rounded-none mb-2">
             <Trash2 className="h-8 w-8 text-red-500" />
           </div>
           <DialogTitle className="text-2xl font-black text-black uppercase tracking-tighter font-sans">
@@ -74,7 +74,7 @@ export function GalleryAlbumDeleteModal({
           </DialogDescription>
 
           {error && (
-            <p className="text-xs font-bold text-red-500 font-mono bg-red-50 border border-red-200 rounded-xl px-4 py-2.5 text-left">
+            <p className="text-xs font-bold text-red-500 font-mono bg-red-50 border border-red-200 rounded-none px-4 py-2.5 text-left">
               {error}
             </p>
           )}
@@ -85,14 +85,14 @@ export function GalleryAlbumDeleteModal({
             variant="ghost"
             onClick={onClose}
             disabled={isDeleting}
-            className="w-full sm:flex-1 text-[10px] uppercase text-black hover:bg-grey-100 h-11 rounded-xl font-bold tracking-widest transition-all"
+            className="w-full sm:flex-1 text-[10px] uppercase text-black hover:bg-grey-100 h-11 rounded-none font-bold tracking-widest transition-all"
           >
             Cancel
           </Button>
           <Button
             onClick={handleDelete}
             disabled={isDeleting}
-            className="w-full sm:flex-1 bg-red-500 text-white text-[10px] uppercase h-11 rounded-xl active:scale-[0.98] transition-all border border-red-600 hover:bg-red-600 font-bold tracking-widest shadow-none flex items-center justify-center gap-2"
+            className="w-full sm:flex-1 bg-red-500 text-white text-[10px] uppercase h-11 rounded-none active:scale-[0.98] transition-all border border-red-600 hover:bg-red-600 font-bold tracking-widest shadow-none flex items-center justify-center gap-2"
           >
             {isDeleting ? (
               <>

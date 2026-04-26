@@ -120,13 +120,13 @@ export function SpotlightFormModal({
   };
 
   const inputCls =
-    "rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
+    "rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
   const labelCls =
     "text-[10px] uppercase text-grey-500 font-bold tracking-widest";
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
+      <DialogContent className="max-w-xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
         <DialogHeader className="px-8 py-8 border-b border-grey-50 bg-white">
           <DialogTitle className="text-4xl font-black text-black uppercase tracking-tighter font-sans">
             {editing ? "Edit Spotlight" : "New Spotlight"}
@@ -174,7 +174,7 @@ export function SpotlightFormModal({
                 value={form.contribution}
                 onChange={set("contribution")}
                 required
-                className="rounded-xl min-h-[90px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
+                className="rounded-none min-h-[90px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
                 placeholder="Describe their technical contribution..."
               />
             </div>
@@ -185,7 +185,7 @@ export function SpotlightFormModal({
               </Label>
               <div className="flex items-center gap-4">
                 {imagePreview && (
-                  <div className="h-14 w-14 rounded-xl overflow-hidden border border-grey-100 flex-shrink-0 relative bg-grey-50">
+                  <div className="h-14 w-14 rounded-none overflow-hidden border border-grey-100 flex-shrink-0 relative bg-grey-50">
                     <Image
                       src={imagePreview}
                       alt="Preview"
@@ -199,7 +199,7 @@ export function SpotlightFormModal({
                   type="file"
                   accept="image/*"
                   onChange={handleFile}
-                  className="flex-1 rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 py-2.5 text-xs font-medium text-black focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono file:bg-transparent file:border-0 file:text-xs file:font-medium file:text-grey-500 cursor-pointer"
+                  className="flex-1 rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 py-2.5 text-xs font-medium text-black focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono file:bg-transparent file:border-0 file:text-xs file:font-medium file:text-grey-500 cursor-pointer"
                 />
               </div>
             </div>
@@ -247,14 +247,14 @@ export function SpotlightFormModal({
               variant="ghost"
               onClick={onClose}
               type="button"
-              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest"
             >
               Cancel
             </Button>
             <Button
               disabled={isSubmitting}
               type="submit"
-              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
+              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
             >
               {isSubmitting ? (
                 <>

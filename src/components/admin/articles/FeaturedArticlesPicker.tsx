@@ -104,7 +104,7 @@ export function FeaturedArticlesPicker({
         <button
           type="button"
           onClick={loadArticles}
-          className="text-[10px] uppercase tracking-widest font-mono font-bold text-black border border-black px-6 h-9 rounded-lg hover:bg-black hover:text-white transition-all active:scale-[0.98]"
+          className="text-[10px] uppercase tracking-widest font-mono font-bold text-black border border-black px-6 h-9 rounded-none hover:bg-black hover:text-white transition-all active:scale-[0.98]"
         >
           Retry
         </button>
@@ -128,7 +128,7 @@ export function FeaturedArticlesPicker({
   return (
     <div className="space-y-3">
       {atLimit && (
-        <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 border border-zinc-200 bg-zinc-50 rounded-lg px-4 py-2.5">
+        <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 border border-zinc-200 bg-zinc-50 rounded-none px-4 py-2.5">
           Featured limit reached — unfeature an article to add another.
         </p>
       )}
@@ -142,14 +142,14 @@ export function FeaturedArticlesPicker({
             <li
               key={article.slug}
               className={[
-                "flex items-center gap-4 rounded-xl border px-4 py-3 transition-all",
+                "flex items-center gap-4 rounded-none border px-4 py-3 transition-all",
                 isFeatured
                   ? "border-black bg-black/[0.03]"
                   : "border-zinc-100 bg-white hover:border-zinc-200",
               ].join(" ")}
             >
               {/* Cover thumbnail */}
-              <div className="relative h-12 w-20 shrink-0 overflow-hidden rounded-lg bg-zinc-100">
+              <div className="relative h-12 w-20 shrink-0 overflow-hidden rounded-none bg-zinc-100">
                 {article.coverImage?.url ? (
                   <Image
                     src={article.coverImage.url}
@@ -167,7 +167,7 @@ export function FeaturedArticlesPicker({
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   {isFeatured && (
-                    <span className="shrink-0 text-[9px] font-mono font-bold uppercase tracking-widest bg-black text-white px-2 py-0.5 rounded-md">
+                    <span className="shrink-0 text-[9px] font-mono font-bold uppercase tracking-widest bg-black text-white px-2 py-0.5 rounded-none">
                       Featured
                     </span>
                   )}
@@ -191,7 +191,7 @@ export function FeaturedArticlesPicker({
                     : handleFeature(article.slug)
                 }
                 className={[
-                  "shrink-0 flex items-center gap-1.5 h-8 px-4 rounded-lg text-[10px] font-mono font-bold uppercase tracking-widest transition-all active:scale-[0.97]",
+                  "shrink-0 flex items-center gap-1.5 h-8 px-4 rounded-none text-[10px] font-mono font-bold uppercase tracking-widest transition-all active:scale-[0.97]",
                   isFeatured
                     ? "bg-black text-white hover:bg-zinc-800"
                     : atLimit

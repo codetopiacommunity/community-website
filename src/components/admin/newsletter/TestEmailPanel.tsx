@@ -57,7 +57,7 @@ export function TestEmailPanel({ newsletter }: TestEmailPanelProps) {
   }
 
   return (
-    <div className="rounded-2xl border border-grey-100 bg-white p-6 space-y-3">
+    <div className="rounded-none border border-grey-100 bg-white p-6 space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-[10px] font-black uppercase tracking-widest text-black">
           TEST EMAIL
@@ -81,13 +81,13 @@ export function TestEmailPanel({ newsletter }: TestEmailPanelProps) {
                 if (error) setError("");
               }}
               placeholder="test@example.com"
-              className="font-mono text-sm border-black rounded-xl h-11 flex-1"
+              className="font-mono text-sm border-black rounded-none h-11 flex-1"
               aria-invalid={!!error}
             />
             <Button
               onClick={handleSend}
               disabled={sending}
-              className="h-11 rounded-xl bg-black text-white text-[10px] font-black uppercase tracking-widest px-5"
+              className="h-11 rounded-none bg-black text-white text-[10px] font-black uppercase tracking-widest px-5"
             >
               {sending ? "SENDING..." : "SEND"}
             </Button>

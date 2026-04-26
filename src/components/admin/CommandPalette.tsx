@@ -138,7 +138,7 @@ export function CommandPalette({
         role="dialog"
         aria-modal="true"
         aria-label="Command palette"
-        className="relative w-full max-w-xl bg-white rounded-2xl border border-grey-200 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200"
+        className="relative w-full max-w-xl bg-white rounded-none border border-grey-200 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200"
       >
         <div className="flex items-center gap-3 px-4 py-3.5 border-b border-grey-100">
           <Search className="h-4 w-4 text-grey-400 shrink-0" />

@@ -48,7 +48,7 @@ export function CareersDeleteModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white shadow-2xl">
+      <DialogContent className="max-w-md p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white shadow-2xl">
         <DialogHeader className="px-8 py-8 border-b border-grey-50">
           <DialogTitle className="text-3xl font-black text-black uppercase tracking-tighter font-sans">
             Remove Opportunity
@@ -67,14 +67,14 @@ export function CareersDeleteModal({
               variant="ghost"
               onClick={onClose}
               type="button"
-              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest"
             >
               Cancel
             </Button>
             <Button
               disabled={isDeleting}
               onClick={handleDelete}
-              className="bg-red-500 text-white text-[10px] uppercase px-8 h-11 rounded-xl hover:bg-red-600 active:scale-[0.98] transition-all font-bold tracking-widest shadow-none flex items-center gap-2"
+              className="bg-red-500 text-white text-[10px] uppercase px-8 h-11 rounded-none hover:bg-red-600 active:scale-[0.98] transition-all font-bold tracking-widest shadow-none flex items-center gap-2"
             >
               {isDeleting ? (
                 <>

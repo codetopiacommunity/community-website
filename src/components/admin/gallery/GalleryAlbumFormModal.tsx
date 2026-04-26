@@ -192,14 +192,14 @@ export function GalleryAlbumFormModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader className="px-8 py-8 border-b border-grey-50 bg-white sticky top-0 z-10">
           <div className="flex flex-col gap-1 text-center sm:text-left">
             <DialogTitle className="text-4xl font-black text-black uppercase tracking-tighter font-sans">
               {editingAlbum ? "Edit Album" : "New Album"}
             </DialogTitle>
             <DialogDescription className="text-[10px] font-bold text-grey-400 uppercase tracking-[0.2em] flex items-center justify-center sm:justify-start gap-3 font-mono">
-              <span className="px-2 py-1 bg-black rounded-lg text-white font-mono leading-none tracking-normal">
+              <span className="px-2 py-1 bg-black rounded-none text-white font-mono leading-none tracking-normal">
                 {editingAlbum ? "EDIT MODE" : "CREATE MODE"}
               </span>
               {editingAlbum ? "UPDATE ALBUM DETAILS" : "ALBUM METADATA"}
@@ -223,7 +223,7 @@ export function GalleryAlbumFormModal({
                     setErrors((prev) => ({ ...prev, title: undefined }));
                 }}
                 placeholder="e.g. Hackathon 2024"
-                className={`rounded-xl border bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:bg-white transition-all outline-none ring-0 font-mono ${errors.title ? "border-red-400 focus:border-red-500" : "border-grey-100 focus:border-black"}`}
+                className={`rounded-none border bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:bg-white transition-all outline-none ring-0 font-mono ${errors.title ? "border-red-400 focus:border-red-500" : "border-grey-100 focus:border-black"}`}
               />
               {errors.title && (
                 <p className="text-[10px] font-bold text-red-500 font-mono">
@@ -245,7 +245,7 @@ export function GalleryAlbumFormModal({
                   if (errors.date)
                     setErrors((prev) => ({ ...prev, date: undefined }));
                 }}
-                className={`rounded-xl border bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:bg-white transition-all outline-none ring-0 font-mono [color-scheme:light] ${errors.date ? "border-red-400 focus:border-red-500" : "border-grey-100 focus:border-black"}`}
+                className={`rounded-none border bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:bg-white transition-all outline-none ring-0 font-mono [color-scheme:light] ${errors.date ? "border-red-400 focus:border-red-500" : "border-grey-100 focus:border-black"}`}
               />
               {errors.date && (
                 <p className="text-[10px] font-bold text-red-500 font-mono">
@@ -268,16 +268,16 @@ export function GalleryAlbumFormModal({
                 }}
               >
                 <SelectTrigger
-                  className={`rounded-xl border bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:bg-white transition-all font-mono ${errors.category ? "border-red-400 focus:border-red-500" : "border-grey-100 focus:border-black"}`}
+                  className={`rounded-none border bg-grey-50/50 h-11 px-4 text-xs font-medium text-black focus:bg-white transition-all font-mono ${errors.category ? "border-red-400 focus:border-red-500" : "border-grey-100 focus:border-black"}`}
                 >
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-black rounded-xl p-1 font-mono">
+                <SelectContent className="bg-white border border-black rounded-none p-1 font-mono">
                   {GALLERY_CATEGORIES.map((cat) => (
                     <SelectItem
                       key={cat}
                       value={cat}
-                      className="text-xs text-black focus:bg-black focus:text-white rounded-md"
+                      className="text-xs text-black focus:bg-black focus:text-white rounded-none"
                     >
                       {cat}
                     </SelectItem>
@@ -304,7 +304,7 @@ export function GalleryAlbumFormModal({
               </Label>
               <div className="flex items-center gap-4">
                 {coverImagePreview && (
-                  <div className="relative h-16 w-20 rounded-xl overflow-hidden border border-grey-100 flex-shrink-0 bg-grey-50">
+                  <div className="relative h-16 w-20 rounded-none overflow-hidden border border-grey-100 flex-shrink-0 bg-grey-50">
                     <Image
                       src={coverImagePreview}
                       alt="Cover preview"
@@ -314,7 +314,7 @@ export function GalleryAlbumFormModal({
                   </div>
                 )}
                 {!coverImagePreview && (
-                  <div className="h-16 w-20 rounded-xl border border-dashed border-grey-200 flex items-center justify-center text-grey-300 flex-shrink-0 bg-grey-50">
+                  <div className="h-16 w-20 rounded-none border border-dashed border-grey-200 flex items-center justify-center text-grey-300 flex-shrink-0 bg-grey-50">
                     <ImageIcon className="h-6 w-6" />
                   </div>
                 )}
@@ -322,7 +322,7 @@ export function GalleryAlbumFormModal({
                   type="button"
                   variant="outline"
                   onClick={() => fileInputRef.current?.click()}
-                  className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest border rounded-xl h-11 px-4 hover:border-black transition-all ${errors.coverImage ? "border-red-400 text-red-500 hover:border-red-500" : "border-grey-200"}`}
+                  className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest border rounded-none h-11 px-4 hover:border-black transition-all ${errors.coverImage ? "border-red-400 text-red-500 hover:border-red-500" : "border-grey-200"}`}
                 >
                   <Upload className="h-3.5 w-3.5" />
                   {coverImagePreview ? "Change Image" : "Upload Image"}
@@ -344,7 +344,7 @@ export function GalleryAlbumFormModal({
 
             {/* Submit error */}
             {submitError && (
-              <p className="text-xs font-bold text-red-500 font-mono bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+              <p className="text-xs font-bold text-red-500 font-mono bg-red-50 border border-red-200 rounded-none px-4 py-2.5">
                 {submitError}
               </p>
             )}
@@ -357,14 +357,14 @@ export function GalleryAlbumFormModal({
               variant="ghost"
               onClick={onClose}
               disabled={isSubmitting}
-              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest transition-all"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest transition-all"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
+              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
             >
               {isSubmitting && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
               {editingAlbum ? "Save Changes" : "Create Album"}

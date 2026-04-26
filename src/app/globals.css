@@ -175,7 +175,7 @@ html {
   --error-600: #dc2626;
   --error-700: #b91c1c;
 
-  --radius: 0.625rem;
+  --radius: 0rem;
 
   /* LIGHT MODE SEMANTICS */
   --background: var(--grey-50);

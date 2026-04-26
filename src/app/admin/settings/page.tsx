@@ -21,8 +21,8 @@ export default function AdminSettingsPage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
-        <Loader2 className="w-8 h-8 animate-spin text-grey-400" />
-        <p className="text-sm font-medium text-grey-500 animate-pulse">
+        <Loader2 className="w-8 h-8 animate-spin text-zinc-400" />
+        <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest animate-pulse">
           Loading secure profile...
         </p>
       </div>
@@ -30,13 +30,13 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight text-grey-900 font-sans">
+    <div className="max-w-7xl mx-auto space-y-10 pb-20">
+      <div className="pb-8 border-b border-zinc-100">
+        <h1 className="font-sans font-black uppercase text-2xl tracking-widest text-zinc-900">
           Account Settings
         </h1>
-        <p className="text-grey-500 text-sm font-medium">
-          Manage your administrative identity and secure access credentials.
+        <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest mt-1">
+          Manage your administrative identity and secure access credentials
         </p>
       </div>
 
