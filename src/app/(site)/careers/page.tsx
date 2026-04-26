@@ -27,9 +27,9 @@ export default function CareersPage() {
             <span className="text-zinc-700">FUTURE</span>
           </h1>
           <p className="text-zinc-500 text-lg md:text-xl lg:text-2xl font-normal leading-relaxed max-w-3xl font-mono">
-            Codetopia Community is more than a community — it&apos;s a launchpad. We
-            connect builders with internships, job offers, and open-source
-            projects that actually matter.
+            Codetopia Community is more than a community — it&apos;s a
+            launchpad. We connect builders with internships, job offers, and
+            open-source projects that actually matter.
             <span className="text-white block mt-4 font-sans font-black uppercase tracking-tighter">
               Your next move starts here.
             </span>
