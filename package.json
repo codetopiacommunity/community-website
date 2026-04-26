@@ -15,6 +15,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^7.5.0",
+    "@radix-ui/react-switch": "^1.2.6",
     "@react-email/components": "^1.0.10",
     "@react-email/render": "^2.0.4",
     "@uiw/react-md-editor": "^4.1.0",
@@ -28,6 +29,7 @@
     "embla-carousel-auto-scroll": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^12.38.0",
     "jose": "^6.2.2",
     "lucide-react": "^0.575.0",
     "marked": "^17.0.6",
