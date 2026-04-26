@@ -18,6 +18,7 @@ export default async function EditCareerPage({
     <CareerForm
       editingCareer={{
         ...career,
+        status: career.status as "open" | "closed",
         expiryDate: career.expiryDate.toISOString(),
         createdAt: career.createdAt.toISOString(),
         updatedAt: career.updatedAt.toISOString(),
