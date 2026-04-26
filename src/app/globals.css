@@ -324,3 +324,112 @@ html {
     scrollbar-width: none;
   }
 }
+
+/* ── Career job description markdown rendering ── */
+.career-description h1,
+.career-description h2,
+.career-description h3,
+.career-description h4 {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+.career-description h1 {
+  font-size: 1.5rem;
+}
+.career-description h2 {
+  font-size: 1.25rem;
+  border-bottom: 1px solid #27272a;
+  padding-bottom: 0.5rem;
+}
+.career-description h3 {
+  font-size: 1rem;
+  color: #a1a1aa;
+}
+.career-description h4 {
+  font-size: 0.875rem;
+  color: #71717a;
+}
+
+.career-description p {
+  color: #a1a1aa;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.career-description ul,
+.career-description ol {
+  margin: 0.75rem 0 1.25rem 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.career-description ul {
+  list-style: none;
+  padding-left: 0;
+}
+.career-description ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+.career-description ul li::before {
+  content: "—";
+  color: #3f3f46;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.career-description ol {
+  list-style: decimal;
+}
+.career-description ol li {
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  padding-left: 0.25rem;
+}
+
+.career-description strong {
+  color: #e4e4e7;
+  font-weight: 700;
+}
+
+.career-description em {
+  color: #71717a;
+  font-style: italic;
+}
+
+.career-description code {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: #18181b;
+  border: 1px solid #27272a;
+  color: #a1a1aa;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+
+.career-description blockquote {
+  border-left: 2px solid #3f3f46;
+  padding-left: 1rem;
+  margin: 1.25rem 0;
+  color: #71717a;
+  font-style: italic;
+}
+
+.career-description hr {
+  border: none;
+  border-top: 1px solid #27272a;
+  margin: 2rem 0;
+}
