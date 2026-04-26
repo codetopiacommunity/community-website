@@ -1,4 +1,5 @@
 import {
+  Briefcase,
   Calendar,
   FileText,
   Image as ImageIcon,
@@ -48,6 +49,11 @@ export const adminNavData = {
           title: "Spotlight",
           url: "/admin/spotlight",
           icon: Sparkles,
+        },
+        {
+          title: "Careers",
+          url: "/admin/careers",
+          icon: Briefcase,
         },
       ],
     },
