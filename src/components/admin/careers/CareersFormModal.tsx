@@ -13,18 +13,11 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import type { Career } from "@/lib/careers";
-import { CareersMdEditor } from "./CareersMdEditor";
-
-const EMPLOYMENT_TYPES = ["Full-time", "Part-time", "Internship", "Volunteer"];
+import { BulletListEditor } from "./BulletListEditor";
+import { EmploymentTypeCombobox } from "./EmploymentTypeCombobox";
 
 interface CareersFormModalProps {
   isOpen: boolean;
@@ -38,7 +31,12 @@ const defaultForm = {
   company: "Codetopia",
   type: "",
   location: "",
-  description: "",
+  aboutRole: "",
+  responsibilities: [] as string[],
+  niceToHave: [] as string[],
+  whatWeOffer: [] as string[],
+  howToApply: "",
+  duration: "",
   requirements: [] as string[],
   link: "",
   expiryDate: "",
@@ -47,9 +45,11 @@ const defaultForm = {
 };
 
 const inputCls =
-  "rounded-none border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
+  "rounded-xl border border-grey-100 bg-grey-50/50 h-11 px-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 font-mono";
 const labelCls =
   "text-[10px] uppercase text-grey-500 font-bold tracking-widest";
+const sectionLabelCls =
+  "text-[10px] font-mono uppercase tracking-widest text-grey-500 font-bold pb-1";
 
 export function CareersFormModal({
   isOpen,
@@ -69,7 +69,12 @@ export function CareersFormModal({
           company: editingCareer.company,
           type: editingCareer.type,
           location: editingCareer.location,
-          description: editingCareer.description,
+          aboutRole: editingCareer.aboutRole,
+          responsibilities: editingCareer.responsibilities,
+          niceToHave: editingCareer.niceToHave,
+          whatWeOffer: editingCareer.whatWeOffer,
+          howToApply: editingCareer.howToApply,
+          duration: editingCareer.duration ?? "",
           requirements: editingCareer.requirements,
           link: editingCareer.link || "",
           expiryDate: new Date(editingCareer.expiryDate)
@@ -114,7 +119,10 @@ export function CareersFormModal({
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          duration: formData.duration.trim() || null,
+        }),
       });
 
       if (!res.ok) {
@@ -139,7 +147,7 @@ export function CareersFormModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden border border-grey-100 rounded-none gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
+      <DialogContent className="max-w-2xl p-0 overflow-hidden border border-grey-100 rounded-3xl gap-0 bg-white animate-in zoom-in-95 duration-200 shadow-2xl">
         <DialogHeader className="px-8 py-8 border-b border-grey-50 bg-white">
           <DialogTitle className="text-4xl font-black text-black uppercase tracking-tighter font-sans">
             {editingCareer ? "Edit Opportunity" : "Post Opportunity"}
@@ -152,7 +160,7 @@ export function CareersFormModal({
         </DialogHeader>
 
         <form onSubmit={handleSubmit}>
-          <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto">
+          <div className="p-8 space-y-6 max-h-[65vh] overflow-y-auto">
             {/* Title + Company */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -191,28 +199,11 @@ export function CareersFormModal({
                 <Label className={labelCls}>
                   Employment Type <span className="text-red-500">*</span>
                 </Label>
-                <Select
+                <EmploymentTypeCombobox
                   required
                   value={formData.type}
-                  onValueChange={(val) =>
-                    setFormData({ ...formData, type: val })
-                  }
-                >
-                  <SelectTrigger className="h-11 rounded-none border border-grey-100 bg-grey-50/50 text-xs font-mono text-black focus:border-black focus:bg-white transition-all">
-                    <SelectValue placeholder="Select type" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border-grey-100 rounded-none shadow-xl">
-                    {EMPLOYMENT_TYPES.map((type) => (
-                      <SelectItem
-                        key={type}
-                        value={type}
-                        className="text-xs font-mono text-black hover:bg-grey-50 focus:bg-grey-50 cursor-pointer"
-                      >
-                        {type}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  onChange={(val) => setFormData({ ...formData, type: val })}
+                />
               </div>
               <div className="space-y-2">
                 <Label className={labelCls}>
@@ -230,37 +221,43 @@ export function CareersFormModal({
               </div>
             </div>
 
-            {/* Description */}
+            {/* About the Role */}
             <div className="space-y-2">
               <Label className={labelCls}>
-                Description <span className="text-red-500">*</span>
+                About the Role <span className="text-red-500">*</span>
               </Label>
               <p className="text-[9px] font-mono text-grey-400 uppercase tracking-widest">
-                Supports Markdown — use headings, lists, bold, etc.
+                Short summary — what is this role and its purpose?
               </p>
-              <CareersMdEditor
-                value={formData.description}
-                onChange={(val) =>
-                  setFormData({ ...formData, description: val })
+              <Textarea
+                required
+                placeholder="e.g. We're looking for a passionate frontend developer..."
+                value={formData.aboutRole}
+                onChange={(e) =>
+                  setFormData({ ...formData, aboutRole: e.target.value })
                 }
+                className="rounded-xl border border-grey-100 bg-grey-50/50 min-h-[80px] px-4 py-3 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono w-full"
               />
             </div>
 
-            {/* Requirements */}
+            {/* Responsibilities */}
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <Label className={labelCls}>Requirements / Skills</Label>
-                <button
-                  type="button"
-                  onClick={addRequirement}
-                  className="text-[10px] font-mono uppercase tracking-widest text-black flex items-center gap-1 hover:opacity-70 transition-opacity"
-                >
-                  <Plus className="h-3 w-3" /> Add
-                </button>
-              </div>
+              <Label className={sectionLabelCls}>Responsibilities</Label>
+              <BulletListEditor
+                items={formData.responsibilities}
+                onChange={(items) =>
+                  setFormData({ ...formData, responsibilities: items })
+                }
+                placeholder="e.g. Build and maintain React components..."
+              />
+            </div>
+
+            {/* Requirements / Skills */}
+            <div className="space-y-3">
+              <Label className={labelCls}>Requirements / Skills</Label>
               <div className="flex gap-2">
                 <Input
-                  placeholder="Add a requirement and press Add..."
+                  placeholder="Add a skill tag and press Enter..."
                   value={newRequirement}
                   onChange={(e) => setNewRequirement(e.target.value)}
                   onKeyDown={(e) => {
@@ -271,14 +268,21 @@ export function CareersFormModal({
                   }}
                   className={`${inputCls} flex-1`}
                 />
+                <button
+                  type="button"
+                  onClick={addRequirement}
+                  className="text-[10px] font-mono uppercase tracking-widest text-black flex items-center gap-1 hover:opacity-70 transition-opacity px-3"
+                >
+                  <Plus className="h-3 w-3" /> Add
+                </button>
               </div>
               {formData.requirements.length > 0 && (
-                <div className="flex flex-wrap gap-2 p-4 bg-grey-50/30 rounded-none border border-dashed border-grey-200">
+                <div className="flex flex-wrap gap-2 p-4 bg-grey-50/30 rounded-2xl border border-dashed border-grey-200">
                   {formData.requirements.map((req, idx) => (
                     <div
                       // biome-ignore lint/suspicious/noArrayIndexKey: requirements are ordered by position
                       key={idx}
-                      className="flex items-center gap-2 bg-white border border-grey-100 px-3 py-1.5 rounded-none shadow-sm"
+                      className="flex items-center gap-2 bg-white border border-grey-100 px-3 py-1.5 rounded-lg shadow-sm"
                     >
                       <span className="text-xs font-medium text-grey-700 font-mono">
                         {req}
@@ -294,6 +298,40 @@ export function CareersFormModal({
                   ))}
                 </div>
               )}
+            </div>
+
+            {/* Nice to Have */}
+            <div className="space-y-3">
+              <Label className={sectionLabelCls}>
+                Nice to Have{" "}
+                <span className="text-grey-300 normal-case font-normal">
+                  (optional)
+                </span>
+              </Label>
+              <BulletListEditor
+                items={formData.niceToHave}
+                onChange={(items) =>
+                  setFormData({ ...formData, niceToHave: items })
+                }
+                placeholder="e.g. Experience with GraphQL..."
+              />
+            </div>
+
+            {/* What We Offer */}
+            <div className="space-y-3">
+              <Label className={sectionLabelCls}>
+                What We Offer{" "}
+                <span className="text-grey-300 normal-case font-normal">
+                  (optional)
+                </span>
+              </Label>
+              <BulletListEditor
+                items={formData.whatWeOffer}
+                onChange={(items) =>
+                  setFormData({ ...formData, whatWeOffer: items })
+                }
+                placeholder="e.g. Flexible remote work, mentorship..."
+              />
             </div>
 
             {/* Link + Expiry */}
@@ -325,8 +363,44 @@ export function CareersFormModal({
               </div>
             </div>
 
+            {/* Duration */}
+            <div className="space-y-2">
+              <Label className={sectionLabelCls}>
+                Duration{" "}
+                <span className="text-grey-300 normal-case font-normal">
+                  (optional)
+                </span>
+              </Label>
+              <Input
+                placeholder="e.g. 4 months, 6 months, Ongoing..."
+                value={formData.duration}
+                onChange={(e) =>
+                  setFormData({ ...formData, duration: e.target.value })
+                }
+                className={inputCls}
+              />
+            </div>
+
+            {/* How to Apply */}
+            <div className="space-y-2">
+              <Label className={sectionLabelCls}>
+                How to Apply{" "}
+                <span className="text-grey-300 normal-case font-normal">
+                  (optional)
+                </span>
+              </Label>
+              <Textarea
+                placeholder="e.g. Send your CV and a short cover note to careers@codetopia.dev..."
+                value={formData.howToApply}
+                onChange={(e) =>
+                  setFormData({ ...formData, howToApply: e.target.value })
+                }
+                className="rounded-xl border border-grey-100 bg-grey-50/50 min-h-[70px] px-4 py-3 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono w-full"
+              />
+            </div>
+
             {/* Featured toggle */}
-            <div className="flex items-center justify-between p-4 bg-grey-50/50 rounded-none border border-grey-100">
+            <div className="flex items-center justify-between p-4 bg-grey-50/50 rounded-2xl border border-grey-100">
               <div className="space-y-0.5">
                 <Label className="text-xs font-bold text-black uppercase tracking-tight font-sans">
                   Featured Opportunity
@@ -350,14 +424,14 @@ export function CareersFormModal({
               onClick={onClose}
               type="button"
               disabled={loading}
-              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-none font-bold tracking-widest"
+              className="text-[10px] uppercase text-black hover:bg-grey-100 px-6 h-11 rounded-xl font-bold tracking-widest"
             >
               Cancel
             </Button>
             <Button
               disabled={loading}
               type="submit"
-              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-none active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
+              className="bg-black text-white text-[10px] uppercase px-10 h-11 rounded-xl active:scale-[0.98] transition-all border border-black hover:bg-grey-900 font-bold tracking-widest shadow-none flex items-center gap-2"
             >
               {loading ? (
                 <>
