@@ -163,19 +163,24 @@ model NewsletterDeliveryLog {
 }
 
 model Career {
-  id           Int      @id @default(autoincrement())
-  title        String
-  company      String   @default("Codetopia")
-  type         String
-  location     String
-  description  String   @db.Text
-  requirements String[]
-  link         String?
-  expiryDate   DateTime @map("expiry_date")
-  isFeatured   Boolean  @default(false) @map("is_featured")
-  status       String   @default("open")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  id               Int      @id @default(autoincrement())
+  title            String
+  company          String   @default("Codetopia")
+  type             String
+  location         String
+  aboutRole        String   @default("") @map("about_role") @db.Text
+  responsibilities String[] @map("responsibilities")
+  niceToHave       String[] @map("nice_to_have")
+  whatWeOffer      String[] @map("what_we_offer")
+  howToApply       String   @default("") @map("how_to_apply") @db.Text
+  duration         String?
+  requirements     String[]
+  link             String?
+  expiryDate       DateTime @map("expiry_date")
+  isFeatured       Boolean  @default(false) @map("is_featured")
+  status           String   @default("open")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
 
   @@map("careers")
 }
