@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       "title",
       "type",
       "location",
-      "description",
+      "aboutRole",
       "requirements",
       "expiryDate",
     ]);
@@ -52,7 +52,14 @@ export async function POST(request: Request) {
         company: data.company?.trim() || "Codetopia",
         type: data.type.trim(),
         location: data.location.trim(),
-        description: data.description.trim(),
+        aboutRole: data.aboutRole?.trim() ?? "",
+        responsibilities: Array.isArray(data.responsibilities)
+          ? data.responsibilities
+          : [],
+        niceToHave: Array.isArray(data.niceToHave) ? data.niceToHave : [],
+        whatWeOffer: Array.isArray(data.whatWeOffer) ? data.whatWeOffer : [],
+        howToApply: data.howToApply?.trim() ?? "",
+        duration: data.duration?.trim() || null,
         requirements: Array.isArray(data.requirements)
           ? data.requirements
           : data.requirements.split("\n").filter((r: string) => r.trim()),
