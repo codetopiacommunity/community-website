@@ -5,11 +5,13 @@ import {
   Briefcase,
   Building2,
   Calendar,
+  CheckCircle2,
   Clock,
   MapPin,
+  Sparkles,
   Star,
+  Timer,
 } from "lucide-react";
-import { marked } from "marked";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/../prisma/prisma";
@@ -38,10 +40,7 @@ export default async function CareerDetailPage({
   const daysLeft = differenceInDays(expiry, now);
   const isUrgent = daysLeft <= 7;
 
-  const descriptionHtml = await marked.parse(career.description, {
-    gfm: true,
-    breaks: true,
-  });
+  const desc = career;
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
@@ -74,6 +73,12 @@ export default async function CareerDetailPage({
                 <span className="font-mono text-[9px] uppercase tracking-[0.2em] border border-zinc-800 text-zinc-400 px-2 py-1">
                   {career.type}
                 </span>
+                {desc.duration && (
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] border border-zinc-800 text-zinc-400 px-2 py-1 flex items-center gap-1">
+                    <Timer className="h-2.5 w-2.5" />
+                    {desc.duration}
+                  </span>
+                )}
                 <span
                   className={`font-mono text-[9px] uppercase tracking-[0.2em] px-2 py-1 font-black ${
                     isUrgent
@@ -104,6 +109,12 @@ export default async function CareerDetailPage({
                   <MapPin className="h-4 w-4 text-zinc-600" />
                   {career.location}
                 </span>
+                {career.duration && (
+                  <span className="flex items-center gap-2">
+                    <Timer className="h-4 w-4 text-zinc-600" />
+                    {career.duration}
+                  </span>
+                )}
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-zinc-600" />
                   Posted {format(new Date(career.createdAt), "MMM d, yyyy")}
@@ -152,18 +163,40 @@ export default async function CareerDetailPage({
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
                   <span className="text-white/10">01 /</span> About the Role
                 </span>
-                <div
-                  className="career-description text-zinc-300 font-mono text-sm leading-relaxed"
-                  // biome-ignore lint/security/noDangerouslySetInnerHtml: content is admin-authored markdown
-                  dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-                />
+                <p className="text-zinc-300 font-mono text-sm leading-relaxed">
+                  {desc.aboutRole}
+                </p>
               </div>
+
+              {/* Responsibilities */}
+              {desc.responsibilities.length > 0 && (
+                <div className="flex flex-col gap-6">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
+                    <span className="text-white/10">02 /</span> Responsibilities
+                  </span>
+                  <ul className="flex flex-col divide-y divide-zinc-900">
+                    {desc.responsibilities.map((item, i) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-4 py-4 group"
+                      >
+                        <span className="font-mono text-[9px] text-zinc-700 w-6 shrink-0 mt-0.5">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-zinc-300 font-mono text-sm group-hover:text-white transition-colors">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Requirements */}
               {career.requirements.length > 0 && (
                 <div className="flex flex-col gap-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-white/10">02 /</span> Requirements
+                    <span className="text-white/10">03 /</span> Requirements
                     &amp; Skills
                   </span>
                   <ul className="flex flex-col divide-y divide-zinc-900">
@@ -183,11 +216,61 @@ export default async function CareerDetailPage({
                   </ul>
                 </div>
               )}
+
+              {/* Nice to Have */}
+              {desc.niceToHave.length > 0 && (
+                <div className="flex flex-col gap-6">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
+                    <span className="text-white/10">04 /</span> Nice to Have
+                  </span>
+                  <ul className="flex flex-col gap-3">
+                    {desc.niceToHave.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-4 w-4 text-zinc-700 mt-0.5 shrink-0" />
+                        <span className="text-zinc-400 font-mono text-sm">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* What We Offer */}
+              {desc.whatWeOffer.length > 0 && (
+                <div className="flex flex-col gap-6">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
+                    <span className="text-white/10">05 /</span> What We Offer
+                  </span>
+                  <ul className="flex flex-col gap-3">
+                    {desc.whatWeOffer.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <Sparkles className="h-4 w-4 text-zinc-700 mt-0.5 shrink-0" />
+                        <span className="text-zinc-400 font-mono text-sm">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* How to Apply */}
+              {desc.howToApply && (
+                <div className="flex flex-col gap-6">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
+                    <span className="text-white/10">06 /</span> How to Apply
+                  </span>
+                  <p className="text-zinc-300 font-mono text-sm leading-relaxed">
+                    {desc.howToApply}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Right: sticky sidebar */}
             <aside className="flex flex-col gap-6">
-              <div className="sticky top-28 flex flex-col gap-4">
+              <div className="sticky top-36 flex flex-col gap-4">
                 {/* Summary card */}
                 <div className="border border-zinc-800 bg-zinc-950 p-6 flex flex-col gap-5">
                   <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600">
@@ -207,6 +290,15 @@ export default async function CareerDetailPage({
                         icon: MapPin,
                       },
                       { label: "Type", value: career.type, icon: Briefcase },
+                      ...(desc.duration
+                        ? [
+                            {
+                              label: "Duration",
+                              value: desc.duration,
+                              icon: Timer,
+                            },
+                          ]
+                        : []),
                       {
                         label: "Closes",
                         value: format(expiry, "MMM d, yyyy"),
