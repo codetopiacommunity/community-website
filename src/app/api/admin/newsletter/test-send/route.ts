@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
 import { renderNewsletterHtml } from "@/lib/newsletter";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 
 const FROM_ADDRESS =
   process.env.EMAIL_FROM ?? "Codetopia Community <dispatch@codetopia.org>";

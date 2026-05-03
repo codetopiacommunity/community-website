@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { VerificationTemplate } from "@/lib/email-templates/verification";
 import { WelcomeTemplate } from "@/lib/email-templates/welcome";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 
 const FROM_ADDRESS =
   process.env.EMAIL_FROM ?? "Codetopia Community <dispatch@codetopia.org>";
