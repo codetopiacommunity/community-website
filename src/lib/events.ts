@@ -19,6 +19,7 @@ export type EventStatus = "UPCOMING" | "LIVE" | "COMPLETED";
 
 export interface Event {
   id: number;
+  slug: string | null;
   classification: string;
   title: string;
   description: string;

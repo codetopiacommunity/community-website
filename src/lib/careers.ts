@@ -2,7 +2,7 @@ export type CareerStatus = "open" | "closed";
 
 export interface Career {
   id: number;
-  slug: string;
+  slug: string | null;
   title: string;
   company: string;
   type: string;

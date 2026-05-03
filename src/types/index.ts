@@ -5,6 +5,7 @@ export interface SpotlightLink {
 
 export interface Spotlight {
   id: number;
+  slug: string | null;
   name: string;
   role: string;
   imageUrl: string;
@@ -17,6 +18,7 @@ export interface Spotlight {
 
 export interface ImpactStory {
   id: number;
+  slug: string | null;
   title: string;
   impact: string;
   imageUrl: string;
@@ -74,6 +76,7 @@ export interface ArticlesConfig {
 
 export interface Newsletter {
   id: number;
+  slug: string | null;
   subject: string;
   status: string;
   createdAt: string;
