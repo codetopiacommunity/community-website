@@ -53,7 +53,7 @@ export default function ManageCareersPage() {
           </p>
         </div>
 
-          <Button
+        <Button
           onClick={() => router.push("/admin/opportunities/new")}
           className="flex items-center justify-center gap-2 bg-black text-white px-8 h-12 rounded-xl text-[10px] uppercase font-mono hover:bg-grey-800 transition-all group active:scale-[0.98] tracking-widest shadow-none"
         >
