@@ -3,9 +3,9 @@
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { CareersDeleteModal } from "@/components/admin/careers/CareersDeleteModal";
-import { CareersTable } from "@/components/admin/careers/CareersTable";
-import { CareersToolbar } from "@/components/admin/careers/CareersToolbar";
+import { CareersDeleteModal } from "@/components/admin/opportunities/CareersDeleteModal";
+import { CareersTable } from "@/components/admin/opportunities/CareersTable";
+import { CareersToolbar } from "@/components/admin/opportunities/CareersToolbar";
 import { Button } from "@/components/ui/button";
 import { useAdminCRUD } from "@/hooks/useAdminCRUD";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -18,7 +18,7 @@ export default function ManageCareersPage() {
     data: careers,
     loading,
     refetch,
-  } = useFetchData<Career[]>("/api/admin/careers", {
+  } = useFetchData<Career[]>("/api/admin/opportunities", {
     errorMessage: "Failed to load career opportunities",
   });
 
@@ -53,8 +53,8 @@ export default function ManageCareersPage() {
           </p>
         </div>
 
-        <Button
-          onClick={() => router.push("/admin/careers/new")}
+          <Button
+          onClick={() => router.push("/admin/opportunities/new")}
           className="flex items-center justify-center gap-2 bg-black text-white px-8 h-12 rounded-xl text-[10px] uppercase font-mono hover:bg-grey-800 transition-all group active:scale-[0.98] tracking-widest shadow-none"
         >
           <Plus className="h-4 w-4 group-hover:rotate-90 transition-transform" />
@@ -72,9 +72,11 @@ export default function ManageCareersPage() {
       <CareersTable
         careers={filteredCareers}
         loading={loading}
-        onEdit={(career) => router.push(`/admin/careers/${career.id}/edit`)}
-        onDelete={(id) => openDelete(id)}
-        onAddFirst={() => router.push("/admin/careers/new")}
+        onEdit={(career: Career) =>
+          router.push(`/admin/opportunities/${career.id}/edit`)
+        }
+        onDelete={(id: number) => openDelete(id)}
+        onAddFirst={() => router.push("/admin/opportunities/new")}
       />
 
       <CareersDeleteModal

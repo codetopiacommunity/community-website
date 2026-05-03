@@ -22,7 +22,7 @@ export function FeaturedCareerBanner() {
   useEffect(() => {
     async function fetchFeatured() {
       try {
-        const res = await fetch("/api/careers");
+        const res = await fetch("/api/opportunities");
         const data: Career[] = await res.json();
         const featured = data.filter((c) => c.isFeatured);
         if (featured.length > 0) {
@@ -171,7 +171,7 @@ export function FeaturedCareerBanner() {
 
           {/* CTA */}
           <Link
-            href={career.link ?? "/careers"}
+            href={career.link ?? "/opportunities"}
             target={career.link ? "_blank" : undefined}
             rel={career.link ? "noopener noreferrer" : undefined}
             className="group flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] font-black text-black bg-white px-3 h-6 hover:bg-zinc-200 transition-colors whitespace-nowrap"

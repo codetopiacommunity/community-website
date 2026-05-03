@@ -51,8 +51,8 @@ export const adminNavData = {
           icon: Sparkles,
         },
         {
-          title: "Careers",
-          url: "/admin/careers",
+          title: "Opportunities",
+          url: "/admin/opportunities",
           icon: Briefcase,
         },
       ],

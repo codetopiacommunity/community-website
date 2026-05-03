@@ -5,6 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 
 /**
  * GET: List all careers
@@ -49,6 +50,7 @@ export async function POST(request: Request) {
     const newCareer = await prisma.career.create({
       data: {
         title: data.title.trim(),
+        slug: slugify(data.title.trim()),
         company: data.company?.trim() || "Codetopia",
         type: data.type.trim(),
         location: data.location.trim(),

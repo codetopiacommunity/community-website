@@ -168,7 +168,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
 
                   {/* Apply button — goes to detail page first */}
                   <Link
-                    href={`/careers/${career.id}`}
+                    href={`/opportunities/${career.slug}`}
                     className="group/btn shrink-0 hidden sm:flex items-center gap-3 px-6 py-3.5 bg-white text-black font-mono text-[10px] uppercase tracking-[0.2em] font-black hover:bg-zinc-200 transition-all duration-200"
                   >
                     Apply
@@ -203,7 +203,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
 
                   {/* Mobile apply */}
                   <Link
-                    href={`/careers/${career.id}`}
+                    href={`/opportunities/${career.slug}`}
                     className="sm:hidden flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white border border-zinc-700 px-4 py-2.5 hover:bg-white hover:text-black transition-all"
                   >
                     Apply

@@ -22,13 +22,11 @@ export const dynamic = "force-dynamic";
 export default async function CareerDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
-  const careerId = Number.parseInt(id, 10);
-  if (Number.isNaN(careerId)) notFound();
+  const { slug } = await params;
 
-  const career = await prisma.career.findUnique({ where: { id: careerId } });
+  const career = await prisma.career.findUnique({ where: { slug } });
   if (!career) notFound();
 
   // Treat expired or closed as not found on the public side
@@ -48,7 +46,7 @@ export default async function CareerDetailPage({
       <div className="w-full border-b border-zinc-900 pt-28 pb-0">
         <Container className="px-4">
           <Link
-            href="/careers"
+            href="/opportunities"
             className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors group mb-10"
           >
             <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
@@ -363,7 +361,7 @@ export default async function CareerDetailPage({
                 )}
 
                 <Link
-                  href="/careers"
+                  href="/opportunities"
                   className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600 hover:text-zinc-400 transition-colors text-center"
                 >
                   ← View all opportunities

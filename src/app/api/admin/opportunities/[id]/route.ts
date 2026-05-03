@@ -5,6 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 
 /**
  * GET: Fetch a single career opportunity
@@ -74,6 +75,7 @@ export async function PUT(
       where: { id: careerId },
       data: {
         title: data.title.trim(),
+        slug: slugify(data.title.trim()),
         company: data.company?.trim() || "Codetopia",
         type: data.type.trim(),
         location: data.location.trim(),

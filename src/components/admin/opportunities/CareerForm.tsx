@@ -100,8 +100,8 @@ export function CareerForm({ editingCareer }: CareerFormProps) {
     setLoading(true);
     try {
       const url = editingCareer
-        ? `/api/admin/careers/${editingCareer.id}`
-        : "/api/admin/careers";
+        ? `/api/admin/opportunities/${editingCareer.id}`
+        : "/api/admin/opportunities";
       const method = editingCareer ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -124,7 +124,7 @@ export function CareerForm({ editingCareer }: CareerFormProps) {
           ? "Opportunity updated successfully"
           : "New opportunity posted successfully",
       );
-      router.push("/admin/careers");
+      router.push("/admin/opportunities");
     } catch {
       toast.error("Failed to save career opportunity");
     } finally {
@@ -138,7 +138,7 @@ export function CareerForm({ editingCareer }: CareerFormProps) {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
           <Link
-            href="/admin/careers"
+            href="/admin/opportunities"
             className="inline-flex items-center gap-2 text-grey-400 hover:text-black font-mono text-[10px] uppercase tracking-widest transition-colors group mb-4"
           >
             <ArrowLeft className="h-3 w-3 group-hover:-translate-x-1 transition-transform" />
@@ -464,7 +464,7 @@ export function CareerForm({ editingCareer }: CareerFormProps) {
                 <Button
                   type="button"
                   variant="ghost"
-                  onClick={() => router.push("/admin/careers")}
+                  onClick={() => router.push("/admin/opportunities")}
                   disabled={loading}
                   className="w-full h-11 rounded-xl text-[10px] uppercase font-mono tracking-widest hover:bg-grey-50 text-grey-500"
                 >

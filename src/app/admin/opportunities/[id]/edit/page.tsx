@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/../prisma/prisma";
-import { CareerForm } from "@/components/admin/careers/CareerForm";
+import { CareerForm } from "@/components/admin/opportunities/CareerForm";
 
 export default async function EditCareerPage({
   params,

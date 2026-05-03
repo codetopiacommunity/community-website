@@ -112,8 +112,8 @@ export function CareersFormModal({
     setLoading(true);
     try {
       const url = editingCareer
-        ? `/api/admin/careers/${editingCareer.id}`
-        : "/api/admin/careers";
+        ? `/api/admin/opportunities/${editingCareer.id}`
+        : "/api/admin/opportunities";
       const method = editingCareer ? "PUT" : "POST";
 
       const res = await fetch(url, {
