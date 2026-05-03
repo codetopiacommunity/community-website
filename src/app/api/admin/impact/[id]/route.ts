@@ -5,6 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 import { deleteImage, processImage } from "../utils";
 
 export async function PATCH(
@@ -66,6 +67,7 @@ export async function PATCH(
       where: { id: Number(id) },
       data: {
         title: data.title.trim(),
+        slug: slugify(data.title.trim()),
         impact: data.impact.trim(),
         imageUrl,
         logoUrl,

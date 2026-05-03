@@ -5,6 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 import { processImage } from "./utils";
 
 export async function GET() {
@@ -52,6 +53,7 @@ export async function POST(request: Request) {
     const story = await prisma.impactStory.create({
       data: {
         title: data.title.trim(),
+        slug: slugify(data.title.trim()),
         impact: data.impact.trim(),
         imageUrl: imageUrl as string,
         logoUrl: logoUrl as string,

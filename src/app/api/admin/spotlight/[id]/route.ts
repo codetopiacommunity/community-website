@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 import { deleteSpotlightImage, uploadSpotlightImage } from "../utils";
 
 export async function PATCH(
@@ -33,6 +34,7 @@ export async function PATCH(
       where: { id: Number(id) },
       data: {
         name: data.name?.trim() ?? existing.name,
+        slug: data.name ? slugify(data.name.trim()) : undefined,
         role: data.role?.trim() ?? existing.role,
         imageUrl,
         contribution: data.contribution?.trim() ?? existing.contribution,

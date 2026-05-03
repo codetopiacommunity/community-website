@@ -2,6 +2,7 @@ import type { Event } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 
 /**
  * PATCH: Update an existing event
@@ -27,9 +28,10 @@ export async function PATCH(
     }
 
     // Combine data - only update if provided
-    const updateData: Partial<Event> = {
+    const updateData: Partial<Event> & { slug?: string } = {
       classification: body.classification?.trim() || event.classification,
       title: body.title?.trim() || event.title,
+      slug: body.title ? slugify(body.title.trim()) : undefined,
       description: body.description?.trim() || event.description,
       startDate: body.startDate ? new Date(body.startDate) : event.startDate,
       endDate: body.endDate ? new Date(body.endDate) : event.endDate,

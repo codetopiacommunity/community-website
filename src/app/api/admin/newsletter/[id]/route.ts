@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -75,7 +76,10 @@ export async function PATCH(req: Request, { params }: RouteContext) {
     const updated = await prisma.newsletter.update({
       where: { id: newsletterId },
       data: {
-        ...(subject !== undefined && { subject: subject.trim() }),
+        ...(subject !== undefined && {
+          subject: subject.trim(),
+          slug: slugify(subject.trim()),
+        }),
         ...(previewText !== undefined && {
           previewText: previewText.trim() || null,
         }),

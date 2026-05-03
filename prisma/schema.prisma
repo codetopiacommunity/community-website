@@ -75,6 +75,7 @@ model GalleryPhoto {
 
 model ImpactStory {
   id          Int      @id @default(autoincrement())
+  slug        String?  @unique
   title       String
   impact      String
   imageUrl    String   @map("image_url")
@@ -102,6 +103,7 @@ model ArticlesConfig {
 
 model Event {
   id                Int      @id @default(autoincrement())
+  slug              String?  @unique
   classification    String
   title             String
   description       String
@@ -120,6 +122,7 @@ model Event {
 
 model Newsletter {
   id              Int                     @id @default(autoincrement())
+  slug            String?  @unique
   subject         String
   previewText     String?                 @map("preview_text")
   markdownContent String                  @map("markdown_content")
@@ -136,6 +139,7 @@ model Newsletter {
 
 model Spotlight {
   id           Int      @id @default(autoincrement())
+  slug         String?  @unique
   name         String
   role         String
   imageUrl     String   @map("image_url")
@@ -164,6 +168,7 @@ model NewsletterDeliveryLog {
 
 model Career {
   id               Int      @id @default(autoincrement())
+  slug             String?  @unique
   title            String
   company          String   @default("Codetopia")
   type             String

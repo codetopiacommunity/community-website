@@ -5,6 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 
 /**
  * GET: List all events
@@ -49,6 +50,7 @@ export async function POST(request: Request) {
       data: {
         classification: data.classification.trim(),
         title: data.title.trim(),
+        slug: slugify(data.title.trim()),
         description: data.description.trim(),
         startDate: new Date(data.startDate),
         endDate: new Date(data.endDate),

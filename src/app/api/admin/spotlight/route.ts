@@ -5,6 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 import { uploadSpotlightImage } from "./utils";
 
 export async function GET() {
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
     const spotlight = await prisma.spotlight.create({
       data: {
         name: data.name.trim(),
+        slug: slugify(data.name.trim()),
         role: data.role.trim(),
         imageUrl,
         contribution: data.contribution.trim(),

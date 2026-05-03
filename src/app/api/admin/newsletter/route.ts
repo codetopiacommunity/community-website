@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
+import { slugify } from "@/lib/utils";
 
 const PAGE_SIZE = 10;
 
@@ -68,6 +69,7 @@ export async function POST(request: Request) {
     const newsletter = await prisma.newsletter.create({
       data: {
         subject: subject.trim(),
+        slug: slugify(subject.trim()),
         previewText: previewText?.trim() || null,
         markdownContent: markdownContent || "",
         status: "draft",
