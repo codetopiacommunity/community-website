@@ -5,7 +5,9 @@ import { Pool } from "pg";
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
-  throw new Error("DATABASE_URL is not set.");
+  console.warn(
+    "DATABASE_URL is not set. Database features will be unavailable.",
+  );
 }
 
 const globalForPrisma = globalThis as typeof globalThis & {
@@ -20,8 +22,8 @@ if (globalForPrisma.prisma) {
   console.log("Initializing new PrismaClient instance...");
   // Hardened pool for flaky connections
   const pool = new Pool({
-    connectionString,
-    connectionTimeoutMillis: 30000, // 30s timeout for cold starts
+    connectionString: connectionString ?? "",
+    connectionTimeoutMillis: 10000, // 10s timeout
     idleTimeoutMillis: 30000, // 30s idle before closing
     max: 10, // Max 10 connections
     ssl: {

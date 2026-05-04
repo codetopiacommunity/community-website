@@ -11,16 +11,20 @@ import type { Spotlight } from "@/types";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const raw = await prisma.spotlight.findFirst({ where: { featured: true } });
-
-  const spotlight: Spotlight | null = raw
-    ? {
+  let spotlight: Spotlight | null = null;
+  try {
+    const raw = await prisma.spotlight.findFirst({ where: { featured: true } });
+    if (raw) {
+      spotlight = {
         ...raw,
         links: raw.links as unknown as Spotlight["links"],
         createdAt: raw.createdAt.toISOString(),
         updatedAt: raw.updatedAt.toISOString(),
-      }
-    : null;
+      };
+    }
+  } catch (error) {
+    console.error("Home: failed to fetch spotlight", error);
+  }
 
   return (
     <div className="w-full flex flex-col">

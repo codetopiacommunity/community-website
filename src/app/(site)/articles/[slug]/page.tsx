@@ -22,7 +22,12 @@ export default async function ArticleDetailPage({
 }) {
   const { slug } = await params;
 
-  const config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
+  let config = null;
+  try {
+    config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
+  } catch (error) {
+    console.error("ArticleDetailPage: failed to fetch config", error);
+  }
   const host = config?.hashnodeHost?.trim();
   if (!host) notFound();
 

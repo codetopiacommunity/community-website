@@ -8,7 +8,12 @@ import { ArticlesGrid } from "./ArticlesGrid";
 export const dynamic = "force-dynamic";
 
 export default async function ArticlesPage() {
-  const config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
+  let config = null;
+  try {
+    config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
+  } catch (error) {
+    console.error("ArticlesPage: failed to fetch config", error);
+  }
 
   const hasHost = config?.hashnodeHost && config.hashnodeHost.trim() !== "";
 

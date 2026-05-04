@@ -26,7 +26,12 @@ export default async function CareerDetailPage({
 }) {
   const { slug } = await params;
 
-  const career = await prisma.career.findUnique({ where: { slug } });
+  let career = null;
+  try {
+    career = await prisma.career.findUnique({ where: { slug } });
+  } catch (error) {
+    console.error("CareerDetailPage: failed to fetch career", error);
+  }
   if (!career) notFound();
 
   // Treat expired or closed as not found on the public side
