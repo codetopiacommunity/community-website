@@ -54,8 +54,9 @@ export default async function ArticlesPage() {
     );
   }
 
-  const host = config.hashnodeHost.trim();
-  const featuredSlugs: string[] = Array.isArray(config.featuredSlugs)
+  // config is guaranteed non-null here: hasHost is only true when config exists
+  const host = config?.hashnodeHost.trim() ?? "";
+  const featuredSlugs: string[] = Array.isArray(config?.featuredSlugs)
     ? (config.featuredSlugs as string[])
     : [];
 
