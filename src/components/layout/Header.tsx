@@ -118,8 +118,9 @@ function DesktopNav({
             <Link
               key={item.label}
               href={item.href}
-              className={`text-sm lg:text-base font-bold tracking-wider transition-colors ${isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
-                }`}
+              className={`text-sm lg:text-base font-bold tracking-wider transition-colors ${
+                isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
+              }`}
             >
               {item.label}
             </Link>
@@ -131,8 +132,9 @@ function DesktopNav({
             key={item.label}
             type="button"
             onClick={() => setIsNavOpen(!isNavOpen)}
-            className={`flex items-center gap-1 text-sm lg:text-base font-bold tracking-wider transition-colors ${isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
-              }`}
+            className={`flex items-center gap-1 text-sm lg:text-base font-bold tracking-wider transition-colors ${
+              isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
+            }`}
           >
             {item.label}
             <ChevronDown
@@ -171,8 +173,9 @@ function MobileMenu({
                 key={item.label}
                 href={item.href}
                 onClick={onClose}
-                className={`w-full text-base font-bold tracking-wider py-3 border-b border-grey-800/50 last:border-none transition-colors ${isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
-                  }`}
+                className={`w-full text-base font-bold tracking-wider py-3 border-b border-grey-800/50 last:border-none transition-colors ${
+                  isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
+                }`}
               >
                 {item.label}
               </Link>
@@ -192,8 +195,9 @@ function MobileMenu({
                 onClick={() =>
                   setExpandedMobileItem(isExpanded ? null : item.label)
                 }
-                className={`w-full flex items-center justify-between text-base font-bold tracking-wider py-3 transition-colors ${isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
-                  }`}
+                className={`w-full flex items-center justify-between text-base font-bold tracking-wider py-3 transition-colors ${
+                  isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
+                }`}
               >
                 {item.label}
                 <ChevronDown
