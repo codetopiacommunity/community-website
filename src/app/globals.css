@@ -315,10 +315,12 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -339,18 +341,22 @@ html {
   margin-bottom: 0.75rem;
   line-height: 1;
 }
+
 .career-description h1 {
   font-size: 1.5rem;
 }
+
 .career-description h2 {
   font-size: 1.25rem;
   border-bottom: 1px solid #27272a;
   padding-bottom: 0.5rem;
 }
+
 .career-description h3 {
   font-size: 1rem;
   color: #a1a1aa;
 }
+
 .career-description h4 {
   font-size: 0.875rem;
   color: #71717a;
@@ -371,10 +377,12 @@ html {
   flex-direction: column;
   gap: 0.4rem;
 }
+
 .career-description ul {
   list-style: none;
   padding-left: 0;
 }
+
 .career-description ul li {
   display: flex;
   align-items: flex-start;
@@ -383,6 +391,7 @@ html {
   font-size: 0.875rem;
   line-height: 1.7;
 }
+
 .career-description ul li::before {
   content: "—";
   color: #3f3f46;
@@ -390,9 +399,11 @@ html {
   flex-shrink: 0;
   margin-top: 0.05rem;
 }
+
 .career-description ol {
   list-style: decimal;
 }
+
 .career-description ol li {
   color: #a1a1aa;
   font-size: 0.875rem;
@@ -432,4 +443,37 @@ html {
   border: none;
   border-top: 1px solid #27272a;
   margin: 2rem 0;
+}
+
+/* Smooth nav animations */
+@keyframes slideDownSmooth {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpSmooth {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.animate-slide-down-smooth {
+  animation: slideDownSmooth 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up-smooth {
+  animation: slideUpSmooth 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
