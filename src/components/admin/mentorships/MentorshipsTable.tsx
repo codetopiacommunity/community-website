@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { TeamMember } from "@/types";
 
-interface Mentorship {
+export interface Mentorship {
   id: number;
   title: string;
   startDate?: string | null;
