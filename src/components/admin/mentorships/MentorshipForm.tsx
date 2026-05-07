@@ -54,21 +54,29 @@ export function MentorshipForm({
         title: editingMentorship.title as string,
         description: editingMentorship.description as string,
         startDate: editingMentorship.startDate
-          ? new Date(editingMentorship.startDate as string).toISOString().split("T")[0]
+          ? new Date(editingMentorship.startDate as string)
+              .toISOString()
+              .split("T")[0]
           : "",
         endDate: editingMentorship.endDate
-          ? new Date(editingMentorship.endDate as string).toISOString().split("T")[0]
+          ? new Date(editingMentorship.endDate as string)
+              .toISOString()
+              .split("T")[0]
           : "",
         isOnline: editingMentorship.isOnline as boolean,
         location: (editingMentorship.location as string) || "",
-        capacity: editingMentorship.capacity ? String(editingMentorship.capacity) : "",
+        capacity: editingMentorship.capacity
+          ? String(editingMentorship.capacity)
+          : "",
         applicationLink: (editingMentorship.applicationLink as string) || "",
         imageUrl: (editingMentorship.imageUrl as string) || "",
         coverImage: (editingMentorship.coverImage as string) || "",
         flyerImage: (editingMentorship.flyerImage as string) || "",
         tags: (editingMentorship.tags as string[]) || [],
         status: (editingMentorship.status as string) || "open",
-        mentorIds: ((editingMentorship.mentors as TeamMember[]) || []).map((m) => m.id),
+        mentorIds: ((editingMentorship.mentors as TeamMember[]) || []).map(
+          (m) => m.id,
+        ),
       });
       setPreviewImages({
         coverImage: editingMentorship.coverImage as string,
@@ -139,7 +147,9 @@ export function MentorshipForm({
         return;
       }
 
-      toast.success(editingMentorship ? "Mentorship updated" : "Mentorship created");
+      toast.success(
+        editingMentorship ? "Mentorship updated" : "Mentorship created",
+      );
       router.push("/admin/mentorships");
     } catch (err) {
       console.error(err);

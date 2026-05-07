@@ -96,7 +96,9 @@ export function LinksTagsSection({
               }
             }}
             className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-black placeholder:text-grey-400 py-1 px-2"
-            placeholder={tags.length === 0 ? "Type a tag & press Enter or comma" : ""}
+            placeholder={
+              tags.length === 0 ? "Type a tag & press Enter or comma" : ""
+            }
           />
         </div>
       </div>
