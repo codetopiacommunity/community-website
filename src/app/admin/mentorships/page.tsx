@@ -3,7 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MentorshipsDeleteModal } from "@/components/admin/mentorships/MentorshipsDeleteModal";
-import { MentorshipsTable } from "@/components/admin/mentorships/MentorshipsTable";
+import {
+  type Mentorship,
+  MentorshipsTable,
+} from "@/components/admin/mentorships/MentorshipsTable";
 import { Button } from "@/components/ui/button";
 import { useFetchData } from "@/hooks/useFetchData";
 
@@ -18,7 +21,7 @@ export default function ManageMentorshipsPage() {
     data: mentorships,
     loading,
     refetch,
-  } = useFetchData<Record<string, unknown>[]>("/api/admin/mentorships", {
+  } = useFetchData<Mentorship[]>("/api/admin/mentorships", {
     errorMessage: "Failed to load mentorships",
   });
 
