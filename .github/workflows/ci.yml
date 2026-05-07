@@ -33,12 +33,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: latest
+          version: 9.15.4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -66,12 +66,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: latest
+          version: 9.15.4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -79,7 +79,7 @@ jobs:
 
       - name: Install Vercel CLI
         run: pnpm add -g vercel
-      
+
       - name: Run Prisma migrations (production)
         run: pnpm prisma migrate deploy
 
@@ -109,6 +109,7 @@ jobs:
 
     env:
       DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -116,12 +117,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: latest
+          version: 9.15.4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
       - name: Install dependencies
