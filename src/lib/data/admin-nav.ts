@@ -1,4 +1,5 @@
 import {
+  Award,
   Briefcase,
   Calendar,
   FileText,
@@ -66,6 +67,11 @@ export const adminNavData = {
           title: "Manage Team",
           url: "/admin/team",
           icon: Users2,
+        },
+        {
+          title: "Mentorships",
+          url: "/admin/mentorships",
+          icon: Award,
         },
         {
           title: "Newsletter",
