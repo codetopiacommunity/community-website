@@ -30,7 +30,7 @@ type MegaMenuNavItem = {
 type NavItem = StandaloneNavItem | MegaMenuNavItem;
 
 const NAV_ITEMS: NavItem[] = [
-  { type: "link", label: "Mentorship", href: "/mentorship" },
+  { type: "link", label: "Mentorships", href: "/mentorships" },
   { type: "link", label: "Careers", href: "/opportunities" },
   {
     type: "megamenu",
@@ -106,9 +106,7 @@ function DesktopNav({
   return (
     <nav
       aria-label="Main navigation"
-      className="hidden lg:flex items-center gap-8"
-      onMouseEnter={() => setIsNavOpen(true)}
-      onMouseLeave={() => setIsNavOpen(false)}
+      className="hidden lg:flex items-center gap-1"
     >
       {NAV_ITEMS.map((item) => {
         const isActive = isNavItemActive(item, pathname);
@@ -118,7 +116,7 @@ function DesktopNav({
             <Link
               key={item.label}
               href={item.href}
-              className={`text-sm lg:text-base font-bold tracking-wider transition-colors ${
+              className={`px-3 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 ${
                 isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
               }`}
             >
@@ -131,15 +129,13 @@ function DesktopNav({
           <button
             key={item.label}
             type="button"
-            onClick={() => setIsNavOpen(!isNavOpen)}
-            className={`flex items-center gap-1 text-sm lg:text-base font-bold tracking-wider transition-colors ${
+            onMouseEnter={() => setIsNavOpen(true)}
+            onMouseLeave={() => setIsNavOpen(false)}
+            className={`flex items-center gap-1.5 px-3 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 ${
               isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
             }`}
           >
             {item.label}
-            <ChevronDown
-              className={`h-4 w-4 transition-transform duration-400 ${isNavOpen ? "rotate-180" : ""}`}
-            />
           </button>
         );
       })}
@@ -258,10 +254,13 @@ export function Header() {
   return (
     <>
       <FeaturedCareerBanner />
-      <header className="sticky top-0 z-50 w-full bg-grey-900 text-grey-50 font-sans border-b border-grey-800/50">
-        <Container className="flex h-20 items-center justify-between">
+      <header className="sticky top-0 z-50 w-full bg-gradient-to-b from-grey-900 to-grey-900/95 text-grey-50 font-sans border-b border-grey-800/30 backdrop-blur-sm">
+        <Container className="flex h-20 items-center justify-between px-4 md:px-6">
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link
+            href="/"
+            className="flex shrink-0 items-center hover:opacity-80 transition-opacity"
+          >
             <Image
               src={logo}
               alt="Codetopia"
@@ -273,7 +272,7 @@ export function Header() {
           </Link>
 
           {/* Right side */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6 md:gap-8">
             <DesktopNav
               isNavOpen={isNavOpen}
               setIsNavOpen={setIsNavOpen}
@@ -306,20 +305,20 @@ export function Header() {
         <div
           role="region"
           aria-label="Expanded navigation menu"
-          className="sticky top-20 z-40 hidden lg:block w-full bg-grey-900/98 border-b border-grey-800 backdrop-blur animate-slide-down-smooth"
+          className="sticky top-20 z-40 hidden lg:block w-full bg-grey-900/95 border-b border-grey-800/30 backdrop-blur-md animate-slide-down-smooth"
           onMouseEnter={() => setIsNavOpen(true)}
           onMouseLeave={() => setIsNavOpen(false)}
         >
           <Container>
-            <div className="grid grid-cols-3 gap-8 py-8">
+            <div className="grid grid-cols-3 gap-8 py-8 px-4 md:px-6">
               {NAV_ITEMS.map((item) => {
                 if (item.type === "link") {
                   return null;
                 }
 
                 return (
-                  <div key={item.label} className="space-y-3">
-                    <h3 className="font-bold text-grey-50 text-sm uppercase tracking-wider">
+                  <div key={item.label} className="space-y-4">
+                    <h3 className="font-bold text-grey-50 text-xs uppercase tracking-widest">
                       {item.label}
                     </h3>
                     <div className="space-y-2">
@@ -328,13 +327,13 @@ export function Header() {
                           key={child.href}
                           href={child.href}
                           onClick={() => setIsNavOpen(false)}
-                          className="block px-3 py-2 rounded-md hover:bg-zinc-800/60 transition-colors group"
+                          className="block px-3 py-2.5 rounded-lg hover:bg-grey-800/40 transition-all duration-200 group"
                         >
-                          <span className="text-sm text-grey-100 group-hover:text-grey-50 transition-colors">
+                          <span className="text-sm text-grey-100 group-hover:text-grey-50 transition-colors font-medium">
                             {child.label}
                           </span>
                           {child.description && (
-                            <p className="text-xs text-grey-400 mt-0.5">
+                            <p className="text-xs text-grey-400 mt-1">
                               {child.description}
                             </p>
                           )}
