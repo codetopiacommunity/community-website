@@ -94,15 +94,7 @@ function isNavItemActive(item: NavItem, pathname: string): boolean {
   return item.children.some((child) => pathname === child.href);
 }
 
-function DesktopNav({
-  isNavOpen,
-  setIsNavOpen,
-  pathname,
-}: {
-  isNavOpen: boolean;
-  setIsNavOpen: (open: boolean) => void;
-  pathname: string;
-}) {
+function DesktopNav({ pathname }: { pathname: string }) {
   return (
     <nav
       aria-label="Main navigation"
@@ -273,11 +265,7 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-6 md:gap-8">
-            <DesktopNav
-              isNavOpen={isNavOpen}
-              setIsNavOpen={setIsNavOpen}
-              pathname={pathname}
-            />
+            <DesktopNav pathname={pathname} />
             <MobileMenuToggle
               isOpen={isMobileMenuOpen}
               onToggle={() => {

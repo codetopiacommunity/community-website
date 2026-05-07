@@ -12,16 +12,21 @@ interface MentorsSectionProps {
   onToggle: (id: number) => void;
 }
 
-export function MentorsSection({ mentorIds, teamData, onToggle }: MentorsSectionProps) {
+export function MentorsSection({
+  mentorIds,
+  teamData,
+  onToggle,
+}: MentorsSectionProps) {
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const suggestions = teamData?.filter(
-    (m) =>
-      !mentorIds.includes(m.id) &&
-      (m.name.toLowerCase().includes(search.toLowerCase()) ||
-        m.role.toLowerCase().includes(search.toLowerCase())),
-  ) ?? [];
+  const suggestions =
+    teamData?.filter(
+      (m) =>
+        !mentorIds.includes(m.id) &&
+        (m.name.toLowerCase().includes(search.toLowerCase()) ||
+          m.role.toLowerCase().includes(search.toLowerCase())),
+    ) ?? [];
 
   return (
     <div className="bg-white border border-grey-200 p-8 space-y-6">
@@ -60,17 +65,26 @@ export function MentorsSection({ mentorIds, teamData, onToggle }: MentorsSection
                   >
                     {m.imageUrl && (
                       <div className="relative h-8 w-8 rounded-full overflow-hidden flex-shrink-0">
-                        <Image src={m.imageUrl} alt={m.name} fill className="object-cover" />
+                        <Image
+                          src={m.imageUrl}
+                          alt={m.name}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-black truncate">{m.name}</p>
+                      <p className="text-sm font-semibold text-black truncate">
+                        {m.name}
+                      </p>
                       <p className="text-xs text-grey-500 truncate">{m.role}</p>
                     </div>
                   </button>
                 ))
               ) : (
-                <div className="px-4 py-3 text-sm text-grey-500">No mentors found</div>
+                <div className="px-4 py-3 text-sm text-grey-500">
+                  No mentors found
+                </div>
               )}
             </div>
           )}
@@ -88,7 +102,12 @@ export function MentorsSection({ mentorIds, teamData, onToggle }: MentorsSection
                 >
                   {mentor.imageUrl && (
                     <div className="relative h-6 w-6 rounded-full overflow-hidden flex-shrink-0">
-                      <Image src={mentor.imageUrl} alt={mentor.name} fill className="object-cover" />
+                      <Image
+                        src={mentor.imageUrl}
+                        alt={mentor.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   )}
                   <span>{mentor.name}</span>

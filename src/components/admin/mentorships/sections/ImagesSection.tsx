@@ -7,7 +7,10 @@ import { Label } from "@/components/ui/label";
 interface ImagesSectionProps {
   coverImage?: string;
   flyerImage?: string;
-  onUpload: (e: React.ChangeEvent<HTMLInputElement>, field: "coverImage" | "flyerImage") => void;
+  onUpload: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: "coverImage" | "flyerImage",
+  ) => void;
   onRemove: (field: "coverImage" | "flyerImage") => void;
 }
 
@@ -21,7 +24,10 @@ function ImageUploadSlot({
   label: string;
   field: "coverImage" | "flyerImage";
   preview?: string;
-  onUpload: (e: React.ChangeEvent<HTMLInputElement>, field: "coverImage" | "flyerImage") => void;
+  onUpload: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: "coverImage" | "flyerImage",
+  ) => void;
   onRemove: (field: "coverImage" | "flyerImage") => void;
 }) {
   return (
@@ -31,7 +37,12 @@ function ImageUploadSlot({
       </Label>
       {preview ? (
         <div className="relative w-full h-48 overflow-hidden border border-grey-200">
-          <Image src={preview} alt={`${label} preview`} fill className="object-cover" />
+          <Image
+            src={preview}
+            alt={`${label} preview`}
+            fill
+            className="object-cover"
+          />
           <button
             type="button"
             onClick={() => onRemove(field)}
@@ -44,7 +55,9 @@ function ImageUploadSlot({
         <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-grey-300 cursor-pointer hover:border-grey-400 transition-colors bg-grey-50">
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <Upload className="w-8 h-8 text-grey-400 mb-2" />
-            <p className="text-sm text-grey-600">Click to upload {label.toLowerCase()}</p>
+            <p className="text-sm text-grey-600">
+              Click to upload {label.toLowerCase()}
+            </p>
           </div>
           <input
             type="file"
@@ -58,7 +71,12 @@ function ImageUploadSlot({
   );
 }
 
-export function ImagesSection({ coverImage, flyerImage, onUpload, onRemove }: ImagesSectionProps) {
+export function ImagesSection({
+  coverImage,
+  flyerImage,
+  onUpload,
+  onRemove,
+}: ImagesSectionProps) {
   return (
     <div className="bg-white border border-grey-200 p-8 space-y-6">
       <h2 className="text-xl font-bold text-black uppercase tracking-tight">
