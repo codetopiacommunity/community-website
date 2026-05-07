@@ -95,6 +95,7 @@ function isNavItemActive(item: NavItem, pathname: string): boolean {
 }
 
 function DesktopNav({ pathname }: { pathname: string }) {
+  const [_isNavOpen, setIsNavOpen] = useState(false);
   return (
     <nav
       aria-label="Main navigation"
