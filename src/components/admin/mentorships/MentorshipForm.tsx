@@ -23,6 +23,7 @@ const defaultForm = {
   location: "",
   capacity: "",
   applicationLink: "",
+  registrationLink: "",
   imageUrl: "",
   coverImage: "",
   flyerImage: "",
@@ -51,8 +52,8 @@ export function MentorshipForm({
   useEffect(() => {
     if (editingMentorship) {
       setFormData({
-        title: editingMentorship.title as string,
-        description: editingMentorship.description as string,
+        title: (editingMentorship.title as string) || "",
+        description: (editingMentorship.description as string) || "",
         startDate: editingMentorship.startDate
           ? new Date(editingMentorship.startDate as string)
               .toISOString()
@@ -69,6 +70,7 @@ export function MentorshipForm({
           ? String(editingMentorship.capacity)
           : "",
         applicationLink: (editingMentorship.applicationLink as string) || "",
+        registrationLink: (editingMentorship.registrationLink as string) || "",
         imageUrl: (editingMentorship.imageUrl as string) || "",
         coverImage: (editingMentorship.coverImage as string) || "",
         flyerImage: (editingMentorship.flyerImage as string) || "",
@@ -160,20 +162,27 @@ export function MentorshipForm({
   };
 
   return (
-    <div className="max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-24">
+      {/* Page header */}
+      <div className="flex items-center justify-between mb-8 pb-6 border-b border-zinc-200">
         <Link
           href="/admin/mentorships"
-          className="text-xs text-grey-500 hover:text-grey-700 transition-colors flex items-center gap-2"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-black transition-colors"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to Mentorships
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Back
         </Link>
-        <h1 className="text-3xl font-bold text-black">
-          {editingMentorship ? "Edit Mentorship" : "Create New Mentorship"}
-        </h1>
+        <div className="text-right">
+          <p className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-0.5">
+            {editingMentorship ? "Editing" : "Creating"}
+          </p>
+          <h1 className="text-xl font-semibold text-black tracking-tight">
+            {editingMentorship ? "Edit Mentorship" : "New Mentorship"}
+          </h1>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <BasicInfoSection
           title={formData.title}
           description={formData.description}
@@ -199,8 +208,12 @@ export function MentorshipForm({
 
         <LinksTagsSection
           applicationLink={formData.applicationLink}
+          registrationLink={formData.registrationLink}
           tags={formData.tags}
           onLinkChange={(val) => handleFieldChange("applicationLink", val)}
+          onRegistrationLinkChange={(val) =>
+            handleFieldChange("registrationLink", val)
+          }
           onTagsChange={(tags) => setFormData((prev) => ({ ...prev, tags }))}
         />
 
@@ -210,32 +223,41 @@ export function MentorshipForm({
           onToggle={toggleMentor}
         />
 
-        {/* Actions */}
-        <div className="flex gap-3 sticky bottom-0 bg-white p-4 border border-grey-200">
-          <Button
-            type="submit"
-            disabled={loading}
-            className="bg-black text-white hover:bg-grey-900 flex-1"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                Saving...
-              </>
-            ) : editingMentorship ? (
-              "Save Changes"
-            ) : (
-              "Create Mentorship"
-            )}
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.push("/admin/mentorships")}
-            className="border-grey-200"
-          >
-            Cancel
-          </Button>
+        {/* Sticky save bar */}
+        <div className="sticky bottom-0 z-10 bg-white border-t border-zinc-200 px-6 py-4 -mx-6">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest hidden sm:block">
+              {editingMentorship
+                ? "Editing existing mentorship"
+                : "Creating new mentorship"}
+            </p>
+            <div className="flex items-center gap-3 ml-auto">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => router.push("/admin/mentorships")}
+                className="border-zinc-200 rounded-none text-xs font-mono uppercase tracking-widest hover:bg-zinc-50"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="bg-black text-white hover:bg-zinc-800 rounded-none text-xs font-mono uppercase tracking-widest px-6"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="h-3.5 w-3.5 animate-spin mr-2" />
+                    Saving...
+                  </>
+                ) : editingMentorship ? (
+                  "Save Changes"
+                ) : (
+                  "Create Mentorship"
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
