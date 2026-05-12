@@ -1,7 +1,6 @@
 "use client";
 
 import { Download } from "lucide-react";
-import Image from "next/image";
 
 interface FlyerDownloadProps {
   flyerImage: string;
@@ -28,12 +27,13 @@ export function FlyerDownload({ flyerImage, title }: FlyerDownloadProps) {
   };
 
   return (
-    <div className="relative group w-full aspect-[3/4] overflow-hidden border border-zinc-800">
-      <Image
+    <div className="relative group w-full border border-zinc-800 overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      {/* biome-ignore lint/performance/noImgElement: natural image dimensions needed */}
+      <img
         src={flyerImage}
         alt={`${title} Flyer`}
-        fill
-        className="object-cover"
+        className="w-full h-auto block"
       />
       <button
         type="button"

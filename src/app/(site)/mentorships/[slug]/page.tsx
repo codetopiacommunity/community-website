@@ -1,10 +1,70 @@
-import { ArrowLeft, Calendar, MapPin, Users } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Calendar, MapPin, Users } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/../prisma/prisma";
-import { Container } from "@/components/layout/Container";
 import { FlyerDownload } from "@/components/mentorships/FlyerDownload";
 import { ShareButton } from "@/components/mentorships/ShareButton";
+
+const cx = "mx-auto w-full max-w-screen-2xl px-6 lg:px-12";
+
+const STATUS_STYLES: Record<string, string> = {
+  open: "border-green-500/40 text-green-400",
+  full: "border-yellow-500/40 text-yellow-400",
+  closed: "border-zinc-700 text-zinc-500",
+};
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://codetopia.community";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const mentorship = await prisma.mentorship.findUnique({
+      where: { slug },
+      select: {
+        title: true,
+        description: true,
+        coverImage: true,
+        status: true,
+      },
+    });
+    if (!mentorship) return { title: "Mentorship — Codetopia" };
+
+    const url = `${BASE_URL}/mentorships/${slug}`;
+    const image = mentorship.coverImage ?? `${BASE_URL}/og-default.png`;
+    const description =
+      mentorship.description?.slice(0, 160) ??
+      "A mentorship program by the Codetopia community.";
+
+    return {
+      title: `${mentorship.title} — Codetopia Mentorships`,
+      description,
+      openGraph: {
+        title: mentorship.title,
+        description,
+        url,
+        siteName: "Codetopia Community",
+        images: [
+          { url: image, width: 1200, height: 630, alt: mentorship.title },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: mentorship.title,
+        description,
+        images: [image],
+      },
+    };
+  } catch {
+    return { title: "Mentorship — Codetopia" };
+  }
+}
 
 export default async function MentorshipDetail({
   params,
@@ -12,6 +72,7 @@ export default async function MentorshipDetail({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
   let mentorship:
     | (Awaited<ReturnType<typeof prisma.mentorship.findUnique>> & {
         mentors: {
@@ -23,6 +84,7 @@ export default async function MentorshipDetail({
         }[];
       })
     | null = null;
+
   try {
     mentorship = await prisma.mentorship.findUnique({
       where: { slug },
@@ -51,7 +113,7 @@ export default async function MentorshipDetail({
           </p>
           <Link
             href="/mentorships"
-            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-inter text-xs uppercase tracking-widest"
+            className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors font-mono text-xs uppercase tracking-widest"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Mentorships
@@ -60,17 +122,13 @@ export default async function MentorshipDetail({
       </div>
     );
 
-  const statusColor =
-    mentorship.status === "open"
-      ? "border-green-500/40 text-green-400 bg-green-500/10"
-      : mentorship.status === "full"
-        ? "border-yellow-500/40 text-yellow-400 bg-yellow-500/10"
-        : "border-zinc-700 text-zinc-400 bg-zinc-900";
+  const statusStyle = STATUS_STYLES[mentorship.status] ?? STATUS_STYLES.closed;
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      {/* Hero */}
-      <div className="relative w-full h-[420px] overflow-hidden border-b border-zinc-800">
+      {/* ── Full-bleed hero ── */}
+      <div className="relative w-full min-h-[70vh] flex flex-col justify-end overflow-hidden">
+        {/* Cover image */}
         {mentorship.coverImage ? (
           <Image
             src={mentorship.coverImage}
@@ -80,122 +138,87 @@ export default async function MentorshipDetail({
             priority
           />
         ) : (
-          <div className="w-full h-full bg-zinc-900" />
+          <div className="absolute inset-0 bg-zinc-950" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        {/* Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/20" />
 
-        {/* Back link */}
-        <div className="absolute top-8 left-0 right-0 z-10">
-          <Container className="px-4">
+        {/* Back nav */}
+        <div className="absolute top-0 left-0 right-0 z-20 pt-8">
+          <div className={cx}>
             <Link
               href="/mentorships"
-              className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-inter text-xs uppercase tracking-widest"
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-3.5 h-3.5" />
               All Mentorships
             </Link>
-          </Container>
+          </div>
         </div>
 
-        <Container className="relative z-10 h-full flex flex-col justify-end pb-12 px-4">
-          <div className="max-w-3xl space-y-3">
-            <div className="flex items-center gap-3 flex-wrap">
-              <span
-                className={`text-[10px] font-bold font-space-grotesk uppercase tracking-widest px-2.5 py-1 border ${statusColor}`}
-              >
-                {mentorship.status}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[0.95] font-space-grotesk">
+        {/* Hero content */}
+        <div className={`${cx} relative z-10 pb-16 pt-32`}>
+          <div className="flex flex-col gap-5 max-w-4xl">
+            <span
+              className={`inline-flex w-fit items-center px-4 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-bold border ${statusStyle}`}
+            >
+              {mentorship.status}
+            </span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] font-space-grotesk text-white">
               {mentorship.title}
             </h1>
-            {mentorship.mentors && mentorship.mentors.length > 0 && (
-              <p className="text-zinc-300 text-sm font-inter">
-                with{" "}
-                <span className="text-white font-semibold font-space-grotesk">
-                  {mentorship.mentors.map((m) => m.name).join(", ")}
-                </span>
-              </p>
-            )}
-          </div>
-        </Container>
-      </div>
-
-      {/* Body */}
-      <section className="py-14">
-        <Container className="px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Main */}
-            <div className="lg:col-span-2 space-y-12">
-              {/* Details row */}
-              <div className="flex flex-col md:flex-row gap-px border border-zinc-800">
-                {mentorship.startDate && (
-                  <div className="flex-1 p-5 bg-zinc-950 border-b md:border-b-0 md:border-r border-zinc-800">
-                    <p className="flex items-center gap-2 text-zinc-500 font-inter text-[10px] uppercase tracking-widest mb-2">
-                      <Calendar className="w-3.5 h-3.5" />
-                      Start Date
-                    </p>
-                    <p className="text-white font-black font-space-grotesk text-lg">
-                      {new Date(mentorship.startDate).toLocaleDateString(
-                        "en-US",
-                        {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        },
-                      )}
-                    </p>
-                  </div>
-                )}
-                {mentorship.endDate && (
-                  <div className="flex-1 p-5 bg-zinc-950 border-b md:border-b-0 md:border-r border-zinc-800">
-                    <p className="flex items-center gap-2 text-zinc-500 font-inter text-[10px] uppercase tracking-widest mb-2">
-                      <Calendar className="w-3.5 h-3.5" />
-                      End Date
-                    </p>
-                    <p className="text-white font-black font-space-grotesk text-lg">
+            {/* Meta row */}
+            <div className="flex flex-wrap gap-6 font-mono text-xs text-zinc-400 uppercase tracking-widest">
+              {mentorship.startDate && (
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5" />
+                  {new Date(mentorship.startDate).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                  {mentorship.endDate && (
+                    <>
+                      {" → "}
                       {new Date(mentorship.endDate).toLocaleDateString(
                         "en-US",
-                        {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        },
+                        { month: "short", day: "numeric", year: "numeric" },
                       )}
-                    </p>
-                  </div>
-                )}
-                {(mentorship.location || mentorship.isOnline) && (
-                  <div className="flex-1 p-5 bg-zinc-950 border-b md:border-b-0 md:border-r border-zinc-800">
-                    <p className="flex items-center gap-2 text-zinc-500 font-inter text-[10px] uppercase tracking-widest mb-2">
-                      <MapPin className="w-3.5 h-3.5" />
-                      Location
-                    </p>
-                    <p className="text-white font-black font-space-grotesk text-lg">
-                      {mentorship.location || "Online"}
-                    </p>
-                  </div>
-                )}
-                {mentorship.capacity && (
-                  <div className="flex-1 p-5 bg-zinc-950">
-                    <p className="flex items-center gap-2 text-zinc-500 font-inter text-[10px] uppercase tracking-widest mb-2">
-                      <Users className="w-3.5 h-3.5" />
-                      Capacity
-                    </p>
-                    <p className="text-white font-black font-space-grotesk text-lg">
-                      {mentorship.capacity} Spots
-                    </p>
-                  </div>
-                )}
-              </div>
+                    </>
+                  )}
+                </span>
+              )}
+              {(mentorship.location || mentorship.isOnline) && (
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5" />
+                  {mentorship.location || "Online"}
+                </span>
+              )}
+              {mentorship.capacity && (
+                <span className="flex items-center gap-1.5">
+                  <Users className="w-3.5 h-3.5" />
+                  {mentorship.capacity} spots
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
-              {/* Description */}
+      {/* ── Body ── */}
+      <div className="w-full border-t border-zinc-800">
+        <div className={`${cx} py-16`}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-16">
+            {/* ── Left: main content ── */}
+            <div className="flex flex-col gap-16">
+              {/* About */}
               {mentorship.description && (
-                <div className="space-y-4 pb-12 border-b border-zinc-800">
-                  <h2 className="text-xs font-black font-space-grotesk uppercase tracking-widest text-zinc-400">
-                    About This Program
-                  </h2>
-                  <p className="text-zinc-300 text-base leading-relaxed font-inter whitespace-pre-wrap">
+                <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
+                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                    <span className="text-white/10">01 /</span> About This
+                    Program
+                  </span>
+                  <p className="text-zinc-300 text-lg font-mono leading-relaxed whitespace-pre-wrap max-w-2xl">
                     {mentorship.description}
                   </p>
                 </div>
@@ -203,15 +226,15 @@ export default async function MentorshipDetail({
 
               {/* Tags */}
               {Array.isArray(mentorship.tags) && mentorship.tags.length > 0 && (
-                <div className="space-y-4 pb-12 border-b border-zinc-800">
-                  <h3 className="text-xs font-black font-space-grotesk uppercase tracking-widest text-zinc-400">
-                    Topics Covered
-                  </h3>
+                <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
+                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                    <span className="text-white/10">02 /</span> Tags
+                  </span>
                   <div className="flex flex-wrap gap-2">
-                    {mentorship.tags.map((tag: string) => (
+                    {(mentorship.tags as string[]).map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1.5 bg-zinc-950 border border-zinc-800 text-xs font-inter text-zinc-300 hover:border-zinc-600 hover:text-white transition-colors"
+                        className="font-mono text-xs uppercase tracking-widest text-zinc-300 border border-zinc-800 px-4 py-2"
                       >
                         {tag}
                       </span>
@@ -222,91 +245,138 @@ export default async function MentorshipDetail({
 
               {/* Mentors */}
               {mentorship.mentors && mentorship.mentors.length > 0 && (
-                <div className="space-y-6">
-                  <h3 className="text-xs font-black font-space-grotesk uppercase tracking-widest text-zinc-400">
-                    Your Mentors
-                  </h3>
-                  <div className="flex flex-wrap gap-4">
-                    {mentorship.mentors.map((mentor) => (
-                      <Link
-                        key={mentor.id}
-                        href={`/team#${mentor.slug}`}
-                        className="relative group w-44 h-44 overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-colors"
-                      >
-                        {mentor.imageUrl ? (
-                          <Image
-                            src={mentor.imageUrl}
-                            alt={mentor.name}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-zinc-900" />
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-3">
-                          <p className="text-white font-black font-space-grotesk text-sm leading-tight">
-                            {mentor.name}
-                          </p>
-                          {mentor.role && (
-                            <p className="text-zinc-400 font-inter text-[10px] mt-0.5 truncate">
-                              {mentor.role}
-                            </p>
+                <div className="flex flex-col gap-8">
+                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                    <span className="text-white/10">03 /</span> Your Mentors
+                  </span>
+                  <div className="flex flex-col gap-6">
+                    {/* Stacked overlapping avatars */}
+                    <div className="flex items-center">
+                      {mentorship.mentors.map((mentor, i) => (
+                        <Link
+                          key={mentor.id}
+                          href={`/team#${mentor.slug}`}
+                          style={{ zIndex: mentorship.mentors.length - i }}
+                          className={`relative group w-16 h-16 rounded-full overflow-hidden border-2 border-black ring-1 ring-zinc-800 shrink-0 ${i > 0 ? "-ml-4" : ""}`}
+                        >
+                          {mentor.imageUrl ? (
+                            <Image
+                              src={mentor.imageUrl}
+                              alt={mentor.name}
+                              fill
+                              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                              <span className="text-white font-black text-lg uppercase">
+                                {mentor.name[0]}
+                              </span>
+                            </div>
                           )}
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      ))}
+                    </div>
+                    {/* Names list below */}
+                    <div className="flex flex-col gap-3">
+                      {mentorship.mentors.map((mentor) => (
+                        <Link
+                          key={mentor.id}
+                          href={`/team#${mentor.slug}`}
+                          className="group flex items-center gap-4 border-b border-zinc-900 pb-3 last:border-0 last:pb-0"
+                        >
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 ring-1 ring-zinc-800">
+                            {mentor.imageUrl ? (
+                              <Image
+                                src={mentor.imageUrl}
+                                alt={mentor.name}
+                                fill
+                                className="object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                                <span className="text-white font-black text-sm uppercase">
+                                  {mentor.name[0]}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-white font-black font-space-grotesk text-sm uppercase tracking-tight group-hover:text-zinc-300 transition-colors">
+                              {mentor.name}
+                            </p>
+                            {mentor.role && (
+                              <p className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest truncate">
+                                {mentor.role}
+                              </p>
+                            )}
+                          </div>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-zinc-700 group-hover:text-white transition-colors shrink-0" />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-4">
-                {/* Flyer with download on hover */}
-                {mentorship.flyerImage && (
-                  <FlyerDownload
-                    flyerImage={mentorship.flyerImage}
-                    title={mentorship.title}
-                  />
-                )}
-
-                {/* Apply */}
-                {mentorship.applicationLink ? (
-                  <a
-                    href={mentorship.applicationLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block w-full bg-white text-black px-4 py-3.5 font-black font-space-grotesk uppercase tracking-tight hover:bg-zinc-100 transition-colors text-center text-sm border border-white"
-                  >
-                    Apply Now
-                  </a>
-                ) : (
-                  <div className="p-4 bg-zinc-950 border border-zinc-800 text-center">
-                    <p className="text-xs text-zinc-500 font-inter">
-                      Application link coming soon
-                    </p>
-                  </div>
-                )}
-
-                <ShareButton
+            {/* ── Right: sidebar ── */}
+            <div className="flex flex-col gap-4 lg:sticky lg:top-24 lg:self-start">
+              {/* Flyer */}
+              {mentorship.flyerImage && (
+                <FlyerDownload
+                  flyerImage={mentorship.flyerImage}
                   title={mentorship.title}
-                  description={mentorship.description}
                 />
+              )}
 
-                <Link
-                  href="/mentorships"
-                  className="inline-flex items-center justify-center gap-2 w-full text-zinc-400 hover:text-white transition-colors font-inter text-xs uppercase tracking-widest py-3.5 border border-zinc-800 hover:border-zinc-600 bg-black"
+              {/* Apply */}
+              {mentorship.applicationLink ? (
+                <a
+                  href={mentorship.applicationLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between w-full px-6 py-4 bg-white text-black font-mono text-[10px] uppercase tracking-[0.2em] font-black hover:bg-zinc-100 transition-colors"
                 >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to All
-                </Link>
-              </div>
+                  Apply Now
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              ) : (
+                <div className="px-6 py-4 border border-zinc-800 text-center">
+                  <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
+                    Application link coming soon
+                  </p>
+                </div>
+              )}
+
+              {/* Register as mentor */}
+              {mentorship.registrationLink && (
+                <a
+                  href={mentorship.registrationLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between w-full px-6 py-4 border border-zinc-700 text-zinc-300 font-mono text-[10px] uppercase tracking-[0.2em] font-black hover:border-white hover:text-white transition-colors"
+                >
+                  Register as a Mentor
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              )}
+
+              <ShareButton
+                title={mentorship.title}
+                description={mentorship.description}
+              />
+
+              <Link
+                href="/mentorships"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Back to All
+              </Link>
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </div>
     </div>
   );
 }

@@ -29,15 +29,24 @@ export function MentorsSection({
     ) ?? [];
 
   return (
-    <div className="bg-white border border-grey-200 p-8 space-y-6">
-      <h2 className="text-xl font-bold text-black uppercase tracking-tight">
-        Mentors
-      </h2>
+    <div className="bg-zinc-50 border border-zinc-100 p-6 space-y-5">
+      <div className="flex items-center gap-3 pb-4 border-b border-zinc-200">
+        <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 border-l-2 border-black pl-3">
+          05 — Mentors
+        </span>
+      </div>
 
       <div className="space-y-4">
         {/* Search */}
         <div className="relative">
+          <label
+            htmlFor="mentorship-mentor-search"
+            className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-1.5 block"
+          >
+            Search & Add Mentors
+          </label>
           <Input
+            id="mentorship-mentor-search"
             type="text"
             value={search}
             onChange={(e) => {
@@ -45,12 +54,12 @@ export function MentorsSection({
               setShowDropdown(true);
             }}
             onFocus={() => setShowDropdown(true)}
-            placeholder="Search and add mentors..."
-            className="border-grey-200 focus:border-black"
+            placeholder="Search by name or role..."
+            className="border-zinc-200 focus:border-zinc-900 focus:ring-0 rounded-none bg-white"
           />
 
           {showDropdown && search && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-grey-200 z-10 max-h-64 overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-zinc-200 z-10 max-h-64 overflow-y-auto">
               {suggestions.length > 0 ? (
                 suggestions.map((m) => (
                   <button
@@ -61,10 +70,10 @@ export function MentorsSection({
                       setSearch("");
                       setShowDropdown(false);
                     }}
-                    className="w-full px-4 py-3 text-left hover:bg-grey-50 transition-colors border-b border-grey-100 last:border-b-0 flex items-center gap-3"
+                    className="w-full px-4 py-3 text-left hover:bg-zinc-50 transition-colors border-b border-zinc-100 last:border-b-0 flex items-center gap-3"
                   >
                     {m.imageUrl && (
-                      <div className="relative h-8 w-8 rounded-full overflow-hidden flex-shrink-0">
+                      <div className="relative h-8 w-8 overflow-hidden flex-shrink-0 border border-zinc-200">
                         <Image
                           src={m.imageUrl}
                           alt={m.name}
@@ -74,15 +83,17 @@ export function MentorsSection({
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-black truncate">
+                      <p className="text-sm font-medium text-black truncate">
                         {m.name}
                       </p>
-                      <p className="text-xs text-grey-500 truncate">{m.role}</p>
+                      <p className="text-xs font-mono text-zinc-400 truncate">
+                        {m.role}
+                      </p>
                     </div>
                   </button>
                 ))
               ) : (
-                <div className="px-4 py-3 text-sm text-grey-500">
+                <div className="px-4 py-3 text-xs font-mono text-zinc-400 uppercase tracking-widest">
                   No mentors found
                 </div>
               )}
@@ -92,35 +103,40 @@ export function MentorsSection({
 
         {/* Selected pills */}
         {mentorIds.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {mentorIds.map((mentorId) => {
-              const mentor = teamData?.find((m) => m.id === mentorId);
-              return mentor ? (
-                <div
-                  key={mentor.id}
-                  className="inline-flex items-center gap-2 bg-black text-white px-3 py-2 text-sm font-medium animate-in zoom-in duration-200"
-                >
-                  {mentor.imageUrl && (
-                    <div className="relative h-6 w-6 rounded-full overflow-hidden flex-shrink-0">
-                      <Image
-                        src={mentor.imageUrl}
-                        alt={mentor.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <span>{mentor.name}</span>
-                  <button
-                    type="button"
-                    onClick={() => onToggle(mentor.id)}
-                    className="hover:text-red-400 transition-colors ml-1"
+          <div className="border-t border-zinc-100 pt-4">
+            <p className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3">
+              Selected ({mentorIds.length})
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {mentorIds.map((mentorId) => {
+                const mentor = teamData?.find((m) => m.id === mentorId);
+                return mentor ? (
+                  <div
+                    key={mentor.id}
+                    className="inline-flex items-center gap-2 bg-black text-white px-3 py-2 text-xs font-mono animate-in zoom-in duration-200"
                   >
-                    <X className="h-4 w-4" />
-                  </button>
-                </div>
-              ) : null;
-            })}
+                    {mentor.imageUrl && (
+                      <div className="relative h-5 w-5 overflow-hidden flex-shrink-0">
+                        <Image
+                          src={mentor.imageUrl}
+                          alt={mentor.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <span>{mentor.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => onToggle(mentor.id)}
+                      className="hover:text-zinc-400 transition-colors ml-1"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ) : null;
+              })}
+            </div>
           </div>
         )}
       </div>
