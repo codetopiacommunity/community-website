@@ -1,3 +1,5 @@
+import { withRetry } from "./retry";
+
 const HASHNODE_GQL_ENDPOINT = "https://gql.hashnode.com";
 
 export interface HashnodeAuthor {
@@ -69,21 +71,39 @@ const GET_ARTICLE = `
 async function gqlFetch<T>(
   query: string,
   variables: Record<string, unknown>,
-): Promise<T> {
-  const res = await fetch(HASHNODE_GQL_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables }),
-    next: { revalidate: 3600 },
-    signal: AbortSignal.timeout(10_000),
-  });
+): Promise<T | null> {
+  return withRetry<T | null>(
+    async () => {
+      const res = await fetch(HASHNODE_GQL_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, variables }),
+        next: { revalidate: 3600 },
+        signal: AbortSignal.timeout(10_000),
+      });
 
-  if (!res.ok) {
-    throw new Error(`Hashnode API error: ${res.status} ${res.statusText}`);
-  }
+      if (!res.ok) {
+        throw new Error(`Hashnode API error: ${res.status} ${res.statusText}`);
+      }
 
-  const json = await res.json();
-  return json.data as T;
+      const json = await res.json();
+
+      if (json.errors) {
+        console.error(
+          "Hashnode GraphQL Errors:",
+          JSON.stringify(json.errors, null, 2),
+        );
+        throw new Error("Hashnode GraphQL error");
+      }
+
+      return json.data as T;
+    },
+    {
+      maxRetries: 2,
+      delayMs: 1000,
+      fallback: null,
+    },
+  );
 }
 
 function mapNode(node: Record<string, unknown>): HashnodeArticle {
