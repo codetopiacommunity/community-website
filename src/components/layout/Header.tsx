@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "./Container";
 import { FeaturedCareerBanner } from "./FeaturedCareerBanner";
@@ -31,7 +31,7 @@ type NavItem = StandaloneNavItem | MegaMenuNavItem;
 
 const NAV_ITEMS: NavItem[] = [
   { type: "link", label: "Mentorships", href: "/mentorships" },
-  { type: "link", label: "Careers", href: "/opportunities" },
+  { type: "link", label: "Careers", href: "/careers" },
   {
     type: "megamenu",
     label: "Events",
@@ -94,8 +94,15 @@ function isNavItemActive(item: NavItem, pathname: string): boolean {
   return item.children.some((child) => pathname === child.href);
 }
 
-function DesktopNav({ pathname }: { pathname: string }) {
-  const [_isNavOpen, setIsNavOpen] = useState(false);
+function DesktopNav({
+  pathname,
+  onMegaMenuEnter,
+  onMegaMenuLeave,
+}: {
+  pathname: string;
+  onMegaMenuEnter: () => void;
+  onMegaMenuLeave: () => void;
+}) {
   return (
     <nav
       aria-label="Main navigation"
@@ -122,8 +129,8 @@ function DesktopNav({ pathname }: { pathname: string }) {
           <button
             key={item.label}
             type="button"
-            onMouseEnter={() => setIsNavOpen(true)}
-            onMouseLeave={() => setIsNavOpen(false)}
+            onMouseEnter={onMegaMenuEnter}
+            onMouseLeave={onMegaMenuLeave}
             className={`flex items-center gap-1.5 px-3 py-2 text-sm font-semibold tracking-wide transition-colors duration-200 ${
               isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
             }`}
@@ -243,99 +250,116 @@ export function Header() {
   const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(
     null,
   );
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleMouseEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setIsNavOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer.current = setTimeout(() => setIsNavOpen(false), 100);
+  };
 
   return (
     <>
       <FeaturedCareerBanner />
-      <header className="sticky top-0 z-50 w-full bg-gradient-to-b from-grey-900 to-grey-900/95 text-grey-50 font-sans border-b border-grey-800/30 backdrop-blur-sm">
-        <Container className="flex h-20 items-center justify-between px-4 md:px-6">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex shrink-0 items-center hover:opacity-80 transition-opacity"
-          >
-            <Image
-              src={logo}
-              alt="Codetopia"
-              width={150}
-              height={90}
-              priority
-              className="object-contain"
-            />
-          </Link>
+      {/* Wrapper is sticky */}
+      <div className="sticky top-0 z-50 w-full relative">
+        <header className="w-full bg-gradient-to-b from-grey-900 to-grey-900/95 text-grey-50 font-sans border-b border-grey-800/30 backdrop-blur-sm">
+          <Container className="flex h-20 items-center justify-between px-4 md:px-6">
+            {/* Logo */}
+            <Link
+              href="/"
+              className="flex shrink-0 items-center hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src={logo}
+                alt="Codetopia"
+                width={150}
+                height={90}
+                priority
+                className="object-contain"
+              />
+            </Link>
 
-          {/* Right side */}
-          <div className="flex items-center gap-6 md:gap-8">
-            <DesktopNav pathname={pathname} />
-            <MobileMenuToggle
-              isOpen={isMobileMenuOpen}
-              onToggle={() => {
-                setIsMobileMenuOpen(!isMobileMenuOpen);
-                setExpandedMobileItem(null);
-              }}
-            />
-          </div>
-        </Container>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <MobileMenu
-            expandedMobileItem={expandedMobileItem}
-            setExpandedMobileItem={setExpandedMobileItem}
-            onClose={() => setIsMobileMenuOpen(false)}
-            pathname={pathname}
-          />
-        )}
-      </header>
-
-      {/* Desktop Expanded Nav Panel */}
-      {isNavOpen && (
-        // biome-ignore lint/a11y/useSemanticElements: div is kept for styling and layout control
-        <div
-          role="region"
-          aria-label="Expanded navigation menu"
-          className="sticky top-20 z-40 hidden lg:block w-full bg-grey-900/95 border-b border-grey-800/30 backdrop-blur-md animate-slide-down-smooth"
-          onMouseEnter={() => setIsNavOpen(true)}
-          onMouseLeave={() => setIsNavOpen(false)}
-        >
-          <Container>
-            <div className="grid grid-cols-3 gap-8 py-8 px-4 md:px-6">
-              {NAV_ITEMS.map((item) => {
-                if (item.type === "link") {
-                  return null;
-                }
-
-                return (
-                  <div key={item.label} className="space-y-4">
-                    <h3 className="font-bold text-grey-50 text-xs uppercase tracking-widest">
-                      {item.label}
-                    </h3>
-                    <div className="space-y-2">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={() => setIsNavOpen(false)}
-                          className="block px-3 py-2.5 rounded-lg hover:bg-grey-800/40 transition-all duration-200 group"
-                        >
-                          <span className="text-sm text-grey-100 group-hover:text-grey-50 transition-colors font-medium">
-                            {child.label}
-                          </span>
-                          {child.description && (
-                            <p className="text-xs text-grey-400 mt-1">
-                              {child.description}
-                            </p>
-                          )}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+            {/* Right side */}
+            <div className="flex items-center gap-6 md:gap-8">
+              <DesktopNav
+                pathname={pathname}
+                onMegaMenuEnter={handleMouseEnter}
+                onMegaMenuLeave={handleMouseLeave}
+              />
+              <MobileMenuToggle
+                isOpen={isMobileMenuOpen}
+                onToggle={() => {
+                  setIsMobileMenuOpen(!isMobileMenuOpen);
+                  setExpandedMobileItem(null);
+                }}
+              />
             </div>
           </Container>
-        </div>
-      )}
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <MobileMenu
+              expandedMobileItem={expandedMobileItem}
+              setExpandedMobileItem={setExpandedMobileItem}
+              onClose={() => setIsMobileMenuOpen(false)}
+              pathname={pathname}
+            />
+          )}
+        </header>
+
+        {/* Desktop Expanded Nav Panel — absolutely positioned so it floats over page content */}
+        {isNavOpen && (
+          // biome-ignore lint/a11y/useSemanticElements: div is kept for styling and layout control
+          <div
+            role="region"
+            aria-label="Expanded navigation menu"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="absolute top-full left-0 hidden lg:block w-full bg-grey-900/95 border-b border-grey-800/30 backdrop-blur-md shadow-2xl animate-in slide-in-from-top-2 fade-in-0 duration-200"
+          >
+            <Container>
+              <div className="grid grid-cols-3 gap-8 py-8 px-4 md:px-6">
+                {NAV_ITEMS.map((item) => {
+                  if (item.type === "link") {
+                    return null;
+                  }
+
+                  return (
+                    <div key={item.label} className="space-y-4">
+                      <h3 className="font-bold text-grey-50 text-xs uppercase tracking-widest">
+                        {item.label}
+                      </h3>
+                      <div className="space-y-2">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setIsNavOpen(false)}
+                            className="block px-3 py-2.5 rounded-lg hover:bg-grey-800/40 transition-all duration-200 group"
+                          >
+                            <span className="text-sm text-grey-100 group-hover:text-grey-50 transition-colors font-medium">
+                              {child.label}
+                            </span>
+                            {child.description && (
+                              <p className="text-xs text-grey-400 mt-1">
+                                {child.description}
+                              </p>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Container>
+          </div>
+        )}
+      </div>
     </>
   );
 }
