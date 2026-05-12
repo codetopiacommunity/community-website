@@ -76,6 +76,7 @@ export async function POST(request: Request) {
         location: data.location || null,
         capacity: data.capacity ? Number(data.capacity) : null,
         applicationLink: data.applicationLink || null,
+        registrationLink: data.registrationLink || null,
         imageUrl: processedImageUrl,
         coverImage: processedCoverImage,
         flyerImage: processedFlyerImage,
