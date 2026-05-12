@@ -192,24 +192,25 @@ model Career {
 }
 
 model Mentorship {
-  id              Int          @id @default(autoincrement())
-  slug            String?      @unique
-  title           String
-  description     String       @db.Text
-  startDate       DateTime?    @map("start_date")
-  endDate         DateTime?    @map("end_date")
-  isOnline        Boolean      @default(true) @map("is_online")
-  location        String?
-  capacity        Int?
-  applicationLink String?      @map("application_link")
-  imageUrl        String?      @map("image_url")
-  coverImage      String?      @map("cover_image")
-  flyerImage      String?      @map("flyer_image")
-  tags            String[]
-  status          String       @default("open")
-  mentors         TeamMember[]
-  createdAt       DateTime     @default(now()) @map("created_at")
-  updatedAt       DateTime     @updatedAt @map("updated_at")
+  id               Int          @id @default(autoincrement())
+  slug             String?      @unique
+  title            String
+  description      String       @db.Text
+  startDate        DateTime?    @map("start_date")
+  endDate          DateTime?    @map("end_date")
+  isOnline         Boolean      @default(true) @map("is_online")
+  location         String?
+  capacity         Int?
+  applicationLink  String?      @map("application_link")
+  registrationLink String?      @map("registration_link")
+  imageUrl         String?      @map("image_url")
+  coverImage       String?      @map("cover_image")
+  flyerImage       String?      @map("flyer_image")
+  tags             String[]
+  status           String       @default("open")
+  mentors          TeamMember[]
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
 
   @@map("mentorships")
 }
