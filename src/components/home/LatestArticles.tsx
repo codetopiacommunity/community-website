@@ -8,7 +8,13 @@ import { fetchArticles } from "@/lib/hashnode";
 export const revalidate = 3600;
 
 export async function LatestArticles() {
-  const config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
+  let config: Awaited<ReturnType<typeof prisma.articlesConfig.findUnique>> =
+    null;
+  try {
+    config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
+  } catch {
+    return null;
+  }
 
   if (!config || !config.hashnodeHost) return null;
 
