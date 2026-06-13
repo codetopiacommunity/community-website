@@ -27,13 +27,40 @@ git clone https://github.com/YOUR_USERNAME/community-website.git
 cd community-website
 ```
 
-### 3. Set Up the Project
+### 3. Add the Upstream Remote
+
+```bash
+git remote add upstream https://github.com/codetopiacommunity/community-website.git
+```
+
+Verify your remotes:
+
+```bash
+git remote -v
+# origin    https://github.com/YOUR_USERNAME/community-website.git (fetch)
+# origin    https://github.com/YOUR_USERNAME/community-website.git (push)
+# upstream  https://github.com/codetopiacommunity/community-website.git (fetch)
+# upstream  https://github.com/codetopiacommunity/community-website.git (push)
+```
+
+### 4. Set Up the Project
 
 ```bash
 pnpm install
 ```
 
-### 4. Create a Branch
+### 5. Sync With Upstream Before Branching
+
+Always pull the latest changes from upstream before starting any work:
+
+```bash
+git checkout dev
+git fetch upstream
+git merge upstream/dev
+git push origin dev
+```
+
+### 6. Create a Branch
 
 Use a descriptive branch name that reflects what you are working on:
 
@@ -51,7 +78,7 @@ Branch naming conventions:
 | `docs/` | Documentation updates |
 | `style/` | UI or styling changes |
 
-### 5. Make Your Changes
+### 7. Make Your Changes
 
 Make sure your code is clean and follows our style guidelines. We use **Biome** for linting and formatting. Run this before committing:
 
@@ -59,7 +86,7 @@ Make sure your code is clean and follows our style guidelines. We use **Biome** 
 pnpm biome check .
 ```
 
-### 6. Commit Your Changes
+### 8. Commit Your Changes
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org) specification. Your commit messages should follow this format:
 
@@ -77,13 +104,13 @@ docs: update contributing guide
 style: adjust spacing on mobile nav
 ```
 
-### 7. Push to Your Fork
+### 9. Push to Your Fork
 
 ```bash
 git push origin feat/your-feature-name
 ```
 
-### 8. Open a Pull Request
+### 10. Open a Pull Request
 
 Go to the original Codetopia Community repository and open a Pull Request from your fork into the **`dev`** branch.
 
