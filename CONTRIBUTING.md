@@ -131,8 +131,7 @@ In your PR description, please include:
 | Package Manager | pnpm |
 | Linting & Formatting | Biome |
 | UI Components | shadcn/ui |
-| Staging | [staging.codetopia.org](https://staging.codetopia.org) |
-| Production | [codetopia.org](https://codetopia.org) |
+| Production | [community.codetopia.org](https://community.codetopia.org) |
 
 ---
 
@@ -140,8 +139,8 @@ In your PR description, please include:
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Production — live at codetopia.org |
-| `dev` | Staging — preview at staging.codetopia.org |
+| `main` | Production — live at community.codetopia.org |
+| `dev` | Staging |
 | `feat/*` | Feature branches |
 | `fix/*` | Bug fix branches |
 | `docs/*` | Documentation branches |
