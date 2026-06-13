@@ -9,7 +9,7 @@
 
 [![CI](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml/badge.svg)](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml)
 
-[🌐 Live Site](https://codetopia.org) · [🚧 Staging](https://staging.codetopia.org) · [💬 Discord](https://discord.gg/nPmRWdTQAK) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
+[🌐 Live Site](https://community.codetopia.org) · [💬 Discord](https://discord.gg/nPmRWdTQAK) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
 
 </div>
 
@@ -84,7 +84,7 @@ We welcome contributions from everyone! Please read our [Contributing Guide](CON
 | Branch | Purpose |
 |--------|---------|
 | `main` | Production — live at codetopia.org |
-| `dev` | Staging — preview at staging.codetopia.org |
+| `dev` | Staging |
 | `feat/*` | Feature branches |
 | `fix/*` | Bug fix branches |
 | `docs/*` | Documentation branches |
