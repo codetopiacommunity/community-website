@@ -49,6 +49,34 @@ git remote -v
 pnpm install
 ```
 
+**Environment Variables**
+
+Copy the example env file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
+| `RESEND_API_KEY` | Resend API key for emails |
+| `EMAIL_FROM` | Sender address (e.g. `Name <email@domain.com>`) |
+| `JWT_SECRET` | Secret used to sign JWT tokens |
+| `NEXT_PUBLIC_BASE_URL` | Base URL of the app (e.g. `http://localhost:3000`) |
+| `NEXT_PUBLIC_SITE_URL` | Public site URL |
+
+**Database**
+
+Run Prisma migrations after setting `DATABASE_URL`:
+
+```bash
+npx prisma migrate dev
+```
+
 ### 5. Sync With Upstream Before Branching
 
 Always pull the latest changes from upstream before starting any work:
