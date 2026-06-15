@@ -15,7 +15,7 @@ export function TechnicalSpotlight({
     <section className="w-full bg-black overflow-hidden border-t border-zinc-900 px-0 py-24 md:py-32">
       <Container className="max-w-none px-0">
         <div className="w-full mb-24 text-left px-6 lg:px-12 max-w-screen-2xl mx-auto">
-          <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter mb-6 leading-none font-sans">
+          <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter mb-6 leading-none font-sans">
             SPOTLIGHT
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
@@ -42,7 +42,7 @@ export function TechnicalSpotlight({
           <div className="flex flex-col justify-center p-8 md:p-16 lg:p-24 bg-black space-y-12">
             <div className="space-y-8 lg:transform lg:-translate-x-1 lg:group-hover:translate-x-0 lg:transition-transform lg:duration-700">
               <div className="space-y-4">
-                <h2 className="text-5xl md:text-7xl lg:text-[6rem] xl:text-[9.5rem] font-black uppercase tracking-tighter text-white leading-[0.75] font-sans">
+                <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] font-black uppercase tracking-tighter text-white leading-[0.75] font-sans">
                   {spotlight.name.split(" ").map((part, i, arr) => (
                     <React.Fragment key={`${spotlight.id}-${part}-${i}`}>
                       {part}

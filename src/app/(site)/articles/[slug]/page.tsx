@@ -145,7 +145,7 @@ export default async function ArticleDetailPage({
                   <Link
                     key={tag.slug}
                     href={`/articles?tag=${tag.slug}`}
-                    className="font-mono text-[9px] uppercase tracking-[0.25em] text-background bg-foreground px-2 py-0.5 border border-foreground hover:opacity-80 transition-opacity"
+                    className="font-mono text-[10px] uppercase tracking-[0.25em] text-background bg-foreground px-2 py-0.5 border border-foreground hover:opacity-80 transition-opacity"
                   >
                     {tag.name}
                   </Link>

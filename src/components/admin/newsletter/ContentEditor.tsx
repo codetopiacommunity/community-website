@@ -1,7 +1,8 @@
 "use client";
 
+import DOMPurify from "dompurify";
 import { Eye, EyeOff } from "lucide-react";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import type { ToolItem } from "./NewsletterToolbar";
 import { NewsletterToolbar } from "./NewsletterToolbar";
 
@@ -26,6 +27,10 @@ export function ContentEditor({
   onInsert,
 }: ContentEditorProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const safePreviewHtml = useMemo(
+    () => DOMPurify.sanitize(previewHtml),
+    [previewHtml],
+  );
 
   return (
     <div className="rounded-none border border-grey-100 bg-white p-6 space-y-3">
@@ -60,8 +65,8 @@ export function ContentEditor({
       {showPreview ? (
         <div
           className="min-h-[520px] rounded-none border border-black p-6 prose prose-sm max-w-none text-sm"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled markdown preview
-          dangerouslySetInnerHTML={{ __html: previewHtml }}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: sanitized with DOMPurify
+          dangerouslySetInnerHTML={{ __html: safePreviewHtml }}
         />
       ) : (
         <textarea

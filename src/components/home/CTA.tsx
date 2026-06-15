@@ -19,7 +19,7 @@ export function CTA() {
       </div>
 
       <Container className="relative z-10 flex flex-col items-center max-w-6xl px-4 font-sans">
-        <h2 className="text-5xl md:text-7xl lg:text-9xl font-black text-white mb-10 uppercase tracking-tighter leading-none">
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-10 uppercase tracking-tighter leading-none">
           READY TO <span className="text-zinc-600">JOIN?</span>
         </h2>
         <p className="text-zinc-400 text-lg md:text-xl lg:text-2xl mb-16 max-w-2xl font-sans leading-relaxed mx-auto">
