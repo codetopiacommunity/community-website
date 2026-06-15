@@ -1,0 +1,8 @@
+packages:
+  - .
+
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - "@napi-rs/wasm-runtime"
+  - "eslint"
+trustPolicy: no-downgrade

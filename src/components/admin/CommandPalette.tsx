@@ -101,7 +101,8 @@ export function CommandPalette({
     if (open) {
       setQuery("");
       setActiveIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 50);
+      const id = setTimeout(() => inputRef.current?.focus(), 50);
+      return () => clearTimeout(id);
     }
   }, [open]);
 

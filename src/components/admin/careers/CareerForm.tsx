@@ -292,8 +292,7 @@ export function CareerForm({ editingCareer }: CareerFormProps) {
                 <div className="flex flex-wrap gap-2 p-4 bg-grey-50/30 rounded-xl border border-dashed border-grey-200 min-h-[48px]">
                   {formData.requirements.map((req, idx) => (
                     <div
-                      // biome-ignore lint/suspicious/noArrayIndexKey: ordered by position
-                      key={idx}
+                      key={req}
                       className="flex items-center gap-2 bg-white border border-grey-100 px-3 py-1.5 rounded-lg shadow-sm"
                     >
                       <span className="text-xs font-medium text-grey-700 font-mono">

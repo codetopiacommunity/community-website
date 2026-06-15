@@ -214,9 +214,8 @@ export function GalleryPhotosModal({
         <div className="overflow-y-auto flex-1">
           <div className="p-8 space-y-8 font-mono">
             {/* Drop zone */}
-            {/* biome-ignore lint/a11y/noStaticElementInteractions: drag-and-drop zone with click fallback */}
-            {/* biome-ignore lint/a11y/useKeyWithClickEvents: drag-and-drop zone */}
-            <div
+            <button
+              type="button"
               onDragOver={(e) => {
                 e.preventDefault();
                 setDragOver(true);
@@ -224,7 +223,7 @@ export function GalleryPhotosModal({
               onDragLeave={() => setDragOver(false)}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`relative border-2 border-dashed rounded-none p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
+              className={`relative w-full border-2 border-dashed rounded-none p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
                 dragOver
                   ? "border-black bg-grey-50 scale-[1.01]"
                   : "border-grey-200 hover:border-black hover:bg-grey-50/50"
@@ -253,7 +252,7 @@ export function GalleryPhotosModal({
                 className="hidden"
                 onChange={handleFileInput}
               />
-            </div>
+            </button>
 
             {/* Upload queue */}
             {hasQueue && (
