@@ -28,7 +28,10 @@ export function ContentEditor({
 }: ContentEditorProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const safePreviewHtml = useMemo(
-    () => DOMPurify.sanitize(previewHtml),
+    () =>
+      typeof window === "undefined"
+        ? previewHtml
+        : DOMPurify.sanitize(previewHtml),
     [previewHtml],
   );
 

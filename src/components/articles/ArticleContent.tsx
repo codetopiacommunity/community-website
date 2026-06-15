@@ -16,7 +16,10 @@ const PURIFY_CONFIG: Config = {
 
 export default function ArticleContent({ html }: ArticleContentProps) {
   const safeHtml = useMemo(
-    () => DOMPurify.sanitize(html, PURIFY_CONFIG),
+    () =>
+      typeof window === "undefined"
+        ? html
+        : DOMPurify.sanitize(html, PURIFY_CONFIG),
     [html],
   );
 
