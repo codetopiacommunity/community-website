@@ -1,8 +1,19 @@
 packages:
   - .
 
+overrides:
+  postcss: ">=8.5.10"
+  brace-expansion: ">=5.0.6"
+  qs: ">=6.15.2"
+  fast-uri: ">=3.1.2"
+
+allowBuilds:
+  '@prisma/engines': true
+  msw: false
+  prisma: true
+  sharp: true
+
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
   - "@napi-rs/wasm-runtime"
   - "eslint"
-trustPolicy: no-downgrade
