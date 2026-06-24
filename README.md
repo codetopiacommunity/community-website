@@ -9,7 +9,7 @@
 
 [![CI](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml/badge.svg)](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml)
 
-[🌐 Live Site](https://codetopia.org) · [🚧 Staging](https://staging.codetopia.org) · [💬 Discord](https://discord.gg/nPmRWdTQAK) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
+[🌐 Live Site](https://community.codetopia.org) · [💬 Discord](https://discord.gg/nPmRWdTQAK) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
 
 </div>
 
@@ -36,38 +36,7 @@ The Codetopia Community Website is the digital hub for the community initiative 
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 20+
-- pnpm
-
-```bash
-npm install -g pnpm
-```
-
-### Installation
-
-1. Fork the repository
-2. Clone your fork
-
-```bash
-git clone https://github.com/YOUR_USERNAME/community-website.git
-cd community-website
-```
-
-3. Install dependencies
-
-```bash
-pnpm install
-```
-
-4. Start the development server
-
-```bash
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+See the [Contributing Guide](CONTRIBUTING.md) for setup instructions, environment variables, and the full development workflow.
 
 ---
 
@@ -76,18 +45,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 We welcome contributions from everyone! Please read our [Contributing Guide](CONTRIBUTING.md) to get started and our [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
 
 > ⚠️ All pull requests should target the `dev` branch, never `main` directly.
-
----
-
-## Branch Structure
-
-| Branch | Purpose |
-|--------|---------|
-| `main` | Production — live at codetopia.org |
-| `dev` | Staging — preview at staging.codetopia.org |
-| `feat/*` | Feature branches |
-| `fix/*` | Bug fix branches |
-| `docs/*` | Documentation branches |
 
 ---
 

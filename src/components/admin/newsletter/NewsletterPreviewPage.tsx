@@ -145,6 +145,7 @@ export function NewsletterPreviewPage({
               <iframe
                 srcDoc={previewHtml}
                 title="Newsletter Preview"
+                sandbox="allow-same-origin"
                 className="w-full"
                 style={{ minHeight: "600px", border: "none" }}
               />

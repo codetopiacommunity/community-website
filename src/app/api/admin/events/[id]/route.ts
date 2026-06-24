@@ -15,8 +15,7 @@ export async function PATCH(
     const authError = await requireAuth();
     if (authError) return authError;
 
-    const { id } = await params;
-    const body = await request.json();
+    const [{ id }, body] = await Promise.all([params, request.json()]);
 
     // Fetch the existing record
     const event = await prisma.event.findUnique({

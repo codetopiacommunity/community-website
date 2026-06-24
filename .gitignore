@@ -50,3 +50,7 @@ AGENTS.md
 
 .kiro/*
 .kiro
+
+.agents/
+.claude/
+memory/

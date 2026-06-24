@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -44,8 +44,12 @@ export function EventsFormModal({
     recordedVideoLink: "",
     locationUrl: "",
   });
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  const [prevEditingEvent, setPrevEditingEvent] = useState(editingEvent);
 
-  useEffect(() => {
+  if (isOpen !== prevIsOpen || editingEvent !== prevEditingEvent) {
+    setPrevIsOpen(isOpen);
+    setPrevEditingEvent(editingEvent);
     if (isOpen) {
       if (editingEvent) {
         setFormData({
@@ -81,7 +85,7 @@ export function EventsFormModal({
       setActiveTab("core");
       setIsSubmitting(false);
     }
-  }, [editingEvent, isOpen]);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

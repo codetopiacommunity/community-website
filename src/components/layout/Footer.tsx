@@ -33,6 +33,7 @@ export function Footer() {
     // { name: "The Wall", href: "/impact" },
     { name: "Events", href: "/events" },
     { name: "Articles", href: "/articles" },
+    { name: "How-tos", href: "/howtos" },
     { name: "Gallery", href: "/gallery" },
   ];
 
@@ -227,19 +228,22 @@ export function Footer() {
         <div className="mt-32 pt-12 border-t border-zinc-900 flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left Side: Copyright + Build Info */}
           <div className="flex flex-col md:flex-row items-center gap-8 order-3 md:order-1">
-            <p className="text-zinc-700 font-sans text-[10px] uppercase tracking-[0.2em] text-center md:text-left font-normal">
+            <p
+              suppressHydrationWarning
+              className="text-zinc-700 font-sans text-[10px] uppercase tracking-[0.2em] text-center md:text-left font-normal"
+            >
               &copy; {new Date().getFullYear()} Codetopia.
             </p>
             <span className="hidden md:inline text-zinc-900">/</span>
             <div className="flex items-center gap-6">
-              <p className="text-zinc-800 font-sans text-[10px] uppercase tracking-[0.3em] whitespace-nowrap text-center font-normal">
+              <p className="text-zinc-800 font-sans text-[10px] uppercase tracking-[0.2em] whitespace-nowrap text-center font-normal">
                 Built by{" "}
                 <span className="text-zinc-600 font-normal">
                   Codetopia Community
                 </span>
               </p>
               <span className="hidden md:inline text-zinc-900">/</span>
-              <p className="text-zinc-800 font-sans text-[10px] uppercase tracking-[0.3em] whitespace-nowrap text-center font-normal">
+              <p className="text-zinc-800 font-sans text-[10px] uppercase tracking-[0.2em] whitespace-nowrap text-center font-normal">
                 Open Source
               </p>
             </div>
@@ -251,7 +255,7 @@ export function Footer() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-zinc-700 hover:text-white transition-colors font-sans text-[10px] uppercase tracking-[0.1em] whitespace-nowrap font-normal"
+                className="text-zinc-700 hover:text-white transition-colors font-sans text-[10px] uppercase tracking-[0.2em] whitespace-nowrap font-normal"
               >
                 {item.label}
               </Link>

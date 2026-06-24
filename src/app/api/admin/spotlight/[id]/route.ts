@@ -12,8 +12,7 @@ export async function PATCH(
     const authError = await requireAuth();
     if (authError) return authError;
 
-    const { id } = await params;
-    const data = await request.json();
+    const [{ id }, data] = await Promise.all([params, request.json()]);
 
     const existing = await prisma.spotlight.findUnique({
       where: { id: Number(id) },

@@ -58,6 +58,11 @@ const NAV_ITEMS: NavItem[] = [
         description: "Tutorials, guides, and community writing",
       },
       {
+        label: "How-tos",
+        href: "/howtos",
+        description: "Practical step-by-step guides from the community",
+      },
+      {
         label: "Impact",
         href: "/impact",
         description: "Stories of community impact",
@@ -169,7 +174,7 @@ function MobileMenu({
                 key={item.label}
                 href={item.href}
                 onClick={onClose}
-                className={`w-full text-base font-bold tracking-wider py-3 border-b border-grey-800/50 last:border-none transition-colors ${
+                className={`w-full text-base font-semibold tracking-wider py-3 border-b border-grey-800/50 last:border-none transition-colors ${
                   isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
                 }`}
               >
@@ -191,7 +196,7 @@ function MobileMenu({
                 onClick={() =>
                   setExpandedMobileItem(isExpanded ? null : item.label)
                 }
-                className={`w-full flex items-center justify-between text-base font-bold tracking-wider py-3 transition-colors ${
+                className={`w-full flex items-center justify-between text-base font-semibold tracking-wider py-3 transition-colors ${
                   isActive ? "text-grey-50" : "text-grey-300 hover:text-grey-50"
                 }`}
               >
@@ -207,7 +212,7 @@ function MobileMenu({
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="block pl-4 py-2 text-sm text-grey-400 hover:text-grey-50 transition-colors"
+                      className="block pl-4 py-2 text-sm font-semibold tracking-wide text-grey-400 hover:text-grey-50 transition-colors"
                     >
                       {child.label}
                     </Link>
@@ -341,7 +346,7 @@ export function Header() {
                             onClick={() => setIsNavOpen(false)}
                             className="block px-3 py-2.5 rounded-lg hover:bg-grey-800/40 transition-all duration-200 group"
                           >
-                            <span className="text-sm text-grey-100 group-hover:text-grey-50 transition-colors font-medium">
+                            <span className="text-sm text-grey-100 group-hover:text-grey-50 transition-colors font-semibold">
                               {child.label}
                             </span>
                             {child.description && (

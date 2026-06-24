@@ -109,8 +109,10 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     async function fetchCounts() {
-      const subCount = await getSubscriberCount();
-      const eventCount = await getUpcomingEventsCount();
+      const [subCount, eventCount] = await Promise.all([
+        getSubscriberCount(),
+        getUpcomingEventsCount(),
+      ]);
       setSubscriberCount(subCount);
       setUpcomingEventsCount(eventCount);
     }

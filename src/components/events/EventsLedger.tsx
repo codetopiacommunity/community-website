@@ -3,6 +3,12 @@ import type { Event } from "@/lib/events";
 import { EventsClient } from "./EventsClient";
 
 export async function EventsLedger() {
-  const events = await prisma.event.findMany({ orderBy: { startDate: "asc" } });
-  return <EventsClient initialEvents={events as unknown as Event[]} />;
+  let events: Event[] = [];
+  try {
+    const rows = await prisma.event.findMany({ orderBy: { startDate: "asc" } });
+    events = rows as unknown as Event[];
+  } catch (error) {
+    console.error("EventsLedger: failed to fetch events", error);
+  }
+  return <EventsClient initialEvents={events} />;
 }

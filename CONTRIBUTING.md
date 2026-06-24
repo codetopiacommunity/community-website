@@ -27,13 +27,68 @@ git clone https://github.com/YOUR_USERNAME/community-website.git
 cd community-website
 ```
 
-### 3. Set Up the Project
+### 3. Add the Upstream Remote
+
+```bash
+git remote add upstream https://github.com/codetopiacommunity/community-website.git
+```
+
+Verify your remotes:
+
+```bash
+git remote -v
+# origin    https://github.com/YOUR_USERNAME/community-website.git (fetch)
+# origin    https://github.com/YOUR_USERNAME/community-website.git (push)
+# upstream  https://github.com/codetopiacommunity/community-website.git (fetch)
+# upstream  https://github.com/codetopiacommunity/community-website.git (push)
+```
+
+### 4. Set Up the Project
 
 ```bash
 pnpm install
 ```
 
-### 4. Create a Branch
+**Environment Variables**
+
+Copy the example env file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
+| `RESEND_API_KEY` | Resend API key for emails |
+| `EMAIL_FROM` | Sender address (e.g. `Name <email@domain.com>`) |
+| `JWT_SECRET` | Secret used to sign JWT tokens |
+| `NEXT_PUBLIC_BASE_URL` | Base URL of the app (e.g. `http://localhost:3000`) |
+| `NEXT_PUBLIC_SITE_URL` | Public site URL |
+
+**Database**
+
+Run Prisma migrations after setting `DATABASE_URL`:
+
+```bash
+npx prisma migrate dev
+```
+
+### 5. Sync With Upstream Before Branching
+
+Always pull the latest changes from upstream before starting any work:
+
+```bash
+git checkout dev
+git fetch upstream
+git merge upstream/dev
+git push origin dev
+```
+
+### 6. Create a Branch
 
 Use a descriptive branch name that reflects what you are working on:
 
@@ -51,7 +106,7 @@ Branch naming conventions:
 | `docs/` | Documentation updates |
 | `style/` | UI or styling changes |
 
-### 5. Make Your Changes
+### 7. Make Your Changes
 
 Make sure your code is clean and follows our style guidelines. We use **Biome** for linting and formatting. Run this before committing:
 
@@ -59,7 +114,7 @@ Make sure your code is clean and follows our style guidelines. We use **Biome** 
 pnpm biome check .
 ```
 
-### 6. Commit Your Changes
+### 8. Commit Your Changes
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org) specification. Your commit messages should follow this format:
 
@@ -77,13 +132,13 @@ docs: update contributing guide
 style: adjust spacing on mobile nav
 ```
 
-### 7. Push to Your Fork
+### 9. Push to Your Fork
 
 ```bash
 git push origin feat/your-feature-name
 ```
 
-### 8. Open a Pull Request
+### 10. Open a Pull Request
 
 Go to the original Codetopia Community repository and open a Pull Request from your fork into the **`dev`** branch.
 
@@ -104,8 +159,7 @@ In your PR description, please include:
 | Package Manager | pnpm |
 | Linting & Formatting | Biome |
 | UI Components | shadcn/ui |
-| Staging | [staging.codetopia.org](https://staging.codetopia.org) |
-| Production | [codetopia.org](https://codetopia.org) |
+| Production | [community.codetopia.org](https://community.codetopia.org) |
 
 ---
 
@@ -113,8 +167,8 @@ In your PR description, please include:
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Production — live at codetopia.org |
-| `dev` | Staging — preview at staging.codetopia.org |
+| `main` | Production — live at community.codetopia.org |
+| `dev` | Staging |
 | `feat/*` | Feature branches |
 | `fix/*` | Bug fix branches |
 | `docs/*` | Documentation branches |
@@ -128,6 +182,6 @@ If you are stuck or have questions, feel free to:
 
 - Open an issue on GitHub
 - Reach out on our [Discord](https://discord.gg/nPmRWdTQAK)
-- Visit [codetopia.org](https://codetopia.org)
+- Visit [community.codetopia.org](https://community.codetopia.org)
 
 We are happy to help. Welcome to the community! 🚀
