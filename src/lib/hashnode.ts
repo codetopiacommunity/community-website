@@ -1,6 +1,7 @@
 import { withRetry } from "./retry";
 
 const HASHNODE_GQL_ENDPOINT = "https://gql.hashnode.com";
+const HASHNODE_POSTS_LIMIT = 50;
 
 export interface HashnodeAuthor {
   name: string;
@@ -86,7 +87,16 @@ async function gqlFetch<T>(
         throw new Error(`Hashnode API error: ${res.status} ${res.statusText}`);
       }
 
-      const json = await res.json();
+      const text = await res.text();
+      const contentType = res.headers.get("content-type") ?? "";
+
+      if (!contentType.includes("application/json")) {
+        throw new Error(
+          `Hashnode API returned ${contentType || "unknown content type"} instead of JSON`,
+        );
+      }
+
+      const json = JSON.parse(text);
 
       if (json.errors) {
         console.error(
@@ -131,15 +141,151 @@ function mapNode(node: Record<string, unknown>): HashnodeArticle {
   };
 }
 
+function normalizePublicationHost(host: string): string {
+  const trimmed = host.trim();
+  if (!trimmed) return "";
+
+  try {
+    return new URL(trimmed).host;
+  } catch {
+    return trimmed.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+  }
+}
+
+function decodeXml(value: string): string {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function getXmlTagValue(item: string, tag: string): string {
+  const match = item.match(
+    new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tag}>`, "i"),
+  );
+  if (!match?.[1]) return "";
+
+  return decodeXml(match[1].replace(/^<!\[CDATA\[|\]\]>$/g, "").trim());
+}
+
+function getXmlAttribute(item: string, tag: string, attribute: string): string {
+  const match = item.match(new RegExp(`<${tag}\\s+[^>]*>`, "i"));
+  const tagText = match?.[0] ?? "";
+  const attrMatch = tagText.match(new RegExp(`${attribute}=["']([^"']+)["']`));
+  return attrMatch?.[1] ? decodeXml(attrMatch[1]) : "";
+}
+
+function stripHtml(html: string): string {
+  return decodeXml(html.replace(/<[^>]*>/g, " "))
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getSlugFromUrl(url: string): string {
+  try {
+    const parts = new URL(url).pathname.split("/").filter(Boolean);
+    return parts.at(-1) ?? "";
+  } catch {
+    return url.split("/").filter(Boolean).at(-1) ?? "";
+  }
+}
+
+function estimateReadTime(html: string): number {
+  const words = stripHtml(html).split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+function getFirstImageUrl(html: string): string {
+  const imageMatch = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return imageMatch?.[1] ? decodeXml(imageMatch[1]) : "";
+}
+
+function parseRssArticle(item: string): HashnodeArticleDetail {
+  const title = getXmlTagValue(item, "title");
+  const link = getXmlTagValue(item, "link");
+  const description = getXmlTagValue(item, "description");
+  const content = getXmlTagValue(item, "content:encoded") || description;
+  const publishedAt = getXmlTagValue(item, "pubDate");
+  const author =
+    getXmlTagValue(item, "dc:creator") ||
+    getXmlTagValue(item, "author") ||
+    "Codetopia Community";
+  const tags = Array.from(item.matchAll(/<category>([\s\S]*?)<\/category>/gi))
+    .map((match) => decodeXml(match[1].replace(/^<!\[CDATA\[|\]\]>$/g, "")))
+    .filter(Boolean)
+    .map((name) => ({
+      name,
+      slug: name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
+    }));
+  const coverImage =
+    getXmlAttribute(item, "media:content", "url") ||
+    getXmlAttribute(item, "enclosure", "url") ||
+    getFirstImageUrl(content);
+
+  return {
+    slug: getSlugFromUrl(link),
+    title,
+    brief: stripHtml(description || content).slice(0, 220),
+    coverImage: { url: coverImage },
+    author: { name: author, profilePicture: "" },
+    publishedAt: publishedAt ? new Date(publishedAt).toISOString() : "",
+    readTimeInMinutes: estimateReadTime(content),
+    tags,
+    reactionCount: 0,
+    responseCount: 0,
+    content: { html: content },
+    url: link,
+  };
+}
+
+async function fetchRssArticles(
+  host: string,
+): Promise<HashnodeArticleDetail[]> {
+  return withRetry<HashnodeArticleDetail[]>(
+    async () => {
+      const publicationHost = normalizePublicationHost(host);
+      const res = await fetch(`https://${publicationHost}/rss.xml`, {
+        next: { revalidate: 3600 },
+        signal: AbortSignal.timeout(10_000),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Hashnode RSS error: ${res.status} ${res.statusText}`);
+      }
+
+      const xml = await res.text();
+      const items = Array.from(xml.matchAll(/<item>([\s\S]*?)<\/item>/gi));
+      return items.map((match) => parseRssArticle(match[1]));
+    },
+    {
+      maxRetries: 1,
+      delayMs: 1000,
+      fallback: [],
+    },
+  );
+}
+
 export async function fetchArticles(host: string): Promise<HashnodeArticle[]> {
   const data = await gqlFetch<{
     publication: {
       posts: { edges: { node: Record<string, unknown> }[] };
     } | null;
-  }>(GET_PUBLICATION_ARTICLES, { host, first: 50 });
+  }>(GET_PUBLICATION_ARTICLES, {
+    host: normalizePublicationHost(host),
+    first: HASHNODE_POSTS_LIMIT,
+  });
 
   const edges = data?.publication?.posts?.edges ?? [];
-  return edges.map((edge) => mapNode(edge.node));
+  if (edges.length > 0) {
+    return edges.map((edge) => mapNode(edge.node));
+  }
+
+  return fetchRssArticles(host);
 }
 
 export async function fetchArticle(
@@ -148,10 +294,13 @@ export async function fetchArticle(
 ): Promise<HashnodeArticleDetail | null> {
   const data = await gqlFetch<{
     publication: { post: Record<string, unknown> | null } | null;
-  }>(GET_ARTICLE, { host, slug });
+  }>(GET_ARTICLE, { host: normalizePublicationHost(host), slug });
 
   const post = data?.publication?.post;
-  if (!post) return null;
+  if (!post) {
+    const rssArticles = await fetchRssArticles(host);
+    return rssArticles.find((article) => article.slug === slug) ?? null;
+  }
 
   const base = mapNode(post);
   const content = (post.content as Record<string, unknown> | null) ?? {};
