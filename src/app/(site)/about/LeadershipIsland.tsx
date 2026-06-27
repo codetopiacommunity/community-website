@@ -39,10 +39,10 @@ export function LeadershipIsland() {
               <span className="text-zinc-700">BRIEF</span>
             </h2>
             <div className="max-w-2xl">
-              <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                A Codetopia initiative. The Codetopia Community is led by a
-                decentralized collective of engineers and community leaders
-                defining the future of technical mastery.
+              <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
+                The Codetopia Community is led by experienced engineers and
+                community builders working to grow the next generation of tech
+                talent in Ghana and beyond.
               </p>
             </div>
           </div>

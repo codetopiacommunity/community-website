@@ -150,7 +150,7 @@ export function MentorshipsGridIsland() {
           No mentorships yet
         </p>
         <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest text-center">
-          No active sessions at the moment — check back soon.
+          No active sessions at the moment. Check back soon.
         </p>
       </div>
     );

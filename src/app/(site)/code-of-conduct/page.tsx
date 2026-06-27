@@ -20,7 +20,7 @@ export default function CodeOfConductPage() {
                 <span className="text-zinc-700">CONDUCT</span>
               </h1>
               <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-                A utopia for tech enthusiasts — where everyone belongs.
+                A utopia for tech enthusiasts, where everyone belongs.
               </p>
             </div>
           </div>
@@ -35,7 +35,7 @@ export default function CodeOfConductPage() {
               <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
                 Who We Are
               </p>
-              <p className="text-zinc-300 font-sans text-base leading-relaxed">
+              <p className="text-zinc-300 font-mono text-base leading-relaxed">
                 Codetopia Community is an inclusive and collaborative initiative
                 of{" "}
                 <a
@@ -47,10 +47,10 @@ export default function CodeOfConductPage() {
                   Codetopia
                 </a>
                 , created to empower aspiring and practicing technologists. We
-                believe technology is more than a tool — it is the foundation of
+                believe technology is more than a tool. It is the foundation of
                 innovation, creativity, and problem-solving.
               </p>
-              <p className="text-zinc-500 font-sans text-sm leading-relaxed mt-4">
+              <p className="text-zinc-500 font-mono text-sm leading-relaxed mt-4">
                 Our community is guided by six core values:{" "}
                 <span className="text-zinc-300">
                   Inclusivity, Collaboration, Continuous Learning, Practical
@@ -62,9 +62,9 @@ export default function CodeOfConductPage() {
               <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
                 Our Pledge
               </p>
-              <p className="text-zinc-300 font-sans text-base leading-relaxed">
+              <p className="text-zinc-300 font-mono text-base leading-relaxed">
                 We pledge to make our community welcoming, safe, and equitable
-                for all — regardless of race, ethnicity, age, disability, gender
+                for all, regardless of race, ethnicity, age, disability, gender
                 identity, sexual orientation, language, religion, national
                 origin, socio-economic position, level of education, or other
                 status.
@@ -86,7 +86,7 @@ export default function CodeOfConductPage() {
                 <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-3">
                   {item.title}
                 </p>
-                <p className="text-zinc-500 font-sans text-sm leading-relaxed">
+                <p className="text-zinc-500 font-mono text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -111,7 +111,7 @@ export default function CodeOfConductPage() {
                 <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-3">
                   {item.title}
                 </p>
-                <p className="text-zinc-500 font-sans text-sm leading-relaxed">
+                <p className="text-zinc-500 font-mono text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -127,7 +127,7 @@ export default function CodeOfConductPage() {
                 <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-3">
                   {item.title}
                 </p>
-                <p className="text-zinc-500 font-sans text-sm leading-relaxed">
+                <p className="text-zinc-500 font-mono text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -143,7 +143,7 @@ export default function CodeOfConductPage() {
             <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-6">
               Reporting an Issue
             </p>
-            <p className="text-zinc-300 font-sans text-base leading-relaxed mb-6">
+            <p className="text-zinc-300 font-mono text-base leading-relaxed mb-6">
               Not every conflict represents a Code of Conduct violation.
               However, when an incident does occur, it is important to report it
               promptly. Community Moderators take all reports seriously and will
@@ -180,7 +180,7 @@ export default function CodeOfConductPage() {
                   <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-2">
                     {item.title}
                   </p>
-                  <p className="text-zinc-500 font-sans text-sm leading-relaxed">
+                  <p className="text-zinc-500 font-mono text-sm leading-relaxed">
                     {item.event}
                   </p>
                 </div>
@@ -188,7 +188,7 @@ export default function CodeOfConductPage() {
                   <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mb-2">
                     Consequence
                   </p>
-                  <p className="text-zinc-400 font-sans text-sm leading-relaxed">
+                  <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                     {item.consequence}
                   </p>
                 </div>
@@ -196,14 +196,14 @@ export default function CodeOfConductPage() {
                   <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mb-2">
                     Repair
                   </p>
-                  <p className="text-zinc-400 font-sans text-sm leading-relaxed">
+                  <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                     {item.repair}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-zinc-700 font-sans text-xs leading-relaxed mt-6 px-2 max-w-2xl">
+          <p className="text-zinc-700 font-mono text-xs leading-relaxed mt-6 px-2 max-w-2xl">
             This enforcement ladder is a guideline. It does not limit the
             ability of Community Moderators to use their discretion and judgment
             in the best interests of the Codetopia community.
@@ -219,8 +219,8 @@ export default function CodeOfConductPage() {
               <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
                 Scope
               </p>
-              <p className="text-zinc-500 font-sans text-sm leading-relaxed">
-                This Code of Conduct applies within all Codetopia spaces —
+              <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+                This Code of Conduct applies within all Codetopia spaces,
                 including our GitHub repositories, Discord server, website,
                 events, and any other space where you are representing the
                 Codetopia community.
@@ -230,7 +230,7 @@ export default function CodeOfConductPage() {
               <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
                 Attribution
               </p>
-              <p className="text-zinc-500 font-sans text-sm leading-relaxed">
+              <p className="text-zinc-500 font-mono text-sm leading-relaxed">
                 This Code of Conduct is an original document written for the
                 Codetopia Community, informed by our Community Charter and
                 adapted from the{" "}

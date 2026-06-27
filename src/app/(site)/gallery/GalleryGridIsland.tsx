@@ -36,8 +36,8 @@ export function GalleryGridIsland() {
                 No albums yet
               </p>
               <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
-                The gallery is empty for now — come back soon for photos from
-                our events.
+                The gallery is empty for now. Come back soon for photos from our
+                events.
               </p>
             </div>
           </div>

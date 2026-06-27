@@ -163,12 +163,10 @@ export default async function ArticleDetailPage({
             <div
               className={`flex gap-12 ${toc.length >= 3 ? "lg:grid lg:grid-cols-[1fr_280px]" : ""}`}
             >
-              {/* Article Content */}
               <main id="article-content" className="min-w-0">
                 <ArticleContent html={htmlWithIds} />
               </main>
 
-              {/* Sidebar TOC */}
               {toc.length >= 3 && (
                 <aside className="hidden lg:block">
                   <TableOfContents entries={toc} />
@@ -208,7 +206,7 @@ export default async function ArticleDetailPage({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 ml-auto font-mono text-xs uppercase tracking-widest text-muted-foreground border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors group"
             >
-              Read on Hashnode{" "}
+              Read on Hashnode
               <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>

@@ -16,9 +16,8 @@ export default function ImpactPage() {
               </h1>
               <div className="max-w-2xl">
                 <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                  Recognition & Rewards Protocol for the Codetopia Community.
-                  Documenting a Codetopia initiative driven by technical
-                  excellence and measurable human impact.
+                  Celebrating the members who show up, build things, and move
+                  the community forward.
                 </p>
               </div>
             </div>

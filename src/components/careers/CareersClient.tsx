@@ -186,7 +186,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
               <p className="text-zinc-600 font-mono text-sm max-w-xs text-center">
                 {search || typeFilter !== "ALL"
                   ? "No roles match your current filters."
-                  : "Nothing open right now — check back soon."}
+                  : "Nothing open right now. Check back soon."}
               </p>
               {activeFilterCount > 0 && (
                 <button

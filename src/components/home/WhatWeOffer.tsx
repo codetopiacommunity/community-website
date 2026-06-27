@@ -1,4 +1,10 @@
-import { Compass, GitPullRequest, Layers, Ticket } from "lucide-react";
+import {
+  ArrowUpRight,
+  Compass,
+  GitPullRequest,
+  Layers,
+  Ticket,
+} from "lucide-react";
 import { Container } from "@/components/layout/Container";
 
 const offers = [
@@ -32,11 +38,11 @@ export function WhatWeOffer() {
   return (
     <section className="relative w-full py-32 bg-black text-white border-t border-zinc-900 overflow-hidden">
       <Container className="relative z-10 w-full px-4">
-        <div className="mb-24 text-left">
-          <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-none font-sans">
-            WHAT WE <span className="text-zinc-500">OFFER</span>
+        <div className="mb-24 flex flex-col gap-6">
+          <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+            What We <span className="text-zinc-600">Offer</span>
           </h2>
-          <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
+          <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
             We provide the infrastructure and mentorship needed to rotate from
             theory to engineering impact.
           </p>
@@ -47,26 +53,34 @@ export function WhatWeOffer() {
         {offers.map((offer, index) => (
           <div
             key={offer.title}
-            className="group relative border-b border-zinc-900 transition-colors hover:bg-zinc-900/50"
+            className="group relative border-b border-zinc-900 transition-all duration-300 hover:bg-zinc-900/40 cursor-default"
           >
-            <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-16">
-              {/* Massive Architectural Number */}
-              <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-black text-white/[0.02] pointer-events-none select-none">
-                0{index + 1}
-              </span>
-
-              <div className="relative z-10 flex items-center gap-6 mb-4 lg:mb-0">
+            <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-12 lg:py-16 gap-6 lg:gap-0">
+              {/* Left: icon + title */}
+              <div className="relative z-10 flex items-center gap-5 lg:gap-8 flex-1">
+                <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-[0.3em] shrink-0 w-8 text-right">
+                  0{index + 1}
+                </span>
+                <div className="w-px h-8 bg-zinc-800 shrink-0" />
                 <offer.icon
-                  className="w-8 h-8 lg:w-12 lg:h-12 text-white shrink-0"
-                  strokeWidth={2}
+                  className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-600 shrink-0 transition-colors duration-300 group-hover:text-white"
+                  strokeWidth={1.5}
                 />
-                <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter font-sans">
+                <h3 className="text-2xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tighter font-sans transition-colors duration-300">
                   {offer.title}
                 </h3>
               </div>
-              <p className="relative z-10 text-zinc-500 font-mono text-base lg:text-lg max-w-xl lg:text-right">
-                {offer.description}
-              </p>
+
+              {/* Right: description + arrow */}
+              <div className="relative z-10 flex items-center gap-8 lg:max-w-xl lg:justify-end">
+                <p className="text-zinc-600 font-mono text-sm lg:text-base lg:text-right transition-colors duration-300 group-hover:text-zinc-400">
+                  {offer.description}
+                </p>
+                <ArrowUpRight
+                  className="w-5 h-5 text-zinc-800 shrink-0 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  strokeWidth={1.5}
+                />
+              </div>
             </Container>
           </div>
         ))}

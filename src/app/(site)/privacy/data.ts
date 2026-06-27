@@ -5,11 +5,11 @@ export const sections = [
   },
   {
     title: "What We Collect",
-    body: "The only personal data we collect is your email address, and only when you voluntarily subscribe to The Dispatch — our community newsletter. We do not collect names, phone numbers, or any other personal information.",
+    body: "The only personal data we collect is your email address, and only when you voluntarily subscribe to The Dispatch, our community newsletter. We do not collect names, phone numbers, or any other personal information.",
   },
   {
     title: "Why We Collect It",
-    body: "Your email address is used solely to send you The Dispatch newsletter — project updates, community announcements, and engineering insights. We do not use it for advertising or share it with third parties for marketing purposes.",
+    body: "Your email address is used solely to send you The Dispatch newsletter: project updates, community announcements, and engineering insights. We do not use it for advertising or share it with third parties for marketing purposes.",
   },
   {
     title: "How Long We Keep It",
