@@ -9,7 +9,7 @@ export const sections = [
   },
   {
     title: "Intellectual Property",
-    body: "All content on this site — including text, graphics, logos, and code — is the property of Codetopia Community unless otherwise stated. You may not reproduce or redistribute it without permission.",
+    body: "All content on this site, including text, graphics, logos, and code, is the property of Codetopia Community unless otherwise stated. You may not reproduce or redistribute it without permission.",
   },
   {
     title: "Newsletter",

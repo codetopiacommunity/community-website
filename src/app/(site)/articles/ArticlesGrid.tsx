@@ -13,7 +13,6 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
-  // Collect unique tags across all articles
   const allTags = Array.from(
     new Map(articles.flatMap((a) => a.tags).map((t) => [t.slug, t])).values(),
   );

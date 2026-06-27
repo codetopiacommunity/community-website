@@ -41,10 +41,9 @@ export default function TeamPage() {
                 THE <span className="text-zinc-700">TEAM</span>
               </h1>
               <div className="max-w-2xl">
-                <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                  The team behind the Codetopia Community. A dedicated
-                  collective of builders and mentors driving the mission of
-                  technical growth and collaboration.
+                <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
+                  The people behind the Codetopia Community, builders and
+                  mentors driving technical growth and collaboration.
                 </p>
               </div>
             </div>

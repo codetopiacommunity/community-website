@@ -67,7 +67,20 @@ export default async function HowtoPage({
       <section className="py-12 pb-32">
         <Container className="px-4">
           <div className="max-w-4xl mx-auto px-2">
-            <article className="prose prose-neutral dark:prose-invert max-w-none">
+            <article
+              className="prose dark:prose-invert max-w-none
+              prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-sans
+              prose-h1:text-4xl prose-h1:md:text-5xl
+              prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-16 prose-h2:mb-4
+              prose-h3:text-xl prose-h3:md:text-2xl
+              prose-p:font-mono prose-p:leading-relaxed
+              prose-li:font-mono
+              prose-strong:font-black
+              prose-blockquote:border-l-2 prose-blockquote:border-border prose-blockquote:not-italic prose-blockquote:font-mono
+              prose-hr:border-border prose-hr:my-12
+              prose-a:text-foreground prose-a:font-semibold hover:prose-a:underline
+              prose-code:font-mono prose-img:rounded-none"
+            >
               <MDXRemote source={content} />
             </article>
           </div>

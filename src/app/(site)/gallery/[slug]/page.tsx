@@ -120,8 +120,7 @@ export default function AlbumPage({
                   No images yet
                 </p>
                 <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
-                  Photos for this album haven't been added yet — check back
-                  soon.
+                  Photos for this album haven't been added yet. Check back soon.
                 </p>
               </div>
               <Link

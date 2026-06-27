@@ -445,6 +445,21 @@ html {
   margin: 2rem 0;
 }
 
+/* ── Premium dot-grid background pattern ── */
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.055) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* ── Fine rule divider ── */
+.rule-x {
+  @apply w-full h-px bg-zinc-900;
+}
+
 /* Smooth nav animations */
 @keyframes slideDownSmooth {
   from {
