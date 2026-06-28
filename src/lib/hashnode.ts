@@ -192,9 +192,9 @@ function decodeXml(value: string): string {
   // (titles, authors, briefs) where they have no meaning and could trigger
   // double-unescaping warnings downstream.
   return value
-    .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&");
 }
 
 function getXmlTagValue(item: string, tag: string): string {
