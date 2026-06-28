@@ -17,7 +17,7 @@ export default function AboutPage() {
           }}
         />
         <Container className="flex flex-col items-start text-left px-4 relative z-10">
-          <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] mb-12">
+          <span className="font-mono text-xs text-zinc-500 uppercase tracking-[0.2em] mb-12">
             Who We Are
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase mb-12 leading-[0.9] font-sans">
@@ -50,50 +50,73 @@ export default function AboutPage() {
           </p>
           <p className="font-mono text-base md:text-lg text-zinc-500 leading-relaxed max-w-2xl mt-12">
             Everyone here is working on something: a project, a skill, a career.
-            We show up, share what we know, and grow together. That's it.
+            We show up, share what we know, and grow together. That&apos;s it.
           </p>
         </Container>
       </section>
 
+      {/* Vision & Mission */}
+      <section className="w-full bg-black border-t border-zinc-900">
+        <Container className="px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-zinc-900">
+            <div className="flex flex-col gap-6 px-2 py-20 lg:pr-16">
+              <span className="font-mono text-xs text-zinc-500 uppercase tracking-[0.2em]">
+                Vision
+              </span>
+              <p className="text-2xl md:text-3xl font-black uppercase tracking-tighter leading-tight font-sans text-white">
+                To be the leading builder-focused tech community in Ghana and
+                across Africa, where anyone can grow their skills, contribute
+                meaningfully, and shape the future of technology.
+              </p>
+            </div>
+            <div className="flex flex-col gap-6 px-2 py-20 lg:pl-16">
+              <span className="font-mono text-xs text-zinc-500 uppercase tracking-[0.2em]">
+                Mission
+              </span>
+              <p className="text-2xl md:text-3xl font-black uppercase tracking-tighter leading-tight font-sans text-white">
+                To empower learners and creators through mentorship,
+                collaboration, and hands-on experiences, turning potential into
+                practical impact across the tech ecosystem.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Core Values */}
-      <section className="w-full py-32 bg-black text-white border-t border-zinc-900 overflow-hidden">
-        <Container className="w-full px-4 relative z-10">
-          <div className="mb-24">
-            <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] mb-8 block">
+      <section className="w-full py-32 bg-black text-white border-t border-zinc-900">
+        <Container className="w-full px-4">
+          <div className="mb-20">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-[0.2em] mb-8 block">
               The Manifesto
             </span>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-sans">
               What We Stand For
             </h2>
           </div>
-        </Container>
 
-        <div className="flex flex-col border-t border-zinc-800">
-          {coreValues.map((value, index) => (
-            <div
-              key={value.title}
-              className="group relative border-b border-zinc-800 transition-colors hover:bg-zinc-900/50"
-            >
-              <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-16">
-                <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-black text-white/[0.03] pointer-events-none select-none">
-                  0{index + 1}
-                </span>
-                <div className="relative z-10 flex items-center gap-6 mb-4 lg:mb-0">
-                  <value.icon
-                    className="w-8 h-8 lg:w-12 lg:h-12 text-white shrink-0"
-                    strokeWidth={2}
-                  />
-                  <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter font-sans">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">
+            {coreValues.map((value) => (
+              <div
+                key={value.title}
+                className="group bg-black p-10 flex flex-col gap-6 hover:bg-zinc-900/60 transition-colors"
+              >
+                <value.icon
+                  className="w-8 h-8 text-zinc-600 group-hover:text-white transition-colors"
+                  strokeWidth={1.5}
+                />
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-2xl font-black uppercase tracking-tighter font-sans text-white">
                     {value.title}
                   </h3>
+                  <p className="font-mono text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                    {value.description}
+                  </p>
                 </div>
-                <p className="relative z-10 text-zinc-400 font-mono text-base lg:text-lg max-w-xl lg:text-right">
-                  {value.description}
-                </p>
-              </Container>
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        </Container>
       </section>
 
       {/* Leadership */}

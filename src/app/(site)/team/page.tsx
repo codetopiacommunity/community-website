@@ -37,7 +37,7 @@ export default function TeamPage() {
         <Container className="w-full px-4 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 px-2">
             <div className="flex-1">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
                 THE <span className="text-zinc-700">TEAM</span>
               </h1>
               <div className="max-w-2xl">

@@ -7,6 +7,24 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes hero-word-cycle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  13% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Offset anchor scroll targets to account for sticky header */
 :target {
   scroll-margin-top: 6rem;

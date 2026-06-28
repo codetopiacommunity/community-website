@@ -34,7 +34,7 @@ export function LeadershipIsland() {
       <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1 px-2">
-            <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
               LEADERSHIP <br />
               <span className="text-zinc-700">BRIEF</span>
             </h2>

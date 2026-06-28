@@ -1,10 +1,4 @@
-import {
-  ArrowUpRight,
-  Compass,
-  GitPullRequest,
-  Layers,
-  Ticket,
-} from "lucide-react";
+import { Compass, GitPullRequest, Layers, Ticket } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 
 const offers = [
@@ -50,7 +44,7 @@ export function WhatWeOffer() {
       </Container>
 
       <div className="flex flex-col border-t border-zinc-900">
-        {offers.map((offer, index) => (
+        {offers.map((offer) => (
           <div
             key={offer.title}
             className="group relative border-b border-zinc-900 transition-all duration-300 hover:bg-zinc-900/40 cursor-default"
@@ -58,10 +52,6 @@ export function WhatWeOffer() {
             <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-12 lg:py-16 gap-6 lg:gap-0">
               {/* Left: icon + title */}
               <div className="relative z-10 flex items-center gap-5 lg:gap-8 flex-1">
-                <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-[0.3em] shrink-0 w-8 text-right">
-                  0{index + 1}
-                </span>
-                <div className="w-px h-8 bg-zinc-800 shrink-0" />
                 <offer.icon
                   className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-600 shrink-0 transition-colors duration-300 group-hover:text-white"
                   strokeWidth={1.5}
@@ -76,10 +66,6 @@ export function WhatWeOffer() {
                 <p className="text-zinc-600 font-mono text-sm lg:text-base lg:text-right transition-colors duration-300 group-hover:text-zinc-400">
                   {offer.description}
                 </p>
-                <ArrowUpRight
-                  className="w-5 h-5 text-zinc-800 shrink-0 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  strokeWidth={1.5}
-                />
               </div>
             </Container>
           </div>
