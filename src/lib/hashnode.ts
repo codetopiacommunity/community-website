@@ -152,11 +152,47 @@ function normalizePublicationHost(host: string): string {
   }
 }
 
+// Validates that a publication host is a safe external domain before
+// using it in a server-side fetch (prevents SSRF).
+function validatePublicationHost(host: string): string {
+  const normalized = normalizePublicationHost(host);
+
+  if (!normalized) throw new Error("Publication host is required");
+
+  // Block raw IPv4 addresses (e.g. 192.168.1.1)
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(normalized)) {
+    throw new Error("IP addresses are not allowed as publication hosts");
+  }
+
+  // Block IPv6 addresses
+  if (normalized.startsWith("[")) {
+    throw new Error("IPv6 addresses are not allowed as publication hosts");
+  }
+
+  // Block localhost and .local TLDs
+  if (/^(localhost|.*\.local)$/i.test(normalized)) {
+    throw new Error("Local addresses are not allowed as publication hosts");
+  }
+
+  // Must be a valid hostname: labels separated by dots, no consecutive dots
+  if (
+    !/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i.test(
+      normalized,
+    )
+  ) {
+    throw new Error("Invalid publication host format");
+  }
+
+  return normalized;
+}
+
 function decodeXml(value: string): string {
+  // Only decode safe entities. &lt; and &gt; are intentionally kept as-is —
+  // decoding them would introduce raw angle brackets into plain-text fields
+  // (titles, authors, briefs) where they have no meaning and could trigger
+  // double-unescaping warnings downstream.
   return value
     .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'");
 }
@@ -248,7 +284,7 @@ async function fetchRssArticles(
 ): Promise<HashnodeArticleDetail[]> {
   return withRetry<HashnodeArticleDetail[]>(
     async () => {
-      const publicationHost = normalizePublicationHost(host);
+      const publicationHost = validatePublicationHost(host);
       const res = await fetch(`https://${publicationHost}/rss.xml`, {
         next: { revalidate: 3600 },
         signal: AbortSignal.timeout(10_000),
