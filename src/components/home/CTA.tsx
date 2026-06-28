@@ -38,15 +38,13 @@ export function CTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-6 w-full">
-          <a
-            href="https://discord.gg/nPmRWdTQAK"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            href="/howtos/Getting-Started/01-join-the-communtiy"
             className="group inline-flex items-center gap-3 bg-white text-black px-10 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
           >
-            Join Our Community
+            Join the Community
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          </Link>
           <Link
             href="/about"
             className="group inline-flex items-center gap-3 bg-transparent text-zinc-500 hover:text-white px-10 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 border border-zinc-800 hover:border-zinc-600"
@@ -59,7 +57,7 @@ export function CTA() {
 
       {/* Big bottom wordmark */}
       <div className="relative z-10 w-full mt-16 select-none pointer-events-none overflow-hidden">
-        <p className="font-sans font-black uppercase leading-none text-white/[0.06] whitespace-nowrap text-[14.5vw] tracking-tight w-full text-center">
+        <p className="font-sans font-black uppercase leading-none text-white/[0.1] whitespace-nowrap text-[14.5vw] tracking-tight w-full text-center">
           Community
         </p>
       </div>

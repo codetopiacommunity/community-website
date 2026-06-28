@@ -227,14 +227,12 @@ function MobileMenu({
           );
         })}
 
-        <a
-          href="https://discord.gg/nPmRWdTQAK"
-          target="_blank"
-          rel="noreferrer"
+        <Link
+          href="/howtos/Getting-Started/01-join-the-communtiy"
           className="mt-6 w-full bg-white text-black font-sans font-black text-xs uppercase tracking-widest px-6 py-4 text-center transition-colors hover:bg-zinc-200"
         >
           Join the Community
-        </a>
+        </Link>
       </nav>
     </div>
   );
@@ -356,7 +354,7 @@ export function Header() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            onClick={() => setIsNavOpen(false)}
+                            onClick={() => setActiveNavItem(null)}
                             className="group flex flex-col px-4 py-3 hover:bg-zinc-900/60 transition-colors"
                           >
                             <span className="font-mono text-sm text-zinc-300 group-hover:text-white transition-colors">

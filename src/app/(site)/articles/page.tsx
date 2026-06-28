@@ -23,7 +23,7 @@ export default async function ArticlesPage() {
         <section className="w-full py-32 md:py-40 bg-background border-b border-border">
           <Container className="px-4 flex flex-col gap-8">
             <div className="flex items-end justify-between gap-6">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
                 Articles
               </h1>
               <ThemeToggle />
@@ -78,7 +78,7 @@ export default async function ArticlesPage() {
         <Container className="px-4 flex flex-col gap-8">
           <div className="flex items-end justify-between gap-6">
             <div className="flex flex-col gap-4">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
                 Articles
               </h1>
               <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">

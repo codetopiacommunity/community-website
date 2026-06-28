@@ -34,7 +34,7 @@ export default async function HowtosPage() {
             </span>
             <ThemeToggle />
           </div>
-          <h1 className="text-5xl md:text-8xl lg:text-[9vw] font-black uppercase tracking-tighter leading-none font-sans mb-10">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans mb-10">
             How-Tos
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">

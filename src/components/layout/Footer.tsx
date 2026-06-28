@@ -123,7 +123,7 @@ export function Footer() {
                     aria-label={social.label}
                     className="text-zinc-600 hover:text-white transition-colors"
                   >
-                    <social.icon className="w-4 h-4" />
+                    <social.icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
