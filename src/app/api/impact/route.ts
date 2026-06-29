@@ -4,7 +4,7 @@ import { prisma } from "@/../prisma/prisma";
 export async function GET() {
   try {
     const stories = await prisma.impactStory.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { startDate: "desc" },
     });
     return NextResponse.json(stories);
   } catch (error) {
