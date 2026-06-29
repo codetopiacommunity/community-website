@@ -329,9 +329,7 @@ export function Header() {
 
         {/* Desktop Mega Menu Panel */}
         {activeNavItem !== null && (
-          // biome-ignore lint/a11y/useSemanticElements: div is kept for styling and layout control
-          <div
-            role="region"
+          <section
             aria-label="Expanded navigation menu"
             onMouseEnter={() => {
               if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -373,7 +371,7 @@ export function Header() {
                 })}
               </div>
             </Container>
-          </div>
+          </section>
         )}
       </div>
     </>
