@@ -1,9 +1,8 @@
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { getAllHowtos, getHowtosIntro, type HowtoSummary } from "@/lib/howtos";
+import { HowtosClient } from "./HowtosClient";
 
 export const revalidate = 60;
 
@@ -22,6 +21,8 @@ export default async function HowtosPage() {
     acc[h.category].push(h);
     return acc;
   }, {});
+
+  const categories = Object.keys(byCategory);
 
   return (
     <div className="flex-1 bg-background text-foreground min-h-screen">
@@ -73,68 +74,7 @@ export default async function HowtosPage() {
         </section>
       )}
 
-      {/* Categories */}
-      {howtos.length === 0 ? (
-        <section className="py-32">
-          <Container className="px-4">
-            <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
-              <div className="w-24 h-24 border border-border flex items-center justify-center">
-                <span className="font-mono text-muted-foreground text-3xl font-black">
-                  {"//"}
-                </span>
-              </div>
-              <div className="text-center space-y-3">
-                <p className="text-foreground font-black uppercase tracking-tighter text-2xl font-sans">
-                  Nothing here yet
-                </p>
-                <p className="text-muted-foreground font-mono text-sm max-w-xs">
-                  How-tos will appear here once they are published to the
-                  community-howtos repo.
-                </p>
-              </div>
-            </div>
-          </Container>
-        </section>
-      ) : (
-        <section className="pb-32">
-          <Container className="px-4">
-            {Object.entries(byCategory).map(([category, items]) => (
-              <div key={category} className="border-b border-border pt-12 pb-2">
-                {/* Category header */}
-                <div className="flex items-center gap-4 mb-2">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                    {items.length} {items.length === 1 ? "guide" : "guides"}
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter font-sans mb-6">
-                  {category.replace(/-/g, " ")}
-                </h2>
-
-                {/* Guides */}
-                {items.map((howto) => (
-                  <Link
-                    key={`${howto.category}/${howto.slug}`}
-                    href={`/howtos/${howto.category}/${howto.slug}`}
-                    className="group flex items-center justify-between gap-6 py-5 border-t border-border -mx-4 px-4 md:mx-0 md:px-0 hover:bg-foreground/[0.03] transition-colors"
-                  >
-                    <div className="flex flex-col gap-0.5">
-                      <span className="font-sans font-black text-lg md:text-xl uppercase tracking-tighter">
-                        {howto.meta.title ?? howto.slug}
-                      </span>
-                      {howto.meta.author && (
-                        <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-                          {howto.meta.author}
-                        </span>
-                      )}
-                    </div>
-                    <ArrowUpRight className="shrink-0 w-5 h-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
-                  </Link>
-                ))}
-              </div>
-            ))}
-          </Container>
-        </section>
-      )}
+      <HowtosClient howtos={howtos} categories={categories} />
     </div>
   );
 }
