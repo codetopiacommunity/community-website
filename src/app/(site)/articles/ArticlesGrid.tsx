@@ -37,6 +37,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       <div className="flex flex-col gap-4 px-2">
         <input
           type="text"
+          aria-label="Search articles"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search articles..."
