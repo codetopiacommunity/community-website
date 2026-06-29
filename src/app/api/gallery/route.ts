@@ -5,7 +5,10 @@ export async function GET() {
   try {
     const albums = await prisma.galleryAlbum.findMany({
       orderBy: { createdAt: "desc" },
-      include: { photos: { take: 1, orderBy: { createdAt: "asc" } } },
+      include: {
+        photos: { take: 1, orderBy: { createdAt: "asc" } },
+        _count: { select: { photos: true } },
+      },
     });
     return NextResponse.json(albums);
   } catch (error) {
