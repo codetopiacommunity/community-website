@@ -164,7 +164,7 @@ export default async function CareerDetailPage({
               {/* About the role */}
               <div className="flex flex-col gap-6">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                  <span className="text-white/10">01 /</span> About the Role
+                  <span className="text-zinc-600">01 /</span> About the Role
                 </span>
                 <p className="text-zinc-300 font-mono text-sm leading-relaxed">
                   {desc.aboutRole}
@@ -175,7 +175,7 @@ export default async function CareerDetailPage({
               {desc.responsibilities.length > 0 && (
                 <div className="flex flex-col gap-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-white/10">02 /</span> Responsibilities
+                    <span className="text-zinc-600">02 /</span> Responsibilities
                   </span>
                   <ul className="flex flex-col divide-y divide-zinc-900">
                     {desc.responsibilities.map((item, i) => (
@@ -199,7 +199,7 @@ export default async function CareerDetailPage({
               {career.requirements.length > 0 && (
                 <div className="flex flex-col gap-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-white/10">03 /</span> Requirements
+                    <span className="text-zinc-600">03 /</span> Requirements
                     &amp; Skills
                   </span>
                   <ul className="flex flex-col divide-y divide-zinc-900">
@@ -224,7 +224,7 @@ export default async function CareerDetailPage({
               {desc.niceToHave.length > 0 && (
                 <div className="flex flex-col gap-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-white/10">04 /</span> Nice to Have
+                    <span className="text-zinc-600">04 /</span> Nice to Have
                   </span>
                   <ul className="flex flex-col gap-3">
                     {desc.niceToHave.map((item) => (
@@ -243,7 +243,7 @@ export default async function CareerDetailPage({
               {desc.whatWeOffer.length > 0 && (
                 <div className="flex flex-col gap-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-white/10">05 /</span> What We Offer
+                    <span className="text-zinc-600">05 /</span> What We Offer
                   </span>
                   <ul className="flex flex-col gap-3">
                     {desc.whatWeOffer.map((item) => (
@@ -262,7 +262,7 @@ export default async function CareerDetailPage({
               {desc.howToApply && (
                 <div className="flex flex-col gap-6">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-white/10">06 /</span> How to Apply
+                    <span className="text-zinc-600">06 /</span> How to Apply
                   </span>
                   <p className="text-zinc-300 font-mono text-sm leading-relaxed">
                     {desc.howToApply}

@@ -1,14 +1,14 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "@/components/layout/Container";
-import { CtaButton } from "@/components/ui/cta-button";
 
 export function CTA() {
   return (
-    <section className="relative w-full py-48 bg-black overflow-hidden flex flex-col items-center justify-center text-center">
-      {/* Background Logo Watermark - Centered Abstract */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
+    <section className="relative w-full pt-48 pb-0 bg-black overflow-hidden flex flex-col items-center justify-center text-center border-t border-zinc-900">
+      {/* Background Logo Watermark */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none opacity-[0.025]">
         <Image
           src={logo}
           alt=""
@@ -18,38 +18,49 @@ export function CTA() {
         />
       </div>
 
-      <Container className="relative z-10 flex flex-col items-center max-w-6xl px-4 font-sans">
-        <h2 className="text-5xl md:text-7xl lg:text-9xl font-black text-white mb-10 uppercase tracking-tighter leading-none">
-          READY TO <span className="text-zinc-600">JOIN?</span>
+      {/* Dot grid overlay */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <Container className="relative z-10 flex flex-col items-center max-w-5xl px-4 font-sans">
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 uppercase tracking-tighter leading-none">
+          Ready to <span className="text-zinc-600">Join?</span>
         </h2>
-        <p className="text-zinc-400 text-lg md:text-xl lg:text-2xl mb-16 max-w-2xl font-sans leading-relaxed mx-auto">
-          The barrier between consumer and creator is collaboration. Step across
-          it today.
+        <p className="text-zinc-500 text-lg md:text-xl mb-16 max-w-xl font-mono leading-relaxed mx-auto">
+          The community is open. Come build with us.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 w-full">
-          <CtaButton
-            asChild
-            className="bg-white text-black hover:bg-zinc-200"
-            offsetClassName="bg-zinc-600"
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-6 w-full">
+          <Link
+            href="/howtos/Getting-Started/01-join-the-communtiy"
+            className="group inline-flex items-center gap-3 bg-white text-black px-10 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
           >
-            <a
-              href="https://discord.gg/nPmRWdTQAK"
-              target="_blank"
-              rel="noreferrer"
-            >
-              JOIN THE COMMUNITY
-            </a>
-          </CtaButton>
-          <CtaButton
-            asChild
-            className="bg-transparent border-2 border-white text-white hover:bg-white/5"
-            offsetClassName="bg-zinc-800"
+            Join the Community
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+          <Link
+            href="/about"
+            className="group inline-flex items-center gap-3 bg-transparent text-zinc-500 hover:text-white px-10 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 border border-zinc-800 hover:border-zinc-600"
           >
-            <Link href="/about">READ THE MANIFESTO</Link>
-          </CtaButton>
+            Read the Manifesto
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </Container>
+
+      {/* Big bottom wordmark */}
+      <div className="relative z-10 w-full mt-16 select-none pointer-events-none overflow-hidden">
+        <p className="font-sans font-black uppercase leading-none text-white/[0.1] whitespace-nowrap text-[14.5vw] tracking-tight w-full text-center">
+          Community
+        </p>
+      </div>
     </section>
   );
 }

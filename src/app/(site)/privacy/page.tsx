@@ -8,7 +8,7 @@ export default function PrivacyPage() {
       <section className="w-full pt-32 pb-16 bg-black">
         <Container className="px-4">
           <div className="px-2">
-            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
               PRIVACY <br />
               <span className="text-zinc-700">POLICY</span>
             </h1>

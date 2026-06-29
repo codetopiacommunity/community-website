@@ -34,15 +34,15 @@ export function LeadershipIsland() {
       <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1 px-2">
-            <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
               LEADERSHIP <br />
               <span className="text-zinc-700">BRIEF</span>
             </h2>
             <div className="max-w-2xl">
-              <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                A Codetopia initiative. The Codetopia Community is led by a
-                decentralized collective of engineers and community leaders
-                defining the future of technical mastery.
+              <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
+                The Codetopia Community is led by experienced engineers and
+                community builders working to grow the next generation of tech
+                talent in Ghana and beyond.
               </p>
             </div>
           </div>

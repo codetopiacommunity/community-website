@@ -1,60 +1,85 @@
-"use client";
-
-import { MoveRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
-import { CtaButton } from "@/components/ui/cta-button";
+
+const WORDS = ["Grow.", "Collaborate.", "Lead.", "Build.", "Ship.", "Connect."];
 
 export function Hero() {
   return (
-    <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col justify-center overflow-hidden">
-      {/* Background Image & Overlay */}
+    <section className="relative w-full min-h-[calc(100svh-80px)] flex flex-col bg-black">
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat grayscale opacity-55"
         style={{ backgroundImage: `url('${heroBg.src}')` }}
-      >
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/80" />
-      </div>
+      />
+      <div className="absolute inset-0 z-0 bg-black/50" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 30%, black 100%)",
+        }}
+      />
 
-      {/* Main Content Area */}
-      <div className="flex-1 relative z-10 flex flex-col items-center justify-center text-center pt-20 pb-24">
-        <Container className="flex flex-col items-center justify-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white tracking-tighter uppercase max-w-4xl lg:max-w-6xl xl:max-w-7xl leading-[0.95] font-sans">
-            WHERE BUILDERS <br className="hidden md:block" />{" "}
-            <span className="text-zinc-500">GROW, COLLABORATE,</span>{" "}
-            <br className="hidden md:block" /> AND LEAD
-          </h1>
-          <p className="mt-8 text-lg md:text-xl xl:text-2xl text-zinc-400 max-w-3xl font-mono leading-relaxed px-4">
-            A community where developers and technologists learn together,
-            collaborate, and grow.
-          </p>
+      {/* Main content */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-0 pt-16 pb-24">
+        <Container className="flex flex-col gap-16">
+          {/* Headline */}
+          <div className="text-[13vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[7.5vw] font-black text-white tracking-tighter uppercase leading-[0.88] font-sans">
+            <span>Where</span>
+            <br />
+            <span className="text-white/40">Builders</span>
+            <br />
+            {/*
+              CSS grid stacking: all words occupy the same grid cell (1/1),
+              so the container sizes to the widest word and they layer on top of
+              each other. CSS animation with staggered delays cycles visibility.
+              No JS needed — works identically on every device.
+            */}
+            <span style={{ display: "inline-grid" }}>
+              {WORDS.map((word, i) => (
+                <span
+                  key={word}
+                  style={{
+                    gridArea: "1 / 1",
+                    opacity: 0,
+                    animation: "hero-word-cycle 12s ease-in-out infinite",
+                    animationDelay: `${i * 2}s`,
+                  }}
+                >
+                  {word}
+                </span>
+              ))}
+            </span>
+          </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center gap-8 md:gap-6 w-full sm:w-auto">
-            <CtaButton
-              asChild
-              className="bg-white text-black hover:bg-zinc-200"
-              offsetClassName="border-white"
-            >
-              <a
-                href="https://discord.gg/nPmRWdTQAK"
-                target="_blank"
-                rel="noreferrer"
+          {/* Description + CTA */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+            <p className="text-zinc-400 text-base md:text-lg font-mono leading-relaxed max-w-md">
+              A community where developers and technologists learn together,
+              collaborate, and grow through structured mentorship and real-world
+              engineering.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/howtos/Getting-Started/01-join-the-communtiy"
+                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
               >
-                JOIN OUR COMMUNITY
-              </a>
-            </CtaButton>
-            <CtaButton
-              asChild
-              className="bg-transparent border-white text-white hover:bg-white/10 border"
-              offsetClassName="border-white mix-blend-overlay"
-            >
-              <Link href="/about">
-                LEARN MORE{" "}
-                <MoveRight className="ml-2 w-5 h-5" strokeWidth={2.5} />
+                Join the Community
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </CtaButton>
+            </div>
           </div>
         </Container>
       </div>

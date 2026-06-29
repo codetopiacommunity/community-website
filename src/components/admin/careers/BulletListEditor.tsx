@@ -43,8 +43,7 @@ export function BulletListEditor({
       {items.length > 0 && (
         <ul className="space-y-2">
           {items.map((item, idx) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: ordered list
-            <li key={idx} className="flex items-center gap-2">
+            <li key={item} className="flex items-center gap-2">
               <span className="text-grey-300 font-mono text-xs shrink-0">
                 {String(idx + 1).padStart(2, "0")}
               </span>

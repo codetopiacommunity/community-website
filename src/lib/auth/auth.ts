@@ -6,9 +6,11 @@ export interface AdminSession extends JWTPayload {
   name?: string;
 }
 
-const secret = new TextEncoder().encode(
-  process.env.JWT_SECRET || "fallback-secret-for-development",
-);
+function getSecret(): Uint8Array {
+  const value = process.env.JWT_SECRET;
+  if (!value) throw new Error("JWT_SECRET environment variable is not set");
+  return new TextEncoder().encode(value);
+}
 
 export async function login(payload: { email: string; name?: string }) {
   // Create the session
@@ -17,7 +19,7 @@ export async function login(payload: { email: string; name?: string }) {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("24h")
-    .sign(secret);
+    .sign(getSecret());
 
   // Set the cookie
   (await cookies()).set("admin_session", session, {
@@ -42,7 +44,7 @@ export async function getSession(): Promise<AdminSession | null> {
 
 export async function decrypt(input: string): Promise<AdminSession | null> {
   try {
-    const { payload } = await jwtVerify(input, secret, {
+    const { payload } = await jwtVerify(input, getSecret(), {
       algorithms: ["HS256"],
     });
     return payload as AdminSession;

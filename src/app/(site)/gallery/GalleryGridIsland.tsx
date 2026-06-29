@@ -36,8 +36,8 @@ export function GalleryGridIsland() {
                 No albums yet
               </p>
               <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
-                The gallery is empty for now — come back soon for photos from
-                our events.
+                The gallery is empty for now. Come back soon for photos from our
+                events.
               </p>
             </div>
           </div>
@@ -67,7 +67,7 @@ export function GalleryGridIsland() {
                     </div>
                     <div className="absolute top-4 right-4">
                       <span className="bg-black/80 text-zinc-400 font-mono text-[10px] uppercase tracking-widest px-3 py-1">
-                        {album.photos.length} photos
+                        {album._count.photos} photos
                       </span>
                     </div>
                   </div>

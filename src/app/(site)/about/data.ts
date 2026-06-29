@@ -35,7 +35,7 @@ export const coreValues = [
   {
     title: "Excellence",
     description:
-      "Everything Codetopia Community produces - projects, events, mentorship is held to a high standard.",
+      "Every project, event, and mentorship we run is held to a high standard. No exceptions.",
     icon: Award,
   },
   {
