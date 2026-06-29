@@ -19,77 +19,77 @@ import { CTA } from "@/components/home/CTA";
 import { Newsletter } from "@/components/home/Newsletter";
 import { Container } from "@/components/layout/Container";
 
+const communityLinks = [
+  { name: "Code of Conduct", href: "/code-of-conduct" },
+  { name: "Become a Sponsor", href: "#" },
+  { name: "Become a Volunteer", href: "#" },
+  { name: "Join Our Discord", href: "https://discord.gg/nPmRWdTQAK" },
+];
+
+const quickLinks = [
+  { name: "About Us", href: "/about" },
+  { name: "The Team", href: "/team" },
+  { name: "Events", href: "/events" },
+  { name: "Articles", href: "/articles" },
+  { name: "How-tos", href: "/howtos" },
+  { name: "Gallery", href: "/gallery" },
+];
+
+const socialIcons = [
+  {
+    icon: FaDiscord,
+    href: "https://discord.gg/nPmRWdTQAK",
+    label: "Discord",
+  },
+  {
+    icon: FaYoutube,
+    href: "https://www.youtube.com/@codetopiacommunity",
+    label: "YouTube",
+  },
+  {
+    icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/company/codetopiacommunity",
+    label: "LinkedIn",
+  },
+  { icon: FaXTwitter, href: "https://x.com/codetopiacom", label: "X" },
+  {
+    icon: FaInstagram,
+    href: "https://www.instagram.com/codetopiacommunity/",
+    label: "Instagram",
+  },
+  {
+    icon: FaThreads,
+    href: "http://www.threads.com/codetopiacommunity/",
+    label: "Threads",
+  },
+  {
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@codetopiacommunity",
+    label: "TikTok",
+  },
+  {
+    icon: SiBluesky,
+    href: "https://bsky.app/profile/codetopiacommunity.bsky.social",
+    label: "Bluesky",
+  },
+  {
+    icon: FaMastodon,
+    href: "https://mastodon.social/@codetopiacommunity",
+    label: "Mastodon",
+  },
+  {
+    icon: FaWhatsapp,
+    href: "https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o",
+    label: "WhatsApp",
+  },
+  {
+    icon: FaGithub,
+    href: "https://github.com/codetopiacommunity",
+    label: "GitHub",
+  },
+];
+
 export function Footer() {
-  const communityLinks = [
-    { name: "Code of Conduct", href: "/code-of-conduct" },
-    { name: "Become a Sponsor", href: "#" },
-    { name: "Become a Volunteer", href: "#" },
-    { name: "Join Our Discord", href: "https://discord.gg/nPmRWdTQAK" },
-  ];
-
-  const quickLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "The Team", href: "/team" },
-    { name: "Events", href: "/events" },
-    { name: "Articles", href: "/articles" },
-    { name: "How-tos", href: "/howtos" },
-    { name: "Gallery", href: "/gallery" },
-  ];
-
-  const socialIcons = [
-    {
-      icon: FaDiscord,
-      href: "https://discord.gg/nPmRWdTQAK",
-      label: "Discord",
-    },
-    {
-      icon: FaYoutube,
-      href: "https://www.youtube.com/@codetopiacommunity",
-      label: "YouTube",
-    },
-    {
-      icon: FaLinkedinIn,
-      href: "https://www.linkedin.com/company/codetopiacommunity",
-      label: "LinkedIn",
-    },
-    { icon: FaXTwitter, href: "https://x.com/codetopiacom", label: "X" },
-    {
-      icon: FaInstagram,
-      href: "https://www.instagram.com/codetopiacommunity/",
-      label: "Instagram",
-    },
-    {
-      icon: FaThreads,
-      href: "http://www.threads.com/codetopiacommunity/",
-      label: "Threads",
-    },
-    {
-      icon: FaTiktok,
-      href: "https://www.tiktok.com/@codetopiacommunity",
-      label: "TikTok",
-    },
-    {
-      icon: SiBluesky,
-      href: "https://bsky.app/profile/codetopiacommunity.bsky.social",
-      label: "Bluesky",
-    },
-    {
-      icon: FaMastodon,
-      href: "https://mastodon.social/@codetopiacommunity",
-      label: "Mastodon",
-    },
-    {
-      icon: FaWhatsapp,
-      href: "https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o",
-      label: "WhatsApp",
-    },
-    {
-      icon: FaGithub,
-      href: "https://github.com/codetopiacommunity",
-      label: "GitHub",
-    },
-  ];
-
   return (
     <footer className="w-full flex flex-col bg-black text-white border-t border-zinc-900">
       <Newsletter />

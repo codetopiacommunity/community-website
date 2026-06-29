@@ -14,7 +14,12 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
   const allTags = Array.from(
-    new Map(articles.flatMap((a) => a.tags).map((t) => [t.slug, t])).values(),
+    articles
+      .reduce((map, a) => {
+        for (const t of a.tags) map.set(t.slug, t);
+        return map;
+      }, new Map<string, (typeof articles)[0]["tags"][0]>())
+      .values(),
   );
 
   const filtered = articles.filter((article) => {
