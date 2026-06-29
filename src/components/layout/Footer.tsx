@@ -24,7 +24,6 @@ export function Footer() {
     { name: "Code of Conduct", href: "/code-of-conduct" },
     { name: "Become a Sponsor", href: "#" },
     { name: "Become a Volunteer", href: "#" },
-    { name: "Join Our Discord Server", href: "https://discord.gg/nPmRWdTQAK" },
   ];
 
   const quickLinks = [
@@ -37,11 +36,6 @@ export function Footer() {
   ];
 
   const socialIcons = [
-    {
-      icon: FaDiscord,
-      href: "https://discord.gg/nPmRWdTQAK",
-      label: "Discord",
-    },
     {
       icon: FaYoutube,
       href: "https://www.youtube.com/@codetopiacommunity",
