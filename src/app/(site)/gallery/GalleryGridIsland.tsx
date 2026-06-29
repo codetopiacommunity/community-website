@@ -67,7 +67,7 @@ export function GalleryGridIsland() {
                     </div>
                     <div className="absolute top-4 right-4">
                       <span className="bg-black/80 text-zinc-400 font-mono text-[10px] uppercase tracking-widest px-3 py-1">
-                        {album.photos.length} photos
+                        {album._count.photos} photos
                       </span>
                     </div>
                   </div>

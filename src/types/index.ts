@@ -38,6 +38,7 @@ export interface GalleryAlbumWithPhotos {
   category: string;
   coverImage: string;
   photos: { id: number }[];
+  _count: { photos: number };
 }
 
 export interface GalleryAlbum {
