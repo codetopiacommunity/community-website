@@ -105,7 +105,7 @@ function HonorCard({
       onClick={() => onSelect(entry)}
       className="group relative w-full text-left overflow-hidden bg-zinc-950 border border-zinc-800 hover:border-zinc-600 transition-all duration-500 flex flex-col cursor-pointer"
     >
-      {/* Photo — grayscale ? colour on hover, slow zoom */}
+      {/* Photo - grayscale ? colour on hover, slow zoom */}
       <div className="relative w-full aspect-[4/5] overflow-hidden">
         {entry.image ? (
           // biome-ignore lint/performance/noImgElement: remote cloudinary/portal avatar
@@ -115,7 +115,7 @@ function HonorCard({
             className="absolute inset-0 h-full w-full object-cover object-top grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700"
           />
         ) : (
-          /* Fallback — initials on dark bg */
+          /* Fallback - initials on dark bg */
           <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
             <span className="font-black text-5xl text-zinc-700 font-mono select-none">
               {getInitials(entry.name)}
@@ -124,7 +124,7 @@ function HonorCard({
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
-        {/* Category badge — top left */}
+        {/* Category badge - top left */}
         <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
           <Icon className={cn("w-3 h-3", meta.accent.split(" ")[0])} />
           <span className="font-mono text-[9px] uppercase tracking-widest text-white font-black">
@@ -132,14 +132,14 @@ function HonorCard({
           </span>
         </div>
 
-        {/* Period badge — top right */}
+        {/* Period badge - top right */}
         <div className="absolute top-4 right-4 px-3 py-1.5 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
           <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 font-black">
             {entry.period}
           </span>
         </div>
 
-        {/* Name block — bottom */}
+        {/* Name block - bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <div className="inline-block bg-white px-3 py-1.5 mb-3 transform group-hover:translate-x-1 transition-transform duration-300">
             <p className="font-mono text-[9px] uppercase tracking-[0.2em] font-black text-black leading-none">
@@ -403,7 +403,7 @@ export function WallOfImpact() {
   return (
     <section className="w-full pb-24 bg-black font-sans">
       <Container className="px-4">
-        {/* Filter row — matches mentorship toolbar style: sharp, mono, uppercase */}
+        {/* Filter row - matches mentorship toolbar style: sharp, mono, uppercase */}
         <div className="flex flex-wrap gap-2 mb-10">
           {FILTERS.map((f) => {
             return (
