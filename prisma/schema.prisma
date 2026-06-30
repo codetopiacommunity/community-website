@@ -214,3 +214,24 @@ model Mentorship {
 
   @@map("mentorships")
 }
+
+model Recognition {
+  id             Int      @id @default(autoincrement())
+  slug           String   @unique @default("")
+  // Link to the portal user (identity lives in portal-core; fetched live).
+  portalUsername String   @map("portal_username")
+  // Recognition metadata (categories are independent of portal roles).
+  category       String   @default("MEMBER")
+  awardName      String   @map("award_name")
+  period         String
+  impactSummary  String   @db.Text @map("impact_summary")
+  roleLabel      String?  @map("role_label")
+  domain         String?  @map("domain")
+  achievements   String[]
+  isPublished    Boolean  @default(true) @map("is_published")
+  order          Int      @default(0)
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("recognitions")
+}

@@ -63,8 +63,8 @@ const NAV_ITEMS: NavItem[] = [
         description: "Practical step-by-step guides from the community",
       },
       {
-        label: "Impact",
-        href: "/impact",
+        label: "Wall of Impact",
+        href: "/wall-of-impact",
         description: "Stories of community impact",
       },
       {

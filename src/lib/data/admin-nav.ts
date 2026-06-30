@@ -47,6 +47,11 @@ export const adminNavData = {
           icon: Star,
         },
         {
+          title: "Wall of Impact",
+          url: "/admin/recognition",
+          icon: Award,
+        },
+        {
           title: "Spotlight",
           url: "/admin/spotlight",
           icon: Sparkles,
