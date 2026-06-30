@@ -160,6 +160,8 @@ In your PR description, please include:
 
 ## Development Setup
 
+> For a deeper overview of the project architecture, design system, and conventions, see [CLAUDE.md](CLAUDE.md).
+
 | Tool | Details |
 |------|---------|
 | Framework | Next.js (App Router) |
