@@ -19,46 +19,26 @@ type PublicTeamMember = {
   twitter: string | null;
 };
 
-const ROLE_TO_TIER: Record<string, PublicTeamTier> = {
-  core: "CORE",
-  core_team: "CORE",
-  volunteer: "VOLUNTEER",
-  ambassador: "AMBASSADOR",
-};
-
-const TIER_LABELS: Record<PublicTeamTier, string> = {
-  CORE: "Core Team",
-  VOLUNTEER: "Volunteer",
-  AMBASSADOR: "Ambassador",
-};
-
-function normalizeRole(role: string): string {
-  return role
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "_")
-    .replace(/^_|_$/g, "");
-}
-
-function getPortalTier(member: PortalMember): PublicTeamTier | null {
-  for (const role of member.communityRoles) {
-    const tier = ROLE_TO_TIER[normalizeRole(role)];
-    if (tier) return tier;
-  }
-  return null;
-}
+const PORTAL_TEAM_ROLES: Array<{
+  role: string;
+  tier: PublicTeamTier;
+  label: string;
+}> = [
+  { role: "core_team", tier: "CORE", label: "Core Team" },
+  { role: "volunteer", tier: "VOLUNTEER", label: "Volunteer" },
+  { role: "ambassador", tier: "AMBASSADOR", label: "Ambassador" },
+];
 
 function portalMemberToTeamMember(
   member: PortalMember,
-): PublicTeamMember | null {
-  const tier = getPortalTier(member);
-  if (!tier) return null;
-
+  tier: PublicTeamTier,
+  label: string,
+): PublicTeamMember {
   return {
     id: member.communityId || member.username,
     slug: member.username,
     name: member.fullName || member.username,
-    role: TIER_LABELS[tier],
+    role: label,
     imageUrl: member.profilePictureUrl || null,
     statement: "",
     expertise: member.communityRoles,
@@ -69,10 +49,25 @@ function portalMemberToTeamMember(
   };
 }
 
-function isTeamMember(
-  member: PublicTeamMember | null,
-): member is PublicTeamMember {
-  return member !== null;
+async function fetchPortalTeamMembers(): Promise<PublicTeamMember[]> {
+  const byUsername = new Map<string, PublicTeamMember>();
+
+  for (const { role, tier, label } of PORTAL_TEAM_ROLES) {
+    try {
+      const members = await fetchPortalMembers({ role }, 60);
+      for (const member of members) {
+        if (!member.username) continue;
+        const key = member.username.toLowerCase();
+        if (!byUsername.has(key)) {
+          byUsername.set(key, portalMemberToTeamMember(member, tier, label));
+        }
+      }
+    } catch (error) {
+      console.error(`GET Team portal role fetch failed for ${role}:`, error);
+    }
+  }
+
+  return Array.from(byUsername.values());
 }
 
 export async function GET() {
@@ -83,10 +78,7 @@ export async function GET() {
 
     let portalMembers: PublicTeamMember[] = [];
     try {
-      const members = await fetchPortalMembers(undefined, 60);
-      portalMembers = members
-        .map(portalMemberToTeamMember)
-        .filter(isTeamMember);
+      portalMembers = await fetchPortalTeamMembers();
     } catch (error) {
       console.error("GET Team portal merge failed:", error);
     }
@@ -102,5 +94,3 @@ export async function GET() {
     return serverError("Failed to fetch team members");
   }
 }
-
-
