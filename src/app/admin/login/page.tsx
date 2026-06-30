@@ -2,7 +2,6 @@
 
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
@@ -50,13 +49,13 @@ function LoginInner() {
         </div>
       )}
 
-      <Link
+      <a
         href="/api/admin/auth/start"
         className="w-full bg-white text-black font-black py-4 rounded-none flex items-center justify-center gap-2 hover:bg-grey-200 transition-all active:scale-[0.98] group uppercase tracking-widest text-[11px]"
       >
         Continue with Community Portal
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </Link>
+      </a>
 
       <div className="mt-16 text-center border-t border-white/5 pt-8">
         <p className="text-[10px] font-medium text-grey-600 tracking-wide">
