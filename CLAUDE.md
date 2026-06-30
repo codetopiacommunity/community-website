@@ -48,6 +48,24 @@ prisma/
 
 ---
 
+## Database models
+
+| Model | Purpose |
+|-------|---------|
+| `Admin` | Admin panel users |
+| `TeamMember` | Team members, linked to mentorships |
+| `GalleryAlbum` + `GalleryPhoto` | Photo albums and their photos (cascade delete) |
+| `ImpactStory` | Community impact events (`startDate` is ISO string `YYYY-MM-DD`, not DateTime) |
+| `Event` | Community events |
+| `Mentorship` | Mentorship programmes, linked to `TeamMember` |
+| `Career` | Open roles / job listings |
+| `Spotlight` | Technical spotlights on community members |
+| `Newsletter` + `NewsletterDeliveryLog` | Email campaigns and delivery tracking |
+| `Subscriber` | Newsletter subscribers (email-verified) |
+| `ArticlesConfig` | Hashnode host + featured article slugs (one row, admin-configurable) |
+
+---
+
 ## Design system
 
 The site has a deliberate editorial/brutalist aesthetic. Follow these when writing UI:
