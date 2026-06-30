@@ -2,7 +2,6 @@
 
 import { Github, Linkedin, Twitter } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
-import profileSample from "@/assets/images/profile/profile-sample.jpg";
 
 export interface TeamMember {
   id?: number | string;
@@ -28,8 +27,21 @@ interface TeamCardProps {
   member: TeamMember;
 }
 
+function getInitials(name: string): string {
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+
+  return initials || "CT";
+}
+
 export function TeamCard({ member }: TeamCardProps) {
-  const imageSource = member.imageUrl || member.image || profileSample;
+  const imageSource = member.imageUrl || member.image;
+  const initials = getInitials(member.name);
   const github = member.socials?.github || member.github;
   const linkedin = member.socials?.linkedin || member.linkedin;
   const twitter = member.socials?.twitter || member.twitter;
@@ -38,12 +50,20 @@ export function TeamCard({ member }: TeamCardProps) {
     <div className="group relative bg-black flex flex-col hover:bg-zinc-950 transition-all overflow-hidden border border-zinc-900 aspect-[4/5] w-full">
       {/* Visual Asset: Grayscale Image */}
       <div className="relative h-full w-full overflow-hidden">
-        <Image
-          src={imageSource}
-          alt={member.name}
-          fill
-          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
-        />
+        {imageSource ? (
+          <Image
+            src={imageSource}
+            alt={member.name}
+            fill
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-zinc-950 text-white transition-all duration-700 group-hover:bg-zinc-900 group-hover:scale-105">
+            <span className="font-mono text-6xl font-bold tracking-widest text-zinc-300 md:text-7xl">
+              {initials}
+            </span>
+          </div>
+        )}
 
         {/* Subtle Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black group-hover:via-black/80 transition-all duration-700 z-10" />
