@@ -63,10 +63,9 @@ We welcome contributions from everyone! Please read our [Contributing Guide](CON
 | Platform | Link |
 |----------|------|
 | 🌍 **Website** | [community.codetopia.org](https://community.codetopia.org) |
-| 💬 **Discord** | [Join our Discord](https://discord.gg/nPmRWdTQAK) |
 | 📺 **YouTube** | [@codetopiacommunity](https://www.youtube.com/@codetopiacommunity) |
 | 💼 **LinkedIn** | [Codetopia Community](https://www.linkedin.com/company/codetopiacommunity) |
-| 🐦 **Twitter/X** | [@codetopiacom](https://x.com/codetopiacom) |
+| 🐦 **Twitter/X** | [@codetopiacomm](https://x.com/codetopiacomm) |
 | 📸 **Instagram** | [@codetopiacommunity](https://www.instagram.com/codetopiacommunity/) |
 | 🧵 **Threads** | [@codetopiacommunity](http://www.threads.com/codetopiacommunity/) |
 | 🎵 **TikTok** | [@codetopiacommunity](https://www.tiktok.com/@codetopiacommunity) |
