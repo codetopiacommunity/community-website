@@ -208,7 +208,16 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-8">
               <p className="font-sans font-black text-xs text-zinc-700 uppercase tracking-widest">
-                A Codetopia Initiative
+                A{" "}
+                <a
+                  href="https://codetopia.org"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Codetopia
+                </a>{" "}
+                Initiative
               </p>
               <Link
                 href="/privacy"
