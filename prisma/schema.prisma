@@ -217,7 +217,7 @@ model Mentorship {
 
 model Recognition {
   id             Int      @id @default(autoincrement())
-  slug           String   @unique @default("")
+  slug           String?  @unique
   // Link to the portal user (identity lives in portal-core; fetched live).
   portalUsername String   @map("portal_username")
   // Recognition metadata (categories are independent of portal roles).
