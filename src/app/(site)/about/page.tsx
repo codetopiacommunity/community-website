@@ -1,6 +1,7 @@
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { coreValues } from "./data";
-import { LeadershipIsland } from "./LeadershipIsland";
 
 export default function AboutPage() {
   return (
@@ -120,7 +121,33 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership */}
-      <LeadershipIsland />
+      <section className="w-full py-32 bg-black text-white z-20 border-t border-zinc-900">
+        <Container className="w-full px-4 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+            <div className="flex-1 px-2">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
+                LEADERSHIP <br />
+                <span className="text-zinc-700">BRIEF</span>
+              </h2>
+              <div className="max-w-2xl">
+                <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
+                  The Codetopia Community is led by experienced engineers and
+                  community builders working to grow the next generation of tech
+                  talent in Ghana and beyond.
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="/team"
+              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-mono text-[9px] uppercase tracking-[0.3em] font-black hover:bg-zinc-200 transition-colors"
+            >
+              MEET THE TEAM
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </Link>
+          </div>
+        </Container>
+      </section>
     </>
   );
 }
