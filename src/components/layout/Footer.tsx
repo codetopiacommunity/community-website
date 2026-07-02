@@ -44,7 +44,7 @@ const socialIcons = [
     href: "https://www.linkedin.com/company/codetopiacommunity",
     label: "LinkedIn",
   },
-  { icon: FaXTwitter, href: "https://x.com/codetopiacom", label: "X" },
+  { icon: FaXTwitter, href: "https://x.com/codetopiacomm", label: "X" },
   {
     icon: FaInstagram,
     href: "https://www.instagram.com/codetopiacommunity/",
