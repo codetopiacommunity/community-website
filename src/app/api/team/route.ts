@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
 import { serverError } from "@/lib/api/api-utils";
-import { fetchPortalMembers, type PortalMember } from "@/lib/portal";
-
-type PublicTeamTier = "CORE" | "VOLUNTEER" | "AMBASSADOR";
+import {
+  fetchPortalMembers,
+  fetchPortalRoles,
+  isTeamRole,
+  type PortalMember,
+} from "@/lib/portal";
 
 type PublicTeamMember = {
   id: number | string;
@@ -13,25 +16,17 @@ type PublicTeamMember = {
   imageUrl: string | null;
   statement: string;
   expertise: string[];
-  tier: PublicTeamTier;
+  tier: string;
   github: string | null;
   linkedin: string | null;
   twitter: string | null;
 };
 
-const PORTAL_TEAM_ROLES: Array<{
-  role: string;
-  tier: PublicTeamTier;
-  label: string;
-}> = [
-  { role: "core_team", tier: "CORE", label: "Core Team" },
-  { role: "volunteer", tier: "VOLUNTEER", label: "Volunteer" },
-  { role: "ambassador", tier: "AMBASSADOR", label: "Ambassador" },
-];
+type TeamTier = { value: string; label: string };
 
 function portalMemberToTeamMember(
   member: PortalMember,
-  tier: PublicTeamTier,
+  tier: string,
   label: string,
 ): PublicTeamMember {
   return {
@@ -49,25 +44,48 @@ function portalMemberToTeamMember(
   };
 }
 
-async function fetchPortalTeamMembers(): Promise<PublicTeamMember[]> {
-  const byUsername = new Map<string, PublicTeamMember>();
+/**
+ * The "team" categories and their members are both driven by the portal's
+ * role registry now, not a hardcoded list here -- any role an admin marks
+ * public in the portal (other than "member") shows up as a team category
+ * automatically, with no code change on this side.
+ */
+async function fetchPortalTeamMembers(): Promise<{
+  members: PublicTeamMember[];
+  tiers: TeamTier[];
+}> {
+  const roles = await fetchPortalRoles();
+  const teamRoles = roles.filter(isTeamRole);
 
-  for (const { role, tier, label } of PORTAL_TEAM_ROLES) {
+  const byUsername = new Map<string, PublicTeamMember>();
+  for (const role of teamRoles) {
     try {
-      const members = await fetchPortalMembers({ role }, 60);
+      const members = await fetchPortalMembers(
+        { role: role.name, excludeFlagged: true },
+        60,
+      );
       for (const member of members) {
         if (!member.username) continue;
         const key = member.username.toLowerCase();
         if (!byUsername.has(key)) {
-          byUsername.set(key, portalMemberToTeamMember(member, tier, label));
+          byUsername.set(
+            key,
+            portalMemberToTeamMember(member, role.name, role.displayName),
+          );
         }
       }
     } catch (error) {
-      console.error(`GET Team portal role fetch failed for ${role}:`, error);
+      console.error(
+        `GET Team portal role fetch failed for ${role.name}:`,
+        error,
+      );
     }
   }
 
-  return Array.from(byUsername.values());
+  return {
+    members: Array.from(byUsername.values()),
+    tiers: teamRoles.map((r) => ({ value: r.name, label: r.displayName })),
+  };
 }
 
 export async function GET() {
@@ -77,8 +95,11 @@ export async function GET() {
     });
 
     let portalMembers: PublicTeamMember[] = [];
+    let portalTiers: TeamTier[] = [];
     try {
-      portalMembers = await fetchPortalTeamMembers();
+      const result = await fetchPortalTeamMembers();
+      portalMembers = result.members;
+      portalTiers = result.tiers;
     } catch (error) {
       console.error("GET Team portal merge failed:", error);
     }
@@ -88,7 +109,18 @@ export async function GET() {
       (member) => !localSlugs.has(member.slug.toLowerCase()),
     );
 
-    return NextResponse.json([...localMembers, ...mergedPortalMembers]);
+    // Locally-curated members (admin panel) can carry a tier that doesn't
+    // correspond to any portal role -- surface those as filter options too
+    // so they stay reachable instead of falling into an untitled bucket.
+    const portalTierValues = new Set(portalTiers.map((t) => t.value));
+    const localOnlyTiers = [...new Set(localMembers.map((m) => m.tier))]
+      .filter((tier) => !portalTierValues.has(tier))
+      .map((tier) => ({ value: tier, label: tier }));
+
+    return NextResponse.json({
+      members: [...localMembers, ...mergedPortalMembers],
+      tiers: [...portalTiers, ...localOnlyTiers],
+    });
   } catch (error) {
     console.error("GET public Team Error:", error);
     return serverError("Failed to fetch team members");

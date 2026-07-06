@@ -6,11 +6,14 @@ import { TeamCard, type TeamMember } from "@/components/about/TeamCard";
 import { Container } from "@/components/layout/Container";
 import { cn } from "@/lib/utils";
 
-export default function TeamPage() {
-  const [activeTier, setActiveTier] = useState<
-    "CORE" | "VOLUNTEER" | "AMBASSADOR"
-  >("CORE");
+interface TeamTier {
+  value: string;
+  label: string;
+}
 
+export default function TeamPage() {
+  const [tiers, setTiers] = useState<TeamTier[]>([]);
+  const [activeTier, setActiveTier] = useState<string>("");
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +23,9 @@ export default function TeamPage() {
         const res = await fetch("/api/team");
         if (res.ok) {
           const data = await res.json();
-          setTeamMembers(data);
+          setTeamMembers(data.members ?? []);
+          setTiers(data.tiers ?? []);
+          setActiveTier(data.tiers?.[0]?.value ?? "");
         }
       } catch (err) {
         console.error("Failed to fetch team members:", err);
@@ -29,6 +34,9 @@ export default function TeamPage() {
     }
     loadMembers();
   }, []);
+
+  const activeTierLabel =
+    tiers.find((t) => t.value === activeTier)?.label ?? activeTier;
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
@@ -49,23 +57,25 @@ export default function TeamPage() {
             </div>
 
             {/* Tactical Toggle */}
-            <div className="flex flex-wrap gap-2 md:gap-3 p-1 bg-zinc-950 border border-zinc-900">
-              {(["CORE", "VOLUNTEER", "AMBASSADOR"] as const).map((tier) => (
-                <button
-                  key={tier}
-                  type="button"
-                  onClick={() => setActiveTier(tier)}
-                  className={cn(
-                    "px-4 py-2 text-[9px] font-mono uppercase tracking-[0.2em] transition-all",
-                    activeTier === tier
-                      ? "bg-white text-black"
-                      : "bg-transparent text-zinc-600 hover:text-zinc-300",
-                  )}
-                >
-                  {tier.replace("_", " ")}
-                </button>
-              ))}
-            </div>
+            {tiers.length > 0 && (
+              <div className="flex flex-wrap gap-2 md:gap-3 p-1 bg-zinc-950 border border-zinc-900">
+                {tiers.map((tier) => (
+                  <button
+                    key={tier.value}
+                    type="button"
+                    onClick={() => setActiveTier(tier.value)}
+                    className={cn(
+                      "px-4 py-2 text-[9px] font-mono uppercase tracking-[0.2em] transition-all",
+                      activeTier === tier.value
+                        ? "bg-white text-black"
+                        : "bg-transparent text-zinc-600 hover:text-zinc-300",
+                    )}
+                  >
+                    {tier.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {loading ? (
@@ -89,7 +99,7 @@ export default function TeamPage() {
                   <p className="text-zinc-500 font-mono text-base max-w-lg leading-relaxed">
                     We're currently assembling our community leaders for the{" "}
                     <span className="text-zinc-300 font-bold">
-                      {activeTier}
+                      {activeTierLabel || "team"}
                     </span>{" "}
                     tier. Check back soon to see who joins the roster.
                   </p>
