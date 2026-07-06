@@ -73,7 +73,7 @@ export default async function RecognitionDetailPage({
 
   try {
     const members = await fetchPortalMembers(
-      { search: item.portalUsername },
+      { search: item.portalUsername, excludeFlagged: true },
       60,
     );
     const match = members.find(

@@ -17,7 +17,7 @@ export async function GET() {
 
     let members: Awaited<ReturnType<typeof fetchPortalMembers>> = [];
     try {
-      members = await fetchPortalMembers(undefined, 60);
+      members = await fetchPortalMembers({ excludeFlagged: true }, 60);
     } catch (err) {
       // Portal unreachable/misconfigured — still render recognitions with fallbacks.
       console.error("Recognition portal merge failed:", err);
