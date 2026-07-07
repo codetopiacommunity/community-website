@@ -47,7 +47,7 @@ export function TeamCard({ member }: TeamCardProps) {
   const twitter = member.socials?.twitter || member.twitter;
 
   return (
-    <div className="group relative bg-black flex flex-col hover:bg-zinc-950 transition-all overflow-hidden border border-zinc-900 aspect-[4/5] w-full">
+    <div className="group relative bg-black flex flex-col hover:bg-zinc-950 transition-all overflow-hidden border border-zinc-900 aspect-[3/4] w-full">
       {/* Visual Asset: Grayscale Image */}
       <div className="relative h-full w-full overflow-hidden">
         {imageSource ? (
@@ -59,7 +59,7 @@ export function TeamCard({ member }: TeamCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-zinc-950 text-white transition-all duration-700 group-hover:bg-zinc-900 group-hover:scale-105">
-            <span className="font-mono text-6xl font-bold tracking-widest text-zinc-300 md:text-7xl">
+            <span className="font-mono text-4xl font-bold tracking-widest text-zinc-300 md:text-5xl">
               {initials}
             </span>
           </div>
@@ -69,12 +69,12 @@ export function TeamCard({ member }: TeamCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black group-hover:via-black/80 transition-all duration-700 z-10" />
 
         {/* Main Content: Persistent Bottom State */}
-        <div className="absolute inset-x-0 bottom-0 p-8 z-20 flex flex-col justify-end">
-          <div className="transform group-hover:-translate-y-2 transition-transform duration-500">
-            <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-white leading-none font-sans mb-1 line-clamp-1">
+        <div className="absolute inset-x-0 bottom-0 p-5 z-20 flex flex-col justify-end">
+          <div className="transform group-hover:-translate-y-1 transition-transform duration-500">
+            <h3 className="text-xl lg:text-2xl font-black uppercase tracking-tighter text-white leading-none font-sans mb-1 line-clamp-1">
               {member.name}
             </h3>
-            <p className="text-zinc-400 font-mono text-[9px] uppercase tracking-[0.4em] font-bold">
+            <p className="text-zinc-400 font-mono text-[9px] uppercase tracking-[0.3em] font-bold line-clamp-1">
               {member.role}
             </p>
           </div>
@@ -82,35 +82,35 @@ export function TeamCard({ member }: TeamCardProps) {
           {/* Expandable Meta Box via CSS Grid */}
           <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
             <div className="overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-              <div className="flex flex-col gap-4 mt-4 pb-2">
+              <div className="flex flex-col gap-2 mt-2 pb-1">
                 {/* Mission Statement */}
                 {member.statement && (
-                  <p className="text-zinc-300 font-mono text-xs leading-relaxed line-clamp-3">
+                  <p className="text-zinc-300 font-mono text-[10px] leading-relaxed line-clamp-2">
                     {member.statement}
                   </p>
                 )}
 
                 {/* Skills/Expertise Badges */}
                 {member.expertise && member.expertise.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {member.expertise.slice(0, 3).map((exp: string) => (
+                  <div className="flex flex-wrap gap-1.5">
+                    {member.expertise.slice(0, 2).map((exp: string) => (
                       <span
                         key={exp}
-                        className="px-2 py-1 border border-zinc-700 bg-zinc-900 text-zinc-300 font-mono text-[9px] uppercase tracking-widest leading-none pointer-events-none"
+                        className="px-1.5 py-0.5 border border-zinc-700 bg-zinc-900 text-zinc-300 font-mono text-[8px] uppercase tracking-widest leading-none pointer-events-none"
                       >
                         {exp}
                       </span>
                     ))}
-                    {member.expertise.length > 3 && (
-                      <span className="px-2 py-1 border border-zinc-800 bg-black text-zinc-500 font-mono text-[9px] uppercase tracking-widest leading-none pointer-events-none">
-                        +{member.expertise.length - 3}
+                    {member.expertise.length > 2 && (
+                      <span className="px-1.5 py-0.5 border border-zinc-800 bg-black text-zinc-500 font-mono text-[8px] uppercase tracking-widest leading-none pointer-events-none">
+                        +{member.expertise.length - 2}
                       </span>
                     )}
                   </div>
                 )}
 
                 {/* Social Link Controls */}
-                <div className="flex items-center gap-3 pt-2">
+                <div className="flex items-center gap-2 pt-1">
                   {github && github !== "#" && (
                     <a
                       href={
@@ -120,9 +120,9 @@ export function TeamCard({ member }: TeamCardProps) {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 border border-zinc-800 bg-zinc-950 text-white hover:bg-white hover:text-black hover:border-white hover:scale-105 transition-all rounded-none"
+                      className="p-1.5 border border-zinc-800 bg-zinc-950 text-white hover:bg-white hover:text-black hover:border-white hover:scale-105 transition-all rounded-none"
                     >
-                      <Github className="w-4 h-4" />
+                      <Github className="w-3.5 h-3.5" />
                     </a>
                   )}
                   {linkedin && linkedin !== "#" && (
@@ -134,9 +134,9 @@ export function TeamCard({ member }: TeamCardProps) {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 border border-zinc-800 bg-zinc-950 text-white hover:bg-white hover:text-black hover:border-white hover:scale-105 transition-all rounded-none"
+                      className="p-1.5 border border-zinc-800 bg-zinc-950 text-white hover:bg-white hover:text-black hover:border-white hover:scale-105 transition-all rounded-none"
                     >
-                      <Linkedin className="w-4 h-4" />
+                      <Linkedin className="w-3.5 h-3.5" />
                     </a>
                   )}
                   {twitter && twitter !== "#" && (
@@ -148,9 +148,9 @@ export function TeamCard({ member }: TeamCardProps) {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 border border-zinc-800 bg-zinc-950 text-white hover:bg-white hover:text-black hover:border-white hover:scale-105 transition-all rounded-none"
+                      className="p-1.5 border border-zinc-800 bg-zinc-950 text-white hover:bg-white hover:text-black hover:border-white hover:scale-105 transition-all rounded-none"
                     >
-                      <Twitter className="w-4 h-4" />
+                      <Twitter className="w-3.5 h-3.5" />
                     </a>
                   )}
                 </div>
