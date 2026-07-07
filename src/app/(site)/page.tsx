@@ -4,6 +4,7 @@ import { LatestArticles } from "@/components/home/LatestArticles";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
 import { Stats } from "@/components/home/Stats";
+import { TeamsPreview } from "@/components/home/TeamsPreview";
 import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
 import { WhatWeOffer } from "@/components/home/WhatWeOffer";
 import type { Spotlight } from "@/types";
@@ -34,6 +35,7 @@ export default async function Home() {
       <TechnicalSpotlight spotlight={spotlight} />
       <WhatWeOffer />
       <OurImpact />
+      <TeamsPreview />
       <LatestArticles />
     </div>
   );
