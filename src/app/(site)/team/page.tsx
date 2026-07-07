@@ -130,7 +130,7 @@ export default function TeamPage() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-950 border border-zinc-950 overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
               {teamMembers
                 .filter((m: TeamMember) => m.tier === activeTier)
                 .map((member: TeamMember) => (

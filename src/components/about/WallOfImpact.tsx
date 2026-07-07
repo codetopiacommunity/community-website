@@ -106,7 +106,7 @@ function HonorCard({
       className="group relative w-full text-left overflow-hidden bg-zinc-950 border border-zinc-800 hover:border-zinc-600 transition-all duration-500 flex flex-col cursor-pointer"
     >
       {/* Photo - grayscale ? colour on hover, slow zoom */}
-      <div className="relative w-full aspect-[4/5] overflow-hidden">
+      <div className="relative w-full aspect-[3/4] overflow-hidden">
         {entry.image ? (
           // biome-ignore lint/performance/noImgElement: remote cloudinary/portal avatar
           <img
@@ -117,7 +117,7 @@ function HonorCard({
         ) : (
           /* Fallback - initials on dark bg */
           <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
-            <span className="font-black text-5xl text-zinc-700 font-mono select-none">
+            <span className="font-black text-4xl text-zinc-700 font-mono select-none">
               {getInitials(entry.name)}
             </span>
           </div>
@@ -125,7 +125,7 @@ function HonorCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
         {/* Category badge - top left */}
-        <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
           <Icon className={cn("w-3 h-3", meta.accent.split(" ")[0])} />
           <span className="font-mono text-[9px] uppercase tracking-widest text-white font-black">
             {categoryLabel}
@@ -133,20 +133,20 @@ function HonorCard({
         </div>
 
         {/* Period badge - top right */}
-        <div className="absolute top-4 right-4 px-3 py-1.5 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
+        <div className="absolute top-3 right-3 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
           <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 font-black">
             {entry.period}
           </span>
         </div>
 
         {/* Name block - bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <div className="inline-block bg-white px-3 py-1.5 mb-3 transform group-hover:translate-x-1 transition-transform duration-300">
+        <div className="absolute bottom-0 left-0 right-0 p-3">
+          <div className="inline-block bg-white px-2 py-1 mb-2 transform group-hover:translate-x-1 transition-transform duration-300">
             <p className="font-mono text-[9px] uppercase tracking-[0.2em] font-black text-black leading-none">
               {entry.awardName}
             </p>
           </div>
-          <h3 className="text-2xl lg:text-3xl font-black uppercase tracking-tighter text-white leading-tight font-sans">
+          <h3 className="text-xl lg:text-2xl font-black uppercase tracking-tighter text-white leading-tight font-sans">
             {entry.name}
           </h3>
           {entry.role && (
@@ -158,7 +158,7 @@ function HonorCard({
       </div>
 
       {/* Impact summary row */}
-      <div className="px-4 py-3 border-t border-zinc-800 flex items-start justify-between gap-3 flex-1">
+      <div className="px-3 py-2.5 border-t border-zinc-800 flex items-start justify-between gap-3 flex-1">
         <p className="text-zinc-500 font-mono text-[10px] leading-relaxed line-clamp-2 group-hover:text-zinc-400 transition-colors flex-1">
           {entry.impactSummary}
         </p>
@@ -426,9 +426,9 @@ export function WallOfImpact() {
 
         {/* Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
             {[0, 1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="aspect-[4/5] animate-pulse bg-zinc-900" />
+              <div key={i} className="aspect-[3/4] animate-pulse bg-zinc-900" />
             ))}
           </div>
         ) : visible.length === 0 ? (
@@ -438,7 +438,7 @@ export function WallOfImpact() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
             {visible.map((entry) => (
               <HonorCard
                 key={entry.id}
