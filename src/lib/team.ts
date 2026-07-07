@@ -4,6 +4,7 @@ import {
   fetchPortalRoles,
   getPortalProfileUrl,
   isTeamRole,
+  type PortalCareerProgression,
   type PortalMember,
 } from "@/lib/portal";
 
@@ -25,6 +26,7 @@ export type PublicTeamMember = {
   socialLinks: { platform: string; label: string; url: string }[];
   joinedAt: string | null;
   communityProfileUrl: string | null;
+  careerProgressions: PortalCareerProgression[];
 };
 
 export type TeamTier = { value: string; label: string };
@@ -52,6 +54,7 @@ function portalMemberToTeamMember(
     socialLinks: member.socialLinks,
     joinedAt: member.joinedAt || null,
     communityProfileUrl: getPortalProfileUrl(member.username),
+    careerProgressions: member.careerProgressions,
   };
 }
 
@@ -154,6 +157,7 @@ export async function getTeamData(): Promise<{
     socialLinks: [],
     joinedAt: null,
     communityProfileUrl: null,
+    careerProgressions: [],
   }));
 
   return {

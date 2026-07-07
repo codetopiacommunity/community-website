@@ -17,6 +17,15 @@ export interface PortalSocialLink {
   url: string;
 }
 
+export interface PortalCareerProgression {
+  id: number | string;
+  title: string;
+  organization: string;
+  startDate: string;
+  endDate: string | null;
+  description: string;
+}
+
 export interface PortalMember {
   communityId: string;
   username: string;
@@ -34,6 +43,7 @@ export interface PortalMember {
   websiteUrl: string;
   socialLinks: PortalSocialLink[];
   joinedAt: string;
+  careerProgressions: PortalCareerProgression[];
 }
 
 export interface PortalRole {
@@ -97,6 +107,16 @@ export async function fetchPortalMembers(
       ? (m.socialLinks as PortalSocialLink[])
       : [],
     joinedAt: String(m.joinedAt ?? ""),
+    careerProgressions: Array.isArray(m.careerProgressions)
+      ? (m.careerProgressions as Array<Record<string, unknown>>).map((c) => ({
+          id: (c.id as number | string) ?? "",
+          title: String(c.title ?? ""),
+          organization: String(c.organization ?? ""),
+          startDate: String(c.startDate ?? ""),
+          endDate: c.endDate ? String(c.endDate) : null,
+          description: String(c.description ?? ""),
+        }))
+      : [],
   }));
 }
 

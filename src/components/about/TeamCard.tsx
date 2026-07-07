@@ -3,6 +3,7 @@
 import {
   ArrowUpRight,
   CalendarDays,
+  ChevronDown,
   Github,
   Globe,
   Link2,
@@ -21,6 +22,15 @@ export interface TeamMemberSocialLink {
   url: string;
 }
 
+export interface TeamMemberCareerProgression {
+  id: number | string;
+  title: string;
+  organization: string;
+  startDate: string;
+  endDate: string | null;
+  description: string;
+}
+
 export interface TeamMember {
   id?: number | string;
   slug?: string;
@@ -36,6 +46,7 @@ export interface TeamMember {
   joinedAt?: string | null;
   communityProfileUrl?: string | null;
   socialLinks?: TeamMemberSocialLink[];
+  careerProgressions?: TeamMemberCareerProgression[];
   socials?: {
     github?: string | null;
     linkedin?: string | null;
@@ -82,6 +93,56 @@ function formatJoinedDate(value: string): string {
     month: "long",
     year: "numeric",
   }).format(date);
+}
+
+function formatShortDate(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
+
+function formatCareerRange(startDate: string, endDate: string | null): string {
+  const start = formatShortDate(startDate);
+  const end = endDate ? formatShortDate(endDate) : "Present";
+  return start ? `${start} — ${end}` : end;
+}
+
+const BULLET_PATTERN = /^[-*•–]\s+/;
+
+function getBulletItems(description: string): string[] | null {
+  const lines = description
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2 || !lines.every((line) => BULLET_PATTERN.test(line))) {
+    return null;
+  }
+
+  return lines.map((line) => line.replace(BULLET_PATTERN, ""));
+}
+
+function CareerDescription({ description }: { description: string }) {
+  const bullets = getBulletItems(description);
+
+  if (bullets) {
+    return (
+      <ul className="mt-2 space-y-1 list-disc list-inside text-zinc-400 font-mono text-sm leading-relaxed">
+        {bullets.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <p className="text-zinc-400 font-mono text-sm leading-relaxed mt-2">
+      {description}
+    </p>
+  );
 }
 
 export function TeamCard({ member, onSelect }: TeamCardProps) {
@@ -150,6 +211,12 @@ export function TeamMemberModal({
   const twitter = member.socials?.twitter || member.twitter;
   const website = member.socials?.website || member.website;
   const joined = member.joinedAt ? formatJoinedDate(member.joinedAt) : "";
+  const [bioExpanded, setBioExpanded] = React.useState(false);
+  const BIO_CLAMP_THRESHOLD = 240;
+  const isBioLong = (member.statement?.length ?? 0) > BIO_CLAMP_THRESHOLD;
+  const detailsRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [showScrollHint, setShowScrollHint] = React.useState(false);
 
   React.useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -158,6 +225,29 @@ export function TeamMemberModal({
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onClose]);
+
+  React.useEffect(() => {
+    const el = detailsRef.current;
+    const content = contentRef.current;
+    if (!el || !content) return;
+
+    function updateScrollHint() {
+      if (!el) return;
+      setShowScrollHint(el.scrollHeight - el.scrollTop - el.clientHeight > 8);
+    }
+
+    updateScrollHint();
+    el.addEventListener("scroll", updateScrollHint);
+    // Observes the content div (not `el`) since `el` is the fixed-size
+    // scroll container -- its own box never resizes when inner content does.
+    const resizeObserver = new ResizeObserver(updateScrollHint);
+    resizeObserver.observe(content);
+
+    return () => {
+      el.removeEventListener("scroll", updateScrollHint);
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-8">
@@ -172,7 +262,7 @@ export function TeamMemberModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="team-member-modal-title"
-        className="relative w-full max-w-5xl lg:min-h-[560px] bg-black border border-white/20 shadow-2xl flex flex-col lg:flex-row max-h-[95vh] sm:max-h-[90vh] overflow-hidden animate-in fade-in-0 zoom-in-95 duration-200"
+        className="relative w-full max-w-5xl lg:h-[560px] bg-black border border-white/20 shadow-2xl flex flex-col lg:flex-row max-h-[95vh] sm:max-h-[90vh] overflow-hidden animate-in fade-in-0 zoom-in-95 duration-200"
       >
         <button
           type="button"
@@ -193,13 +283,13 @@ export function TeamMemberModal({
         />
 
         {/* Photo column */}
-        <div className="w-full h-[260px] sm:h-[300px] lg:h-auto lg:w-2/5 relative bg-zinc-900 shrink-0">
+        <div className="w-full aspect-[4/5] max-h-[38vh] lg:aspect-auto lg:max-h-none lg:h-auto lg:w-2/5 relative bg-zinc-900 shrink-0">
           {imageSource ? (
             <Image
               src={imageSource}
               alt={member.name}
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
@@ -232,138 +322,200 @@ export function TeamMemberModal({
         </div>
 
         {/* Details column */}
-        <div className="w-full lg:w-3/5 p-5 pb-16 sm:p-8 sm:pb-20 md:p-12 md:pb-20 overflow-y-auto bg-black no-scrollbar text-left font-sans">
-          <div className="space-y-7 sm:space-y-10">
-            <div className="flex flex-wrap items-center gap-5">
-              {member.location && (
-                <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
-                  <MapPin className="w-3.5 h-3.5" />
-                  {member.location}
-                </span>
-              )}
-              {joined && (
-                <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
-                  <CalendarDays className="w-3.5 h-3.5" />
-                  Since {joined}
-                </span>
-              )}
-            </div>
-
-            {member.statement && (
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
-                  Bio
-                </h4>
-                <p className="text-zinc-300 font-mono text-sm leading-relaxed">
-                  {member.statement}
-                </p>
+        <div className="relative w-full lg:w-3/5 min-h-0 flex flex-col">
+          <div
+            ref={detailsRef}
+            className="flex-1 min-h-0 p-5 pb-16 sm:p-8 sm:pb-20 md:p-12 md:pb-20 overflow-y-auto bg-black no-scrollbar text-left font-sans"
+          >
+            <div ref={contentRef} className="space-y-7 sm:space-y-10">
+              <div className="flex flex-wrap items-center gap-5">
+                {member.location && (
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
+                    <MapPin className="w-3.5 h-3.5" />
+                    {member.location}
+                  </span>
+                )}
+                {joined && (
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
+                    <CalendarDays className="w-3.5 h-3.5" />
+                    Since {joined}
+                  </span>
+                )}
               </div>
-            )}
 
-            {member.expertise && member.expertise.length > 0 && (
-              <div>
-                <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
-                  Skills
-                </h5>
-                <div className="flex flex-wrap gap-2">
-                  {member.expertise.map((exp) => (
-                    <span
-                      key={exp}
-                      className="px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-zinc-300 font-mono text-[10px] uppercase tracking-widest"
+              {member.statement && (
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                    Bio
+                  </h4>
+                  <p
+                    className={`text-zinc-300 font-mono text-sm leading-relaxed ${
+                      isBioLong && !bioExpanded ? "line-clamp-4" : ""
+                    }`}
+                  >
+                    {member.statement}
+                  </p>
+                  {isBioLong && (
+                    <button
+                      type="button"
+                      onClick={() => setBioExpanded((prev) => !prev)}
+                      className="mt-2 font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
                     >
-                      {exp}
-                    </span>
-                  ))}
+                      {bioExpanded ? "Show less" : "Read more"}
+                    </button>
+                  )}
                 </div>
-              </div>
-            )}
+              )}
 
-            {member.communityProfileUrl && member.slug && (
-              <div>
-                <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
-                  Community Profile
-                </h5>
-                <a
-                  href={member.communityProfileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-mono text-sm text-zinc-300 hover:text-white transition-colors"
-                >
-                  @{member.slug}
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            )}
+              {member.expertise && member.expertise.length > 0 && (
+                <div>
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                    Skills
+                  </h5>
+                  <div className="flex flex-wrap gap-2">
+                    {member.expertise.map((exp) => (
+                      <span
+                        key={exp}
+                        className="px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-zinc-300 font-mono text-[10px] uppercase tracking-widest"
+                      >
+                        {exp}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-            {(github ||
-              linkedin ||
-              twitter ||
-              website ||
-              (member.socialLinks && member.socialLinks.length > 0)) && (
-              <div>
-                <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
-                  Find {member.name.split(" ")[0]} online
-                </h5>
-                <div className="flex flex-wrap items-center gap-5">
-                  {github && github !== "#" && (
-                    <a
-                      href={resolveSocialHref("github", github)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="GitHub"
-                      className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  )}
-                  {linkedin && linkedin !== "#" && (
-                    <a
-                      href={resolveSocialHref("linkedin", linkedin)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn"
-                      className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                    >
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                  )}
-                  {twitter && twitter !== "#" && (
-                    <a
-                      href={resolveSocialHref("twitter", twitter)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Twitter / X"
-                      className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                    >
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                  )}
-                  {website && (
-                    <a
-                      href={website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Website"
-                      className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                    >
-                      <Globe className="w-5 h-5" />
-                    </a>
-                  )}
-                  {member.socialLinks
-                    ?.filter((link) => link.url.trim())
-                    .map((link) => (
+              {member.careerProgressions &&
+                member.careerProgressions.length > 0 && (
+                  <div>
+                    <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                      Experience
+                    </h5>
+                    <div>
+                      {member.careerProgressions.map((entry, index, all) => (
+                        <div
+                          key={entry.id}
+                          className="relative pl-5 pb-6 last:pb-0"
+                        >
+                          <span className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-zinc-500" />
+                          {index < all.length - 1 && (
+                            <span className="absolute left-[3px] top-4 bottom-0 w-px bg-zinc-800" />
+                          )}
+                          <p className="text-white font-mono text-sm font-medium">
+                            {entry.title}
+                            {entry.organization && (
+                              <span className="text-zinc-400">
+                                {" "}
+                                · {entry.organization}
+                              </span>
+                            )}
+                          </p>
+                          <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest mt-1">
+                            {formatCareerRange(entry.startDate, entry.endDate)}
+                          </p>
+                          {entry.description && (
+                            <CareerDescription
+                              description={entry.description}
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+              {member.communityProfileUrl && member.slug && (
+                <div>
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                    Community Profile
+                  </h5>
+                  <a
+                    href={member.communityProfileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-sm text-zinc-300 hover:text-white transition-colors"
+                  >
+                    @{member.slug}
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
+
+              {(github ||
+                linkedin ||
+                twitter ||
+                website ||
+                (member.socialLinks && member.socialLinks.length > 0)) && (
+                <div>
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                    Find {member.name.split(" ")[0]} online
+                  </h5>
+                  <div className="flex flex-wrap items-center gap-5">
+                    {github && github !== "#" && (
                       <a
-                        key={link.url}
-                        href={link.url}
+                        href={resolveSocialHref("github", github)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={link.label || link.platform}
+                        aria-label="GitHub"
                         className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
                       >
-                        <Link2 className="w-5 h-5" />
+                        <Github className="w-5 h-5" />
                       </a>
-                    ))}
+                    )}
+                    {linkedin && linkedin !== "#" && (
+                      <a
+                        href={resolveSocialHref("linkedin", linkedin)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
+                    )}
+                    {twitter && twitter !== "#" && (
+                      <a
+                        href={resolveSocialHref("twitter", twitter)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Twitter / X"
+                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
+                      >
+                        <Twitter className="w-5 h-5" />
+                      </a>
+                    )}
+                    {website && (
+                      <a
+                        href={website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Website"
+                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
+                      >
+                        <Globe className="w-5 h-5" />
+                      </a>
+                    )}
+                    {member.socialLinks
+                      ?.filter((link) => link.url.trim())
+                      .map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={link.label || link.platform}
+                          className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
+                        >
+                          <Link2 className="w-5 h-5" />
+                        </a>
+                      ))}
+                  </div>
                 </div>
+              )}
+            </div>
+            {showScrollHint && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-center pb-2">
+                <ChevronDown className="w-4 h-4 text-zinc-400 animate-bounce" />
               </div>
             )}
           </div>
