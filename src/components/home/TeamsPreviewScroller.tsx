@@ -49,7 +49,7 @@ export function TeamsPreviewScroller({ members }: { members: TeamMember[] }) {
           {[...members, ...members].map((member, i) => (
             <div
               key={`${member.id || member.slug}-${i}`}
-              className="w-[65vw] sm:w-[280px] shrink-0"
+              className="w-[65vw] sm:w-[320px] lg:w-[360px] shrink-0"
             >
               <TeamCard member={member} onSelect={setSelected} />
             </div>
