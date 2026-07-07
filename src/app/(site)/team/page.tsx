@@ -1,8 +1,12 @@
 "use client";
 
-import { Loader2, Users2 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { TeamCard, type TeamMember } from "@/components/about/TeamCard";
+import { Loader2, Search, Users2, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  TeamCard,
+  type TeamMember,
+  TeamMemberModal,
+} from "@/components/about/TeamCard";
 import { Container } from "@/components/layout/Container";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +20,8 @@ export default function TeamPage() {
   const [activeTier, setActiveTier] = useState<string>("");
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   useEffect(() => {
     async function loadMembers() {
@@ -35,8 +41,31 @@ export default function TeamPage() {
     loadMembers();
   }, []);
 
+  useEffect(() => {
+    if (!selectedMember) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedMember]);
+
   const activeTierLabel =
     tiers.find((t) => t.value === activeTier)?.label ?? activeTier;
+
+  const visibleMembers = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    return teamMembers.filter((m: TeamMember) => {
+      if (m.tier !== activeTier) return false;
+      if (!query) return true;
+      return (
+        m.name.toLowerCase().includes(query) ||
+        m.role.toLowerCase().includes(query)
+      );
+    });
+  }, [teamMembers, activeTier, search]);
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
@@ -50,8 +79,8 @@ export default function TeamPage() {
               </h1>
               <div className="max-w-2xl">
                 <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
-                  The people behind the Codetopia Community, builders and
-                  mentors driving technical growth and collaboration.
+                  Meet the humans behind Codetopia Community: the core team,
+                  mentors, volunteers, and ambassadors who make it what it is.
                 </p>
               </div>
             </div>
@@ -78,12 +107,42 @@ export default function TeamPage() {
             )}
           </div>
 
+          {/* Search */}
+          {!loading && teamMembers.length > 0 && (
+            <div className="relative max-w-md mb-10 px-2">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search name or role…"
+                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-700 transition-colors uppercase tracking-widest"
+              />
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => setSearch("")}
+                  aria-label="Clear search"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-white transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          )}
+
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
             </div>
-          ) : teamMembers.filter((m: TeamMember) => m.tier === activeTier)
-              .length === 0 ? (
+          ) : visibleMembers.length === 0 && search.trim() ? (
+            <div className="border border-zinc-900 bg-zinc-950 py-24 text-center px-2">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+                No one matches "{search.trim()}" in the{" "}
+                {activeTierLabel || "team"} tier.
+              </p>
+            </div>
+          ) : visibleMembers.length === 0 ? (
             <div className="w-full flex flex-col md:flex-row items-stretch border border-zinc-900 bg-zinc-950 min-h-[400px]">
               <div className="flex-1 flex flex-col justify-center p-10 md:p-16 relative overflow-hidden">
                 <div className="relative z-10">
@@ -131,15 +190,24 @@ export default function TeamPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
-              {teamMembers
-                .filter((m: TeamMember) => m.tier === activeTier)
-                .map((member: TeamMember) => (
-                  <TeamCard key={member.id || member.slug} member={member} />
-                ))}
+              {visibleMembers.map((member: TeamMember) => (
+                <TeamCard
+                  key={member.id || member.slug}
+                  member={member}
+                  onSelect={setSelectedMember}
+                />
+              ))}
             </div>
           )}
         </Container>
       </section>
+
+      {selectedMember && (
+        <TeamMemberModal
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
+      )}
     </div>
   );
 }

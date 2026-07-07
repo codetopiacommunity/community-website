@@ -9,6 +9,13 @@
 
 const PORTAL_API_URL = process.env.PORTAL_API_URL;
 const PORTAL_API_KEY = process.env.PORTAL_API_KEY;
+const PORTAL_WEB_URL = process.env.PORTAL_WEB_URL;
+
+export interface PortalSocialLink {
+  platform: string;
+  label: string;
+  url: string;
+}
 
 export interface PortalMember {
   communityId: string;
@@ -17,6 +24,16 @@ export interface PortalMember {
   profilePictureUrl: string;
   coverImageUrl: string;
   communityRoles: string[];
+  bio: string;
+  skills: string[];
+  location: string;
+  currentRole: string;
+  githubHandle: string;
+  twitterHandle: string;
+  linkedinUrl: string;
+  websiteUrl: string;
+  socialLinks: PortalSocialLink[];
+  joinedAt: string;
 }
 
 export interface PortalRole {
@@ -68,6 +85,18 @@ export async function fetchPortalMembers(
     communityRoles: Array.isArray(m.communityRoles)
       ? (m.communityRoles as string[])
       : [],
+    bio: String(m.bio ?? ""),
+    skills: Array.isArray(m.skills) ? (m.skills as string[]) : [],
+    location: String(m.location ?? ""),
+    currentRole: String(m.currentRole ?? ""),
+    githubHandle: String(m.githubHandle ?? ""),
+    twitterHandle: String(m.twitterHandle ?? ""),
+    linkedinUrl: String(m.linkedinUrl ?? ""),
+    websiteUrl: String(m.websiteUrl ?? ""),
+    socialLinks: Array.isArray(m.socialLinks)
+      ? (m.socialLinks as PortalSocialLink[])
+      : [],
+    joinedAt: String(m.joinedAt ?? ""),
   }));
 }
 
@@ -110,4 +139,14 @@ export async function fetchPortalRoles(
  */
 export function isTeamRole(role: PortalRole): boolean {
   return role.isPublic && role.name !== "member";
+}
+
+/**
+ * The member's public community-portal profile (the portal-web /[username]
+ * page), so the team modal can link back to their full profile. Returns null
+ * if PORTAL_WEB_URL isn't configured -- callers should just omit the link.
+ */
+export function getPortalProfileUrl(username: string): string | null {
+  if (!PORTAL_WEB_URL) return null;
+  return `${PORTAL_WEB_URL.replace(/\/+$/, "")}/${username}`;
 }

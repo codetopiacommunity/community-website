@@ -4,6 +4,7 @@ import { serverError } from "@/lib/api/api-utils";
 import {
   fetchPortalMembers,
   fetchPortalRoles,
+  getPortalProfileUrl,
   isTeamRole,
   type PortalMember,
 } from "@/lib/portal";
@@ -20,6 +21,12 @@ type PublicTeamMember = {
   github: string | null;
   linkedin: string | null;
   twitter: string | null;
+  website: string | null;
+  position: string | null;
+  location: string | null;
+  socialLinks: { platform: string; label: string; url: string }[];
+  joinedAt: string | null;
+  communityProfileUrl: string | null;
 };
 
 type TeamTier = { value: string; label: string };
@@ -30,17 +37,23 @@ function portalMemberToTeamMember(
   label: string,
 ): PublicTeamMember {
   return {
-    id: member.communityId || member.username,
+    id: member.username,
     slug: member.username,
     name: member.fullName || member.username,
     role: label,
     imageUrl: member.profilePictureUrl || null,
-    statement: "",
-    expertise: member.communityRoles,
+    statement: member.bio || "",
+    expertise: member.skills,
     tier,
-    github: null,
-    linkedin: null,
-    twitter: null,
+    github: member.githubHandle || null,
+    linkedin: member.linkedinUrl || null,
+    twitter: member.twitterHandle || null,
+    website: member.websiteUrl || null,
+    position: member.currentRole || null,
+    location: member.location || null,
+    socialLinks: member.socialLinks,
+    joinedAt: member.joinedAt || null,
+    communityProfileUrl: getPortalProfileUrl(member.username),
   };
 }
 
