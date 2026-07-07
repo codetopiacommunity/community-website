@@ -186,10 +186,10 @@ export function TeamMemberModal({
         <Image
           src={logo}
           alt="Codetopia Community"
-          width={60}
-          height={60}
+          width={84}
+          height={84}
           unoptimized
-          className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 w-9 h-9 md:w-[60px] md:h-[60px] object-contain opacity-70"
+          className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 w-12 h-12 md:w-[84px] md:h-[84px] object-contain opacity-70"
         />
 
         {/* Photo column */}
@@ -208,9 +208,9 @@ export function TeamMemberModal({
               </span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
           {imageSource && (
-            <div className="absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(0,0,0,0.55)]" />
+            <div className="absolute inset-0 shadow-[inset_0_0_80px_20px_rgba(0,0,0,0.3)]" />
           )}
 
           <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
