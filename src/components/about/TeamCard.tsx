@@ -186,10 +186,10 @@ export function TeamMemberModal({
         <Image
           src={logo}
           alt="Codetopia Community"
-          width={60}
-          height={60}
+          width={84}
+          height={84}
           unoptimized
-          className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 w-9 h-9 md:w-[60px] md:h-[60px] object-contain opacity-70"
+          className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 w-12 h-12 md:w-[84px] md:h-[84px] object-contain opacity-70"
         />
 
         {/* Photo column */}
