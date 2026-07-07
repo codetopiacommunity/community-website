@@ -208,9 +208,9 @@ export function TeamMemberModal({
               </span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
           {imageSource && (
-            <div className="absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(0,0,0,0.55)]" />
+            <div className="absolute inset-0 shadow-[inset_0_0_80px_20px_rgba(0,0,0,0.3)]" />
           )}
 
           <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
