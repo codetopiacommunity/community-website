@@ -86,43 +86,130 @@ function resolveSocialHref(
   return `https://twitter.com/${value}`;
 }
 
+const LONG_DATE_FORMATTER = new Intl.DateTimeFormat("en", {
+  month: "long",
+  year: "numeric",
+});
+const SHORT_DATE_FORMATTER = new Intl.DateTimeFormat("en", {
+  month: "short",
+  year: "numeric",
+});
+
 function formatJoinedDate(value: string): string {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("en", {
-    month: "long",
-    year: "numeric",
-  }).format(date);
+  return LONG_DATE_FORMATTER.format(date);
 }
 
 function formatShortDate(value: string): string {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("en", {
-    month: "short",
-    year: "numeric",
-  }).format(date);
+  return SHORT_DATE_FORMATTER.format(date);
 }
 
 function formatCareerRange(startDate: string, endDate: string | null): string {
   const start = formatShortDate(startDate);
   const end = endDate ? formatShortDate(endDate) : "Present";
-  return start ? `${start} — ${end}` : end;
+  const range = start ? `${start} — ${end}` : end;
+  const duration = formatCareerDuration(startDate, endDate);
+  return duration ? `${range} · ${duration}` : range;
+}
+
+function formatCareerDuration(
+  startDate: string,
+  endDate: string | null,
+): string {
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return "";
+
+  let months =
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    (end.getMonth() - start.getMonth()) +
+    1;
+  months = Math.max(months, 1);
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+
+  const parts: string[] = [];
+  if (years > 0) parts.push(`${years} yr${years > 1 ? "s" : ""}`);
+  if (remainingMonths > 0 || years === 0) {
+    parts.push(`${remainingMonths} mo${remainingMonths !== 1 ? "s" : ""}`);
+  }
+  return parts.join(" ");
 }
 
 const BULLET_PATTERN = /^[-*•–]\s+/;
 
 function getBulletItems(description: string): string[] | null {
-  const lines = description
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
+  const lines = description.split("\n").flatMap((line) => {
+    const trimmed = line.trim();
+    return trimmed ? [trimmed] : [];
+  });
 
   if (lines.length < 2 || !lines.every((line) => BULLET_PATTERN.test(line))) {
     return null;
   }
 
   return lines.map((line) => line.replace(BULLET_PATTERN, ""));
+}
+
+const EXPERIENCE_CLAMP_COUNT = 4;
+
+function ExperienceSection({
+  careerProgressions,
+}: {
+  careerProgressions: TeamMemberCareerProgression[];
+}) {
+  const [expanded, setExpanded] = React.useState(false);
+  const hasMore = careerProgressions.length > EXPERIENCE_CLAMP_COUNT;
+  const visible = hasMore
+    ? careerProgressions.slice(0, EXPERIENCE_CLAMP_COUNT)
+    : careerProgressions;
+
+  if (careerProgressions.length === 0) return null;
+
+  return (
+    <div>
+      <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+        Experience
+      </h5>
+      <div>
+        {visible.map((entry, index, all) => (
+          <div key={entry.id} className="relative pl-5 pb-6 last:pb-0">
+            <span className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-zinc-500" />
+            {index < all.length - 1 && (
+              <span className="absolute left-[3px] top-4 bottom-0 w-px bg-zinc-800" />
+            )}
+            <p className="text-white font-mono text-sm font-semibold">
+              {entry.title}
+            </p>
+            {entry.organization && (
+              <p className="text-zinc-300 font-mono text-sm">
+                {entry.organization}
+              </p>
+            )}
+            <p className="text-zinc-500 font-mono text-[10px] tracking-widest mt-1">
+              {formatCareerRange(entry.startDate, entry.endDate)}
+            </p>
+            {entry.description && (
+              <CareerDescription description={entry.description} />
+            )}
+          </div>
+        ))}
+      </div>
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => setExpanded((prev) => !prev)}
+          className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
+        >
+          {expanded ? "Show less" : `Show all ${careerProgressions.length}`}
+        </button>
+      )}
+    </div>
+  );
 }
 
 function CareerDescription({ description }: { description: string }) {
@@ -170,6 +257,7 @@ export function TeamCard({ member, onSelect }: TeamCardProps) {
             src={imageSource}
             alt={member.name}
             fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
           />
         ) : (
@@ -237,7 +325,7 @@ export function TeamMemberModal({
     }
 
     updateScrollHint();
-    el.addEventListener("scroll", updateScrollHint);
+    el.addEventListener("scroll", updateScrollHint, { passive: true });
     // Observes the content div (not `el`) since `el` is the fixed-size
     // scroll container -- its own box never resizes when inner content does.
     const resizeObserver = new ResizeObserver(updateScrollHint);
@@ -289,6 +377,7 @@ export function TeamMemberModal({
               src={imageSource}
               alt={member.name}
               fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
               className="object-cover object-center"
             />
           ) : (
@@ -385,44 +474,9 @@ export function TeamMemberModal({
                 </div>
               )}
 
-              {member.careerProgressions &&
-                member.careerProgressions.length > 0 && (
-                  <div>
-                    <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
-                      Experience
-                    </h5>
-                    <div>
-                      {member.careerProgressions.map((entry, index, all) => (
-                        <div
-                          key={entry.id}
-                          className="relative pl-5 pb-6 last:pb-0"
-                        >
-                          <span className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-zinc-500" />
-                          {index < all.length - 1 && (
-                            <span className="absolute left-[3px] top-4 bottom-0 w-px bg-zinc-800" />
-                          )}
-                          <p className="text-white font-mono text-sm font-medium">
-                            {entry.title}
-                            {entry.organization && (
-                              <span className="text-zinc-400">
-                                {" "}
-                                · {entry.organization}
-                              </span>
-                            )}
-                          </p>
-                          <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest mt-1">
-                            {formatCareerRange(entry.startDate, entry.endDate)}
-                          </p>
-                          {entry.description && (
-                            <CareerDescription
-                              description={entry.description}
-                            />
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+              <ExperienceSection
+                careerProgressions={member.careerProgressions ?? []}
+              />
 
               {member.communityProfileUrl && member.slug && (
                 <div>
@@ -515,7 +569,7 @@ export function TeamMemberModal({
             </div>
             {showScrollHint && (
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-center pb-2">
-                <ChevronDown className="w-4 h-4 text-zinc-400 animate-bounce" />
+                <ChevronDown className="w-4 h-4 text-zinc-400 animate-pulse" />
               </div>
             )}
           </div>
