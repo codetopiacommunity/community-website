@@ -107,7 +107,34 @@ function formatShortDate(value: string): string {
 function formatCareerRange(startDate: string, endDate: string | null): string {
   const start = formatShortDate(startDate);
   const end = endDate ? formatShortDate(endDate) : "Present";
-  return start ? `${start} — ${end}` : end;
+  const range = start ? `${start} — ${end}` : end;
+  const duration = formatCareerDuration(startDate, endDate);
+  return duration ? `${range} · ${duration}` : range;
+}
+
+function formatCareerDuration(
+  startDate: string,
+  endDate: string | null,
+): string {
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return "";
+
+  let months =
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    (end.getMonth() - start.getMonth()) +
+    1;
+  months = Math.max(months, 1);
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+
+  const parts: string[] = [];
+  if (years > 0) parts.push(`${years} yr${years > 1 ? "s" : ""}`);
+  if (remainingMonths > 0 || years === 0) {
+    parts.push(`${remainingMonths} mo${remainingMonths !== 1 ? "s" : ""}`);
+  }
+  return parts.join(" ");
 }
 
 const BULLET_PATTERN = /^[-*•–]\s+/;
@@ -214,6 +241,14 @@ export function TeamMemberModal({
   const [bioExpanded, setBioExpanded] = React.useState(false);
   const BIO_CLAMP_THRESHOLD = 240;
   const isBioLong = (member.statement?.length ?? 0) > BIO_CLAMP_THRESHOLD;
+  const [experienceExpanded, setExperienceExpanded] = React.useState(false);
+  const EXPERIENCE_CLAMP_COUNT = 4;
+  const careerProgressions = member.careerProgressions ?? [];
+  const hasMoreExperience = careerProgressions.length > EXPERIENCE_CLAMP_COUNT;
+  const visibleExperience =
+    hasMoreExperience && !experienceExpanded
+      ? careerProgressions.slice(0, EXPERIENCE_CLAMP_COUNT)
+      : careerProgressions;
   const detailsRef = React.useRef<HTMLDivElement>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
   const [showScrollHint, setShowScrollHint] = React.useState(false);
@@ -385,44 +420,51 @@ export function TeamMemberModal({
                 </div>
               )}
 
-              {member.careerProgressions &&
-                member.careerProgressions.length > 0 && (
+              {careerProgressions.length > 0 && (
+                <div>
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                    Experience
+                  </h5>
                   <div>
-                    <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
-                      Experience
-                    </h5>
-                    <div>
-                      {member.careerProgressions.map((entry, index, all) => (
-                        <div
-                          key={entry.id}
-                          className="relative pl-5 pb-6 last:pb-0"
-                        >
-                          <span className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-zinc-500" />
-                          {index < all.length - 1 && (
-                            <span className="absolute left-[3px] top-4 bottom-0 w-px bg-zinc-800" />
-                          )}
-                          <p className="text-white font-mono text-sm font-medium">
-                            {entry.title}
-                            {entry.organization && (
-                              <span className="text-zinc-400">
-                                {" "}
-                                · {entry.organization}
-                              </span>
-                            )}
+                    {visibleExperience.map((entry, index, all) => (
+                      <div
+                        key={entry.id}
+                        className="relative pl-5 pb-6 last:pb-0"
+                      >
+                        <span className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-zinc-500" />
+                        {index < all.length - 1 && (
+                          <span className="absolute left-[3px] top-4 bottom-0 w-px bg-zinc-800" />
+                        )}
+                        <p className="text-white font-mono text-sm font-semibold">
+                          {entry.title}
+                        </p>
+                        {entry.organization && (
+                          <p className="text-zinc-300 font-mono text-sm">
+                            {entry.organization}
                           </p>
-                          <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest mt-1">
-                            {formatCareerRange(entry.startDate, entry.endDate)}
-                          </p>
-                          {entry.description && (
-                            <CareerDescription
-                              description={entry.description}
-                            />
-                          )}
-                        </div>
-                      ))}
-                    </div>
+                        )}
+                        <p className="text-zinc-500 font-mono text-[10px] tracking-widest mt-1">
+                          {formatCareerRange(entry.startDate, entry.endDate)}
+                        </p>
+                        {entry.description && (
+                          <CareerDescription description={entry.description} />
+                        )}
+                      </div>
+                    ))}
                   </div>
-                )}
+                  {hasMoreExperience && (
+                    <button
+                      type="button"
+                      onClick={() => setExperienceExpanded((prev) => !prev)}
+                      className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
+                    >
+                      {experienceExpanded
+                        ? "Show less"
+                        : `Show all ${careerProgressions.length}`}
+                    </button>
+                  )}
+                </div>
+              )}
 
               {member.communityProfileUrl && member.slug && (
                 <div>
