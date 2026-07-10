@@ -15,6 +15,7 @@ import {
 import Image, { type StaticImageData } from "next/image";
 import React from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
+import { getCountryFlag } from "@/lib/country";
 
 export interface TeamMemberSocialLink {
   platform: string;
@@ -235,6 +236,7 @@ function CareerDescription({ description }: { description: string }) {
 export function TeamCard({ member, onSelect }: TeamCardProps) {
   const imageSource = member.imageUrl || member.image;
   const initials = getInitials(member.name);
+  const countryFlag = getCountryFlag(member.location);
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: contains nested <button> social links, which a real <button> can't hold
@@ -269,7 +271,18 @@ export function TeamCard({ member, onSelect }: TeamCardProps) {
         )}
 
         {/* Subtle Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black group-hover:via-black/80 transition-all duration-700 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-700 z-10" />
+
+        {countryFlag && (
+          <div className="absolute top-3 right-3 z-20 inline-flex items-center gap-1.5 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800">
+            <span className="text-sm leading-none" aria-hidden="true">
+              {countryFlag.flag}
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-300">
+              {countryFlag.country}
+            </span>
+          </div>
+        )}
 
         {/* Main Content: Persistent Bottom State */}
         <div className="absolute inset-x-0 bottom-0 p-6 z-20 flex flex-col justify-end">
