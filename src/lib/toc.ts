@@ -1,3 +1,5 @@
+import GithubSlugger from "github-slugger";
+
 export interface TocEntry {
   id: string;
   text: string;
@@ -70,6 +72,43 @@ export function extractToc(html: string): TocEntry[] {
     if (text) {
       entries.push({ id, text, level });
     }
+  }
+
+  return entries;
+}
+
+/**
+ * Extracts a heading TOC directly from raw markdown source (pre-MDX-compile).
+ * Slugs are generated with the same `github-slugger` instance-per-document
+ * approach rehype-slug uses internally, so ids line up with the ones it
+ * injects into the compiled headings for anchor links to work.
+ */
+export function extractMarkdownToc(markdown: string): TocEntry[] {
+  const slugger = new GithubSlugger();
+  const entries: TocEntry[] = [];
+  let inCodeFence = false;
+
+  for (const rawLine of markdown.split("\n")) {
+    const line = rawLine.trim();
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+
+    const match = /^(#{1,6})\s+(.+?)\s*#*$/.exec(line);
+    if (!match) continue;
+
+    const level = match[1].length;
+    const text = match[2]
+      .replace(/`([^`]*)`/g, "$1")
+      .replace(/\*\*([^*]*)\*\*/g, "$1")
+      .replace(/\*([^*]*)\*/g, "$1")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .trim();
+    if (!text) continue;
+
+    entries.push({ id: slugger.slug(text), text, level });
   }
 
   return entries;

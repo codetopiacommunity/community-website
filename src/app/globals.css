@@ -463,6 +463,153 @@ html {
   margin: 2rem 0;
 }
 
+/* ── MDX code blocks (howto guides) ── */
+[data-rehype-pretty-code-figure] {
+  margin: 1.75rem 0;
+}
+
+[data-rehype-pretty-code-title] {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  padding: 0.5rem 1rem;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  margin-top: 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  margin: 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--muted);
+  padding: 1rem 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+[data-rehype-pretty-code-figure] pre > code {
+  display: grid;
+  min-width: 100%;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background: var(--accent);
+  border-left-color: var(--foreground);
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-chars] {
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+[data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark);
+}
+
+/* ── Inline code (howto guides) ──
+   Tailwind Typography decorates inline `code` with literal backtick
+   characters via ::before/::after by default and no background, which
+   reads as broken rather than "code". rehype-pretty-code tags fenced
+   block code with `data-language`, so `:not([data-language])` scopes
+   this to inline code only, leaving fenced blocks to their own styling. */
+.prose code:not([data-language]) {
+  background: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.125rem 0.375rem;
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.prose code:not([data-language])::before,
+.prose code:not([data-language])::after {
+  content: none;
+}
+
+/* ── GitHub-style alert blockquotes (> [!NOTE] etc. in howto guides) ── */
+.markdown-alert {
+  border-left: 3px solid var(--border);
+  background: var(--muted);
+  padding: 0.875rem 1.125rem;
+  margin: 1.5rem 0;
+}
+
+.markdown-alert p {
+  margin: 0;
+}
+
+.markdown-alert p + p {
+  margin-top: 0.75rem;
+}
+
+.markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-alert-title .octicon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.markdown-alert-note {
+  border-left-color: var(--info-500);
+}
+.markdown-alert-note .markdown-alert-title {
+  color: var(--info-500);
+}
+
+.markdown-alert-tip {
+  border-left-color: var(--success-500);
+}
+.markdown-alert-tip .markdown-alert-title {
+  color: var(--success-500);
+}
+
+.markdown-alert-important {
+  border-left-color: #8250df;
+}
+.markdown-alert-important .markdown-alert-title {
+  color: #8250df;
+}
+
+.markdown-alert-warning {
+  border-left-color: var(--warning-500);
+}
+.markdown-alert-warning .markdown-alert-title {
+  color: var(--warning-500);
+}
+
+.markdown-alert-caution {
+  border-left-color: var(--error-500);
+}
+.markdown-alert-caution .markdown-alert-title {
+  color: var(--error-500);
+}
+
 /* ── Premium dot-grid background pattern ── */
 .dot-grid {
   background-image: radial-gradient(
