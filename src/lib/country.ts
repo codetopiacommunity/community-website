@@ -280,15 +280,10 @@ const ALIASES: Record<string, string> = {
   "the gambia": "GM",
 };
 
-function isoToFlagEmoji(iso2: string): string {
-  return String.fromCodePoint(
-    ...[...iso2.toUpperCase()].map((char) => 127397 + char.charCodeAt(0)),
-  );
-}
-
 export interface CountryFlag {
   country: string;
-  flag: string;
+  /** Lowercase ISO 3166-1 alpha-2 code, for use as a `flag-icons` `fi-{code}` class. */
+  code: string;
 }
 
 /**
@@ -313,6 +308,6 @@ export function getCountryFlag(
 
   return {
     country: regionDisplayNames.of(iso2) ?? candidate,
-    flag: isoToFlagEmoji(iso2),
+    code: iso2.toLowerCase(),
   };
 }

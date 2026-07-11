@@ -275,9 +275,10 @@ export function TeamCard({ member, onSelect }: TeamCardProps) {
 
         {countryFlag && (
           <div className="absolute top-3 right-3 z-20 inline-flex items-center gap-1.5 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800">
-            <span className="text-sm leading-none" aria-hidden="true">
-              {countryFlag.flag}
-            </span>
+            <span
+              className={`fi fi-${countryFlag.code} text-sm leading-none`}
+              aria-hidden="true"
+            />
             <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-300">
               {countryFlag.country}
             </span>
