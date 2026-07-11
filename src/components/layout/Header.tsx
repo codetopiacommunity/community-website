@@ -228,7 +228,7 @@ function MobileMenu({
         })}
 
         <Link
-          href="/howtos/Getting-Started/01-join-the-communtiy"
+          href="https://community.codetopia.org/howtos/Getting-Started/01-join-the-community"
           className="mt-6 w-full bg-white text-black font-sans font-black text-xs uppercase tracking-widest px-6 py-4 text-center transition-colors hover:bg-zinc-200"
         >
           Join the Community
