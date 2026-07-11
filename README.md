@@ -9,7 +9,7 @@
 
 [![CI](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml/badge.svg)](https://github.com/codetopiacommunity/community-website/actions/workflows/ci.yml)
 
-[🌐 Live Site](https://community.codetopia.org) · [💬 Discord](https://discord.gg/nPmRWdTQAK) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
+[🌐 Live Site](https://community.codetopia.org) · [🤝 Join Us](https://community.codetopia.org/howtos/Getting-Started/01-join-the-community) · [🐛 Report Bug](https://github.com/codetopiacommunity/community-website/issues) · [✨ Request Feature](https://github.com/codetopiacommunity/community-website/issues)
 
 </div>
 
