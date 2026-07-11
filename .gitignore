@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+#Workspace settings
+.vscode/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -50,3 +53,7 @@ AGENTS.md
 
 .kiro/*
 .kiro
+
+.agents/
+.claude/
+memory/

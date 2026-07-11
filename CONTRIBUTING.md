@@ -68,10 +68,17 @@ cp .env.example .env
 | `JWT_SECRET` | Secret used to sign JWT tokens |
 | `NEXT_PUBLIC_BASE_URL` | Base URL of the app (e.g. `http://localhost:3000`) |
 | `NEXT_PUBLIC_SITE_URL` | Public site URL |
+| `PORTAL_WEB_URL` | *(Optional)* Community Portal frontend URL — needed for admin SSO login |
+| `PORTAL_API_URL` | *(Optional)* Community Portal backend URL — needed for admin SSO login |
+| `OAUTH_CLIENT_ID` | *(Optional)* OAuth client ID from the portal — needed for admin SSO login |
+| `OAUTH_CLIENT_SECRET` | *(Optional)* OAuth client secret from the portal — needed for admin SSO login |
+| `OAUTH_REDIRECT_URI` | *(Optional)* OAuth redirect URI — needed for admin SSO login |
+
+> The SSO variables are only required if you are working on the admin authentication flow. The app starts and runs normally without them.
 
 **Database**
 
-Run Prisma migrations after setting `DATABASE_URL`:
+`pnpm install` automatically runs `prisma generate`. To apply migrations after setting `DATABASE_URL`:
 
 ```bash
 npx prisma migrate dev
@@ -111,7 +118,7 @@ Branch naming conventions:
 Make sure your code is clean and follows our style guidelines. We use **Biome** for linting and formatting. Run this before committing:
 
 ```bash
-pnpm biome check .
+pnpm check
 ```
 
 ### 8. Commit Your Changes
@@ -152,6 +159,8 @@ In your PR description, please include:
 ---
 
 ## Development Setup
+
+> For a deeper overview of the project architecture, design system, and conventions, see [CLAUDE.md](CLAUDE.md).
 
 | Tool | Details |
 |------|---------|

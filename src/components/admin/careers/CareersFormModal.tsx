@@ -1,7 +1,7 @@
 "use client";
 
 import { Loader2, Plus, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -60,8 +60,12 @@ export function CareersFormModal({
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(defaultForm);
   const [newRequirement, setNewRequirement] = useState("");
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  const [prevEditingCareer, setPrevEditingCareer] = useState(editingCareer);
 
-  useEffect(() => {
+  if (isOpen !== prevIsOpen || editingCareer !== prevEditingCareer) {
+    setPrevIsOpen(isOpen);
+    setPrevEditingCareer(editingCareer);
     if (isOpen) {
       if (editingCareer) {
         setFormData({
@@ -88,7 +92,7 @@ export function CareersFormModal({
       }
       setNewRequirement("");
     }
-  }, [editingCareer, isOpen]);
+  }
 
   const addRequirement = () => {
     if (newRequirement.trim()) {
@@ -280,8 +284,7 @@ export function CareersFormModal({
                 <div className="flex flex-wrap gap-2 p-4 bg-grey-50/30 rounded-2xl border border-dashed border-grey-200">
                   {formData.requirements.map((req, idx) => (
                     <div
-                      // biome-ignore lint/suspicious/noArrayIndexKey: requirements are ordered by position
-                      key={idx}
+                      key={req}
                       className="flex items-center gap-2 bg-white border border-grey-100 px-3 py-1.5 rounded-lg shadow-sm"
                     >
                       <span className="text-xs font-medium text-grey-700 font-mono">

@@ -13,9 +13,13 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
-  // Collect unique tags across all articles
   const allTags = Array.from(
-    new Map(articles.flatMap((a) => a.tags).map((t) => [t.slug, t])).values(),
+    articles
+      .reduce((map, a) => {
+        for (const t of a.tags) map.set(t.slug, t);
+        return map;
+      }, new Map<string, (typeof articles)[0]["tags"][0]>())
+      .values(),
   );
 
   const filtered = articles.filter((article) => {
@@ -33,6 +37,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       <div className="flex flex-col gap-4 px-2">
         <input
           type="text"
+          aria-label="Search articles"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search articles..."

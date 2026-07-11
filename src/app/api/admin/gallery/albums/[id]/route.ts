@@ -33,8 +33,7 @@ export async function PATCH(
     const authError = await requireAuth();
     if (authError) return authError;
 
-    const { id } = await params;
-    const data = await request.json();
+    const [{ id }, data] = await Promise.all([params, request.json()]);
 
     const existingAlbum = await prisma.galleryAlbum.findUnique({
       where: { id: parseInt(id, 10) },

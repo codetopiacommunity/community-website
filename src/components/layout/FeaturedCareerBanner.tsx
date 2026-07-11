@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Briefcase,
@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import type { Career } from "@/lib/careers";
 
 export function FeaturedCareerBanner() {
+  const shouldReduceMotion = useReducedMotion();
   const [featuredCareers, setFeaturedCareers] = useState<Career[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -85,10 +86,13 @@ export function FeaturedCareerBanner() {
           <AnimatePresence mode="wait">
             <motion.div
               key={career.id}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
+              exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -12 }}
+              transition={{
+                duration: shouldReduceMotion ? 0 : 0.35,
+                ease: "easeOut",
+              }}
               className="flex items-center gap-3 min-w-0 w-full"
             >
               {/* Featured badge */}
@@ -189,7 +193,10 @@ export function FeaturedCareerBanner() {
             key={`${currentIndex}-${isPaused}`}
             initial={{ width: "0%" }}
             animate={{ width: isPaused ? undefined : "100%" }}
-            transition={{ duration: 5, ease: "linear" }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 5,
+              ease: "linear",
+            }}
             className="h-full bg-zinc-600"
           />
         </div>

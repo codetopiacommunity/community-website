@@ -35,7 +35,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
               here as Codetopia continues to grow and make its mark.
             </p>
           </div>
-          <div className="flex items-center gap-4 text-zinc-800 font-mono text-[9px] uppercase tracking-[0.4em]">
+          <div className="flex items-center gap-4 text-zinc-800 font-mono text-[10px] uppercase tracking-[0.4em]">
             <span className="h-px w-12 bg-zinc-800" />A CODETOPIA INITIATIVE
             <span className="h-px w-12 bg-zinc-800" />
           </div>

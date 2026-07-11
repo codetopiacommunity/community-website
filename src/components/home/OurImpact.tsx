@@ -26,11 +26,11 @@ export function OurImpact() {
     <>
       <section className="w-full py-32 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
         <Container className="w-full px-4 font-sans relative z-10">
-          <div className="w-full mb-24 text-left">
-            <h2 className="text-5xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter mb-6 leading-none font-sans">
-              THE <span className="text-zinc-600">IMPACT</span>
+          <div className="w-full mb-24 text-left flex flex-col gap-6">
+            <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
+              The <span className="text-zinc-600">Impact</span>
             </h2>
-            <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
+            <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
               We don&apos;t just work with industry leaders; we actively empower
               the next generation of developers across schools, bootcamps, and
               local hubs.

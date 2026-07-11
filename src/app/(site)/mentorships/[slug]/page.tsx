@@ -215,7 +215,7 @@ export default async function MentorshipDetail({
               {mentorship.description && (
                 <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
                   <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
-                    <span className="text-white/10">01 /</span> About This
+                    <span className="text-zinc-600">01 /</span> About This
                     Program
                   </span>
                   <p className="text-zinc-300 text-lg font-mono leading-relaxed whitespace-pre-wrap max-w-2xl">
@@ -228,7 +228,7 @@ export default async function MentorshipDetail({
               {Array.isArray(mentorship.tags) && mentorship.tags.length > 0 && (
                 <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
                   <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
-                    <span className="text-white/10">02 /</span> Tags
+                    <span className="text-zinc-600">02 /</span> Tags
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {(mentorship.tags as string[]).map((tag) => (
@@ -247,7 +247,7 @@ export default async function MentorshipDetail({
               {mentorship.mentors && mentorship.mentors.length > 0 && (
                 <div className="flex flex-col gap-8">
                   <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
-                    <span className="text-white/10">03 /</span> Your Mentors
+                    <span className="text-zinc-600">03 /</span> Your Mentors
                   </span>
                   <div className="flex flex-col gap-6">
                     {/* Stacked overlapping avatars */}

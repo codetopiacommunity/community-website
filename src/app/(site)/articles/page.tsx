@@ -20,11 +20,11 @@ export default async function ArticlesPage() {
   if (!hasHost) {
     return (
       <div className="flex-1 bg-background text-foreground min-h-screen">
-        <section className="w-full pt-32 pb-16 bg-background">
-          <Container className="px-4">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-                ARTICLES
+        <section className="w-full py-32 md:py-40 bg-background border-b border-border">
+          <Container className="px-4 flex flex-col gap-8">
+            <div className="flex items-end justify-between gap-6">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+                Articles
               </h1>
               <ThemeToggle />
             </div>
@@ -54,7 +54,6 @@ export default async function ArticlesPage() {
     );
   }
 
-  // config is guaranteed non-null here: hasHost is only true when config exists
   const host = config?.hashnodeHost.trim() ?? "";
   const featuredSlugs: string[] = Array.isArray(config?.featuredSlugs)
     ? (config.featuredSlugs as string[])
@@ -75,12 +74,12 @@ export default async function ArticlesPage() {
   return (
     <div className="flex-1 bg-background text-foreground min-h-screen">
       {/* Header */}
-      <section className="w-full pt-32 pb-16 bg-background">
-        <Container className="px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
-            <div className="flex-1">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-                ARTICLES
+      <section className="w-full py-32 md:py-40 bg-background border-b border-border">
+        <Container className="px-4 flex flex-col gap-8">
+          <div className="flex items-end justify-between gap-6">
+            <div className="flex flex-col gap-4">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+                Articles
               </h1>
               <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
                 Insights, tutorials, and stories from the Codetopia community.

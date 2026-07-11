@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TeamDeleteModal } from "@/components/admin/team/TeamDeleteModal";
 import { TeamFormModal } from "@/components/admin/team/TeamFormModal";
 import { TeamTable } from "@/components/admin/team/TeamTable";
@@ -39,6 +39,14 @@ export default function ManageTeamPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  const [prevSearch, setPrevSearch] = useState(search);
+  const [prevFilterTier, setPrevFilterTier] = useState(filterTier);
+  if (search !== prevSearch || filterTier !== prevFilterTier) {
+    setPrevSearch(search);
+    setPrevFilterTier(filterTier);
+    if (currentPage !== 1) setCurrentPage(1);
+  }
+
   const filteredMembers = members.filter(
     (m) =>
       (!filterTier || m.tier === filterTier) &&
@@ -54,11 +62,6 @@ export default function ManageTeamPage() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: This effect is intended to trigger on search/filter changes to reset pagination
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, filterTier]);
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">

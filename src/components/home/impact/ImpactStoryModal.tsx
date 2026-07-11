@@ -2,7 +2,7 @@
 
 import { Calendar, Image as ImageIcon, MapPin, PlayCircle } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { formatDateRange } from "@/lib/format-date";
@@ -43,11 +43,12 @@ interface ImpactStoryModalProps {
 
 export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+  const [prevStory, setPrevStory] = useState(story);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: story prop change intentionally resets video state
-  useEffect(() => {
+  if (story !== prevStory) {
+    setPrevStory(story);
     setIsPlayingVideo(false);
-  }, [story]);
+  }
 
   if (!story) return null;
 
@@ -79,6 +80,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
             <iframe
               src={getYouTubeEmbedUrl(story.link)}
               title={story.title}
+              sandbox="allow-scripts allow-presentation allow-popups allow-forms"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full border-0"

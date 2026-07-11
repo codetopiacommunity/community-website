@@ -2,7 +2,7 @@
 
 import { ImageIcon, Loader2, Upload } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -71,8 +71,12 @@ export function GalleryAlbumFormModal({
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  const [prevEditingAlbum, setPrevEditingAlbum] = useState(editingAlbum);
 
-  useEffect(() => {
+  if (isOpen !== prevIsOpen || editingAlbum !== prevEditingAlbum) {
+    setPrevIsOpen(isOpen);
+    setPrevEditingAlbum(editingAlbum);
     if (isOpen) {
       if (editingAlbum) {
         setTitle(editingAlbum.title);
@@ -99,7 +103,7 @@ export function GalleryAlbumFormModal({
       setSubmitError(null);
       setIsSubmitting(false);
     }
-  }, [isOpen, editingAlbum]);
+  }
 
   async function handleCoverImageChange(
     e: React.ChangeEvent<HTMLInputElement>,

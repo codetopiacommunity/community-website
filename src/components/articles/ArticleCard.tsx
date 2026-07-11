@@ -47,7 +47,7 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
             {visibleTags.map((tag) => (
               <span
                 key={tag.slug}
-                className="font-mono text-[9px] uppercase tracking-[0.25em] text-background bg-foreground px-2 py-0.5 border border-foreground"
+                className="font-mono text-[10px] uppercase tracking-[0.25em] text-background bg-foreground px-2 py-0.5"
               >
                 {tag.name}
               </span>

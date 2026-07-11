@@ -20,9 +20,11 @@ export async function withRetry<T>(
       return await fn();
     } catch (error) {
       if (attempt === maxRetries) {
-        console.error(
-          `withRetry: all ${maxRetries + 1} attempts failed.`,
-          error,
+        // Recoverable: a fallback is supplied, so this is degraded-but-handled.
+        // Log as a warning so it doesn't trip Next's red error overlay.
+        console.warn(
+          `withRetry: all ${maxRetries + 1} attempts failed, using fallback.`,
+          error instanceof Error ? error.message : error,
         );
         return fallback as T;
       }

@@ -2,7 +2,7 @@
 
 import { Github, Linkedin, Loader2, Twitter, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +25,16 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import type { TeamMember } from "@/types";
 
+const defaultFormValues = {
+  name: "",
+  role: "",
+  tier: "CORE",
+  statement: "",
+  github: "",
+  linkedin: "",
+  twitter: "",
+};
+
 export function TeamFormModal({
   editingMember,
   isOpen,
@@ -42,18 +52,13 @@ export function TeamFormModal({
   const [expertise, setExpertise] = useState<string[]>([]);
   const [expertiseInput, setExpertiseInput] = useState("");
 
-  const defaultFormValues = {
-    name: "",
-    role: "",
-    tier: "CORE",
-    statement: "",
-    github: "",
-    linkedin: "",
-    twitter: "",
-  };
   const [formValues, setFormValues] = useState(defaultFormValues);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  const [prevEditingMember, setPrevEditingMember] = useState(editingMember);
 
-  useEffect(() => {
+  if (isOpen !== prevIsOpen || editingMember !== prevEditingMember) {
+    setPrevIsOpen(isOpen);
+    setPrevEditingMember(editingMember);
     if (isOpen) {
       if (editingMember) {
         setImagePreview(editingMember.imageUrl || null);
@@ -76,7 +81,7 @@ export function TeamFormModal({
       setExpertiseInput("");
       setIsSubmitting(false);
     }
-  }, [isOpen, editingMember]);
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -206,9 +206,8 @@ export default function AlbumPhotosPage() {
 
       {/* Drop zone */}
       <div className="border border-grey-100 rounded-none p-6 bg-white space-y-6">
-        {/* biome-ignore lint/a11y/noStaticElementInteractions: drag-and-drop zone with click fallback */}
-        {/* biome-ignore lint/a11y/useKeyWithClickEvents: drag-and-drop zone */}
-        <div
+        <button
+          type="button"
           onDragOver={(e) => {
             e.preventDefault();
             setDragOver(true);
@@ -216,7 +215,7 @@ export default function AlbumPhotosPage() {
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative border-2 border-dashed rounded-none p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
+          className={`relative w-full border-2 border-dashed rounded-none p-10 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 select-none ${
             dragOver
               ? "border-black bg-grey-50 scale-[1.01]"
               : "border-grey-200 hover:border-black hover:bg-grey-50/50"
@@ -245,7 +244,7 @@ export default function AlbumPhotosPage() {
             className="hidden"
             onChange={handleFileInput}
           />
-        </div>
+        </button>
 
         {/* Upload queue */}
         {queue.length > 0 && (

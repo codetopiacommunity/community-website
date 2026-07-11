@@ -15,9 +15,7 @@ export async function PATCH(
     const authError = await requireAuth();
     if (authError) return authError;
 
-    // Resolve params for Next.js 15+
-    const { id } = await params;
-    const data = await request.json();
+    const [{ id }, data] = await Promise.all([params, request.json()]);
 
     // 1. Retrieve the existing record to check for current image
     const existingMember = await prisma.teamMember.findUnique({
