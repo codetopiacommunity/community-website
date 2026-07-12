@@ -31,7 +31,7 @@ export function CTA() {
 
       <Container className="relative z-10 flex flex-col items-center max-w-5xl px-4 font-sans">
         <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 uppercase tracking-tighter leading-none">
-          Ready to <span className="text-zinc-600">Join?</span>
+          Ready to <span className="text-zinc-400">Join?</span>
         </h2>
         <p className="text-zinc-500 text-lg md:text-xl mb-16 max-w-xl font-mono leading-relaxed mx-auto">
           The community is open. Come build with us.

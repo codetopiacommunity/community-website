@@ -48,7 +48,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
         <div className={`${cx} pt-12 pb-8 flex flex-col gap-8`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
             <div className="flex flex-col gap-4">
-              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <span className="text-white/20">01 /</span> STATUS FILTER
               </span>
               <div className="flex flex-wrap gap-2">
@@ -70,7 +70,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
             </div>
 
             <div className="flex flex-col gap-4">
-              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <span className="text-white/20">02 /</span> FORMAT FILTER
               </span>
               <div className="flex flex-wrap gap-2">

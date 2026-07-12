@@ -27,7 +27,7 @@ export function Stats() {
       <Container className="w-full px-4 relative z-10">
         <div className="mb-24 flex flex-col gap-6">
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
-            Our <span className="text-zinc-700">Traction</span>
+            Our <span className="text-zinc-400">Traction</span>
           </h2>
           <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
             Numbers that reflect where we are and where we're going.
@@ -47,7 +47,7 @@ export function Stats() {
                 <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.4em] font-black">
                   {stat.label}
                 </p>
-                <p className="text-zinc-600 font-mono text-sm max-w-xs leading-relaxed">
+                <p className="text-zinc-400 font-mono text-sm max-w-xs leading-relaxed">
                   {stat.description}
                 </p>
               </div>

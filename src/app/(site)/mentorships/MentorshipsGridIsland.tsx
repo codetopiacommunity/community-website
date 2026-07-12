@@ -135,7 +135,7 @@ export function MentorshipsGridIsland() {
   if (loading) {
     return (
       <div className="w-full flex items-center justify-center py-40">
-        <Loader2 className="w-6 h-6 animate-spin text-zinc-600" />
+        <Loader2 className="w-6 h-6 animate-spin text-zinc-400" />
       </div>
     );
   }
@@ -144,12 +144,12 @@ export function MentorshipsGridIsland() {
     return (
       <div className="w-full flex flex-col items-center justify-center py-40 gap-5">
         <div className="w-16 h-16 border border-zinc-800 flex items-center justify-center">
-          <Users2 className="w-7 h-7 text-zinc-700" />
+          <Users2 className="w-7 h-7 text-zinc-400" />
         </div>
         <p className="text-white font-black uppercase tracking-tighter text-xl font-space-grotesk">
           No mentorships yet
         </p>
-        <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest text-center">
+        <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest text-center">
           No active sessions at the moment. Check back soon.
         </p>
       </div>
@@ -164,19 +164,19 @@ export function MentorshipsGridIsland() {
           <div className="flex items-center gap-3 relative" ref={dropdownRef}>
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search title, mentor, topic…"
-                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-700 transition-colors uppercase tracking-widest"
+                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-400 transition-colors uppercase tracking-widest"
               />
               {search && (
                 <button
                   type="button"
                   onClick={() => setSearch("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-white transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -236,7 +236,7 @@ export function MentorshipsGridIsland() {
                 <div className="p-4 sm:p-6 flex flex-col gap-5">
                   {/* Status */}
                   <div className="flex flex-col gap-3">
-                    <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em]">
+                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em]">
                       Status
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -262,7 +262,7 @@ export function MentorshipsGridIsland() {
 
                   {/* Format */}
                   <div className="flex flex-col gap-3">
-                    <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em]">
+                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em]">
                       Format
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -292,7 +292,7 @@ export function MentorshipsGridIsland() {
 
                   {/* Time */}
                   <div className="flex flex-col gap-3">
-                    <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em]">
+                    <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em]">
                       Time
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -319,7 +319,7 @@ export function MentorshipsGridIsland() {
                   {/* Topics */}
                   {allTags.length > 0 && (
                     <div className="flex flex-col gap-3 pt-4 border-t border-zinc-800">
-                      <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em]">
+                      <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em]">
                         Topics
                       </span>
                       <div className="flex flex-wrap gap-2">
@@ -356,7 +356,7 @@ export function MentorshipsGridIsland() {
                         Clear all
                       </button>
                     ) : (
-                      <span className="font-mono text-[10px] text-zinc-700 uppercase tracking-widest">
+                      <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
                         No active filters
                       </span>
                     )}

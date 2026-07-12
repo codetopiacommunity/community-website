@@ -17,7 +17,7 @@ export default function CodeOfConductPage() {
             <div className="flex-1">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
                 CODE OF <br />
-                <span className="text-zinc-700">CONDUCT</span>
+                <span className="text-zinc-400">CONDUCT</span>
               </h1>
               <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
                 A utopia for tech enthusiasts, where everyone belongs.
@@ -102,7 +102,7 @@ export default function CodeOfConductPage() {
             Restricted Behaviours
           </p>
 
-          <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mb-6 px-2">
+          <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-6 px-2">
             General Violations
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900 mb-px">
@@ -118,7 +118,7 @@ export default function CodeOfConductPage() {
             ))}
           </div>
 
-          <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mt-10 mb-6 px-2">
+          <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-10 mb-6 px-2">
             Tech Community Specific
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">
@@ -173,7 +173,7 @@ export default function CodeOfConductPage() {
                 key={item.step}
                 className="bg-black p-8 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_1fr] gap-8"
               >
-                <p className="text-zinc-700 font-black text-4xl font-sans">
+                <p className="text-zinc-400 font-black text-4xl font-sans">
                   {item.step}
                 </p>
                 <div>
@@ -185,7 +185,7 @@ export default function CodeOfConductPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mb-2">
+                  <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-2">
                     Consequence
                   </p>
                   <p className="text-zinc-400 font-mono text-sm leading-relaxed">
@@ -193,7 +193,7 @@ export default function CodeOfConductPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mb-2">
+                  <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-2">
                     Repair
                   </p>
                   <p className="text-zinc-400 font-mono text-sm leading-relaxed">
@@ -203,7 +203,7 @@ export default function CodeOfConductPage() {
               </div>
             ))}
           </div>
-          <p className="text-zinc-700 font-mono text-xs leading-relaxed mt-6 px-2 max-w-2xl">
+          <p className="text-zinc-400 font-mono text-xs leading-relaxed mt-6 px-2 max-w-2xl">
             This enforcement ladder is a guideline. It does not limit the
             ability of Community Moderators to use their discretion and judgment
             in the best interests of the Codetopia community.

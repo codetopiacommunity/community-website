@@ -19,7 +19,7 @@ export default function NotFound() {
 
         <Container className="relative z-10 px-4 py-32 md:py-48">
           <h1 className="text-[28vw] md:text-[20vw] font-black uppercase tracking-tighter leading-none font-sans text-white mb-2">
-            4<span className="text-zinc-800">0</span>4
+            4<span className="text-zinc-400">0</span>4
           </h1>
 
           <div className="border-t border-zinc-900 pt-10 mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-8">

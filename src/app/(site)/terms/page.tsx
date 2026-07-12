@@ -10,7 +10,7 @@ export default function TermsPage() {
           <div className="px-2">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
               TERMS OF <br />
-              <span className="text-zinc-700">SERVICE</span>
+              <span className="text-zinc-400">SERVICE</span>
             </h1>
             <p className="text-zinc-500 font-mono text-sm">
               Last updated: April 2026

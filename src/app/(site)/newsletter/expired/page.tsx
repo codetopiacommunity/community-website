@@ -29,7 +29,7 @@ export default function ExpiredPage() {
         </div>
 
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white font-sans">
-          LINK <span className="text-zinc-600">EXPIRED</span>
+          LINK <span className="text-zinc-400">EXPIRED</span>
         </h1>
 
         <p className="text-zinc-400 text-lg md:text-xl max-w-md mx-auto">

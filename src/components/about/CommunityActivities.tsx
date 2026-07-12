@@ -54,7 +54,7 @@ export function CommunityActivities() {
             </h3>
           </div>
           <div className="max-w-md">
-            <p className="text-zinc-600 text-lg font-mono leading-relaxed">
+            <p className="text-zinc-400 text-lg font-mono leading-relaxed">
               We don&apos;t just talk about tech. We engage in hands-on
               building, rigorous peer reviews, and consistent execution across
               multiple formats.
@@ -86,7 +86,7 @@ export function CommunityActivities() {
                 <h4 className="text-2xl md:text-3xl font-black uppercase tracking-tight font-sans mb-4">
                   {activity.title}
                 </h4>
-                <p className="text-zinc-600 font-mono text-sm leading-relaxed max-w-md">
+                <p className="text-zinc-400 font-mono text-sm leading-relaxed max-w-md">
                   {activity.description}
                 </p>
               </div>

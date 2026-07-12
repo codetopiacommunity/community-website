@@ -84,20 +84,20 @@ export default function AlbumPage({
           <div className="px-2">
             <Link
               href="/gallery"
-              className="text-zinc-600 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors mb-8 inline-block"
+              className="text-zinc-400 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors mb-8 inline-block"
             >
               ← Gallery
             </Link>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
-                <span className="text-zinc-600 font-mono text-xs uppercase tracking-widest block mb-3">
+                <span className="text-zinc-400 font-mono text-xs uppercase tracking-widest block mb-3">
                   {album.category} · {album.date}
                 </span>
                 <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none font-sans">
                   {album.title}
                 </h1>
               </div>
-              <p className="text-zinc-600 font-mono text-sm">
+              <p className="text-zinc-400 font-mono text-sm">
                 {album.photos.length} photos
               </p>
             </div>
@@ -112,20 +112,20 @@ export default function AlbumPage({
             <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
               <div className="relative">
                 <div className="w-24 h-24 rounded-2xl border border-zinc-800 flex items-center justify-center">
-                  <ImageOff className="w-10 h-10 text-zinc-700" />
+                  <ImageOff className="w-10 h-10 text-zinc-400" />
                 </div>
               </div>
               <div className="text-center space-y-2">
                 <p className="text-white font-black uppercase tracking-tighter text-2xl font-sans">
                   No images yet
                 </p>
-                <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
+                <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest max-w-xs">
                   Photos for this album haven't been added yet. Check back soon.
                 </p>
               </div>
               <Link
                 href="/gallery"
-                className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 px-5 py-2.5 rounded-none"
+                className="text-zinc-400 font-mono text-[10px] uppercase tracking-widest hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 px-5 py-2.5 rounded-none"
               >
                 ← Back to Gallery
               </Link>

@@ -23,7 +23,7 @@ export default function AboutPage() {
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase mb-12 leading-[0.9] font-sans">
             Engineering Impact <br />
-            Through <span className="text-zinc-600">Collaboration</span>
+            Through <span className="text-zinc-400">Collaboration</span>
           </h1>
           <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed max-w-3xl">
             Launched in 2020 as{" "}
@@ -47,7 +47,7 @@ export default function AboutPage() {
           <p className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.95] font-sans max-w-5xl">
             Not a networking group.
             <br />
-            <span className="text-zinc-600">A community that builds.</span>
+            <span className="text-zinc-400">A community that builds.</span>
           </p>
           <p className="font-mono text-base md:text-lg text-zinc-500 leading-relaxed max-w-2xl mt-12">
             Everyone here is working on something: a project, a skill, a career.
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 className="group bg-black p-10 flex flex-col gap-6 hover:bg-zinc-900/60 transition-colors"
               >
                 <value.icon
-                  className="w-8 h-8 text-zinc-600 group-hover:text-white transition-colors"
+                  className="w-8 h-8 text-zinc-400 group-hover:text-white transition-colors"
                   strokeWidth={1.5}
                 />
                 <div className="flex flex-col gap-3">
@@ -127,7 +127,7 @@ export default function AboutPage() {
             <div className="flex-1 px-2">
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
                 LEADERSHIP <br />
-                <span className="text-zinc-700">BRIEF</span>
+                <span className="text-zinc-400">BRIEF</span>
               </h2>
               <div className="max-w-2xl">
                 <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
@@ -140,7 +140,7 @@ export default function AboutPage() {
 
             <Link
               href="/team"
-              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-mono text-[9px] uppercase tracking-[0.3em] font-black hover:bg-zinc-200 transition-colors"
+              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-sans text-xs uppercase tracking-[0.3em] font-black hover:bg-zinc-200 transition-colors"
             >
               MEET THE TEAM
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
