@@ -62,7 +62,7 @@ export function TechnicalSpotlight({
 
             {spotlight.links.length > 0 && (
               <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-                <p className="text-zinc-700 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-black shrink-0">
+                <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-black shrink-0">
                   Links
                 </p>
                 <div className="flex flex-wrap gap-8 md:gap-12">

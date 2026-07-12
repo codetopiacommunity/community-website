@@ -29,13 +29,13 @@ export function GalleryGridIsland() {
         ) : albums.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
             <div className="w-24 h-24 rounded-2xl border border-zinc-800 flex items-center justify-center">
-              <Images className="w-10 h-10 text-zinc-700" />
+              <Images className="w-10 h-10 text-zinc-400" />
             </div>
             <div className="text-center space-y-2">
               <p className="text-white font-black uppercase tracking-tighter text-2xl font-sans">
                 No albums yet
               </p>
-              <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest max-w-xs">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest max-w-xs">
                 The gallery is empty for now. Come back soon for photos from our
                 events.
               </p>
@@ -76,11 +76,11 @@ export function GalleryGridIsland() {
                       <p className="text-white font-black uppercase tracking-tight text-xl font-sans leading-tight group-hover:text-zinc-300 transition-colors">
                         {album.title}
                       </p>
-                      <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest mt-1">
+                      <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-1">
                         {album.date}
                       </p>
                     </div>
-                    <FaArrowRight className="text-zinc-700 group-hover:text-white transition-colors w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <FaArrowRight className="text-zinc-400 group-hover:text-white transition-colors w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               ))}

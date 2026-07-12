@@ -75,7 +75,7 @@ export default function TeamPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 px-2">
             <div className="flex-1">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-                THE <span className="text-zinc-700">TEAM</span>
+                THE <span className="text-zinc-400">TEAM</span>
               </h1>
               <div className="max-w-2xl">
                 <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
@@ -97,7 +97,7 @@ export default function TeamPage() {
                       "px-4 py-2 text-[9px] font-mono uppercase tracking-[0.2em] transition-all",
                       activeTier === tier.value
                         ? "bg-white text-black"
-                        : "bg-transparent text-zinc-600 hover:text-zinc-300",
+                        : "bg-transparent text-zinc-400 hover:text-zinc-300",
                     )}
                   >
                     {tier.label}
@@ -110,20 +110,20 @@ export default function TeamPage() {
           {/* Search */}
           {!loading && teamMembers.length > 0 && (
             <div className="relative max-w-md mb-10 px-2">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-600" />
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search name or role…"
-                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-700 transition-colors uppercase tracking-widest"
+                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-400 transition-colors uppercase tracking-widest"
               />
               {search && (
                 <button
                   type="button"
                   onClick={() => setSearch("")}
                   aria-label="Clear search"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-white transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -137,7 +137,7 @@ export default function TeamPage() {
             </div>
           ) : visibleMembers.length === 0 && search.trim() ? (
             <div className="border border-zinc-900 bg-zinc-950 py-24 text-center px-2">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
                 No one matches "{search.trim()}" in the{" "}
                 {activeTierLabel || "team"} tier.
               </p>
@@ -152,7 +152,7 @@ export default function TeamPage() {
                   </div>
 
                   <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4 leading-none font-sans">
-                    STAY <span className="text-zinc-600">TUNED</span>
+                    STAY <span className="text-zinc-400">TUNED</span>
                   </h3>
 
                   <p className="text-zinc-500 font-mono text-base max-w-lg leading-relaxed">
@@ -181,7 +181,7 @@ export default function TeamPage() {
                 </div>
 
                 <div
-                  className="font-mono text-[9px] text-zinc-700 uppercase tracking-[0.3em] rotate-180 relative z-10"
+                  className="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.3em] rotate-180 relative z-10"
                   style={{ writingMode: "vertical-rl" }}
                 >
                   {"CODETOPIA COMMUNITY // TEAM DIRECTORY"}

@@ -105,25 +105,25 @@ export default async function CareerDetailPage({
               {/* Meta row */}
               <div className="flex flex-wrap items-center gap-6 font-mono text-sm text-zinc-400">
                 <span className="flex items-center gap-2">
-                  <Building2 className="h-4 w-4 text-zinc-600" />
+                  <Building2 className="h-4 w-4 text-zinc-400" />
                   {career.company}
                 </span>
                 <span className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-zinc-600" />
+                  <MapPin className="h-4 w-4 text-zinc-400" />
                   {career.location}
                 </span>
                 {career.duration && (
                   <span className="flex items-center gap-2">
-                    <Timer className="h-4 w-4 text-zinc-600" />
+                    <Timer className="h-4 w-4 text-zinc-400" />
                     {career.duration}
                   </span>
                 )}
                 <span className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-zinc-600" />
+                  <Calendar className="h-4 w-4 text-zinc-400" />
                   Posted {format(new Date(career.createdAt), "MMM d, yyyy")}
                 </span>
                 <span className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-zinc-600" />
+                  <Clock className="h-4 w-4 text-zinc-400" />
                   Closes {format(expiry, "MMM d, yyyy")}
                 </span>
               </div>
@@ -142,12 +142,12 @@ export default async function CareerDetailPage({
                   <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
               ) : (
-                <div className="flex items-center gap-4 px-8 py-5 bg-zinc-900 text-zinc-600 font-mono text-[10px] uppercase tracking-[0.25em] font-black border border-zinc-800 cursor-not-allowed">
+                <div className="flex items-center gap-4 px-8 py-5 bg-zinc-900 text-zinc-400 font-mono text-[10px] uppercase tracking-[0.25em] font-black border border-zinc-800 cursor-not-allowed">
                   <Briefcase className="w-4 h-4" />
                   No Application Link
                 </div>
               )}
-              <span className="font-mono text-[9px] text-zinc-700 uppercase tracking-widest text-center">
+              <span className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest text-center">
                 via {career.company}
               </span>
             </div>
@@ -163,8 +163,8 @@ export default async function CareerDetailPage({
             <div className="flex flex-col gap-16">
               {/* About the role */}
               <div className="flex flex-col gap-6">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                  <span className="text-zinc-600">01 /</span> About the Role
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 flex items-center gap-3">
+                  <span className="text-zinc-400">01 /</span> About the Role
                 </span>
                 <p className="text-zinc-300 font-mono text-sm leading-relaxed">
                   {desc.aboutRole}
@@ -174,8 +174,8 @@ export default async function CareerDetailPage({
               {/* Responsibilities */}
               {desc.responsibilities.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-zinc-600">02 /</span> Responsibilities
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 flex items-center gap-3">
+                    <span className="text-zinc-400">02 /</span> Responsibilities
                   </span>
                   <ul className="flex flex-col divide-y divide-zinc-900">
                     {desc.responsibilities.map((item, i) => (
@@ -183,7 +183,7 @@ export default async function CareerDetailPage({
                         key={item}
                         className="flex items-start gap-4 py-4 group"
                       >
-                        <span className="font-mono text-[9px] text-zinc-700 w-6 shrink-0 mt-0.5">
+                        <span className="font-mono text-[9px] text-zinc-400 w-6 shrink-0 mt-0.5">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span className="text-zinc-300 font-mono text-sm group-hover:text-white transition-colors">
@@ -198,8 +198,8 @@ export default async function CareerDetailPage({
               {/* Requirements */}
               {career.requirements.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-zinc-600">03 /</span> Requirements
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 flex items-center gap-3">
+                    <span className="text-zinc-400">03 /</span> Requirements
                     &amp; Skills
                   </span>
                   <ul className="flex flex-col divide-y divide-zinc-900">
@@ -208,7 +208,7 @@ export default async function CareerDetailPage({
                         key={req}
                         className="flex items-center gap-4 py-4 group"
                       >
-                        <span className="font-mono text-[9px] text-zinc-700 w-6 shrink-0">
+                        <span className="font-mono text-[9px] text-zinc-400 w-6 shrink-0">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <span className="text-zinc-300 font-mono text-sm group-hover:text-white transition-colors">
@@ -223,13 +223,13 @@ export default async function CareerDetailPage({
               {/* Nice to Have */}
               {desc.niceToHave.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-zinc-600">04 /</span> Nice to Have
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 flex items-center gap-3">
+                    <span className="text-zinc-400">04 /</span> Nice to Have
                   </span>
                   <ul className="flex flex-col gap-3">
                     {desc.niceToHave.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-4 w-4 text-zinc-700 mt-0.5 shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-zinc-400 mt-0.5 shrink-0" />
                         <span className="text-zinc-400 font-mono text-sm">
                           {item}
                         </span>
@@ -242,13 +242,13 @@ export default async function CareerDetailPage({
               {/* What We Offer */}
               {desc.whatWeOffer.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-zinc-600">05 /</span> What We Offer
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 flex items-center gap-3">
+                    <span className="text-zinc-400">05 /</span> What We Offer
                   </span>
                   <ul className="flex flex-col gap-3">
                     {desc.whatWeOffer.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <Sparkles className="h-4 w-4 text-zinc-700 mt-0.5 shrink-0" />
+                        <Sparkles className="h-4 w-4 text-zinc-400 mt-0.5 shrink-0" />
                         <span className="text-zinc-400 font-mono text-sm">
                           {item}
                         </span>
@@ -261,8 +261,8 @@ export default async function CareerDetailPage({
               {/* How to Apply */}
               {desc.howToApply && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3">
-                    <span className="text-zinc-600">06 /</span> How to Apply
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 flex items-center gap-3">
+                    <span className="text-zinc-400">06 /</span> How to Apply
                   </span>
                   <p className="text-zinc-300 font-mono text-sm leading-relaxed">
                     {desc.howToApply}
@@ -276,7 +276,7 @@ export default async function CareerDetailPage({
               <div className="sticky top-36 flex flex-col gap-4">
                 {/* Summary card */}
                 <div className="border border-zinc-800 bg-zinc-950 p-6 flex flex-col gap-5">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400">
                     Position Summary
                   </span>
 
@@ -309,9 +309,9 @@ export default async function CareerDetailPage({
                       },
                     ].map(({ label, value, icon: Icon }) => (
                       <div key={label} className="flex items-start gap-3">
-                        <Icon className="h-4 w-4 text-zinc-700 mt-0.5 shrink-0" />
+                        <Icon className="h-4 w-4 text-zinc-400 mt-0.5 shrink-0" />
                         <div className="flex flex-col gap-0.5">
-                          <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-600">
+                          <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">
                             {label}
                           </span>
                           <span className="font-mono text-xs text-zinc-300">
@@ -359,7 +359,7 @@ export default async function CareerDetailPage({
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
                 ) : (
-                  <div className="flex items-center justify-between px-6 py-4 bg-zinc-900 text-zinc-600 font-mono text-[10px] uppercase tracking-[0.25em] font-black border border-zinc-800 cursor-not-allowed">
+                  <div className="flex items-center justify-between px-6 py-4 bg-zinc-900 text-zinc-400 font-mono text-[10px] uppercase tracking-[0.25em] font-black border border-zinc-800 cursor-not-allowed">
                     No Application Link
                     <ArrowUpRight className="w-4 h-4 opacity-20" />
                   </div>
@@ -367,7 +367,7 @@ export default async function CareerDetailPage({
 
                 <Link
                   href="/careers"
-                  className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600 hover:text-zinc-400 transition-colors text-center"
+                  className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors text-center"
                 >
                   ← View all careers
                 </Link>

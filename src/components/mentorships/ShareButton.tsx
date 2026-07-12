@@ -99,7 +99,7 @@ export function ShareButton({ title, description }: ShareButtonProps) {
       {open && (
         <div className="absolute bottom-full left-0 right-0 mb-1 z-50 bg-zinc-950 border border-zinc-800 shadow-2xl animate-in fade-in slide-in-from-bottom-2 duration-150">
           <div className="p-4 flex flex-col gap-1">
-            <p className="font-mono text-[9px] text-zinc-600 uppercase tracking-[0.3em] px-2 pb-2 border-b border-zinc-800 mb-1">
+            <p className="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.3em] px-2 pb-2 border-b border-zinc-800 mb-1">
               Share via
             </p>
 

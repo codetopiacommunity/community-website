@@ -12,7 +12,7 @@ export default function CareersPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
             <div className="flex-1">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-                OPEN <span className="text-zinc-700">ROLES</span>
+                OPEN <span className="text-zinc-400">ROLES</span>
               </h1>
               <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
                 Internships, jobs, and projects built for the community.
