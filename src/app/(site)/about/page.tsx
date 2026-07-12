@@ -67,13 +67,14 @@ export default function AboutPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             <p className="font-mono text-base md:text-lg text-zinc-400 leading-relaxed">
-              Some communities run on their members — content, credit, clout —
-              and give little back. Not us. Every decision here starts with what
-              serves the member. Beginner or expert, doesn&apos;t matter.
+              Some communities run on their members. They take the content, the
+              credit, the clout, and give little back. Not us. Every decision
+              here starts with what serves the member. Beginner or expert,
+              doesn&apos;t matter.
             </p>
             <p className="font-mono text-base md:text-lg text-zinc-400 leading-relaxed">
               No lurking allowed. Ship impact, mentor someone, or take your
-              growth seriously — pick one.{" "}
+              growth seriously. Pick one.{" "}
               <span className="text-white">
                 Passengers aren&apos;t the vibe.
               </span>

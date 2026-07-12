@@ -37,7 +37,7 @@ export function CTA() {
           The community is open. Come build with us.
         </p>
         <p className="text-zinc-400 text-sm md:text-base mb-16 font-mono">
-          Not a lurk-and-leave space — read what we expect before you join.
+          Not a lurk-and-leave space. Read what we expect before you join.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-6 w-full">
