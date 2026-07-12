@@ -83,7 +83,7 @@ export default function AboutPage() {
             href="https://community.codetopia.org/howtos/Contributing/01-ways-to-contribute"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 mt-12 text-white font-mono text-xs uppercase tracking-[0.2em] hover:text-zinc-400 transition-colors"
+            className="group inline-flex items-center gap-3 mt-12 text-white font-sans font-bold text-xs uppercase tracking-widest hover:text-zinc-400 transition-colors"
           >
             See ways to contribute
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
