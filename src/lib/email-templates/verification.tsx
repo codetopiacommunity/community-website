@@ -187,7 +187,7 @@ export function VerificationTemplate({
               One step remains. <br />
               <br />
               Confirm your email to subscribe to{" "}
-              <strong style={{ color: "#ffffff" }}>The Dispatch</strong> —
+              <strong style={{ color: "#ffffff" }}>The Dispatch</strong>,
               Codetopia Community's newsletter for project updates, engineering
               insights, and community announcements.
             </Text>

@@ -129,7 +129,7 @@ export function FeaturedArticlesPicker({
     <div className="space-y-3">
       {atLimit && (
         <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 border border-zinc-200 bg-zinc-50 rounded-none px-4 py-2.5">
-          Featured limit reached — unfeature an article to add another.
+          Featured limit reached. Unfeature an article to add another.
         </p>
       )}
 

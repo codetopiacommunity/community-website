@@ -21,7 +21,7 @@ export const impactStories: ImpactStory[] = [
     id: 1,
     title: "Django Girls Koforidua",
     impact:
-      "We mentored aspiring developers through a high-intensity Django bootcamp, transforming raw curiosity into technical self-reliance. By guiding participants from their first line of code to a production-ready deployment, we ensured they didn't just 'learn'—they shipped.",
+      "We mentored aspiring developers through a high-intensity Django bootcamp, transforming raw curiosity into technical self-reliance. By guiding participants from their first line of code to a production-ready deployment, we ensured they didn't just 'learn'; they shipped.",
     image: djangoGirlsGroupPhoto.src,
     logo: djangoGirlsLogo.src,
     galleryLink:
@@ -34,7 +34,7 @@ export const impactStories: ImpactStory[] = [
     id: 2,
     title: "IEEE-CS GCTU Chapter",
     impact:
-      "Demystified the Django ecosystem for the IEEE-CS GCTU Chapter through a high-stakes workshop and live-coding demonstration. We showcased the framework's architecture and industry-standard workflows, proving that technical complexity is a choice—and clean code is the solution.",
+      "Demystified the Django ecosystem for the IEEE-CS GCTU Chapter through a high-stakes workshop and live-coding demonstration. We showcased the framework's architecture and industry-standard workflows, proving that technical complexity is a choice, and clean code is the solution.",
     image: ieeeGroupPhoto.src,
     logo: ieeeLogo.src,
     startDate: "16 July 2025",
