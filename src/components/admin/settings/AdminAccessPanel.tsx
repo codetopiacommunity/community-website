@@ -46,7 +46,7 @@ export function AdminAccessPanel({ currentEmail }: AdminAccessPanelProps) {
       }
       setAdmins((prev) => [...prev, data]);
       setNewAdminEmail("");
-      toast.success("Admin added — initial password is their email address");
+      toast.success("Admin added. Initial password is their email address.");
     } finally {
       setAdding(false);
     }

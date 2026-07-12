@@ -231,7 +231,7 @@ export function CareersFormModal({
                 About the Role <span className="text-red-500">*</span>
               </Label>
               <p className="text-[9px] font-mono text-grey-400 uppercase tracking-widest">
-                Short summary — what is this role and its purpose?
+                Short summary: what is this role and its purpose?
               </p>
               <Textarea
                 required

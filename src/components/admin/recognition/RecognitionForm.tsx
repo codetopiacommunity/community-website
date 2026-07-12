@@ -505,7 +505,7 @@ export function RecognitionForm({ editing }: RecognitionFormProps) {
                   </span>
                 </Label>
                 <Input
-                  placeholder="e.g. Community Mentor — overrides their portal role"
+                  placeholder="e.g. Community Mentor (overrides their portal role)"
                   value={form.roleLabel}
                   onChange={(e) => set("roleLabel", e.target.value)}
                   className={inputCls}
