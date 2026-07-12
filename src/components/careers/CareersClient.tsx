@@ -78,7 +78,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by title, company, or location..."
-                className="w-full bg-zinc-950 border border-zinc-800 text-white text-sm font-mono pl-11 pr-4 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-600 transition-colors"
+                className="w-full bg-zinc-950 border border-zinc-800 text-white text-sm font-mono pl-11 pr-4 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-400 transition-colors"
               />
               {search && (
                 <button
@@ -178,12 +178,12 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
           <Container className="px-4">
             <div className="px-2 flex flex-col items-center justify-center py-40 gap-6">
               <div className="w-20 h-20 border border-zinc-800 flex items-center justify-center">
-                <Briefcase className="w-8 h-8 text-zinc-700" />
+                <Briefcase className="w-8 h-8 text-zinc-400" />
               </div>
               <p className="text-white font-black uppercase tracking-tighter text-xl font-sans">
                 No Roles Found
               </p>
-              <p className="text-zinc-600 font-mono text-sm max-w-xs text-center">
+              <p className="text-zinc-400 font-mono text-sm max-w-xs text-center">
                 {search || typeFilter !== "ALL"
                   ? "No roles match your current filters."
                   : "Nothing open right now. Check back soon."}
@@ -276,13 +276,13 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                         {career.requirements.slice(0, 5).map((req) => (
                           <span
                             key={req}
-                            className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 border border-zinc-800 px-2 py-0.5"
+                            className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 border border-zinc-800 px-2 py-0.5"
                           >
                             {req}
                           </span>
                         ))}
                         {career.requirements.length > 5 && (
-                          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-700">
+                          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400">
                             +{career.requirements.length - 5} more
                           </span>
                         )}

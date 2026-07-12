@@ -396,7 +396,7 @@ export function TeamMemberModal({
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
-              <span className="font-mono text-6xl font-black tracking-widest text-zinc-700">
+              <span className="font-mono text-6xl font-black tracking-widest text-zinc-400">
                 {initials}
               </span>
             </div>

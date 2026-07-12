@@ -29,7 +29,7 @@ export default function VerifiedPage() {
         </div>
 
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white font-sans">
-          YOU&apos;RE <span className="text-zinc-600">VERIFIED</span>
+          YOU&apos;RE <span className="text-zinc-400">VERIFIED</span>
         </h1>
 
         <p className="text-zinc-400 text-lg md:text-xl max-w-md mx-auto">

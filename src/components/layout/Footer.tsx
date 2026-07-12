@@ -102,7 +102,7 @@ export function Footer() {
                   className="object-contain grayscale brightness-200"
                 />
               </Link>
-              <p className="font-mono text-sm text-zinc-600 max-w-xs leading-relaxed">
+              <p className="font-mono text-sm text-zinc-400 max-w-xs leading-relaxed">
                 A community where developers learn together, collaborate, and
                 grow. Based in Ghana, open to the world.
               </p>
@@ -114,7 +114,7 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={social.label}
-                    className="text-zinc-600 hover:text-white transition-colors"
+                    className="text-zinc-400 hover:text-white transition-colors"
                   >
                     <social.icon className="w-5 h-5" />
                   </a>
@@ -195,12 +195,12 @@ export function Footer() {
           <Container className="px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p
               suppressHydrationWarning
-              className="font-mono text-xs text-zinc-700"
+              className="font-mono text-xs text-zinc-400"
             >
               &copy; {new Date().getFullYear()} Codetopia. All rights reserved.
             </p>
             <div className="flex items-center gap-8">
-              <p className="font-sans font-black text-xs text-zinc-700 uppercase tracking-widest">
+              <p className="font-sans font-black text-xs text-zinc-400 uppercase tracking-widest">
                 A{" "}
                 <a
                   href="https://codetopia.org"
@@ -214,7 +214,7 @@ export function Footer() {
               </p>
               <Link
                 href="/privacy"
-                className="font-mono text-xs text-zinc-700 hover:text-white transition-colors"
+                className="font-mono text-xs text-zinc-400 hover:text-white transition-colors"
               >
                 Privacy
               </Link>

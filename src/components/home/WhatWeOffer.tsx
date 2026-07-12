@@ -34,7 +34,7 @@ export function WhatWeOffer() {
       <Container className="relative z-10 w-full px-4">
         <div className="mb-24 flex flex-col gap-6">
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
-            What We <span className="text-zinc-600">Offer</span>
+            What We <span className="text-zinc-400">Offer</span>
           </h2>
           <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
             We provide the infrastructure and mentorship needed to rotate from
@@ -53,7 +53,7 @@ export function WhatWeOffer() {
               {/* Left: icon + title */}
               <div className="relative z-10 flex items-center gap-5 lg:gap-8 flex-1">
                 <offer.icon
-                  className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-600 shrink-0 transition-colors duration-300 group-hover:text-white"
+                  className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-400 shrink-0 transition-colors duration-300 group-hover:text-white"
                   strokeWidth={1.5}
                 />
                 <h3 className="text-2xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tighter font-sans transition-colors duration-300">
@@ -63,7 +63,7 @@ export function WhatWeOffer() {
 
               {/* Right: description + arrow */}
               <div className="relative z-10 flex items-center gap-8 lg:max-w-xl lg:justify-end">
-                <p className="text-zinc-600 font-mono text-sm lg:text-base lg:text-right transition-colors duration-300 group-hover:text-zinc-400">
+                <p className="text-zinc-400 font-mono text-sm lg:text-base lg:text-right transition-colors duration-300 group-hover:text-white">
                   {offer.description}
                 </p>
               </div>

@@ -216,7 +216,7 @@ function MobileMenu({
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="block pl-4 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-white transition-colors"
+                      className="block pl-4 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
                     >
                       {child.label}
                     </Link>
@@ -359,7 +359,7 @@ export function Header() {
                               {child.label}
                             </span>
                             {child.description && (
-                              <span className="font-mono text-xs text-zinc-600 mt-0.5">
+                              <span className="font-mono text-xs text-zinc-400 mt-0.5">
                                 {child.description}
                               </span>
                             )}
