@@ -38,7 +38,7 @@ export function Hero() {
               offsetClassName="border-white"
             >
               <a
-                href="https://discord.gg/nPmRWdTQAK"
+                href="https://community.codetopia.org/howtos/Getting-Started/01-join-the-community"
                 target="_blank"
                 rel="noreferrer"
               >
