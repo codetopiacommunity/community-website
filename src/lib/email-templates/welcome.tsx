@@ -181,7 +181,7 @@ export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
               Your email has been verified. <br />
               <br />
               You're now subscribed to{" "}
-              <strong style={{ color: "#ffffff" }}>The Dispatch</strong> —
+              <strong style={{ color: "#ffffff" }}>The Dispatch</strong>,
               Codetopia Community's newsletter for project updates, engineering
               insights, and community announcements.
             </Text>
