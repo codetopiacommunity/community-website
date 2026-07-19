@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  FaFacebookF,
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
@@ -45,6 +46,11 @@ const socialIcons = [
     label: "LinkedIn",
   },
   { icon: FaXTwitter, href: "https://x.com/codetopiacomm", label: "X" },
+  {
+    icon: FaFacebookF,
+    href: "https://www.facebook.com/codetopiacommunity",
+    label: "Facebook",
+  },
   {
     icon: FaInstagram,
     href: "https://www.instagram.com/codetopiacommunity/",
