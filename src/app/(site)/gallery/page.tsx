@@ -20,7 +20,7 @@ export default function GalleryPage() {
             The <br />
             <span className="text-zinc-400">Gallery</span>
           </h1>
-          <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
+          <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
             A visual record of community activities, events, and moments that
             shaped the community.
           </p>

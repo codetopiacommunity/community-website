@@ -44,7 +44,7 @@ export default async function TeamDirectoryPage({ params }: Props) {
           <h1 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans mb-8">
             {tier} <span className="text-zinc-400">DIVISION</span>
           </h1>
-          <div className="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest">
+          <div className="flex items-center gap-4 text-zinc-400 font-mono text-xs uppercase tracking-widest">
             <span className="w-12 h-[1px] bg-zinc-800" />
             TOTAL MEMBERS: {filteredMembers.length}
           </div>

@@ -11,7 +11,7 @@ const cx = "mx-auto w-full max-w-screen-2xl px-6 lg:px-12";
 const STATUS_STYLES: Record<string, string> = {
   open: "border-green-500/40 text-green-400",
   full: "border-yellow-500/40 text-yellow-400",
-  closed: "border-zinc-700 text-zinc-500",
+  closed: "border-zinc-700 text-zinc-400",
 };
 
 const BASE_URL =
@@ -113,7 +113,7 @@ export default async function MentorshipDetail({
           </p>
           <Link
             href="/mentorships"
-            className="inline-flex items-center gap-2 text-zinc-500 hover:text-white transition-colors font-mono text-xs uppercase tracking-widest"
+            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-mono text-xs uppercase tracking-widest"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Mentorships
@@ -148,7 +148,7 @@ export default async function MentorshipDetail({
           <div className={cx}>
             <Link
               href="/mentorships"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               All Mentorships
@@ -368,7 +368,7 @@ export default async function MentorshipDetail({
 
               <Link
                 href="/mentorships"
-                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 Back to All

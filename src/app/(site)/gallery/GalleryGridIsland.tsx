@@ -24,7 +24,7 @@ export function GalleryGridIsland() {
       <Container className="px-4">
         {loading ? (
           <div className="flex items-center justify-center py-24">
-            <Loader2 className="w-8 h-8 animate-spin text-zinc-500" />
+            <Loader2 className="w-8 h-8 animate-spin text-zinc-400" />
           </div>
         ) : albums.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
@@ -43,7 +43,7 @@ export function GalleryGridIsland() {
           </div>
         ) : (
           <>
-            <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-10 px-2">
+            <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-10 px-2">
               {albums.length} Albums
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">

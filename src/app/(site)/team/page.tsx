@@ -78,7 +78,7 @@ export default function TeamPage() {
                 THE <span className="text-zinc-400">TEAM</span>
               </h1>
               <div className="max-w-2xl">
-                <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed">
+                <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
                   Meet the humans behind Codetopia Community: the core team,
                   mentors, volunteers, and ambassadors who make it what it is.
                 </p>
@@ -133,7 +133,7 @@ export default function TeamPage() {
 
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-zinc-400" />
             </div>
           ) : visibleMembers.length === 0 && search.trim() ? (
             <div className="border border-zinc-900 bg-zinc-950 py-24 text-center px-2">
@@ -155,7 +155,7 @@ export default function TeamPage() {
                     STAY <span className="text-zinc-400">TUNED</span>
                   </h3>
 
-                  <p className="text-zinc-500 font-mono text-base max-w-lg leading-relaxed">
+                  <p className="text-zinc-400 font-mono text-base max-w-lg leading-relaxed">
                     We're currently assembling our community leaders for the{" "}
                     <span className="text-zinc-300 font-bold">
                       {activeTierLabel || "team"}
@@ -176,7 +176,7 @@ export default function TeamPage() {
                   }}
                 ></div>
 
-                <div className="self-end p-5 border border-zinc-800 bg-zinc-950 text-zinc-500 transition-all duration-500 group-hover:text-zinc-300 relative z-10">
+                <div className="self-end p-5 border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all duration-500 group-hover:text-zinc-300 relative z-10">
                   <Users2 className="w-8 h-8" strokeWidth={1} />
                 </div>
 

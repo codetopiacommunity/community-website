@@ -52,7 +52,7 @@ export default async function CareerDetailPage({
         <Container className="px-4">
           <Link
             href="/careers"
-            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors group mb-10"
+            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors group mb-10"
           >
             <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
             All Opportunities
@@ -86,7 +86,7 @@ export default async function CareerDetailPage({
                   className={`font-mono text-[9px] uppercase tracking-[0.2em] px-2 py-1 font-black ${
                     isUrgent
                       ? "bg-red-500/10 text-red-400 border border-red-500/20"
-                      : "bg-zinc-900 text-zinc-500 border border-zinc-800"
+                      : "bg-zinc-900 text-zinc-400 border border-zinc-800"
                   }`}
                 >
                   {daysLeft === 0
@@ -330,7 +330,7 @@ export default async function CareerDetailPage({
                         : "border-zinc-800 bg-zinc-900"
                     }`}
                   >
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-500">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">
                       Time Remaining
                     </span>
                     <span

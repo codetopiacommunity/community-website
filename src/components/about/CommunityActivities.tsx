@@ -45,7 +45,7 @@ export function CommunityActivities() {
       <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1">
-            <h2 className="text-zinc-500 font-mono text-sm uppercase tracking-[0.3em] mb-4">
+            <h2 className="text-zinc-400 font-mono text-sm uppercase tracking-[0.3em] mb-4">
               Our Operations
             </h2>
             <h3 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">

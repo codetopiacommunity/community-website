@@ -12,7 +12,7 @@ export default function PrivacyPage() {
               PRIVACY <br />
               <span className="text-zinc-400">POLICY</span>
             </h1>
-            <p className="text-zinc-500 font-mono text-sm">
+            <p className="text-zinc-400 font-mono text-sm">
               Last updated: April 2026
             </p>
           </div>

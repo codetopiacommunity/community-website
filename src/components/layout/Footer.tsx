@@ -140,7 +140,7 @@ export function Footer() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="font-mono text-sm text-zinc-500 hover:text-white transition-colors"
+                      className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -158,7 +158,7 @@ export function Footer() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="font-mono text-sm text-zinc-500 hover:text-white transition-colors"
+                      className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -174,18 +174,18 @@ export function Footer() {
                 <div className="flex flex-col gap-3">
                   <a
                     href="mailto:hello@codetopia.org"
-                    className="font-mono text-sm text-zinc-500 hover:text-white transition-colors"
+                    className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     hello@codetopia.org
                   </a>
-                  <span className="font-mono text-sm text-zinc-500">
+                  <span className="font-mono text-sm text-zinc-400">
                     Accra, Ghana
                   </span>
                   <a
                     href="https://github.com/codetopiacommunity/community-website"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-500 hover:text-white transition-colors group"
+                    className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors group"
                   >
                     Contribute on GitHub
                     <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

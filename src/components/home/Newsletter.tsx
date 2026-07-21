@@ -54,7 +54,7 @@ export function Newsletter() {
             <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-6 font-sans leading-none">
               The <span className="text-zinc-400">Dispatch</span>
             </h2>
-            <p className="text-zinc-500 text-base md:text-lg font-mono max-w-xl leading-relaxed">
+            <p className="text-zinc-400 text-base md:text-lg font-mono max-w-xl leading-relaxed">
               Project arrivals. Community narratives. <br />
               The architectural pulse of the builders, delivered directly.
             </p>

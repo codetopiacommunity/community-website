@@ -150,7 +150,7 @@ function HonorCard({
             {entry.name}
           </h3>
           {entry.role && (
-            <p className="text-zinc-500 font-mono text-[9px] uppercase tracking-[0.25em] mt-1">
+            <p className="text-zinc-400 font-mono text-[9px] uppercase tracking-[0.25em] mt-1">
               {entry.role}
             </p>
           )}
@@ -159,7 +159,7 @@ function HonorCard({
 
       {/* Impact summary row */}
       <div className="px-3 py-2.5 border-t border-zinc-800 flex items-start justify-between gap-3 flex-1">
-        <p className="text-zinc-500 font-mono text-[10px] leading-relaxed line-clamp-2 group-hover:text-zinc-400 transition-colors flex-1">
+        <p className="text-zinc-400 font-mono text-[10px] leading-relaxed line-clamp-2 group-hover:text-white transition-colors flex-1">
           {entry.impactSummary}
         </p>
         <span className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors shrink-0 mt-0.5">
@@ -256,7 +256,7 @@ function RecognitionModal({
               {entry.name}
             </h3>
             {entry.role && (
-              <p className="text-zinc-500 font-mono text-sm md:text-base uppercase tracking-[0.3em]">
+              <p className="text-zinc-400 font-mono text-sm md:text-base uppercase tracking-[0.3em]">
                 {entry.role}
               </p>
             )}
@@ -276,7 +276,7 @@ function RecognitionModal({
                 <Icon className="w-3 h-3" />
                 {categoryLabel}
               </span>
-              <span className="px-3 py-1.5 border border-zinc-800 font-mono text-[10px] uppercase tracking-widest text-zinc-500 font-black">
+              <span className="px-3 py-1.5 border border-zinc-800 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-black">
                 {entry.period}
               </span>
             </div>
@@ -346,7 +346,7 @@ function RecognitionModal({
           </div>
 
           <div className="mt-20 pt-8 border-t border-zinc-900 flex justify-between items-center opacity-30">
-            <div className="text-[8px] font-mono text-zinc-500 uppercase tracking-[0.5em]">
+            <div className="text-[8px] font-mono text-zinc-400 uppercase tracking-[0.5em]">
               A Codetopia Initiative
             </div>
           </div>
@@ -415,7 +415,7 @@ export function WallOfImpact() {
                   "px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-200",
                   activeFilter === f.key
                     ? "bg-white text-black border-white"
-                    : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
+                    : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
                 )}
               >
                 {f.label}

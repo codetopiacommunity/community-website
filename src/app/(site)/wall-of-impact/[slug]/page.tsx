@@ -115,7 +115,7 @@ export default async function RecognitionDetailPage({
           <div className={cx}>
             <Link
               href="/wall-of-impact"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               Wall of Impact
@@ -152,7 +152,7 @@ export default async function RecognitionDetailPage({
             </h1>
 
             {memberRole && (
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.3em]">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-[0.3em]">
                 {memberRole}
               </p>
             )}
@@ -283,7 +283,7 @@ export default async function RecognitionDetailPage({
 
               <Link
                 href="/wall-of-impact"
-                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 Back to Wall of Impact

@@ -36,7 +36,7 @@ export function WhatWeOffer() {
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
             What We <span className="text-zinc-400">Offer</span>
           </h2>
-          <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
+          <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
             We provide the infrastructure and mentorship needed to rotate from
             theory to engineering impact.
           </p>
