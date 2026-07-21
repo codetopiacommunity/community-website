@@ -75,7 +75,7 @@ export function FeaturedCareerBanner() {
           <div className="h-6 w-6 bg-white rounded flex items-center justify-center shrink-0">
             <Briefcase className="h-3.5 w-3.5 text-black" />
           </div>
-          <span className="hidden sm:block font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-500 whitespace-nowrap">
+          <span className="hidden sm:block font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 whitespace-nowrap">
             We&apos;re Hiring
           </span>
           <span className="hidden sm:block text-zinc-400 text-xs">|</span>
@@ -120,7 +120,7 @@ export function FeaturedCareerBanner() {
                   <span className="hidden md:block text-zinc-400 shrink-0">
                     ·
                   </span>
-                  <span className="hidden md:flex items-center gap-1 font-mono text-[10px] text-zinc-500 uppercase tracking-widest shrink-0">
+                  <span className="hidden md:flex items-center gap-1 font-mono text-[10px] text-zinc-400 uppercase tracking-widest shrink-0">
                     <MapPin className="h-2.5 w-2.5" />
                     {career.location}
                   </span>

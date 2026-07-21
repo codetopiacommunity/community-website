@@ -223,7 +223,7 @@ export function MentorshipsGridIsland() {
               <button
                 type="button"
                 onClick={clearAll}
-                className="group flex items-center gap-1.5 font-mono text-[10px] text-zinc-500 hover:text-white uppercase tracking-widest transition-colors whitespace-nowrap"
+                className="group flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 hover:text-white uppercase tracking-widest transition-colors whitespace-nowrap"
               >
                 <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
                 <span className="hidden sm:inline">Clear</span>
@@ -251,7 +251,7 @@ export function MentorshipsGridIsland() {
                             "px-3 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-200",
                             statusFilter === s
                               ? "bg-white text-black border-white"
-                              : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
+                              : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
                           )}
                         >
                           {s}
@@ -281,7 +281,7 @@ export function MentorshipsGridIsland() {
                             "px-3 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-200",
                             locationFilter === opt.id
                               ? "bg-white text-black border-white"
-                              : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
+                              : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
                           )}
                         >
                           {opt.label}
@@ -306,7 +306,7 @@ export function MentorshipsGridIsland() {
                               "px-3 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-200",
                               timeFilter === t
                                 ? "bg-white text-black border-white"
-                                : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
+                                : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
                             )}
                           >
                             {t === "ALL" ? "ALL TIME" : t}
@@ -334,7 +334,7 @@ export function MentorshipsGridIsland() {
                               "px-3 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-200",
                               activeTag === tag
                                 ? "bg-white text-black border-white"
-                                : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
+                                : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
                             )}
                           >
                             {tag}
@@ -350,7 +350,7 @@ export function MentorshipsGridIsland() {
                       <button
                         type="button"
                         onClick={clearAll}
-                        className="group flex items-center gap-2 font-mono text-[10px] text-zinc-500 hover:text-white uppercase tracking-widest transition-colors"
+                        className="group flex items-center gap-2 font-mono text-[10px] text-zinc-400 hover:text-white uppercase tracking-widest transition-colors"
                       >
                         <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
                         Clear all
@@ -385,7 +385,7 @@ export function MentorshipsGridIsland() {
               <h3 className="text-white font-mono text-xs uppercase tracking-[0.4em] font-black">
                 NO SESSIONS FOUND
               </h3>
-              <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.2em] leading-relaxed">
+              <p className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.2em] leading-relaxed">
                 No mentorships match your current filters.
               </p>
               <button
@@ -435,7 +435,7 @@ export function MentorshipsGridIsland() {
                         ? "border-green-500/50 text-green-400 bg-green-500/10"
                         : m.status === "full"
                           ? "border-yellow-500/50 text-yellow-400 bg-yellow-500/10"
-                          : "border-zinc-700 text-zinc-500 bg-black/40",
+                          : "border-zinc-700 text-zinc-400 bg-black/40",
                     )}
                   >
                     {m.status}
@@ -451,7 +451,7 @@ export function MentorshipsGridIsland() {
                         })}
                       </div>
                       {m.endDate && (
-                        <div className="text-zinc-500 text-[10px] font-mono">
+                        <div className="text-zinc-400 text-[10px] font-mono">
                           {"→ "}
                           {new Date(m.endDate).toLocaleDateString("en-US", {
                             month: "short",
@@ -463,7 +463,7 @@ export function MentorshipsGridIsland() {
                     </div>
                   )}
                   {(m.location || m.isOnline) && (
-                    <div className="flex items-center gap-1.5 text-zinc-500 text-[10px] font-mono uppercase tracking-widest">
+                    <div className="flex items-center gap-1.5 text-zinc-400 text-[10px] font-mono uppercase tracking-widest">
                       <MapPin className="w-3 h-3 shrink-0" />
                       {m.location || "Online"}
                     </div>
@@ -485,7 +485,7 @@ export function MentorshipsGridIsland() {
                       {(m.tags as string[]).slice(0, 5).map((tag) => (
                         <span
                           key={tag}
-                          className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 border border-zinc-700/60 bg-black/40 backdrop-blur-sm px-2 py-0.5"
+                          className="font-mono text-[10px] uppercase tracking-widest text-zinc-400 border border-zinc-700/60 bg-black/40 backdrop-blur-sm px-2 py-0.5"
                         >
                           {tag}
                         </span>

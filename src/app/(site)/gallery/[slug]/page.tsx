@@ -61,14 +61,14 @@ export default function AlbumPage({
   if (loading)
     return (
       <div className="flex-1 bg-black text-white min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-zinc-500" />
+        <Loader2 className="w-8 h-8 animate-spin text-zinc-400" />
       </div>
     );
 
   if (!album)
     return (
       <div className="flex-1 bg-black text-white min-h-screen flex items-center justify-center">
-        <p className="text-zinc-500 font-mono">Album not found.</p>
+        <p className="text-zinc-400 font-mono">Album not found.</p>
       </div>
     );
 
@@ -183,7 +183,7 @@ export default function AlbumPage({
           >
             <X className="w-8 h-8" />
           </button>
-          <div className="absolute top-6 left-6 text-zinc-500 font-mono text-xs uppercase tracking-widest">
+          <div className="absolute top-6 left-6 text-zinc-400 font-mono text-xs uppercase tracking-widest">
             {lightboxIndex + 1} / {album.photos.length}
           </div>
           {lightboxIndex > 0 && (
@@ -211,7 +211,7 @@ export default function AlbumPage({
               height={900}
               className="w-full h-auto max-h-[85vh] object-contain"
             />
-            <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mt-4 text-center">
+            <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-4 text-center">
               {album.photos[lightboxIndex].alt}
             </p>
           </div>

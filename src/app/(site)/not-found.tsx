@@ -27,7 +27,7 @@ export default function NotFound() {
               <p className="text-white font-black uppercase tracking-tighter text-2xl md:text-3xl font-sans mb-3">
                 Page Not Found
               </p>
-              <p className="text-zinc-500 font-mono text-base leading-relaxed max-w-md">
+              <p className="text-zinc-400 font-mono text-base leading-relaxed max-w-md">
                 The page you are looking for does not exist or has been moved.
               </p>
             </div>

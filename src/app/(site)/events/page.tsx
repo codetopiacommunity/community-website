@@ -22,7 +22,7 @@ export default function EventsPage() {
             Events &<br />
             <span className="text-zinc-400">Activities</span>
           </h1>
-          <p className="text-zinc-500 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
+          <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
             The schedule for our upcoming build sessions, workshops, and
             community events.
           </p>

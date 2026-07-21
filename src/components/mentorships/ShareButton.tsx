@@ -89,7 +89,7 @@ export function ShareButton({ title, description }: ShareButtonProps) {
           e.preventDefault();
           setOpen((v) => !v);
         }}
-        className="group flex items-center justify-between w-full px-6 py-4 border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] font-black transition-colors"
+        className="group flex items-center justify-between w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] font-black transition-colors"
       >
         Share This Program
         <Share2 className="w-3.5 h-3.5" />

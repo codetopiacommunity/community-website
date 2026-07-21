@@ -32,7 +32,7 @@ export default function CodeOfConductPage() {
         <Container className="px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 px-2">
             <div>
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-4">
                 Who We Are
               </p>
               <p className="text-zinc-300 font-mono text-base leading-relaxed">
@@ -50,7 +50,7 @@ export default function CodeOfConductPage() {
                 believe technology is more than a tool. It is the foundation of
                 innovation, creativity, and problem-solving.
               </p>
-              <p className="text-zinc-500 font-mono text-sm leading-relaxed mt-4">
+              <p className="text-zinc-400 font-mono text-sm leading-relaxed mt-4">
                 Our community is guided by six core values:{" "}
                 <span className="text-zinc-300">
                   Inclusivity, Collaboration, Continuous Learning, Practical
@@ -59,7 +59,7 @@ export default function CodeOfConductPage() {
               </p>
             </div>
             <div>
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-4">
                 Our Pledge
               </p>
               <p className="text-zinc-300 font-mono text-base leading-relaxed">
@@ -77,7 +77,7 @@ export default function CodeOfConductPage() {
       {/* Encouraged Behaviours */}
       <section className="py-16 border-t border-zinc-900">
         <Container className="px-4">
-          <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-10 px-2">
+          <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-10 px-2">
             Encouraged Behaviours
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">
@@ -86,7 +86,7 @@ export default function CodeOfConductPage() {
                 <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-3">
                   {item.title}
                 </p>
-                <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+                <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -98,7 +98,7 @@ export default function CodeOfConductPage() {
       {/* Restricted Behaviours */}
       <section className="py-16 border-t border-zinc-900">
         <Container className="px-4">
-          <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-10 px-2">
+          <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-10 px-2">
             Restricted Behaviours
           </p>
 
@@ -111,7 +111,7 @@ export default function CodeOfConductPage() {
                 <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-3">
                   {item.title}
                 </p>
-                <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+                <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -127,7 +127,7 @@ export default function CodeOfConductPage() {
                 <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-3">
                   {item.title}
                 </p>
-                <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+                <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -140,7 +140,7 @@ export default function CodeOfConductPage() {
       <section className="py-16 border-t border-zinc-900">
         <Container className="px-4">
           <div className="px-2 max-w-3xl">
-            <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-6">
+            <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-6">
               Reporting an Issue
             </p>
             <p className="text-zinc-300 font-mono text-base leading-relaxed mb-6">
@@ -164,7 +164,7 @@ export default function CodeOfConductPage() {
       {/* Enforcement Ladder */}
       <section className="py-16 border-t border-zinc-900">
         <Container className="px-4">
-          <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-10 px-2">
+          <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-10 px-2">
             Addressing & Repairing Harm
           </p>
           <div className="flex flex-col gap-px bg-zinc-900">
@@ -180,7 +180,7 @@ export default function CodeOfConductPage() {
                   <p className="text-white font-black uppercase tracking-tight text-lg font-sans mb-2">
                     {item.title}
                   </p>
-                  <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+                  <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                     {item.event}
                   </p>
                 </div>
@@ -216,10 +216,10 @@ export default function CodeOfConductPage() {
         <Container className="px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 px-2">
             <div>
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-4">
                 Scope
               </p>
-              <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+              <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                 This Code of Conduct applies within all Codetopia spaces,
                 including our GitHub repositories, Discord server, website,
                 events, and any other space where you are representing the
@@ -227,10 +227,10 @@ export default function CodeOfConductPage() {
               </p>
             </div>
             <div>
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-4">
                 Attribution
               </p>
-              <p className="text-zinc-500 font-mono text-sm leading-relaxed">
+              <p className="text-zinc-400 font-mono text-sm leading-relaxed">
                 This Code of Conduct is an original document written for the
                 Codetopia Community, informed by our Community Charter and
                 adapted from the{" "}

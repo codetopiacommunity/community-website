@@ -36,7 +36,7 @@ export async function LatestArticles() {
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
             Latest <span className="text-zinc-400">Articles</span>
           </h2>
-          <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
+          <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
             Insights, tutorials, and stories from the Codetopia community.
           </p>
         </div>
