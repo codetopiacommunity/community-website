@@ -56,6 +56,41 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {/* Member First */}
+      <section className="w-full py-32 bg-black text-white border-t border-zinc-900">
+        <Container className="w-full px-4">
+          <span className="font-mono text-xs text-zinc-400 uppercase tracking-[0.2em] mb-8 block">
+            Member First
+          </span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.95] font-sans max-w-4xl mb-16">
+            We mean business.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            <p className="font-mono text-base md:text-lg text-zinc-400 leading-relaxed">
+              Some communities run on their members — content, credit, clout —
+              and give little back. Not us. Every decision here starts with what
+              serves the member. Beginner or expert, doesn&apos;t matter.
+            </p>
+            <p className="font-mono text-base md:text-lg text-zinc-400 leading-relaxed">
+              No lurking allowed. Ship impact, mentor someone, or take your
+              growth seriously — pick one.{" "}
+              <span className="text-white">
+                Passengers aren&apos;t the vibe.
+              </span>
+            </p>
+          </div>
+          <a
+            href="https://community.codetopia.org/howtos/Contributing/01-ways-to-contribute"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 mt-12 text-white font-sans font-bold text-xs uppercase tracking-widest hover:text-zinc-400 transition-colors"
+          >
+            See ways to contribute
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </Container>
+      </section>
+
       {/* Vision & Mission */}
       <section className="w-full bg-black border-t border-zinc-900">
         <Container className="px-4">
@@ -140,7 +175,7 @@ export default function AboutPage() {
 
             <Link
               href="/team"
-              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-mono text-[9px] uppercase tracking-[0.3em] font-black hover:bg-zinc-200 transition-colors"
+              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-sans text-xs uppercase tracking-[0.3em] font-black hover:bg-zinc-200 transition-colors"
             >
               MEET THE TEAM
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

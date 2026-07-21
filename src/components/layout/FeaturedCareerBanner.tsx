@@ -78,7 +78,7 @@ export function FeaturedCareerBanner() {
           <span className="hidden sm:block font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 whitespace-nowrap">
             We&apos;re Hiring
           </span>
-          <span className="hidden sm:block text-zinc-800 text-xs">|</span>
+          <span className="hidden sm:block text-zinc-400 text-xs">|</span>
         </div>
 
         {/* Center: animated job info */}

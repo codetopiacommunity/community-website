@@ -27,7 +27,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
             <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-400">
               — LOG EMPTY —
             </p>
-            <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-zinc-800 leading-none font-sans">
+            <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-zinc-400 leading-none font-sans">
               NO IMPACT <br /> RECORDED YET
             </h3>
             <p className="text-zinc-400 font-mono text-xs leading-relaxed max-w-sm">
@@ -35,7 +35,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
               here as Codetopia continues to grow and make its mark.
             </p>
           </div>
-          <div className="flex items-center gap-4 text-zinc-800 font-mono text-[10px] uppercase tracking-[0.4em]">
+          <div className="flex items-center gap-4 text-zinc-400 font-mono text-[10px] uppercase tracking-[0.4em]">
             <span className="h-px w-12 bg-zinc-800" />A CODETOPIA INITIATIVE
             <span className="h-px w-12 bg-zinc-800" />
           </div>

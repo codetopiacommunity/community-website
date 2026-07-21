@@ -282,7 +282,7 @@ function RecognitionModal({
             </div>
 
             <div>
-              <div className="flex items-center gap-4 mb-8 text-zinc-800">
+              <div className="flex items-center gap-4 mb-8 text-zinc-400">
                 <span className="h-[1px] w-12 bg-current" />
                 <h4 className="font-mono text-[10px] uppercase tracking-[0.4em] font-black">
                   The Impact
