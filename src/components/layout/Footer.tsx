@@ -102,7 +102,7 @@ export function Footer() {
                   className="object-contain grayscale brightness-200"
                 />
               </Link>
-              <p className="font-mono text-sm text-zinc-600 max-w-xs leading-relaxed">
+              <p className="font-mono text-sm text-zinc-400 max-w-xs leading-relaxed">
                 A community where developers learn together, collaborate, and
                 grow. Based in Ghana, open to the world.
               </p>
@@ -114,7 +114,7 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={social.label}
-                    className="text-zinc-600 hover:text-white transition-colors"
+                    className="text-zinc-400 hover:text-white transition-colors"
                   >
                     <social.icon className="w-5 h-5" />
                   </a>
@@ -134,7 +134,7 @@ export function Footer() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="font-mono text-sm text-zinc-500 hover:text-white transition-colors"
+                      className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -152,7 +152,7 @@ export function Footer() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="font-mono text-sm text-zinc-500 hover:text-white transition-colors"
+                      className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -168,18 +168,18 @@ export function Footer() {
                 <div className="flex flex-col gap-3">
                   <a
                     href="mailto:hello@codetopia.org"
-                    className="font-mono text-sm text-zinc-500 hover:text-white transition-colors"
+                    className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     hello@codetopia.org
                   </a>
-                  <span className="font-mono text-sm text-zinc-500">
+                  <span className="font-mono text-sm text-zinc-400">
                     Accra, Ghana
                   </span>
                   <a
                     href="https://github.com/codetopiacommunity/community-website"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-500 hover:text-white transition-colors group"
+                    className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors group"
                   >
                     Contribute on GitHub
                     <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -195,12 +195,12 @@ export function Footer() {
           <Container className="px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p
               suppressHydrationWarning
-              className="font-mono text-xs text-zinc-700"
+              className="font-mono text-xs text-zinc-400"
             >
               &copy; {new Date().getFullYear()} Codetopia. All rights reserved.
             </p>
             <div className="flex items-center gap-8">
-              <p className="font-sans font-black text-xs text-zinc-700 uppercase tracking-widest">
+              <p className="font-sans font-black text-xs text-zinc-400 uppercase tracking-widest">
                 A{" "}
                 <a
                   href="https://codetopia.org"
@@ -214,7 +214,7 @@ export function Footer() {
               </p>
               <Link
                 href="/privacy"
-                className="font-mono text-xs text-zinc-700 hover:text-white transition-colors"
+                className="font-mono text-xs text-zinc-400 hover:text-white transition-colors"
               >
                 Privacy
               </Link>

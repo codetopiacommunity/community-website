@@ -11,7 +11,7 @@ export function ContributionBanner() {
             Site Under Construction
           </span>
         </div>
-        <span className="hidden md:inline text-zinc-600">|</span>
+        <span className="hidden md:inline text-zinc-400">|</span>
         <p>
           Some features may not work as expected.{" "}
           <Link

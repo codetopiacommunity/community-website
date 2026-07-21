@@ -48,7 +48,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
         <div className={`${cx} pt-12 pb-8 flex flex-col gap-8`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
             <div className="flex flex-col gap-4">
-              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <span className="text-white/20">01 /</span> STATUS FILTER
               </span>
               <div className="flex flex-wrap gap-2">
@@ -60,7 +60,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                     className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-300 ${
                       statusFilter === opt.id
                         ? "bg-white text-black border-white"
-                        : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
+                        : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
                     }`}
                   >
                     {opt.label}
@@ -70,7 +70,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
             </div>
 
             <div className="flex flex-col gap-4">
-              <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-2">
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <span className="text-white/20">02 /</span> FORMAT FILTER
               </span>
               <div className="flex flex-wrap gap-2">
@@ -82,7 +82,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                     className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-300 ${
                       formatFilter === opt.id
                         ? "bg-white text-black border-white"
-                        : "bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
+                        : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
                     }`}
                   >
                     {opt.label}
@@ -94,7 +94,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
 
           {(statusFilter !== "ALL" || formatFilter !== "ALL") && (
             <div className="flex items-center gap-6 animate-in fade-in slide-in-from-left-4 duration-500">
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
                 ACTIVE SELECTION:
               </span>
               <button
@@ -135,7 +135,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
               <h3 className="text-white font-mono text-xs uppercase tracking-[0.4em] font-black">
                 NO EVENTS FOUND
               </h3>
-              <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.2em] leading-relaxed">
+              <p className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.2em] leading-relaxed">
                 No activities match{" "}
                 <span className="text-zinc-300">[{statusFilter}]</span> /{" "}
                 <span className="text-zinc-300">[{formatFilter}]</span>
@@ -172,7 +172,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                   <div className="text-zinc-400 text-sm">
                     {format(new Date(item.startDate), "MMM d, yyyy")}
                   </div>
-                  <div className="text-zinc-500 text-[10px] font-bold">
+                  <div className="text-zinc-400 text-[10px] font-bold">
                     {format(new Date(item.startDate), "h:mm a")}
                     {item.endDate &&
                       format(new Date(item.startDate), "MMM d") !==
@@ -205,7 +205,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                 <h4 className="text-3xl font-black uppercase tracking-tight font-sans text-white">
                   {item.title}
                 </h4>
-                <p className="text-zinc-500 font-mono text-sm max-w-lg leading-relaxed font-medium">
+                <p className="text-zinc-400 font-mono text-sm max-w-lg leading-relaxed font-medium">
                   {item.description}
                 </p>
               </div>
@@ -261,7 +261,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                           </Link>
                         )}
                       {status === "UPCOMING" && !item.reserveSpotLink && (
-                        <div className="flex items-center justify-between w-full px-6 py-4 font-mono text-[10px] uppercase tracking-[0.2em] font-black bg-zinc-900 text-zinc-500 border border-zinc-800">
+                        <div className="flex items-center justify-between w-full px-6 py-4 font-mono text-[10px] uppercase tracking-[0.2em] font-black bg-zinc-900 text-zinc-400 border border-zinc-800">
                           COMING SOON
                           <Clock className="w-4 h-4 opacity-20" />
                         </div>

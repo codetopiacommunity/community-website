@@ -213,7 +213,7 @@ html {
   --secondary-foreground: var(--grey-900);
 
   --muted: var(--grey-100);
-  --muted-foreground: var(--grey-500);
+  --muted-foreground: var(--grey-600);
 
   --accent: var(--grey-100);
   --accent-foreground: var(--grey-900);
@@ -227,8 +227,8 @@ html {
   /* Light Text Design Tokens map (inversed from dark specs) */
   --text-primary: var(--grey-900);
   --text-secondary: var(--grey-600);
-  --text-tertiary: var(--grey-500);
-  --text-muted: var(--grey-400);
+  --text-tertiary: var(--grey-600);
+  --text-muted: var(--grey-500);
   --text-disabled: var(--grey-300);
   --text-inverse: var(--grey-50);
 
@@ -278,7 +278,7 @@ html {
   --secondary-foreground: var(--grey-50);
 
   --muted: var(--grey-800);
-  --muted-foreground: var(--grey-500);
+  --muted-foreground: var(--grey-400);
 
   --accent: var(--grey-800);
   --accent-foreground: var(--grey-50);
@@ -293,7 +293,7 @@ html {
   --text-primary: var(--grey-50);
   --text-secondary: var(--grey-300);
   --text-tertiary: var(--grey-400);
-  --text-muted: var(--grey-500);
+  --text-muted: var(--grey-400);
   --text-disabled: var(--grey-600);
   --text-inverse: var(--grey-900);
 

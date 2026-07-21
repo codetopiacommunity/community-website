@@ -115,7 +115,7 @@ export default async function RecognitionDetailPage({
           <div className={cx}>
             <Link
               href="/wall-of-impact"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               Wall of Impact
@@ -152,7 +152,7 @@ export default async function RecognitionDetailPage({
             </h1>
 
             {memberRole && (
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.3em]">
+              <p className="text-zinc-400 font-mono text-xs uppercase tracking-[0.3em]">
                 {memberRole}
               </p>
             )}
@@ -168,7 +168,7 @@ export default async function RecognitionDetailPage({
             <div className="flex flex-col gap-16">
               {/* Impact summary */}
               <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
-                <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-3">
                   <span className="text-white/10">01 /</span> The Impact
                 </span>
                 <p className="text-zinc-300 text-xl md:text-2xl font-mono leading-relaxed italic max-w-2xl">
@@ -179,7 +179,7 @@ export default async function RecognitionDetailPage({
               {/* Domain of Excellence */}
               {item.category === "DOMAIN_SPECIFIC" && item.domain && (
                 <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
-                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-3">
                     <span className="text-white/10">02 /</span> Domain of
                     Excellence
                   </span>
@@ -194,7 +194,7 @@ export default async function RecognitionDetailPage({
               {/* Key achievements */}
               {achievements.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-3">
                     <span className="text-white/10">
                       {item.category === "DOMAIN_SPECIFIC" && item.domain
                         ? "03"
@@ -209,7 +209,7 @@ export default async function RecognitionDetailPage({
                         key={a}
                         className="flex items-start gap-4 border-b border-zinc-900 pb-4 last:border-0 last:pb-0"
                       >
-                        <span className="text-zinc-700 font-mono text-sm shrink-0 mt-0.5">
+                        <span className="text-zinc-400 font-mono text-sm shrink-0 mt-0.5">
                           —
                         </span>
                         <span className="text-zinc-400 font-mono text-sm leading-relaxed">
@@ -236,7 +236,7 @@ export default async function RecognitionDetailPage({
 
               {/* Info card */}
               <div className="border border-zinc-800 bg-zinc-950 p-5 flex flex-col gap-4">
-                <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600">
+                <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400">
                   Honoree
                 </p>
                 <div className="min-w-0">
@@ -244,7 +244,7 @@ export default async function RecognitionDetailPage({
                     {memberName}
                   </p>
                   {memberRole && (
-                    <p className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest mt-0.5">
+                    <p className="text-zinc-400 font-mono text-[10px] uppercase tracking-widest mt-0.5">
                       {memberRole}
                     </p>
                   )}
@@ -252,7 +252,7 @@ export default async function RecognitionDetailPage({
 
                 <div className="border-t border-zinc-800 pt-4 space-y-3">
                   <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600 mb-1">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 mb-1">
                       Award
                     </p>
                     <p className="text-white font-black font-mono text-xs uppercase tracking-widest">
@@ -260,7 +260,7 @@ export default async function RecognitionDetailPage({
                     </p>
                   </div>
                   <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600 mb-1">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 mb-1">
                       Period
                     </p>
                     <p className="text-white font-mono text-xs uppercase tracking-widest">
@@ -268,7 +268,7 @@ export default async function RecognitionDetailPage({
                     </p>
                   </div>
                   <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-600 mb-1">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 mb-1">
                       Category
                     </p>
                     <span
@@ -283,7 +283,7 @@ export default async function RecognitionDetailPage({
 
               <Link
                 href="/wall-of-impact"
-                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 Back to Wall of Impact
@@ -294,7 +294,7 @@ export default async function RecognitionDetailPage({
       </div>
 
       <div className="border-t border-zinc-900 py-4">
-        <p className="text-center font-mono text-[8px] uppercase tracking-[0.5em] text-zinc-700">
+        <p className="text-center font-mono text-[8px] uppercase tracking-[0.5em] text-zinc-400">
           Codetopia · Wall of Impact
         </p>
       </div>

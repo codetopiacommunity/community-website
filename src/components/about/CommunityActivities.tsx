@@ -45,7 +45,7 @@ export function CommunityActivities() {
       <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1">
-            <h2 className="text-zinc-500 font-mono text-sm uppercase tracking-[0.3em] mb-4">
+            <h2 className="text-zinc-400 font-mono text-sm uppercase tracking-[0.3em] mb-4">
               Our Operations
             </h2>
             <h3 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
@@ -54,7 +54,7 @@ export function CommunityActivities() {
             </h3>
           </div>
           <div className="max-w-md">
-            <p className="text-zinc-600 text-lg font-mono leading-relaxed">
+            <p className="text-zinc-400 text-lg font-mono leading-relaxed">
               We don&apos;t just talk about tech. We engage in hands-on
               building, rigorous peer reviews, and consistent execution across
               multiple formats.
@@ -86,7 +86,7 @@ export function CommunityActivities() {
                 <h4 className="text-2xl md:text-3xl font-black uppercase tracking-tight font-sans mb-4">
                   {activity.title}
                 </h4>
-                <p className="text-zinc-600 font-mono text-sm leading-relaxed max-w-md">
+                <p className="text-zinc-400 font-mono text-sm leading-relaxed max-w-md">
                   {activity.description}
                 </p>
               </div>

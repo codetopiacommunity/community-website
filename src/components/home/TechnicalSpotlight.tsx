@@ -18,7 +18,7 @@ export function TechnicalSpotlight({
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
             Spotlight
           </h2>
-          <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
+          <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
             A high-honor record of technical mastery and architectural impact.
           </p>
         </div>
@@ -50,7 +50,7 @@ export function TechnicalSpotlight({
                     </React.Fragment>
                   ))}
                 </h2>
-                <p className="text-zinc-500 font-mono text-xs md:text-sm lg:text-base uppercase tracking-[0.4em] font-black">
+                <p className="text-zinc-400 font-mono text-xs md:text-sm lg:text-base uppercase tracking-[0.4em] font-black">
                   {spotlight.role}
                 </p>
               </div>
@@ -62,7 +62,7 @@ export function TechnicalSpotlight({
 
             {spotlight.links.length > 0 && (
               <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-                <p className="text-zinc-700 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-black shrink-0">
+                <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-black shrink-0">
                   Links
                 </p>
                 <div className="flex flex-wrap gap-8 md:gap-12">

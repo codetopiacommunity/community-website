@@ -124,7 +124,7 @@ function DesktopNav({
               key={item.label}
               href={item.href}
               className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
-                isActive ? "text-white" : "text-zinc-500 hover:text-white"
+                isActive ? "text-white" : "text-zinc-400 hover:text-white"
               }`}
             >
               {item.label}
@@ -139,7 +139,7 @@ function DesktopNav({
             onMouseEnter={() => onMegaMenuEnter(item.label)}
             onMouseLeave={onMegaMenuLeave}
             className={`flex items-center gap-1.5 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
-              isActive ? "text-white" : "text-zinc-500 hover:text-white"
+              isActive ? "text-white" : "text-zinc-400 hover:text-white"
             }`}
           >
             {item.label}
@@ -180,7 +180,7 @@ function MobileMenu({
                 href={item.href}
                 onClick={onClose}
                 className={`w-full font-mono text-sm uppercase tracking-widest py-4 border-b border-zinc-900 last:border-none transition-colors ${
-                  isActive ? "text-white" : "text-zinc-500 hover:text-white"
+                  isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -201,7 +201,7 @@ function MobileMenu({
                   setExpandedMobileItem(isExpanded ? null : item.label)
                 }
                 className={`w-full flex items-center justify-between font-mono text-sm uppercase tracking-widest py-4 transition-colors ${
-                  isActive ? "text-white" : "text-zinc-500 hover:text-white"
+                  isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -216,7 +216,7 @@ function MobileMenu({
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="block pl-4 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-white transition-colors"
+                      className="block pl-4 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
                     >
                       {child.label}
                     </Link>
@@ -252,7 +252,7 @@ function MobileMenuToggle({
       aria-expanded={isOpen}
       aria-controls="mobile-menu"
       onClick={onToggle}
-      className="lg:hidden p-2 text-zinc-500 hover:text-white transition-colors outline-none"
+      className="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors outline-none"
     >
       {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
     </button>
@@ -359,7 +359,7 @@ export function Header() {
                               {child.label}
                             </span>
                             {child.description && (
-                              <span className="font-mono text-xs text-zinc-600 mt-0.5">
+                              <span className="font-mono text-xs text-zinc-400 mt-0.5">
                                 {child.description}
                               </span>
                             )}

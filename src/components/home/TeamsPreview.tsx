@@ -33,9 +33,9 @@ export async function TeamsPreview() {
         <div className="w-full mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="flex flex-col gap-6">
             <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
-              The <span className="text-zinc-600">Team</span>
+              The <span className="text-zinc-400">Team</span>
             </h2>
-            <p className="text-zinc-500 text-lg md:text-xl font-mono max-w-2xl">
+            <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
               Meet the humans behind Codetopia Community.
             </p>
           </div>

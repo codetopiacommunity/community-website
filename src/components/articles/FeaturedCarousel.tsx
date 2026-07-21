@@ -92,9 +92,9 @@ export function FeaturedCarousel({ articles }: FeaturedCarouselProps) {
                     </p>
                     <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
                       <span>{article.author.name}</span>
-                      <span className="text-zinc-600">·</span>
+                      <span className="text-zinc-400">·</span>
                       <span>{formattedDate}</span>
-                      <span className="text-zinc-600">·</span>
+                      <span className="text-zinc-400">·</span>
                       <span>{article.readTimeInMinutes} min read</span>
                     </div>
                   </div>

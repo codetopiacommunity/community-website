@@ -17,7 +17,7 @@ export default async function ConfirmPage({
       <section className="flex-1 flex items-center justify-center py-32 px-4 bg-black font-mono">
         <div className="max-w-lg w-full text-center space-y-8">
           <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white font-sans">
-            INVALID <span className="text-zinc-600">LINK</span>
+            INVALID <span className="text-zinc-400">LINK</span>
           </h1>
           <p className="text-zinc-400 text-lg max-w-md mx-auto">
             This confirmation link is missing a token. Please check your email
@@ -49,7 +49,7 @@ export default async function ConfirmPage({
         </div>
 
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white font-sans">
-          CONFIRM <span className="text-zinc-600">SUBSCRIPTION</span>
+          CONFIRM <span className="text-zinc-400">SUBSCRIPTION</span>
         </h1>
 
         <p className="text-zinc-400 text-lg max-w-md mx-auto">

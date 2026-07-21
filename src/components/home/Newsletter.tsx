@@ -52,9 +52,9 @@ export function Newsletter() {
         <div className="bg-black p-12 md:p-24 lg:p-32 flex flex-col lg:flex-row items-center justify-between gap-12 border border-zinc-800 shadow-2xl">
           <div className="flex-1 text-center lg:text-left">
             <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-6 font-sans leading-none">
-              The <span className="text-zinc-600">Dispatch</span>
+              The <span className="text-zinc-400">Dispatch</span>
             </h2>
-            <p className="text-zinc-500 text-base md:text-lg font-mono max-w-xl leading-relaxed">
+            <p className="text-zinc-400 text-base md:text-lg font-mono max-w-xl leading-relaxed">
               Project arrivals. Community narratives. <br />
               The architectural pulse of the builders, delivered directly.
             </p>

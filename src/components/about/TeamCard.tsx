@@ -173,7 +173,7 @@ function ExperienceSection({
 
   return (
     <div>
-      <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+      <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
         Experience
       </h5>
       <div>
@@ -191,7 +191,7 @@ function ExperienceSection({
                 {entry.organization}
               </p>
             )}
-            <p className="text-zinc-500 font-mono text-[10px] tracking-widest mt-1">
+            <p className="text-zinc-400 font-mono text-[10px] tracking-widest mt-1">
               {formatCareerRange(entry.startDate, entry.endDate)}
             </p>
             {entry.description && (
@@ -204,7 +204,7 @@ function ExperienceSection({
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
-          className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
+          className="font-mono text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
         >
           {expanded ? "Show less" : `Show all ${careerProgressions.length}`}
         </button>
@@ -396,7 +396,7 @@ export function TeamMemberModal({
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
-              <span className="font-mono text-6xl font-black tracking-widest text-zinc-700">
+              <span className="font-mono text-6xl font-black tracking-widest text-zinc-400">
                 {initials}
               </span>
             </div>
@@ -448,7 +448,7 @@ export function TeamMemberModal({
 
               {member.statement && (
                 <div>
-                  <h4 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                  <h4 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
                     Bio
                   </h4>
                   <p
@@ -462,7 +462,7 @@ export function TeamMemberModal({
                     <button
                       type="button"
                       onClick={() => setBioExpanded((prev) => !prev)}
-                      className="mt-2 font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition-colors"
+                      className="mt-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
                     >
                       {bioExpanded ? "Show less" : "Read more"}
                     </button>
@@ -472,7 +472,7 @@ export function TeamMemberModal({
 
               {member.expertise && member.expertise.length > 0 && (
                 <div>
-                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
                     Skills
                   </h5>
                   <div className="flex flex-wrap gap-2">
@@ -494,7 +494,7 @@ export function TeamMemberModal({
 
               {member.communityProfileUrl && member.slug && (
                 <div>
-                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
                     Community Profile
                   </h5>
                   <a
@@ -515,7 +515,7 @@ export function TeamMemberModal({
                 website ||
                 (member.socialLinks && member.socialLinks.length > 0)) && (
                 <div>
-                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-500 mb-3">
+                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
                     Find {member.name.split(" ")[0]} online
                   </h5>
                   <div className="flex flex-wrap items-center gap-5">
