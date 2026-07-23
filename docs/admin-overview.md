@@ -8,10 +8,7 @@ The **Admin Center** is a secure, monolithic dashboard integrated directly withi
 - **Navigation Orchestration**: The static navigation link schema is fully decoupled into `src/lib/data/admin-nav.ts` to cleanly loop and map through nested sidebar items.
 
 ## 2. Authentication & Middleware
-The application leverages a lightweight JWT-based authentication system:
-- **Login Module**: Accessible at `/admin/login`, protected routes redirect unauthenticated users here.
-- **Session Tokens**: Active sessions are managed and issued manually utilizing securely signed JWTs injected into HTTP-only cookies (`auth-token`).
-- **Proxy Workarounds**: Due to host infrastructure limitations with classic Edge-based Next.js Middleware, route interception is handled by custom proxying logic or direct endpoint validation (calling `await getSession()` per internal route).
+The Admin Center uses seamless first-party SSO through the Codetopia Community Portal. Users must have the `admin.panel.access` permission. After portal authorization, the website creates a short-lived, HTTP-only `admin_session` cookie for the local Admin Center session.
 
 ## 3. Core Modules
 
