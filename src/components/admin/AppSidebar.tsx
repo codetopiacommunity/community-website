@@ -2,7 +2,6 @@
 
 import type * as React from "react";
 import { Sidebar, SidebarRail } from "@/components/ui/sidebar";
-import { AppSidebarFooter } from "./sidebar/AppSidebarFooter";
 import { AppSidebarHeader } from "./sidebar/AppSidebarHeader";
 import { AppSidebarNav } from "./sidebar/AppSidebarNav";
 
@@ -15,7 +14,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     >
       <AppSidebarHeader />
       <AppSidebarNav />
-      <AppSidebarFooter />
       <SidebarRail />
     </Sidebar>
   );

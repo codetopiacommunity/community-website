@@ -69,7 +69,10 @@ function Counter({
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const [adminEmail, setAdminEmail] = useState<string | null>(null);
+  const [adminUser, setAdminUser] = useState<{
+    name: string;
+    email: string;
+  } | null>(null);
   const [newsletterLogs, setNewsletterLogs] = useState<NewsletterLog[]>([]);
 
   useEffect(() => {
@@ -78,7 +81,7 @@ export default function AdminDashboard() {
         const res = await fetch("/api/admin/me");
         if (res.ok) {
           const data = await res.json();
-          setAdminEmail(data.email);
+          setAdminUser({ name: data.name, email: data.email });
         }
       } catch (error) {
         console.error("Failed to fetch admin:", error);
@@ -143,18 +146,21 @@ export default function AdminDashboard() {
       {/* Page header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-zinc-100">
         <div>
-          <h1 className="font-sans font-black uppercase text-2xl tracking-widest text-zinc-900">
-            Admin Center
+          <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+            Community operations
+          </p>
+          <h1 className="font-sans text-3xl font-black tracking-tight text-zinc-900">
+            Welcome back{adminUser?.name ? `, ${adminUser.name}` : ""}
           </h1>
           <div className="flex items-center gap-2 mt-1">
-            <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
-              Broadcast Control & Event Management Protocol
+            <p className="font-mono text-xs text-zinc-500">
+              Manage community content, programs, events, and communications.
             </p>
-            {adminEmail && (
+            {adminUser?.email && (
               <>
                 <span className="text-zinc-300">·</span>
-                <p className="font-mono text-xs font-bold text-zinc-900 uppercase tracking-widest">
-                  {adminEmail}
+                <p className="hidden font-mono text-xs text-zinc-400 sm:block">
+                  {adminUser.email}
                 </p>
               </>
             )}

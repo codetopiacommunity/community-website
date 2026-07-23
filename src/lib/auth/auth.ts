@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 export interface AdminSession extends JWTPayload {
   email: string;
   name?: string;
+  avatarUrl?: string;
+  roles?: string[];
 }
 
 function getSecret(): Uint8Array {
@@ -12,7 +14,12 @@ function getSecret(): Uint8Array {
   return new TextEncoder().encode(value);
 }
 
-export async function login(payload: { email: string; name?: string }) {
+export async function login(payload: {
+  email: string;
+  name?: string;
+  avatarUrl?: string;
+  roles?: string[];
+}) {
   // Create the session
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
   const session = await new SignJWT(payload)

@@ -77,7 +77,8 @@ export async function GET(request: Request) {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     if (!meRes.ok) return fail(loginUrl, "userinfo_failed");
-    const me = (await meRes.json())?.data;
+    const userinfo = await meRes.json();
+    const me = userinfo?.data ?? userinfo;
     const permissions: string[] = Array.isArray(me?.permissions)
       ? me.permissions
       : [];
@@ -88,7 +89,12 @@ export async function GET(request: Request) {
     }
 
     // 4. Issue the local admin session and clean up the SSO cookies.
-    await login({ email: me.email, name: me.name || "Admin" });
+    await login({
+      email: me.email,
+      name: me.name || "Admin",
+      avatarUrl: me.picture || "",
+      roles: Array.isArray(me.roles) ? me.roles : [],
+    });
 
     const response = NextResponse.redirect(
       new URL("/admin", url.origin).toString(),

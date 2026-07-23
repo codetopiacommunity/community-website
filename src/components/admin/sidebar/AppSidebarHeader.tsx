@@ -5,20 +5,15 @@ import { SidebarHeader } from "@/components/ui/sidebar";
 
 export function AppSidebarHeader() {
   return (
-    <SidebarHeader className="px-5 pt-6 pb-4 bg-black">
+    <SidebarHeader className="px-5 pt-8 pb-6 bg-black">
       <Link href="/admin" className="flex items-center overflow-hidden">
-        <div className="relative w-32 h-7 shrink-0 group-data-[collapsible=icon]:w-7 transition-all duration-300">
+        <div className="relative w-44 h-12 shrink-0 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all duration-500">
           <Image
             src={logo}
-            alt="Codetopia"
+            alt="Codetopia Community"
             fill
-            className="object-contain object-left invert brightness-0 group-data-[collapsible=icon]:hidden"
-          />
-          <Image
-            src={logo}
-            alt="Codetopia"
-            fill
-            className="object-contain hidden group-data-[collapsible=icon]:block invert brightness-0"
+            sizes="(max-width: 768px) 32px, 176px"
+            className="object-contain object-left brightness-0 invert transition-all duration-500"
           />
         </div>
       </Link>

@@ -52,14 +52,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     group: "Navigate",
   },
   {
-    id: "nav-team",
-    label: "Go to Team",
-    iconName: "Users2",
-    path: "/admin/team",
-    keywords: ["team", "members", "people"],
-    group: "Navigate",
-  },
-  {
     id: "nav-newsletter",
     label: "Go to Newsletter",
     iconName: "Mail",
@@ -67,15 +59,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     keywords: ["newsletter", "email", "broadcast"],
     group: "Navigate",
   },
-  {
-    id: "nav-settings",
-    label: "Go to Settings",
-    iconName: "Settings",
-    path: "/admin/settings",
-    keywords: ["settings", "config"],
-    group: "Navigate",
-  },
-
   // Create
   {
     id: "new-event",
@@ -111,15 +94,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     iconName: "Plus",
     path: "/admin/impact",
     keywords: ["add impact", "new impact", "story"],
-    group: "Create",
-  },
-  {
-    id: "new-team",
-    label: "Add Team Member",
-    description: "Add a new team member",
-    iconName: "Plus",
-    path: "/admin/team",
-    keywords: ["add team", "new member", "add member"],
     group: "Create",
   },
   {
@@ -170,16 +144,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     iconName: "Trash2",
     path: "/admin/impact",
     keywords: ["delete impact", "remove story"],
-    group: "Manage",
-    variant: "danger",
-  },
-  {
-    id: "delete-team",
-    label: "Remove Team Member",
-    description: "Go to team to remove",
-    iconName: "Trash2",
-    path: "/admin/team",
-    keywords: ["delete team", "remove member"],
     group: "Manage",
     variant: "danger",
   },

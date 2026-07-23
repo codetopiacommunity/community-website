@@ -9,18 +9,17 @@ export default async function proxy(req: NextRequest) {
   const isAdminPath = path.startsWith("/admin");
   const isLoginPage = path === "/admin/login";
 
-  // Protect all /admin paths EXCEPT /admin/login
-  const isProtectedRoute = isAdminPath && !isLoginPage;
-
   // Get and verify session
   const cookie = req.cookies.get("admin_session")?.value;
   const session = cookie ? await decrypt(cookie) : null;
 
-  // Redirect to /admin/login if not authenticated
-  if (isProtectedRoute && !session) {
-    const loginUrl = new URL("/admin/login", req.nextUrl);
-    // Optionally add a redirect-to parameter
-    return NextResponse.redirect(loginUrl);
+  // Start first-party SSO immediately. The login page is reserved for showing
+  // callback errors and offering a manual retry.
+  if (isAdminPath && !session) {
+    if (isLoginPage && req.nextUrl.searchParams.has("error")) {
+      return NextResponse.next();
+    }
+    return NextResponse.redirect(new URL("/api/admin/auth/start", req.nextUrl));
   }
 
   // Redirect to /admin if authenticated and trying to access login

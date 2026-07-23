@@ -1,9 +1,9 @@
 "use client";
 
-import { ChevronRight, Home, Search, User } from "lucide-react";
+import { ChevronRight, Home, LogOut, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AppSidebar } from "@/components/admin/AppSidebar";
 import { CommandPalette } from "@/components/admin/CommandPalette";
 import {
@@ -19,9 +19,7 @@ const routeLabels: Record<string, string> = {
   gallery: "Gallery",
   impact: "Impact",
   newsletter: "Newsletter",
-  settings: "Settings",
   spotlight: "Spotlight",
-  team: "Team",
   careers: "Careers",
   new: "New",
   edit: "Edit",
@@ -94,6 +92,14 @@ export default function AdminLayout({
   const isLoginPage = pathname === "/admin/login";
 
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+  const [adminUser, setAdminUser] = useState({
+    name: "Admin",
+    email: "",
+    avatarUrl: "",
+    roles: [] as string[],
+  });
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -105,6 +111,33 @@ export default function AdminLayout({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  useEffect(() => {
+    fetch("/api/admin/me")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (data) setAdminUser(data);
+      })
+      .catch((error) => console.error("Failed to fetch admin:", error));
+  }, []);
+
+  useEffect(() => {
+    function closeProfile(event: MouseEvent) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setProfileOpen(false);
+      }
+    }
+    if (profileOpen) document.addEventListener("mousedown", closeProfile);
+    return () => document.removeEventListener("mousedown", closeProfile);
+  }, [profileOpen]);
+
+  async function exitAdminCenter() {
+    await fetch("/api/admin/logout", { method: "POST" });
+    window.location.href = "/";
+  }
 
   if (isLoginPage) {
     return (
@@ -133,7 +166,7 @@ export default function AdminLayout({
         <AppSidebar />
         <SidebarInset className="flex-1 flex flex-col min-w-0 w-full bg-[#f9fafb] relative h-screen overflow-hidden">
           {/* Header */}
-          <header className="h-16 border-b border-zinc-200 bg-white/80 backdrop-blur-xl flex items-center justify-between px-6 relative z-40 shrink-0">
+          <header className="h-16 border-b border-zinc-200 bg-white/80 backdrop-blur-xl flex items-center justify-between px-4 sm:px-6 relative z-40 shrink-0">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="text-zinc-500 hover:text-zinc-900 transition-colors" />
               <Breadcrumbs pathname={pathname} />
@@ -154,8 +187,52 @@ export default function AdminLayout({
                 </button>
               </div>
 
-              <div className="h-8 w-8 bg-zinc-100 border border-zinc-200 flex items-center justify-center cursor-pointer hover:bg-zinc-200 transition-colors">
-                <User className="h-4 w-4 text-zinc-600" />
+              <div ref={profileRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setProfileOpen((open) => !open)}
+                  aria-label="Open account menu"
+                  className={`h-8 w-8 overflow-hidden border bg-white flex items-center justify-center transition-colors ${profileOpen ? "border-zinc-900" : "border-zinc-200 hover:border-zinc-400"}`}
+                >
+                  {adminUser.avatarUrl ? (
+                    // biome-ignore lint/performance/noImgElement: remote portal avatar
+                    <img
+                      src={adminUser.avatarUrl}
+                      alt={adminUser.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span className="font-mono text-xs font-bold text-zinc-700">
+                      {adminUser.name.charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                </button>
+
+                {profileOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-64 border border-zinc-200 bg-white shadow-lg">
+                    <div className="border-b border-zinc-100 px-4 py-3">
+                      <p className="truncate font-mono text-sm font-bold text-zinc-900">
+                        {adminUser.name}
+                      </p>
+                      <p className="mt-0.5 truncate font-mono text-xs text-zinc-400">
+                        {adminUser.email}
+                      </p>
+                      <span className="mt-2 inline-flex border border-zinc-200 bg-zinc-50 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-zinc-500">
+                        {adminUser.roles[0] || "Admin"}
+                      </span>
+                    </div>
+                    <div className="p-1">
+                      <button
+                        type="button"
+                        onClick={exitAdminCenter}
+                        className="flex w-full items-center gap-3 px-3 py-2.5 font-mono text-sm text-red-500 transition-colors hover:bg-red-50 hover:text-red-600"
+                      >
+                        <LogOut className="h-3.5 w-3.5" />
+                        Exit Admin Center
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </header>

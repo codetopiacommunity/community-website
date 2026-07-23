@@ -6,11 +6,9 @@ import {
   Image as ImageIcon,
   LayoutDashboard,
   Mail,
-  Settings,
   Sparkles,
   Star,
   Users,
-  Users2,
 } from "lucide-react";
 
 export const adminNavData = {
@@ -69,11 +67,6 @@ export const adminNavData = {
       icon: Users,
       items: [
         {
-          title: "Manage Team",
-          url: "/admin/team",
-          icon: Users2,
-        },
-        {
           title: "Mentorships",
           url: "/admin/mentorships",
           icon: Award,
@@ -82,18 +75,6 @@ export const adminNavData = {
           title: "Newsletter",
           url: "/admin/newsletter",
           icon: Mail,
-        },
-      ],
-    },
-    {
-      title: "System",
-      url: "#",
-      icon: Settings,
-      items: [
-        {
-          title: "Settings",
-          url: "/admin/settings",
-          icon: Settings,
         },
       ],
     },

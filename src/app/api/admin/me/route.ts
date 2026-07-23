@@ -12,6 +12,8 @@ export async function GET() {
   return NextResponse.json({
     email: session.email,
     name: session.name || "Admin",
+    avatarUrl: session.avatarUrl || "",
+    roles: session.roles || [],
   });
 }
 
