@@ -81,6 +81,15 @@ export async function getHowtoRaw(
   return Buffer.from(data.content, "base64").toString("utf-8");
 }
 
+/**
+ * Guides duplicate their frontmatter title as a leading H1 in the body.
+ * The page already renders the title from frontmatter, so drop the
+ * redundant heading to avoid showing it twice.
+ */
+export function stripLeadingH1(markdown: string): string {
+  return markdown.replace(/^\s*#\s+.+\n+/, "");
+}
+
 const WORDS_PER_MINUTE = 200;
 
 /**

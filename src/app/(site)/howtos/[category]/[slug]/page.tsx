@@ -18,6 +18,7 @@ import {
   getHowtoRaw,
   getHowtosByCategory,
   type HowtoMeta,
+  stripLeadingH1,
 } from "@/lib/howtos";
 import { extractMarkdownToc } from "@/lib/toc";
 
@@ -52,7 +53,8 @@ export default async function HowtoPage({
   const raw = await getHowtoRaw(category, slug).catch(() => null);
   if (!raw) notFound();
 
-  const { content, data } = matter(raw);
+  const { content: rawContent, data } = matter(raw);
+  const content = stripLeadingH1(rawContent);
   const meta = data as HowtoMeta;
 
   const formattedDate = meta.date
