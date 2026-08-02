@@ -32,7 +32,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
             </h3>
             <p className="text-zinc-400 font-mono text-xs leading-relaxed max-w-sm">
               The community impact log is currently empty. Stories will appear
-              here as Codetopia continues to grow and make its mark.
+              here as the community continues to grow and make its mark.
             </p>
           </div>
           <div className="flex items-center gap-4 text-zinc-400 font-mono text-[10px] uppercase tracking-[0.4em]">

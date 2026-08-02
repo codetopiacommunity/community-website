@@ -215,6 +215,12 @@ model Mentorship {
   @@map("mentorships")
 }
 
+// RETIRED — Wall of Impact now lives in portal-core (apps/recognitions), where
+// an entry is attached to a real user FK instead of this loose username string.
+// Nothing in the app reads this model any more; it is kept only so
+// `pnpm export:recognitions` can hand the rows to portal-core's
+// `import_wall_of_impact` command. Drop it in its own migration once that
+// import has been run and the wall verified against the portal.
 model Recognition {
   id             Int      @id @default(autoincrement())
   slug           String?  @unique

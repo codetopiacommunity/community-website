@@ -39,7 +39,7 @@ export default async function HowtosPage() {
             How-Tos
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-            Practical guides and walkthroughs written by Codetopia members.
+            Practical guides and walkthroughs written by community members.
           </p>
         </Container>
       </section>

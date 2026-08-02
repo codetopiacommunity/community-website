@@ -26,6 +26,8 @@ interface RecognitionItem {
   impactSummary: string;
   domain?: string | null;
   achievements?: string[];
+  username: string;
+  profileUrl?: string | null;
 }
 
 const CATEGORY_META: Record<
@@ -133,7 +135,7 @@ function HonorCard({
         </div>
 
         {/* Period badge - top right */}
-        <div className="absolute top-3 right-3 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
+        <div className="absolute top-3 right-3 flex items-center px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
           <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 font-black">
             {entry.period}
           </span>
@@ -227,14 +229,16 @@ function RecognitionModal({
           </svg>
         </button>
 
-        {/* Photo Column */}
-        <div className="w-full lg:w-1/2 h-[300px] lg:h-auto relative bg-zinc-900">
+        {/* Photo Column. Viewport-relative on mobile rather than a fixed
+            300px band — portal pictures are portrait or square, so a short
+            landscape strip crops the subject out. */}
+        <div className="w-full lg:w-1/2 h-[56vh] min-h-[380px] lg:h-auto lg:min-h-0 relative bg-zinc-900">
           {heroImage ? (
             // biome-ignore lint/performance/noImgElement: remote cloudinary/portal image
             <img
               src={heroImage}
               alt={entry.name}
-              className="absolute inset-0 h-full w-full object-cover object-top grayscale"
+              className="absolute inset-0 h-full w-full object-cover object-top"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
@@ -243,20 +247,25 @@ function RecognitionModal({
               </span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+          {/* Weighted to the bottom third where the billing sits, so the
+              upper part of the frame — the face — stays clear. Tighter on
+              mobile, where the band is short enough that the md+ spread
+              would wash out most of the face; widens back out at md+ once
+              there's enough height for it not to matter. */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black from-0% via-black/60 via-20% to-transparent to-45% md:from-5% md:via-black/55 md:via-35% md:to-75%" />
 
-          <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12">
-            <div className="inline-block px-4 py-2 bg-white text-black font-mono text-xs uppercase tracking-[0.3em] font-black mb-6">
+          <div className="absolute bottom-5 left-5 right-5 md:bottom-12 md:left-12 md:right-12">
+            <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-white text-black font-mono text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-black mb-3 md:mb-6">
               {entry.awardName}
             </div>
             <h3
               id="recognition-modal-title"
-              className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-none font-sans mb-4"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-none font-sans mb-2 md:mb-4 [overflow-wrap:break-word]"
             >
               {entry.name}
             </h3>
             {entry.role && (
-              <p className="text-zinc-400 font-mono text-sm md:text-base uppercase tracking-[0.3em]">
+              <p className="text-zinc-400 font-mono text-[11px] md:text-base uppercase tracking-[0.25em] md:tracking-[0.3em]">
                 {entry.role}
               </p>
             )}
@@ -289,12 +298,12 @@ function RecognitionModal({
                 </h4>
               </div>
               <p className="text-white text-xl md:text-2xl font-mono leading-relaxed italic">
-                "{entry.impactSummary}"
+                {entry.impactSummary}
               </p>
             </div>
 
             {entry.category === "DOMAIN_SPECIFIC" && entry.domain && (
-              <div className="pt-10 border-t border-zinc-900">
+              <div>
                 <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
                   Domain of Excellence
                 </h5>
@@ -304,7 +313,7 @@ function RecognitionModal({
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10 border-t border-zinc-900">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {entry.role && (
                 <div>
                   <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
@@ -326,7 +335,7 @@ function RecognitionModal({
             </div>
 
             {entry.achievements && entry.achievements.length > 0 && (
-              <div className="pt-10 border-t border-zinc-900">
+              <div>
                 <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
                   Key Achievements
                 </h5>
@@ -343,6 +352,23 @@ function RecognitionModal({
                 </ul>
               </div>
             )}
+
+            {entry.profileUrl && (
+              <div>
+                <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
+                  Community Profile
+                </h5>
+                <a
+                  href={entry.profileUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-1 text-white font-mono text-sm tracking-widest hover:text-zinc-400 transition-colors"
+                >
+                  @{entry.username}
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </div>
+            )}
           </div>
 
           <div className="mt-20 pt-8 border-t border-zinc-900 flex justify-between items-center opacity-30">
@@ -357,32 +383,17 @@ function RecognitionModal({
 }
 
 /* --- Main ------------------------------------------------------------ */
-export function WallOfImpact() {
-  const [items, setItems] = React.useState<RecognitionItem[]>([]);
-  const [loading, setLoading] = React.useState(true);
+/**
+ * Client island: filtering and the modal only. The entries are fetched on the
+ * server and handed down, so the wall — a page whose whole point is publicly
+ * naming people — arrives in the HTML instead of appearing after a round trip.
+ */
+export function WallOfImpact({ items }: { items: RecognitionItem[] }) {
   const [selectedEntry, setSelectedEntry] =
     React.useState<RecognitionItem | null>(null);
   const [activeFilter, setActiveFilter] = React.useState<
     RecognitionCategory | "ALL"
   >("ALL");
-
-  React.useEffect(() => {
-    let cancelled = false;
-    fetch("/api/recognition")
-      .then((r) => (r.ok ? r.json() : []))
-      .then((d) => {
-        if (!cancelled) setItems(Array.isArray(d) ? d : []);
-      })
-      .catch(() => {
-        if (!cancelled) setItems([]);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   React.useEffect(() => {
     if (!selectedEntry) return;
@@ -425,13 +436,7 @@ export function WallOfImpact() {
         </div>
 
         {/* Grid */}
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
-            {[0, 1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="aspect-[3/4] animate-pulse bg-zinc-900" />
-            ))}
-          </div>
-        ) : visible.length === 0 ? (
+        {visible.length === 0 ? (
           <div className="border border-zinc-800 bg-zinc-950 py-24 text-center">
             <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
               No honorees in this category yet.

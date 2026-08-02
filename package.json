@@ -11,6 +11,7 @@
     "lint": "biome check",
     "format": "biome format --write",
     "postinstall": "prisma generate",
+    "export:recognitions": "node scripts/export-recognitions.mjs",
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {

@@ -9,8 +9,8 @@ export function InstitutionalNote({ className }: InstitutionalNoteProps) {
     <div className={cn("p-8 bg-zinc-950 border border-zinc-900", className)}>
       <p className="text-zinc-400 font-mono text-[10px] leading-relaxed uppercase tracking-[0.2em]">
         This recognition is a permanent record of excellence within the
-        Codetopia Collective. It stands as a testament to the individual's
-        commitment to technical mastery and community growth.
+        community. It stands as a testament to the individual's commitment to
+        technical mastery and community growth.
       </p>
     </div>
   );
