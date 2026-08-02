@@ -68,6 +68,11 @@ const NAV_ITEMS: NavItem[] = [
         description: "Stories of community impact",
       },
       {
+        label: "Verify a Certificate",
+        href: "/verify",
+        description: "Confirm a certificate is genuinely issued by us",
+      },
+      {
         label: "Code of Conduct",
         href: "/code-of-conduct",
         description: "Our community standards and values",
