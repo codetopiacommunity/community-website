@@ -33,6 +33,10 @@ export interface PortalMember {
   profilePictureUrl: string;
   coverImageUrl: string;
   communityRoles: string[];
+  // Highest-ranked *public* role the member holds. Portal-core computes it
+  // (private roles like admin are excluded), so prefer this over
+  // communityRoles[0] when you want a single headline role.
+  primaryRole: string;
   bio: string;
   skills: string[];
   location: string;
@@ -95,6 +99,7 @@ export async function fetchPortalMembers(
     communityRoles: Array.isArray(m.communityRoles)
       ? (m.communityRoles as string[])
       : [],
+    primaryRole: String(m.primaryRole ?? ""),
     bio: String(m.bio ?? ""),
     skills: Array.isArray(m.skills) ? (m.skills as string[]) : [],
     location: String(m.location ?? ""),
@@ -150,6 +155,117 @@ export async function fetchPortalRoles(
     displayName: String(r.displayName ?? r.name ?? ""),
     isPublic: Boolean(r.isPublic),
   }));
+}
+
+/**
+ * A published Wall of Impact entry. Both the award content and the honoree's
+ * identity come from portal-core in one call -- there's nothing to merge, and
+ * nothing keyed by a username string that a rename could orphan.
+ */
+export interface PortalRecognition {
+  id: string;
+  slug: string;
+  username: string;
+  communityId: string;
+  fullName: string;
+  profilePictureUrl: string;
+  coverImageUrl: string;
+  category: string;
+  awardName: string;
+  period: string;
+  periodStart: string | null;
+  periodEnd: string | null;
+  impactSummary: string;
+  achievements: string[];
+  domain: string;
+  roleLabel: string;
+  featuredRank: number | null;
+  publishedAt: string | null;
+}
+
+function mapRecognition(r: Record<string, unknown>): PortalRecognition {
+  return {
+    id: String(r.id ?? ""),
+    slug: String(r.slug ?? ""),
+    username: String(r.username ?? ""),
+    communityId: String(r.communityId ?? ""),
+    fullName: String(r.fullName ?? r.username ?? ""),
+    profilePictureUrl: String(r.profilePictureUrl ?? ""),
+    coverImageUrl: String(r.coverImageUrl ?? ""),
+    category: String(r.category ?? "member"),
+    awardName: String(r.awardName ?? ""),
+    period: String(r.period ?? ""),
+    periodStart: r.periodStart ? String(r.periodStart) : null,
+    periodEnd: r.periodEnd ? String(r.periodEnd) : null,
+    impactSummary: String(r.impactSummary ?? ""),
+    achievements: Array.isArray(r.achievements)
+      ? (r.achievements as string[])
+      : [],
+    domain: String(r.domain ?? ""),
+    roleLabel: String(r.roleLabel ?? ""),
+    featuredRank:
+      typeof r.featuredRank === "number" ? (r.featuredRank as number) : null,
+    publishedAt: r.publishedAt ? String(r.publishedAt) : null,
+  };
+}
+
+export async function fetchPortalRecognitions(
+  params?: { category?: string; username?: string; limit?: number },
+  revalidate = 60,
+): Promise<PortalRecognition[]> {
+  if (!PORTAL_API_URL || !PORTAL_API_KEY) {
+    throw new Error(
+      "Portal API is not configured (PORTAL_API_URL / PORTAL_API_KEY).",
+    );
+  }
+
+  const url = new URL(`${PORTAL_API_URL}/api/v1/recognitions/`);
+  if (params?.category) url.searchParams.set("category", params.category);
+  if (params?.username) url.searchParams.set("username", params.username);
+  if (params?.limit) url.searchParams.set("limit", String(params.limit));
+
+  const res = await fetch(url.toString(), {
+    headers: { "X-Api-Key": PORTAL_API_KEY },
+    next: { revalidate },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Portal recognitions request failed: ${res.status}`);
+  }
+
+  const json = await res.json();
+  const data: Array<Record<string, unknown>> = json?.data ?? [];
+  return data.map(mapRecognition);
+}
+
+/**
+ * A single published recognition. Returns null when the slug doesn't resolve
+ * (unpublished, withdrawn, or never existed) so callers can notFound() without
+ * having to distinguish those cases -- to the public they're all the same.
+ */
+export async function fetchPortalRecognition(
+  slug: string,
+  revalidate = 60,
+): Promise<PortalRecognition | null> {
+  if (!PORTAL_API_URL) {
+    throw new Error("Portal API is not configured (PORTAL_API_URL).");
+  }
+
+  const res = await fetch(
+    `${PORTAL_API_URL}/api/v1/recognitions/${encodeURIComponent(slug)}/`,
+    {
+      // The detail endpoint is public -- no API key needed, unlike the feed.
+      next: { revalidate },
+    },
+  );
+
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    throw new Error(`Portal recognition request failed: ${res.status}`);
+  }
+
+  const json = await res.json();
+  return json?.data ? mapRecognition(json.data) : null;
 }
 
 /**

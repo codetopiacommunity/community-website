@@ -86,7 +86,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         label: "The Team",
         href: "/team",
-        description: "Meet the people behind Codetopia",
+        description: "Meet the people behind the community",
       },
     ],
   },

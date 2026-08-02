@@ -115,7 +115,7 @@ export const enforcementSteps = [
     event:
       "A pattern of repeated violations that other steps have failed to resolve, or a violation so serious that there is no way to keep the community safe with this person as a member.",
     consequence:
-      "Access to all Codetopia spaces, tools, and communication channels is permanently removed.",
+      "Access to all community spaces, tools, and communication channels is permanently removed.",
     repair: "There is no possible repair in cases of this severity.",
   },
 ];

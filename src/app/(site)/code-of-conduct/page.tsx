@@ -206,7 +206,7 @@ export default function CodeOfConductPage() {
           <p className="text-zinc-400 font-mono text-xs leading-relaxed mt-6 px-2 max-w-2xl">
             This enforcement ladder is a guideline. It does not limit the
             ability of Community Moderators to use their discretion and judgment
-            in the best interests of the Codetopia community.
+            in the best interests of the community.
           </p>
         </Container>
       </section>
@@ -220,10 +220,10 @@ export default function CodeOfConductPage() {
                 Scope
               </p>
               <p className="text-zinc-400 font-mono text-sm leading-relaxed">
-                This Code of Conduct applies within all Codetopia spaces,
+                This Code of Conduct applies within all community spaces,
                 including our GitHub repositories, Discord server, website,
                 events, and any other space where you are representing the
-                Codetopia community.
+                community.
               </p>
             </div>
             <div>
