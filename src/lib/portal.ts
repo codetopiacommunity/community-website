@@ -269,6 +269,69 @@ export async function fetchPortalRecognition(
 }
 
 /**
+ * A verified certificate, as shown on the public /verify lookup. Only
+ * whatever the public verify endpoint actually returns -- no
+ * `revocationReason`, no recipient email, no internal actor fields. A
+ * revoked certificate still resolves here (with `status: "revoked"`);
+ * pending ones don't exist as far as this endpoint is concerned.
+ */
+export interface PortalCertificate {
+  id: string;
+  verificationCode: string;
+  recipientName: string;
+  certificateType: string;
+  title: string;
+  issuedDate: string;
+  artworkUrl: string;
+  status: string;
+  publishedAt: string | null;
+}
+
+function mapCertificate(c: Record<string, unknown>): PortalCertificate {
+  return {
+    id: String(c.id ?? ""),
+    verificationCode: String(c.verificationCode ?? ""),
+    recipientName: String(c.recipientName ?? ""),
+    certificateType: String(c.certificateType ?? ""),
+    title: String(c.title ?? ""),
+    issuedDate: String(c.issuedDate ?? ""),
+    artworkUrl: String(c.artworkUrl ?? ""),
+    status: String(c.status ?? ""),
+    publishedAt: c.publishedAt ? String(c.publishedAt) : null,
+  };
+}
+
+/**
+ * Verifies a certificate code against portal-core. No API key -- same public,
+ * unauthenticated shape as fetchPortalRecognition. Uses `cache: "no-store"`
+ * rather than a revalidate window: a just-revoked certificate must never read
+ * as valid for up to a minute, unlike the Wall of Impact where staleness is
+ * harmless.
+ */
+export async function verifyCertificate(
+  code: string,
+): Promise<PortalCertificate | null> {
+  if (!PORTAL_API_URL) {
+    throw new Error("Portal API is not configured (PORTAL_API_URL).");
+  }
+
+  const res = await fetch(
+    `${PORTAL_API_URL}/api/v1/certificates/verify/${encodeURIComponent(code)}/`,
+    {
+      cache: "no-store",
+    },
+  );
+
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    throw new Error(`Portal certificate verify request failed: ${res.status}`);
+  }
+
+  const json = await res.json();
+  return json?.data ? mapCertificate(json.data) : null;
+}
+
+/**
  * Roles that should surface as a "team" category on the public site: public
  * so they're meant to be shown at all, and not the blanket "member" role
  * every signup gets (that's not a team, it's just membership).
