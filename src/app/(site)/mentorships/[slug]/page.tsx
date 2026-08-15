@@ -33,7 +33,7 @@ export async function generateMetadata({
         status: true,
       },
     });
-    if (!mentorship) return { title: "Mentorship — Codetopia" };
+    if (!mentorship) return { title: "Mentorship — Codetopia Community" };
 
     const url = `${BASE_URL}/mentorships/${slug}`;
     const image = mentorship.coverImage ?? `${BASE_URL}/og-default.png`;
@@ -42,7 +42,7 @@ export async function generateMetadata({
       "A mentorship program by the Codetopia community.";
 
     return {
-      title: `${mentorship.title} — Codetopia Mentorships`,
+      title: `${mentorship.title} — Codetopia Community Mentorships`,
       description,
       openGraph: {
         title: mentorship.title,
@@ -62,7 +62,7 @@ export async function generateMetadata({
       },
     };
   } catch {
-    return { title: "Mentorship — Codetopia" };
+    return { title: "Mentorship — Codetopia Community" };
   }
 }
 

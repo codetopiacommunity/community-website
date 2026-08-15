@@ -73,6 +73,13 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
               <Link
+                href="/about"
+                className="group inline-flex items-center gap-3 bg-transparent text-white px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
+              >
+                About Us
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
                 href="https://community.codetopia.org/howtos/Getting-Started/01-join-the-community"
                 className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
               >

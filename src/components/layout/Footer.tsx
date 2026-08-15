@@ -21,7 +21,7 @@ import { Container } from "@/components/layout/Container";
 
 const communityLinks = [
   { name: "Code of Conduct", href: "/code-of-conduct" },
-  { name: "Become a Sponsor", href: "#" },
+  { name: "Become a Sponsor", href: "mailto:hello@codetopia.org" },
   {
     name: "Become a Volunteer",
     href: "/howtos/Contributing-and-Volunteering/01-ways-to-contribute-and-volunteer",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Link Expired — Codetopia",
+  title: "Link Expired — Codetopia Community",
   description: "The verification link you used has expired or is invalid.",
 };
 

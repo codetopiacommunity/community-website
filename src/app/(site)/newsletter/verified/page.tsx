@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Email Verified — Codetopia",
+  title: "Email Verified — Codetopia Community",
   description: "Your newsletter subscription has been confirmed.",
 };
 

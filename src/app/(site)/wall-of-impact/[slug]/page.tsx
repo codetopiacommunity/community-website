@@ -54,9 +54,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const item = await loadRecognition(slug);
-  if (!item) return { title: "Wall of Impact — Codetopia" };
+  if (!item) return { title: "Wall of Impact — Codetopia Community" };
   return {
-    title: `${item.awardName} · ${item.fullName} — Codetopia Wall of Impact`,
+    title: `${item.awardName} · ${item.fullName} — Codetopia Community Wall of Impact`,
     description: item.impactSummary,
   };
 }
