@@ -36,16 +36,13 @@ export function CTA() {
         <p className="text-zinc-400 text-lg md:text-xl mb-16 max-w-xl font-mono leading-relaxed mx-auto">
           The community is open. Come build with us.
         </p>
-        <p className="text-zinc-400 text-sm md:text-base mb-16 font-mono">
-          Not a lurk-and-leave space — read what we expect before you join.
-        </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-6 w-full">
           <Link
             href="/about"
             className="group inline-flex items-center gap-3 bg-transparent text-zinc-400 hover:text-white px-10 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 border border-zinc-800 hover:border-zinc-600"
           >
-            Read the Manifesto
+            Read About Us
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
           <Link
