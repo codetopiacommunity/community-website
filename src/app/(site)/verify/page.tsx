@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { VerifyCertificateForm } from "@/components/verify/VerifyCertificateForm";
 
 export const metadata: Metadata = {
-  title: "Verify a Certificate — Codetopia",
+  title: "Verify a Certificate — Codetopia Community",
   description:
     "Confirm whether a certificate is genuinely issued and recognized by Codetopia Community.",
 };
