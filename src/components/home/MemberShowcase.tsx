@@ -3,14 +3,13 @@ import { FaArrowRight } from "react-icons/fa6";
 import { MemberRows } from "@/components/home/MemberRows";
 import { Container } from "@/components/layout/Container";
 import { JOIN_URL } from "@/lib/data/links";
-import { type CommunityMember, getShowcaseMemberSlots } from "@/lib/members";
+import { type CommunityMember, getShowcaseMembers } from "@/lib/members";
 
 /**
- * Ceiling on card positions. The roster decides the real number -- see
- * `getShowcaseMemberSlots` -- so a small community gets fewer, fuller
- * positions rather than a long row of cards that never change.
+ * How many members ride the rows. One card each, split across two rows, so
+ * this is also the number of portraits the section downloads.
  */
-const SLOT_COUNT = 10;
+const MEMBER_LIMIT = 18;
 
 /**
  * The community itself, directly under the hero.
@@ -22,15 +21,15 @@ const SLOT_COUNT = 10;
  * visitor's attention.
  */
 export async function MemberShowcase() {
-  let slots: CommunityMember[][] = [];
+  let members: CommunityMember[] = [];
   try {
-    slots = await getShowcaseMemberSlots(SLOT_COUNT);
+    members = await getShowcaseMembers(MEMBER_LIMIT);
   } catch (error) {
     console.error("MemberShowcase: failed to fetch members", error);
     return null;
   }
 
-  if (slots.length === 0) return null;
+  if (members.length === 0) return null;
 
   return (
     <section className="w-full py-24 md:py-32 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
@@ -58,7 +57,7 @@ export async function MemberShowcase() {
       </Container>
 
       {/* Full-bleed, so the rows genuinely drift off both edges. */}
-      <MemberRows slots={slots} />
+      <MemberRows members={members} />
     </section>
   );
 }

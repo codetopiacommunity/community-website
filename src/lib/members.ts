@@ -40,12 +40,9 @@ function toRoleLabel(primaryRole: string): string {
 /**
  * Stable, non-alphabetical member ordering.
  *
- * Members should read as a community rather than a directory listing, but
- * the order still has to be deterministic, or the server and client would
- * render different orders and hydration would fail. (The existing
- * `shuffle()` in TeamsPreview uses `Math.random()` in a server component;
- * that only survives because the homepage is currently `force-dynamic`, and
- * it will break the moment the page moves to ISR.)
+ * Members should read as a community rather than a directory listing, but a
+ * random shuffle would reorder everyone on every ISR regeneration, so a
+ * returning visitor sees a different set of faces each minute for no reason.
  *
  * Hashing the username rather than shuffling the array also means a new
  * member drops into their own place instead of reshuffling everyone else's.
@@ -92,59 +89,60 @@ export async function getCommunityMembers(): Promise<CommunityMember[]> {
     .sort((a, b) => memberOrder(a.slug) - memberOrder(b.slug));
 }
 
-/**
- * How many members share a card position.
- *
- * Every member in a position is mounted so a swap never crossfades into a
- * blank frame, which makes this a payload ceiling rather than a taste call:
- * positions x depth is the number of images the section downloads.
- */
-const SLOT_DEPTH = 2;
 const CARD_CROP_WIDTH = 560;
 const CARD_CROP_HEIGHT = 700;
 
 /**
- * Deals members into card positions.
+ * Whole days since the Unix epoch, UTC.
  *
- * Positions are capped by the roster rather than fixed, so every one gets a
- * full rotation instead of members being spread one-per-card with nothing
- * ever changing -- a community of six fills three rotating positions, not
- * six static ones.
- *
- * Round-robin rather than sliced, so no two positions hold the same person
- * and every position ends up within one card of the same depth: no card sits
- * still while its neighbours rotate. Members with a picture sort first,
- * which lands them in the opening frame of every position.
+ * Server-only, like the rest of this module -- it holds the portal API key,
+ * so it can never reach a client bundle where a clock read would risk a
+ * hydration mismatch. Ghana sits on UTC, so the roll happens at local
+ * midnight rather than at some arbitrary hour of the night.
  */
-function dealIntoSlots<T extends { imageUrl: string | null }>(
-  members: T[],
-  maxSlots: number,
-): T[][] {
-  if (members.length === 0 || maxSlots < 1) return [];
-
-  const slotCount = Math.max(
-    1,
-    Math.min(maxSlots, Math.floor(members.length / SLOT_DEPTH)),
-  );
-
-  const dealable = [...members]
-    .sort((a, b) => Number(Boolean(b.imageUrl)) - Number(Boolean(a.imageUrl)))
-    .slice(0, slotCount * SLOT_DEPTH);
-
-  const slots: T[][] = Array.from({ length: slotCount }, () => []);
-  dealable.forEach((member, index) => {
-    slots[index % slotCount].push(member);
-  });
-
-  return slots.filter((slot) => slot.length > 0);
+function dayIndex(): number {
+  return Math.floor(Date.now() / 86_400_000);
 }
 
-export async function getShowcaseMemberSlots(
-  maxSlots: number,
-): Promise<CommunityMember[][]> {
+/**
+ * Members for the showcase rows, each with their portrait pre-cropped for
+ * the card.
+ *
+ * One card per member, so `limit` is the number of portraits the section
+ * downloads. Rather than always taking the same `limit` members off the
+ * front, the window advances a day at a time and wraps -- otherwise the same
+ * handful of people occupy the homepage permanently and everyone past the
+ * cut never appears at all, which gets steadily more wrong as the community
+ * grows.
+ *
+ * The window runs over members who have uploaded a picture, so a given day
+ * can't land on a screen of initials tiles. That fallback is a stand-in, not
+ * a draw. Members without a picture are only pulled in to top up a roster too
+ * small to fill the rows, and unlike a hash that buried them, appearing is
+ * something they can fix in the time it takes to upload a photo.
+ */
+export async function getShowcaseMembers(
+  limit: number,
+): Promise<CommunityMember[]> {
   const members = await getCommunityMembers();
+  if (members.length === 0) return [];
 
-  const cropped = members.map((member) => ({
+  const withPhoto = members.filter((member) => member.imageUrl);
+  const pool =
+    withPhoto.length >= limit
+      ? withPhoto
+      : [...withPhoto, ...members.filter((member) => !member.imageUrl)];
+
+  // Advance by a full window per day rather than a single member. Stepping by
+  // one would take a 500-member community well over a year to show everyone
+  // once, and would change only one card of eighteen overnight; stepping by
+  // the window covers the same roster in under a month and makes each day a
+  // genuinely different set of faces. A pool at or under the limit rotates
+  // onto itself, so small communities simply show everyone.
+  const offset = (dayIndex() * limit) % pool.length;
+  const rotated = [...pool.slice(offset), ...pool.slice(0, offset)];
+
+  return rotated.slice(0, limit).map((member) => ({
     ...member,
     imageUrl: member.imageUrl
       ? buildPortraitUrl(member.imageUrl, {
@@ -153,6 +151,4 @@ export async function getShowcaseMemberSlots(
         })
       : null,
   }));
-
-  return dealIntoSlots(cropped, maxSlots);
 }
