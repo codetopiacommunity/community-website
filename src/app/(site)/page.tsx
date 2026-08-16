@@ -9,7 +9,10 @@ import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
 import { WhatWeOffer } from "@/components/home/WhatWeOffer";
 import type { Spotlight } from "@/types";
 
-export const dynamic = "force-dynamic";
+// ISR, matching the rest of the site. `force-dynamic` meant every single
+// visit hit both Postgres and the portal API for content that changes a few
+// times a month.
+export const revalidate = 60;
 
 export default async function Home() {
   let spotlight: Spotlight | null = null;

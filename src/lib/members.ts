@@ -40,12 +40,9 @@ function toRoleLabel(primaryRole: string): string {
 /**
  * Stable, non-alphabetical member ordering.
  *
- * Members should read as a community rather than a directory listing, but
- * the order still has to be deterministic, or the server and client would
- * render different orders and hydration would fail. (The existing
- * `shuffle()` in TeamsPreview uses `Math.random()` in a server component;
- * that only survives because the homepage is currently `force-dynamic`, and
- * it will break the moment the page moves to ISR.)
+ * Members should read as a community rather than a directory listing, but a
+ * random shuffle would reorder everyone on every ISR regeneration, so a
+ * returning visitor sees a different set of faces each minute for no reason.
  *
  * Hashing the username rather than shuffling the array also means a new
  * member drops into their own place instead of reshuffling everyone else's.
