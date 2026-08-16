@@ -1,9 +1,9 @@
 import { prisma } from "@/../prisma/prisma";
 import { Hero } from "@/components/home/Hero";
 import { LatestArticles } from "@/components/home/LatestArticles";
+import { MemberShowcase } from "@/components/home/MemberShowcase";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
-import { Stats } from "@/components/home/Stats";
 import { TeamsPreview } from "@/components/home/TeamsPreview";
 import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
 import { WhatWeOffer } from "@/components/home/WhatWeOffer";
@@ -30,13 +30,16 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col">
       <Hero />
-      <Organisations />
-      <Stats />
+      <MemberShowcase />
       <TechnicalSpotlight spotlight={spotlight} />
       <WhatWeOffer />
       <OurImpact />
       <TeamsPreview />
       <LatestArticles />
+      {/* Sponsors and partners are credibility to cash in after the case is
+          made, not an opening act -- so they sit at the end, next to the
+          footer CTA, rather than second on the page. */}
+      <Organisations />
     </div>
   );
 }

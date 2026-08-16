@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 import { Container } from "@/components/layout/Container";
 import type { Spotlight } from "@/types";
 
@@ -12,73 +11,72 @@ export function TechnicalSpotlight({
   if (!spotlight) return null;
 
   return (
-    <section className="w-full bg-black overflow-hidden border-t border-zinc-900 px-0 py-24 md:py-32">
-      <Container className="max-w-none px-0">
-        <div className="w-full mb-24 text-left px-6 lg:px-12 max-w-screen-2xl mx-auto flex flex-col gap-6">
+    <section className="w-full py-24 md:py-32 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
+      <Container className="w-full font-sans">
+        <div className="w-full mb-14 flex flex-col gap-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400">
+            In the spotlight
+          </p>
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
-            Spotlight
+            Spot<span className="text-zinc-400">light</span>
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
-            A high-honor record of technical mastery and architectural impact.
+            The people moving technology and science forward. Sometimes one of
+            our own, sometimes a name the whole industry knows.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:h-[90vh] lg:min-h-[850px] border-y border-zinc-800 bg-zinc-900 overflow-hidden group">
-          {/* Left: Image */}
-          <div className="relative aspect-[4/5] lg:aspect-auto overflow-hidden bg-zinc-950 border-b lg:border-b-0 lg:border-r border-zinc-800">
+        {/*
+          A fixed row height rather than an aspect ratio: at half of a wide
+          container a 4:5 portrait would be over 800px tall on its own, which
+          is what made this section run to most of a page.
+        */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:h-[760px] border border-zinc-800 bg-zinc-900 gap-px overflow-hidden group">
+          <div className="relative h-96 sm:h-[32rem] lg:h-full overflow-hidden bg-zinc-950">
             <Image
               src={spotlight.imageUrl}
-              alt={spotlight.name}
+              alt=""
               fill
-              unoptimized
-              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-[1.03]"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               priority
             />
             <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
           </div>
 
-          {/* Right: Info */}
-          <div className="flex flex-col justify-center p-8 md:p-16 lg:p-24 bg-black space-y-12">
-            <div className="space-y-8 lg:transform lg:-translate-x-1 lg:group-hover:translate-x-0 lg:transition-transform lg:duration-700">
-              <div className="space-y-4">
-                <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] font-black uppercase tracking-tighter text-white leading-[0.75] font-sans">
-                  {spotlight.name.split(" ").map((part, i, arr) => (
-                    <React.Fragment key={`${spotlight.id}-${part}-${i}`}>
-                      {part}
-                      {i === 0 ? <br /> : i < arr.length - 1 ? " " : ""}
-                    </React.Fragment>
-                  ))}
-                </h2>
-                <p className="text-zinc-400 font-mono text-xs md:text-sm lg:text-base uppercase tracking-[0.4em] font-black">
-                  {spotlight.role}
-                </p>
-              </div>
-
-              <p className="text-zinc-400 text-lg md:text-xl lg:text-2xl lg:leading-relaxed font-mono max-w-2xl">
-                {spotlight.contribution}
+          <div className="flex flex-col justify-center gap-10 bg-black p-8 md:p-12 lg:p-16">
+            <div className="flex flex-col gap-3">
+              {/*
+                An h3, not an h2: the section already has one, and the person's
+                name is a level below the section that features them. Sized
+                under the section heading for the same reason.
+              */}
+              <h3 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tighter text-white leading-[0.85] font-sans">
+                {spotlight.name}
+              </h3>
+              <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-black">
+                {spotlight.role}
               </p>
             </div>
 
+            <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
+              {spotlight.contribution}
+            </p>
+
             {spotlight.links.length > 0 && (
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-                <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-black shrink-0">
-                  Links
-                </p>
-                <div className="flex flex-wrap gap-8 md:gap-12">
-                  {spotlight.links.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/link flex items-center gap-2 text-white font-mono text-xs md:text-sm lg:text-base uppercase tracking-widest hover:text-zinc-400 transition-colors"
-                    >
-                      {link.label}
-                      <ArrowUpRight className="w-5 h-5 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                    </a>
-                  ))}
-                </div>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-zinc-800 pt-6">
+                {spotlight.links.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link inline-flex items-center gap-2 text-white font-mono text-xs uppercase tracking-widest hover:text-zinc-400 transition-colors duration-200"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 motion-reduce:transition-none" />
+                  </a>
+                ))}
               </div>
             )}
           </div>

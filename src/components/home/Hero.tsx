@@ -2,9 +2,17 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
+import { JOIN_URL } from "@/lib/data/links";
 
 const WORDS = ["Grow.", "Collaborate.", "Lead.", "Build.", "Ship.", "Connect."];
 
+/**
+ * One claim, one action.
+ *
+ * The member cards deliberately live in the section below rather than here:
+ * drifting rows of faces are the strongest motion on the page, and beside
+ * the join CTA they win an attention fight that the CTA needs to win.
+ */
 export function Hero() {
   return (
     <section className="relative w-full min-h-[calc(100svh-80px)] flex flex-col bg-black">
@@ -80,7 +88,7 @@ export function Hero() {
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
-                href="https://community.codetopia.org/howtos/Getting-Started/01-join-the-community"
+                href={JOIN_URL}
                 className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
               >
                 Join the Community
