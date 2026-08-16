@@ -41,7 +41,10 @@ export async function TeamsPreview() {
           </div>
           <Link
             href="/team"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group shrink-0"
+            // `self-start` keeps the button hugging its label on mobile. As a
+            // flex child in a column it would otherwise stretch to the full
+            // width and strand the text against the left edge.
+            className="self-start md:self-end inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group shrink-0"
           >
             View all team{" "}
             <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
