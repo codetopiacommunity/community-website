@@ -52,8 +52,13 @@ function MemberCard({
       // -50%: a gap would add one extra at the seam and the loop would hitch.
       className={`group shrink-0 text-left mr-px focus:outline-none ${CARD_WIDTH}`}
     >
+      {/*
+        `contain:paint` keeps a hover to its own card. Without it the scrim
+        and caption fading in count as a repaint of the shared track layer,
+        so every sibling card repaints too and the row flickers.
+      */}
       <div
-        className={`relative ${CARD_ASPECT} w-full overflow-hidden border border-zinc-800 bg-black transition-colors duration-200 group-hover:border-zinc-500 group-focus-visible:border-white`}
+        className={`relative ${CARD_ASPECT} w-full overflow-hidden [contain:paint] border border-zinc-800 bg-black transition-colors duration-200 group-hover:border-zinc-500 group-focus-visible:border-white`}
       >
         {imageSource ? (
           <Image
@@ -75,9 +80,15 @@ function MemberCard({
           Sits above the scrim so it stays legible once the caption fades in.
           `role="img"` with the country name because on its own a flag is a
           coloured rectangle to anyone who can't see it.
+
+          Deliberately no `backdrop-blur`: a backdrop-filter has to re-sample
+          what sits behind it every time its layer repaints, and these badges
+          live inside a masked, transform-animating track. Hovering any one
+          card repainted the whole track and set every badge in the row
+          flickering. The flat black is doing the legibility work anyway.
         */}
         {countryFlag && (
-          <span className="absolute right-1.5 top-1.5 z-10 inline-flex items-center border border-zinc-800 bg-black/70 px-1 py-0.5 backdrop-blur-sm">
+          <span className="absolute right-1.5 top-1.5 z-10 inline-flex items-center border border-zinc-800 bg-black/70 px-1 py-0.5">
             <span
               className={`fi fi-${countryFlag.code} text-[9px] leading-none`}
               role="img"
