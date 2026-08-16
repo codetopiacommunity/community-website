@@ -23,7 +23,8 @@ const MIN_DRIFT_SECONDS = 60;
  *
  * The mobile width doesn't scale down proportionally: a row only ever shows
  * two or three cards at a time whatever the width, so a narrower card buys no
- * extra cards on screen and costs the name and role their legibility.
+ * extra cards on screen and costs the name and role their legibility on
+ * hover.
  */
 const CARD_WIDTH = "w-[190px] lg:w-[270px]";
 const CARD_ASPECT = "aspect-[4/5]";
@@ -51,39 +52,57 @@ function MemberCard({
       // -50%: a gap would add one extra at the seam and the loop would hitch.
       className={`group shrink-0 text-left mr-px focus:outline-none ${CARD_WIDTH}`}
     >
-      <div className="border border-zinc-800 bg-black transition-colors duration-200 group-hover:border-zinc-500 group-focus-visible:border-white">
-        <div className={`relative ${CARD_ASPECT} w-full overflow-hidden`}>
-          {imageSource ? (
-            <Image
-              src={imageSource}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 270px, 190px"
-              className="object-cover grayscale transition duration-500 group-hover:grayscale-0 motion-reduce:transition-none"
+      <div
+        className={`relative ${CARD_ASPECT} w-full overflow-hidden border border-zinc-800 bg-black transition-colors duration-200 group-hover:border-zinc-500 group-focus-visible:border-white`}
+      >
+        {imageSource ? (
+          <Image
+            src={imageSource}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 270px, 190px"
+            className="object-cover grayscale transition duration-500 group-hover:grayscale-0 motion-reduce:transition-none"
+          />
+        ) : (
+          <span className="flex h-full w-full items-center justify-center bg-zinc-950">
+            <span className="font-mono text-3xl tracking-widest text-zinc-700">
+              {getInitials(member.name)}
+            </span>
+          </span>
+        )}
+
+        {/*
+          Sits above the scrim so it stays legible once the caption fades in.
+          `role="img"` with the country name because on its own a flag is a
+          coloured rectangle to anyone who can't see it.
+        */}
+        {countryFlag && (
+          <span className="absolute right-1.5 top-1.5 z-10 inline-flex items-center border border-zinc-800 bg-black/70 px-1 py-0.5 backdrop-blur-sm">
+            <span
+              className={`fi fi-${countryFlag.code} text-[9px] leading-none`}
+              role="img"
+              aria-label={countryFlag.country}
             />
-          ) : (
-            <span className="flex h-full w-full items-center justify-center bg-zinc-950">
-              <span className="font-mono text-xl tracking-widest text-zinc-700">
-                {getInitials(member.name)}
-              </span>
-            </span>
-          )}
+          </span>
+        )}
 
-          {countryFlag && (
-            <span className="absolute right-1.5 top-1.5 z-10 inline-flex items-center border border-zinc-800 bg-black/70 px-1 py-0.5 backdrop-blur-sm">
-              <span
-                className={`fi fi-${countryFlag.code} text-[9px] leading-none`}
-                aria-hidden="true"
-              />
-            </span>
-          )}
-        </div>
+        {/*
+          Scrim and caption both rest hidden, so a row at rest is nothing but
+          faces. They arrive together: the scrim exists only to keep the text
+          readable over a light patch of photo, so it has no reason to be
+          there while the text isn't.
 
-        <div className="flex flex-col gap-1 border-t border-zinc-800 px-3 py-2.5 lg:px-4 lg:py-3.5">
+          Revealed on focus as well as hover, and the name is in the button's
+          aria-label regardless, so keyboard and screen-reader users are never
+          left with an unlabelled card.
+        */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
+
+        <div className="absolute inset-x-0 bottom-0 px-3 pb-3 lg:px-4 lg:pb-4 translate-y-1 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none">
           <h3 className="truncate font-sans text-sm lg:text-base font-black uppercase leading-tight tracking-tighter text-white">
             {member.name}
           </h3>
-          <p className="truncate font-mono text-[9px] lg:text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+          <p className="mt-1 truncate font-mono text-[9px] lg:text-[10px] uppercase tracking-[0.2em] text-zinc-300">
             {member.position || member.role}
           </p>
         </div>
