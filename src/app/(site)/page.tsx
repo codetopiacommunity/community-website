@@ -4,7 +4,6 @@ import { LatestArticles } from "@/components/home/LatestArticles";
 import { MemberShowcase } from "@/components/home/MemberShowcase";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
-import { TeamsPreview } from "@/components/home/TeamsPreview";
 import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
 import { WhatWeOffer } from "@/components/home/WhatWeOffer";
 import type { Spotlight } from "@/types";
@@ -37,7 +36,6 @@ export default async function Home() {
       <TechnicalSpotlight spotlight={spotlight} />
       <WhatWeOffer />
       <OurImpact />
-      <TeamsPreview />
       <LatestArticles />
       {/* Sponsors and partners are credibility to cash in after the case is
           made, not an opening act -- so they sit at the end, next to the
