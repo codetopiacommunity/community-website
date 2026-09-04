@@ -27,22 +27,19 @@ export function spotlightHandle(spotlight: Pick<Spotlight, "id" | "slug">) {
   return spotlight.slug ?? String(spotlight.id);
 }
 
-/** Share cards render at 1200x630. */
-export const SHARE_IMAGE_WIDTH = 1200;
-export const SHARE_IMAGE_HEIGHT = 630;
-
-/**
- * A share-card-shaped version of a portrait.
- *
- * Spotlight photos are uploaded square or portrait, and every platform crops
- * them to 1.91:1 from the centre -- which is where the face is. Cloudinary
- * returns a correctly shaped, face-aware crop from the same original, so no
- * second upload is needed. Anything not served by Cloudinary, or already
- * carrying a transform, is left alone.
- */
 const CLOUDINARY_HOST = "res.cloudinary.com";
 
-export function shareImageUrl(url: string) {
+/**
+ * Ask Cloudinary for a face-aware fill at the given size.
+ *
+ * Spotlight photos are uploaded square or portrait, and every box they have
+ * to sit in is wider than that: the feature card on the site, and the 1200x630
+ * share card. Cropping to fit takes the crop from the centre, which is where
+ * the face is, so ask Cloudinary for a face-aware fill from the same original
+ * instead. Anything not served by Cloudinary, or already carrying a
+ * transform, is left alone.
+ */
+export function cloudinaryFill(url: string, width: number, height: number) {
   // Parse and compare the host exactly. A substring test would also accept
   // https://evil.example/res.cloudinary.com/... and
   // https://res.cloudinary.com.evil.example/..., letting an attacker-chosen
@@ -66,8 +63,7 @@ export function shareImageUrl(url: string) {
   // A transform segment is "key_value" pairs; a version segment is "v123456".
   if (/^[a-z]{1,3}_[^/]+\//.test(rest)) return url;
 
-  const transform = `c_fill,g_face,w_${SHARE_IMAGE_WIDTH},h_${SHARE_IMAGE_HEIGHT}`;
-  parsed.pathname = `${head}${transform}/${rest}`;
+  parsed.pathname = `${head}c_fill,g_face,w_${width},h_${height}/${rest}`;
   return parsed.toString();
 }
 
@@ -144,23 +140,5 @@ export async function getSpotlightByHandle(
   } catch (error) {
     console.error("Spotlight: failed to load", handle, error);
     return null;
-  }
-}
-
-/** Up to `limit` other spotlights, for the links at the foot of a feature. */
-export async function getOtherSpotlights(
-  currentId: number,
-  limit = 3,
-): Promise<Spotlight[]> {
-  try {
-    const rows = await prisma.spotlight.findMany({
-      where: { id: { not: currentId } },
-      orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
-      take: limit,
-    });
-    return rows.map(toSpotlight);
-  } catch (error) {
-    console.error("Spotlight: failed to load siblings", error);
-    return [];
   }
 }
