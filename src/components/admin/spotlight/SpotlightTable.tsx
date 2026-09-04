@@ -26,17 +26,20 @@ export function SpotlightTable({
 }: SpotlightTableProps) {
   const [featuringId, setFeaturingId] = useState<number | null>(null);
 
-  const handleFeature = async (id: number) => {
+  // One click both ways: featuring a spotlight takes the flag off whoever
+  // held it, and clicking the featured one hands it back to nobody.
+  const handleToggleFeature = async (id: number) => {
     setFeaturingId(id);
     try {
       const res = await fetch(`/api/admin/spotlight/${id}/feature`, {
         method: "PATCH",
       });
       if (res.ok) {
-        toast.success("Spotlight featured");
+        const { featured } = await res.json();
+        toast.success(featured ? "Spotlight featured" : "Spotlight unfeatured");
         onRefetch();
       } else {
-        toast.error("Failed to feature spotlight");
+        toast.error("Failed to update featured spotlight");
       }
     } catch {
       toast.error("An error occurred");
@@ -171,25 +174,34 @@ export function SpotlightTable({
                   </span>
                 </td>
                 <td className="px-6 py-4">
-                  {s.featured ? (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest bg-black text-white px-2.5 py-1 rounded-lg">
-                      <Star className="h-3 w-3 fill-white" /> Featured
-                    </span>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => handleFeature(s.id)}
-                      disabled={featuringId === s.id}
-                      className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest text-grey-400 border border-grey-200 px-2.5 py-1 rounded-lg hover:border-black hover:text-black transition-colors disabled:opacity-50"
-                    >
-                      {featuringId === s.id ? (
-                        <Loader2 className="h-3 w-3 animate-spin" />
-                      ) : (
-                        <Star className="h-3 w-3" />
-                      )}
-                      Set Featured
-                    </button>
-                  )}
+                  {/* Both states are the same control, so the featured one
+                      can be clicked off. Filled and solid means it holds the
+                      flag; outlined means clicking gives it the flag. */}
+                  <button
+                    type="button"
+                    onClick={() => handleToggleFeature(s.id)}
+                    disabled={featuringId === s.id}
+                    aria-pressed={s.featured}
+                    title={
+                      s.featured
+                        ? "Featured on the home page. Click to unfeature."
+                        : "Feature this spotlight on the home page."
+                    }
+                    className={`inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-lg border transition-colors disabled:opacity-50 ${
+                      s.featured
+                        ? "bg-black text-white border-black hover:bg-white hover:text-black"
+                        : "text-grey-400 border-grey-200 hover:border-black hover:text-black"
+                    }`}
+                  >
+                    {featuringId === s.id ? (
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                    ) : (
+                      <Star
+                        className={`h-3 w-3 ${s.featured ? "fill-current" : ""}`}
+                      />
+                    )}
+                    {s.featured ? "Featured" : "Set Featured"}
+                  </button>
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-40 sm:group-hover:opacity-100 transition-all duration-300">
