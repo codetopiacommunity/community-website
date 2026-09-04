@@ -5,7 +5,7 @@ import { MemberShowcase } from "@/components/home/MemberShowcase";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
 import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
-import { WhatWeOffer } from "@/components/home/WhatWeOffer";
+import { WhyJoinUs } from "@/components/home/WhyJoinUs";
 import type { Spotlight } from "@/types";
 
 // ISR, matching the rest of the site. `force-dynamic` meant every single
@@ -32,10 +32,21 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col">
       <Hero />
+      {/* Argument order: make the case, then show the receipts. Members and
+          spotlights used to run before anyone had been told what this place
+          is for, which is proof offered to someone who has no claim to
+          weigh it against. */}
+      <WhyJoinUs />
+      {/* Members come straight after the claim: the section shows every
+          discipline and every stage, which is the claim demonstrated rather
+          than restated, and it carries the join CTA while interest is
+          highest. Faces also read faster than a written impact story. */}
       <MemberShowcase />
-      <TechnicalSpotlight spotlight={spotlight} />
-      <WhatWeOffer />
       <OurImpact />
+      {/* The spotlight is editorial, not proof -- it features outside names
+          as often as our own -- so it sits with the articles rather than
+          among the sections making the case. */}
+      <TechnicalSpotlight spotlight={spotlight} />
       <LatestArticles />
       {/* Sponsors and partners are credibility to cash in after the case is
           made, not an opening act -- so they sit at the end, next to the

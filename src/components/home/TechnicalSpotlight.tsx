@@ -11,7 +11,7 @@ export function TechnicalSpotlight({
   if (!spotlight) return null;
 
   return (
-    <section className="w-full py-24 md:py-32 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
+    <section className="w-full py-20 md:py-24 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
       <Container className="w-full font-sans">
         <div className="w-full mb-14 flex flex-col gap-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400">
