@@ -20,7 +20,7 @@ const reasons = [
   {
     title: "Every Discipline",
     description:
-      "Engineering, design, product, data, machine learning, security, cloud, mobile, QA, technical writing, hardware and robotics. Twelve disciplines, one community.",
+      "Whatever your craft, there are people here doing it. No one discipline is the main event and the rest guests.",
     icon: Shapes,
   },
   {
