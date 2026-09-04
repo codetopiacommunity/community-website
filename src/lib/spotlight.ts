@@ -40,17 +40,35 @@ export const SHARE_IMAGE_HEIGHT = 630;
  * second upload is needed. Anything not served by Cloudinary, or already
  * carrying a transform, is left alone.
  */
-export function shareImageUrl(url: string) {
-  const marker = "/image/upload/";
-  const at = url.indexOf(marker);
-  if (at === -1 || !url.includes("res.cloudinary.com")) return url;
+const CLOUDINARY_HOST = "res.cloudinary.com";
 
-  const rest = url.slice(at + marker.length);
+export function shareImageUrl(url: string) {
+  // Parse and compare the host exactly. A substring test would also accept
+  // https://evil.example/res.cloudinary.com/... and
+  // https://res.cloudinary.com.evil.example/..., letting an attacker-chosen
+  // host through as if it were Cloudinary.
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return url;
+  }
+  if (parsed.protocol !== "https:" || parsed.hostname !== CLOUDINARY_HOST) {
+    return url;
+  }
+
+  const marker = "/image/upload/";
+  const at = parsed.pathname.indexOf(marker);
+  if (at === -1) return url;
+
+  const head = parsed.pathname.slice(0, at + marker.length);
+  const rest = parsed.pathname.slice(at + marker.length);
   // A transform segment is "key_value" pairs; a version segment is "v123456".
   if (/^[a-z]{1,3}_[^/]+\//.test(rest)) return url;
 
   const transform = `c_fill,g_face,w_${SHARE_IMAGE_WIDTH},h_${SHARE_IMAGE_HEIGHT}`;
-  return `${url.slice(0, at + marker.length)}${transform}/${rest}`;
+  parsed.pathname = `${head}${transform}/${rest}`;
+  return parsed.toString();
 }
 
 /**
