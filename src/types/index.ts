@@ -9,7 +9,10 @@ export interface Spotlight {
   name: string;
   role: string;
   imageUrl: string;
+  /** Teaser shown on cards. */
   contribution: string;
+  /** The feature itself. Null until someone writes it. */
+  body: string | null;
   links: SpotlightLink[];
   featured: boolean;
   createdAt: string;

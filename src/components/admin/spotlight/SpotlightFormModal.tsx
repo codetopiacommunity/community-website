@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { Spotlight, SpotlightLink } from "@/types";
 
-const defaultForm = { name: "", role: "", contribution: "" };
+const defaultForm = { name: "", role: "", contribution: "", body: "" };
 
 export function SpotlightFormModal({
   isOpen,
@@ -42,6 +42,7 @@ export function SpotlightFormModal({
           name: editing.name,
           role: editing.role,
           contribution: editing.contribution,
+          body: editing.body ?? "",
         });
         setImagePreview(editing.imageUrl);
         setLinks(
@@ -175,8 +176,22 @@ export function SpotlightFormModal({
                 onChange={set("contribution")}
                 required
                 className="rounded-xl min-h-[90px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-none font-mono"
-                placeholder="Describe their technical contribution..."
+                placeholder="One paragraph. This is the teaser shown on cards."
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label className={labelCls}>Full feature</Label>
+              <Textarea
+                value={form.body}
+                onChange={set("body")}
+                className="rounded-xl min-h-[220px] border border-grey-100 bg-grey-50/50 p-4 text-xs font-medium text-black placeholder:text-grey-300 focus:border-black focus:bg-white transition-all outline-none ring-0 resize-y font-mono"
+                placeholder="The story: what they built, why it matters, and why more people should know about it. Leave a blank line between paragraphs."
+              />
+              <p className="text-[10px] text-grey-300 font-mono">
+                Optional. Shown on the spotlight&apos;s own page. Without it
+                that page only repeats the card.
+              </p>
             </div>
 
             <div className="space-y-2">
