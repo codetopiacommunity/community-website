@@ -58,6 +58,11 @@ const NAV_ITEMS: NavItem[] = [
         description: "Tutorials, guides, and community writing",
       },
       {
+        label: "Spotlight",
+        href: "/spotlight",
+        description: "People doing remarkable work you should know about",
+      },
+      {
         label: "How-tos",
         href: "/howtos",
         description: "Practical step-by-step guides from the community",
@@ -66,11 +71,6 @@ const NAV_ITEMS: NavItem[] = [
         label: "Wall of Impact",
         href: "/wall-of-impact",
         description: "Stories of community impact",
-      },
-      {
-        label: "Spotlight",
-        href: "/spotlight",
-        description: "The people moving technology and science forward",
       },
       {
         label: "Verify a Certificate",

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/../prisma/prisma";
 import { requireAuth, serverError } from "@/lib/api/api-utils";
-import { slugify } from "@/lib/utils";
+import { uniqueSpotlightSlug } from "@/lib/spotlight";
 import { deleteSpotlightImage, uploadSpotlightImage } from "../utils";
 
 export async function PATCH(
@@ -33,10 +33,22 @@ export async function PATCH(
       where: { id: Number(id) },
       data: {
         name: data.name?.trim() ?? existing.name,
-        slug: data.name ? slugify(data.name.trim()) : undefined,
+        // Also fills in a slug for entries created before slugs existed,
+        // which is what put ids like /spotlight/1 into the URL bar.
+        slug:
+          data.name || !existing.slug
+            ? await uniqueSpotlightSlug(
+                (data.name ?? existing.name).trim(),
+                existing.id,
+              )
+            : undefined,
         role: data.role?.trim() ?? existing.role,
         imageUrl,
         contribution: data.contribution?.trim() ?? existing.contribution,
+        // `undefined` leaves it alone, an empty string clears it back to null,
+        // so an editor can delete a draft body without deleting the entry.
+        body:
+          data.body === undefined ? existing.body : data.body?.trim() || null,
         links: data.links ?? existing.links,
       },
     });

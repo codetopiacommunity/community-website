@@ -144,7 +144,11 @@ model Spotlight {
   name         String
   role         String
   imageUrl     String   @map("image_url")
+  // The teaser shown on cards. `body` is the feature itself.
   contribution String
+  // Optional so every existing row stays valid; the detail page falls back to
+  // `contribution` until someone writes the longer piece.
+  body         String?
   links        Json     @default("[]")
   featured     Boolean  @default(false)
   createdAt    DateTime @default(now()) @map("created_at")
