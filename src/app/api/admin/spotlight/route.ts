@@ -5,7 +5,7 @@ import {
   serverError,
   validateRequired,
 } from "@/lib/api/api-utils";
-import { slugify } from "@/lib/utils";
+import { uniqueSpotlightSlug } from "@/lib/spotlight";
 import { uploadSpotlightImage } from "./utils";
 
 export async function GET() {
@@ -40,10 +40,13 @@ export async function POST(request: Request) {
     const spotlight = await prisma.spotlight.create({
       data: {
         name: data.name.trim(),
-        slug: slugify(data.name.trim()),
+        slug: await uniqueSpotlightSlug(data.name.trim()),
         role: data.role.trim(),
         imageUrl,
         contribution: data.contribution.trim(),
+        // Optional: a spotlight can be published as a teaser and have the
+        // full feature written afterwards.
+        body: data.body?.trim() || null,
         links: data.links ?? [],
         featured: false,
       },
