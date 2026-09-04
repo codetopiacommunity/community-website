@@ -37,8 +37,15 @@ export default async function Home() {
           is for, which is proof offered to someone who has no claim to
           weigh it against. */}
       <WhyJoinUs />
-      <OurImpact />
+      {/* Members come straight after the claim: the section shows every
+          discipline and every stage, which is the claim demonstrated rather
+          than restated, and it carries the join CTA while interest is
+          highest. Faces also read faster than a written impact story. */}
       <MemberShowcase />
+      <OurImpact />
+      {/* The spotlight is editorial, not proof -- it features outside names
+          as often as our own -- so it sits with the articles rather than
+          among the sections making the case. */}
       <TechnicalSpotlight spotlight={spotlight} />
       <LatestArticles />
       {/* Sponsors and partners are credibility to cash in after the case is
