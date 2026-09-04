@@ -112,13 +112,13 @@ export function WhyJoinUs() {
       </Container>
 
       {/* Reasons */}
-      <div className="flex flex-col border-t border-zinc-900">
+      <div className="flex flex-col">
         {reasons.map((reason) => (
           <div
             key={reason.title}
-            className="group relative border-b border-zinc-900 transition-all duration-300 hover:bg-zinc-900/40 cursor-default"
+            className="group relative transition-all duration-300 hover:bg-zinc-900/40 cursor-default"
           >
-            <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-12 lg:py-16 gap-6 lg:gap-0">
+            <Container className="relative z-10 w-full px-4 flex flex-col lg:flex-row items-start lg:items-center justify-between py-8 lg:py-10 gap-4 lg:gap-0">
               <div className="relative z-10 flex items-center gap-5 lg:gap-8 flex-1">
                 <reason.icon
                   className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-400 shrink-0 transition-colors duration-300 group-hover:text-white"
