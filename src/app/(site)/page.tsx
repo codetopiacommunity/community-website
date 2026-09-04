@@ -5,7 +5,7 @@ import { MemberShowcase } from "@/components/home/MemberShowcase";
 import { Organisations } from "@/components/home/Organisations";
 import { OurImpact } from "@/components/home/OurImpact";
 import { TechnicalSpotlight } from "@/components/home/TechnicalSpotlight";
-import { WhatWeOffer } from "@/components/home/WhatWeOffer";
+import { WhyJoinUs } from "@/components/home/WhyJoinUs";
 import type { Spotlight } from "@/types";
 
 // ISR, matching the rest of the site. `force-dynamic` meant every single
@@ -34,7 +34,9 @@ export default async function Home() {
       <Hero />
       <MemberShowcase />
       <TechnicalSpotlight spotlight={spotlight} />
-      <WhatWeOffer />
+      {/* The case for joining comes before the proof: claim first, then
+          the impact stories and members that back it up. */}
+      <WhyJoinUs />
       <OurImpact />
       <LatestArticles />
       {/* Sponsors and partners are credibility to cash in after the case is
