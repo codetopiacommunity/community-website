@@ -32,12 +32,14 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col">
       <Hero />
-      <MemberShowcase />
-      <TechnicalSpotlight spotlight={spotlight} />
-      {/* The case for joining comes before the proof: claim first, then
-          the impact stories and members that back it up. */}
+      {/* Argument order: make the case, then show the receipts. Members and
+          spotlights used to run before anyone had been told what this place
+          is for, which is proof offered to someone who has no claim to
+          weigh it against. */}
       <WhyJoinUs />
       <OurImpact />
+      <MemberShowcase />
+      <TechnicalSpotlight spotlight={spotlight} />
       <LatestArticles />
       {/* Sponsors and partners are credibility to cash in after the case is
           made, not an opening act -- so they sit at the end, next to the

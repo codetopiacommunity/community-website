@@ -30,7 +30,7 @@ export async function LatestArticles() {
   if (latest.length === 0) return null;
 
   return (
-    <section className="w-full py-32 bg-black flex flex-col border-t border-zinc-900">
+    <section className="w-full py-20 md:py-24 bg-black flex flex-col border-t border-zinc-900">
       <Container className="w-full px-4 font-sans">
         <div className="w-full mb-16 text-left flex flex-col gap-6">
           <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
