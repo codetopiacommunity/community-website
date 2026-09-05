@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Container } from "./Container";
 import { FeaturedCareerBanner } from "./FeaturedCareerBanner";
@@ -177,9 +177,17 @@ function MobileMenu({
   return (
     <div
       id="mobile-menu"
-      className="lg:hidden absolute top-full left-0 w-full bg-black border-b border-zinc-900 animate-in slide-in-from-top-2"
+      /* Fills the screen below the header rather than hanging off it as a
+         short panel. Before this the page showed through underneath and
+         scrolled behind the menu, which read as a half-open drawer. dvh
+         rather than vh so the mobile URL bar does not cut the last item
+         off; the panel scrolls itself when the list is taller. */
+      className="lg:hidden absolute top-full left-0 w-full h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain bg-black border-b border-zinc-900 animate-in slide-in-from-top-2"
     >
-      <nav aria-label="Mobile navigation" className="flex flex-col px-6 py-6">
+      <nav
+        aria-label="Mobile navigation"
+        className="flex flex-col px-6 py-6 pb-16"
+      >
         {NAV_ITEMS.map((item) => {
           const isActive = isNavItemActive(item, pathname);
 
@@ -262,7 +270,7 @@ function MobileMenuToggle({
       aria-expanded={isOpen}
       aria-controls="mobile-menu"
       onClick={onToggle}
-      className="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors outline-none"
+      className="lg:hidden -mr-3 flex h-11 w-11 items-center justify-center text-zinc-400 hover:text-white transition-colors outline-none"
     >
       {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
     </button>
@@ -277,6 +285,25 @@ export function Header() {
     null,
   );
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // The menu covers the screen, so the page behind it must not scroll. Without
+  // this, dragging over the menu moves the page underneath.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMobileMenuOpen]);
+
+  // Otherwise the menu stays open over the page it just moved to, including
+  // on a browser back gesture, which no link handler covers.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is the trigger, not a read value.
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setExpandedMobileItem(null);
+  }, [pathname]);
 
   const handleMouseEnter = (label: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);

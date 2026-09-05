@@ -98,10 +98,10 @@ export function Footer() {
       <CTA />
 
       <div className="border-t border-zinc-900">
-        <Container className="py-24 px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-20 lg:gap-32">
+        <Container className="py-16 px-4 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-14 lg:gap-32">
             {/* Brand */}
-            <div className="flex flex-col gap-12">
+            <div className="flex flex-col gap-8 lg:gap-12">
               <Link href="/" className="inline-block">
                 <Image
                   src={logo}
@@ -115,7 +115,11 @@ export function Footer() {
                 A community where developers learn together, collaborate, and
                 grow. Based in Ghana, open to the world.
               </p>
-              <div className="flex flex-wrap gap-5">
+              {/* The tap target is the box, not the glyph. These were 20x20,
+                  which is half the size a thumb can reliably hit; the negative
+                  margin keeps the first icon optically flush with the text
+                  above it now that each one carries its own padding. */}
+              <div className="-ml-3 flex flex-wrap gap-1">
                 {socialIcons.map((social) => (
                   <a
                     key={social.label}
@@ -123,7 +127,7 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={social.label}
-                    className="text-zinc-400 hover:text-white transition-colors"
+                    className="flex h-11 w-11 items-center justify-center text-zinc-400 hover:text-white transition-colors"
                   >
                     <social.icon className="w-5 h-5" />
                   </a>
@@ -132,18 +136,18 @@ export function Footer() {
             </div>
 
             {/* Nav columns */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-16">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 md:gap-16">
               {/* Community */}
               <div className="flex flex-col gap-6">
                 <p className="font-sans font-black text-white uppercase tracking-tighter text-sm">
                   Community
                 </p>
-                <nav className="flex flex-col gap-3">
+                <nav className="flex flex-col gap-1">
                   {communityLinks.map((link) => (
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
+                      className="py-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -156,12 +160,12 @@ export function Footer() {
                 <p className="font-sans font-black text-white uppercase tracking-tighter text-sm">
                   Pages
                 </p>
-                <nav className="flex flex-col gap-3">
+                <nav className="flex flex-col gap-1">
                   {quickLinks.map((link) => (
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
+                      className="py-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -174,24 +178,27 @@ export function Footer() {
                 <p className="font-sans font-black text-white uppercase tracking-tighter text-sm">
                   Contact
                 </p>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1">
                   <a
                     href="mailto:hello@codetopia.org"
-                    className="font-mono text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="py-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     hello@codetopia.org
                   </a>
-                  <span className="font-mono text-sm text-zinc-400">
+                  <span className="py-1.5 font-mono text-sm text-zinc-400">
                     Accra, Ghana
                   </span>
                   <a
                     href="https://github.com/codetopiacommunity/community-website"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors group"
+                    className="group py-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     Contribute on GitHub
-                    <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    {/* Inline, not a flex sibling: as a sibling the wrapped
+                        label pushed the arrow to the far edge of the column
+                        and left it floating on its own. */}
+                    <ArrowUpRight className="ml-1.5 inline h-3 w-3 align-middle transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 </div>
               </div>
@@ -201,14 +208,14 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-zinc-900">
-          <Container className="px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <Container className="px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <p
               suppressHydrationWarning
               className="font-mono text-xs text-zinc-400"
             >
               &copy; {new Date().getFullYear()} Codetopia. All rights reserved.
             </p>
-            <div className="flex items-center gap-8">
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
               <p className="font-sans font-black text-xs text-zinc-400 uppercase tracking-widest">
                 A{" "}
                 <a

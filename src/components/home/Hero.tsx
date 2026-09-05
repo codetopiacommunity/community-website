@@ -79,17 +79,20 @@ export function Hero() {
               engineering.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            {/* Stretch, not start: stacked, the two buttons sized to their own
+                labels and left a ragged edge down the hero. They match each
+                other on a phone and go back to hugging their text from sm. */}
+            <div className="flex flex-col items-stretch gap-5 sm:flex-row sm:items-center">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-3 bg-transparent text-white px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
+                className="group inline-flex items-center justify-center gap-3 bg-transparent text-white px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
               >
                 About Us
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 href={JOIN_URL}
-                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
+                className="group inline-flex items-center justify-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
               >
                 Join the Community
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

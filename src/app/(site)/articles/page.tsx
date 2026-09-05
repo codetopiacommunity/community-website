@@ -22,7 +22,11 @@ export default async function ArticlesPage() {
       <div className="flex-1 bg-background text-foreground min-h-screen">
         <section className="w-full py-32 md:py-40 bg-background border-b border-border">
           <Container className="px-4 flex flex-col gap-8">
-            <div className="flex items-end justify-between gap-6">
+            {/* Wraps rather than stacking: at 360px and up the toggle stays
+                beside the heading, and only a 320px screen, where
+                "Articles" at text-5xl plus the toggle cannot fit, drops
+                it to its own line. */}
+            <div className="flex flex-wrap items-end justify-between gap-6">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
                 Articles
               </h1>
@@ -76,7 +80,11 @@ export default async function ArticlesPage() {
       {/* Header */}
       <section className="w-full py-32 md:py-40 bg-background border-b border-border">
         <Container className="px-4 flex flex-col gap-8">
-          <div className="flex items-end justify-between gap-6">
+          {/* Wraps rather than stacking: at 360px and up the toggle stays
+                beside the heading, and only a 320px screen, where
+                "Articles" at text-5xl plus the toggle cannot fit, drops
+                it to its own line. */}
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="flex flex-col gap-4">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
                 Articles
