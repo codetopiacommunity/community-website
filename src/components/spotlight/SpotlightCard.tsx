@@ -74,16 +74,16 @@ export function SpotlightCard({
             beneath; the socials switch them back on for themselves. */}
         <div
           className={`absolute inset-x-0 bottom-0 z-30 flex flex-col justify-end pointer-events-none ${
-            isLarge ? "p-8 md:p-12 lg:p-16" : "p-6"
+            isLarge ? "p-5 sm:p-8 md:p-12 lg:p-16" : "p-4 sm:p-6"
           }`}
         >
-          <div className="transform group-hover:-translate-y-1 transition-transform duration-500 motion-reduce:transition-none flex flex-row items-end justify-between gap-6">
-            <div className="flex flex-col gap-4 min-w-0">
+          <div className="transform group-hover:-translate-y-1 transition-transform duration-500 motion-reduce:transition-none flex flex-row items-end justify-between gap-4 sm:gap-6">
+            <div className="flex flex-col gap-3 sm:gap-4 min-w-0">
               {/* Status as an eyebrow in the text block, the way the detail
                   page does it. As an icon on the photo it read as a favourite
                   marker, and the context already says which one is current. */}
               {spotlight.featured && (
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400">
+                <p className="hidden sm:block font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400">
                   Currently featured
                 </p>
               )}
@@ -91,14 +91,14 @@ export function SpotlightCard({
                 <h3
                   className={`${
                     isLarge
-                      ? "text-5xl md:text-7xl lg:text-8xl"
+                      ? "text-4xl sm:text-5xl md:text-7xl lg:text-8xl break-words"
                       : "text-2xl lg:text-3xl line-clamp-1"
                   } font-black uppercase tracking-tighter text-white leading-[0.85] font-sans`}
                 >
                   {spotlight.name}
                 </h3>
                 <p
-                  className={`font-mono uppercase tracking-[0.3em] text-zinc-400 line-clamp-1 ${
+                  className={`font-mono uppercase tracking-[0.3em] text-zinc-400 line-clamp-1 max-sm:hidden ${
                     isLarge ? "text-xs md:text-sm" : "text-[10px]"
                   }`}
                 >
@@ -125,7 +125,7 @@ export function SpotlightCard({
               height={200}
               unoptimized
               aria-hidden
-              className={`shrink-0 object-contain opacity-80 ${
+              className={`hidden sm:block shrink-0 object-contain opacity-80 ${
                 isLarge ? "w-20 h-20 md:w-28 md:h-28" : "w-12 h-12"
               }`}
             />
