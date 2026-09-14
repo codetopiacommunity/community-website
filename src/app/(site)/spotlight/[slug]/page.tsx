@@ -67,11 +67,11 @@ export default async function SpotlightDetailPage({
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      <section className="w-full pt-32 pb-16">
+      <section className="w-full pt-6 pb-12 sm:pt-8 sm:pb-16">
         <Container className="px-4">
           <Link
             href="/spotlight"
-            className="group inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors duration-200 mb-14"
+            className="group inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors duration-200 mb-8 sm:mb-10"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none" />
             Spotlight archive
@@ -80,9 +80,9 @@ export default async function SpotlightDetailPage({
           {/* Two columns: who they are on the left, what they did on the
               right. The left rail sticks while the feature scrolls, so the
               face and the socials stay with you through a long read. */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16">
             <aside className="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-28 lg:self-start">
-              <div className="relative aspect-[4/5] overflow-hidden bg-zinc-950 border border-zinc-900">
+              <div className="relative aspect-square sm:aspect-[4/5] overflow-hidden bg-zinc-950 border border-zinc-900">
                 <Image
                   src={spotlight.imageUrl}
                   alt={`${spotlight.name}, ${spotlight.role}`}
@@ -103,10 +103,10 @@ export default async function SpotlightDetailPage({
                     <span className="text-zinc-600"> · Currently featured</span>
                   )}
                 </p>
-                <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] font-sans">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] font-sans break-words">
                   {spotlight.name}
                 </h1>
-                <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em]">
+                <p className="text-zinc-400 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] break-words">
                   {spotlight.role}
                 </p>
               </div>
@@ -121,7 +121,7 @@ export default async function SpotlightDetailPage({
             <div className="lg:col-span-8 flex flex-col gap-8">
               {/* The teaser as a standfirst: larger and lighter than the body,
                   so the piece opens on the sentence that summarises it. */}
-              <p className="text-white text-xl md:text-2xl font-mono leading-relaxed">
+              <p className="text-white text-lg sm:text-xl md:text-2xl font-mono leading-relaxed break-words">
                 {spotlight.contribution}
               </p>
 
@@ -129,7 +129,7 @@ export default async function SpotlightDetailPage({
                   survives a plain textarea: the copy is written by hand, not
                   authored in a rich editor. */}
               {paragraphs.length > 0 && (
-                <div className="flex flex-col gap-6 text-zinc-400 text-lg font-mono leading-relaxed">
+                <div className="flex flex-col gap-5 sm:gap-6 text-zinc-400 text-base sm:text-lg font-mono leading-relaxed break-words">
                   {paragraphs.map((paragraph) => (
                     <p key={paragraph.slice(0, 60)}>{paragraph}</p>
                   ))}
@@ -143,13 +143,13 @@ export default async function SpotlightDetailPage({
       {/* Addressed to the person, not to the reader. The premise of this
           section is work that has not had the attention it deserves, so the
           page should say the thing that usually goes unsaid. */}
-      <section className="w-full pb-24">
+      <section className="w-full pb-16 sm:pb-24">
         <Container className="px-4">
-          <div className="max-w-3xl flex flex-col gap-6">
-            <p className="text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight font-sans">
+          <div className="max-w-3xl flex flex-col gap-5 sm:gap-6">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter leading-tight font-sans break-words">
               Thank you, {firstName}.
             </p>
-            <p className="text-zinc-400 text-lg font-mono leading-relaxed">
+            <p className="text-zinc-400 text-base sm:text-lg font-mono leading-relaxed">
               The tech space is a better one because of people like you, doing
               the work long before anyone thinks to say thank you. We noticed,
               and we are grateful. Someone starting out today will get further
@@ -167,7 +167,7 @@ export default async function SpotlightDetailPage({
                 it reads as the way onward rather than as more small print. */}
             <Link
               href="/spotlight"
-              className="group self-start inline-flex items-center gap-2 mt-6 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200"
+              className="group w-full sm:w-auto self-stretch sm:self-start inline-flex flex-wrap items-center justify-center sm:justify-start gap-2 mt-4 sm:mt-6 font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-5 sm:px-6 py-4 sm:py-3 text-center transition-colors duration-200"
             >
               See everyone we have featured
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
