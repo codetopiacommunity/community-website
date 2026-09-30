@@ -35,44 +35,44 @@ export const coreValues = [
   },
 ];
 
-/** What the community actually runs. Members run all of it. */
+/** What people do here, inward and outward. Members run all of it. */
 export const programmes = [
   {
-    tag: "Mentorships",
+    tag: "Real work",
     description:
-      "Experienced members working one-on-one with people a few steps behind them.",
-  },
-  {
-    tag: "Events",
-    description:
-      "Workshops and meetups, online and in person — including in schools and colleges around Ghana.",
+      "Our own projects, like this website and our open-source repos, and organisations are welcome to bring work to the people here too.",
   },
   {
     tag: "Teams",
     description:
-      "Small groups that each keep a part of the community running — events, writing, the website. You request to join; a team lead reviews it.",
+      "Small groups of members who each own an area. You request to join; a team lead reviews it.",
   },
   {
-    tag: "How-tos",
+    tag: "Showing up",
     description:
-      "Practical guides written by members, for the things people around here actually get stuck on.",
+      "Workshops, meetups and hackathons, online and in person across Ghana.",
   },
   {
-    tag: "Articles",
+    tag: "Sharing what you know",
     description:
-      "Technical writing that teaches something properly, published on our blog under the community's name.",
+      "Articles, how-to guides and talks, published under your name.",
   },
   {
-    tag: "Open source",
+    tag: "Opportunities",
     description:
-      "Our repos are public. Anyone can report a bug or fix one — member or not.",
+      "Roles, internships and projects from organisations, posted on our careers board.",
+  },
+  {
+    tag: "Recognition",
+    description:
+      "Reviewed work goes on your record, and the best of it is featured on the Wall of Impact and in Spotlight.",
   },
 ];
 
 /**
  * How work gets reviewed and recorded. Deliberately short — anything the
  * prose above already says doesn't earn a second airing as a rule, and
- * joining a team is covered under what we run.
+ * joining a team is covered under what happens here.
  */
 export const reviewRules = [
   { rule: "Nobody reviews their own work.", detail: null },
@@ -90,9 +90,9 @@ export const whatYouGet = [
       "Real projects with real users, not exercises. You'll be doing the thing, not reading about it.",
   },
   {
-    title: "Mentorship",
+    title: "People ahead of you",
     description:
-      "People who've already done what you're trying to do, and are willing to sit with you while you learn it.",
+      "People who've already done what you're trying to do, working on the same things you are and willing to help when you're stuck.",
   },
   {
     title: "Something to point at",
@@ -102,6 +102,6 @@ export const whatYouGet = [
   {
     title: "People who know your work",
     description:
-      "The members who reviewed what you made can speak to it — which is more than most CVs can offer.",
+      "The members who reviewed what you made can speak to it, which is more than most CVs can offer.",
   },
 ];

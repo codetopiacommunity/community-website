@@ -56,7 +56,7 @@ export function Newsletter() {
             </h2>
             <p className="text-zinc-400 text-base md:text-lg font-mono max-w-xl leading-relaxed">
               Project arrivals. Community narratives. <br />
-              The architectural pulse of the builders, delivered directly.
+              What the community is working on, delivered to your inbox.
             </p>
           </div>
 

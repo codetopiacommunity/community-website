@@ -74,9 +74,8 @@ export function Hero() {
           {/* Description + CTA */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <p className="text-zinc-400 text-base md:text-lg font-mono leading-relaxed max-w-md">
-              A community where developers and technologists learn together,
-              collaborate, and grow through structured mentorship and real-world
-              engineering.
+              An open community where people in tech do real work together,
+              reviewed by people who know the craft.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">

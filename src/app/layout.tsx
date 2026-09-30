@@ -16,7 +16,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Codetopia Community",
-  description: "Codetopia Community Website",
+  description:
+    "An open community where people in tech do real work together, reviewed by people who know the craft.",
 };
 
 export default function RootLayout({

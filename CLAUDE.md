@@ -1,6 +1,10 @@
 # Codetopia Community Website
 
-Public hub for Codetopia — a tech community based in Ghana, open to the world. Events, mentorships, careers, articles, gallery, how-to guides, and community impact stories, plus a full admin panel.
+Public hub for Codetopia Community — an open community where people in tech do real work together, based in Ghana and open to the world. Events, careers, articles, gallery, how-to guides, community impact stories, and the archive of past mentorship programmes, plus a full admin panel.
+
+Teaching (mentorship programmes, courses, structured learning) belongs to Codetopia Academy, not the community. Don't add copy that promises it here.
+
+In visitor-facing copy, avoid em dashes. Use a full stop, colon or comma instead.
 
 **Production:** [community.codetopia.org](https://community.codetopia.org)
 

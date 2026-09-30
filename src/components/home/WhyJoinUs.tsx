@@ -30,9 +30,9 @@ const reasons = [
     icon: Signal,
   },
   {
-    title: "Mentorship, Assigned",
+    title: "Open To Organisations",
     description:
-      "Not join and hope. One-on-one guidance from people who have already done the thing you are trying to do.",
+      "Led by Codetopia and run by its members. Any organisation that wants to work with the people here is welcome.",
     icon: Compass,
   },
   {
@@ -47,13 +47,13 @@ const everyday = [
   {
     title: "Collaborative Projects",
     description:
-      "Real-world work on community-led systems and open-source contributions.",
+      "Real work, from our own projects and open source to work organisations are welcome to bring.",
     icon: GitPullRequest,
   },
   {
-    title: "Technical Training",
+    title: "People Ahead Of You",
     description:
-      "Structured learning paths and workshops, from fundamentals to advanced architecture.",
+      "Ask when you are stuck, get your work reviewed, and work alongside people who have already done it.",
     icon: Layers,
   },
   {
@@ -95,11 +95,11 @@ export function WhyJoinUs() {
               time you put in.
             </p>
             <p>
-              Here, the work gets written down. You join a team, you do real
-              work, practitioners review it, and what you did becomes part of
-              who you are in the community. A record you never had to write
-              about yourself, because the people you worked with wrote it for
-              you.
+              Here, the work gets written down. You do real work, on a team, a
+              project or an event, practitioners review it, and what you did
+              becomes part of who you are in the community. A record you never
+              had to write about yourself, because the people you worked with
+              wrote it for you.
             </p>
             <p>
               And it counts the contributions that normally leave no trace: the

@@ -15,7 +15,8 @@ export default function CareersPage() {
                 OPEN <span className="text-zinc-400">ROLES</span>
               </h1>
               <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-                Internships, jobs, and projects built for the community.
+                Roles, internships, and projects from organisations that want to
+                work with our members.
               </p>
             </div>
           </div>

@@ -31,9 +31,8 @@ export function OurImpact() {
               The <span className="text-zinc-400">Impact</span>
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
-              We don&apos;t just work with industry leaders; we actively empower
-              the next generation of developers across schools, bootcamps, and
-              local hubs.
+              The events, sessions and programmes members have run, and the
+              schools, hubs and organisations they ran them with.
             </p>
           </div>
         </Container>

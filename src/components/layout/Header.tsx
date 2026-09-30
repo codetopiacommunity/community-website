@@ -30,7 +30,6 @@ type MegaMenuNavItem = {
 type NavItem = StandaloneNavItem | MegaMenuNavItem;
 
 const NAV_ITEMS: NavItem[] = [
-  { type: "link", label: "Mentorships", href: "/mentorships" },
   { type: "link", label: "Careers", href: "/careers" },
   {
     type: "megamenu",

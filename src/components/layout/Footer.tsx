@@ -112,8 +112,8 @@ export function Footer() {
                 />
               </Link>
               <p className="font-mono text-sm text-zinc-400 max-w-xs leading-relaxed">
-                A community where developers learn together, collaborate, and
-                grow. Based in Ghana, open to the world.
+                An open community where people in tech do real work together.
+                Based in Ghana, open to the world.
               </p>
               <div className="flex flex-wrap gap-5">
                 {socialIcons.map((social) => (
