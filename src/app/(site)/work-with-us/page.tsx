@@ -85,8 +85,8 @@ export default function WorkWithUsPage() {
               <Prose>
                 Codetopia Community brings together people in tech doing real
                 work across every discipline and level. We welcome organisations
-                that want to work with them: to hire, to collaborate, or to
-                share what they know.
+                that want to work with our members: to hire, to collaborate, or
+                to share what they know.
               </Prose>
             </div>
           </div>
@@ -140,20 +140,17 @@ export default function WorkWithUsPage() {
 
       {/* ── 03 · How we work ─────────────────────────────────── */}
       <Section num="03" label="How We Work">
-        <Heading>Built around our members.</Heading>
+        <Heading>Welcome to a community built around you.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
-            The community is run by volunteers, and every opportunity is an
-            invitation, never an obligation. Members choose what they take on.
+            We are entirely volunteer-run, meaning every opportunity is an open
+            invitation, not a requirement. You are always in control of what you
+            take on, and your privacy is secure.
           </Prose>
           <Prose>
-            Members&rsquo; details stay private. Organisations meet the people
-            here through the roles they post, the challenges they share and the
-            events they&rsquo;re part of.
-          </Prose>
-          <Prose>
-            That&rsquo;s why the people you&rsquo;ll meet here are here because
-            they want to be.
+            Organisations will get to know you through the roles, challenges,
+            and events you choose to join. Ultimately, this means the people you
+            encounter are here because they truly want to be.
           </Prose>
         </div>
       </Section>
