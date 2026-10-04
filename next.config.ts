@@ -47,6 +47,13 @@ const nextConfig: NextConfig = {
         destination: "/careers/:slug*",
         permanent: true,
       },
+      // Folder renamed before the guides were numbered. Renumbering, renames
+      // and letter case are handled on the guide page (see resolveHowto).
+      {
+        source: "/howtos/Contributing-and-Volunteering/:slug*",
+        destination: "/howtos/contributing/ways-to-contribute",
+        permanent: true,
+      },
     ];
   },
 };

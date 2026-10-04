@@ -24,7 +24,7 @@ const communityLinks = [
   { name: "Work With Us", href: "/work-with-us" },
   {
     name: "Become a Volunteer",
-    href: "/howtos/Contributing-and-Volunteering/01-ways-to-contribute-and-volunteer",
+    href: "/howtos/contributing/ways-to-contribute",
   },
 ];
 
