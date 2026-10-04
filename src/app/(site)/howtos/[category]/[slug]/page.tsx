@@ -37,6 +37,9 @@ const MDX_OPTIONS = {
           theme: { light: "github-light", dark: "github-dark" },
           keepBackground: false,
           bypassInlineCode: true,
+          // Fences with no language (message templates in the guides) would
+          // otherwise skip the highlighter and miss the code block styles.
+          defaultLang: { block: "plaintext" },
         },
       ],
     ] as PluggableList,
