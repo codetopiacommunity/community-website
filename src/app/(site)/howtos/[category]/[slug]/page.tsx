@@ -48,6 +48,21 @@ const MDX_OPTIONS = {
   },
 };
 
+/**
+ * The guide behind a URL and its source, redirecting older forms of the
+ * address to the clean one and 404ing when there is no such guide.
+ */
+async function loadHowto(category: string, slug: string) {
+  const howto = await resolveHowto(category, slug).catch(() => null);
+  if (!howto) notFound();
+  if (category !== howto.categorySlug || slug !== howto.slug) {
+    permanentRedirect(howtoHref(howto));
+  }
+  const raw = await getHowtoRaw(howto.category, howto.file).catch(() => null);
+  if (!raw) notFound();
+  return { howto, raw };
+}
+
 export default async function HowtoPage({
   params,
 }: {
@@ -55,14 +70,7 @@ export default async function HowtoPage({
 }) {
   const { category, slug } = await params;
 
-  const howto = await resolveHowto(category, slug).catch(() => null);
-  if (!howto) notFound();
-  if (category !== howto.categorySlug || slug !== howto.slug) {
-    permanentRedirect(howtoHref(howto));
-  }
-
-  const raw = await getHowtoRaw(howto.category, howto.file).catch(() => null);
-  if (!raw) notFound();
+  const { howto, raw } = await loadHowto(category, slug);
 
   const { content: rawContent, data } = matter(raw);
   const content = stripLeadingH1(rawContent);
