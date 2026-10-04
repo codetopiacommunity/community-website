@@ -1,6 +1,6 @@
 import matter from "gray-matter";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { FaArrowLeft } from "react-icons/fa6";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -18,6 +18,8 @@ import {
   getHowtoRaw,
   getHowtosByCategory,
   type HowtoMeta,
+  howtoHref,
+  resolveHowto,
   stripLeadingH1,
 } from "@/lib/howtos";
 import { extractMarkdownToc } from "@/lib/toc";
@@ -53,7 +55,13 @@ export default async function HowtoPage({
 }) {
   const { category, slug } = await params;
 
-  const raw = await getHowtoRaw(category, slug).catch(() => null);
+  const howto = await resolveHowto(category, slug).catch(() => null);
+  if (!howto) notFound();
+  if (category !== howto.categorySlug || slug !== howto.slug) {
+    permanentRedirect(howtoHref(howto));
+  }
+
+  const raw = await getHowtoRaw(howto.category, howto.file).catch(() => null);
   if (!raw) notFound();
 
   const { content: rawContent, data } = matter(raw);
@@ -72,8 +80,10 @@ export default async function HowtoPage({
   const hasToc = toc.length >= 3;
   const readingMinutes = estimateReadingTime(content);
 
-  const relatedGuides = (await getHowtosByCategory(category).catch(() => []))
-    .filter((h) => h.slug !== slug)
+  const relatedGuides = (
+    await getHowtosByCategory(howto.category).catch(() => [])
+  )
+    .filter((h) => h.file !== howto.file)
     .slice(0, 3);
 
   const article = (
@@ -162,7 +172,7 @@ export default async function HowtoPage({
           <Container className="px-4">
             <div className="max-w-6xl mx-auto px-2">
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                More in {category.replace(/-/g, " ")}
+                More in {howto.category.replace(/-/g, " ")}
               </p>
               {relatedGuides.map((howto) => (
                 <HowtoRow
