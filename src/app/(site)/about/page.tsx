@@ -142,9 +142,8 @@ async function loadAboutData(): Promise<{
 // The mechanics of signing up — the portal, Discord, the order to do them in
 // — live in the how-tos. This page says how the community works; the guides
 // say which buttons to press.
-const JOIN_GUIDE = "/howtos/Getting-Started/01-join-the-community";
-const CONTRIBUTE_GUIDE =
-  "/howtos/Contributing-and-Volunteering/01-ways-to-contribute-and-volunteer";
+const JOIN_GUIDE = "/howtos/getting-started/join-the-community";
+const CONTRIBUTE_GUIDE = "/howtos/contributing/ways-to-contribute";
 
 export default async function AboutPage() {
   const { record, faces, stats } = await loadAboutData();

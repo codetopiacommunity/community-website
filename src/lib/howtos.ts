@@ -11,9 +11,24 @@ export interface HowtoMeta {
 }
 
 export interface HowtoSummary {
+  /** URL slug: the file name without its number, e.g. "help-out". */
   slug: string;
+  /** File name without ".mdx", e.g. "02-help-out". The number sets the order. */
+  file: string;
+  /** Folder name in the repo, e.g. "Getting-Started". */
   category: string;
+  /** URL segment for the folder, e.g. "getting-started". */
+  categorySlug: string;
   meta: HowtoMeta;
+}
+
+/** "02-help-out" -> "help-out". */
+export function cleanSlug(file: string): string {
+  return file.replace(/^\d+-/, "");
+}
+
+export function howtoHref(howto: Pick<HowtoSummary, "categorySlug" | "slug">) {
+  return `/howtos/${howto.categorySlug}/${howto.slug}`;
 }
 
 async function ghFetch(path: string) {
@@ -61,17 +76,56 @@ export async function getHowtosByCategory(
 
   const results = await Promise.all(
     mdxFiles.map(async (file: { name: string }) => {
-      const slug = file.name.replace(/\.mdx$/, "");
-      const raw = await getHowtoRaw(category, slug);
+      const name = file.name.replace(/\.mdx$/, "");
+      const raw = await getHowtoRaw(category, name);
       if (!raw) return null;
       const { data: meta } = matter(raw);
-      return { slug, category, meta: meta as HowtoMeta };
+      return {
+        slug: cleanSlug(name),
+        file: name,
+        category,
+        categorySlug: category.toLowerCase(),
+        meta: meta as HowtoMeta,
+      };
     }),
   );
 
   return (results.filter(Boolean) as HowtoSummary[]).sort((a, b) =>
-    a.slug.localeCompare(b.slug),
+    a.file.localeCompare(b.file),
   );
+}
+
+// Guides whose name changed, mapped both ways so a link works before and
+// after the rename reaches the howtos repo.
+const RENAMED_PAIRS: [string, string][] = [
+  ["make-your-first-contribution", "help-out"],
+  ["your-first-fix", "your-first-pull-request"],
+];
+const RENAMED_GUIDES: Record<string, string[]> = {};
+for (const [oldName, newName] of RENAMED_PAIRS) {
+  RENAMED_GUIDES[oldName] = [newName];
+  RENAMED_GUIDES[newName] = [oldName];
+}
+
+/**
+ * Finds the guide behind a URL. Accepts the clean form
+ * (/howtos/contributing/help-out) and older ones: any letter case, and the
+ * file name with its number (/howtos/Contributing/02-help-out). The caller
+ * redirects to `howtoHref(result)` when the URL is not already that.
+ */
+export async function resolveHowto(
+  categoryParam: string,
+  slugParam: string,
+): Promise<HowtoSummary | null> {
+  const categories = await getCategories();
+  const category = categories.find(
+    (c) => c.toLowerCase() === categoryParam.toLowerCase(),
+  );
+  if (!category) return null;
+  const wanted = cleanSlug(slugParam.toLowerCase());
+  const howtos = await getHowtosByCategory(category);
+  const names = [wanted, ...(RENAMED_GUIDES[wanted] ?? [])];
+  return howtos.find((h) => names.includes(h.slug.toLowerCase())) ?? null;
 }
 
 export async function getAllHowtos(): Promise<HowtoSummary[]> {

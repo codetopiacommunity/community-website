@@ -5,7 +5,7 @@
  * production URL, which sends anyone clicking it in dev or preview straight
  * to production. Those two should move onto this constant too.
  */
-export const JOIN_URL = "/howtos/Getting-Started/01-join-the-community";
+export const JOIN_URL = "/howtos/getting-started/join-the-community";
 
 /**
  * Where organisations write to us. One inbox for everything until each kind
