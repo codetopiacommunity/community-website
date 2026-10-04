@@ -489,6 +489,7 @@ html {
   overflow-x: auto;
   border: 1px solid var(--border);
   background: var(--muted);
+  color: var(--foreground);
   padding: 1rem 0;
   font-size: 0.8125rem;
   line-height: 1.7;
@@ -514,12 +515,15 @@ html {
   border-radius: 2px;
 }
 
+/* Plain text gets no Shiki colours, so fall back to the page's own text
+   colour rather than the typography plugin's, which is meant for a dark
+   block and disappears on --muted. */
 [data-rehype-pretty-code-figure] code span {
-  color: var(--shiki-light);
+  color: var(--shiki-light, var(--foreground));
 }
 
 .dark [data-rehype-pretty-code-figure] code span {
-  color: var(--shiki-dark);
+  color: var(--shiki-dark, var(--foreground));
 }
 
 /* ── Inline code (howto guides) ──
