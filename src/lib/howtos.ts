@@ -25,6 +25,14 @@ async function ghFetch(path: string) {
   return res.json();
 }
 
+// Categories a newcomer should meet first. Any other folder follows, A to Z.
+const CATEGORY_ORDER = ["Getting-Started", "Contributing"];
+
+function categoryRank(name: string): number {
+  const index = CATEGORY_ORDER.indexOf(name);
+  return index === -1 ? CATEGORY_ORDER.length : index;
+}
+
 export async function getCategories(): Promise<string[]> {
   const data = await ghFetch("/");
   if (!Array.isArray(data)) return [];
@@ -33,7 +41,11 @@ export async function getCategories(): Promise<string[]> {
       (item: { type: string; name: string }) =>
         item.type === "dir" && !item.name.startsWith("."),
     )
-    .map((item: { name: string }) => item.name);
+    .map((item: { name: string }) => item.name)
+    .sort(
+      (a: string, b: string) =>
+        categoryRank(a) - categoryRank(b) || a.localeCompare(b),
+    );
 }
 
 export async function getHowtosByCategory(
@@ -57,7 +69,9 @@ export async function getHowtosByCategory(
     }),
   );
 
-  return results.filter(Boolean) as HowtoSummary[];
+  return (results.filter(Boolean) as HowtoSummary[]).sort((a, b) =>
+    a.slug.localeCompare(b.slug),
+  );
 }
 
 export async function getAllHowtos(): Promise<HowtoSummary[]> {
