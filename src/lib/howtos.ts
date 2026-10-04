@@ -124,8 +124,8 @@ export async function resolveHowto(
   if (!category) return null;
   const wanted = cleanSlug(slugParam.toLowerCase());
   const howtos = await getHowtosByCategory(category);
-  const names = [wanted, ...(RENAMED_GUIDES[wanted] ?? [])];
-  return howtos.find((h) => names.includes(h.slug.toLowerCase())) ?? null;
+  const names = new Set([wanted, ...(RENAMED_GUIDES[wanted] ?? [])]);
+  return howtos.find((h) => names.has(h.slug.toLowerCase())) ?? null;
 }
 
 export async function getAllHowtos(): Promise<HowtoSummary[]> {
