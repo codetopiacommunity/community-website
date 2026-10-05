@@ -10,7 +10,7 @@ import { remarkAlert } from "remark-github-blockquote-alert";
 import type { PluggableList } from "unified";
 import { TableOfContents } from "@/components/articles/TableOfContents";
 import { HowtoRow } from "@/components/howtos/HowtoRow";
-import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdx";
+import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdxComponents";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
