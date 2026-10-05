@@ -25,13 +25,13 @@ export function HowtoRow({ howto }: { howto: HowtoSummary }) {
             {howto.meta.description}
           </span>
         )}
-        {(howto.meta.author || formattedDate) && (
-          <div className="flex items-center gap-3 font-mono text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">
-            {howto.meta.author && <span>{howto.meta.author}</span>}
-            {howto.meta.author && formattedDate && <span>·</span>}
-            {formattedDate && <span>{formattedDate}</span>}
-          </div>
-        )}
+        <div className="flex items-center gap-3 font-mono text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">
+          <span>{howto.minutes} min read</span>
+          {howto.meta.author && <span>·</span>}
+          {howto.meta.author && <span>{howto.meta.author}</span>}
+          {formattedDate && <span>·</span>}
+          {formattedDate && <span>{formattedDate}</span>}
+        </div>
       </div>
       <ArrowUpRight className="shrink-0 mt-1 w-5 h-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
     </Link>

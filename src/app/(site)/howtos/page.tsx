@@ -1,7 +1,14 @@
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdx";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import { getAllHowtos, getHowtosIntro, type HowtoSummary } from "@/lib/howtos";
+import {
+  getAllHowtos,
+  getHowtosIntro,
+  type HowtoSummary,
+  howtoHref,
+} from "@/lib/howtos";
 import { HowtosClient } from "./HowtosClient";
 
 export const revalidate = 60;
@@ -39,7 +46,8 @@ export default async function HowtosPage() {
             How-Tos
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-            Practical guides and walkthroughs written by community members.
+            Step-by-step guides to join Codetopia Community, find your way
+            around and help out. Written for complete beginners.
           </p>
         </Container>
       </section>
@@ -64,6 +72,7 @@ export default async function HowtosPage() {
               <MDXRemote
                 source={intro}
                 components={{
+                  ...HOWTO_MDX_COMPONENTS,
                   h1: (props) => <h2 {...props} />,
                   h2: (props) => <h3 {...props} />,
                   h3: (props) => <h4 {...props} />,
@@ -75,6 +84,45 @@ export default async function HowtosPage() {
       )}
 
       <HowtosClient howtos={howtos} categories={categories} />
+
+      <HelpStrip howtos={howtos} />
     </div>
+  );
+}
+
+/** "Stuck?" links at the foot of the page. Guides are linked only if they exist. */
+function HelpStrip({ howtos }: { howtos: HowtoSummary[] }) {
+  const find = (slug: string) => howtos.find((h) => h.slug === slug);
+  const links = [find("faq"), find("staying-safe")].filter(
+    (h): h is HowtoSummary => Boolean(h),
+  );
+  return (
+    <section className="border-t border-border">
+      <Container className="px-4 py-16">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
+          Stuck?
+        </p>
+        <p className="font-sans font-black uppercase tracking-tighter text-2xl md:text-3xl mb-6">
+          Ask in #ask-for-help on Discord.
+        </p>
+        <p className="font-mono text-sm text-muted-foreground max-w-2xl mb-8">
+          Say what you were trying to do and what you saw instead. Nobody will
+          think less of you.
+        </p>
+        {links.length > 0 && (
+          <div className="flex flex-wrap gap-3">
+            {links.map((h) => (
+              <Link
+                key={h.slug}
+                href={howtoHref(h)}
+                className="border border-border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 hover:border-foreground"
+              >
+                {h.meta.title ?? h.slug}
+              </Link>
+            ))}
+          </div>
+        )}
+      </Container>
+    </section>
   );
 }

@@ -9,9 +9,8 @@ import remarkGfm from "remark-gfm";
 import { remarkAlert } from "remark-github-blockquote-alert";
 import type { PluggableList } from "unified";
 import { TableOfContents } from "@/components/articles/TableOfContents";
-import { CodeBlock } from "@/components/howtos/CodeBlock";
 import { HowtoRow } from "@/components/howtos/HowtoRow";
-import { ImageRow } from "@/components/howtos/ImageRow";
+import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdx";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
@@ -27,7 +26,7 @@ import { extractMarkdownToc } from "@/lib/toc";
 
 export const revalidate = 60;
 
-const MDX_COMPONENTS = { pre: CodeBlock, ImageRow };
+const MDX_COMPONENTS = HOWTO_MDX_COMPONENTS;
 
 const MDX_OPTIONS = {
   mdxOptions: {
