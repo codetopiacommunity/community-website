@@ -5,6 +5,14 @@ import { HowtoRow } from "@/components/howtos/HowtoRow";
 import { Container } from "@/components/layout/Container";
 import type { HowtoSummary } from "@/lib/howtos";
 
+/** One line under each section heading, so newcomers know where to look. */
+const CATEGORY_BLURBS: Record<string, string> = {
+  "Getting-Started":
+    "Join, find your way around Discord, your first week, events and staying safe.",
+  Contributing:
+    "Help out when you can, write for the blog, join a team, and your first pull request.",
+};
+
 export function HowtosClient({
   howtos,
   categories,
@@ -110,6 +118,10 @@ export function HowtosClient({
 
           {/* Main content */}
           <div className="flex-1 min-w-0">
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans mb-6">
+              All guides
+            </h2>
+
             {/* Search */}
             <div className="mb-10">
               <input
@@ -145,9 +157,14 @@ export function HowtosClient({
                       {items.length} {items.length === 1 ? "guide" : "guides"}
                     </span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter font-sans mb-6">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter font-sans mb-2">
                     {category.replace(/-/g, " ")}
-                  </h2>
+                  </h3>
+                  {CATEGORY_BLURBS[category] && (
+                    <p className="font-mono text-sm text-muted-foreground mb-6">
+                      {CATEGORY_BLURBS[category]}
+                    </p>
+                  )}
 
                   {items.map((howto) => (
                     <HowtoRow

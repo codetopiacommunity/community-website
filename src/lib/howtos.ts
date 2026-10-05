@@ -19,6 +19,8 @@ export interface HowtoSummary {
   category: string;
   /** URL segment for the folder, e.g. "getting-started". */
   categorySlug: string;
+  /** Estimated reading time in minutes. */
+  minutes: number;
   meta: HowtoMeta;
 }
 
@@ -79,8 +81,9 @@ export async function getHowtosByCategory(
       const name = file.name.replace(/\.mdx$/, "");
       const raw = await getHowtoRaw(category, name);
       if (!raw) return null;
-      const { data: meta } = matter(raw);
+      const { data: meta, content } = matter(raw);
       return {
+        minutes: estimateReadingTime(content),
         slug: cleanSlug(name),
         file: name,
         category,
