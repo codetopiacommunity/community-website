@@ -1,8 +1,6 @@
 import { ArrowUpRight, CircleCheck } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { CodeBlock } from "./CodeBlock";
-import { ImageRow } from "./ImageRow";
 
 /*
  * Components howto guides can use in their MDX. They make things a beginner
@@ -178,18 +176,3 @@ export function DoneWhen({ children }: { children: ReactNode }) {
     </div>
   );
 }
-
-/** Everything a howto's MDX can use, for the guide pages and the landing. */
-export const HOWTO_MDX_COMPONENTS = {
-  pre: CodeBlock,
-  ImageRow,
-  Command,
-  Channel,
-  Button,
-  Key,
-  Steps,
-  Step,
-  Cards,
-  Card,
-  DoneWhen,
-};

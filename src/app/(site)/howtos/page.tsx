@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdx";
+import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdxComponents";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
