@@ -193,11 +193,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((article) => (
-            <ArticleCard
-              key={article.slug}
-              article={article}
-              href={`/articles/${article.slug}`}
-            />
+            <ArticleCard key={article.slug} article={article} />
           ))}
         </div>
       )}
