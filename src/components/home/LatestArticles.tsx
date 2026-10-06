@@ -43,11 +43,7 @@ export async function LatestArticles() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {latest.map((article) => (
-            <ArticleCard
-              key={article.slug}
-              article={article}
-              href={`/articles/${article.slug}`}
-            />
+            <ArticleCard key={article.slug} article={article} />
           ))}
         </div>
 

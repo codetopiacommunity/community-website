@@ -26,10 +26,7 @@ export interface HashnodeArticle {
   tags: HashnodeTag[];
   reactionCount: number;
   responseCount: number;
-}
-
-export interface HashnodeArticleDetail extends HashnodeArticle {
-  content: { html: string };
+  /** The article on Hashnode. The site lists articles and links here. */
   url: string;
 }
 
@@ -130,7 +127,7 @@ function getFirstImageUrl(html: string): string {
   return imageMatch?.[1] ? decodeXml(imageMatch[1]) : "";
 }
 
-function parseRssArticle(item: string): HashnodeArticleDetail {
+function parseRssArticle(item: string): HashnodeArticle {
   const title = getXmlTagValue(item, "title");
   const link = getXmlTagValue(item, "link");
   const description = getXmlTagValue(item, "description");
@@ -166,15 +163,12 @@ function parseRssArticle(item: string): HashnodeArticleDetail {
     tags,
     reactionCount: 0,
     responseCount: 0,
-    content: { html: content },
     url: link,
   };
 }
 
-async function fetchRssArticles(
-  host: string,
-): Promise<HashnodeArticleDetail[]> {
-  return withRetry<HashnodeArticleDetail[]>(
+async function fetchRssArticles(host: string): Promise<HashnodeArticle[]> {
+  return withRetry<HashnodeArticle[]>(
     async () => {
       const publicationHost = validatePublicationHost(host);
       const res = await fetch(`https://${publicationHost}/rss.xml`, {
@@ -202,10 +196,8 @@ export async function fetchArticles(host: string): Promise<HashnodeArticle[]> {
   return fetchRssArticles(host);
 }
 
-export async function fetchArticle(
-  host: string,
-  slug: string,
-): Promise<HashnodeArticleDetail | null> {
-  const articles = await fetchRssArticles(host);
-  return articles.find((article) => article.slug === slug) ?? null;
+// Where an article lives on Hashnode. Built from the host alone, without
+// the feed, so it works for old articles that have left the RSS feed too.
+export function hashnodeArticleUrl(host: string, slug: string): string {
+  return `https://${validatePublicationHost(host)}/${encodeURIComponent(slug)}`;
 }

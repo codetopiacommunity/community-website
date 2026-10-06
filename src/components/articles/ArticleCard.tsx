@@ -1,13 +1,13 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import type { HashnodeArticle } from "@/lib/hashnode";
 
 export interface ArticleCardProps {
   article: HashnodeArticle;
-  href: string;
 }
 
-export function ArticleCard({ article, href }: ArticleCardProps) {
+// Articles are read on Hashnode, so the card links out in a new tab.
+export function ArticleCard({ article }: ArticleCardProps) {
   const formattedDate = new Date(article.publishedAt).toLocaleDateString(
     "en-US",
     { year: "numeric", month: "short", day: "numeric" },
@@ -16,8 +16,10 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
   const visibleTags = article.tags.slice(0, 3);
 
   return (
-    <Link
-      href={href}
+    <a
+      href={article.url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="group flex flex-col bg-background border border-border hover:border-foreground transition-colors duration-200 overflow-hidden"
     >
       {/* Cover Image */}
@@ -71,11 +73,15 @@ export function ArticleCard({ article, href }: ArticleCardProps) {
             <span>{formattedDate}</span>
             <span>{article.readTimeInMinutes} min read</span>
           </div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-            {article.author.name}
-          </span>
+          <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span>{article.author.name}</span>
+            <span className="inline-flex items-center gap-1 group-hover:text-foreground transition-colors">
+              Read on Hashnode
+              <ArrowUpRight className="w-3 h-3" />
+            </span>
+          </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
