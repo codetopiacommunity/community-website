@@ -4,7 +4,6 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { HashnodeArticle } from "@/lib/hashnode";
 
@@ -65,8 +64,10 @@ export function FeaturedCarousel({ articles }: FeaturedCarouselProps) {
                 key={article.slug}
                 className="relative flex-[0_0_100%] h-full"
               >
-                <Link
-                  href={`/articles/${article.slug}`}
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full h-full"
                 >
                   {article.coverImage?.url ? (
@@ -98,7 +99,7 @@ export function FeaturedCarousel({ articles }: FeaturedCarouselProps) {
                       <span>{article.readTimeInMinutes} min read</span>
                     </div>
                   </div>
-                </Link>
+                </a>
               </div>
             );
           })}
