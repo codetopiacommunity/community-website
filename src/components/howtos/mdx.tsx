@@ -1,4 +1,4 @@
-import { ArrowUpRight, CircleCheck } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -30,7 +30,7 @@ export function Command({ children }: { children: ReactNode }) {
 
 export function Channel({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-block rounded-none border border-border bg-muted px-1.5 py-0.5 font-sans text-[0.9em] font-semibold whitespace-nowrap">
+    <span className="inline-block rounded-none bg-muted px-1 font-sans text-[0.95em] font-semibold whitespace-nowrap">
       <span aria-hidden="true" className="opacity-70">
         #
       </span>
@@ -58,12 +58,13 @@ export function Key({ children }: { children: ReactNode }) {
 
 export function Steps({ children }: { children: ReactNode }) {
   return (
-    <ol className="not-prose my-8 grid list-none gap-3 p-0 [counter-reset:step]">
+    <ol className="not-prose my-8 list-none border-t border-border p-0 [counter-reset:step]">
       {children}
     </ol>
   );
 }
 
+/** One numbered step: a big number, the title as a link, a line of text. */
 export function Step({
   title,
   href,
@@ -75,56 +76,49 @@ export function Step({
   time?: string;
   children?: ReactNode;
 }) {
-  const body = (
-    <>
+  return (
+    <li className="flex gap-5 border-b border-border py-5 [counter-increment:step]">
       <span
         aria-hidden="true"
-        className="flex h-10 w-10 shrink-0 items-center justify-center border border-foreground font-sans text-lg font-black [counter-increment:step] before:content-[counter(step)]"
+        className="w-8 shrink-0 font-sans text-3xl font-black leading-none text-muted-foreground before:content-[counter(step)]"
       />
-      <span className="flex min-w-0 flex-1 flex-col gap-1">
-        <span className="font-sans text-lg font-black uppercase tracking-tight">
-          {title}
+      <span className="flex min-w-0 flex-col gap-1">
+        <span className="font-sans text-lg font-bold">
+          {href ? (
+            <Link
+              href={href}
+              className="underline decoration-border underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
+            >
+              {title}
+            </Link>
+          ) : (
+            title
+          )}
+          {time && (
+            <span className="ml-2 font-mono text-xs font-normal whitespace-nowrap text-muted-foreground">
+              {time}
+            </span>
+          )}
         </span>
         {children && (
           <span className="font-mono text-sm leading-relaxed text-muted-foreground">
             {children}
           </span>
         )}
-        {time && (
-          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            {time}
-          </span>
-        )}
       </span>
-      {href && (
-        <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
-      )}
-    </>
-  );
-  const className =
-    "group flex items-start gap-4 border border-border p-4 md:p-5 no-underline";
-  return (
-    <li>
-      {href ? (
-        <Link
-          href={href}
-          className={`${className} transition-colors hover:border-foreground`}
-        >
-          {body}
-        </Link>
-      ) : (
-        <div className={className}>{body}</div>
-      )}
     </li>
   );
 }
 
 export function Cards({ children }: { children: ReactNode }) {
   return (
-    <div className="not-prose my-8 grid gap-3 sm:grid-cols-2">{children}</div>
+    <div className="not-prose my-8 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+      {children}
+    </div>
   );
 }
 
+/** A short item in a two-column list: a bold title (a link if href) and a line. */
 export function Card({
   title,
   href,
@@ -134,14 +128,18 @@ export function Card({
   href?: string;
   children?: ReactNode;
 }) {
-  const body = (
-    <>
-      <span className="flex items-start justify-between gap-3">
-        <span className="font-sans text-base font-black uppercase tracking-tight">
-          {title}
-        </span>
-        {href && (
-          <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="font-sans text-base font-bold">
+        {href ? (
+          <Link
+            href={href}
+            className="underline decoration-border underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
+          >
+            {title}
+          </Link>
+        ) : (
+          title
         )}
       </span>
       {children && (
@@ -149,28 +147,16 @@ export function Card({
           {children}
         </span>
       )}
-    </>
-  );
-  const className =
-    "group flex h-full flex-col gap-2 border border-border p-4 no-underline";
-  return href ? (
-    <Link
-      href={href}
-      className={`${className} transition-colors hover:border-foreground`}
-    >
-      {body}
-    </Link>
-  ) : (
-    <div className={className}>{body}</div>
+    </div>
   );
 }
 
 export function DoneWhen({ children }: { children: ReactNode }) {
   return (
     <div className="my-8 border-l-[3px] border-l-[var(--success-500)] bg-muted px-5 py-4 [&>p:last-child]:mb-0 [&_ol]:my-2 [&_ul]:my-2">
-      <p className="!mt-0 mb-2 flex items-center gap-2 font-sans text-sm font-black uppercase tracking-widest text-[var(--success-500)]">
+      <p className="!mt-0 mb-2 flex items-center gap-2 font-sans text-base font-bold text-[var(--success-500)]">
         <CircleCheck className="h-4 w-4" aria-hidden="true" />
-        Done when
+        You are done when
       </p>
       {children}
     </div>
