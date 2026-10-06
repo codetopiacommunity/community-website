@@ -33,7 +33,7 @@ src/
     ui/           # shadcn/ui primitives
   lib/
     howtos.ts     # fetches MDX guides from codetopiacommunity/community-howtos via GitHub API
-    hashnode.ts   # fetches articles from Hashnode via GraphQL
+    hashnode.ts   # fetches articles from the Hashnode publication's RSS feed
   types/
     index.ts      # shared TypeScript interfaces
 prisma/
@@ -47,7 +47,7 @@ prisma/
 - **Server components** handle data fetching. **Client islands** (`"use client"`) handle interactivity.
 - Pages use `export const revalidate = 60` (ISR) — the DB is never queried at build time.
 - How-to guides are MDX files in a separate repo (`codetopiacommunity/community-howtos`), fetched live via the GitHub API.
-- Articles are fetched from Hashnode's GraphQL API. The Hashnode host and featured slugs are stored in the DB and configurable from the admin panel.
+- Articles are read from the Hashnode publication's RSS feed (`https://<host>/rss.xml`). Hashnode's GraphQL API needs a Pro plan for every request since May 2026, so it is not used. The Hashnode host and featured slugs are stored in the DB and configurable from the admin panel.
 - Admin auth uses SSO via the Community Portal (OAuth2 + PKCE). Optional — the app runs without the SSO env vars but admin login will fail.
 
 ---

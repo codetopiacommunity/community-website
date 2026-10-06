@@ -1,7 +1,9 @@
 import { withRetry } from "./retry";
 
-const HASHNODE_GQL_ENDPOINT = "https://gql.hashnode.com";
-const HASHNODE_POSTS_LIMIT = 50;
+// Articles come from the publication's public RSS feed. Hashnode's GraphQL
+// API needs a Pro plan for every request since 13 May 2026, reads included,
+// so the feed is the free source. It carries the full article HTML but no
+// reaction or comment counts.
 
 export interface HashnodeAuthor {
   name: string;
@@ -29,116 +31,6 @@ export interface HashnodeArticle {
 export interface HashnodeArticleDetail extends HashnodeArticle {
   content: { html: string };
   url: string;
-  seo?: { title?: string; description?: string };
-}
-
-const GET_PUBLICATION_ARTICLES = `
-  query GetPublicationArticles($host: String!, $first: Int!) {
-    publication(host: $host) {
-      posts(first: $first) {
-        edges {
-          node {
-            slug title brief
-            coverImage { url }
-            author { name profilePicture }
-            publishedAt readTimeInMinutes
-            tags { name slug }
-            reactionCount responseCount
-          }
-        }
-      }
-    }
-  }
-`;
-
-const GET_ARTICLE = `
-  query GetArticle($host: String!, $slug: String!) {
-    publication(host: $host) {
-      post(slug: $slug) {
-        slug title brief
-        coverImage { url }
-        author { name profilePicture }
-        publishedAt readTimeInMinutes
-        tags { name slug }
-        reactionCount responseCount
-        content { html }
-        url
-        seo { title description }
-      }
-    }
-  }
-`;
-
-async function gqlFetch<T>(
-  query: string,
-  variables: Record<string, unknown>,
-): Promise<T | null> {
-  return withRetry<T | null>(
-    async () => {
-      const res = await fetch(HASHNODE_GQL_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, variables }),
-        next: { revalidate: 3600 },
-        signal: AbortSignal.timeout(10_000),
-      });
-
-      if (!res.ok) {
-        throw new Error(`Hashnode API error: ${res.status} ${res.statusText}`);
-      }
-
-      const text = await res.text();
-      const contentType = res.headers.get("content-type") ?? "";
-
-      if (!contentType.includes("application/json")) {
-        throw new Error(
-          `Hashnode API returned ${contentType || "unknown content type"} instead of JSON`,
-        );
-      }
-
-      const json = JSON.parse(text);
-
-      if (json.errors) {
-        console.error(
-          "Hashnode GraphQL Errors:",
-          JSON.stringify(json.errors, null, 2),
-        );
-        throw new Error("Hashnode GraphQL error");
-      }
-
-      return json.data as T;
-    },
-    {
-      maxRetries: 2,
-      delayMs: 1000,
-      fallback: null,
-    },
-  );
-}
-
-function mapNode(node: Record<string, unknown>): HashnodeArticle {
-  const coverImage = (node.coverImage as Record<string, unknown> | null) ?? {};
-  const author = (node.author as Record<string, unknown> | null) ?? {};
-  const tags = (node.tags as Record<string, unknown>[] | null) ?? [];
-
-  return {
-    slug: (node.slug as string) ?? "",
-    title: (node.title as string) ?? "",
-    brief: (node.brief as string) ?? "",
-    coverImage: { url: (coverImage.url as string) ?? "" },
-    author: {
-      name: (author.name as string) ?? "",
-      profilePicture: (author.profilePicture as string) ?? "",
-    },
-    publishedAt: (node.publishedAt as string) ?? "",
-    readTimeInMinutes: (node.readTimeInMinutes as number) ?? 0,
-    tags: tags.map((t) => ({
-      name: (t.name as string) ?? "",
-      slug: (t.slug as string) ?? "",
-    })),
-    reactionCount: (node.reactionCount as number) ?? 0,
-    responseCount: (node.responseCount as number) ?? 0,
-  };
 }
 
 function normalizePublicationHost(host: string): string {
@@ -307,20 +199,6 @@ async function fetchRssArticles(
 }
 
 export async function fetchArticles(host: string): Promise<HashnodeArticle[]> {
-  const data = await gqlFetch<{
-    publication: {
-      posts: { edges: { node: Record<string, unknown> }[] };
-    } | null;
-  }>(GET_PUBLICATION_ARTICLES, {
-    host: normalizePublicationHost(host),
-    first: HASHNODE_POSTS_LIMIT,
-  });
-
-  const edges = data?.publication?.posts?.edges ?? [];
-  if (edges.length > 0) {
-    return edges.map((edge) => mapNode(edge.node));
-  }
-
   return fetchRssArticles(host);
 }
 
@@ -328,31 +206,6 @@ export async function fetchArticle(
   host: string,
   slug: string,
 ): Promise<HashnodeArticleDetail | null> {
-  const data = await gqlFetch<{
-    publication: { post: Record<string, unknown> | null } | null;
-  }>(GET_ARTICLE, { host: normalizePublicationHost(host), slug });
-
-  const post = data?.publication?.post;
-  if (!post) {
-    const rssArticles = await fetchRssArticles(host);
-    return rssArticles.find((article) => article.slug === slug) ?? null;
-  }
-
-  const base = mapNode(post);
-  const content = (post.content as Record<string, unknown> | null) ?? {};
-  const seo = (post.seo as Record<string, unknown> | null) ?? null;
-
-  return {
-    ...base,
-    content: { html: (content.html as string) ?? "" },
-    url: (post.url as string) ?? "",
-    ...(seo
-      ? {
-          seo: {
-            title: (seo.title as string | undefined) ?? undefined,
-            description: (seo.description as string | undefined) ?? undefined,
-          },
-        }
-      : {}),
-  };
+  const articles = await fetchRssArticles(host);
+  return articles.find((article) => article.slug === slug) ?? null;
 }

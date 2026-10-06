@@ -1,7 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import sanitizeHtml from "sanitize-html";
 import { prisma } from "@/../prisma/prisma";
@@ -15,13 +17,9 @@ import { extractToc, injectHeadingIds } from "@/lib/toc";
 
 export const dynamic = "force-dynamic";
 
-export default async function ArticleDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
+// Shared by generateMetadata and the page, so one request reads the config
+// and the feed once.
+const loadArticle = cache(async (slug: string) => {
   let config = null;
   try {
     config = await prisma.articlesConfig.findUnique({ where: { id: 1 } });
@@ -29,10 +27,50 @@ export default async function ArticleDetailPage({
     console.error("ArticleDetailPage: failed to fetch config", error);
   }
   const host = config?.hashnodeHost?.trim();
-  if (!host) notFound();
+  if (!host) return null;
 
   const article = await fetchArticle(host, slug);
-  if (!article) notFound();
+  return article ? { host, article } : null;
+});
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const loaded = await loadArticle(slug);
+  if (!loaded) return { title: "Articles · Codetopia Community" };
+
+  const { article } = loaded;
+  const title = `${article.title} · Codetopia Community`;
+
+  // The article is published on Hashnode and mirrored here, so point search
+  // engines at the Hashnode copy as the original.
+  return {
+    title,
+    description: article.brief,
+    alternates: article.url ? { canonical: article.url } : undefined,
+    openGraph: {
+      title,
+      description: article.brief,
+      siteName: "Codetopia Community",
+      type: "article",
+      ...(article.coverImage.url ? { images: [article.coverImage.url] } : {}),
+    },
+  };
+}
+
+export default async function ArticleDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const loaded = await loadArticle(slug);
+  if (!loaded) notFound();
+  const { host, article } = loaded;
 
   const sanitizedHtml = sanitizeHtml(article.content.html, {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat([
