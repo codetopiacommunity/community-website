@@ -46,8 +46,8 @@ export default async function HowtosPage() {
             How-Tos
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-            Step-by-step guides to join Codetopia Community, find your way
-            around and help out. Written for complete beginners.
+            Guides for joining Codetopia Community and finding your way around.
+            New here? Start at the top.
           </p>
         </Container>
       </section>
@@ -90,38 +90,44 @@ export default async function HowtosPage() {
   );
 }
 
-/** "Stuck?" links at the foot of the page. Guides are linked only if they exist. */
+/** A quiet "stuck?" line at the foot of the page. Guides are linked only if they exist. */
 function HelpStrip({ howtos }: { howtos: HowtoSummary[] }) {
   const find = (slug: string) => howtos.find((h) => h.slug === slug);
-  const links = [find("faq"), find("staying-safe")].filter(
-    (h): h is HowtoSummary => Boolean(h),
-  );
+  const faq = find("faq");
+  const safe = find("staying-safe");
+  const link =
+    "underline decoration-border underline-offset-4 transition-colors duration-200 hover:decoration-foreground";
   return (
     <section className="border-t border-border">
-      <Container className="px-4 py-16">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-          Stuck?
-        </p>
-        <p className="font-sans font-black uppercase tracking-tighter text-2xl md:text-3xl mb-6">
-          Ask in #ask-for-help on Discord.
-        </p>
-        <p className="font-mono text-sm text-muted-foreground max-w-2xl mb-8">
-          Say what you were trying to do and what you saw instead. Nobody will
-          think less of you.
-        </p>
-        {links.length > 0 && (
-          <div className="flex flex-wrap gap-3">
-            {links.map((h) => (
+      <Container className="px-4 py-12">
+        <p className="font-mono text-sm leading-relaxed text-muted-foreground max-w-2xl">
+          <span className="font-sans font-bold text-foreground">Stuck?</span>{" "}
+          Ask in #ask-for-help on Discord, and say what you were trying to do
+          and what you saw instead. Nobody will think less of you.
+          {faq && (
+            <>
+              {" "}
+              The{" "}
+              <Link href={howtoHref(faq)} className={`${link} text-foreground`}>
+                FAQ
+              </Link>{" "}
+              answers the common questions
+              {safe ? "," : "."}
+            </>
+          )}
+          {safe && (
+            <>
+              {faq ? " and " : " "}
               <Link
-                key={h.slug}
-                href={howtoHref(h)}
-                className="border border-border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 hover:border-foreground"
+                href={howtoHref(safe)}
+                className={`${link} text-foreground`}
               >
-                {h.meta.title ?? h.slug}
-              </Link>
-            ))}
-          </div>
-        )}
+                Staying safe
+              </Link>{" "}
+              covers what to do if someone makes you uncomfortable.
+            </>
+          )}
+        </p>
       </Container>
     </section>
   );
