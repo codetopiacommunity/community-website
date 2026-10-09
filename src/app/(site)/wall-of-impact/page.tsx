@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { InstitutionalNote } from "@/components/about/InstitutionalNote";
 import { WallOfImpact } from "@/components/about/WallOfImpact";
 import { Container } from "@/components/layout/Container";
@@ -57,9 +58,20 @@ export default async function ImpactPage() {
               </h1>
               <div className="max-w-2xl">
                 <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                  A shoutout board for the people showing up in Codetopia
-                  Community: the wins, the milestones, and the moments worth
-                  celebrating.
+                  A thank-you board for the people who made a real difference in
+                  Codetopia Community, through code, design, events, writing or
+                  helping someone who was stuck.
+                </p>
+                <p className="mt-6 text-zinc-400 text-sm md:text-base font-mono leading-relaxed">
+                  Team leads nominate people who stand out helping the
+                  community.{" "}
+                  <Link
+                    href="/howtos/contributing/help-out"
+                    className="underline underline-offset-4 hover:text-white transition-colors duration-200"
+                  >
+                    See how to help
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
