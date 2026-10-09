@@ -51,11 +51,25 @@ pnpm install
 
 **Environment Variables**
 
-Copy the example env file and fill in your values:
+Copy the example env file:
 
 ```bash
 cp .env.example .env
 ```
+
+**You can leave every value empty.** Most contributors do not have these keys, and you never need them for issues labelled `good first issue`.
+
+Start the site:
+
+```bash
+pnpm dev
+```
+
+Open http://localhost:3001. Every page loads. Parts that read from the database or the portal (events, the team, the Wall of Impact and so on) are empty, and the terminal shows red errors such as `TlsConnectionError`, `DatabaseNotReachable` or `Portal API is not configured`. **That is normal without the keys. You did not break anything.**
+
+If a task needs real data, its issue says so, and a maintainer will help you.
+
+The table below is for maintainers who have the keys:
 
 | Variable | Description |
 |----------|-------------|
@@ -78,7 +92,7 @@ cp .env.example .env
 
 **Database**
 
-`pnpm install` automatically runs `prisma generate`. To apply migrations after setting `DATABASE_URL`:
+Only if you have a database. `pnpm install` automatically runs `prisma generate`. To apply migrations after setting `DATABASE_URL`:
 
 ```bash
 npx prisma migrate dev
