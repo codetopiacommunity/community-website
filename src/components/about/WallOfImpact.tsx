@@ -36,7 +36,7 @@ const CATEGORY_META: Record<
 > = {
   MEMBER: {
     icon: Star,
-    label: "Member",
+    label: "Contributor",
     accent: "text-amber-400  border-amber-400/40",
   },
   VOLUNTEER: {
@@ -64,10 +64,8 @@ const CATEGORY_META: Record<
 const FILTERS: Array<{ key: RecognitionCategory | "ALL"; label: string }> = [
   { key: "ALL", label: "All" },
   { key: "CORE_TEAM", label: "Core Team" },
-  { key: "AMBASSADOR", label: "Ambassador" },
   { key: "VOLUNTEER", label: "Volunteer" },
-  { key: "MEMBER", label: "Member" },
-  { key: "DOMAIN_SPECIFIC", label: "Domain" },
+  { key: "MEMBER", label: "Contributor" },
 ];
 
 function getCategoryLabel(entry: RecognitionItem): string {
