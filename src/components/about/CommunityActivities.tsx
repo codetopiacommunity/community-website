@@ -3,35 +3,35 @@ import { Container } from "@/components/layout/Container";
 
 const activities = [
   {
-    title: "Build Together Sessions",
+    title: "Build together sessions",
     description:
       "Dedicated, silent or collaborative co-working hours. A focused arena where momentum is shared and early-stage builders unblock each other in real-time.",
     icon: Code2,
     colSpan: "lg:col-span-2",
   },
   {
-    title: "Open Source Sprints",
+    title: "Open source sprints",
     description:
       "Weekend hack days focused entirely on contributing to existing repo infrastructure or building tooling for the local African tech ecosystem.",
     icon: Activity,
     colSpan: "lg:col-span-1",
   },
   {
-    title: "Engineering Syncs",
+    title: "Engineering syncs",
     description:
       "Member-led tech talks breaking down monumental engineering challenges or doing deep technical dives into systems architecture and modern tooling.",
     icon: BookOpen,
     colSpan: "lg:col-span-1",
   },
   {
-    title: "Project Showcases",
+    title: "Project showcases",
     description:
       "A rigorous environment to demo completed applications. Members give and receive strict architectural feedback on code quality, scalability, and UX.",
     icon: Presentation,
     colSpan: "lg:col-span-1",
   },
   {
-    title: "Mentorship Hours",
+    title: "Mentorship hours",
     description:
       "Direct lines to core engineers and community leaders. Ad-hoc sessions designed to eliminate technical specific roadblocks for newer developers.",
     icon: Users,
@@ -45,12 +45,9 @@ export function CommunityActivities() {
       <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1">
-            <h2 className="text-zinc-400 font-mono text-sm uppercase tracking-[0.3em] mb-4">
-              Our Operations
-            </h2>
-            <h3 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
-              COMMUNITY <br />
-              <span className="text-zinc-400">ACTIVITIES</span>
+            <h2 className="text-zinc-400 font-mono text-sm mb-4">What we do</h2>
+            <h3 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none font-sans">
+              Community activities
             </h3>
           </div>
           <div className="max-w-md">
@@ -70,7 +67,7 @@ export function CommunityActivities() {
               className={`group relative bg-white p-10 lg:p-14 flex flex-col justify-between min-h-[320px] transition-colors hover:bg-zinc-50 ${activity.colSpan}`}
             >
               {/* Massive subtle background number */}
-              <span className="absolute right-6 top-6 text-[8rem] font-black text-black/[0.02] pointer-events-none select-none leading-none group-hover:text-black/[0.04] transition-colors">
+              <span className="absolute right-6 top-6 text-[8rem] font-bold text-black/[0.02] pointer-events-none select-none leading-none group-hover:text-black/[0.04] transition-colors">
                 0{index + 1}
               </span>
 
@@ -83,7 +80,7 @@ export function CommunityActivities() {
 
               {/* Text Content */}
               <div className="relative z-10 mt-auto">
-                <h4 className="text-2xl md:text-3xl font-black uppercase tracking-tight font-sans mb-4">
+                <h4 className="text-2xl md:text-3xl font-bold tracking-tight font-sans mb-4">
                   {activity.title}
                 </h4>
                 <p className="text-zinc-400 font-mono text-sm leading-relaxed max-w-md">

@@ -12,10 +12,10 @@ import { Container } from "@/components/layout/Container";
 function SectionLabel({ num, label }: { num: string; label: string }) {
   return (
     <div className="flex flex-row lg:flex-col items-baseline lg:items-start gap-4 lg:gap-5 lg:sticky lg:top-28">
-      <span className="font-sans font-black text-3xl lg:text-5xl tracking-tighter leading-none text-zinc-500 tabular-nums">
+      <span className="font-sans font-bold text-3xl lg:text-5xl tracking-tight leading-none text-zinc-400 tabular-nums">
         {num}
       </span>
-      <span className="font-mono text-xs uppercase tracking-[0.22em] text-zinc-300 leading-relaxed">
+      <span className="font-mono text-xs tracking-[0.22em] text-zinc-300 leading-relaxed">
         {label}
       </span>
     </div>
@@ -47,7 +47,7 @@ export function Section({
 
 export function Heading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.95] font-sans text-balance">
+    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[0.95] font-sans text-balance">
       {children}
     </h2>
   );
@@ -106,7 +106,7 @@ export function LeadLink({
   return (
     <Link
       href={href}
-      className="group inline-flex items-center gap-3 self-start font-sans font-black text-[11px] uppercase tracking-[0.22em] text-white border-b border-zinc-800 pb-2 hover:text-zinc-400 hover:border-zinc-600 transition-colors"
+      className="group inline-flex items-center gap-3 self-start font-sans font-bold text-xs tracking-[0.22em] text-white border-b border-zinc-800 pb-2 hover:text-zinc-400 hover:border-zinc-600 transition-colors"
     >
       {children}
       <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

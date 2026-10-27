@@ -34,17 +34,17 @@ export function TeamFaces({ faces }: { faces: AboutFace[] }) {
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <span className="font-sans font-black text-4xl tracking-tighter text-zinc-800 select-none">
+                <span className="font-sans font-bold text-4xl tracking-tight text-zinc-800 select-none">
                   {face.name.charAt(0).toUpperCase()}
                 </span>
               </div>
             )}
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-sans font-black text-xs uppercase tracking-tight text-white leading-tight">
+            <span className="font-sans font-bold text-xs tracking-tight text-white leading-tight">
               {face.name}
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-400 group-hover:text-white transition-colors">
+            <span className="font-mono text-xs text-zinc-400 group-hover:text-white transition-colors">
               {face.role}
             </span>
           </div>

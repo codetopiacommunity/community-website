@@ -77,13 +77,13 @@ export function VerifyCertificateForm({
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder="e.g. CT-26-ABCD-EFGH-JKMN"
-          className="flex-1 border border-zinc-800 bg-black px-4 py-3 text-center font-mono text-sm uppercase tracking-widest text-white placeholder:text-center placeholder:tracking-normal placeholder:text-zinc-600 placeholder:normal-case outline-none transition-colors focus:border-white sm:text-left sm:placeholder:text-left"
+          className="flex-1 border border-zinc-800 bg-black px-4 py-3 text-center font-mono text-sm text-white placeholder:text-center placeholder:tracking-normal placeholder:text-zinc-500 placeholder:normal-case outline-none transition-colors focus:border-white sm:text-left sm:placeholder:text-left"
           disabled={status === "loading"}
         />
         <button
           type="submit"
           disabled={status === "loading" || !code.trim()}
-          className="bg-white px-8 py-3 font-mono text-xs font-black uppercase tracking-widest text-black transition-colors hover:bg-zinc-200 disabled:opacity-40"
+          className="bg-white px-8 py-3 font-mono text-xs font-bold text-black transition-colors hover:bg-zinc-200 disabled:opacity-40"
         >
           {status === "loading" ? "Checking…" : "Verify"}
         </button>
@@ -92,7 +92,7 @@ export function VerifyCertificateForm({
       <div className="mt-8">
         {status === "not_found" && (
           <div className="border border-zinc-800 bg-zinc-950 px-5 py-8 text-center">
-            <p className="font-mono text-xs uppercase tracking-widest text-zinc-400">
+            <p className="font-mono text-xs text-zinc-400">
               No certificate matches that code. Check it and try again.
             </p>
           </div>
@@ -100,7 +100,7 @@ export function VerifyCertificateForm({
 
         {status === "error" && (
           <div className="border border-amber-900 bg-amber-950/20 px-5 py-8 text-center">
-            <p className="font-mono text-xs uppercase tracking-widest text-amber-400">
+            <p className="font-mono text-xs text-amber-400">
               Verification service is temporarily unavailable. Please try again
               in a moment.
             </p>
@@ -122,7 +122,7 @@ export function VerifyCertificateForm({
                 />
               )}
               <span
-                className={`inline-flex items-center border px-3 py-1 font-mono text-[10px] font-black uppercase tracking-widest ${
+                className={`inline-flex items-center border px-3 py-1 font-mono text-xs font-bold ${
                   certificate.status === "revoked"
                     ? "border-red-900 bg-red-950 text-red-400"
                     : "border-emerald-900 bg-emerald-950 text-emerald-400"
@@ -133,16 +133,16 @@ export function VerifyCertificateForm({
             </div>
 
             <div className="text-center">
-              <p className="mb-1 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+              <p className="mb-1 font-mono text-xs text-zinc-400">
                 {formatCertificateType(certificate.certificateType)}
               </p>
-              <h3 className="mb-1 font-sans text-2xl font-black uppercase tracking-tight text-white md:text-3xl">
+              <h3 className="mb-1 font-sans text-2xl font-bold tracking-tight text-white md:text-3xl">
                 {certificate.recipientName}
               </h3>
               <p className="mb-1 font-mono text-sm text-zinc-400">
                 {certificate.title}
               </p>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+              <p className="font-mono text-xs text-zinc-400">
                 {certificate.issuedDate}
               </p>
             </div>
@@ -154,7 +154,7 @@ export function VerifyCertificateForm({
                     href={certificate.artworkUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 py-6 font-mono text-xs uppercase tracking-widest text-zinc-400 transition-colors hover:text-white"
+                    className="flex items-center justify-center gap-2 px-4 py-6 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
                   >
                     View Certificate (PDF) &rarr;
                   </a>
@@ -176,7 +176,7 @@ export function VerifyCertificateForm({
             )}
 
             {certificate.status === "revoked" && (
-              <p className="mt-6 border-t border-zinc-900 pt-6 text-center font-mono text-xs text-zinc-500">
+              <p className="mt-6 border-t border-zinc-900 pt-6 text-center font-mono text-xs text-zinc-400">
                 This certificate has been revoked and is no longer valid.
               </p>
             )}

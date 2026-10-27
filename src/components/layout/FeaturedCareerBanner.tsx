@@ -75,7 +75,7 @@ export function FeaturedCareerBanner() {
           <div className="h-6 w-6 bg-white rounded flex items-center justify-center shrink-0">
             <Briefcase className="h-3.5 w-3.5 text-black" />
           </div>
-          <span className="hidden sm:block font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-400 whitespace-nowrap">
+          <span className="hidden sm:block font-mono text-xs tracking-[0.3em] text-zinc-400 whitespace-nowrap">
             We&apos;re Hiring
           </span>
           <span className="hidden sm:block text-zinc-400 text-xs">|</span>
@@ -96,13 +96,13 @@ export function FeaturedCareerBanner() {
               className="flex items-center gap-3 min-w-0 w-full"
             >
               {/* Featured badge */}
-              <span className="hidden md:inline-flex items-center gap-1 font-mono text-[8px] uppercase tracking-[0.2em] bg-yellow-400 text-black px-1.5 py-0.5 shrink-0 font-black">
+              <span className="hidden md:inline-flex items-center gap-1 font-mono text-[8px] tracking-[0.2em] bg-yellow-400 text-black px-1.5 py-0.5 shrink-0 font-bold">
                 <Star className="h-2 w-2 fill-current" />
                 Featured
               </span>
 
               {/* Title */}
-              <span className="font-sans font-black text-white text-sm uppercase tracking-tight truncate">
+              <span className="font-sans font-bold text-white text-sm tracking-tight truncate">
                 {career.title}
               </span>
 
@@ -110,7 +110,7 @@ export function FeaturedCareerBanner() {
               <span className="hidden sm:block text-zinc-400 shrink-0">·</span>
 
               {/* Type */}
-              <span className="hidden sm:block font-mono text-[10px] text-zinc-400 uppercase tracking-widest shrink-0">
+              <span className="hidden sm:block font-mono text-xs text-zinc-400 shrink-0">
                 {career.type}
               </span>
 
@@ -120,7 +120,7 @@ export function FeaturedCareerBanner() {
                   <span className="hidden md:block text-zinc-400 shrink-0">
                     ·
                   </span>
-                  <span className="hidden md:flex items-center gap-1 font-mono text-[10px] text-zinc-400 uppercase tracking-widest shrink-0">
+                  <span className="hidden md:flex items-center gap-1 font-mono text-xs text-zinc-400 shrink-0">
                     <MapPin className="h-2.5 w-2.5" />
                     {career.location}
                   </span>
@@ -178,7 +178,7 @@ export function FeaturedCareerBanner() {
             href={career.link ?? "/careers"}
             target={career.link ? "_blank" : undefined}
             rel={career.link ? "noopener noreferrer" : undefined}
-            className="group flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] font-black text-black bg-white px-3 h-6 hover:bg-zinc-200 transition-colors whitespace-nowrap"
+            className="group flex items-center gap-1.5 font-mono text-xs tracking-[0.25em] font-bold text-black bg-white px-3 h-6 hover:bg-zinc-200 transition-colors whitespace-nowrap"
           >
             Apply
             <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />

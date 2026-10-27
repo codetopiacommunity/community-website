@@ -23,7 +23,7 @@ export default async function ArticlesPage() {
         <section className="w-full py-32 md:py-40 bg-background border-b border-border">
           <Container className="px-4 flex flex-col gap-8">
             <div className="flex items-end justify-between gap-6">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans">
                 Articles
               </h1>
               <ThemeToggle />
@@ -34,15 +34,15 @@ export default async function ArticlesPage() {
           <Container className="px-4">
             <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
               <div className="w-24 h-24 border border-border flex items-center justify-center">
-                <span className="font-mono text-muted-foreground text-3xl font-black">
+                <span className="font-mono text-muted-foreground text-3xl font-bold">
                   {"//"}
                 </span>
               </div>
               <div className="text-center space-y-2">
-                <p className="text-foreground font-black uppercase tracking-tighter text-2xl font-sans">
+                <p className="text-foreground font-bold tracking-tight text-2xl font-sans">
                   Not configured
                 </p>
-                <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest max-w-xs">
+                <p className="text-muted-foreground font-mono text-xs max-w-xs">
                   No Hashnode publication has been linked yet. Configure one in
                   the admin settings.
                 </p>
@@ -78,7 +78,7 @@ export default async function ArticlesPage() {
         <Container className="px-4 flex flex-col gap-8">
           <div className="flex items-end justify-between gap-6">
             <div className="flex flex-col gap-4">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans">
                 Articles
               </h1>
               <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
@@ -94,7 +94,7 @@ export default async function ArticlesPage() {
       {featuredArticles.length > 0 && (
         <section className="border-t border-border">
           <Container className="px-4 py-8">
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 px-2">
+            <p className="font-mono text-xs text-muted-foreground mb-4 px-2">
               Featured
             </p>
             <FeaturedCarousel articles={featuredArticles} />

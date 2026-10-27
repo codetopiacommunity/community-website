@@ -4,7 +4,7 @@ import heroBg from "@/assets/images/django-girls.jpg";
 import { Container } from "@/components/layout/Container";
 import { JOIN_URL } from "@/lib/data/links";
 
-const WORDS = ["Grow.", "Collaborate.", "Lead.", "Build.", "Ship.", "Connect."];
+const WORDS = ["grow.", "collaborate.", "lead.", "build.", "ship.", "connect."];
 
 /**
  * One claim, one action.
@@ -43,10 +43,8 @@ export function Hero() {
       <div className="relative z-10 flex-1 flex flex-col justify-center px-0 pt-16 pb-24">
         <Container className="flex flex-col gap-16">
           {/* Headline */}
-          <div className="text-[13vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[7.5vw] font-black text-white tracking-tighter uppercase leading-[0.88] font-sans">
-            <span>Where</span>
-            <br />
-            <span className="text-white/40">Builders</span>
+          <div className="text-[13vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[7.5vw] font-bold text-white tracking-tight leading-[0.88] font-sans">
+            <span>Where builders</span>
             <br />
             {/*
               CSS grid stacking: all words occupy the same grid cell (1/1),
@@ -81,16 +79,16 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-3 bg-transparent text-white px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
+                className="group inline-flex items-center gap-3 bg-transparent text-white px-8 py-4 font-bold text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
               >
-                About Us
+                About us
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 href={JOIN_URL}
-                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
+                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
               >
-                Join the Community
+                Join the community
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
