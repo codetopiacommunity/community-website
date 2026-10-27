@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import { MemberRows } from "@/components/home/MemberRows";
+import { SectionTitle } from "@/components/home/SectionTitle";
 import { Container } from "@/components/layout/Container";
 import { JOIN_URL } from "@/lib/data/links";
 import { type CommunityMember, getShowcaseMembers } from "@/lib/members";
@@ -36,9 +37,7 @@ export async function MemberShowcase() {
       <Container className="w-full font-sans">
         <div className="w-full mb-14 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="flex flex-col gap-6">
-            <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tight leading-none font-sans">
-              Meet the community
-            </h2>
+            <SectionTitle>Meet the community</SectionTitle>
             <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
               Tech enthusiasts of every kind, at every stage, all in one place.
             </p>
