@@ -1,37 +1,24 @@
 import Link from "next/link";
 import { type HowtoSummary, howtoHref } from "@/lib/howtos";
 
+/** One guide in the "All guides" list: an underlined title, what it covers, and the reading time. */
 export function HowtoRow({ howto }: { howto: HowtoSummary }) {
-  const formattedDate = howto.meta.date
-    ? new Date(howto.meta.date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })
-    : null;
-
   return (
-    <Link
-      href={howtoHref(howto)}
-      className="group flex items-start justify-between gap-6 py-5 border-t border-border -mx-4 px-4 md:mx-0 md:px-0 hover:bg-foreground/[0.03] transition-colors"
-    >
-      <div className="flex flex-col gap-1.5">
-        <span className="font-sans font-bold text-lg md:text-xl">
-          {howto.meta.title ?? howto.slug}
+    <li className="flex flex-col gap-1">
+      <Link
+        href={howtoHref(howto)}
+        className="font-sans text-base font-bold underline decoration-1 underline-offset-4 transition-[text-decoration-thickness] duration-200 hover:decoration-2 sm:text-lg"
+      >
+        {howto.meta.title ?? howto.slug}
+      </Link>
+      {howto.meta.description && (
+        <span className="font-mono text-[15px] leading-relaxed text-foreground/70">
+          {howto.meta.description}
         </span>
-        {howto.meta.description && (
-          <span className="font-mono text-sm text-muted-foreground line-clamp-2 normal-case tracking-normal">
-            {howto.meta.description}
-          </span>
-        )}
-        <div className="flex items-center gap-3 font-mono text-xs text-muted-foreground mt-0.5">
-          <span>{howto.minutes} min read</span>
-          {howto.meta.author && <span>·</span>}
-          {howto.meta.author && <span>{howto.meta.author}</span>}
-          {formattedDate && <span>·</span>}
-          {formattedDate && <span>{formattedDate}</span>}
-        </div>
-      </div>
-    </Link>
+      )}
+      <span className="font-mono text-xs text-muted-foreground">
+        {howto.minutes} min read
+      </span>
+    </li>
   );
 }

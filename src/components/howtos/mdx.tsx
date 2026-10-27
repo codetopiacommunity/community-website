@@ -1,6 +1,7 @@
-import { CircleCheck } from "lucide-react";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { CARD_ICONS } from "./cardIcons";
 
 /*
  * Components howto guides can use in their MDX. They make things a beginner
@@ -14,7 +15,7 @@ import type { ReactNode } from "react";
  * and give guides structure:
  *
  *   <Steps> <Step title href time>…</Step> </Steps>   numbered step cards
- *   <Cards> <Card title href>…</Card> </Cards>        a grid of action cards
+ *   <Cards> <Card title href icon>…</Card> </Cards>   a grid of action cards
  *   <DoneWhen>…</DoneWhen>                            how you know you are done
  */
 
@@ -58,13 +59,44 @@ export function Key({ children }: { children: ReactNode }) {
 
 export function Steps({ children }: { children: ReactNode }) {
   return (
-    <ol className="not-prose my-8 list-none border-t border-border p-0 [counter-reset:step]">
+    <ol className="not-prose my-8 list-none p-0 [counter-reset:step]">
       {children}
     </ol>
   );
 }
 
-/** One numbered step: a big number, the title as a link, a line of text. */
+/** Makes the whole item tappable when it has somewhere to go. */
+function MaybeLink({
+  href,
+  className,
+  children,
+}: {
+  href?: string;
+  className: string;
+  children: ReactNode;
+}) {
+  return href ? (
+    <Link href={href} className={`group ${className}`}>
+      {children}
+    </Link>
+  ) : (
+    <div className={className}>{children}</div>
+  );
+}
+
+function Arrow() {
+  return (
+    <ArrowRight
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0 text-muted-foreground transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-foreground"
+    />
+  );
+}
+
+/**
+ * One step on a numbered path: a number joined to the next step by a line,
+ * the title, how long it takes, and a line of text.
+ */
 export function Step({
   title,
   href,
@@ -77,84 +109,84 @@ export function Step({
   children?: ReactNode;
 }) {
   return (
-    <li className="flex gap-5 border-b border-border py-5 [counter-increment:step]">
+    <li className="group/step relative flex gap-5 pb-8 last:pb-0 [counter-increment:step]">
       <span
         aria-hidden="true"
-        className="w-8 shrink-0 font-sans text-3xl font-black leading-none text-muted-foreground before:content-[counter(step)]"
+        className="absolute top-10 bottom-0 left-[1.1875rem] w-px bg-border group-last/step:hidden"
       />
-      <span className="flex min-w-0 flex-col gap-1">
-        <span className="font-sans text-lg font-bold">
-          {href ? (
-            <Link
-              href={href}
-              className="underline decoration-border underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
-            >
-              {title}
-            </Link>
-          ) : (
-            title
-          )}
+      <span
+        aria-hidden="true"
+        className="relative flex h-10 w-10 shrink-0 items-center justify-center bg-foreground font-sans text-lg font-black text-background before:content-[counter(step)]"
+      />
+      <MaybeLink
+        href={href}
+        className="flex min-w-0 flex-1 flex-col gap-1 pt-1.5"
+      >
+        <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="font-sans text-lg font-bold leading-snug underline-offset-4 group-hover:underline">
+            {title}
+          </span>
           {time && (
-            <span className="ml-2 font-mono text-xs font-normal whitespace-nowrap text-muted-foreground">
+            <span className="font-mono text-xs whitespace-nowrap text-muted-foreground">
               {time}
             </span>
           )}
+          {href && <Arrow />}
         </span>
         {children && (
           <span className="font-mono text-sm leading-relaxed text-muted-foreground">
             {children}
           </span>
         )}
-      </span>
+      </MaybeLink>
     </li>
   );
 }
 
 export function Cards({ children }: { children: ReactNode }) {
   return (
-    <div className="not-prose my-8 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+    <div className="not-prose my-8 grid gap-x-8 gap-y-2 sm:grid-cols-2">
       {children}
     </div>
   );
 }
 
-/** A short item in a two-column list: a bold title (a link if href) and a line. */
+/** An item in a two-column grid: a bold title and a line. The whole item is the link. */
 export function Card({
   title,
   href,
+  icon,
   children,
 }: {
   title: string;
   href?: string;
+  icon?: string;
   children?: ReactNode;
 }) {
+  const Icon = icon ? CARD_ICONS[icon] : undefined;
   return (
-    <div className="flex flex-col gap-1">
-      <span className="font-sans text-base font-bold">
-        {href ? (
-          <Link
-            href={href}
-            className="underline decoration-border underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
-          >
-            {title}
-          </Link>
-        ) : (
-          title
-        )}
+    <MaybeLink
+      href={href}
+      className="flex flex-col gap-1 border-t border-border py-4"
+    >
+      <span className="flex items-center gap-2 font-sans text-base font-bold group-hover:underline underline-offset-4">
+        {Icon && <Icon aria-hidden="true" className="h-4 w-4 shrink-0" />}
+        {title}
+        {href && <Arrow />}
       </span>
       {children && (
-        <span className="font-mono text-sm leading-relaxed text-muted-foreground">
+        <span className="font-mono text-sm leading-relaxed text-foreground/75">
           {children}
         </span>
       )}
-    </div>
+    </MaybeLink>
   );
 }
 
 export function DoneWhen({ children }: { children: ReactNode }) {
   return (
-    <div className="my-8 border-l-[3px] border-l-[var(--success-500)] bg-muted px-5 py-4 [&>p:last-child]:mb-0 [&_ol]:my-2 [&_ul]:my-2">
-      <p className="!mt-0 mb-2 flex items-center gap-2 font-sans text-base font-bold text-[var(--success-500)]">
+    <div className="my-8 border-l-4 border-l-foreground py-1 pl-5 [&>p:last-child]:mb-0 [&_ol]:my-2 [&_ul]:my-2">
+      <p className="!mt-0 mb-2 flex items-center gap-2 font-sans text-base font-bold text-foreground">
         <CircleCheck className="h-4 w-4" aria-hidden="true" />
         You are done when
       </p>
