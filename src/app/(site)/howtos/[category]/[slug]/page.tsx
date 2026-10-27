@@ -2,22 +2,24 @@ import matter from "gray-matter";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { remarkAlert } from "remark-github-blockquote-alert";
 import type { PluggableList } from "unified";
 import { TableOfContents } from "@/components/articles/TableOfContents";
-import { HowtoRow } from "@/components/howtos/HowtoRow";
+import { GuideMenu, GuideSidebar } from "@/components/howtos/GuideNav";
 import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdxComponents";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   estimateReadingTime,
+  getAllHowtos,
+  getCategoryInfo,
   getHowtoRaw,
-  getHowtosByCategory,
   type HowtoMeta,
+  type HowtoSummary,
   howtoHref,
   resolveHowto,
   stripLeadingH1,
@@ -88,16 +90,24 @@ export default async function HowtoPage({
   const hasToc = toc.length >= 3;
   const readingMinutes = estimateReadingTime(content);
 
-  const relatedGuides = (
-    await getHowtosByCategory(howto.category).catch(() => [])
-  )
-    .filter((h) => h.file !== howto.file)
-    .slice(0, 3);
+  // Every guide, for the list down the side; this guide's section, for
+  // "Guide 3 of 12" and the previous and next links at the foot.
+  const [allGuides, categories] = await Promise.all([
+    getAllHowtos().catch(() => []),
+    getCategoryInfo().catch(() => []),
+  ]);
+  const siblings = allGuides.filter((h) => h.category === howto.category);
+  const position = siblings.findIndex((h) => h.file === howto.file);
+  const previous = position > 0 ? siblings[position - 1] : null;
+  const next = position >= 0 ? (siblings[position + 1] ?? null) : null;
+  const categoryName =
+    categories.find((c) => c.name === howto.category)?.title ??
+    howto.category.replace(/-/g, " ");
 
   const article = (
     <article
       className="prose dark:prose-invert max-w-none
-      prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-sans prose-headings:scroll-mt-24
+      prose-headings:font-bold prose-headings:tracking-tight prose-headings:font-sans prose-headings:scroll-mt-24
       prose-h1:text-4xl prose-h1:md:text-5xl
       prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-16 prose-h2:mb-4
       prose-h3:text-xl prose-h3:md:text-2xl
@@ -105,11 +115,11 @@ export default async function HowtoPage({
       prose-li:font-mono
       prose-strong:font-black
       prose-blockquote:border-l-2 prose-blockquote:border-border prose-blockquote:not-italic prose-blockquote:font-mono
-      prose-hr:border-border prose-hr:my-12
+      prose-hr:border-transparent prose-hr:my-4
       prose-a:text-foreground prose-a:font-semibold hover:prose-a:underline
       prose-code:font-mono
       prose-img:rounded-none prose-img:border prose-img:border-border prose-img:max-h-[32rem] prose-img:w-auto prose-img:mx-auto prose-img:my-8
-      prose-table:font-mono prose-th:font-sans prose-th:uppercase prose-th:tracking-widest prose-th:text-xs"
+      prose-table:font-mono prose-th:font-sans prose-th:text-sm"
     >
       <MDXRemote
         source={content}
@@ -121,77 +131,127 @@ export default async function HowtoPage({
 
   return (
     <div className="flex-1 bg-background text-foreground min-h-screen">
-      <section className="pt-16 pb-8 border-b border-border">
-        <Container className="px-4">
-          <div className="max-w-6xl mx-auto px-2">
-            <div className="flex items-center justify-between mb-8">
-              <Link
-                href="/howtos"
-                className="inline-flex items-center gap-2 text-muted-foreground font-mono text-xs uppercase tracking-widest hover:text-foreground transition-colors group"
-              >
-                <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
-                How-tos
-              </Link>
-              <ThemeToggle />
-            </div>
+      <Container className="px-4">
+        <div className="lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12 xl:gap-16 pt-12 md:pt-16 pb-32">
+          <aside className="hidden lg:block">
+            <GuideSidebar
+              howtos={allGuides}
+              categories={categories}
+              current={howto}
+            />
+          </aside>
 
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-              {category.replace(/-/g, " ")}
-            </p>
-
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none font-sans mb-8">
-              {meta.title ?? slug}
-            </h1>
-
-            <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              {meta.author && <span>{meta.author}</span>}
-              {meta.author && formattedDate && <span>·</span>}
-              {formattedDate && <span>{formattedDate}</span>}
-              {(meta.author || formattedDate) && <span>·</span>}
-              <span>{readingMinutes} min read</span>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className={`py-12 ${relatedGuides.length > 0 ? "" : "pb-32"}`}>
-        <Container className="px-4">
-          <div className="max-w-6xl mx-auto px-2">
-            {hasToc ? (
-              <div className="lg:grid lg:grid-cols-[1fr_280px] gap-12">
-                <main id="article-content" className="min-w-0">
-                  {article}
-                </main>
-                <aside className="hidden lg:block">
-                  <TableOfContents entries={toc} />
-                </aside>
+          <div className="min-w-0">
+            <header className="mb-12">
+              <div className="flex items-center justify-between gap-4 mb-10">
+                <nav
+                  aria-label="Breadcrumb"
+                  className="flex flex-wrap items-center gap-2 font-mono text-sm text-muted-foreground"
+                >
+                  <Link
+                    href="/howtos"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    How-Tos
+                  </Link>
+                  <span aria-hidden="true">/</span>
+                  <Link
+                    href={`/howtos#${howto.category.toLowerCase()}`}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {categoryName}
+                  </Link>
+                </nav>
+                <ThemeToggle />
               </div>
-            ) : (
-              <main id="article-content" className="max-w-3xl mx-auto">
+
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] font-sans mb-6 max-w-4xl">
+                {meta.title ?? slug}
+              </h1>
+
+              {meta.description && (
+                <p className="font-mono text-base md:text-lg leading-relaxed text-muted-foreground max-w-3xl mb-6">
+                  {meta.description}
+                </p>
+              )}
+
+              <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground">
+                {position >= 0 && (
+                  <span>
+                    Guide {position + 1} of {siblings.length}
+                  </span>
+                )}
+                {position >= 0 && <span aria-hidden="true">·</span>}
+                <span>{readingMinutes} min read</span>
+                {meta.author && <span>· {meta.author}</span>}
+                {formattedDate && <span>· {formattedDate}</span>}
+              </p>
+            </header>
+
+            <GuideMenu
+              howtos={allGuides}
+              categories={categories}
+              current={howto}
+            />
+
+            <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-4">
+              <main id="article-content" className="min-w-0 max-w-3xl">
                 {article}
               </main>
+              {hasToc && (
+                <aside className="hidden xl:block">
+                  <TableOfContents entries={toc} />
+                </aside>
+              )}
+            </div>
+
+            {(previous || next) && (
+              <nav
+                aria-label="Previous and next guide"
+                className="mt-20 grid max-w-3xl gap-6 sm:grid-cols-2"
+              >
+                {previous ? (
+                  <GuideLink howto={previous} label="Previous" />
+                ) : (
+                  <span className="hidden sm:block" />
+                )}
+                {next && <GuideLink howto={next} label="Next" alignEnd />}
+              </nav>
             )}
           </div>
-        </Container>
-      </section>
-
-      {relatedGuides.length > 0 && (
-        <section className="py-12 border-t border-border pb-32">
-          <Container className="px-4">
-            <div className="max-w-6xl mx-auto px-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                More in {howto.category.replace(/-/g, " ")}
-              </p>
-              {relatedGuides.map((howto) => (
-                <HowtoRow
-                  key={`${howto.category}/${howto.slug}`}
-                  howto={howto}
-                />
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+        </div>
+      </Container>
     </div>
+  );
+}
+
+/** A link to the guide before or after this one in its section. */
+function GuideLink({
+  howto,
+  label,
+  alignEnd = false,
+}: {
+  howto: HowtoSummary;
+  label: string;
+  alignEnd?: boolean;
+}) {
+  return (
+    <Link
+      href={howtoHref(howto)}
+      className={`group flex flex-col gap-1 ${alignEnd ? "sm:items-end sm:text-right" : ""}`}
+    >
+      <span className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground">
+        {!alignEnd && (
+          <FaArrowLeft className="w-3 h-3 transition-transform duration-200 group-hover:-translate-x-1" />
+        )}
+        {label}
+        {alignEnd && (
+          <FaArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" />
+        )}
+      </span>
+      <span className="font-sans text-lg font-bold underline decoration-1 underline-offset-4 transition-[text-decoration-thickness] duration-200 group-hover:decoration-2">
+        {howto.meta.title ?? howto.slug}
+      </span>
+    </Link>
   );
 }
