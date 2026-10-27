@@ -42,27 +42,59 @@ async function ghFetch(path: string) {
   return res.json();
 }
 
-// Categories a newcomer should meet first. Any other folder follows, A to Z.
-const CATEGORY_ORDER = ["Getting-Started", "Contributing"];
-
-function categoryRank(name: string): number {
-  const index = CATEGORY_ORDER.indexOf(name);
-  return index === -1 ? CATEGORY_ORDER.length : index;
+export interface HowtoCategory {
+  /** Folder name in the repo, e.g. "Getting-Started". */
+  name: string;
+  /** Shown as the section heading, e.g. "Getting started". */
+  title: string;
+  /** One line under the heading, so newcomers know where to look. */
+  description?: string;
+  /** Position on the page: 1 comes first. */
+  order: number;
 }
 
-export async function getCategories(): Promise<string[]> {
+/**
+ * Every category folder, in page order. A folder can hold a `_category.md`
+ * whose frontmatter gives its title, description and order. Folders without
+ * one use their name as the title and come after the rest, A to Z.
+ */
+export async function getCategoryInfo(): Promise<HowtoCategory[]> {
   const data = await ghFetch("/");
   if (!Array.isArray(data)) return [];
-  return data
+  const folders: string[] = data
     .filter(
       (item: { type: string; name: string }) =>
         item.type === "dir" && !item.name.startsWith("."),
     )
-    .map((item: { name: string }) => item.name)
-    .sort(
-      (a: string, b: string) =>
-        categoryRank(a) - categoryRank(b) || a.localeCompare(b),
-    );
+    .map((item: { name: string }) => item.name);
+
+  const categories = await Promise.all(
+    folders.map(async (name) => {
+      const file = await ghFetch(`/${name}/_category.md`);
+      const meta = file?.content
+        ? matter(Buffer.from(file.content, "base64").toString("utf-8")).data
+        : {};
+      return {
+        name,
+        title:
+          typeof meta.title === "string" ? meta.title : name.replace(/-/g, " "),
+        description:
+          typeof meta.description === "string" ? meta.description : undefined,
+        order:
+          typeof meta.order === "number"
+            ? meta.order
+            : Number.POSITIVE_INFINITY,
+      };
+    }),
+  );
+
+  return categories.sort(
+    (a, b) => a.order - b.order || a.name.localeCompare(b.name),
+  );
+}
+
+export async function getCategories(): Promise<string[]> {
+  return (await getCategoryInfo()).map((c) => c.name);
 }
 
 export async function getHowtosByCategory(
@@ -150,6 +182,20 @@ export async function getHowtoRaw(
   const data = await ghFetch(`/${category}/${slug}.mdx`);
   if (!data?.content) return null;
   return Buffer.from(data.content, "base64").toString("utf-8");
+}
+
+/**
+ * Splits the howtos README at "## How this started". What comes before is
+ * the /howtos intro; the rest (the people who started the guides, and how to
+ * fix a mistake) is the /howtos/about page. `creditedTo` is the group named
+ * there, like "June to July 2026 intern cohort".
+ */
+export function splitReadme(readme: string) {
+  const cut = readme.search(/^## How this started/m);
+  if (cut === -1) return { intro: readme, about: "", creditedTo: "" };
+  const about = readme.slice(cut);
+  const creditedTo = about.match(/by the ([^,.]+? intern cohort)/)?.[1] ?? "";
+  return { intro: readme.slice(0, cut), about, creditedTo };
 }
 
 /**
