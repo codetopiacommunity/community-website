@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { ArrowUpRight, Clock, X } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { EmptyState } from "@/components/layout/EmptyState";
 import { type Event, getEventStatus } from "@/lib/events";
 
 interface EventsClientProps {
@@ -46,6 +47,28 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
     { id: "ONLINE", label: "Online" },
     { id: "IN_PERSON", label: "In person" },
   ];
+
+  if (initialEvents.length === 0) {
+    return (
+      <div className="w-full border-t border-zinc-800">
+        <div className={cx}>
+          <EmptyState
+            title="No events planned right now"
+            links={[
+              {
+                label: "Add our events to your calendar",
+                href: "/howtos/getting-started/add-event-to-calendar",
+              },
+              { label: "See photos from past events", href: "/gallery" },
+            ]}
+          >
+            New events are posted here and in #announcements on Discord. Add our
+            calendar and they show up on your phone as soon as we add them.
+          </EmptyState>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col">
@@ -132,27 +155,22 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
       {/* Rows */}
       {filteredEvents.length === 0 ? (
         <div className="w-full border-b border-zinc-800">
-          <div
-            className={`${cx} flex flex-col items-center justify-center py-40`}
-          >
-            <div className="flex flex-col items-center text-center max-w-md gap-6">
-              <h3 className="text-white font-mono text-xs font-bold">
-                No events found
-              </h3>
-              <p className="text-zinc-400 font-mono text-xs leading-relaxed">
-                Nothing matches these filters. Try showing all events.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setStatusFilter("ALL");
-                  setFormatFilter("ALL");
-                }}
-                className="text-white font-mono text-xs border border-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Clear filters
-              </button>
-            </div>
+          <div className={cx}>
+            <EmptyState
+              title="No events match these filters"
+              action={
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStatusFilter("ALL");
+                    setFormatFilter("ALL");
+                  }}
+                  className="border border-white px-6 py-2.5 font-sans text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                >
+                  Show all events
+                </button>
+              }
+            />
           </div>
         </div>
       ) : (
