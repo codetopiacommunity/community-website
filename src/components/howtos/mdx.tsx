@@ -88,7 +88,7 @@ function Arrow() {
   return (
     <ArrowRight
       aria-hidden="true"
-      className="h-4 w-4 shrink-0 text-muted-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-foreground"
+      className="h-4 w-4 shrink-0 text-muted-foreground transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-foreground"
     />
   );
 }

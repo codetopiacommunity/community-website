@@ -7,7 +7,7 @@ export function HowtoRow({ howto }: { howto: HowtoSummary }) {
     <li className="flex flex-col gap-1">
       <Link
         href={howtoHref(howto)}
-        className="font-sans text-base font-bold underline decoration-1 underline-offset-4 transition-all duration-200 hover:decoration-2 sm:text-lg"
+        className="font-sans text-base font-bold underline decoration-1 underline-offset-4 transition-[text-decoration-thickness] duration-200 hover:decoration-2 sm:text-lg"
       >
         {howto.meta.title ?? howto.slug}
       </Link>

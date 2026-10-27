@@ -10,7 +10,7 @@ import { CARD_ICONS } from "./cardIcons";
  */
 
 const LINK =
-  "underline decoration-1 underline-offset-4 transition-all duration-200 hover:decoration-2";
+  "underline decoration-1 underline-offset-4 transition-[text-decoration-thickness] duration-200 hover:decoration-2";
 
 export function IndexSteps({ children }: { children: ReactNode }) {
   const steps = Children.toArray(children).filter(isValidElement);

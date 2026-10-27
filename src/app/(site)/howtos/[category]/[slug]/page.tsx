@@ -249,7 +249,7 @@ function GuideLink({
           <FaArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" />
         )}
       </span>
-      <span className="font-sans text-lg font-bold underline decoration-1 underline-offset-4 transition-all duration-200 group-hover:decoration-2">
+      <span className="font-sans text-lg font-bold underline decoration-1 underline-offset-4 transition-[text-decoration-thickness] duration-200 group-hover:decoration-2">
         {howto.meta.title ?? howto.slug}
       </span>
     </Link>
