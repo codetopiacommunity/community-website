@@ -8,7 +8,7 @@ export default function PrivacyPage() {
       <section className="w-full pt-32 pb-16 bg-black">
         <Container className="px-4">
           <div className="px-2">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight font-sans">
+            <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold mb-6 leading-tight font-sans">
               Privacy policy
             </h1>
             <p className="text-zinc-400 font-mono text-sm">
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
                 key={s.title}
                 className="bg-black p-8 md:p-12 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-16"
               >
-                <p className="text-white font-bold tracking-tight text-lg font-sans">
+                <p className="uppercase tracking-tight text-white font-bold text-lg font-sans">
                   {s.title}
                 </p>
                 <p className="text-zinc-400 font-sans text-sm leading-relaxed">
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
             ))}
             {/* Contact */}
             <div className="bg-black p-8 md:p-12 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-16">
-              <p className="text-white font-bold tracking-tight text-lg font-sans">
+              <p className="uppercase tracking-tight text-white font-bold text-lg font-sans">
                 Contact
               </p>
               <p className="text-zinc-400 font-sans text-sm leading-relaxed">

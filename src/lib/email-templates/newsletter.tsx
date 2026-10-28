@@ -215,7 +215,7 @@ export function NewsletterTemplate({
               }}
             >
               © Codetopia Community · You received this email because you
-              subscribed to the Codetopia newsletter.
+              subscribed to The Dispatch.
             </Text>
           </Section>
         </Container>

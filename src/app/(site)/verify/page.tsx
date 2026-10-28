@@ -20,7 +20,7 @@ export default async function VerifyPage({
       <section className="w-full pt-32 pb-16 md:pt-40 md:pb-20 border-b border-zinc-900">
         <Container className="px-4">
           <div className="mx-auto max-w-xl text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans mb-6">
+            <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans mb-6">
               Verify a certificate
             </h1>
             <p className="text-zinc-400 text-lg font-mono leading-relaxed">

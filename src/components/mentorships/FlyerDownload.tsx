@@ -43,7 +43,7 @@ export function FlyerDownload({ flyerImage, title }: FlyerDownloadProps) {
         <div className="border border-white p-3">
           <Download className="w-5 h-5 text-white" />
         </div>
-        <span className="text-white font-bold font-space-grotesk text-xs">
+        <span className="uppercase tracking-widest text-white font-bold font-space-grotesk text-xs">
           Download flyer
         </span>
       </button>

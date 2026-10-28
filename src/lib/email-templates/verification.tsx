@@ -125,7 +125,7 @@ export function VerificationTemplate({
           fontStyle="normal"
         />
       </Head>
-      <Preview>Verify your Codetopia newsletter subscription</Preview>
+      <Preview>Verify your subscription to The Dispatch</Preview>
       <Body
         style={{
           backgroundColor: "#09090b",

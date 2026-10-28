@@ -74,10 +74,10 @@ export default function WorkWithUsPage() {
         />
         <Container className="relative z-10 px-4">
           <div className="flex flex-col items-start gap-8 md:gap-10">
-            <span className="font-mono text-xs text-zinc-400">
+            <span className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-400">
               For organisations
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight font-sans">
+            <h1 className="tracking-tighter uppercase text-4xl md:text-6xl font-bold text-white leading-tight font-sans">
               Work with us
             </h1>
             <div className="flex flex-col gap-6">
@@ -99,7 +99,7 @@ export default function WorkWithUsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
           {ways.map((way) => (
             <div key={way.title} className="flex flex-col gap-2.5">
-              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
+              <h3 className="uppercase tracking-tighter text-lg font-bold font-sans text-white">
                 {way.title}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[42ch]">
@@ -160,7 +160,9 @@ export default function WorkWithUsPage() {
         <div className="flex flex-col gap-10">
           {organisationGroups.map((group) => (
             <div key={group.label} className="flex flex-col gap-5">
-              <h3 className="font-mono text-xs text-zinc-400">{group.label}</h3>
+              <h3 className="uppercase tracking-[0.22em] font-mono text-xs text-zinc-400">
+                {group.label}
+              </h3>
               <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
                 {group.items.map((org) => (
                   <a
