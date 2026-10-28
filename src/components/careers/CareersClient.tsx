@@ -3,7 +3,6 @@
 import { format } from "date-fns";
 import {
   ArrowRight,
-  Briefcase,
   Clock,
   MapPin,
   Search,
@@ -15,6 +14,7 @@ import {
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Container } from "@/components/layout/Container";
+import { EmptyState } from "@/components/layout/EmptyState";
 import type { Career } from "@/lib/careers";
 import { getDescriptionPreview } from "@/lib/careers";
 import { cn } from "@/lib/utils";
@@ -63,6 +63,19 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
     setTypeFilter("ALL");
     setSearch("");
   };
+
+  if (initialCareers.length === 0) {
+    return (
+      <div className="border-t border-zinc-900">
+        <Container className="px-4">
+          <EmptyState title="No open roles right now">
+            Organisations post roles, internships and projects here when they
+            have them. New ones are also shared in #announcements on Discord.
+          </EmptyState>
+        </Container>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col">
@@ -176,28 +189,18 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
       {filtered.length === 0 ? (
         <div className="border-t border-zinc-900">
           <Container className="px-4">
-            <div className="px-2 flex flex-col items-center justify-center py-40 gap-6">
-              <div className="w-20 h-20 border border-zinc-800 flex items-center justify-center">
-                <Briefcase className="w-8 h-8 text-zinc-400" />
-              </div>
-              <p className="text-white font-bold tracking-tight text-xl font-sans">
-                No roles found
-              </p>
-              <p className="text-zinc-400 font-mono text-sm max-w-xs text-center">
-                {search || typeFilter !== "ALL"
-                  ? "No roles match your current filters."
-                  : "Nothing open right now. Check back soon."}
-              </p>
-              {activeFilterCount > 0 && (
+            <EmptyState
+              title="No roles match your search"
+              action={
                 <button
                   type="button"
                   onClick={clearAll}
-                  className="font-mono text-xs border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-200"
+                  className="border border-white px-6 py-2.5 font-sans text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black"
                 >
-                  Clear filters
+                  Show all roles
                 </button>
-              )}
-            </div>
+              }
+            />
           </Container>
         </div>
       ) : (

@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { Container } from "@/components/layout/Container";
+import { EmptyState } from "@/components/layout/EmptyState";
 import type { RecognitionCategory } from "@/lib/data/recognition";
 import { cn } from "@/lib/utils";
 
@@ -399,6 +400,27 @@ export function WallOfImpact({ items }: { items: RecognitionItem[] }) {
       ? items
       : items.filter((r) => r.category === activeFilter);
 
+  if (items.length === 0) {
+    return (
+      <section className="w-full pb-16 bg-black font-sans">
+        <Container className="px-4">
+          <EmptyState
+            title="No one is on the wall yet"
+            links={[
+              {
+                label: "See how you can help",
+                href: "/howtos/contributing/help-out",
+              },
+            ]}
+          >
+            Team leads add people who made a real difference here: through code,
+            design, events, writing or helping someone who was stuck.
+          </EmptyState>
+        </Container>
+      </section>
+    );
+  }
+
   return (
     <section className="w-full pb-24 bg-black font-sans">
       <Container className="px-4">
@@ -425,11 +447,9 @@ export function WallOfImpact({ items }: { items: RecognitionItem[] }) {
 
         {/* Grid */}
         {visible.length === 0 ? (
-          <div className="border border-zinc-800 bg-zinc-950 py-24 text-center">
-            <p className="font-mono text-xs text-zinc-400">
-              No honorees in this category yet.
-            </p>
-          </div>
+          <p className="py-16 font-mono text-base text-zinc-400">
+            No one in this group yet.
+          </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
             {visible.map((entry) => (
