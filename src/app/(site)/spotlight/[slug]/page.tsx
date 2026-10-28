@@ -9,8 +9,7 @@ import { getSpotlightByHandle, spotlightHandle } from "@/lib/spotlight";
 
 export const revalidate = 60;
 
-// Same source and fallback as the mentorship detail page, so both produce
-// consistent absolute URLs in their share cards.
+// Used to build absolute URLs for the share card.
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://codetopia.community";
 
