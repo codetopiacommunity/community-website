@@ -41,10 +41,10 @@ export function TeamFaces({ faces }: { faces: AboutFace[] }) {
             )}
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-sans font-bold text-xs tracking-tight text-white leading-tight">
+            <span className="uppercase tracking-tight font-sans font-bold text-xs text-white leading-tight">
               {face.name}
             </span>
-            <span className="font-mono text-xs text-zinc-400 group-hover:text-white transition-colors">
+            <span className="uppercase tracking-[0.18em] font-mono text-xs text-zinc-400 group-hover:text-white transition-colors">
               {face.role}
             </span>
           </div>

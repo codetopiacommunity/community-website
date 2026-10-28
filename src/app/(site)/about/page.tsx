@@ -166,8 +166,10 @@ export default async function AboutPage() {
         />
         <Container className="relative z-10 px-4">
           <div className="flex flex-col items-start gap-8 md:gap-10">
-            <span className="font-mono text-xs text-zinc-400">About us</span>
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight font-sans">
+            <span className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-400">
+              About us
+            </span>
+            <h1 className="tracking-tighter uppercase text-4xl md:text-6xl font-bold text-white leading-tight font-sans">
               We are Codetopia Community
             </h1>
             <div className="flex flex-col gap-6">
@@ -247,7 +249,7 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
           {programmes.map((programme) => (
             <div key={programme.tag} className="flex flex-col gap-2.5">
-              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
+              <h3 className="uppercase tracking-tighter text-lg font-bold font-sans text-white">
                 {programme.tag}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[42ch]">
@@ -339,7 +341,7 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
           {whatYouGet.map((item) => (
             <div key={item.title} className="flex flex-col gap-2.5">
-              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
+              <h3 className="uppercase tracking-tighter text-lg font-bold font-sans text-white">
                 {item.title}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[42ch]">
@@ -385,7 +387,7 @@ export default async function AboutPage() {
               key={value.title}
               className="grid grid-cols-1 sm:grid-cols-[11rem_1fr] gap-2 sm:gap-8"
             >
-              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
+              <h3 className="uppercase tracking-tighter text-lg font-bold font-sans text-white">
                 {value.title}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[50ch]">

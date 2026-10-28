@@ -52,7 +52,7 @@ export default async function CareerDetailPage({
         <Container className="px-4">
           <Link
             href="/careers"
-            className="inline-flex items-center gap-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors group mb-10"
+            className="uppercase tracking-[0.3em] inline-flex items-center gap-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors group mb-10"
           >
             <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
             All opportunities
@@ -68,22 +68,22 @@ export default async function CareerDetailPage({
               {/* Badges */}
               <div className="flex flex-wrap items-center gap-3">
                 {career.isFeatured && (
-                  <span className="inline-flex items-center gap-1 font-mono text-xs bg-white text-black px-2 py-1 font-bold">
+                  <span className="uppercase tracking-[0.2em] inline-flex items-center gap-1 font-mono text-xs bg-white text-black px-2 py-1 font-bold">
                     <Star className="h-2.5 w-2.5 fill-current" />
                     Featured
                   </span>
                 )}
-                <span className="font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-1">
+                <span className="uppercase tracking-[0.2em] font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-1">
                   {career.type}
                 </span>
                 {desc.duration && (
-                  <span className="font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-1 flex items-center gap-1">
+                  <span className="uppercase tracking-[0.2em] font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-1 flex items-center gap-1">
                     <Timer className="h-2.5 w-2.5" />
                     {desc.duration}
                   </span>
                 )}
                 <span
-                  className={`font-mono text-xs px-2 py-1 font-bold ${
+                  className={`uppercase tracking-[0.2em] font-mono text-xs px-2 py-1 font-bold ${
                     isUrgent
                       ? "bg-red-500/10 text-red-400 border border-red-500/20"
                       : "bg-zinc-900 text-zinc-400 border border-zinc-800"
@@ -98,7 +98,7 @@ export default async function CareerDetailPage({
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans">
+              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
                 {career.title}
               </h1>
 
@@ -136,18 +136,18 @@ export default async function CareerDetailPage({
                   href={career.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-6 px-8 py-5 bg-white text-black font-mono text-xs font-bold hover:bg-zinc-200 transition-all"
+                  className="uppercase tracking-[0.25em] group flex items-center justify-between gap-6 px-8 py-5 bg-white text-black font-mono text-xs font-bold hover:bg-zinc-200 transition-all"
                 >
                   Apply now
                   <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
               ) : (
-                <div className="flex items-center gap-4 px-8 py-5 bg-zinc-900 text-zinc-400 font-mono text-xs font-bold border border-zinc-800 cursor-not-allowed">
+                <div className="uppercase tracking-[0.25em] flex items-center gap-4 px-8 py-5 bg-zinc-900 text-zinc-400 font-mono text-xs font-bold border border-zinc-800 cursor-not-allowed">
                   <Briefcase className="w-4 h-4" />
                   No application link
                 </div>
               )}
-              <span className="font-mono text-xs text-zinc-400 text-center">
+              <span className="uppercase tracking-widest font-mono text-xs text-zinc-400 text-center">
                 via {career.company}
               </span>
             </div>
@@ -163,7 +163,7 @@ export default async function CareerDetailPage({
             <div className="flex flex-col gap-16">
               {/* About the role */}
               <div className="flex flex-col gap-6">
-                <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
+                <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-3">
                   <span className="text-zinc-400">01 /</span> About the Role
                 </span>
                 <p className="text-zinc-300 font-mono text-sm leading-relaxed">
@@ -174,7 +174,7 @@ export default async function CareerDetailPage({
               {/* Responsibilities */}
               {desc.responsibilities.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
+                  <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">02 /</span> Responsibilities
                   </span>
                   <ul className="flex flex-col divide-y divide-zinc-900">
@@ -198,7 +198,7 @@ export default async function CareerDetailPage({
               {/* Requirements */}
               {career.requirements.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
+                  <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">03 /</span> Requirements
                     &amp; Skills
                   </span>
@@ -223,7 +223,7 @@ export default async function CareerDetailPage({
               {/* Nice to Have */}
               {desc.niceToHave.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
+                  <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">04 /</span> Nice to Have
                   </span>
                   <ul className="flex flex-col gap-3">
@@ -242,7 +242,7 @@ export default async function CareerDetailPage({
               {/* What We Offer */}
               {desc.whatWeOffer.length > 0 && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
+                  <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">05 /</span> What We Offer
                   </span>
                   <ul className="flex flex-col gap-3">
@@ -261,7 +261,7 @@ export default async function CareerDetailPage({
               {/* How to Apply */}
               {desc.howToApply && (
                 <div className="flex flex-col gap-6">
-                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
+                  <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">06 /</span> How to Apply
                   </span>
                   <p className="text-zinc-300 font-mono text-sm leading-relaxed">
@@ -276,7 +276,7 @@ export default async function CareerDetailPage({
               <div className="sticky top-36 flex flex-col gap-4">
                 {/* Summary card */}
                 <div className="border border-zinc-800 bg-zinc-950 p-6 flex flex-col gap-5">
-                  <span className="font-mono text-xs text-zinc-400">
+                  <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400">
                     Position summary
                   </span>
 
@@ -311,7 +311,7 @@ export default async function CareerDetailPage({
                       <div key={label} className="flex items-start gap-3">
                         <Icon className="h-4 w-4 text-zinc-400 mt-0.5 shrink-0" />
                         <div className="flex flex-col gap-0.5">
-                          <span className="font-mono text-xs text-zinc-400">
+                          <span className="uppercase tracking-widest font-mono text-xs text-zinc-400">
                             {label}
                           </span>
                           <span className="font-mono text-xs text-zinc-300">
@@ -330,7 +330,7 @@ export default async function CareerDetailPage({
                         : "border-zinc-800 bg-zinc-900"
                     }`}
                   >
-                    <span className="font-mono text-xs text-zinc-400">
+                    <span className="uppercase tracking-widest font-mono text-xs text-zinc-400">
                       Time remaining
                     </span>
                     <span
@@ -353,13 +353,13 @@ export default async function CareerDetailPage({
                     href={career.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between px-6 py-4 bg-white text-black font-mono text-xs font-bold hover:bg-zinc-200 transition-all"
+                    className="uppercase tracking-[0.25em] group flex items-center justify-between px-6 py-4 bg-white text-black font-mono text-xs font-bold hover:bg-zinc-200 transition-all"
                   >
                     Apply now
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
                 ) : (
-                  <div className="flex items-center justify-between px-6 py-4 bg-zinc-900 text-zinc-400 font-mono text-xs font-bold border border-zinc-800 cursor-not-allowed">
+                  <div className="uppercase tracking-[0.25em] flex items-center justify-between px-6 py-4 bg-zinc-900 text-zinc-400 font-mono text-xs font-bold border border-zinc-800 cursor-not-allowed">
                     No application link
                     <ArrowUpRight className="w-4 h-4 opacity-20" />
                   </div>
@@ -367,7 +367,7 @@ export default async function CareerDetailPage({
 
                 <Link
                   href="/careers"
-                  className="font-mono text-xs text-zinc-400 hover:text-white transition-colors text-center"
+                  className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 hover:text-white transition-colors text-center"
                 >
                   ← View all careers
                 </Link>

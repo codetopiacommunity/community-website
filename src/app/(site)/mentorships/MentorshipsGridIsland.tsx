@@ -146,10 +146,10 @@ export function MentorshipsGridIsland() {
         <div className="w-16 h-16 border border-zinc-800 flex items-center justify-center">
           <Users2 className="w-7 h-7 text-zinc-400" />
         </div>
-        <p className="text-white font-bold tracking-tight text-xl font-space-grotesk">
+        <p className="uppercase tracking-tighter text-white font-bold text-xl font-space-grotesk">
           No mentorships yet
         </p>
-        <p className="text-zinc-400 font-mono text-xs text-center">
+        <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs text-center">
           No active sessions at the moment. Check back soon.
         </p>
       </div>
@@ -170,7 +170,7 @@ export function MentorshipsGridIsland() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search title, mentor, topic…"
-                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
+                className="uppercase tracking-widest w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
               />
               {search && (
                 <button
@@ -189,7 +189,7 @@ export function MentorshipsGridIsland() {
                 type="button"
                 onClick={() => setShowFilters((v) => !v)}
                 className={cn(
-                  "flex items-center gap-2 px-5 py-3 border font-mono text-xs transition-all duration-200 whitespace-nowrap",
+                  "uppercase tracking-widest flex items-center gap-2 px-5 py-3 border font-mono text-xs transition-all duration-200 whitespace-nowrap",
                   showFilters || activeFilterCount > 0
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-white",
@@ -223,7 +223,7 @@ export function MentorshipsGridIsland() {
               <button
                 type="button"
                 onClick={clearAll}
-                className="group flex items-center gap-1.5 font-mono text-xs text-zinc-400 hover:text-white transition-colors whitespace-nowrap"
+                className="uppercase tracking-widest group flex items-center gap-1.5 font-mono text-xs text-zinc-400 hover:text-white transition-colors whitespace-nowrap"
               >
                 <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
                 <span className="hidden sm:inline">Clear</span>
@@ -236,7 +236,7 @@ export function MentorshipsGridIsland() {
                 <div className="p-4 sm:p-6 flex flex-col gap-5">
                   {/* Status */}
                   <div className="flex flex-col gap-3">
-                    <span className="font-mono text-xs text-zinc-400">
+                    <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400">
                       Status
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -248,7 +248,7 @@ export function MentorshipsGridIsland() {
                           type="button"
                           onClick={() => setStatusFilter(s)}
                           className={cn(
-                            "px-3 py-2 font-mono text-xs border transition-all duration-200",
+                            "uppercase tracking-widest px-3 py-2 font-mono text-xs border transition-all duration-200",
                             statusFilter === s
                               ? "bg-white text-black border-white"
                               : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
@@ -262,7 +262,7 @@ export function MentorshipsGridIsland() {
 
                   {/* Format */}
                   <div className="flex flex-col gap-3">
-                    <span className="font-mono text-xs text-zinc-400">
+                    <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400">
                       Format
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -278,7 +278,7 @@ export function MentorshipsGridIsland() {
                           type="button"
                           onClick={() => setLocationFilter(opt.id)}
                           className={cn(
-                            "px-3 py-2 font-mono text-xs border transition-all duration-200",
+                            "uppercase tracking-widest px-3 py-2 font-mono text-xs border transition-all duration-200",
                             locationFilter === opt.id
                               ? "bg-white text-black border-white"
                               : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
@@ -292,7 +292,7 @@ export function MentorshipsGridIsland() {
 
                   {/* Time */}
                   <div className="flex flex-col gap-3">
-                    <span className="font-mono text-xs text-zinc-400">
+                    <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400">
                       Time
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -303,7 +303,7 @@ export function MentorshipsGridIsland() {
                             type="button"
                             onClick={() => setTimeFilter(t)}
                             className={cn(
-                              "px-3 py-2 font-mono text-xs border transition-all duration-200",
+                              "uppercase tracking-widest px-3 py-2 font-mono text-xs border transition-all duration-200",
                               timeFilter === t
                                 ? "bg-white text-black border-white"
                                 : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
@@ -321,7 +321,7 @@ export function MentorshipsGridIsland() {
                   {/* Topics */}
                   {allTags.length > 0 && (
                     <div className="flex flex-col gap-3 pt-4 border-t border-zinc-800">
-                      <span className="font-mono text-xs text-zinc-400">
+                      <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400">
                         Topics
                       </span>
                       <div className="flex flex-wrap gap-2">
@@ -333,7 +333,7 @@ export function MentorshipsGridIsland() {
                               setActiveTag(activeTag === tag ? null : tag)
                             }
                             className={cn(
-                              "px-3 py-2 font-mono text-xs border transition-all duration-200",
+                              "uppercase tracking-widest px-3 py-2 font-mono text-xs border transition-all duration-200",
                               activeTag === tag
                                 ? "bg-white text-black border-white"
                                 : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
@@ -352,20 +352,20 @@ export function MentorshipsGridIsland() {
                       <button
                         type="button"
                         onClick={clearAll}
-                        className="group flex items-center gap-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
+                        className="uppercase tracking-widest group flex items-center gap-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
                       >
                         <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
                         Clear all
                       </button>
                     ) : (
-                      <span className="font-mono text-xs text-zinc-400">
+                      <span className="uppercase tracking-widest font-mono text-xs text-zinc-400">
                         No active filters
                       </span>
                     )}
                     <button
                       type="button"
                       onClick={() => setShowFilters(false)}
-                      className="font-mono text-xs text-white border border-zinc-700 px-4 py-2 hover:border-white transition-colors"
+                      className="uppercase tracking-widest font-mono text-xs text-white border border-zinc-700 px-4 py-2 hover:border-white transition-colors"
                     >
                       Done
                     </button>
@@ -384,16 +384,16 @@ export function MentorshipsGridIsland() {
             className={`${cx} flex flex-col items-center justify-center py-40`}
           >
             <div className="flex flex-col items-center text-center max-w-md gap-6">
-              <h3 className="text-white font-mono text-xs font-bold">
+              <h3 className="uppercase tracking-[0.4em] text-white font-mono text-xs font-bold">
                 No sessions found
               </h3>
-              <p className="text-zinc-400 font-mono text-xs leading-relaxed">
+              <p className="uppercase tracking-[0.2em] text-zinc-400 font-mono text-xs leading-relaxed">
                 No mentorships match your current filters.
               </p>
               <button
                 type="button"
                 onClick={clearAll}
-                className="text-white font-mono text-xs border border-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300"
+                className="uppercase tracking-[0.3em] text-white font-mono text-xs border border-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300"
               >
                 Clear filters
               </button>
@@ -432,7 +432,7 @@ export function MentorshipsGridIsland() {
                 <div className="flex flex-col items-start gap-4 shrink-0 min-w-[160px]">
                   <span
                     className={cn(
-                      "inline-flex items-center px-4 py-1 font-mono text-xs font-bold border backdrop-blur-sm",
+                      "uppercase tracking-[0.15em] inline-flex items-center px-4 py-1 font-mono text-xs font-bold border backdrop-blur-sm",
                       m.status === "open"
                         ? "border-green-500/50 text-green-400 bg-green-500/10"
                         : m.status === "full"
@@ -465,7 +465,7 @@ export function MentorshipsGridIsland() {
                     </div>
                   )}
                   {(m.location || m.isOnline) && (
-                    <div className="flex items-center gap-1.5 text-zinc-400 text-xs font-mono">
+                    <div className="uppercase tracking-widest flex items-center gap-1.5 text-zinc-400 text-xs font-mono">
                       <MapPin className="w-3 h-3 shrink-0" />
                       {m.location || "Online"}
                     </div>
@@ -474,7 +474,7 @@ export function MentorshipsGridIsland() {
 
                 {/* Centre: title + description + tags — the main character */}
                 <div className="flex-1 flex flex-col gap-4">
-                  <h4 className="text-4xl lg:text-6xl font-bold tracking-tight font-space-grotesk text-white leading-[0.9]">
+                  <h4 className="uppercase tracking-tighter text-4xl lg:text-6xl font-bold font-space-grotesk text-white leading-[0.9]">
                     {m.title}
                   </h4>
                   {m.description && (
@@ -487,7 +487,7 @@ export function MentorshipsGridIsland() {
                       {(m.tags as string[]).slice(0, 5).map((tag) => (
                         <span
                           key={tag}
-                          className="font-mono text-xs text-zinc-400 border border-zinc-700/60 bg-black/40 backdrop-blur-sm px-2 py-0.5"
+                          className="uppercase tracking-widest font-mono text-xs text-zinc-400 border border-zinc-700/60 bg-black/40 backdrop-blur-sm px-2 py-0.5"
                         >
                           {tag}
                         </span>
@@ -499,12 +499,12 @@ export function MentorshipsGridIsland() {
                 {/* Right: action */}
                 <div className="shrink-0 w-full lg:w-48">
                   {m.status === "closed" ? (
-                    <div className="flex items-center justify-between w-full px-6 py-4 font-mono text-xs font-bold bg-black/60 text-zinc-500 border border-zinc-800 cursor-not-allowed backdrop-blur-sm">
+                    <div className="uppercase tracking-[0.2em] flex items-center justify-between w-full px-6 py-4 font-mono text-xs font-bold bg-black/60 text-zinc-500 border border-zinc-800 cursor-not-allowed backdrop-blur-sm">
                       Closed
                       <Clock className="w-4 h-4 opacity-20" />
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between w-full px-6 py-4 bg-white text-black font-mono text-xs font-bold transition-all group-hover:bg-zinc-100">
+                    <div className="uppercase tracking-[0.2em] flex items-center justify-between w-full px-6 py-4 bg-white text-black font-mono text-xs font-bold transition-all group-hover:bg-zinc-100">
                       View programme
                       <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>

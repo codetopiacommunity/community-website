@@ -54,7 +54,7 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
       aria-label="Table of contents"
       className={`sticky top-28 hidden xl:block w-56 ml-8 transition-opacity duration-300 ${visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
     >
-      <p className="text-xs font-medium text-muted-foreground/70 mb-3">
+      <p className="uppercase tracking-wider text-xs font-medium text-muted-foreground/70 mb-3">
         On this page
       </p>
       <ul className="space-y-0.5 border-l border-border">

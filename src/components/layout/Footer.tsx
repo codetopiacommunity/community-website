@@ -147,7 +147,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-14">
             {linkColumns.map((column) => (
               <div key={column.title} className="flex flex-col gap-4">
-                <p className="font-sans text-sm font-bold text-white">
+                <p className="font-sans text-sm font-black text-white uppercase tracking-tighter">
                   {column.title}
                 </p>
                 <nav
@@ -168,7 +168,9 @@ export function Footer() {
             ))}
 
             <div className="flex flex-col gap-4">
-              <p className="font-sans text-sm font-bold text-white">Contact</p>
+              <p className="font-sans text-sm font-black text-white uppercase tracking-tighter">
+                Contact
+              </p>
               <div className="flex flex-col gap-2.5">
                 <a
                   href="mailto:hello@codetopia.org"
@@ -203,12 +205,12 @@ export function Footer() {
         <Container className="px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p
             suppressHydrationWarning
-            className="font-mono text-xs text-zinc-400"
+            className="font-mono text-xs text-zinc-400 uppercase tracking-widest"
           >
             &copy; {new Date().getFullYear()} Codetopia. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <p className="font-mono text-xs text-zinc-400">
+            <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
               A{" "}
               <a
                 href="https://codetopia.org"
@@ -222,7 +224,7 @@ export function Footer() {
             </p>
             <Link
               href="/privacy"
-              className="font-mono text-xs text-zinc-400 hover:text-white transition-colors"
+              className="font-mono text-xs text-zinc-400 uppercase tracking-widest hover:text-white transition-colors"
             >
               Privacy
             </Link>

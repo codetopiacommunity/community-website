@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Email Verified — Codetopia Community",
-  description: "Your newsletter subscription has been confirmed.",
+  description: "Your subscription to The Dispatch is confirmed.",
 };
 
 export default function VerifiedPage() {
@@ -28,7 +28,7 @@ export default function VerifiedPage() {
           </svg>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white font-sans">
+        <h1 className="uppercase tracking-tighter text-4xl md:text-5xl font-bold text-white font-sans">
           YOU&apos;RE VERIFIED
         </h1>
 
@@ -40,7 +40,7 @@ export default function VerifiedPage() {
 
         <Link
           href="/"
-          className="font-sans inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors"
+          className="uppercase tracking-wider font-sans inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors"
         >
           Back to Home
         </Link>

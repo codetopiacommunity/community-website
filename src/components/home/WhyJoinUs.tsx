@@ -69,7 +69,7 @@ export function WhyJoinUs() {
     <section className="relative w-full py-32 bg-black text-white border-t border-zinc-900 overflow-hidden">
       <Container className="relative z-10 w-full px-4">
         <div className="mb-16 flex flex-col gap-6">
-          <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight leading-none font-sans">
+          <h2 className="uppercase tracking-tighter text-4xl md:text-6xl lg:text-8xl font-bold leading-none font-sans">
             Why join us
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
@@ -80,7 +80,7 @@ export function WhyJoinUs() {
 
         {/* The claim */}
         <div className="mb-24 flex flex-col gap-8 max-w-4xl">
-          <p className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-sans">
+          <p className="uppercase tracking-tighter text-2xl md:text-4xl lg:text-5xl font-bold leading-tight font-sans">
             Most communities give you access.
             <br />
             <span className="text-zinc-400">
@@ -124,7 +124,7 @@ export function WhyJoinUs() {
                   className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-400 shrink-0 transition-colors duration-300 group-hover:text-white"
                   strokeWidth={1.5}
                 />
-                <h3 className="text-2xl lg:text-4xl xl:text-5xl font-bold tracking-tight font-sans transition-colors duration-300">
+                <h3 className="uppercase tracking-tighter text-2xl lg:text-4xl xl:text-5xl font-bold font-sans transition-colors duration-300">
                   {reason.title}
                 </h3>
               </div>
@@ -141,7 +141,7 @@ export function WhyJoinUs() {
 
       {/* Everyday things */}
       <Container className="relative z-10 w-full px-4 pt-24">
-        <p className="text-zinc-400 font-mono text-sm mb-10">
+        <p className="uppercase tracking-widest text-zinc-400 font-mono text-sm mb-10">
           And the everyday things
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
@@ -151,7 +151,7 @@ export function WhyJoinUs() {
                 className="w-6 h-6 text-zinc-400 shrink-0"
                 strokeWidth={1.5}
               />
-              <h3 className="text-xl lg:text-2xl font-bold tracking-tight font-sans">
+              <h3 className="uppercase tracking-tighter text-xl lg:text-2xl font-bold font-sans">
                 {item.title}
               </h3>
               <p className="text-zinc-400 font-mono text-sm lg:text-base">

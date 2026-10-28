@@ -17,7 +17,7 @@ export async function sendVerificationEmail(
   await resend.emails.send({
     from: FROM_ADDRESS,
     to,
-    subject: "Verify your Codetopia newsletter subscription",
+    subject: "Verify your subscription to The Dispatch",
     react: VerificationTemplate({ verifyUrl, baseUrl }),
   });
 }

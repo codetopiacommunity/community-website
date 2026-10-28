@@ -89,7 +89,7 @@ export function ShareButton({ title, description }: ShareButtonProps) {
           e.preventDefault();
           setOpen((v) => !v);
         }}
-        className="group flex items-center justify-between w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-xs font-bold transition-colors"
+        className="uppercase tracking-[0.2em] group flex items-center justify-between w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-xs font-bold transition-colors"
       >
         Share this program
         <Share2 className="w-3.5 h-3.5" />
@@ -99,7 +99,7 @@ export function ShareButton({ title, description }: ShareButtonProps) {
       {open && (
         <div className="absolute bottom-full left-0 right-0 mb-1 z-50 bg-zinc-950 border border-zinc-800 shadow-2xl animate-in fade-in slide-in-from-bottom-2 duration-150">
           <div className="p-4 flex flex-col gap-1">
-            <p className="font-mono text-xs text-zinc-400 px-2 pb-2 border-b border-zinc-800 mb-1">
+            <p className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 px-2 pb-2 border-b border-zinc-800 mb-1">
               Share via
             </p>
 
@@ -113,7 +113,9 @@ export function ShareButton({ title, description }: ShareButtonProps) {
                 className="flex items-center gap-3 px-3 py-2.5 text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors"
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
-                <span className="font-mono text-xs">{label}</span>
+                <span className="uppercase tracking-widest font-mono text-xs">
+                  {label}
+                </span>
               </a>
             ))}
 
@@ -128,7 +130,7 @@ export function ShareButton({ title, description }: ShareButtonProps) {
                 ) : (
                   <Copy className="w-3.5 h-3.5 shrink-0" />
                 )}
-                <span className="font-mono text-xs">
+                <span className="uppercase tracking-widest font-mono text-xs">
                   {copied ? "Copied!" : "Copy link"}
                 </span>
               </button>

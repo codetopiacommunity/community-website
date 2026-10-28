@@ -8,7 +8,7 @@ export default function MentorshipsPage() {
       {/* Hero */}
       <section className="w-full pt-32 pb-16 bg-black border-b border-zinc-900">
         <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-12">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight font-sans">
+          <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold mb-6 leading-tight font-sans">
             Mentorships
           </h1>
           <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">

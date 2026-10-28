@@ -23,7 +23,7 @@ export default async function ArticlesPage() {
         <section className="w-full py-32 md:py-40 bg-background border-b border-border">
           <Container className="px-4 flex flex-col gap-8">
             <div className="flex items-end justify-between gap-6">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans">
+              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
                 Articles
               </h1>
               <ThemeToggle />
@@ -39,10 +39,10 @@ export default async function ArticlesPage() {
                 </span>
               </div>
               <div className="text-center space-y-2">
-                <p className="text-foreground font-bold tracking-tight text-2xl font-sans">
+                <p className="uppercase tracking-tighter text-foreground font-bold text-2xl font-sans">
                   Not configured
                 </p>
-                <p className="text-muted-foreground font-mono text-xs max-w-xs">
+                <p className="uppercase tracking-widest text-muted-foreground font-mono text-xs max-w-xs">
                   No Hashnode publication has been linked yet. Configure one in
                   the admin settings.
                 </p>
@@ -78,7 +78,7 @@ export default async function ArticlesPage() {
         <Container className="px-4 flex flex-col gap-8">
           <div className="flex items-end justify-between gap-6">
             <div className="flex flex-col gap-4">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans">
+              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
                 Articles
               </h1>
               <p className="text-muted-foreground text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
@@ -94,7 +94,7 @@ export default async function ArticlesPage() {
       {featuredArticles.length > 0 && (
         <section className="border-t border-border">
           <Container className="px-4 py-8">
-            <p className="font-mono text-xs text-muted-foreground mb-4 px-2">
+            <p className="uppercase tracking-[0.3em] font-mono text-xs text-muted-foreground mb-4 px-2">
               Featured
             </p>
             <FeaturedCarousel articles={featuredArticles} />

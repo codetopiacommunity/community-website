@@ -40,8 +40,8 @@ export function Newsletter() {
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
       <div>
-        <p className="font-sans text-sm font-bold text-white mb-1">
-          Newsletter
+        <p className="font-sans text-sm font-black text-white uppercase tracking-tighter mb-1">
+          The Dispatch
         </p>
         <p className="font-mono text-sm text-zinc-400">
           Get a short email when something new happens in the community.
@@ -68,7 +68,7 @@ export function Newsletter() {
           />
           <button
             type="submit"
-            className="shrink-0 bg-white px-5 py-2.5 font-sans text-sm font-bold text-black transition-colors duration-200 hover:bg-zinc-200 disabled:opacity-50"
+            className="shrink-0 bg-white px-5 py-2.5 font-sans text-xs font-bold uppercase tracking-widest text-black transition-colors duration-200 hover:bg-zinc-200 disabled:opacity-50"
             disabled={status === "loading"}
           >
             {status === "loading" ? "Subscribing…" : "Subscribe"}
