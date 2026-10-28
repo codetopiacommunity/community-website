@@ -89,7 +89,7 @@ function SubSection({
 
   return (
     <div className="w-full flex flex-col items-center mb-14 last:mb-0 px-6 lg:px-12">
-      <h3 className="text-white text-sm font-bold mb-6 text-center font-sans opacity-50">
+      <h3 className="tracking-[0.25em] uppercase text-white text-sm font-bold mb-6 text-center font-sans opacity-50">
         {title}
       </h3>
       <OrgStrip items={items} />

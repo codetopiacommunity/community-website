@@ -22,7 +22,7 @@ export default async function SpotlightArchivePage() {
       <section className="w-full pt-32 pb-16 bg-black">
         <Container className="px-4">
           <div className="flex flex-col gap-6 px-2">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans">
+            <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
               Spotlight
             </h1>
             <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
@@ -56,7 +56,7 @@ export default async function SpotlightArchivePage() {
 
                 <Link
                   href={`/spotlight/${spotlightHandle(current)}`}
-                  className="group/read self-start inline-flex items-center gap-2 font-mono text-xs text-white border-b border-zinc-700 hover:border-white pb-1 transition-colors duration-200"
+                  className="uppercase tracking-[0.25em] group/read self-start inline-flex items-center gap-2 font-mono text-xs text-white border-b border-zinc-700 hover:border-white pb-1 transition-colors duration-200"
                 >
                   Read the feature
                   <ArrowRight className="w-4 h-4 transition-transform group-hover/read:translate-x-1 motion-reduce:transition-none" />
@@ -68,7 +68,7 @@ export default async function SpotlightArchivePage() {
           {rest.length > 0 && (
             <section className="w-full pb-32">
               <Container className="px-4">
-                <p className="text-zinc-400 font-mono text-sm mb-10">
+                <p className="uppercase tracking-widest text-zinc-400 font-mono text-sm mb-10">
                   Previously featured
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -110,10 +110,10 @@ function MemberCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
 
         <div className="absolute inset-x-0 bottom-0 px-3 pb-3 lg:px-4 lg:pb-4 translate-y-1 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none">
-          <h3 className="truncate font-sans text-sm lg:text-base font-bold leading-tight tracking-tight text-white">
+          <h3 className="uppercase tracking-tighter truncate font-sans text-sm lg:text-base font-bold leading-tight text-white">
             {member.name}
           </h3>
-          <p className="mt-1 truncate font-mono text-xs lg:text-xs text-zinc-300">
+          <p className="uppercase tracking-[0.2em] mt-1 truncate font-mono text-xs lg:text-xs text-zinc-300">
             {member.position || member.role}
           </p>
         </div>

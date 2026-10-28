@@ -24,7 +24,7 @@ export function NumbersBand({ stats }: { stats: AboutStat[] }) {
               <span className="font-sans font-bold text-5xl md:text-7xl tracking-tight leading-none tabular-nums">
                 {stat.value}
               </span>
-              <span className="font-mono text-xs text-zinc-300">
+              <span className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-300">
                 {stat.value === 1 ? stat.one : stat.label}
               </span>
             </div>

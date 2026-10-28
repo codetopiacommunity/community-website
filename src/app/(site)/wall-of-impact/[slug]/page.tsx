@@ -91,7 +91,7 @@ export default async function RecognitionDetailPage({
       <div className={`${cx} pt-7 sm:pt-8`}>
         <Link
           href="/wall-of-impact"
-          className="inline-flex items-center gap-2 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
+          className="uppercase tracking-[0.3em] inline-flex items-center gap-2 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Wall of Impact
@@ -115,7 +115,7 @@ export default async function RecognitionDetailPage({
           </div>
 
           <div className="flex flex-col gap-5 sm:gap-6 md:pb-2">
-            <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs sm:text-xs">
+            <p className="uppercase tracking-[0.28em] flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs sm:text-xs">
               <span className={accent}>{item.awardName}</span>
               <span aria-hidden="true" className="text-zinc-700">
                 ·
@@ -134,12 +134,12 @@ export default async function RecognitionDetailPage({
             {/* `w-min` sets the box to the widest word, so the name stacks one
                 word per line and reads as a mark. `max-w-full` + break-word
                 stop a single long token (a username fallback) overflowing. */}
-            <h1 className="font-sans font-bold tracking-tight leading-tight text-white text-[clamp(2.75rem,13vw,7rem)] w-min max-w-full [overflow-wrap:break-word]">
+            <h1 className="uppercase tracking-tighter font-sans font-bold leading-tight text-white text-[clamp(2.75rem,13vw,7rem)] w-min max-w-full [overflow-wrap:break-word]">
               {memberName}
             </h1>
 
             {memberRole && (
-              <p className="font-mono text-xs sm:text-xs text-zinc-400">
+              <p className="uppercase tracking-[0.25em] font-mono text-xs sm:text-xs text-zinc-400">
                 {memberRole}
               </p>
             )}
@@ -182,7 +182,7 @@ export default async function RecognitionDetailPage({
             href={portalProfileUrl}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-baseline gap-3 font-sans text-xl sm:text-2xl font-bold tracking-tight text-zinc-300 transition-colors hover:text-white"
+            className="uppercase tracking-tight group inline-flex items-baseline gap-3 font-sans text-xl sm:text-2xl font-bold text-zinc-300 transition-colors hover:text-white"
           >
             <span
               className={`border-b-2 pb-1 transition-colors ${accent} border-current`}
@@ -217,16 +217,16 @@ export default async function RecognitionDetailPage({
                     className="group flex flex-col gap-2"
                   >
                     <p
-                      className={`font-mono text-xs ${accentFor(
+                      className={`uppercase tracking-[0.25em] font-mono text-xs ${accentFor(
                         sibling.category,
                       )}`}
                     >
                       {sibling.awardName}
                     </p>
-                    <p className="font-sans text-xl sm:text-2xl font-bold tracking-tight leading-none text-zinc-400 transition-colors group-hover:text-white [overflow-wrap:anywhere]">
+                    <p className="uppercase tracking-tight font-sans text-xl sm:text-2xl font-bold leading-none text-zinc-400 transition-colors group-hover:text-white [overflow-wrap:anywhere]">
                       {siblingName}
                     </p>
-                    <p className="font-mono text-xs text-zinc-700">
+                    <p className="uppercase tracking-widest font-mono text-xs text-zinc-700">
                       {sibling.period}
                     </p>
                   </Link>

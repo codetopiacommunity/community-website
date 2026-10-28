@@ -74,7 +74,7 @@ export default function TeamPage() {
         <Container className="w-full px-4 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 px-2">
             <div className="flex-1">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight font-sans">
+              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold mb-6 leading-tight font-sans">
                 The team
               </h1>
               <div className="max-w-2xl">
@@ -94,7 +94,7 @@ export default function TeamPage() {
                     type="button"
                     onClick={() => setActiveTier(tier.value)}
                     className={cn(
-                      "px-4 py-2 text-xs font-mono transition-all",
+                      "uppercase tracking-[0.2em] px-4 py-2 text-xs font-mono transition-all",
                       activeTier === tier.value
                         ? "bg-white text-black"
                         : "bg-transparent text-zinc-400 hover:text-zinc-300",
@@ -116,7 +116,7 @@ export default function TeamPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search name or role…"
-                className="w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
+                className="uppercase tracking-widest w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
               />
               {search && (
                 <button
@@ -137,7 +137,7 @@ export default function TeamPage() {
             </div>
           ) : visibleMembers.length === 0 && search.trim() ? (
             <div className="border border-zinc-900 bg-zinc-950 py-24 text-center px-2">
-              <p className="font-mono text-xs text-zinc-400">
+              <p className="uppercase tracking-widest font-mono text-xs text-zinc-400">
                 No one matches "{search.trim()}" in the{" "}
                 {activeTierLabel || "team"} tier.
               </p>
@@ -146,12 +146,12 @@ export default function TeamPage() {
             <div className="w-full flex flex-col md:flex-row items-stretch border border-zinc-900 bg-zinc-950 min-h-[400px]">
               <div className="flex-1 flex flex-col justify-center p-10 md:p-16 relative overflow-hidden">
                 <div className="relative z-10">
-                  <div className="inline-flex items-center gap-3 px-4 py-2 border border-zinc-800 bg-black text-zinc-400 font-mono text-xs mb-8">
+                  <div className="uppercase tracking-widest inline-flex items-center gap-3 px-4 py-2 border border-zinc-800 bg-black text-zinc-400 font-mono text-xs mb-8">
                     <span className="w-2 h-2 bg-zinc-600 animate-pulse rounded-full"></span>
                     Coming soon
                   </div>
 
-                  <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 leading-none font-sans">
+                  <h3 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold text-white mb-4 leading-none font-sans">
                     Stay tuned
                   </h3>
 
@@ -181,7 +181,7 @@ export default function TeamPage() {
                 </div>
 
                 <div
-                  className="font-mono text-xs text-zinc-400 rotate-180 relative z-10"
+                  className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 rotate-180 relative z-10"
                   style={{ writingMode: "vertical-rl" }}
                 >
                   Codetopia Community team

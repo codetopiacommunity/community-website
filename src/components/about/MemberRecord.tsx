@@ -37,7 +37,9 @@ function Row({
 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[8rem_1fr] gap-1 sm:gap-6">
-      <dt className="font-mono text-xs text-zinc-400 pt-1">{label}</dt>
+      <dt className="uppercase tracking-[0.22em] font-mono text-xs text-zinc-400 pt-1">
+        {label}
+      </dt>
       <dd className="font-mono text-sm leading-relaxed text-white">
         {children}
       </dd>
@@ -53,7 +55,7 @@ function Row({
 export function MemberRecord({ record }: { record: AboutMemberRecord }) {
   return (
     <figure className="m-0 flex flex-col gap-4">
-      <figcaption className="font-mono text-xs text-zinc-400">
+      <figcaption className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-400">
         One member&rsquo;s record
       </figcaption>
 
@@ -74,10 +76,10 @@ export function MemberRecord({ record }: { record: AboutMemberRecord }) {
 
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <span className="font-mono text-xs text-zinc-400">
+            <span className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-400">
               {record.period}
             </span>
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight font-sans text-white leading-none">
+            <h3 className="uppercase tracking-tighter text-2xl md:text-3xl font-bold font-sans text-white leading-none">
               {record.awardName}
             </h3>
           </div>
