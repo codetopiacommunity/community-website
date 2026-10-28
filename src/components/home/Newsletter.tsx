@@ -1,8 +1,6 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
-import { Container } from "@/components/layout/Container";
-import { CtaButton } from "@/components/ui/cta-button";
 
 type SubscribeStatus = "idle" | "loading" | "success" | "error";
 
@@ -40,69 +38,53 @@ export function Newsletter() {
   }
 
   return (
-    <section className="relative w-full py-24 md:py-32 bg-[#e4e4e7] overflow-hidden flex flex-col items-center justify-center">
-      {/* Background Typographic Watermark */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none opacity-[0.05]">
-        <h2 className="text-[25vw] font-black uppercase tracking-tighter text-black font-sans leading-none">
-          CONNECT
-        </h2>
+    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <div>
+        <p className="font-sans text-sm font-bold text-white mb-1">
+          Newsletter
+        </p>
+        <p className="font-mono text-sm text-zinc-400">
+          Get a short email when something new happens in the community.
+        </p>
       </div>
 
-      <Container className="relative z-10 w-full px-4">
-        <div className="bg-black p-12 md:p-24 lg:p-32 flex flex-col lg:flex-row items-center justify-between gap-12 border border-zinc-800 shadow-2xl">
-          <div className="flex-1 text-center lg:text-left">
-            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-6 font-sans leading-none">
-              The <span className="text-zinc-400">Dispatch</span>
-            </h2>
-            <p className="text-zinc-400 text-base md:text-lg font-mono max-w-xl leading-relaxed">
-              Project arrivals. Community narratives. <br />
-              What the community is working on, delivered to your inbox.
-            </p>
-          </div>
-
-          <form
-            className="w-full lg:w-auto flex-1 max-w-xl"
-            onSubmit={handleSubmit}
+      <form className="w-full lg:max-w-md" onSubmit={handleSubmit}>
+        <div className="flex gap-2">
+          <input
+            type="email"
+            aria-label="Your email"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (status !== "idle") {
+                setStatus("idle");
+                setMessage("");
+              }
+            }}
+            className="min-w-0 flex-1 rounded-none border border-zinc-800 bg-black px-4 py-2.5 font-mono text-sm text-white outline-none transition-colors placeholder:text-zinc-500 focus:border-white"
+            required
+            disabled={status === "loading"}
+          />
+          <button
+            type="submit"
+            className="shrink-0 bg-white px-5 py-2.5 font-sans text-sm font-bold text-black transition-colors duration-200 hover:bg-zinc-200 disabled:opacity-50"
+            disabled={status === "loading"}
           >
-            <div className="flex flex-col sm:flex-row gap-4 items-stretch">
-              <input
-                type="email"
-                placeholder="YOUR EMAIL"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (status !== "idle") {
-                    setStatus("idle");
-                    setMessage("");
-                  }
-                }}
-                className="flex-1 bg-zinc-900 text-white px-8 py-5 h-34 md:h-16 outline-none font-sans text-sm md:text-lg border border-zinc-800 transition-colors focus:border-white rounded-none"
-                required
-                disabled={status === "loading"}
-              />
-              <CtaButton
-                type="submit"
-                className="bg-white text-black hover:bg-zinc-200 px-10 h-14 md:h-16 disabled:opacity-50"
-                offsetClassName="bg-zinc-400"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "SUBSCRIBING…" : "SUBSCRIBE"}
-              </CtaButton>
-            </div>
-
-            {/* Feedback message */}
-            {message && (
-              <p
-                className={`mt-4 text-sm font-sans ${
-                  status === "success" ? "text-green-400" : "text-red-400"
-                }`}
-              >
-                {message}
-              </p>
-            )}
-          </form>
+            {status === "loading" ? "Subscribing…" : "Subscribe"}
+          </button>
         </div>
-      </Container>
-    </section>
+
+        {message && (
+          <p
+            className={`mt-3 text-sm font-sans ${
+              status === "success" ? "text-green-400" : "text-red-400"
+            }`}
+          >
+            {message}
+          </p>
+        )}
+      </form>
+    </div>
   );
 }

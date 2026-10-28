@@ -29,73 +29,76 @@ type MegaMenuNavItem = {
 
 type NavItem = StandaloneNavItem | MegaMenuNavItem;
 
+const JOIN_HREF = "/howtos/getting-started/join-the-community";
+
 const NAV_ITEMS: NavItem[] = [
-  { type: "link", label: "Careers", href: "/careers" },
+  { type: "link", label: "How-Tos", href: "/howtos" },
   {
     type: "megamenu",
     label: "Events",
     children: [
       {
-        label: "Events & Activities",
+        label: "Events",
         href: "/events",
-        description: "Upcoming and past community events",
+        description: "What is coming up, and what we have done",
       },
       {
         label: "Gallery",
         href: "/gallery",
-        description: "Photos from our community moments",
+        description: "Photos from our events",
       },
     ],
   },
   {
     type: "megamenu",
-    label: "Resources",
+    label: "Community",
     children: [
       {
-        label: "Articles",
-        href: "/articles",
-        description: "Tutorials, guides, and community writing",
+        label: "The team",
+        href: "/team",
+        description: "The people who run the community",
       },
       {
         label: "Spotlight",
         href: "/spotlight",
-        description: "People doing remarkable work you should know about",
-      },
-      {
-        label: "How-tos",
-        href: "/howtos",
-        description: "Practical step-by-step guides from the community",
+        description: "Members doing great work",
       },
       {
         label: "Wall of Impact",
         href: "/wall-of-impact",
-        description: "Stories of community impact",
+        description: "Our thank-you to people who made a difference",
       },
       {
-        label: "Verify a Certificate",
-        href: "/verify",
-        description: "Confirm a certificate is genuinely issued by us",
-      },
-      {
-        label: "Code of Conduct",
-        href: "/code-of-conduct",
-        description: "Our community standards and values",
+        label: "Articles",
+        href: "/articles",
+        description: "Written by our members",
       },
     ],
   },
+  { type: "link", label: "Careers", href: "/careers" },
   {
     type: "megamenu",
     label: "About",
     children: [
       {
-        label: "About Us",
+        label: "About us",
         href: "/about",
-        description: "Our mission, vision, and story",
+        description: "Who we are and how it started",
       },
       {
-        label: "The Team",
-        href: "/team",
-        description: "Meet the people behind the community",
+        label: "Code of conduct",
+        href: "/code-of-conduct",
+        description: "How we treat each other",
+      },
+      {
+        label: "Work with us",
+        href: "/work-with-us",
+        description: "For organisations: hire, partner or host",
+      },
+      {
+        label: "Verify a certificate",
+        href: "/verify",
+        description: "Check a certificate is really from us",
       },
     ],
   },
@@ -103,7 +106,7 @@ const NAV_ITEMS: NavItem[] = [
 
 function isNavItemActive(item: NavItem, pathname: string): boolean {
   if (item.type === "link") {
-    return pathname === item.href;
+    return pathname === item.href || pathname.startsWith(`${item.href}/`);
   }
   return item.children.some((child) => pathname === child.href);
 }
@@ -132,7 +135,7 @@ function DesktopNav({
             <Link
               key={item.label}
               href={item.href}
-              className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
+              className={`px-4 py-2 font-sans text-sm transition-colors duration-200 ${
                 isActive ? "text-white" : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -147,7 +150,7 @@ function DesktopNav({
             type="button"
             onMouseEnter={() => onMegaMenuEnter(item.label)}
             onMouseLeave={onMegaMenuLeave}
-            className={`flex items-center gap-1.5 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
+            className={`flex items-center gap-1.5 px-4 py-2 font-sans text-sm transition-colors duration-200 ${
               isActive ? "text-white" : "text-zinc-400 hover:text-white"
             }`}
           >
@@ -158,6 +161,12 @@ function DesktopNav({
           </button>
         );
       })}
+      <Link
+        href={JOIN_HREF}
+        className="ml-4 bg-white px-5 py-2 font-sans text-sm font-bold text-black transition-colors duration-200 hover:bg-zinc-200"
+      >
+        Join
+      </Link>
     </nav>
   );
 }
@@ -188,7 +197,7 @@ function MobileMenu({
                 key={item.label}
                 href={item.href}
                 onClick={onClose}
-                className={`w-full font-mono text-sm uppercase tracking-widest py-4 border-b border-zinc-900 last:border-none transition-colors ${
+                className={`w-full font-sans text-base py-4 border-b border-zinc-900 last:border-none transition-colors ${
                   isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -209,7 +218,7 @@ function MobileMenu({
                 onClick={() =>
                   setExpandedMobileItem(isExpanded ? null : item.label)
                 }
-                className={`w-full flex items-center justify-between font-mono text-sm uppercase tracking-widest py-4 transition-colors ${
+                className={`w-full flex items-center justify-between font-sans text-base py-4 transition-colors ${
                   isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -225,7 +234,7 @@ function MobileMenu({
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="block pl-4 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+                      className="block pl-4 py-2.5 font-sans text-sm text-zinc-400 hover:text-white transition-colors"
                     >
                       {child.label}
                     </Link>
@@ -237,10 +246,11 @@ function MobileMenu({
         })}
 
         <Link
-          href="/howtos/getting-started/join-the-community"
-          className="mt-6 w-full bg-white text-black font-sans font-black text-xs uppercase tracking-widest px-6 py-4 text-center transition-colors hover:bg-zinc-200"
+          href={JOIN_HREF}
+          onClick={onClose}
+          className="mt-6 w-full bg-white text-black font-sans font-bold text-sm px-6 py-4 text-center transition-colors hover:bg-zinc-200"
         >
-          Join the Community
+          Join the community
         </Link>
       </nav>
     </div>
@@ -353,7 +363,7 @@ export function Header() {
 
                   return (
                     <div key={item.label} className="flex flex-col gap-4">
-                      <p className="font-sans font-black text-white text-xs uppercase tracking-tighter">
+                      <p className="font-sans font-bold text-white text-sm">
                         {item.label}
                       </p>
                       <div className="flex flex-col gap-1 border-l border-zinc-900">
@@ -364,7 +374,7 @@ export function Header() {
                             onClick={() => setActiveNavItem(null)}
                             className="group flex flex-col px-4 py-3 hover:bg-zinc-900/60 transition-colors"
                           >
-                            <span className="font-mono text-sm text-zinc-300 group-hover:text-white transition-colors">
+                            <span className="font-sans text-sm text-zinc-200 group-hover:text-white transition-colors">
                               {child.label}
                             </span>
                             {child.description && (
