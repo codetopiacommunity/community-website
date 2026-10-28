@@ -12,31 +12,31 @@ import { Container } from "@/components/layout/Container";
 
 const reasons = [
   {
-    title: "A Record, Not Just Access",
+    title: "A record, not just access",
     description:
       "Badges, certificates and recognitions earned through reviewed work, written by the people you worked with.",
     icon: BadgeCheck,
   },
   {
-    title: "Every Discipline",
+    title: "Every discipline",
     description:
       "Whatever your craft, there are people here doing it. No one discipline is the main event and the rest guests.",
     icon: Shapes,
   },
   {
-    title: "Every Level, Honestly",
+    title: "Every level, honestly",
     description:
       "Complete beginners sit alongside senior practitioners. Say where you actually are and get matched accordingly. Nobody has to pretend.",
     icon: Signal,
   },
   {
-    title: "Open To Organisations",
+    title: "Open to organisations",
     description:
       "Led by Codetopia and run by its members. Any organisation that wants to work with the people here is welcome.",
     icon: Compass,
   },
   {
-    title: "Members Run It",
+    title: "Members run it",
     description:
       "The projects, the events, the reviews, the writing. Most of it is open to any member who wants to pick it up.",
     icon: Users,
@@ -45,19 +45,19 @@ const reasons = [
 
 const everyday = [
   {
-    title: "Collaborative Projects",
+    title: "Collaborative projects",
     description:
       "Real work, from our own projects and open source to work organisations are welcome to bring.",
     icon: GitPullRequest,
   },
   {
-    title: "People Ahead Of You",
+    title: "People ahead of you",
     description:
       "Ask when you are stuck, get your work reviewed, and work alongside people who have already done it.",
     icon: Layers,
   },
   {
-    title: "Community Events",
+    title: "Community events",
     description:
       "Meetups, technical sessions, and hackathons to connect and build together.",
     icon: Ticket,
@@ -69,8 +69,8 @@ export function WhyJoinUs() {
     <section className="relative w-full py-32 bg-black text-white border-t border-zinc-900 overflow-hidden">
       <Container className="relative z-10 w-full px-4">
         <div className="mb-16 flex flex-col gap-6">
-          <h2 className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none font-sans">
-            Why <span className="text-zinc-400">Join Us</span>
+          <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight leading-none font-sans">
+            Why join us
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
             There are a lot of communities out there. Here is what makes this
@@ -80,7 +80,7 @@ export function WhyJoinUs() {
 
         {/* The claim */}
         <div className="mb-24 flex flex-col gap-8 max-w-4xl">
-          <p className="text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-tight font-sans">
+          <p className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-sans">
             Most communities give you access.
             <br />
             <span className="text-zinc-400">
@@ -124,7 +124,7 @@ export function WhyJoinUs() {
                   className="w-6 h-6 lg:w-8 lg:h-8 text-zinc-400 shrink-0 transition-colors duration-300 group-hover:text-white"
                   strokeWidth={1.5}
                 />
-                <h3 className="text-2xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tighter font-sans transition-colors duration-300">
+                <h3 className="text-2xl lg:text-4xl xl:text-5xl font-bold tracking-tight font-sans transition-colors duration-300">
                   {reason.title}
                 </h3>
               </div>
@@ -141,7 +141,7 @@ export function WhyJoinUs() {
 
       {/* Everyday things */}
       <Container className="relative z-10 w-full px-4 pt-24">
-        <p className="text-zinc-500 font-mono text-sm uppercase tracking-widest mb-10">
+        <p className="text-zinc-400 font-mono text-sm mb-10">
           And the everyday things
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
@@ -151,7 +151,7 @@ export function WhyJoinUs() {
                 className="w-6 h-6 text-zinc-400 shrink-0"
                 strokeWidth={1.5}
               />
-              <h3 className="text-xl lg:text-2xl font-black uppercase tracking-tighter font-sans">
+              <h3 className="text-xl lg:text-2xl font-bold tracking-tight font-sans">
                 {item.title}
               </h3>
               <p className="text-zinc-400 font-mono text-sm lg:text-base">

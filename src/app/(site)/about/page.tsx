@@ -21,7 +21,7 @@ import { getTeamData } from "@/lib/team";
 import { coreValues, programmes, reviewRules, whatYouGet } from "./data";
 
 export const metadata: Metadata = {
-  title: "About Us — Codetopia Community",
+  title: "About us — Codetopia Community",
   description:
     "Who we are, what we do, and what we expect from each other. Read this before you join.",
 };
@@ -166,12 +166,9 @@ export default async function AboutPage() {
         />
         <Container className="relative z-10 px-4">
           <div className="flex flex-col items-start gap-8 md:gap-10">
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-zinc-400">
-              About Us
-            </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.88] font-sans">
-              We are Codetopia <br />
-              <span className="text-zinc-400">Community.</span>
+            <span className="font-mono text-xs text-zinc-400">About us</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight font-sans">
+              We are Codetopia Community
             </h1>
             <div className="flex flex-col gap-6">
               <p className="font-mono text-sm md:text-base text-white italic">
@@ -204,7 +201,7 @@ export default async function AboutPage() {
       </section>
 
       {/* ── 01 · Who we are ──────────────────────────────────────────── */}
-      <Section num="01" label="Who We Are">
+      <Section num="01" label="Who we are">
         <Heading>People who make things.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -223,7 +220,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 02 · How we started ──────────────────────────────────────── */}
-      <Section num="02" label="How We Started">
+      <Section num="02" label="How we started">
         <Heading>It started small.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -243,14 +240,14 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 03 · What happens here ─────────────────────────────────────────── */}
-      <Section num="03" label="What We Do">
+      <Section num="03" label="What we do">
         <Heading>What happens here.</Heading>
         <Prose>Members run all of it. Most of it is open to any member.</Prose>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
           {programmes.map((programme) => (
             <div key={programme.tag} className="flex flex-col gap-2.5">
-              <h3 className="text-lg font-black uppercase tracking-tighter font-sans text-white">
+              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
                 {programme.tag}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[42ch]">
@@ -279,7 +276,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 04 · How it works ────────────────────────────────────────── */}
-      <Section num="04" label="How It Works">
+      <Section num="04" label="How it works">
         <Heading>We write down what people do.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -329,7 +326,7 @@ export default async function AboutPage() {
       <NumbersBand stats={stats} />
 
       {/* ── 05 · What you get out of it ──────────────────────────────── */}
-      <Section num="05" label="What You Get Out Of It">
+      <Section num="05" label="What you get out of it">
         <Heading>Experience, people, and a record.</Heading>
         <Prose>
           Every role here is voluntary and unpaid, team leads included. Nobody
@@ -342,7 +339,7 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
           {whatYouGet.map((item) => (
             <div key={item.title} className="flex flex-col gap-2.5">
-              <h3 className="text-lg font-black uppercase tracking-tighter font-sans text-white">
+              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
                 {item.title}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[42ch]">
@@ -354,7 +351,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 06 · What we expect ──────────────────────────────────────── */}
-      <Section num="06" label="What We Expect">
+      <Section num="06" label="What we expect">
         <Heading>What we expect from each other.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -388,7 +385,7 @@ export default async function AboutPage() {
               key={value.title}
               className="grid grid-cols-1 sm:grid-cols-[11rem_1fr] gap-2 sm:gap-8"
             >
-              <h3 className="text-lg font-black uppercase tracking-tighter font-sans text-white">
+              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
                 {value.title}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[50ch]">
@@ -400,7 +397,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 08 · Who runs it ─────────────────────────────────────────── */}
-      <Section num="08" label="Who Runs It">
+      <Section num="08" label="Who runs it">
         <Heading>People with day jobs.</Heading>
         <Prose>
           Engineers and organisers who do this on the side because they want it

@@ -135,7 +135,7 @@ export default async function Image({
               fontFamily: "Inter",
               fontSize: 18,
               letterSpacing: "0.3em",
-              textTransform: "uppercase",
+              textTransform: "",
               color: "#a1a1aa",
             }}
           >
@@ -150,7 +150,7 @@ export default async function Image({
               fontSize: nameSize(spotlight?.name ?? "Spotlight"),
               lineHeight: 1,
               letterSpacing: "-0.04em",
-              textTransform: "uppercase",
+              textTransform: "",
             }}
           >
             {spotlight?.name ?? "Spotlight"}
@@ -164,7 +164,7 @@ export default async function Image({
                 fontFamily: "Inter",
                 fontSize: 20,
                 letterSpacing: "0.3em",
-                textTransform: "uppercase",
+                textTransform: "",
                 color: "#d4d4d8",
               }}
             >

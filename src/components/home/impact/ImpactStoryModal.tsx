@@ -72,7 +72,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
             <button
               type="button"
               onClick={() => setIsPlayingVideo(false)}
-              className="inline-flex items-center gap-2 absolute top-4 left-4 z-40 font-mono text-xs tracking-[0.25em] uppercase text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-2 absolute top-4 left-4 z-40 font-mono text-xs text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer group"
             >
               <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
               BACK
@@ -111,7 +111,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="font-mono text-xs tracking-[0.2em] uppercase text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-4 py-2 transition-colors cursor-pointer"
+                className="font-mono text-xs text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-4 py-2 transition-colors cursor-pointer"
               >
                 CLOSE ✕
               </button>
@@ -126,7 +126,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
             <div className="absolute bottom-0 left-0 right-0 z-20 p-8 lg:p-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
               {/* Left: title + meta */}
               <div className="flex-1">
-                <div className="flex items-center gap-6 mb-4 font-mono text-zinc-400 text-xs uppercase tracking-[0.3em]">
+                <div className="flex items-center gap-6 mb-4 font-mono text-zinc-400 text-xs">
                   <span className="flex items-center gap-2">
                     <Calendar className="w-3 h-3" />
                     {formatDateRange(story.startDate, story.endDate)}
@@ -136,7 +136,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
                     {story.location}
                   </span>
                 </div>
-                <h4 className="font-black text-white uppercase tracking-tighter text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-none font-sans drop-shadow-2xl mb-6">
+                <h4 className="font-bold text-white tracking-tight text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-none font-sans drop-shadow-2xl mb-6">
                   {story.title}
                 </h4>
                 <p className="font-mono text-zinc-300 text-sm md:text-base leading-relaxed max-w-2xl">
@@ -150,7 +150,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
                   <button
                     type="button"
                     onClick={() => setIsPlayingVideo(true)}
-                    className="flex items-center gap-3 bg-white text-black font-black uppercase tracking-widest text-xs px-6 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
+                    className="flex items-center gap-3 bg-white text-black font-bold text-xs px-6 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
                   >
                     <PlayCircle className="w-4 h-4" /> Watch Video
                   </button>
@@ -160,7 +160,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
                     href={story.galleryLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 border border-white text-white font-black uppercase tracking-widest text-xs px-6 py-4 hover:bg-white hover:text-black transition-colors"
+                    className="flex items-center gap-3 border border-white text-white font-bold text-xs px-6 py-4 hover:bg-white hover:text-black transition-colors"
                   >
                     <ImageIcon className="w-4 h-4" /> View Gallery
                   </a>

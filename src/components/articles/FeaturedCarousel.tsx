@@ -85,13 +85,13 @@ export function FeaturedCarousel({ articles }: FeaturedCarouselProps) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-8 pb-16">
-                    <h2 className="font-black text-white uppercase tracking-tighter text-3xl md:text-4xl leading-tight font-sans mb-3 max-w-3xl">
+                    <h2 className="font-bold text-white tracking-tight text-3xl md:text-4xl leading-tight font-sans mb-3 max-w-3xl">
                       {article.title}
                     </h2>
                     <p className="font-mono text-zinc-300 text-sm leading-relaxed line-clamp-2 max-w-2xl mb-4">
                       {article.brief}
                     </p>
-                    <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+                    <div className="flex items-center gap-4 font-mono text-xs text-zinc-400">
                       <span>{article.author.name}</span>
                       <span className="text-zinc-400">·</span>
                       <span>{formattedDate}</span>

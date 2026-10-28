@@ -173,7 +173,7 @@ function ExperienceSection({
 
   return (
     <div>
-      <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
+      <h5 className="font-mono text-xs font-medium text-zinc-400 mb-3">
         Experience
       </h5>
       <div>
@@ -191,7 +191,7 @@ function ExperienceSection({
                 {entry.organization}
               </p>
             )}
-            <p className="text-zinc-400 font-mono text-[10px] tracking-widest mt-1">
+            <p className="text-zinc-400 font-mono text-xs mt-1">
               {formatCareerRange(entry.startDate, entry.endDate)}
             </p>
             {entry.description && (
@@ -204,7 +204,7 @@ function ExperienceSection({
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
-          className="font-mono text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+          className="font-mono text-xs text-zinc-400 hover:text-white transition-colors"
         >
           {expanded ? "Show less" : `Show all ${careerProgressions.length}`}
         </button>
@@ -264,7 +264,7 @@ export function TeamCard({ member, onSelect }: TeamCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-zinc-950 text-white transition-all duration-700 group-hover:bg-zinc-900 group-hover:scale-105">
-            <span className="font-mono text-4xl font-bold tracking-widest text-zinc-300 md:text-5xl">
+            <span className="font-mono text-4xl font-bold text-zinc-300 md:text-5xl">
               {initials}
             </span>
           </div>
@@ -279,7 +279,7 @@ export function TeamCard({ member, onSelect }: TeamCardProps) {
               className={`fi fi-${countryFlag.code} text-sm leading-none`}
               aria-hidden="true"
             />
-            <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-300">
+            <span className="font-mono text-xs text-zinc-300">
               {countryFlag.country}
             </span>
           </div>
@@ -288,7 +288,7 @@ export function TeamCard({ member, onSelect }: TeamCardProps) {
         {/* Main Content: Persistent Bottom State */}
         <div className="absolute inset-x-0 bottom-0 p-6 z-20 flex flex-col justify-end">
           <div className="transform group-hover:-translate-y-1 transition-transform duration-500">
-            <h3 className="text-2xl lg:text-3xl font-black uppercase tracking-tighter text-white leading-none font-sans line-clamp-1">
+            <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-white leading-none font-sans line-clamp-1">
               {member.name}
             </h3>
           </div>
@@ -396,7 +396,7 @@ export function TeamMemberModal({
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
-              <span className="font-mono text-6xl font-black tracking-widest text-zinc-400">
+              <span className="font-mono text-6xl font-bold text-zinc-400">
                 {initials}
               </span>
             </div>
@@ -407,17 +407,17 @@ export function TeamMemberModal({
           )}
 
           <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
-            <p className="font-mono text-xs uppercase tracking-widest text-zinc-400 font-medium mb-2">
+            <p className="font-mono text-xs text-zinc-400 font-medium mb-2">
               {member.role}
             </p>
             <h3
               id="team-member-modal-title"
-              className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white leading-none font-sans"
+              className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-none font-sans"
             >
               {member.name}
             </h3>
             {member.position && (
-              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-2">
+              <p className="text-zinc-400 font-mono text-xs mt-2">
                 {member.position}
               </p>
             )}
@@ -433,13 +433,13 @@ export function TeamMemberModal({
             <div ref={contentRef} className="space-y-7 sm:space-y-10">
               <div className="flex flex-wrap items-center gap-5">
                 {member.location && (
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-400 font-medium">
                     <MapPin className="w-3.5 h-3.5" />
                     {member.location}
                   </span>
                 )}
                 {joined && (
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-medium">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-400 font-medium">
                     <CalendarDays className="w-3.5 h-3.5" />
                     Since {joined}
                   </span>
@@ -448,7 +448,7 @@ export function TeamMemberModal({
 
               {member.statement && (
                 <div>
-                  <h4 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
+                  <h4 className="font-mono text-xs font-medium text-zinc-400 mb-3">
                     Bio
                   </h4>
                   <p
@@ -462,7 +462,7 @@ export function TeamMemberModal({
                     <button
                       type="button"
                       onClick={() => setBioExpanded((prev) => !prev)}
-                      className="mt-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+                      className="mt-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
                     >
                       {bioExpanded ? "Show less" : "Read more"}
                     </button>
@@ -472,14 +472,14 @@ export function TeamMemberModal({
 
               {member.expertise && member.expertise.length > 0 && (
                 <div>
-                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
+                  <h5 className="font-mono text-xs font-medium text-zinc-400 mb-3">
                     Skills
                   </h5>
                   <div className="flex flex-wrap gap-2">
                     {member.expertise.map((exp) => (
                       <span
                         key={exp}
-                        className="px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-zinc-300 font-mono text-[10px] uppercase tracking-widest"
+                        className="px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-zinc-300 font-mono text-xs"
                       >
                         {exp}
                       </span>
@@ -494,8 +494,8 @@ export function TeamMemberModal({
 
               {member.communityProfileUrl && member.slug && (
                 <div>
-                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
-                    Community Profile
+                  <h5 className="font-mono text-xs font-medium text-zinc-400 mb-3">
+                    Community profile
                   </h5>
                   <a
                     href={member.communityProfileUrl}
@@ -515,7 +515,7 @@ export function TeamMemberModal({
                 website ||
                 (member.socialLinks && member.socialLinks.length > 0)) && (
                 <div>
-                  <h5 className="font-mono text-xs uppercase tracking-widest font-medium text-zinc-400 mb-3">
+                  <h5 className="font-mono text-xs font-medium text-zinc-400 mb-3">
                     Find {member.name.split(" ")[0]} online
                   </h5>
                   <div className="flex flex-wrap items-center gap-5">

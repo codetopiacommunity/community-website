@@ -32,10 +32,10 @@ export function GalleryGridIsland() {
               <Images className="w-10 h-10 text-zinc-400" />
             </div>
             <div className="text-center space-y-2">
-              <p className="text-white font-black uppercase tracking-tighter text-2xl font-sans">
+              <p className="text-white font-bold tracking-tight text-2xl font-sans">
                 No albums yet
               </p>
-              <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest max-w-xs">
+              <p className="text-zinc-400 font-mono text-xs max-w-xs">
                 The gallery is empty for now. Come back soon for photos from our
                 events.
               </p>
@@ -43,7 +43,7 @@ export function GalleryGridIsland() {
           </div>
         ) : (
           <>
-            <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mb-10 px-2">
+            <p className="text-zinc-400 font-mono text-xs mb-10 px-2">
               {albums.length} Albums
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">
@@ -61,22 +61,22 @@ export function GalleryGridIsland() {
                       className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-black/80 text-zinc-400 font-mono text-[10px] uppercase tracking-widest px-3 py-1">
+                      <span className="bg-black/80 text-zinc-400 font-mono text-xs px-3 py-1">
                         {album.category}
                       </span>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <span className="bg-black/80 text-zinc-400 font-mono text-[10px] uppercase tracking-widest px-3 py-1">
+                      <span className="bg-black/80 text-zinc-400 font-mono text-xs px-3 py-1">
                         {album._count.photos} photos
                       </span>
                     </div>
                   </div>
                   <div className="p-6 border-t border-zinc-900 flex items-end justify-between">
                     <div>
-                      <p className="text-white font-black uppercase tracking-tight text-xl font-sans leading-tight group-hover:text-zinc-300 transition-colors">
+                      <p className="text-white font-bold tracking-tight text-xl font-sans leading-tight group-hover:text-zinc-300 transition-colors">
                         {album.title}
                       </p>
-                      <p className="text-zinc-400 font-mono text-xs uppercase tracking-widest mt-1">
+                      <p className="text-zinc-400 font-mono text-xs mt-1">
                         {album.date}
                       </p>
                     </div>

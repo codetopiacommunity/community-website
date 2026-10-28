@@ -40,7 +40,7 @@ export function InitialsBackdrop({
       <div className="absolute inset-0 flex items-center justify-center">
         <span
           className={cn(
-            "select-none font-sans font-black leading-none tracking-tighter",
+            "select-none font-sans font-bold leading-none tracking-tight",
             "text-[48cqw] opacity-70",
             textAccent,
           )}

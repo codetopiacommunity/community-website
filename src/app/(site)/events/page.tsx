@@ -18,9 +18,8 @@ export default function EventsPage() {
           }}
         />
         <Container className="relative z-10 px-4 font-sans flex flex-col gap-8">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9] max-w-5xl">
-            Events &<br />
-            <span className="text-zinc-400">Activities</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight max-w-5xl">
+            Events
           </h1>
           <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
             The schedule for our upcoming build sessions, workshops, and

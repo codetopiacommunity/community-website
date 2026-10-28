@@ -74,12 +74,11 @@ export default function WorkWithUsPage() {
         />
         <Container className="relative z-10 px-4">
           <div className="flex flex-col items-start gap-8 md:gap-10">
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-zinc-400">
-              For Organisations
+            <span className="font-mono text-xs text-zinc-400">
+              For organisations
             </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.88] font-sans">
-              Work With <br />
-              <span className="text-zinc-400">Us.</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight font-sans">
+              Work with us
             </h1>
             <div className="flex flex-col gap-6">
               <Prose>
@@ -94,13 +93,13 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* ── 01 · Ways to work with us ────────────────────────── */}
-      <Section num="01" label="Ways To Work With Us">
+      <Section num="01" label="Ways to work with us">
         <Heading>How organisations get involved.</Heading>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
           {ways.map((way) => (
             <div key={way.title} className="flex flex-col gap-2.5">
-              <h3 className="text-lg font-black uppercase tracking-tighter font-sans text-white">
+              <h3 className="text-lg font-bold tracking-tight font-sans text-white">
                 {way.title}
               </h3>
               <p className="font-mono text-sm leading-loose text-zinc-400 max-w-[42ch]">
@@ -139,7 +138,7 @@ export default function WorkWithUsPage() {
       </Section>
 
       {/* ── 03 · How we work ─────────────────────────────────── */}
-      <Section num="03" label="How We Work">
+      <Section num="03" label="How we work">
         <Heading>Welcome to a community built around you.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -156,14 +155,12 @@ export default function WorkWithUsPage() {
       </Section>
 
       {/* ── 04 · Who we work with ────────────────────────────── */}
-      <Section num="04" label="Track Record">
+      <Section num="04" label="Track record">
         <Heading>Who we work with.</Heading>
         <div className="flex flex-col gap-10">
           {organisationGroups.map((group) => (
             <div key={group.label} className="flex flex-col gap-5">
-              <h3 className="font-mono text-xs uppercase tracking-[0.22em] text-zinc-500">
-                {group.label}
-              </h3>
+              <h3 className="font-mono text-xs text-zinc-400">{group.label}</h3>
               <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
                 {group.items.map((org) => (
                   <a

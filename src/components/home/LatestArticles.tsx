@@ -33,8 +33,8 @@ export async function LatestArticles() {
     <section className="w-full py-20 md:py-24 bg-black flex flex-col border-t border-zinc-900">
       <Container className="w-full px-4 font-sans">
         <div className="w-full mb-16 text-left flex flex-col gap-6">
-          <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
-            Latest <span className="text-zinc-400">Articles</span>
+          <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tight leading-none font-sans">
+            Latest articles
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
             Insights, tutorials, and stories from the Codetopia community.
@@ -50,7 +50,7 @@ export async function LatestArticles() {
         <div className="flex justify-start">
           <Link
             href="/articles"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group"
+            className="inline-flex items-center gap-2 font-mono text-xs text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group"
           >
             View all articles{" "}
             <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />

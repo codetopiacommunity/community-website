@@ -36,8 +36,8 @@ export async function MemberShowcase() {
       <Container className="w-full font-sans">
         <div className="w-full mb-14 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="flex flex-col gap-6">
-            <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none font-sans">
-              Meet the <span className="text-zinc-400">Community</span>
+            <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tight leading-none font-sans">
+              Meet the community
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl font-mono max-w-2xl">
               Tech enthusiasts of every kind, at every stage, all in one place.
@@ -48,7 +48,7 @@ export async function MemberShowcase() {
             // `self-start` keeps the button hugging its label on mobile. As a
             // flex child in a column it would otherwise stretch to the full
             // width and strand the text against the left edge.
-            className="self-start md:self-end inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group shrink-0"
+            className="self-start md:self-end inline-flex items-center gap-2 font-mono text-xs text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group shrink-0"
           >
             Join them{" "}
             <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
