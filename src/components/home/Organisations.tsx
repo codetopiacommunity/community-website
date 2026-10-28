@@ -102,7 +102,7 @@ export function Organisations() {
     <section className="w-full py-14 bg-black border-b-4 border-zinc-900 flex flex-col items-center overflow-hidden">
       <SubSection title="Sponsors" items={sponsors} />
       <SubSection title="Partners" items={partners} />
-      <SubSection title="Organisations we've worked with" items={workedWith} />
+      <SubSection title="Organisations We've Worked With" items={workedWith} />
     </section>
   );
 }
