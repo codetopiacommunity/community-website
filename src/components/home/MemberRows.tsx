@@ -70,7 +70,7 @@ function MemberCard({
           />
         ) : (
           <span className="flex h-full w-full items-center justify-center bg-zinc-950">
-            <span className="font-mono text-3xl tracking-widest text-zinc-700">
+            <span className="font-mono text-3xl text-zinc-700">
               {getInitials(member.name)}
             </span>
           </span>
@@ -90,7 +90,7 @@ function MemberCard({
         {countryFlag && (
           <span className="absolute right-1.5 top-1.5 z-10 inline-flex items-center border border-zinc-800 bg-black/70 px-1 py-0.5">
             <span
-              className={`fi fi-${countryFlag.code} text-[9px] leading-none`}
+              className={`fi fi-${countryFlag.code} text-xs leading-none`}
               role="img"
               aria-label={countryFlag.country}
             />
@@ -110,10 +110,10 @@ function MemberCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
 
         <div className="absolute inset-x-0 bottom-0 px-3 pb-3 lg:px-4 lg:pb-4 translate-y-1 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none">
-          <h3 className="truncate font-sans text-sm lg:text-base font-black uppercase leading-tight tracking-tighter text-white">
+          <h3 className="truncate font-sans text-sm lg:text-base font-bold leading-tight tracking-tight text-white">
             {member.name}
           </h3>
-          <p className="mt-1 truncate font-mono text-[9px] lg:text-[10px] uppercase tracking-[0.2em] text-zinc-300">
+          <p className="mt-1 truncate font-mono text-xs lg:text-xs text-zinc-300">
             {member.position || member.role}
           </p>
         </div>

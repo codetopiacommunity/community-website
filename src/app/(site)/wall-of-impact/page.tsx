@@ -52,9 +52,8 @@ export default async function ImpactPage() {
         <Container className="px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
             <div className="flex-1">
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none font-sans">
-                THE WALL OF <br />
-                <span className="text-zinc-400">IMPACT</span>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight font-sans">
+                Wall of Impact
               </h1>
               <div className="max-w-2xl">
                 <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">

@@ -94,7 +94,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
             <button
               type="button"
               onClick={() => setActiveTag(null)}
-              className={`font-mono text-[10px] uppercase tracking-[0.25em] px-3 py-1 border transition-colors duration-150 ${
+              className={`font-mono text-xs px-3 py-1 border transition-colors duration-150 ${
                 activeTag === null
                   ? "bg-foreground text-background border-foreground"
                   : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
@@ -109,7 +109,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
               <button
                 type="button"
                 onClick={() => setActiveTag(null)}
-                className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.25em] px-3 py-1 border bg-foreground text-background border-foreground"
+                className="inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1 border bg-foreground text-background border-foreground"
               >
                 {activeTagData.name}
                 <X className="w-3 h-3" />
@@ -120,7 +120,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
               <button
                 type="button"
                 onClick={() => setTagMenuOpen((open) => !open)}
-                className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.25em] px-3 py-1 border transition-colors duration-150 ${
+                className={`inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1 border transition-colors duration-150 ${
                   tagMenuOpen
                     ? "border-foreground text-foreground"
                     : "border-border text-muted-foreground hover:border-foreground hover:text-foreground"
@@ -141,7 +141,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   />
                   <div className="flex flex-wrap gap-1.5 max-h-60 overflow-y-auto">
                     {menuTags.length === 0 ? (
-                      <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground px-1 py-1">
+                      <p className="font-mono text-xs text-muted-foreground px-1 py-1">
                         No matching tags.
                       </p>
                     ) : (
@@ -150,7 +150,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                           key={tag.slug}
                           type="button"
                           onClick={() => selectTag(tag.slug)}
-                          className={`font-mono text-[10px] uppercase tracking-[0.25em] px-3 py-1 border transition-colors duration-150 ${
+                          className={`font-mono text-xs px-3 py-1 border transition-colors duration-150 ${
                             activeTag === tag.slug
                               ? "bg-foreground text-background border-foreground"
                               : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
@@ -169,7 +169,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       </div>
 
       {/* Results count */}
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground px-2">
+      <p className="font-mono text-xs text-muted-foreground px-2">
         {filtered.length} {filtered.length === 1 ? "article" : "articles"}
       </p>
 
@@ -177,15 +177,15 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 gap-6 select-none">
           <div className="w-20 h-20 border border-border flex items-center justify-center">
-            <span className="font-mono text-muted-foreground text-2xl font-black">
+            <span className="font-mono text-muted-foreground text-2xl font-bold">
               ?
             </span>
           </div>
           <div className="text-center space-y-2">
-            <p className="text-foreground font-black uppercase tracking-tighter text-xl font-sans">
+            <p className="text-foreground font-bold tracking-tight text-xl font-sans">
               No articles found
             </p>
-            <p className="text-muted-foreground font-mono text-xs uppercase tracking-widest max-w-xs">
+            <p className="text-muted-foreground font-mono text-xs max-w-xs">
               Try a different search term or clear the tag filter.
             </p>
           </div>

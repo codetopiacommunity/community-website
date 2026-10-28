@@ -3,7 +3,6 @@
 import { format } from "date-fns";
 import {
   ArrowRight,
-  Briefcase,
   Clock,
   MapPin,
   Search,
@@ -15,6 +14,7 @@ import {
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Container } from "@/components/layout/Container";
+import { EmptyState } from "@/components/layout/EmptyState";
 import type { Career } from "@/lib/careers";
 import { getDescriptionPreview } from "@/lib/careers";
 import { cn } from "@/lib/utils";
@@ -64,6 +64,19 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
     setSearch("");
   };
 
+  if (initialCareers.length === 0) {
+    return (
+      <div className="border-t border-zinc-900">
+        <Container className="px-4">
+          <EmptyState title="No open roles right now">
+            Organisations post roles, internships and projects here when they
+            have them. New ones are also shared in #announcements on Discord.
+          </EmptyState>
+        </Container>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col">
       {/* Search + Filter Bar */}
@@ -78,7 +91,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by title, company, or location..."
-                className="w-full bg-zinc-950 border border-zinc-800 text-white text-sm font-mono pl-11 pr-4 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-400 transition-colors"
+                className="w-full bg-zinc-950 border border-zinc-800 text-white text-sm font-mono pl-11 pr-4 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
               />
               {search && (
                 <button
@@ -96,7 +109,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
               type="button"
               onClick={() => setShowFilters(!showFilters)}
               className={cn(
-                "flex items-center gap-2 px-5 py-3 border text-sm font-mono uppercase tracking-widest transition-colors",
+                "flex items-center gap-2 px-5 py-3 border text-sm font-mono transition-colors",
                 showFilters || activeFilterCount > 0
                   ? "bg-white text-black border-white"
                   : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-white",
@@ -105,7 +118,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
               <SlidersHorizontal className="w-4 h-4" />
               Filters
               {activeFilterCount > 0 && (
-                <span className="bg-black text-white text-xs w-5 h-5 flex items-center justify-center font-black">
+                <span className="bg-black text-white text-xs w-5 h-5 flex items-center justify-center font-bold">
                   {activeFilterCount}
                 </span>
               )}
@@ -116,7 +129,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
           {showFilters && (
             <div className="border border-zinc-800 bg-zinc-950 p-6 space-y-6">
               <div className="space-y-3">
-                <p className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-black">
+                <p className="text-xs font-mono text-zinc-400 font-bold">
                   Type
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -126,13 +139,13 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                       key={opt}
                       onClick={() => setTypeFilter(opt)}
                       className={cn(
-                        "px-3 py-1.5 text-xs font-mono uppercase tracking-wider border transition-colors",
+                        "px-3 py-1.5 text-xs font-mono border transition-colors",
                         typeFilter === opt
                           ? "bg-white text-black border-white"
                           : "text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-white",
                       )}
                     >
-                      {opt === "ALL" ? "All Types" : opt}
+                      {opt === "ALL" ? "All types" : opt}
                     </button>
                   ))}
                 </div>
@@ -143,7 +156,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="text-xs font-mono text-zinc-400 hover:text-white transition-colors uppercase tracking-widest flex items-center gap-2"
+                    className="text-xs font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-2"
                   >
                     <X className="w-3 h-3" />
                     Clear all filters
@@ -155,7 +168,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
 
           {/* Results count */}
           <div className="flex items-center justify-between">
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest">
+            <p className="text-xs font-mono text-zinc-400">
               {filtered.length} {filtered.length === 1 ? "role" : "roles"} found
             </p>
             {activeFilterCount > 0 && (
@@ -176,28 +189,18 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
       {filtered.length === 0 ? (
         <div className="border-t border-zinc-900">
           <Container className="px-4">
-            <div className="px-2 flex flex-col items-center justify-center py-40 gap-6">
-              <div className="w-20 h-20 border border-zinc-800 flex items-center justify-center">
-                <Briefcase className="w-8 h-8 text-zinc-400" />
-              </div>
-              <p className="text-white font-black uppercase tracking-tighter text-xl font-sans">
-                No Roles Found
-              </p>
-              <p className="text-zinc-400 font-mono text-sm max-w-xs text-center">
-                {search || typeFilter !== "ALL"
-                  ? "No roles match your current filters."
-                  : "Nothing open right now. Check back soon."}
-              </p>
-              {activeFilterCount > 0 && (
+            <EmptyState
+              title="No roles match your search"
+              action={
                 <button
                   type="button"
                   onClick={clearAll}
-                  className="font-mono text-[10px] uppercase tracking-widest border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-200"
+                  className="border border-white px-6 py-2.5 font-sans text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black"
                 >
-                  Clear Filters
+                  Show all roles
                 </button>
-              )}
-            </div>
+              }
+            />
           </Container>
         </div>
       ) : (
@@ -212,7 +215,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
               <Container className="px-4">
                 <div className="relative px-2 py-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
                   {/* Massive background index number */}
-                  <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[10rem] md:text-[14rem] font-black text-white/[0.025] pointer-events-none select-none leading-none">
+                  <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-[10rem] md:text-[14rem] font-bold text-white/[0.025] pointer-events-none select-none leading-none">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
@@ -221,14 +224,14 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                     {/* Badges */}
                     <div className="flex flex-wrap items-center gap-2">
                       {career.isFeatured && (
-                        <span className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.2em] bg-white text-black px-2 py-0.5 font-black">
+                        <span className="inline-flex items-center gap-1 font-mono text-xs bg-white text-black px-2 py-0.5 font-bold">
                           <Star className="h-2.5 w-2.5 fill-current" />
                           Featured
                         </span>
                       )}
                       <span
                         className={cn(
-                          "font-mono text-[9px] uppercase tracking-[0.2em] px-2 py-0.5 border font-black",
+                          "font-mono text-xs px-2 py-0.5 border font-bold",
                           career.type === "Full-time"
                             ? "border-green-500/40 text-green-400 bg-green-500/10"
                             : career.type === "Internship"
@@ -239,7 +242,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                         {career.type}
                       </span>
                       {career.duration && (
-                        <span className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.2em] border border-zinc-800 text-zinc-400 px-2 py-0.5">
+                        <span className="inline-flex items-center gap-1 font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-0.5">
                           <Timer className="h-2.5 w-2.5" />
                           {career.duration}
                         </span>
@@ -247,12 +250,12 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter font-sans text-white leading-none group-hover:text-zinc-100 transition-colors">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-sans text-white leading-none group-hover:text-zinc-100 transition-colors">
                       {career.title}
                     </h2>
 
                     {/* Meta row */}
-                    <div className="flex flex-wrap items-center gap-4 font-mono text-[10px] text-zinc-400 uppercase tracking-[0.15em]">
+                    <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-zinc-400">
                       <span className="text-zinc-400">{career.company}</span>
                       <span className="flex items-center gap-1">
                         <MapPin className="h-3 w-3 shrink-0" />
@@ -276,13 +279,13 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                         {career.requirements.slice(0, 5).map((req) => (
                           <span
                             key={req}
-                            className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 border border-zinc-800 px-2 py-0.5"
+                            className="font-mono text-xs text-zinc-400 border border-zinc-800 px-2 py-0.5"
                           >
                             {req}
                           </span>
                         ))}
                         {career.requirements.length > 5 && (
-                          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400">
+                          <span className="font-mono text-xs text-zinc-400">
                             +{career.requirements.length - 5} more
                           </span>
                         )}
@@ -291,8 +294,8 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                   </div>
 
                   {/* Right: CTA */}
-                  <div className="relative z-10 flex-shrink-0 flex items-center gap-2 text-sm font-black font-sans text-white opacity-40 group-hover:opacity-100 transition-opacity duration-200">
-                    View Role
+                  <div className="relative z-10 flex-shrink-0 flex items-center gap-2 text-sm font-bold font-sans text-white opacity-40 group-hover:opacity-100 transition-opacity duration-200">
+                    View role
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>

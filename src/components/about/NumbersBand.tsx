@@ -21,10 +21,10 @@ export function NumbersBand({ stats }: { stats: AboutStat[] }) {
               key={stat.value === 1 ? stat.one : stat.label}
               className="flex flex-col gap-3"
             >
-              <span className="font-sans font-black text-5xl md:text-7xl tracking-tighter leading-none tabular-nums">
+              <span className="font-sans font-bold text-5xl md:text-7xl tracking-tight leading-none tabular-nums">
                 {stat.value}
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-zinc-300">
+              <span className="font-mono text-xs text-zinc-300">
                 {stat.value === 1 ? stat.one : stat.label}
               </span>
             </div>

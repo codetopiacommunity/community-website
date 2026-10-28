@@ -91,7 +91,7 @@ export default async function RecognitionDetailPage({
       <div className={`${cx} pt-7 sm:pt-8`}>
         <Link
           href="/wall-of-impact"
-          className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Wall of Impact
@@ -115,18 +115,18 @@ export default async function RecognitionDetailPage({
           </div>
 
           <div className="flex flex-col gap-5 sm:gap-6 md:pb-2">
-            <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.28em]">
+            <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs sm:text-xs">
               <span className={accent}>{item.awardName}</span>
               <span aria-hidden="true" className="text-zinc-700">
                 ·
               </span>
-              <span className="text-zinc-500">{item.period}</span>
+              <span className="text-zinc-400">{item.period}</span>
               {categoryLabel && (
                 <>
                   <span aria-hidden="true" className="text-zinc-700">
                     ·
                   </span>
-                  <span className="text-zinc-500">{categoryLabel}</span>
+                  <span className="text-zinc-400">{categoryLabel}</span>
                 </>
               )}
             </p>
@@ -134,12 +134,12 @@ export default async function RecognitionDetailPage({
             {/* `w-min` sets the box to the widest word, so the name stacks one
                 word per line and reads as a mark. `max-w-full` + break-word
                 stop a single long token (a username fallback) overflowing. */}
-            <h1 className="font-sans font-black uppercase tracking-tighter leading-[0.82] text-white text-[clamp(2.75rem,13vw,7rem)] w-min max-w-full [overflow-wrap:break-word]">
+            <h1 className="font-sans font-bold tracking-tight leading-tight text-white text-[clamp(2.75rem,13vw,7rem)] w-min max-w-full [overflow-wrap:break-word]">
               {memberName}
             </h1>
 
             {memberRole && (
-              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-zinc-500">
+              <p className="font-mono text-xs sm:text-xs text-zinc-400">
                 {memberRole}
               </p>
             )}
@@ -182,7 +182,7 @@ export default async function RecognitionDetailPage({
             href={portalProfileUrl}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-baseline gap-3 font-sans text-xl sm:text-2xl font-black uppercase tracking-tight text-zinc-300 transition-colors hover:text-white"
+            className="group inline-flex items-baseline gap-3 font-sans text-xl sm:text-2xl font-bold tracking-tight text-zinc-300 transition-colors hover:text-white"
           >
             <span
               className={`border-b-2 pb-1 transition-colors ${accent} border-current`}
@@ -217,16 +217,16 @@ export default async function RecognitionDetailPage({
                     className="group flex flex-col gap-2"
                   >
                     <p
-                      className={`font-mono text-[10px] uppercase tracking-[0.25em] ${accentFor(
+                      className={`font-mono text-xs ${accentFor(
                         sibling.category,
                       )}`}
                     >
                       {sibling.awardName}
                     </p>
-                    <p className="font-sans text-xl sm:text-2xl font-black uppercase tracking-tight leading-none text-zinc-500 transition-colors group-hover:text-white [overflow-wrap:anywhere]">
+                    <p className="font-sans text-xl sm:text-2xl font-bold tracking-tight leading-none text-zinc-400 transition-colors group-hover:text-white [overflow-wrap:anywhere]">
                       {siblingName}
                     </p>
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-700">
+                    <p className="font-mono text-xs text-zinc-700">
                       {sibling.period}
                     </p>
                   </Link>

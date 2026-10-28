@@ -108,12 +108,12 @@ export default async function MentorshipDetail({
     return (
       <div className="flex-1 bg-black text-white min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-white font-black uppercase tracking-tighter text-2xl font-space-grotesk">
+          <p className="text-white font-bold tracking-tight text-2xl font-space-grotesk">
             Mentorship not found
           </p>
           <Link
             href="/mentorships"
-            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-mono text-xs uppercase tracking-widest"
+            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-mono text-xs"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Mentorships
@@ -148,10 +148,10 @@ export default async function MentorshipDetail({
           <div className={cx}>
             <Link
               href="/mentorships"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              All Mentorships
+              All mentorships
             </Link>
           </div>
         </div>
@@ -160,15 +160,15 @@ export default async function MentorshipDetail({
         <div className={`${cx} relative z-10 pb-16 pt-32`}>
           <div className="flex flex-col gap-5 max-w-4xl">
             <span
-              className={`inline-flex w-fit items-center px-4 py-1 font-mono text-[10px] uppercase tracking-[0.2em] font-bold border ${statusStyle}`}
+              className={`inline-flex w-fit items-center px-4 py-1 font-mono text-xs font-bold border ${statusStyle}`}
             >
               {mentorship.status}
             </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] font-space-grotesk text-white">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-space-grotesk text-white">
               {mentorship.title}
             </h1>
             {/* Meta row */}
-            <div className="flex flex-wrap gap-6 font-mono text-xs text-zinc-400 uppercase tracking-widest">
+            <div className="flex flex-wrap gap-6 font-mono text-xs text-zinc-400">
               {mentorship.startDate && (
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
@@ -214,7 +214,7 @@ export default async function MentorshipDetail({
               {/* About */}
               {mentorship.description && (
                 <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
-                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">01 /</span> About This
                     Program
                   </span>
@@ -227,14 +227,14 @@ export default async function MentorshipDetail({
               {/* Tags */}
               {Array.isArray(mentorship.tags) && mentorship.tags.length > 0 && (
                 <div className="flex flex-col gap-6 pb-16 border-b border-zinc-800">
-                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">02 /</span> Tags
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {(mentorship.tags as string[]).map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-xs uppercase tracking-widest text-zinc-300 border border-zinc-800 px-4 py-2"
+                        className="font-mono text-xs text-zinc-300 border border-zinc-800 px-4 py-2"
                       >
                         {tag}
                       </span>
@@ -246,7 +246,7 @@ export default async function MentorshipDetail({
               {/* Mentors */}
               {mentorship.mentors && mentorship.mentors.length > 0 && (
                 <div className="flex flex-col gap-8">
-                  <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-3">
                     <span className="text-zinc-400">03 /</span> Your Mentors
                   </span>
                   <div className="flex flex-col gap-6">
@@ -268,7 +268,7 @@ export default async function MentorshipDetail({
                             />
                           ) : (
                             <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
-                              <span className="text-white font-black text-lg uppercase">
+                              <span className="text-white font-bold text-lg">
                                 {mentor.name[0]}
                               </span>
                             </div>
@@ -294,18 +294,18 @@ export default async function MentorshipDetail({
                               />
                             ) : (
                               <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
-                                <span className="text-white font-black text-sm uppercase">
+                                <span className="text-white font-bold text-sm">
                                   {mentor.name[0]}
                                 </span>
                               </div>
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-white font-black font-space-grotesk text-sm uppercase tracking-tight group-hover:text-zinc-300 transition-colors">
+                            <p className="text-white font-bold font-space-grotesk text-sm tracking-tight group-hover:text-zinc-300 transition-colors">
                               {mentor.name}
                             </p>
                             {mentor.role && (
-                              <p className="text-zinc-400 font-mono text-[10px] uppercase tracking-widest truncate">
+                              <p className="text-zinc-400 font-mono text-xs truncate">
                                 {mentor.role}
                               </p>
                             )}
@@ -335,14 +335,14 @@ export default async function MentorshipDetail({
                   href={mentorship.applicationLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center justify-between w-full px-6 py-4 bg-white text-black font-mono text-[10px] uppercase tracking-[0.2em] font-black hover:bg-zinc-100 transition-colors"
+                  className="group flex items-center justify-between w-full px-6 py-4 bg-white text-black font-mono text-xs font-bold hover:bg-zinc-100 transition-colors"
                 >
-                  Apply Now
+                  Apply now
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               ) : (
                 <div className="px-6 py-4 border border-zinc-800 text-center">
-                  <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+                  <p className="font-mono text-xs text-zinc-400">
                     Application link coming soon
                   </p>
                 </div>
@@ -354,7 +354,7 @@ export default async function MentorshipDetail({
                   href={mentorship.registrationLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center justify-between w-full px-6 py-4 border border-zinc-700 text-zinc-300 font-mono text-[10px] uppercase tracking-[0.2em] font-black hover:border-white hover:text-white transition-colors"
+                  className="group flex items-center justify-between w-full px-6 py-4 border border-zinc-700 text-zinc-300 font-mono text-xs font-bold hover:border-white hover:text-white transition-colors"
                 >
                   Register as a Mentor
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -368,7 +368,7 @@ export default async function MentorshipDetail({
 
               <Link
                 href="/mentorships"
-                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 font-mono text-xs transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 Back to All

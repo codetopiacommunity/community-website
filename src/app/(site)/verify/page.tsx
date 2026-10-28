@@ -20,9 +20,8 @@ export default async function VerifyPage({
       <section className="w-full pt-32 pb-16 md:pt-40 md:pb-20 border-b border-zinc-900">
         <Container className="px-4">
           <div className="mx-auto max-w-xl text-center">
-            <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none font-sans mb-6">
-              VERIFY A <br />
-              <span className="text-zinc-400">CERTIFICATE</span>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight font-sans mb-6">
+              Verify a certificate
             </h1>
             <p className="text-zinc-400 text-lg font-mono leading-relaxed">
               Enter the code printed on a Codetopia Community certificate to

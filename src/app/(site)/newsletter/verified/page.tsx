@@ -28,8 +28,8 @@ export default function VerifiedPage() {
           </svg>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white font-sans">
-          YOU&apos;RE <span className="text-zinc-400">VERIFIED</span>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white font-sans">
+          YOU&apos;RE VERIFIED
         </h1>
 
         <p className="text-zinc-400 text-lg md:text-xl max-w-md mx-auto">
@@ -40,7 +40,7 @@ export default function VerifiedPage() {
 
         <Link
           href="/"
-          className=" font-sans inline-block bg-white text-black font-bold text-sm uppercase tracking-wider px-10 py-4 hover:bg-zinc-200 transition-colors"
+          className="font-sans inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors"
         >
           Back to Home
         </Link>

@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { Container } from "@/components/layout/Container";
+import { EmptyState } from "@/components/layout/EmptyState";
 import type { RecognitionCategory } from "@/lib/data/recognition";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +52,7 @@ const CATEGORY_META: Record<
   },
   CORE_TEAM: {
     icon: Trophy,
-    label: "Core Team",
+    label: "Core team",
     accent: "text-emerald-400 border-emerald-400/40",
   },
   DOMAIN_SPECIFIC: {
@@ -63,7 +64,7 @@ const CATEGORY_META: Record<
 
 const FILTERS: Array<{ key: RecognitionCategory | "ALL"; label: string }> = [
   { key: "ALL", label: "All" },
-  { key: "CORE_TEAM", label: "Core Team" },
+  { key: "CORE_TEAM", label: "Core team" },
   { key: "VOLUNTEER", label: "Volunteer" },
   { key: "MEMBER", label: "Contributor" },
 ];
@@ -117,7 +118,7 @@ function HonorCard({
         ) : (
           /* Fallback - initials on dark bg */
           <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
-            <span className="font-black text-4xl text-zinc-400 font-mono select-none">
+            <span className="font-bold text-4xl text-zinc-400 font-mono select-none">
               {getInitials(entry.name)}
             </span>
           </div>
@@ -127,14 +128,14 @@ function HonorCard({
         {/* Category badge - top left */}
         <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
           <Icon className={cn("w-3 h-3", meta.accent.split(" ")[0])} />
-          <span className="font-mono text-[9px] uppercase tracking-widest text-white font-black">
+          <span className="font-mono text-xs text-white font-bold">
             {categoryLabel}
           </span>
         </div>
 
         {/* Period badge - top right */}
         <div className="absolute top-3 right-3 flex items-center px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800 group-hover:border-zinc-600 transition-all duration-300 translate-y-0 group-hover:-translate-y-0.5">
-          <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 font-black">
+          <span className="font-mono text-xs text-zinc-400 font-bold">
             {entry.period}
           </span>
         </div>
@@ -142,27 +143,25 @@ function HonorCard({
         {/* Name block - bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-3">
           <div className="inline-block bg-white px-2 py-1 mb-2 transform group-hover:translate-x-1 transition-transform duration-300">
-            <p className="font-mono text-[9px] uppercase tracking-[0.2em] font-black text-black leading-none">
+            <p className="font-mono text-xs font-bold text-black leading-none">
               {entry.awardName}
             </p>
           </div>
-          <h3 className="text-xl lg:text-2xl font-black uppercase tracking-tighter text-white leading-tight font-sans">
+          <h3 className="text-xl lg:text-2xl font-bold tracking-tight text-white leading-tight font-sans">
             {entry.name}
           </h3>
           {entry.role && (
-            <p className="text-zinc-400 font-mono text-[9px] uppercase tracking-[0.25em] mt-1">
-              {entry.role}
-            </p>
+            <p className="text-zinc-400 font-mono text-xs mt-1">{entry.role}</p>
           )}
         </div>
       </div>
 
       {/* Impact summary row */}
       <div className="px-3 py-2.5 border-t border-zinc-800 flex items-start justify-between gap-3 flex-1">
-        <p className="text-zinc-400 font-mono text-[10px] leading-relaxed line-clamp-2 group-hover:text-white transition-colors flex-1">
+        <p className="text-zinc-400 font-mono text-xs leading-relaxed line-clamp-2 group-hover:text-white transition-colors flex-1">
           {entry.impactSummary}
         </p>
-        <span className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors shrink-0 mt-0.5">
+        <span className="inline-flex items-center gap-1 font-mono text-xs text-zinc-400 group-hover:text-white transition-colors shrink-0 mt-0.5">
           View <ArrowUpRight className="w-3 h-3" />
         </span>
       </div>
@@ -240,7 +239,7 @@ function RecognitionModal({
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
-              <span className="font-mono text-7xl font-black tracking-widest text-zinc-400">
+              <span className="font-mono text-7xl font-bold text-zinc-400">
                 {getInitials(entry.name)}
               </span>
             </div>
@@ -253,17 +252,17 @@ function RecognitionModal({
           <div className="absolute inset-0 bg-gradient-to-t from-black from-0% via-black/60 via-20% to-transparent to-45% md:from-5% md:via-black/55 md:via-35% md:to-75%" />
 
           <div className="absolute bottom-5 left-5 right-5 md:bottom-12 md:left-12 md:right-12">
-            <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-white text-black font-mono text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-black mb-3 md:mb-6">
+            <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-white text-black font-mono text-xs md:text-xs md: font-bold mb-3 md:mb-6">
               {entry.awardName}
             </div>
             <h3
               id="recognition-modal-title"
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-none font-sans mb-2 md:mb-4 [overflow-wrap:break-word]"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none font-sans mb-2 md:mb-4 [overflow-wrap:break-word]"
             >
               {entry.name}
             </h3>
             {entry.role && (
-              <p className="text-zinc-400 font-mono text-[11px] md:text-base uppercase tracking-[0.25em] md:tracking-[0.3em]">
+              <p className="text-zinc-400 font-mono text-xs md:text-base md:">
                 {entry.role}
               </p>
             )}
@@ -276,14 +275,14 @@ function RecognitionModal({
             <div className="flex flex-wrap items-center gap-3">
               <span
                 className={cn(
-                  "inline-flex items-center gap-1.5 px-3 py-1.5 border bg-black/40 font-mono text-[10px] uppercase tracking-widest font-black",
+                  "inline-flex items-center gap-1.5 px-3 py-1.5 border bg-black/40 font-mono text-xs font-bold",
                   meta.accent,
                 )}
               >
                 <Icon className="w-3 h-3" />
                 {categoryLabel}
               </span>
-              <span className="px-3 py-1.5 border border-zinc-800 font-mono text-[10px] uppercase tracking-widest text-zinc-400 font-black">
+              <span className="px-3 py-1.5 border border-zinc-800 font-mono text-xs text-zinc-400 font-bold">
                 {entry.period}
               </span>
             </div>
@@ -291,9 +290,7 @@ function RecognitionModal({
             <div>
               <div className="flex items-center gap-4 mb-8 text-zinc-400">
                 <span className="h-[1px] w-12 bg-current" />
-                <h4 className="font-mono text-[10px] uppercase tracking-[0.4em] font-black">
-                  The Impact
-                </h4>
+                <h4 className="font-mono text-xs font-bold">The Impact</h4>
               </div>
               <p className="text-white text-xl md:text-2xl font-mono leading-relaxed italic">
                 {entry.impactSummary}
@@ -302,40 +299,34 @@ function RecognitionModal({
 
             {entry.category === "DOMAIN_SPECIFIC" && entry.domain && (
               <div>
-                <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
+                <h5 className="text-zinc-400 font-mono text-xs mb-4">
                   Domain of Excellence
                 </h5>
-                <p className="text-white font-mono text-sm uppercase tracking-widest">
-                  {entry.domain}
-                </p>
+                <p className="text-white font-mono text-sm">{entry.domain}</p>
               </div>
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {entry.role && (
                 <div>
-                  <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
-                    Community Role
+                  <h5 className="text-zinc-400 font-mono text-xs mb-4">
+                    Community role
                   </h5>
-                  <p className="text-white font-mono text-sm uppercase tracking-widest">
-                    {entry.role}
-                  </p>
+                  <p className="text-white font-mono text-sm">{entry.role}</p>
                 </div>
               )}
               <div>
-                <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
-                  Honor Date
+                <h5 className="text-zinc-400 font-mono text-xs mb-4">
+                  Honor date
                 </h5>
-                <p className="text-white font-mono text-sm uppercase tracking-widest">
-                  {entry.period}
-                </p>
+                <p className="text-white font-mono text-sm">{entry.period}</p>
               </div>
             </div>
 
             {entry.achievements && entry.achievements.length > 0 && (
               <div>
-                <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
-                  Key Achievements
+                <h5 className="text-zinc-400 font-mono text-xs mb-6">
+                  Key achievements
                 </h5>
                 <ul className="space-y-4">
                   {entry.achievements.map((achievement) => (
@@ -353,14 +344,14 @@ function RecognitionModal({
 
             {entry.profileUrl && (
               <div>
-                <h5 className="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.3em] mb-4">
-                  Community Profile
+                <h5 className="text-zinc-400 font-mono text-xs mb-4">
+                  Community profile
                 </h5>
                 <a
                   href={entry.profileUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 text-white font-mono text-sm tracking-widest hover:text-zinc-400 transition-colors"
+                  className="group inline-flex items-center gap-1 text-white font-mono text-sm hover:text-zinc-400 transition-colors"
                 >
                   @{entry.username}
                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -370,8 +361,8 @@ function RecognitionModal({
           </div>
 
           <div className="mt-20 pt-8 border-t border-zinc-900 flex justify-between items-center opacity-30">
-            <div className="text-[8px] font-mono text-zinc-400 uppercase tracking-[0.5em]">
-              A Codetopia Initiative
+            <div className="text-[8px] font-mono text-zinc-400">
+              A Codetopia initiative
             </div>
           </div>
         </div>
@@ -409,6 +400,27 @@ export function WallOfImpact({ items }: { items: RecognitionItem[] }) {
       ? items
       : items.filter((r) => r.category === activeFilter);
 
+  if (items.length === 0) {
+    return (
+      <section className="w-full pb-16 bg-black font-sans">
+        <Container className="px-4">
+          <EmptyState
+            title="No one is on the wall yet"
+            links={[
+              {
+                label: "See how you can help",
+                href: "/howtos/contributing/help-out",
+              },
+            ]}
+          >
+            Team leads add people who made a real difference here: through code,
+            design, events, writing or helping someone who was stuck.
+          </EmptyState>
+        </Container>
+      </section>
+    );
+  }
+
   return (
     <section className="w-full pb-24 bg-black font-sans">
       <Container className="px-4">
@@ -421,7 +433,7 @@ export function WallOfImpact({ items }: { items: RecognitionItem[] }) {
                 type="button"
                 onClick={() => setActiveFilter(f.key)}
                 className={cn(
-                  "px-4 py-2 font-mono text-[10px] uppercase tracking-widest border transition-all duration-200",
+                  "px-4 py-2 font-mono text-xs border transition-all duration-200",
                   activeFilter === f.key
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300",
@@ -435,11 +447,9 @@ export function WallOfImpact({ items }: { items: RecognitionItem[] }) {
 
         {/* Grid */}
         {visible.length === 0 ? (
-          <div className="border border-zinc-800 bg-zinc-950 py-24 text-center">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
-              No honorees in this category yet.
-            </p>
-          </div>
+          <p className="py-16 font-mono text-base text-zinc-400">
+            No one in this group yet.
+          </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
             {visible.map((entry) => (
