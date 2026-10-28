@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2, Search, Users2, X } from "lucide-react";
+import { Loader2, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import {
   TeamCard,
@@ -8,6 +8,7 @@ import {
   TeamMemberModal,
 } from "@/components/about/TeamCard";
 import { Container } from "@/components/layout/Container";
+import { EmptyState } from "@/components/layout/EmptyState";
 import { cn } from "@/lib/utils";
 
 interface TeamTier {
@@ -51,9 +52,6 @@ export default function TeamPage() {
       document.body.style.overflow = previousOverflow;
     };
   }, [selectedMember]);
-
-  const activeTierLabel =
-    tiers.find((t) => t.value === activeTier)?.label ?? activeTier;
 
   const visibleMembers = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -136,58 +134,13 @@ export default function TeamPage() {
               <Loader2 className="h-8 w-8 animate-spin text-zinc-400" />
             </div>
           ) : visibleMembers.length === 0 && search.trim() ? (
-            <div className="border border-zinc-900 bg-zinc-950 py-24 text-center px-2">
-              <p className="uppercase tracking-widest font-mono text-xs text-zinc-400">
-                No one matches "{search.trim()}" in the{" "}
-                {activeTierLabel || "team"} tier.
-              </p>
-            </div>
+            <EmptyState title={`No one matches "${search.trim()}"`}>
+              Try another name, or look in a different group.
+            </EmptyState>
           ) : visibleMembers.length === 0 ? (
-            <div className="w-full flex flex-col md:flex-row items-stretch border border-zinc-900 bg-zinc-950 min-h-[400px]">
-              <div className="flex-1 flex flex-col justify-center p-10 md:p-16 relative overflow-hidden">
-                <div className="relative z-10">
-                  <div className="uppercase tracking-widest inline-flex items-center gap-3 px-4 py-2 border border-zinc-800 bg-black text-zinc-400 font-mono text-xs mb-8">
-                    <span className="w-2 h-2 bg-zinc-600 animate-pulse rounded-full"></span>
-                    Coming soon
-                  </div>
-
-                  <h3 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold text-white mb-4 leading-none font-sans">
-                    Stay tuned
-                  </h3>
-
-                  <p className="text-zinc-400 font-mono text-base max-w-lg leading-relaxed">
-                    We're currently assembling our community leaders for the{" "}
-                    <span className="text-zinc-300 font-bold">
-                      {activeTierLabel || "team"}
-                    </span>{" "}
-                    tier. Check back soon to see who joins the roster.
-                  </p>
-                </div>
-              </div>
-
-              {/* Abstract decorative right side */}
-              <div className="hidden md:flex w-1/4 min-w-[200px] border-l border-zinc-900 bg-black flex-col justify-between p-8 relative overflow-hidden group">
-                {/* Diagonal striping */}
-                <div
-                  className="absolute inset-0 opacity-10 transition-opacity duration-700 group-hover:opacity-20"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, #27272a 0, #27272a 1px, transparent 0, transparent 20px)",
-                  }}
-                ></div>
-
-                <div className="self-end p-5 border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all duration-500 group-hover:text-zinc-300 relative z-10">
-                  <Users2 className="w-8 h-8" strokeWidth={1} />
-                </div>
-
-                <div
-                  className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 rotate-180 relative z-10"
-                  style={{ writingMode: "vertical-rl" }}
-                >
-                  Codetopia Community team
-                </div>
-              </div>
-            </div>
+            <EmptyState title="No one here yet">
+              The people in this group will show up here once they are added.
+            </EmptyState>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
               {visibleMembers.map((member: TeamMember) => (

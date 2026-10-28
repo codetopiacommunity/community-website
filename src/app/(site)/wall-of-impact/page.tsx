@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { InstitutionalNote } from "@/components/about/InstitutionalNote";
 import { WallOfImpact } from "@/components/about/WallOfImpact";
 import { Container } from "@/components/layout/Container";
 import { toRecognitionCategory } from "@/lib/data/recognition";
@@ -80,12 +79,6 @@ export default async function ImpactPage() {
 
       {/* Main recognition grid */}
       <WallOfImpact items={entries} />
-
-      <section className="pb-32 bg-black border-t border-zinc-900">
-        <Container className="px-4 mt-16">
-          <InstitutionalNote />
-        </Container>
-      </section>
     </div>
   );
 }

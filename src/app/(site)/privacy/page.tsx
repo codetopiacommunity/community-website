@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       </section>
 
       {/* Sections */}
-      <section className="border-t border-zinc-900 pb-32">
+      <section className="pb-32">
         <Container className="px-4">
           <div className="flex flex-col gap-px bg-zinc-900">
             {sections.map((s) => (

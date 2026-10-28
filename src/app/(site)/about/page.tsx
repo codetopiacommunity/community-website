@@ -166,16 +166,10 @@ export default async function AboutPage() {
         />
         <Container className="relative z-10 px-4">
           <div className="flex flex-col items-start gap-8 md:gap-10">
-            <span className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-400">
-              About us
-            </span>
             <h1 className="tracking-tighter uppercase text-4xl md:text-6xl font-bold text-white leading-tight font-sans">
               We are Codetopia Community
             </h1>
             <div className="flex flex-col gap-6">
-              <p className="font-mono text-sm md:text-base text-white italic">
-                A utopia for tech enthusiasts.
-              </p>
               <Prose>
                 Codetopia Community is an open community where people in tech do
                 real work together. Members grow through work reviewed by people
@@ -203,7 +197,7 @@ export default async function AboutPage() {
       </section>
 
       {/* ── 01 · Who we are ──────────────────────────────────────────── */}
-      <Section num="01" label="Who we are">
+      <Section num="01">
         <Heading>People who make things.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -222,7 +216,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 02 · How we started ──────────────────────────────────────── */}
-      <Section num="02" label="How we started">
+      <Section num="02">
         <Heading>It started small.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -242,7 +236,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 03 · What happens here ─────────────────────────────────────────── */}
-      <Section num="03" label="What we do">
+      <Section num="03">
         <Heading>What happens here.</Heading>
         <Prose>Members run all of it. Most of it is open to any member.</Prose>
 
@@ -278,7 +272,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 04 · How it works ────────────────────────────────────────── */}
-      <Section num="04" label="How it works">
+      <Section num="04">
         <Heading>We write down what people do.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -328,7 +322,7 @@ export default async function AboutPage() {
       <NumbersBand stats={stats} />
 
       {/* ── 05 · What you get out of it ──────────────────────────────── */}
-      <Section num="05" label="What you get out of it">
+      <Section num="05">
         <Heading>Experience, people, and a record.</Heading>
         <Prose>
           Every role here is voluntary and unpaid, team leads included. Nobody
@@ -353,7 +347,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 06 · What we expect ──────────────────────────────────────── */}
-      <Section num="06" label="What we expect">
+      <Section num="06">
         <Heading>What we expect from each other.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -378,7 +372,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 07 · Values ──────────────────────────────────────────────── */}
-      <Section num="07" label="Values">
+      <Section num="07">
         <Heading>What we care about.</Heading>
 
         <div className="flex flex-col gap-10 max-w-3xl">
@@ -399,7 +393,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 08 · Who runs it ─────────────────────────────────────────── */}
-      <Section num="08" label="Who runs it">
+      <Section num="08">
         <Heading>People with day jobs.</Heading>
         <Prose>
           Engineers and organisers who do this on the side because they want it
@@ -412,7 +406,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* ── 09 · Joining ─────────────────────────────────────────────── */}
-      <Section num="09" label="Joining">
+      <Section num="09">
         <Heading>How to join.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>

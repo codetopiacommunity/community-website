@@ -7,7 +7,7 @@ export default function EventsPage() {
   return (
     <>
       {/* Hero */}
-      <div className="relative w-full py-32 md:py-40 bg-black overflow-hidden border-b border-zinc-900">
+      <div className="relative w-full py-32 md:py-40 bg-black overflow-hidden">
         <div
           aria-hidden="true"
           className="absolute inset-0 z-0"
@@ -29,7 +29,7 @@ export default function EventsPage() {
       </div>
 
       {/* Ledger */}
-      <section className="w-full bg-black text-white z-20 relative border-t border-zinc-900 pb-24">
+      <section className="w-full bg-black text-white z-20 relative pb-24">
         <EventsLedger />
       </section>
     </>

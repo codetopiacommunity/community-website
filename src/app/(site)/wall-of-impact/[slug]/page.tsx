@@ -205,7 +205,7 @@ export default async function RecognitionDetailPage({
              a different kind of content, not just the next section. ── */}
       {siblings.length > 0 && (
         <div className={`${cx} mt-20 sm:mt-28 md:mt-40`}>
-          <div className="border-t border-zinc-900 pt-10 sm:pt-12">
+          <div className="pt-10 sm:pt-12">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
               {siblings.map((sibling) => {
                 const siblingName = sibling.fullName || sibling.username;

@@ -50,7 +50,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
 
   if (initialEvents.length === 0) {
     return (
-      <div className="w-full border-t border-zinc-800">
+      <div className="w-full">
         <div className={cx}>
           <EmptyState
             title="No events planned right now"
@@ -73,7 +73,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
   return (
     <div className="w-full flex flex-col">
       {/* Filters — full-width top border, content contained */}
-      <div className="w-full border-t border-zinc-800">
+      <div className="w-full">
         <div className={`${cx} pt-12 pb-8 flex flex-col gap-8`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
             <div className="flex flex-col gap-4">
@@ -143,7 +143,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
       </div>
 
       {/* Table header — full-width borders, content contained */}
-      <div className="hidden lg:block w-full border-t border-b border-zinc-800">
+      <div className="hidden lg:block w-full border-b border-zinc-800">
         <div
           className={`uppercase tracking-[0.2em] ${cx} grid grid-cols-[1.5fr_2fr_4fr_1fr] gap-6 py-6 text-zinc-500 font-mono text-xs`}
         >

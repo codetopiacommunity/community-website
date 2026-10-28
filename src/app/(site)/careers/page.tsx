@@ -9,7 +9,7 @@ export default function CareersPage() {
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
       {/* Hero */}
-      <section className="w-full pt-32 pb-16 bg-black border-b border-zinc-900">
+      <section className="w-full pt-32 pb-16 bg-black">
         <Container className="px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
             <div className="flex-1">

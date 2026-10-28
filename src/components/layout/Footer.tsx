@@ -195,13 +195,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-zinc-900 pt-10">
+        <div className="mt-14 pt-10">
           <Newsletter />
         </div>
       </Container>
 
       {/* Bottom bar */}
-      <div className="border-t border-zinc-900">
+      <div>
         <Container className="px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p
             suppressHydrationWarning

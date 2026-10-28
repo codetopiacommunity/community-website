@@ -17,7 +17,7 @@ export default async function VerifyPage({
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      <section className="w-full pt-32 pb-16 md:pt-40 md:pb-20 border-b border-zinc-900">
+      <section className="w-full pt-32 pb-16 md:pt-40 md:pb-20">
         <Container className="px-4">
           <div className="mx-auto max-w-xl text-center">
             <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans mb-6">
