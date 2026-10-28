@@ -83,7 +83,7 @@ export function SpotlightCard({
                   page does it. As an icon on the photo it read as a favourite
                   marker, and the context already says which one is current. */}
               {spotlight.featured && (
-                <p className="hidden sm:block font-mono text-xs text-zinc-400">
+                <p className="uppercase tracking-[0.3em] hidden sm:block font-mono text-xs text-zinc-400">
                   Currently featured
                 </p>
               )}
@@ -93,12 +93,12 @@ export function SpotlightCard({
                     isLarge
                       ? "text-4xl sm:text-5xl md:text-7xl lg:text-8xl break-words"
                       : "text-2xl lg:text-3xl line-clamp-1"
-                  } font-bold tracking-tight text-white leading-[0.85] font-sans`}
+                  } font-bold text-white leading-[0.85] font-sans`}
                 >
                   {spotlight.name}
                 </h3>
                 <p
-                  className={`font-mono text-zinc-400 line-clamp-1 max-sm:hidden ${
+                  className={`uppercase tracking-[0.3em] font-mono text-zinc-400 line-clamp-1 max-sm:hidden ${
                     isLarge ? "text-xs md:text-sm" : "text-xs"
                   }`}
                 >

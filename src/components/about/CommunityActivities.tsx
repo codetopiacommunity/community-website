@@ -45,8 +45,10 @@ export function CommunityActivities() {
       <Container className="w-full px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <div className="flex-1">
-            <h2 className="text-zinc-400 font-mono text-sm mb-4">What we do</h2>
-            <h3 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none font-sans">
+            <h2 className="uppercase tracking-[0.3em] text-zinc-400 font-mono text-sm mb-4">
+              What we do
+            </h2>
+            <h3 className="uppercase tracking-tighter text-5xl md:text-7xl lg:text-8xl font-bold leading-none font-sans">
               Community activities
             </h3>
           </div>
@@ -80,7 +82,7 @@ export function CommunityActivities() {
 
               {/* Text Content */}
               <div className="relative z-10 mt-auto">
-                <h4 className="text-2xl md:text-3xl font-bold tracking-tight font-sans mb-4">
+                <h4 className="uppercase tracking-tight text-2xl md:text-3xl font-bold font-sans mb-4">
                   {activity.title}
                 </h4>
                 <p className="text-zinc-400 font-mono text-sm leading-relaxed max-w-md">

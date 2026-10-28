@@ -34,7 +34,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           />
         ) : (
           <div className="absolute inset-0 bg-muted flex items-center justify-center">
-            <span className="font-mono text-xs text-muted-foreground">
+            <span className="uppercase tracking-[0.3em] font-mono text-xs text-muted-foreground">
               No cover
             </span>
           </div>
@@ -49,7 +49,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
             {visibleTags.map((tag) => (
               <span
                 key={tag.slug}
-                className="font-mono text-xs text-background bg-foreground px-2 py-0.5"
+                className="uppercase tracking-[0.25em] font-mono text-xs text-background bg-foreground px-2 py-0.5"
               >
                 {tag.name}
               </span>
@@ -58,7 +58,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
         )}
 
         {/* Title */}
-        <h3 className="font-bold text-foreground tracking-tight text-xl leading-tight font-sans group-hover:text-muted-foreground transition-colors">
+        <h3 className="uppercase tracking-tighter font-bold text-foreground text-xl leading-tight font-sans group-hover:text-muted-foreground transition-colors">
           {article.title}
         </h3>
 
@@ -69,11 +69,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
         {/* Meta */}
         <div className="mt-auto flex flex-col gap-2 pt-3 border-t border-border">
-          <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
+          <div className="uppercase tracking-[0.2em] flex items-center justify-between font-mono text-xs text-muted-foreground">
             <span>{formattedDate}</span>
             <span>{article.readTimeInMinutes} min read</span>
           </div>
-          <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
+          <div className="uppercase tracking-[0.2em] flex items-center justify-between font-mono text-xs text-muted-foreground">
             <span>{article.author.name}</span>
             <span className="inline-flex items-center gap-1 group-hover:text-foreground transition-colors">
               Read on Hashnode

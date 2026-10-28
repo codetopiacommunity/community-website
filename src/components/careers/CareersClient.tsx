@@ -109,7 +109,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
               type="button"
               onClick={() => setShowFilters(!showFilters)}
               className={cn(
-                "flex items-center gap-2 px-5 py-3 border text-sm font-mono transition-colors",
+                "uppercase tracking-widest flex items-center gap-2 px-5 py-3 border text-sm font-mono transition-colors",
                 showFilters || activeFilterCount > 0
                   ? "bg-white text-black border-white"
                   : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-white",
@@ -129,7 +129,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
           {showFilters && (
             <div className="border border-zinc-800 bg-zinc-950 p-6 space-y-6">
               <div className="space-y-3">
-                <p className="text-xs font-mono text-zinc-400 font-bold">
+                <p className="uppercase tracking-widest text-xs font-mono text-zinc-400 font-bold">
                   Type
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -139,7 +139,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                       key={opt}
                       onClick={() => setTypeFilter(opt)}
                       className={cn(
-                        "px-3 py-1.5 text-xs font-mono border transition-colors",
+                        "uppercase tracking-wider px-3 py-1.5 text-xs font-mono border transition-colors",
                         typeFilter === opt
                           ? "bg-white text-black border-white"
                           : "text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-white",
@@ -156,7 +156,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="text-xs font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-2"
+                    className="uppercase tracking-widest text-xs font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-2"
                   >
                     <X className="w-3 h-3" />
                     Clear all filters
@@ -168,7 +168,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
 
           {/* Results count */}
           <div className="flex items-center justify-between">
-            <p className="text-xs font-mono text-zinc-400">
+            <p className="uppercase tracking-widest text-xs font-mono text-zinc-400">
               {filtered.length} {filtered.length === 1 ? "role" : "roles"} found
             </p>
             {activeFilterCount > 0 && (
@@ -224,14 +224,14 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                     {/* Badges */}
                     <div className="flex flex-wrap items-center gap-2">
                       {career.isFeatured && (
-                        <span className="inline-flex items-center gap-1 font-mono text-xs bg-white text-black px-2 py-0.5 font-bold">
+                        <span className="uppercase tracking-[0.2em] inline-flex items-center gap-1 font-mono text-xs bg-white text-black px-2 py-0.5 font-bold">
                           <Star className="h-2.5 w-2.5 fill-current" />
                           Featured
                         </span>
                       )}
                       <span
                         className={cn(
-                          "font-mono text-xs px-2 py-0.5 border font-bold",
+                          "uppercase tracking-[0.2em] font-mono text-xs px-2 py-0.5 border font-bold",
                           career.type === "Full-time"
                             ? "border-green-500/40 text-green-400 bg-green-500/10"
                             : career.type === "Internship"
@@ -242,7 +242,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                         {career.type}
                       </span>
                       {career.duration && (
-                        <span className="inline-flex items-center gap-1 font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-0.5">
+                        <span className="uppercase tracking-[0.2em] inline-flex items-center gap-1 font-mono text-xs border border-zinc-800 text-zinc-400 px-2 py-0.5">
                           <Timer className="h-2.5 w-2.5" />
                           {career.duration}
                         </span>
@@ -250,12 +250,12 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-sans text-white leading-none group-hover:text-zinc-100 transition-colors">
+                    <h2 className="uppercase tracking-tighter text-3xl md:text-4xl lg:text-5xl font-bold font-sans text-white leading-none group-hover:text-zinc-100 transition-colors">
                       {career.title}
                     </h2>
 
                     {/* Meta row */}
-                    <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-zinc-400">
+                    <div className="uppercase tracking-[0.15em] flex flex-wrap items-center gap-4 font-mono text-xs text-zinc-400">
                       <span className="text-zinc-400">{career.company}</span>
                       <span className="flex items-center gap-1">
                         <MapPin className="h-3 w-3 shrink-0" />
@@ -279,13 +279,13 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
                         {career.requirements.slice(0, 5).map((req) => (
                           <span
                             key={req}
-                            className="font-mono text-xs text-zinc-400 border border-zinc-800 px-2 py-0.5"
+                            className="uppercase tracking-[0.2em] font-mono text-xs text-zinc-400 border border-zinc-800 px-2 py-0.5"
                           >
                             {req}
                           </span>
                         ))}
                         {career.requirements.length > 5 && (
-                          <span className="font-mono text-xs text-zinc-400">
+                          <span className="uppercase tracking-[0.2em] font-mono text-xs text-zinc-400">
                             +{career.requirements.length - 5} more
                           </span>
                         )}

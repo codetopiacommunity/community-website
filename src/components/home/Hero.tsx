@@ -43,7 +43,7 @@ export function Hero() {
       <div className="relative z-10 flex-1 flex flex-col justify-center px-0 pt-16 pb-24">
         <Container className="flex flex-col gap-16">
           {/* Headline */}
-          <div className="text-[13vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[7.5vw] font-bold text-white tracking-tight leading-[0.88] font-sans">
+          <div className="tracking-tighter uppercase text-[13vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[7.5vw] font-bold text-white leading-[0.88] font-sans">
             <span>Where builders</span>
             <br />
             {/*
@@ -79,14 +79,14 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-3 bg-transparent text-white px-8 py-4 font-bold text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
+                className="uppercase tracking-widest group inline-flex items-center gap-3 bg-transparent text-white px-8 py-4 font-bold text-xs font-sans border border-zinc-600 hover:border-white hover:bg-white hover:text-black transition-colors duration-300"
               >
                 About us
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 href={JOIN_URL}
-                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
+                className="uppercase tracking-widest group inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold text-xs font-sans transition-all duration-300 hover:bg-zinc-100 border border-white"
               >
                 Join the community
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

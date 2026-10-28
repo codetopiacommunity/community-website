@@ -9,8 +9,7 @@ import { getSpotlightByHandle, spotlightHandle } from "@/lib/spotlight";
 
 export const revalidate = 60;
 
-// Same source and fallback as the mentorship detail page, so both produce
-// consistent absolute URLs in their share cards.
+// Used to build absolute URLs for the share card.
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://codetopia.community";
 
@@ -71,7 +70,7 @@ export default async function SpotlightDetailPage({
         <Container className="px-4">
           <Link
             href="/spotlight"
-            className="group inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs transition-colors duration-200 mb-8 sm:mb-10"
+            className="uppercase tracking-widest group inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs transition-colors duration-200 mb-8 sm:mb-10"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5 motion-reduce:transition-none" />
             Spotlight archive
@@ -97,16 +96,16 @@ export default async function SpotlightDetailPage({
                 {/* Names the page for anyone arriving from a shared link. An
                     eyebrow rather than a heading: the person is the subject
                     here, and a masthead would push them down the page. */}
-                <p className="text-zinc-400 font-mono text-xs">
+                <p className="uppercase tracking-[0.3em] text-zinc-400 font-mono text-xs">
                   Spotlight
                   {spotlight.featured && (
                     <span className="text-zinc-400"> · Currently featured</span>
                   )}
                 </p>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight font-sans break-words">
+                <h1 className="uppercase tracking-tighter text-3xl sm:text-4xl md:text-5xl font-bold leading-tight font-sans break-words">
                   {spotlight.name}
                 </h1>
-                <p className="text-zinc-400 font-mono text-xs md:text-xs break-words">
+                <p className="uppercase tracking-[0.3em] text-zinc-400 font-mono text-xs md:text-xs break-words">
                   {spotlight.role}
                 </p>
               </div>
@@ -146,7 +145,7 @@ export default async function SpotlightDetailPage({
       <section className="w-full pb-16 sm:pb-24">
         <Container className="px-4">
           <div className="max-w-3xl flex flex-col gap-5 sm:gap-6">
-            <p className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight font-sans break-words">
+            <p className="uppercase tracking-tighter text-2xl sm:text-3xl md:text-4xl font-bold leading-tight font-sans break-words">
               Thank you, {firstName}.
             </p>
             <p className="text-zinc-400 text-base sm:text-lg font-mono leading-relaxed">
@@ -157,7 +156,7 @@ export default async function SpotlightDetailPage({
             </p>
             {/* A signature, so it sits quietly under the note rather than
                 competing with it. */}
-            <p className="text-zinc-400 font-mono text-xs">
+            <p className="uppercase tracking-[0.3em] text-zinc-400 font-mono text-xs">
               Codetopia Community
             </p>
 
@@ -167,7 +166,7 @@ export default async function SpotlightDetailPage({
                 it reads as the way onward rather than as more small print. */}
             <Link
               href="/spotlight"
-              className="group w-full sm:w-auto self-stretch sm:self-start inline-flex flex-wrap items-center justify-center sm:justify-start gap-2 mt-4 sm:mt-6 font-mono text-xs sm:text-xs sm: text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-5 sm:px-6 py-4 sm:py-3 text-center transition-colors duration-200"
+              className="uppercase tracking-[0.2em] tracking-[0.25em] group w-full sm:w-auto self-stretch sm:self-start inline-flex flex-wrap items-center justify-center sm:justify-start gap-2 mt-4 sm:mt-6 font-mono text-xs sm:text-xs sm: text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-5 sm:px-6 py-4 sm:py-3 text-center transition-colors duration-200"
             >
               See everyone we have featured
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />

@@ -28,7 +28,7 @@ export default function ExpiredPage() {
           </svg>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white font-sans">
+        <h1 className="uppercase tracking-tighter text-4xl md:text-5xl font-bold text-white font-sans">
           Link expired
         </h1>
 
@@ -41,7 +41,7 @@ export default function ExpiredPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
           <Link
             href="/"
-            className="inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors font-sans"
+            className="uppercase tracking-wider inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors font-sans"
           >
             Back to Home
           </Link>

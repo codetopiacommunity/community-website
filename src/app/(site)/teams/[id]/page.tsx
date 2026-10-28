@@ -17,12 +17,12 @@ export default async function TeamDirectoryPage({ params }: Props) {
   if (!filteredMembers.length) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center bg-black py-48">
-        <h1 className="text-white font-mono text-xl animate-pulse">
+        <h1 className="uppercase tracking-[0.2em] text-white font-mono text-xl animate-pulse">
           Team not found
         </h1>
         <Link
           href="/about"
-          className="mt-8 text-zinc-400 hover:text-white font-mono text-xs transition-colors flex items-center gap-2"
+          className="uppercase tracking-widest mt-8 text-zinc-400 hover:text-white font-mono text-xs transition-colors flex items-center gap-2"
         >
           <FaArrowLeft className="w-3 h-3" /> RETURN TO ABOUT
         </Link>
@@ -36,15 +36,15 @@ export default async function TeamDirectoryPage({ params }: Props) {
         <div className="mb-24">
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs transition-colors mb-12 group"
+            className="uppercase tracking-widest inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs transition-colors mb-12 group"
           >
             <FaArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             Back to About
           </Link>
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight font-sans mb-8">
+          <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold text-white leading-tight font-sans mb-8">
             {tier} DIVISION
           </h1>
-          <div className="flex items-center gap-4 text-zinc-400 font-mono text-xs">
+          <div className="uppercase tracking-widest flex items-center gap-4 text-zinc-400 font-mono text-xs">
             <span className="w-12 h-[1px] bg-zinc-800" />
             TOTAL MEMBERS: {filteredMembers.length}
           </div>
