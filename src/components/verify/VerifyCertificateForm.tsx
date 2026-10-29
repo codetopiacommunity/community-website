@@ -71,7 +71,7 @@ export function VerifyCertificateForm({
   }
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="max-w-xl px-2">
       <form className="flex flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
         <input
           value={code}

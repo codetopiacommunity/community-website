@@ -1,5 +1,6 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { Container } from "@/components/layout/Container";
+import { PageHeader } from "@/components/layout/PageHeader";
 import {
   encouragedBehaviours,
   enforcementSteps,
@@ -10,18 +11,9 @@ import {
 export default function CodeOfConductPage() {
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      {/* Hero */}
-      <section className="w-full pt-32 pb-16 bg-black">
-        <Container className="px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
-            <div className="flex-1">
-              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
-                Code of conduct
-              </h1>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <PageHeader title="Code of conduct">
+        How we treat each other, and what happens when someone doesn't.
+      </PageHeader>
 
       {/* Who we are + Our pledge */}
       <section className="py-16">

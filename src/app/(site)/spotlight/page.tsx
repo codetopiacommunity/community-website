@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { SpotlightCard } from "@/components/spotlight/SpotlightCard";
 import { getSpotlights, spotlightHandle } from "@/lib/spotlight";
 
@@ -19,19 +20,10 @@ export default async function SpotlightArchivePage() {
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      <section className="w-full pt-32 pb-16 bg-black">
-        <Container className="px-4">
-          <div className="flex flex-col gap-6 px-2">
-            <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
-              Spotlight
-            </h1>
-            <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-              The people doing remarkable work that not enough people know
-              about. One at a time, and everyone we feature stays here.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageHeader title="Spotlight">
+        The people doing remarkable work that not enough people know about. One
+        at a time, and everyone we feature stays here.
+      </PageHeader>
 
       {spotlights.length === 0 ? (
         <section className="w-full pb-32">
