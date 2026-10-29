@@ -66,7 +66,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
 
   if (initialCareers.length === 0) {
     return (
-      <div className="border-t border-zinc-900">
+      <div>
         <Container className="px-4">
           <EmptyState title="No open roles right now">
             Organisations post roles, internships and projects here when they
@@ -187,7 +187,7 @@ export function CareersClient({ initialCareers }: CareersClientProps) {
 
       {/* Empty state */}
       {filtered.length === 0 ? (
-        <div className="border-t border-zinc-900">
+        <div>
           <Container className="px-4">
             <EmptyState
               title="No roles match your search"

@@ -20,7 +20,7 @@ export default async function ArticlesPage() {
   if (!hasHost) {
     return (
       <div className="flex-1 bg-background text-foreground min-h-screen">
-        <section className="w-full py-32 md:py-40 bg-background border-b border-border">
+        <section className="w-full py-32 md:py-40 bg-background">
           <Container className="px-4 flex flex-col gap-8">
             <div className="flex items-end justify-between gap-6">
               <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold leading-tight font-sans">
@@ -30,7 +30,7 @@ export default async function ArticlesPage() {
             </div>
           </Container>
         </section>
-        <section className="py-16 border-t border-border pb-32">
+        <section className="py-16 pb-32">
           <Container className="px-4">
             <div className="flex flex-col items-center justify-center py-32 gap-6 select-none">
               <div className="w-24 h-24 border border-border flex items-center justify-center">
@@ -74,7 +74,7 @@ export default async function ArticlesPage() {
   return (
     <div className="flex-1 bg-background text-foreground min-h-screen">
       {/* Header */}
-      <section className="w-full py-32 md:py-40 bg-background border-b border-border">
+      <section className="w-full py-32 md:py-40 bg-background">
         <Container className="px-4 flex flex-col gap-8">
           <div className="flex items-end justify-between gap-6">
             <div className="flex flex-col gap-4">
@@ -92,7 +92,7 @@ export default async function ArticlesPage() {
 
       {/* Featured Carousel */}
       {featuredArticles.length > 0 && (
-        <section className="border-t border-border">
+        <section>
           <Container className="px-4 py-8">
             <p className="uppercase tracking-[0.3em] font-mono text-xs text-muted-foreground mb-4 px-2">
               Featured
@@ -103,7 +103,7 @@ export default async function ArticlesPage() {
       )}
 
       {/* Articles Grid */}
-      <section className="border-t border-border pb-32">
+      <section className="pb-32">
         <Container className="px-4 py-12">
           <ArticlesGrid articles={articles} featuredSlugs={featuredSlugs} />
         </Container>

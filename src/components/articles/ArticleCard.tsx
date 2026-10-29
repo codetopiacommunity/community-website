@@ -20,7 +20,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
       href={article.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col bg-background border border-border hover:border-foreground transition-colors duration-200 overflow-hidden"
+      className="group flex flex-col bg-background overflow-hidden"
     >
       {/* Cover Image */}
       <div className="relative w-full aspect-video overflow-hidden bg-muted">
@@ -68,7 +68,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
         </p>
 
         {/* Meta */}
-        <div className="mt-auto flex flex-col gap-2 pt-3 border-t border-border">
+        <div className="mt-auto flex flex-col gap-2 pt-3">
           <div className="uppercase tracking-[0.2em] flex items-center justify-between font-mono text-xs text-muted-foreground">
             <span>{formattedDate}</span>
             <span>{article.readTimeInMinutes} min read</span>

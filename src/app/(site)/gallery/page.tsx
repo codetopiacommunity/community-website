@@ -5,7 +5,7 @@ export default function GalleryPage() {
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
       {/* Hero */}
-      <div className="relative w-full py-32 md:py-40 bg-black overflow-hidden border-b border-zinc-900">
+      <div className="relative w-full py-32 md:py-40 bg-black overflow-hidden">
         <div
           aria-hidden="true"
           className="absolute inset-0 z-0"

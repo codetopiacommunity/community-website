@@ -4,19 +4,15 @@ import { Container } from "@/components/layout/Container";
 
 /*
  * The numbered-section layout shared by the long editorial pages (About,
- * Work with us): a sticky number and label in a left rail, content on the
- * right.
+ * Work with us): a sticky number in a left rail, content on the right.
  */
 
-/** Left-hand rail label shared by every section. */
-function SectionLabel({ num, label }: { num: string; label: string }) {
+/** Left-hand rail number shared by every section. */
+function SectionNumber({ num }: { num: string }) {
   return (
-    <div className="flex flex-row lg:flex-col items-baseline lg:items-start gap-4 lg:gap-5 lg:sticky lg:top-28">
+    <div className="lg:sticky lg:top-28">
       <span className="font-sans font-bold text-3xl lg:text-5xl tracking-tight leading-none text-zinc-400 tabular-nums">
         {num}
-      </span>
-      <span className="uppercase tracking-[0.22em] font-mono text-xs text-zinc-300 leading-relaxed">
-        {label}
       </span>
     </div>
   );
@@ -24,18 +20,16 @@ function SectionLabel({ num, label }: { num: string; label: string }) {
 
 export function Section({
   num,
-  label,
   children,
 }: {
   num: string;
-  label: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-full py-24 md:py-32 bg-black text-white border-t border-zinc-900">
+    <section className="w-full py-24 md:py-32 bg-black text-white">
       <Container className="px-4">
         <div className="grid grid-cols-1 lg:grid-cols-[12rem_1fr] gap-8 lg:gap-16 items-start">
-          <SectionLabel num={num} label={label} />
+          <SectionNumber num={num} />
           <div className="flex flex-col gap-8 md:gap-10 min-w-0">
             {children}
           </div>

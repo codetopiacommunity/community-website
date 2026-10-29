@@ -74,9 +74,6 @@ export default function WorkWithUsPage() {
         />
         <Container className="relative z-10 px-4">
           <div className="flex flex-col items-start gap-8 md:gap-10">
-            <span className="uppercase tracking-[0.25em] font-mono text-xs text-zinc-400">
-              For organisations
-            </span>
             <h1 className="tracking-tighter uppercase text-4xl md:text-6xl font-bold text-white leading-tight font-sans">
               Work with us
             </h1>
@@ -93,7 +90,7 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* ── 01 · Ways to work with us ────────────────────────── */}
-      <Section num="01" label="Ways to work with us">
+      <Section num="01">
         <Heading>How organisations get involved.</Heading>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
@@ -123,7 +120,7 @@ export default function WorkWithUsPage() {
       </Section>
 
       {/* ── 02 · Partnerships ────────────────────────────────── */}
-      <Section num="02" label="Partnerships">
+      <Section num="02">
         <Heading>Partner with Codetopia.</Heading>
         <Prose>
           Sponsorships, partnerships and work with schools are handled by{" "}
@@ -138,7 +135,7 @@ export default function WorkWithUsPage() {
       </Section>
 
       {/* ── 03 · How we work ─────────────────────────────────── */}
-      <Section num="03" label="How we work">
+      <Section num="03">
         <Heading>Welcome to a community built around you.</Heading>
         <div className="flex flex-col gap-6">
           <Prose>
@@ -155,7 +152,7 @@ export default function WorkWithUsPage() {
       </Section>
 
       {/* ── 04 · Who we work with ────────────────────────────── */}
-      <Section num="04" label="Track record">
+      <Section num="04">
         <Heading>Who we work with.</Heading>
         <div className="flex flex-col gap-10">
           {organisationGroups.map((group) => (

@@ -79,7 +79,7 @@ export default function AlbumPage({
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
       {/* Hero */}
-      <section className="w-full pt-32 pb-16 bg-black border-b border-zinc-900">
+      <section className="w-full pt-32 pb-16 bg-black">
         <Container className="px-4">
           <div className="px-2">
             <Link
