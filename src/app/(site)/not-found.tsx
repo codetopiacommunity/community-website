@@ -5,7 +5,7 @@ import { Container } from "@/components/layout/Container";
 export default function NotFound() {
   return (
     <div className="flex-1 bg-black text-white min-h-screen flex flex-col">
-      <section className="relative flex-1 flex flex-col justify-center overflow-hidden border-b border-zinc-900">
+      <section className="relative flex-1 flex flex-col justify-center overflow-hidden">
         {/* Dot grid */}
         <div
           aria-hidden="true"
@@ -22,7 +22,7 @@ export default function NotFound() {
             404
           </h1>
 
-          <div className="border-t border-zinc-900 pt-10 mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div className="pt-10 mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
               <p className="uppercase tracking-tighter text-white font-bold text-2xl md:text-3xl font-sans mb-3">
                 Page not found

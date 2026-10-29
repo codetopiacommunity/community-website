@@ -21,7 +21,7 @@ export function GalleryGridIsland() {
   }, []);
 
   return (
-    <section className="py-16 border-t border-zinc-900 pb-32">
+    <section className="py-16 pb-32">
       <Container className="px-4">
         {loading ? (
           <div className="flex items-center justify-center py-24">

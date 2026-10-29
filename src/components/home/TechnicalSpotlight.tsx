@@ -13,7 +13,7 @@ export function TechnicalSpotlight({
   if (!spotlight) return null;
 
   return (
-    <section className="w-full py-20 md:py-24 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
+    <section className="w-full py-20 md:py-24 bg-black flex flex-col overflow-hidden">
       <Container className="w-full font-sans">
         <div className="w-full mb-14 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="flex flex-col gap-6">

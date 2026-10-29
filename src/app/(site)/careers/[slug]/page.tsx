@@ -48,7 +48,7 @@ export default async function CareerDetailPage({
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
       {/* Top bar */}
-      <div className="w-full border-b border-zinc-900 pt-28 pb-0">
+      <div className="w-full pt-28 pb-0">
         <Container className="px-4">
           <Link
             href="/careers"
@@ -61,7 +61,7 @@ export default async function CareerDetailPage({
       </div>
 
       {/* Hero */}
-      <section className="w-full border-b border-zinc-900 py-16 md:py-24">
+      <section className="w-full py-16 md:py-24">
         <Container className="px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
             <div className="flex flex-col gap-6 max-w-3xl">

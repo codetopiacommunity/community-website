@@ -22,9 +22,12 @@ export function OurImpact() {
       .catch(() => {});
   }, []);
 
+  // Nothing to show yet: leave the section out rather than show an empty box.
+  if (impactStories.length === 0) return null;
+
   return (
     <>
-      <section className="w-full py-32 bg-black flex flex-col border-t border-zinc-900 overflow-hidden">
+      <section className="w-full py-32 bg-black flex flex-col overflow-hidden">
         <Container className="w-full px-4 font-sans relative z-10">
           <div className="w-full mb-24 text-left flex flex-col gap-6">
             <h2 className="uppercase tracking-tighter text-5xl md:text-8xl font-bold text-white leading-none font-sans">

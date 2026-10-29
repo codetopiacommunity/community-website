@@ -66,7 +66,7 @@ const everyday = [
 
 export function WhyJoinUs() {
   return (
-    <section className="relative w-full py-32 bg-black text-white border-t border-zinc-900 overflow-hidden">
+    <section className="relative w-full py-32 bg-black text-white overflow-hidden">
       <Container className="relative z-10 w-full px-4">
         <div className="mb-16 flex flex-col gap-6">
           <h2 className="uppercase tracking-tighter text-4xl md:text-6xl lg:text-8xl font-bold leading-none font-sans">
@@ -141,9 +141,6 @@ export function WhyJoinUs() {
 
       {/* Everyday things */}
       <Container className="relative z-10 w-full px-4 pt-24">
-        <p className="uppercase tracking-widest text-zinc-400 font-mono text-sm mb-10">
-          And the everyday things
-        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
           {everyday.map((item) => (
             <div key={item.title} className="flex flex-col gap-4">

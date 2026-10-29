@@ -369,12 +369,6 @@ function RecognitionModal({
               </div>
             )}
           </div>
-
-          <div className="mt-20 pt-8 border-t border-zinc-900 flex justify-between items-center opacity-30">
-            <div className="uppercase tracking-[0.5em] text-[8px] font-mono text-zinc-400">
-              A Codetopia initiative
-            </div>
-          </div>
         </div>
       </div>
     </div>

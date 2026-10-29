@@ -1,5 +1,6 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { Container } from "@/components/layout/Container";
+import { PageHeader } from "@/components/layout/PageHeader";
 import {
   encouragedBehaviours,
   enforcementSteps,
@@ -10,24 +11,12 @@ import {
 export default function CodeOfConductPage() {
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      {/* Hero */}
-      <section className="w-full pt-32 pb-16 bg-black">
-        <Container className="px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
-            <div className="flex-1">
-              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold mb-6 leading-tight font-sans">
-                Code of conduct
-              </h1>
-              <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed max-w-2xl">
-                A utopia for tech enthusiasts, where everyone belongs.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <PageHeader title="Code of conduct">
+        How we treat each other, and what happens when someone doesn't.
+      </PageHeader>
 
       {/* Who we are + Our pledge */}
-      <section className="py-16 border-t border-zinc-900">
+      <section className="py-16">
         <Container className="px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 px-2">
             <div>
@@ -74,14 +63,14 @@ export default function CodeOfConductPage() {
       </section>
 
       {/* Encouraged behaviours */}
-      <section className="py-16 border-t border-zinc-900">
+      <section className="py-16">
         <Container className="px-4">
           <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mb-10 px-2">
             Encouraged behaviours
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 px-2">
             {encouragedBehaviours.map((item) => (
-              <div key={item.title} className="bg-black p-8">
+              <div key={item.title}>
                 <p className="uppercase tracking-tight text-white font-bold text-lg font-sans mb-3">
                   {item.title}
                 </p>
@@ -95,7 +84,7 @@ export default function CodeOfConductPage() {
       </section>
 
       {/* Restricted behaviours */}
-      <section className="py-16 border-t border-zinc-900">
+      <section className="py-16">
         <Container className="px-4">
           <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mb-10 px-2">
             Restricted behaviours
@@ -104,9 +93,9 @@ export default function CodeOfConductPage() {
           <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mb-6 px-2">
             General violations
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900 mb-px">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 px-2">
             {generalViolations.map((item) => (
-              <div key={item.title} className="bg-black p-8">
+              <div key={item.title}>
                 <p className="uppercase tracking-tight text-white font-bold text-lg font-sans mb-3">
                   {item.title}
                 </p>
@@ -120,9 +109,9 @@ export default function CodeOfConductPage() {
           <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mt-10 mb-6 px-2">
             Tech community specific
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-900">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 px-2">
             {techViolations.map((item) => (
-              <div key={item.title} className="bg-black p-8">
+              <div key={item.title}>
                 <p className="uppercase tracking-tight text-white font-bold text-lg font-sans mb-3">
                   {item.title}
                 </p>
@@ -136,7 +125,7 @@ export default function CodeOfConductPage() {
       </section>
 
       {/* Reporting */}
-      <section className="py-16 border-t border-zinc-900">
+      <section className="py-16">
         <Container className="px-4">
           <div className="px-2 max-w-3xl">
             <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mb-6">
@@ -161,16 +150,16 @@ export default function CodeOfConductPage() {
       </section>
 
       {/* Enforcement Ladder */}
-      <section className="py-16 border-t border-zinc-900">
+      <section className="py-16">
         <Container className="px-4">
           <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mb-10 px-2">
             Addressing & repairing harm
           </p>
-          <div className="flex flex-col gap-px bg-zinc-900">
+          <div className="flex flex-col gap-12 px-2">
             {enforcementSteps.map((item) => (
               <div
                 key={item.step}
-                className="bg-black p-8 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_1fr] gap-8"
+                className="grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_1fr] gap-8"
               >
                 <p className="text-zinc-400 font-bold text-4xl font-sans">
                   {item.step}
@@ -211,7 +200,7 @@ export default function CodeOfConductPage() {
       </section>
 
       {/* Scope + Attribution */}
-      <section className="py-16 border-t border-zinc-900 pb-32">
+      <section className="py-16 pb-32">
         <Container className="px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 px-2">
             <div>
