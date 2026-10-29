@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { WallOfImpact } from "@/components/about/WallOfImpact";
-import { Container } from "@/components/layout/Container";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { toRecognitionCategory } from "@/lib/data/recognition";
 import { fetchPortalRecognitions, getPortalProfileUrl } from "@/lib/portal";
 
@@ -46,36 +46,16 @@ export default async function ImpactPage() {
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      {/* Impact Hero: Mission Alignment */}
-      <section className="w-full pt-32 pb-16 bg-black">
-        <Container className="px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 px-2">
-            <div className="flex-1">
-              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold mb-6 leading-tight font-sans">
-                Wall of Impact
-              </h1>
-              <div className="max-w-2xl">
-                <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                  A thank-you board for the people who made a real difference in
-                  Codetopia Community, through code, design, events, writing or
-                  helping someone who was stuck.
-                </p>
-                <p className="mt-6 text-zinc-400 text-sm md:text-base font-mono leading-relaxed">
-                  Team leads nominate people who stand out helping the
-                  community.{" "}
-                  <Link
-                    href="/howtos/contributing/help-out"
-                    className="underline underline-offset-4 hover:text-white transition-colors duration-200"
-                  >
-                    See how to help
-                  </Link>
-                  .
-                </p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <PageHeader title="Wall of Impact">
+        Members who made a real difference here. Team leads add them.{" "}
+        <Link
+          href="/howtos/contributing/help-out"
+          className="underline underline-offset-4 hover:text-white transition-colors duration-200"
+        >
+          See how to help
+        </Link>
+        .
+      </PageHeader>
 
       {/* Main recognition grid */}
       <WallOfImpact items={entries} />

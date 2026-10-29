@@ -9,6 +9,7 @@ import {
 } from "@/components/about/TeamCard";
 import { Container } from "@/components/layout/Container";
 import { EmptyState } from "@/components/layout/EmptyState";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { cn } from "@/lib/utils";
 
 interface TeamTier {
@@ -67,44 +68,35 @@ export default function TeamPage() {
 
   return (
     <div className="flex-1 bg-black text-white min-h-screen">
-      {/* Teams Section: Dynamic Hub */}
-      <section className="w-full py-24 md:py-32 bg-black text-white z-20">
-        <Container className="w-full px-4 relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 px-2">
-            <div className="flex-1">
-              <h1 className="uppercase tracking-tighter text-4xl md:text-6xl font-bold mb-6 leading-tight font-sans">
-                The team
-              </h1>
-              <div className="max-w-2xl">
-                <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                  Meet the humans behind Codetopia Community: the core team,
-                  mentors, volunteers, and ambassadors who make it what it is.
-                </p>
-              </div>
+      <PageHeader
+        title="The team"
+        action={
+          tiers.length > 0 && (
+            <div className="flex flex-wrap gap-2 md:gap-3 p-1 bg-zinc-950 border border-zinc-900">
+              {tiers.map((tier) => (
+                <button
+                  key={tier.value}
+                  type="button"
+                  onClick={() => setActiveTier(tier.value)}
+                  className={cn(
+                    "uppercase tracking-[0.2em] px-4 py-2 text-xs font-mono transition-all",
+                    activeTier === tier.value
+                      ? "bg-white text-black"
+                      : "bg-transparent text-zinc-400 hover:text-zinc-300",
+                  )}
+                >
+                  {tier.label}
+                </button>
+              ))}
             </div>
+          )
+        }
+      >
+        The people who run Codetopia Community.
+      </PageHeader>
 
-            {/* Tactical Toggle */}
-            {tiers.length > 0 && (
-              <div className="flex flex-wrap gap-2 md:gap-3 p-1 bg-zinc-950 border border-zinc-900">
-                {tiers.map((tier) => (
-                  <button
-                    key={tier.value}
-                    type="button"
-                    onClick={() => setActiveTier(tier.value)}
-                    className={cn(
-                      "uppercase tracking-[0.2em] px-4 py-2 text-xs font-mono transition-all",
-                      activeTier === tier.value
-                        ? "bg-white text-black"
-                        : "bg-transparent text-zinc-400 hover:text-zinc-300",
-                    )}
-                  >
-                    {tier.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
+      <section className="w-full pb-32 bg-black text-white">
+        <Container className="w-full px-4">
           {/* Search */}
           {!loading && teamMembers.length > 0 && (
             <div className="relative max-w-md mb-10 px-2">
