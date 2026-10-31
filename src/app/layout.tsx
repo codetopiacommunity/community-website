@@ -14,12 +14,22 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const DEFAULT_SITE_URL = "https://codetopia.community";
+
+/** The site's address, falling back rather than crashing every page if the
+ * env value is malformed. */
+function siteUrl() {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL);
+  } catch {
+    return new URL(DEFAULT_SITE_URL);
+  }
+}
+
 export const metadata: Metadata = {
   // Share images are linked by absolute URL, and without a base Next.js
   // points them at localhost or a preview deployment.
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://codetopia.community",
-  ),
+  metadataBase: siteUrl(),
   title: "Codetopia Community",
   description:
     "An open community where people in tech do real work together, reviewed by people who know the craft.",

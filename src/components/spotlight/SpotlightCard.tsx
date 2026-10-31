@@ -111,7 +111,7 @@ export function SpotlightCard({ spotlight }: { spotlight: Spotlight }) {
         sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
         className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
       />
-      <span className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-700" />
+      <span className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-colors duration-700" />
 
       {/* Shown on hover: the card opens their feature. */}
       <span className="absolute top-2 right-2 z-20 inline-flex h-8 w-8 items-center justify-center bg-white text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
