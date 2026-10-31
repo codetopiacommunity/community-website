@@ -11,12 +11,13 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * The share card: the same object as the feature card on the home page.
+ * The share card: the same object as the feature page it links to.
  *
- * One photograph filling the frame, the name across the bottom of it, the
- * community mark on the same baseline. A link posted anywhere should look
- * like the site it came from, so this follows the site's spotlight feature
- * rather than inventing a second treatment for the same thing.
+ * The photograph on the left, who they are on black beside it. Writing over
+ * the photo put the name across people's faces, since most portraits are
+ * close-ups, and left the words at the mercy of a light background. Side by
+ * side, the face stays clear and the text always reads, even at the small
+ * size a feed shows it.
  *
  * Fonts are read from the repository rather than fetched at render time: a
  * share preview should not depend on a third party being reachable.
@@ -37,11 +38,27 @@ const LOGO = path.join(
   "src/assets/images/logos/codetopia-community.png",
 );
 
-/** The name is the loudest thing on the card, so it sets its own size. */
-function nameSize(name: string) {
-  if (name.length > 26) return 60;
-  if (name.length > 18) return 76;
-  return 100;
+const PHOTO_WIDTH = 480;
+const PADDING = 64;
+
+/**
+ * The name is the loudest thing on the card, so it sets its own size: as big
+ * as it can be while its longest word still fits the text column. Space
+ * Grotesk's bold capitals average about 0.68em wide.
+ */
+function nameSize(name: string, columnWidth: number) {
+  const longestWord = Math.max(
+    ...name.split(/\s+/).map((word) => word.length),
+    1,
+  );
+  return Math.round(Math.min(84, columnWidth / (longestWord * 0.68)));
+}
+
+/** A teaser, cut at a word, so it never runs off the bottom of the card. */
+function teaser(text: string, max = 140) {
+  const clean = text.trim().replace(/\s+/g, " ");
+  if (clean.length <= max) return clean;
+  return `${clean.slice(0, clean.lastIndexOf(" ", max)).replace(/[,.;:]$/, "")}…`;
 }
 
 export default async function Image({
@@ -65,15 +82,23 @@ export default async function Image({
   ];
 
   // Every stored image is a Cloudinary upload from the admin form, so the
-  // crop can be face-aware. Anything else falls back to the plain card.
+  // crop can be face-aware. Without a photo the text takes the whole card.
   const photo = spotlight?.imageUrl.startsWith("http")
-    ? cloudinaryFill(spotlight.imageUrl, size.width, size.height)
+    ? cloudinaryFill(spotlight.imageUrl, PHOTO_WIDTH * 2, size.height * 2)
+    : null;
+
+  const name = spotlight?.name ?? "Spotlight";
+  const columnWidth = size.width - (photo ? PHOTO_WIDTH : 0) - PADDING * 2;
+  const featuredOn = spotlight
+    ? new Date(spotlight.createdAt).toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      })
     : null;
 
   return new ImageResponse(
     <div
       style={{
-        position: "relative",
         display: "flex",
         width: "100%",
         height: "100%",
@@ -88,28 +113,12 @@ export default async function Image({
           <img
             src={photo}
             alt=""
-            width={size.width}
+            width={PHOTO_WIDTH}
             height={size.height}
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: size.width,
+              width: PHOTO_WIDTH,
               height: size.height,
               objectFit: "cover",
-            }}
-          />
-          {/* The photograph is the card, so the text has to earn its contrast
-              from a scrim rather than from a panel beside it. */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: size.width,
-              height: size.height,
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.78) 26%, rgba(0,0,0,0.2) 56%, rgba(0,0,0,0) 78%)",
             }}
           />
         </>
@@ -117,67 +126,78 @@ export default async function Image({
 
       <div
         style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
           display: "flex",
-          alignItems: "flex-end",
+          flexDirection: "column",
           justifyContent: "space-between",
-          width: size.width,
-          padding: 64,
-          gap: 40,
+          width: columnWidth + PADDING * 2,
+          height: size.height,
+          padding: PADDING,
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-          <div
-            style={{
-              display: "flex",
-              fontFamily: "Inter",
-              fontSize: 18,
-              letterSpacing: "0.3em",
-              textTransform: "",
-              color: "#a1a1aa",
-            }}
-          >
-            Spotlight
-          </div>
+        <div
+          style={{
+            display: "flex",
+            fontFamily: "Space Grotesk",
+            fontSize: 18,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#a1a1aa",
+          }}
+        >
+          {featuredOn ? `Spotlight · ${featuredOn}` : "Spotlight"}
+        </div>
 
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               display: "flex",
-              marginTop: 18,
+              flexWrap: "wrap",
               fontFamily: "Space Grotesk",
-              fontSize: nameSize(spotlight?.name ?? "Spotlight"),
-              lineHeight: 1,
+              fontSize: nameSize(name, columnWidth),
+              lineHeight: 0.92,
               letterSpacing: "-0.04em",
-              textTransform: "",
+              textTransform: "uppercase",
             }}
           >
-            {spotlight?.name ?? "Spotlight"}
+            {name}
           </div>
 
           {spotlight && (
             <div
               style={{
                 display: "flex",
-                marginTop: 18,
-                fontFamily: "Inter",
+                marginTop: 24,
+                fontFamily: "Space Grotesk",
                 fontSize: 20,
-                letterSpacing: "0.3em",
-                textTransform: "",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
                 color: "#d4d4d8",
               }}
             >
               {spotlight.role}
             </div>
           )}
+
+          {spotlight?.contribution && (
+            <div
+              style={{
+                display: "flex",
+                marginTop: 28,
+                fontFamily: "Inter",
+                fontSize: 24,
+                lineHeight: 1.4,
+                color: "#a1a1aa",
+              }}
+            >
+              {teaser(spotlight.contribution)}
+            </div>
+          )}
         </div>
 
         {/* The mark is a wordmark, 1659x381, and already reads "Codetopia
-            Community". Drawn at its own ratio, on the same baseline as the
-            name, so the card composes as subject-left, publisher-right. */}
+            Community", so it signs the card on its own. */}
         {/* biome-ignore lint/performance/noImgElement: see above. */}
-        <img src={logoSrc} alt="" width={209} height={48} />
+        <img src={logoSrc} alt="" width={174} height={40} />
       </div>
     </div>,
     { ...size, fonts },

@@ -15,6 +15,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  // Share images are linked by absolute URL, and without a base Next.js
+  // points them at localhost or a preview deployment.
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://codetopia.community",
+  ),
   title: "Codetopia Community",
   description:
     "An open community where people in tech do real work together, reviewed by people who know the craft.",
