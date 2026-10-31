@@ -87,7 +87,7 @@ export default async function HowtosPage() {
             {howtos[0] && (
               <Link
                 href={howtoHref(howtos[0])}
-                className="group inline-flex items-center gap-3 border border-foreground bg-foreground px-6 py-3 font-sans text-sm font-bold text-background transition-colors duration-300 hover:bg-transparent hover:text-foreground"
+                className="uppercase tracking-widest group inline-flex items-center gap-3 border border-foreground bg-foreground px-8 py-4 font-sans text-xs font-bold text-background transition-colors duration-300 hover:bg-transparent hover:text-foreground"
               >
                 Start step 1
                 <ArrowRight

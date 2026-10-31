@@ -23,7 +23,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
       className="group flex flex-col bg-background overflow-hidden"
     >
       {/* Cover Image */}
-      <div className="relative w-full aspect-video overflow-hidden bg-muted">
+      <div className="relative w-full aspect-[2/1] overflow-hidden bg-muted">
         {article.coverImage?.url ? (
           <Image
             src={article.coverImage.url}
@@ -34,7 +34,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           />
         ) : (
           <div className="absolute inset-0 bg-muted flex items-center justify-center">
-            <span className="uppercase tracking-[0.3em] font-mono text-xs text-muted-foreground">
+            <span className="uppercase tracking-widest font-sans text-xs text-muted-foreground">
               No cover
             </span>
           </div>
@@ -42,14 +42,14 @@ export function ArticleCard({ article }: ArticleCardProps) {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-5 gap-4">
+      <div className="flex flex-col flex-1 p-5 gap-3">
         {/* Tags */}
         {visibleTags.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {visibleTags.map((tag) => (
               <span
                 key={tag.slug}
-                className="uppercase tracking-[0.25em] font-mono text-xs text-background bg-foreground px-2 py-0.5"
+                className="uppercase tracking-widest font-sans text-xs text-background bg-foreground px-2 py-0.5"
               >
                 {tag.name}
               </span>
@@ -57,10 +57,15 @@ export function ArticleCard({ article }: ArticleCardProps) {
           </div>
         )}
 
-        {/* Title */}
-        <h3 className="uppercase tracking-tighter font-bold text-foreground text-xl leading-tight font-sans group-hover:text-muted-foreground transition-colors">
-          {article.title}
-        </h3>
+        {/* Title, and who wrote it */}
+        <div>
+          <h3 className="uppercase tracking-tighter font-bold text-foreground text-xl leading-tight font-sans group-hover:text-muted-foreground transition-colors">
+            {article.title}
+          </h3>
+          <p className="mt-1.5 uppercase tracking-widest font-sans text-xs text-muted-foreground">
+            By {article.author.name}
+          </p>
+        </div>
 
         {/* Excerpt */}
         <p className="font-mono text-muted-foreground text-sm leading-relaxed line-clamp-2">
@@ -68,18 +73,16 @@ export function ArticleCard({ article }: ArticleCardProps) {
         </p>
 
         {/* Meta */}
-        <div className="mt-auto flex flex-col gap-2 pt-3">
-          <div className="uppercase tracking-[0.2em] flex items-center justify-between font-mono text-xs text-muted-foreground">
-            <span>{formattedDate}</span>
-            <span>{article.readTimeInMinutes} min read</span>
-          </div>
-          <div className="uppercase tracking-[0.2em] flex items-center justify-between font-mono text-xs text-muted-foreground">
-            <span>{article.author.name}</span>
-            <span className="inline-flex items-center gap-1 group-hover:text-foreground transition-colors">
-              Read on Hashnode
-              <ArrowUpRight className="w-3 h-3" />
+        <div className="mt-auto uppercase tracking-widest flex items-center justify-between gap-3 font-sans text-xs text-muted-foreground">
+          <span>
+            {formattedDate} · {article.readTimeInMinutes} min read
+          </span>
+          <span className="inline-flex items-center gap-1 group-hover:text-foreground transition-colors">
+            <span className="sr-only">
+              Read on Hashnode (opens in a new tab)
             </span>
-          </div>
+            <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+          </span>
         </div>
       </div>
     </a>

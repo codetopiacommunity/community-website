@@ -157,7 +157,7 @@ export default function WorkWithUsPage() {
         <div className="flex flex-col gap-10">
           {organisationGroups.map((group) => (
             <div key={group.label} className="flex flex-col gap-5">
-              <h3 className="uppercase tracking-[0.22em] font-mono text-xs text-zinc-400">
+              <h3 className="uppercase tracking-widest font-sans text-xs text-zinc-400">
                 {group.label}
               </h3>
               <div className="flex flex-wrap items-center gap-x-12 gap-y-6">

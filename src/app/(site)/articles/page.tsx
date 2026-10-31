@@ -34,7 +34,7 @@ export default async function ArticlesPage() {
                 <p className="uppercase tracking-tighter text-foreground font-bold text-2xl font-sans">
                   Not configured
                 </p>
-                <p className="uppercase tracking-widest text-muted-foreground font-mono text-xs max-w-xs">
+                <p className="uppercase tracking-widest text-muted-foreground font-sans text-xs max-w-xs">
                   No Hashnode publication has been linked yet. Configure one in
                   the admin settings.
                 </p>
@@ -73,7 +73,7 @@ export default async function ArticlesPage() {
       {featuredArticles.length > 0 && (
         <section>
           <Container className="px-4 py-8">
-            <p className="uppercase tracking-[0.3em] font-mono text-xs text-muted-foreground mb-4 px-2">
+            <p className="uppercase tracking-widest font-sans text-xs text-muted-foreground mb-4 px-2">
               Featured
             </p>
             <FeaturedCarousel articles={featuredArticles} />

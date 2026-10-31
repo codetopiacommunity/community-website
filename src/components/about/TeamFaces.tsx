@@ -44,7 +44,7 @@ export function TeamFaces({ faces }: { faces: AboutFace[] }) {
             <span className="uppercase tracking-tight font-sans font-bold text-xs text-white leading-tight">
               {face.name}
             </span>
-            <span className="uppercase tracking-[0.18em] font-mono text-xs text-zinc-400 group-hover:text-white transition-colors">
+            <span className="uppercase tracking-widest font-sans text-xs text-zinc-400 group-hover:text-white transition-colors">
               {face.role}
             </span>
           </div>

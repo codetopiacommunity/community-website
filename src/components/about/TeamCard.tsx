@@ -2,11 +2,8 @@
 
 import {
   ArrowUpRight,
-  CalendarDays,
-  ChevronDown,
   Github,
   Globe,
-  Link2,
   Linkedin,
   MapPin,
   Twitter,
@@ -87,218 +84,72 @@ function resolveSocialHref(
   return `https://twitter.com/${value}`;
 }
 
-const LONG_DATE_FORMATTER = new Intl.DateTimeFormat("en", {
-  month: "long",
-  year: "numeric",
-});
-const SHORT_DATE_FORMATTER = new Intl.DateTimeFormat("en", {
-  month: "short",
-  year: "numeric",
-});
-
-function formatJoinedDate(value: string): string {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return LONG_DATE_FORMATTER.format(date);
-}
-
-function formatShortDate(value: string): string {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return SHORT_DATE_FORMATTER.format(date);
-}
-
-function formatCareerRange(startDate: string, endDate: string | null): string {
-  const start = formatShortDate(startDate);
-  const end = endDate ? formatShortDate(endDate) : "Present";
-  const range = start ? `${start} — ${end}` : end;
-  const duration = formatCareerDuration(startDate, endDate);
-  return duration ? `${range} · ${duration}` : range;
-}
-
-function formatCareerDuration(
-  startDate: string,
-  endDate: string | null,
-): string {
-  const start = new Date(startDate);
-  const end = endDate ? new Date(endDate) : new Date();
-  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return "";
-
-  let months =
-    (end.getFullYear() - start.getFullYear()) * 12 +
-    (end.getMonth() - start.getMonth()) +
-    1;
-  months = Math.max(months, 1);
-
-  const years = Math.floor(months / 12);
-  const remainingMonths = months % 12;
-
-  const parts: string[] = [];
-  if (years > 0) parts.push(`${years} yr${years > 1 ? "s" : ""}`);
-  if (remainingMonths > 0 || years === 0) {
-    parts.push(`${remainingMonths} mo${remainingMonths !== 1 ? "s" : ""}`);
-  }
-  return parts.join(" ");
-}
-
-const BULLET_PATTERN = /^[-*•–]\s+/;
-
-function getBulletItems(description: string): string[] | null {
-  const lines = description.split("\n").flatMap((line) => {
-    const trimmed = line.trim();
-    return trimmed ? [trimmed] : [];
-  });
-
-  if (lines.length < 2 || !lines.every((line) => BULLET_PATTERN.test(line))) {
-    return null;
-  }
-
-  return lines.map((line) => line.replace(BULLET_PATTERN, ""));
-}
-
-const EXPERIENCE_CLAMP_COUNT = 4;
-
-function ExperienceSection({
-  careerProgressions,
-}: {
-  careerProgressions: TeamMemberCareerProgression[];
-}) {
-  const [expanded, setExpanded] = React.useState(false);
-  const hasMore = careerProgressions.length > EXPERIENCE_CLAMP_COUNT;
-  const visible = hasMore
-    ? careerProgressions.slice(0, EXPERIENCE_CLAMP_COUNT)
-    : careerProgressions;
-
-  if (careerProgressions.length === 0) return null;
-
-  return (
-    <div>
-      <h5 className="uppercase tracking-widest font-mono text-xs font-medium text-zinc-400 mb-3">
-        Experience
-      </h5>
-      <div>
-        {visible.map((entry, index, all) => (
-          <div key={entry.id} className="relative pl-5 pb-6 last:pb-0">
-            <span className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-zinc-500" />
-            {index < all.length - 1 && (
-              <span className="absolute left-[3px] top-4 bottom-0 w-px bg-zinc-800" />
-            )}
-            <p className="text-white font-mono text-sm font-semibold">
-              {entry.title}
-            </p>
-            {entry.organization && (
-              <p className="text-zinc-300 font-mono text-sm">
-                {entry.organization}
-              </p>
-            )}
-            <p className="text-zinc-400 font-mono text-xs mt-1">
-              {formatCareerRange(entry.startDate, entry.endDate)}
-            </p>
-            {entry.description && (
-              <CareerDescription description={entry.description} />
-            )}
-          </div>
-        ))}
-      </div>
-      {hasMore && (
-        <button
-          type="button"
-          onClick={() => setExpanded((prev) => !prev)}
-          className="uppercase tracking-widest font-mono text-xs text-zinc-400 hover:text-white transition-colors"
-        >
-          {expanded ? "Show less" : `Show all ${careerProgressions.length}`}
-        </button>
-      )}
-    </div>
-  );
-}
-
-function CareerDescription({ description }: { description: string }) {
-  const bullets = getBulletItems(description);
-
-  if (bullets) {
-    return (
-      <ul className="mt-2 space-y-1 list-disc list-inside text-zinc-400 font-mono text-sm leading-relaxed">
-        {bullets.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    );
-  }
-
-  return (
-    <p className="text-zinc-400 font-mono text-sm leading-relaxed mt-2">
-      {description}
-    </p>
-  );
-}
-
 export function TeamCard({ member, onSelect }: TeamCardProps) {
   const imageSource = member.imageUrl || member.image;
   const initials = getInitials(member.name);
   const countryFlag = getCountryFlag(member.location);
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: contains nested <button> social links, which a real <button> can't hold
-    <div
-      role="button"
-      tabIndex={0}
+    <button
+      type="button"
       onClick={() => onSelect?.(member)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onSelect?.(member);
-        }
-      }}
-      className="group relative bg-black flex flex-col hover:bg-zinc-950 transition-all overflow-hidden border border-zinc-900 aspect-[4/5] w-full cursor-pointer"
+      className="group relative block aspect-[4/5] w-full cursor-pointer overflow-hidden border border-zinc-900 bg-black text-left transition-all hover:bg-zinc-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
     >
       {/* Visual Asset: Grayscale Image */}
-      <div className="relative h-full w-full overflow-hidden">
+      <span className="relative block h-full w-full overflow-hidden">
         {imageSource ? (
           <Image
             src={imageSource}
-            alt={member.name}
+            alt=""
             fill
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-zinc-950 text-white transition-all duration-700 group-hover:bg-zinc-900 group-hover:scale-105">
-            <span className="font-mono text-4xl font-bold text-zinc-300 md:text-5xl">
+          <span className="flex h-full w-full items-center justify-center bg-zinc-950 text-white transition-all duration-700 group-hover:bg-zinc-900 group-hover:scale-105">
+            <span className="font-mono text-3xl font-bold text-zinc-300 sm:text-4xl md:text-5xl">
               {initials}
             </span>
-          </div>
+          </span>
         )}
 
         {/* Subtle Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-700 z-10" />
+        <span className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-700 z-10" />
 
+        {/* Just the flag: the country is said for screen readers only. */}
         {countryFlag && (
-          <div className="absolute top-3 right-3 z-20 inline-flex items-center gap-1.5 px-2 py-1 bg-black/70 backdrop-blur-sm border border-zinc-800">
+          <span className="absolute top-3 left-3 z-20 inline-flex">
             <span
-              className={`fi fi-${countryFlag.code} text-sm leading-none`}
+              className={`fi fi-${countryFlag.code} text-base leading-none`}
               aria-hidden="true"
             />
-            <span className="uppercase tracking-widest font-mono text-xs text-zinc-300">
-              {countryFlag.country}
-            </span>
-          </div>
+            <span className="sr-only">{countryFlag.country}</span>
+          </span>
         )}
 
+        {/* Shown on hover: the card opens more about them. */}
+        <span className="absolute top-2 right-2 z-20 inline-flex h-8 w-8 items-center justify-center bg-white text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        </span>
+
         {/* Main Content: Persistent Bottom State */}
-        <div className="absolute inset-x-0 bottom-0 p-6 z-20 flex flex-col justify-end">
-          <div className="transform group-hover:-translate-y-1 transition-transform duration-500">
-            <h3 className="uppercase tracking-tighter text-2xl lg:text-3xl font-bold text-white leading-none font-sans line-clamp-1">
+        <span className="absolute inset-x-0 bottom-0 z-20 flex flex-col justify-end p-3 sm:p-5 lg:p-6">
+          <span className="block transform group-hover:-translate-y-1 transition-transform duration-500">
+            <span className="block uppercase tracking-tighter text-lg sm:text-2xl font-bold text-white leading-none font-sans line-clamp-2 break-words">
               {member.name}
-            </h3>
-          </div>
-        </div>
-      </div>
-    </div>
+            </span>
+          </span>
+        </span>
+      </span>
+    </button>
   );
 }
 
-/* --- Full profile modal, opened on card click ------------------------ */
+/* --- Member popup, opened on card click ------------------------------ */
+// A short introduction, not a second profile: who they are, a few lines of
+// bio, and a way through to their full profile on the portal, which has the
+// rest. Members without a portal profile have nowhere else to send people,
+// so theirs keeps the full bio, skills and links.
 export function TeamMemberModal({
   member,
   onClose,
@@ -308,17 +159,35 @@ export function TeamMemberModal({
 }) {
   const imageSource = member.imageUrl || member.image;
   const initials = getInitials(member.name);
+  const profileUrl = member.communityProfileUrl;
   const github = member.socials?.github || member.github;
   const linkedin = member.socials?.linkedin || member.linkedin;
   const twitter = member.socials?.twitter || member.twitter;
   const website = member.socials?.website || member.website;
-  const joined = member.joinedAt ? formatJoinedDate(member.joinedAt) : "";
-  const [bioExpanded, setBioExpanded] = React.useState(false);
-  const BIO_CLAMP_THRESHOLD = 240;
-  const isBioLong = (member.statement?.length ?? 0) > BIO_CLAMP_THRESHOLD;
-  const detailsRef = React.useRef<HTMLDivElement>(null);
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const [showScrollHint, setShowScrollHint] = React.useState(false);
+  const links = [
+    github && github !== "#"
+      ? {
+          label: "GitHub",
+          href: resolveSocialHref("github", github),
+          icon: Github,
+        }
+      : null,
+    linkedin && linkedin !== "#"
+      ? {
+          label: "LinkedIn",
+          href: resolveSocialHref("linkedin", linkedin),
+          icon: Linkedin,
+        }
+      : null,
+    twitter && twitter !== "#"
+      ? {
+          label: "X",
+          href: resolveSocialHref("twitter", twitter),
+          icon: Twitter,
+        }
+      : null,
+    website ? { label: "Website", href: website, icon: Globe } : null,
+  ].filter((link) => link !== null);
 
   React.useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -328,31 +197,8 @@ export function TeamMemberModal({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onClose]);
 
-  React.useEffect(() => {
-    const el = detailsRef.current;
-    const content = contentRef.current;
-    if (!el || !content) return;
-
-    function updateScrollHint() {
-      if (!el) return;
-      setShowScrollHint(el.scrollHeight - el.scrollTop - el.clientHeight > 8);
-    }
-
-    updateScrollHint();
-    el.addEventListener("scroll", updateScrollHint, { passive: true });
-    // Observes the content div (not `el`) since `el` is the fixed-size
-    // scroll container -- its own box never resizes when inner content does.
-    const resizeObserver = new ResizeObserver(updateScrollHint);
-    resizeObserver.observe(content);
-
-    return () => {
-      el.removeEventListener("scroll", updateScrollHint);
-      resizeObserver.disconnect();
-    };
-  }, []);
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-8">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
       <button
         type="button"
         className="absolute inset-0 bg-black/95 backdrop-blur-xl cursor-default w-full h-full animate-in fade-in-0 duration-200"
@@ -364,229 +210,126 @@ export function TeamMemberModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="team-member-modal-title"
-        className="relative w-full max-w-5xl lg:h-[560px] bg-black border border-white/20 shadow-2xl flex flex-col lg:flex-row max-h-[95vh] sm:max-h-[90vh] overflow-hidden animate-in fade-in-0 zoom-in-95 duration-200"
+        className="relative w-full max-w-5xl bg-black border border-white/20 shadow-2xl flex flex-col sm:flex-row max-h-[90vh] overflow-hidden animate-in fade-in-0 zoom-in-95 duration-200"
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 md:top-6 md:right-6 z-50 text-white hover:rotate-90 transition-transform p-2 bg-black border border-zinc-800"
+          className="absolute top-4 right-4 z-50 text-white hover:rotate-90 transition-transform p-2 bg-black border border-zinc-800"
           aria-label="Close profile"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <Image
-          src={logo}
-          alt="Codetopia Community"
-          width={84}
-          height={84}
-          unoptimized
-          className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 w-12 h-12 md:w-[84px] md:h-[84px] object-contain opacity-70"
-        />
-
-        {/* Photo column */}
-        <div className="w-full aspect-[4/5] max-h-[38vh] lg:aspect-auto lg:max-h-none lg:h-auto lg:w-2/5 relative bg-zinc-900 shrink-0">
+        {/* Photo */}
+        <div className="relative w-full aspect-[4/3] sm:aspect-auto sm:w-[45%] sm:min-h-[460px] lg:min-h-[540px] bg-zinc-900 shrink-0">
           {imageSource ? (
             <Image
               src={imageSource}
               alt={member.name}
               fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              sizes="(min-width: 1024px) 460px, (min-width: 640px) 45vw, 100vw"
               className="object-cover object-center"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-950">
-              <span className="font-mono text-6xl font-bold text-zinc-400">
+              <span className="font-mono text-6xl lg:text-7xl font-bold text-zinc-400">
                 {initials}
               </span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-          {imageSource && (
-            <div className="absolute inset-0 shadow-[inset_0_0_80px_20px_rgba(0,0,0,0.3)]" />
-          )}
+          {/* The community's mark, on a soft shade so it reads over any photo. */}
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
+          <Image
+            src={logo}
+            alt=""
+            aria-hidden
+            unoptimized
+            className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 h-6 sm:h-7 w-auto opacity-90"
+          />
+        </div>
 
-          <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
-            <p className="uppercase tracking-widest font-mono text-xs text-zinc-400 font-medium mb-2">
+        {/* Who they are, and where to read more */}
+        <div className="flex min-h-0 flex-1 flex-col justify-between gap-10 overflow-y-auto p-6 sm:p-8 md:p-10 lg:p-12 text-left font-sans">
+          <div>
+            <p className="uppercase tracking-widest font-sans text-xs text-zinc-400 font-medium mb-4 pr-12">
               {member.role}
             </p>
             <h3
               id="team-member-modal-title"
-              className="uppercase tracking-tighter text-3xl md:text-4xl font-bold text-white leading-none font-sans"
+              className="uppercase tracking-tighter text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-none font-sans"
             >
               {member.name}
             </h3>
-            {member.position && (
-              <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mt-2">
-                {member.position}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Details column */}
-        <div className="relative w-full lg:w-3/5 min-h-0 flex flex-col">
-          <div
-            ref={detailsRef}
-            className="flex-1 min-h-0 p-5 pb-16 sm:p-8 sm:pb-20 md:p-12 md:pb-20 overflow-y-auto bg-black no-scrollbar text-left font-sans"
-          >
-            <div ref={contentRef} className="space-y-7 sm:space-y-10">
-              <div className="flex flex-wrap items-center gap-5">
+            {(member.position || member.location) && (
+              <div className="mt-5 flex flex-col gap-2">
+                {member.position && (
+                  <p className="font-mono text-sm text-zinc-300">
+                    {member.position}
+                  </p>
+                )}
                 {member.location && (
-                  <span className="uppercase tracking-widest inline-flex items-center gap-1.5 font-mono text-xs text-zinc-400 font-medium">
+                  <p className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-400">
                     <MapPin className="w-3.5 h-3.5" />
                     {member.location}
-                  </span>
-                )}
-                {joined && (
-                  <span className="uppercase tracking-widest inline-flex items-center gap-1.5 font-mono text-xs text-zinc-400 font-medium">
-                    <CalendarDays className="w-3.5 h-3.5" />
-                    Since {joined}
-                  </span>
+                  </p>
                 )}
               </div>
+            )}
 
-              {member.statement && (
-                <div>
-                  <h4 className="uppercase tracking-widest font-mono text-xs font-medium text-zinc-400 mb-3">
-                    Bio
-                  </h4>
-                  <p
-                    className={`text-zinc-300 font-mono text-sm leading-relaxed ${
-                      isBioLong && !bioExpanded ? "line-clamp-4" : ""
-                    }`}
+            {member.statement && (
+              <p
+                className={`mt-8 text-zinc-300 font-mono text-sm lg:text-base leading-relaxed ${
+                  profileUrl ? "line-clamp-4" : ""
+                }`}
+              >
+                {member.statement}
+              </p>
+            )}
+
+            {!profileUrl && member.expertise && member.expertise.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {member.expertise.map((exp) => (
+                  <span
+                    key={exp}
+                    className="uppercase tracking-widest px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-zinc-300 font-sans text-xs"
                   >
-                    {member.statement}
-                  </p>
-                  {isBioLong && (
-                    <button
-                      type="button"
-                      onClick={() => setBioExpanded((prev) => !prev)}
-                      className="uppercase tracking-widest mt-2 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
-                    >
-                      {bioExpanded ? "Show less" : "Read more"}
-                    </button>
-                  )}
-                </div>
-              )}
-
-              {member.expertise && member.expertise.length > 0 && (
-                <div>
-                  <h5 className="uppercase tracking-widest font-mono text-xs font-medium text-zinc-400 mb-3">
-                    Skills
-                  </h5>
-                  <div className="flex flex-wrap gap-2">
-                    {member.expertise.map((exp) => (
-                      <span
-                        key={exp}
-                        className="uppercase tracking-widest px-2.5 py-1 border border-zinc-800 bg-zinc-950 text-zinc-300 font-mono text-xs"
-                      >
-                        {exp}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <ExperienceSection
-                careerProgressions={member.careerProgressions ?? []}
-              />
-
-              {member.communityProfileUrl && member.slug && (
-                <div>
-                  <h5 className="uppercase tracking-widest font-mono text-xs font-medium text-zinc-400 mb-3">
-                    Community profile
-                  </h5>
-                  <a
-                    href={member.communityProfileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 font-mono text-sm text-zinc-300 hover:text-white transition-colors"
-                  >
-                    @{member.slug}
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              )}
-
-              {(github ||
-                linkedin ||
-                twitter ||
-                website ||
-                (member.socialLinks && member.socialLinks.length > 0)) && (
-                <div>
-                  <h5 className="uppercase tracking-widest font-mono text-xs font-medium text-zinc-400 mb-3">
-                    Find {member.name.split(" ")[0]} online
-                  </h5>
-                  <div className="flex flex-wrap items-center gap-5">
-                    {github && github !== "#" && (
-                      <a
-                        href={resolveSocialHref("github", github)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="GitHub"
-                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    )}
-                    {linkedin && linkedin !== "#" && (
-                      <a
-                        href={resolveSocialHref("linkedin", linkedin)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="LinkedIn"
-                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                    )}
-                    {twitter && twitter !== "#" && (
-                      <a
-                        href={resolveSocialHref("twitter", twitter)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Twitter / X"
-                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                      >
-                        <Twitter className="w-5 h-5" />
-                      </a>
-                    )}
-                    {website && (
-                      <a
-                        href={website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Website"
-                        className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                      >
-                        <Globe className="w-5 h-5" />
-                      </a>
-                    )}
-                    {member.socialLinks
-                      ?.filter((link) => link.url.trim())
-                      .map((link) => (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={link.label || link.platform}
-                          className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
-                        >
-                          <Link2 className="w-5 h-5" />
-                        </a>
-                      ))}
-                  </div>
-                </div>
-              )}
-            </div>
-            {showScrollHint && (
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-center pb-2">
-                <ChevronDown className="w-4 h-4 text-zinc-400 animate-pulse" />
+                    {exp}
+                  </span>
+                ))}
               </div>
             )}
           </div>
+
+          {profileUrl ? (
+            <a
+              href={profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="uppercase tracking-widest group inline-flex w-fit items-center gap-3 bg-white text-black px-6 py-3.5 font-bold text-xs font-sans transition-colors duration-200 hover:bg-zinc-200"
+            >
+              View full profile
+              <span className="sr-only"> (opens in a new tab)</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          ) : (
+            links.length > 0 && (
+              <div className="flex flex-wrap items-center gap-5">
+                {links.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="text-zinc-400 hover:text-white hover:scale-110 transition-all"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>

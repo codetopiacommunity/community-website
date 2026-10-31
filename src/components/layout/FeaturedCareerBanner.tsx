@@ -75,7 +75,7 @@ export function FeaturedCareerBanner() {
           <div className="h-6 w-6 bg-white rounded flex items-center justify-center shrink-0">
             <Briefcase className="h-3.5 w-3.5 text-black" />
           </div>
-          <span className="uppercase tracking-[0.3em] hidden sm:block font-mono text-xs text-zinc-400 whitespace-nowrap">
+          <span className="uppercase tracking-widest hidden sm:block font-sans text-xs text-zinc-400 whitespace-nowrap">
             We&apos;re Hiring
           </span>
           <span className="hidden sm:block text-zinc-400 text-xs">|</span>
@@ -96,7 +96,7 @@ export function FeaturedCareerBanner() {
               className="flex items-center gap-3 min-w-0 w-full"
             >
               {/* Featured badge */}
-              <span className="uppercase tracking-[0.2em] hidden md:inline-flex items-center gap-1 font-mono text-[8px] bg-yellow-400 text-black px-1.5 py-0.5 shrink-0 font-bold">
+              <span className="uppercase tracking-widest hidden md:inline-flex items-center gap-1 font-sans text-[8px] bg-yellow-400 text-black px-1.5 py-0.5 shrink-0 font-bold">
                 <Star className="h-2 w-2 fill-current" />
                 Featured
               </span>
@@ -110,7 +110,7 @@ export function FeaturedCareerBanner() {
               <span className="hidden sm:block text-zinc-400 shrink-0">·</span>
 
               {/* Type */}
-              <span className="uppercase tracking-widest hidden sm:block font-mono text-xs text-zinc-400 shrink-0">
+              <span className="uppercase tracking-widest hidden sm:block font-sans text-xs text-zinc-400 shrink-0">
                 {career.type}
               </span>
 
@@ -120,7 +120,7 @@ export function FeaturedCareerBanner() {
                   <span className="hidden md:block text-zinc-400 shrink-0">
                     ·
                   </span>
-                  <span className="uppercase tracking-widest hidden md:flex items-center gap-1 font-mono text-xs text-zinc-400 shrink-0">
+                  <span className="uppercase tracking-widest hidden md:flex items-center gap-1 font-sans text-xs text-zinc-400 shrink-0">
                     <MapPin className="h-2.5 w-2.5" />
                     {career.location}
                   </span>
@@ -178,7 +178,7 @@ export function FeaturedCareerBanner() {
             href={career.link ?? "/careers"}
             target={career.link ? "_blank" : undefined}
             rel={career.link ? "noopener noreferrer" : undefined}
-            className="uppercase tracking-[0.25em] group flex items-center gap-1.5 font-mono text-xs font-bold text-black bg-white px-3 h-6 hover:bg-zinc-200 transition-colors whitespace-nowrap"
+            className="uppercase tracking-widest group flex items-center gap-1.5 font-sans text-xs font-bold text-black bg-white px-3 h-6 hover:bg-zinc-200 transition-colors whitespace-nowrap"
           >
             Apply
             <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />

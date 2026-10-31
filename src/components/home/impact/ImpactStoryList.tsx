@@ -24,7 +24,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
             </div>
           </div>
           <div className="space-y-3">
-            <p className="uppercase tracking-[0.4em] font-mono text-xs text-zinc-400">
+            <p className="uppercase tracking-widest font-sans text-xs text-zinc-400">
               — LOG EMPTY —
             </p>
             <h3 className="uppercase tracking-tighter text-4xl md:text-5xl font-bold text-zinc-400 leading-none font-sans">
@@ -35,7 +35,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
               here as the community continues to grow and make its mark.
             </p>
           </div>
-          <div className="uppercase tracking-[0.4em] flex items-center gap-4 text-zinc-400 font-mono text-xs">
+          <div className="uppercase tracking-widest flex items-center gap-4 text-zinc-400 font-sans text-xs">
             <span className="h-px w-12 bg-zinc-800" />A CODETOPIA INITIATIVE
             <span className="h-px w-12 bg-zinc-800" />
           </div>

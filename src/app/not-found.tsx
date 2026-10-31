@@ -40,7 +40,7 @@ export default function NotFound() {
 
                 <Link
                   href="/"
-                  className="group inline-flex items-center gap-3 bg-white text-black font-black uppercase tracking-tight text-sm px-8 py-4 hover:bg-zinc-200 transition-colors font-sans self-start shrink-0"
+                  className="uppercase tracking-widest group inline-flex items-center gap-3 bg-white text-black font-bold text-xs px-8 py-4 hover:bg-zinc-200 transition-colors font-sans self-start shrink-0"
                 >
                   Return Home
                   <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

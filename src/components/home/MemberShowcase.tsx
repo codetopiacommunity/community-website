@@ -48,7 +48,7 @@ export async function MemberShowcase() {
             // `self-start` keeps the button hugging its label on mobile. As a
             // flex child in a column it would otherwise stretch to the full
             // width and strand the text against the left edge.
-            className="self-start md:self-end inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group shrink-0"
+            className="self-start md:self-end inline-flex items-center gap-3 font-sans font-bold text-xs uppercase tracking-widest text-white border border-zinc-600 hover:border-white hover:bg-white hover:text-black px-8 py-4 transition-colors duration-200 group shrink-0"
           >
             Join them{" "}
             <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />

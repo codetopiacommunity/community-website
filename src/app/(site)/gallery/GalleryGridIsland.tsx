@@ -36,7 +36,7 @@ export function GalleryGridIsland() {
           </EmptyState>
         ) : (
           <>
-            <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mb-10 px-2">
+            <p className="uppercase tracking-widest text-zinc-400 font-sans text-xs mb-10 px-2">
               {albums.length} {albums.length === 1 ? "album" : "albums"}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -54,12 +54,12 @@ export function GalleryGridIsland() {
                       className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="uppercase tracking-widest bg-black/80 text-zinc-400 font-mono text-xs px-3 py-1">
+                      <span className="uppercase tracking-widest bg-black/80 text-zinc-400 font-sans text-xs px-3 py-1">
                         {album.category}
                       </span>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <span className="uppercase tracking-widest bg-black/80 text-zinc-400 font-mono text-xs px-3 py-1">
+                      <span className="uppercase tracking-widest bg-black/80 text-zinc-400 font-sans text-xs px-3 py-1">
                         {album._count.photos} photos
                       </span>
                     </div>
@@ -69,7 +69,7 @@ export function GalleryGridIsland() {
                       <p className="uppercase tracking-tight text-white font-bold text-xl font-sans leading-tight group-hover:text-zinc-300 transition-colors">
                         {album.title}
                       </p>
-                      <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mt-1">
+                      <p className="uppercase tracking-widest text-zinc-400 font-sans text-xs mt-1">
                         {album.date}
                       </p>
                     </div>
