@@ -1,5 +1,10 @@
+import { ArrowDown } from "lucide-react";
+import { useState } from "react";
 import type { ImpactStory } from "@/types";
-import { ImpactStoryCard } from "./ImpactStoryCard";
+import { ImpactStoryCard, ImpactStoryFeature } from "./ImpactStoryCard";
+
+/** Stories shown under the latest one before "Show all": three rows of two. */
+const INITIAL_COUNT = 6;
 
 interface ImpactStoryListProps {
   stories: ImpactStory[];
@@ -7,6 +12,8 @@ interface ImpactStoryListProps {
 }
 
 export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
+  const [showAll, setShowAll] = useState(false);
+
   if (stories.length === 0) {
     return (
       <div className="border-2 border-zinc-800 bg-black flex flex-col items-center justify-center py-32 px-8 text-center gap-8">
@@ -44,13 +51,35 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
     );
   }
 
+  const [latest, ...rest] = stories;
+  const visible = showAll ? rest : rest.slice(0, INITIAL_COUNT);
+  const hidden = rest.length - visible.length;
+
+  // One flat page rather than a scroll box of its own: a box inside the
+  // page traps the scroll wheel and a thumb on a phone, and hid stories
+  // below its fold. Past the first few, the rest wait behind a button.
   return (
-    <div className="max-h-[1200px] lg:max-h-[1650px] overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white hover:[&::-webkit-scrollbar-thumb]:bg-zinc-200 active:[&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-none">
-      <div className="flex flex-col border-2 border-zinc-800 bg-black">
-        {stories.map((story) => (
-          <ImpactStoryCard key={story.id} story={story} onSelect={onSelect} />
-        ))}
-      </div>
+    <div className="flex flex-col gap-px bg-zinc-900 border border-zinc-900">
+      <ImpactStoryFeature story={latest} onSelect={onSelect} />
+      {visible.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px">
+          {visible.map((story) => (
+            <ImpactStoryCard key={story.id} story={story} onSelect={onSelect} />
+          ))}
+        </div>
+      )}
+      {hidden > 0 && (
+        <div className="bg-black p-6 sm:p-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll(true)}
+            className="uppercase tracking-widest group inline-flex items-center gap-3 font-sans font-bold text-xs text-white border border-zinc-600 hover:border-white hover:bg-white hover:text-black px-8 py-4 transition-colors duration-200"
+          >
+            Show all {stories.length} stories
+            <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5 motion-reduce:transition-none" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
