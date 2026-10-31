@@ -27,9 +27,9 @@ export function OurImpact() {
 
   return (
     <>
-      <section className="w-full py-32 bg-black flex flex-col overflow-hidden">
+      <section className="w-full py-32 bg-black">
         <Container className="w-full px-4 font-sans relative z-10">
-          <div className="w-full mb-24 text-left flex flex-col gap-6">
+          <div className="w-full mb-16 md:mb-20 text-left flex flex-col gap-6">
             <h2 className="uppercase tracking-tighter text-5xl md:text-8xl font-bold text-white leading-none font-sans">
               The impact
             </h2>
@@ -38,16 +38,12 @@ export function OurImpact() {
               schools, hubs and organisations they ran them with.
             </p>
           </div>
-        </Container>
 
-        <div className="w-full relative flex flex-col items-center pb-4 overflow-hidden">
-          <Container className="w-full px-6 lg:px-12">
-            <ImpactStoryList
-              stories={impactStories}
-              onSelect={setSelectedStory}
-            />
-          </Container>
-        </div>
+          <ImpactStoryList
+            stories={impactStories}
+            onSelect={setSelectedStory}
+          />
+        </Container>
       </section>
 
       <ImpactStoryModal
