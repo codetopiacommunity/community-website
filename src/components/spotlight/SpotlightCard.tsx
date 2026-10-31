@@ -1,3 +1,4 @@
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logos/codetopia-community.png";
@@ -6,132 +7,127 @@ import { cloudinaryFill, spotlightHandle } from "@/lib/spotlight";
 import type { Spotlight } from "@/types";
 
 /**
- * The spotlight card: portrait, name and role over the image, socials, and the
- * whole card linking through to the feature.
+ * The current feature: one full-width photo with who they are written across
+ * the bottom of it, and the way into their story underneath.
  *
- * The hover behaviour is deliberately the same as the team card on the about
- * page (grayscale lifting to colour, a slow zoom, the gradient deepening, the
- * name rising), so a member card and a spotlight card read as the same family
- * of object rather than two designs that happen to share a site.
+ * Text over a photo only works if it can't wash out, so the bottom of the
+ * photo sits under a deep black fade and everything on it is white or near
+ * white; a light photo still leaves the words on black. The wide box asks
+ * Cloudinary to crop around the face, since centring a portrait in a banner
+ * takes the head off.
  */
-export function SpotlightCard({
+export function SpotlightFeature({
   spotlight,
-  size = "sm",
   priority = false,
 }: {
   spotlight: Spotlight;
-  /** "lg" is the current feature, wide and full width. "sm" is a grid card. */
-  size?: "sm" | "lg";
   priority?: boolean;
 }) {
   const href = `/spotlight/${spotlightHandle(spotlight)}`;
-  const isLarge = size === "lg";
-
-  // A wide box would centre-crop a portrait and take the head off, so the
-  // large card asks Cloudinary to fill that shape around the face instead.
-  // The grid cards are already portrait-shaped and need no transform.
-  const imageUrl = isLarge
-    ? cloudinaryFill(spotlight.imageUrl, 2000, 1100)
-    : spotlight.imageUrl;
 
   return (
-    <div
-      className={`group relative bg-black flex flex-col hover:bg-zinc-950 transition-all overflow-hidden border border-zinc-900 w-full ${
-        isLarge ? "h-[70vh] min-h-[460px] max-h-[760px]" : "aspect-[4/5]"
-      }`}
-    >
-      <div className="relative h-full w-full overflow-hidden">
+    <div className="flex flex-col gap-8">
+      <article className="group relative w-full h-[90vh] min-h-[600px] max-h-[1000px] overflow-hidden border border-zinc-900 bg-zinc-950">
         <Image
-          src={imageUrl}
+          src={cloudinaryFill(spotlight.imageUrl, 2000, 1100)}
           alt=""
           fill
-          sizes={
-            isLarge
-              ? "100vw"
-              : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          }
-          className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          sizes="100vw"
+          className="object-cover object-[center_25%] grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           priority={priority}
         />
+        <span className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/80 via-35% to-transparent" />
 
-        {/* Grayscale until hover, matching the team cards: the colour arriving
-            is the reward for engaging with the card. The scrim stays light so
-            the photo still reads clearly at rest. */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent group-hover:from-black/90 group-hover:via-black/40 transition-all duration-700 z-10" />
-
-        {/*
-          A stretched link rather than a wrapper: the socials below are anchors
-          of their own, and an anchor inside an anchor is invalid markup that
-          breaks hydration. This sits above the image and under the text.
-        */}
+        {/* A stretched link, so the whole photo opens the feature without
+            wrapping the socials (anchors of their own) in another anchor. */}
         <Link
           href={href}
           aria-label={`Read the feature on ${spotlight.name}`}
-          className="absolute inset-0 z-20"
+          className="absolute inset-0 z-10"
         />
 
-        {/* pointer-events-none so a click on the name still reaches the link
-            beneath; the socials switch them back on for themselves. */}
-        <div
-          className={`absolute inset-x-0 bottom-0 z-30 flex flex-col justify-end pointer-events-none ${
-            isLarge ? "p-5 sm:p-8 md:p-12 lg:p-16" : "p-4 sm:p-6"
-          }`}
-        >
-          <div className="transform group-hover:-translate-y-1 transition-transform duration-500 motion-reduce:transition-none flex flex-row items-end justify-between gap-4 sm:gap-6">
-            <div className="flex flex-col gap-3 sm:gap-4 min-w-0">
-              {/* Status as an eyebrow in the text block, the way the detail
-                  page does it. As an icon on the photo it read as a favourite
-                  marker, and the context already says which one is current. */}
-              {spotlight.featured && (
-                <p className="uppercase tracking-[0.3em] hidden sm:block font-mono text-xs text-zinc-400">
-                  Currently featured
-                </p>
-              )}
-              <div className="flex flex-col gap-2">
-                <h3
-                  className={`${
-                    isLarge
-                      ? "text-4xl sm:text-5xl md:text-7xl lg:text-8xl break-words"
-                      : "text-2xl lg:text-3xl line-clamp-1"
-                  } font-bold text-white leading-[0.85] font-sans`}
-                >
-                  {spotlight.name}
-                </h3>
-                <p
-                  className={`uppercase tracking-[0.3em] font-mono text-zinc-400 line-clamp-1 max-sm:hidden ${
-                    isLarge ? "text-xs md:text-sm" : "text-xs"
-                  }`}
-                >
-                  {spotlight.role}
-                </p>
-              </div>
-
-              <div className="pointer-events-auto">
-                <SpotlightLinks
-                  links={spotlight.links}
-                  name={spotlight.name}
-                  size={isLarge ? "md" : "sm"}
-                />
-              </div>
+        <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col gap-8 p-6 sm:p-10 lg:p-14 pointer-events-none md:flex-row md:items-end md:justify-between">
+          <div className="flex min-w-0 flex-col">
+            {spotlight.featured && (
+              <p className="uppercase tracking-widest font-sans text-xs text-zinc-200 mb-4">
+                Currently featured
+              </p>
+            )}
+            <h3 className="uppercase tracking-tighter font-bold text-white leading-[0.9] font-sans text-4xl sm:text-6xl lg:text-7xl break-words">
+              {spotlight.name}
+            </h3>
+            <p className="uppercase tracking-widest font-sans text-xs md:text-sm text-zinc-200 mt-4">
+              {spotlight.role}
+            </p>
+            <p className="font-mono text-zinc-200 text-sm sm:text-base lg:text-lg leading-relaxed mt-5 max-w-2xl line-clamp-3">
+              {spotlight.contribution}
+            </p>
+            <div className="mt-6 pointer-events-auto">
+              <SpotlightLinks
+                links={spotlight.links}
+                name={spotlight.name}
+                size="md"
+              />
             </div>
-
-            {/* The community mark on the same baseline as the name, so the
-                card composes as subject-left, publisher-right rather than
-                having a sticker in a corner. */}
-            <Image
-              src={logo}
-              alt=""
-              width={200}
-              height={200}
-              unoptimized
-              aria-hidden
-              className={`hidden sm:block shrink-0 object-contain opacity-80 ${
-                isLarge ? "w-20 h-20 md:w-28 md:h-28" : "w-12 h-12"
-              }`}
-            />
           </div>
+
+          {/* The community's mark on the same baseline as the name: subject on
+              the left, publisher on the right. */}
+          <Image
+            src={logo}
+            alt=""
+            unoptimized
+            className="hidden md:block h-8 lg:h-9 w-auto shrink-0 opacity-90"
+          />
         </div>
-      </div>
+      </article>
+
+      <Link
+        href={href}
+        className="uppercase tracking-widest group/read self-start inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold text-xs font-sans transition-colors duration-300 hover:bg-zinc-200"
+      >
+        Read the feature
+        <ArrowRight className="w-4 h-4 transition-transform group-hover/read:translate-x-1 motion-reduce:transition-none" />
+      </Link>
     </div>
+  );
+}
+
+/**
+ * A past feature in the archive grid. The same card as the team page: the
+ * photo, the full name and role, and the whole card opening the feature.
+ * Socials live on the feature page; on a grid of faces they were noise.
+ */
+export function SpotlightCard({ spotlight }: { spotlight: Spotlight }) {
+  return (
+    <Link
+      href={`/spotlight/${spotlightHandle(spotlight)}`}
+      className="group relative block aspect-[4/5] w-full overflow-hidden border border-zinc-900 bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+    >
+      <Image
+        src={spotlight.imageUrl}
+        alt=""
+        fill
+        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+        className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+      />
+      <span className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-700" />
+
+      {/* Shown on hover: the card opens their feature. */}
+      <span className="absolute top-2 right-2 z-20 inline-flex h-8 w-8 items-center justify-center bg-white text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+        <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      </span>
+
+      <span className="absolute inset-x-0 bottom-0 z-20 p-3 sm:p-5 lg:p-6">
+        <span className="block transform group-hover:-translate-y-1 transition-transform duration-500 motion-reduce:transition-none">
+          <span className="block uppercase tracking-tighter text-lg sm:text-2xl font-bold text-white leading-none font-sans line-clamp-2 break-words">
+            {spotlight.name}
+          </span>
+          <span className="mt-2 block uppercase tracking-widest font-sans text-xs text-zinc-400 line-clamp-1">
+            {spotlight.role}
+          </span>
+        </span>
+      </span>
+    </Link>
   );
 }

@@ -23,7 +23,7 @@ const MIN_DRIFT_SECONDS = 60;
  *
  * The mobile width doesn't scale down proportionally: a row only ever shows
  * two or three cards at a time whatever the width, so a narrower card buys no
- * extra cards on screen and costs the name and role their legibility on
+ * extra cards on screen and costs the name its legibility on
  * hover.
  */
 const CARD_WIDTH = "w-[190px] lg:w-[270px]";
@@ -113,9 +113,6 @@ function MemberCard({
           <h3 className="uppercase tracking-tighter truncate font-sans text-sm lg:text-base font-bold leading-tight text-white">
             {member.name}
           </h3>
-          <p className="uppercase tracking-[0.2em] mt-1 truncate font-mono text-xs lg:text-xs text-zinc-300">
-            {member.position || member.role}
-          </p>
         </div>
       </div>
     </button>

@@ -135,7 +135,7 @@ function DesktopNav({
             <Link
               key={item.label}
               href={item.href}
-              className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
+              className={`px-4 py-2 font-sans text-xs uppercase tracking-widest transition-colors duration-200 ${
                 isActive ? "text-white" : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -150,7 +150,7 @@ function DesktopNav({
             type="button"
             onMouseEnter={() => onMegaMenuEnter(item.label)}
             onMouseLeave={onMegaMenuLeave}
-            className={`flex items-center gap-1.5 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
+            className={`flex items-center gap-1.5 px-4 py-2 font-sans text-xs uppercase tracking-widest transition-colors duration-200 ${
               isActive ? "text-white" : "text-zinc-400 hover:text-white"
             }`}
           >
@@ -197,7 +197,7 @@ function MobileMenu({
                 key={item.label}
                 href={item.href}
                 onClick={onClose}
-                className={`w-full font-mono text-sm uppercase tracking-widest py-4 border-b border-zinc-900 last:border-none transition-colors ${
+                className={`w-full font-sans text-sm uppercase tracking-widest py-4 border-b border-zinc-900 last:border-none transition-colors ${
                   isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -218,7 +218,7 @@ function MobileMenu({
                 onClick={() =>
                   setExpandedMobileItem(isExpanded ? null : item.label)
                 }
-                className={`w-full flex items-center justify-between font-mono text-sm uppercase tracking-widest py-4 transition-colors ${
+                className={`w-full flex items-center justify-between font-sans text-sm uppercase tracking-widest py-4 transition-colors ${
                   isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -234,7 +234,7 @@ function MobileMenu({
                       key={child.href}
                       href={child.href}
                       onClick={onClose}
-                      className="block pl-4 py-2.5 font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+                      className="block pl-4 py-2.5 font-sans text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
                     >
                       {child.label}
                     </Link>

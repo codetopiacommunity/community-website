@@ -91,7 +91,7 @@ export function FeaturedCarousel({ articles }: FeaturedCarouselProps) {
                     <p className="font-mono text-zinc-300 text-sm leading-relaxed line-clamp-2 max-w-2xl mb-4">
                       {article.brief}
                     </p>
-                    <div className="uppercase tracking-[0.2em] flex items-center gap-4 font-mono text-xs text-zinc-400">
+                    <div className="uppercase tracking-widest flex items-center gap-4 font-sans text-xs text-zinc-400">
                       <span>{article.author.name}</span>
                       <span className="text-zinc-400">·</span>
                       <span>{formattedDate}</span>

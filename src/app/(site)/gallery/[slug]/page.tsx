@@ -84,13 +84,13 @@ export default function AlbumPage({
           <div className="px-2">
             <Link
               href="/gallery"
-              className="uppercase tracking-widest text-zinc-400 font-mono text-xs hover:text-white transition-colors mb-8 inline-block"
+              className="uppercase tracking-widest text-zinc-400 font-sans text-xs hover:text-white transition-colors mb-8 inline-block"
             >
               ← Gallery
             </Link>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
-                <span className="uppercase tracking-widest text-zinc-400 font-mono text-xs block mb-3">
+                <span className="uppercase tracking-widest text-zinc-400 font-sans text-xs block mb-3">
                   {album.category} · {album.date}
                 </span>
                 <h1 className="uppercase tracking-tighter text-5xl md:text-7xl font-bold leading-tight font-sans">
@@ -119,13 +119,13 @@ export default function AlbumPage({
                 <p className="uppercase tracking-tighter text-white font-bold text-2xl font-sans">
                   No images yet
                 </p>
-                <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs max-w-xs">
+                <p className="uppercase tracking-widest text-zinc-400 font-sans text-xs max-w-xs">
                   Photos for this album haven't been added yet. Check back soon.
                 </p>
               </div>
               <Link
                 href="/gallery"
-                className="uppercase tracking-widest text-zinc-400 font-mono text-xs hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 px-5 py-2.5 rounded-none"
+                className="uppercase tracking-widest text-white font-sans font-bold text-xs hover:bg-white hover:text-black transition-colors border border-zinc-600 hover:border-white px-8 py-4 rounded-none"
               >
                 ← Back to Gallery
               </Link>
@@ -183,7 +183,7 @@ export default function AlbumPage({
           >
             <X className="w-8 h-8" />
           </button>
-          <div className="uppercase tracking-widest absolute top-6 left-6 text-zinc-400 font-mono text-xs">
+          <div className="uppercase tracking-widest absolute top-6 left-6 text-zinc-400 font-sans text-xs">
             {lightboxIndex + 1} / {album.photos.length}
           </div>
           {lightboxIndex > 0 && (
@@ -211,7 +211,7 @@ export default function AlbumPage({
               height={900}
               className="w-full h-auto max-h-[85vh] object-contain"
             />
-            <p className="uppercase tracking-widest text-zinc-400 font-mono text-xs mt-4 text-center">
+            <p className="uppercase tracking-widest text-zinc-400 font-sans text-xs mt-4 text-center">
               {album.photos[lightboxIndex].alt}
             </p>
           </div>

@@ -83,7 +83,7 @@ export function VerifyCertificateForm({
         <button
           type="submit"
           disabled={status === "loading" || !code.trim()}
-          className="uppercase tracking-widest bg-white px-8 py-3 font-mono text-xs font-bold text-black transition-colors hover:bg-zinc-200 disabled:opacity-40"
+          className="uppercase tracking-widest bg-white px-8 py-3 font-sans text-xs font-bold text-black transition-colors hover:bg-zinc-200 disabled:opacity-40"
         >
           {status === "loading" ? "Checking…" : "Verify"}
         </button>
@@ -92,7 +92,7 @@ export function VerifyCertificateForm({
       <div className="mt-8">
         {status === "not_found" && (
           <div className="border border-zinc-800 bg-zinc-950 px-5 py-8 text-center">
-            <p className="uppercase tracking-widest font-mono text-xs text-zinc-400">
+            <p className="uppercase tracking-widest font-sans text-xs text-zinc-400">
               No certificate matches that code. Check it and try again.
             </p>
           </div>
@@ -100,7 +100,7 @@ export function VerifyCertificateForm({
 
         {status === "error" && (
           <div className="border border-amber-900 bg-amber-950/20 px-5 py-8 text-center">
-            <p className="uppercase tracking-widest font-mono text-xs text-amber-400">
+            <p className="uppercase tracking-widest font-sans text-xs text-amber-400">
               Verification service is temporarily unavailable. Please try again
               in a moment.
             </p>
@@ -122,7 +122,7 @@ export function VerifyCertificateForm({
                 />
               )}
               <span
-                className={`uppercase tracking-widest inline-flex items-center border px-3 py-1 font-mono text-xs font-bold ${
+                className={`uppercase tracking-widest inline-flex items-center border px-3 py-1 font-sans text-xs font-bold ${
                   certificate.status === "revoked"
                     ? "border-red-900 bg-red-950 text-red-400"
                     : "border-emerald-900 bg-emerald-950 text-emerald-400"
@@ -133,7 +133,7 @@ export function VerifyCertificateForm({
             </div>
 
             <div className="text-center">
-              <p className="uppercase tracking-widest mb-1 font-mono text-xs text-zinc-400">
+              <p className="uppercase tracking-widest mb-1 font-sans text-xs text-zinc-400">
                 {formatCertificateType(certificate.certificateType)}
               </p>
               <h3 className="uppercase tracking-tight mb-1 font-sans text-2xl font-bold text-white md:text-3xl">
@@ -142,7 +142,7 @@ export function VerifyCertificateForm({
               <p className="mb-1 font-mono text-sm text-zinc-400">
                 {certificate.title}
               </p>
-              <p className="uppercase tracking-widest font-mono text-xs text-zinc-400">
+              <p className="uppercase tracking-widest font-sans text-xs text-zinc-400">
                 {certificate.issuedDate}
               </p>
             </div>
@@ -154,7 +154,7 @@ export function VerifyCertificateForm({
                     href={certificate.artworkUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="uppercase tracking-widest flex items-center justify-center gap-2 px-4 py-6 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
+                    className="uppercase tracking-widest flex items-center justify-center gap-2 px-4 py-6 font-sans text-xs text-zinc-400 transition-colors hover:text-white"
                   >
                     View Certificate (PDF) &rarr;
                   </a>

@@ -1,10 +1,11 @@
-import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { SpotlightCard } from "@/components/spotlight/SpotlightCard";
-import { getSpotlights, spotlightHandle } from "@/lib/spotlight";
+import {
+  SpotlightCard,
+  SpotlightFeature,
+} from "@/components/spotlight/SpotlightCard";
+import { getSpotlights } from "@/lib/spotlight";
 
 export const revalidate = 60;
 
@@ -37,33 +38,17 @@ export default async function SpotlightArchivePage() {
         <>
           <section className="w-full pb-20">
             <Container className="px-4">
-              <SpotlightCard spotlight={current} size="lg" priority />
-              <div className="mt-8 flex flex-col gap-5 max-w-3xl">
-                {/* The card carries the face and the name; this is the only
-                    place on the page that says what the person actually did,
-                    and it is the reason to click through. */}
-                <p className="text-zinc-400 text-lg md:text-xl font-mono leading-relaxed">
-                  {current.contribution}
-                </p>
-
-                <Link
-                  href={`/spotlight/${spotlightHandle(current)}`}
-                  className="uppercase tracking-[0.25em] group/read self-start inline-flex items-center gap-2 font-mono text-xs text-white border-b border-zinc-700 hover:border-white pb-1 transition-colors duration-200"
-                >
-                  Read the feature
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover/read:translate-x-1 motion-reduce:transition-none" />
-                </Link>
-              </div>
+              <SpotlightFeature spotlight={current} priority />
             </Container>
           </section>
 
           {rest.length > 0 && (
             <section className="w-full pb-32">
               <Container className="px-4">
-                <p className="uppercase tracking-widest text-zinc-400 font-mono text-sm mb-10">
+                <p className="uppercase tracking-widest text-zinc-400 font-sans text-sm mb-10">
                   Previously featured
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
                   {rest.map((spotlight) => (
                     <SpotlightCard key={spotlight.id} spotlight={spotlight} />
                   ))}

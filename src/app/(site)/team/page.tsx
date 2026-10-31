@@ -79,7 +79,7 @@ export default function TeamPage() {
                   type="button"
                   onClick={() => setActiveTier(tier.value)}
                   className={cn(
-                    "uppercase tracking-[0.2em] px-4 py-2 text-xs font-mono transition-all",
+                    "uppercase tracking-widest px-4 py-2 text-xs font-sans transition-all",
                     activeTier === tier.value
                       ? "bg-white text-black"
                       : "bg-transparent text-zinc-400 hover:text-zinc-300",
@@ -106,7 +106,7 @@ export default function TeamPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search name or role…"
-                className="uppercase tracking-widest w-full bg-transparent border border-zinc-800 text-white text-xs font-mono pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
+                className="uppercase tracking-widest w-full bg-transparent border border-zinc-800 text-white text-xs font-sans pl-10 pr-9 py-3 focus:outline-none focus:border-zinc-600 placeholder:text-zinc-500 transition-colors"
               />
               {search && (
                 <button
@@ -134,7 +134,7 @@ export default function TeamPage() {
               The people in this group will show up here once they are added.
             </EmptyState>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px">
               {visibleMembers.map((member: TeamMember) => (
                 <TeamCard
                   key={member.id || member.slug}

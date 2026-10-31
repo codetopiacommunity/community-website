@@ -24,7 +24,7 @@ export default async function AboutHowtosPage() {
           <div className="flex items-center justify-between gap-4 mb-10">
             <Link
               href="/howtos"
-              className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+              className="group inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
             >
               <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
               How-Tos

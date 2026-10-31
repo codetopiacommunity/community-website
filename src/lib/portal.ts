@@ -347,5 +347,5 @@ export function isTeamRole(role: PortalRole): boolean {
  */
 export function getPortalProfileUrl(username: string): string | null {
   if (!PORTAL_WEB_URL) return null;
-  return `${PORTAL_WEB_URL.replace(/\/+$/, "")}/${username}`;
+  return `${PORTAL_WEB_URL.replace(/\/+$/, "")}/@${username}`;
 }

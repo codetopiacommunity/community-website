@@ -94,7 +94,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
             <button
               type="button"
               onClick={() => setActiveTag(null)}
-              className={`uppercase tracking-[0.25em] font-mono text-xs px-3 py-1 border transition-colors duration-150 ${
+              className={`uppercase tracking-widest font-sans text-xs px-3 py-1 border transition-colors duration-150 ${
                 activeTag === null
                   ? "bg-foreground text-background border-foreground"
                   : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
@@ -109,7 +109,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
               <button
                 type="button"
                 onClick={() => setActiveTag(null)}
-                className="uppercase tracking-[0.25em] inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1 border bg-foreground text-background border-foreground"
+                className="uppercase tracking-widest inline-flex items-center gap-1.5 font-sans text-xs px-3 py-1 border bg-foreground text-background border-foreground"
               >
                 {activeTagData.name}
                 <X className="w-3 h-3" />
@@ -120,7 +120,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
               <button
                 type="button"
                 onClick={() => setTagMenuOpen((open) => !open)}
-                className={`uppercase tracking-[0.25em] inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1 border transition-colors duration-150 ${
+                className={`uppercase tracking-widest inline-flex items-center gap-1.5 font-sans text-xs px-3 py-1 border transition-colors duration-150 ${
                   tagMenuOpen
                     ? "border-foreground text-foreground"
                     : "border-border text-muted-foreground hover:border-foreground hover:text-foreground"
@@ -141,7 +141,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   />
                   <div className="flex flex-wrap gap-1.5 max-h-60 overflow-y-auto">
                     {menuTags.length === 0 ? (
-                      <p className="uppercase tracking-widest font-mono text-xs text-muted-foreground px-1 py-1">
+                      <p className="uppercase tracking-widest font-sans text-xs text-muted-foreground px-1 py-1">
                         No matching tags.
                       </p>
                     ) : (
@@ -150,7 +150,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                           key={tag.slug}
                           type="button"
                           onClick={() => selectTag(tag.slug)}
-                          className={`uppercase tracking-[0.25em] font-mono text-xs px-3 py-1 border transition-colors duration-150 ${
+                          className={`uppercase tracking-widest font-sans text-xs px-3 py-1 border transition-colors duration-150 ${
                             activeTag === tag.slug
                               ? "bg-foreground text-background border-foreground"
                               : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
@@ -169,7 +169,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
       </div>
 
       {/* Results count */}
-      <p className="uppercase tracking-[0.3em] font-mono text-xs text-muted-foreground px-2">
+      <p className="uppercase tracking-widest font-sans text-xs text-muted-foreground px-2">
         {filtered.length} {filtered.length === 1 ? "article" : "articles"}
       </p>
 
@@ -185,7 +185,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
             <p className="uppercase tracking-tighter text-foreground font-bold text-xl font-sans">
               No articles found
             </p>
-            <p className="uppercase tracking-widest text-muted-foreground font-mono text-xs max-w-xs">
+            <p className="uppercase tracking-widest text-muted-foreground font-sans text-xs max-w-xs">
               Try a different search term or clear the tag filter.
             </p>
           </div>

@@ -41,7 +41,7 @@ export default function ExpiredPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
           <Link
             href="/"
-            className="uppercase tracking-wider inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors font-sans"
+            className="uppercase tracking-widest inline-block bg-white text-black font-bold text-xs px-8 py-4 hover:bg-zinc-200 transition-colors font-sans"
           >
             Back to Home
           </Link>

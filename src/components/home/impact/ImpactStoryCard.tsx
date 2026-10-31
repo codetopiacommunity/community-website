@@ -56,12 +56,12 @@ export function ImpactStoryCard({ story, onSelect }: ImpactStoryCardProps) {
         {/* Badges */}
         <div className="flex flex-wrap gap-2 mb-4 md:mb-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
           {story.link && (
-            <span className="tracking-[0.2em] uppercase font-mono text-xs text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span className="tracking-widest uppercase font-sans text-xs text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
               <PlayCircle className="w-3 h-3" /> VIDEO
             </span>
           )}
           {story.galleryLink && (
-            <span className="tracking-[0.2em] uppercase font-mono text-xs text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span className="tracking-widest uppercase font-sans text-xs text-black border-2 border-black px-2 py-1 bg-white flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
               <ImageIcon className="w-3 h-3" /> GALLERY
             </span>
           )}
@@ -73,7 +73,7 @@ export function ImpactStoryCard({ story, onSelect }: ImpactStoryCardProps) {
         </h4>
 
         {/* Meta Info */}
-        <div className="tracking-[0.15em] uppercase flex flex-col gap-3 font-mono text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-mono">
+        <div className="tracking-widest uppercase flex flex-col gap-3 font-sans text-zinc-300 group-hover:text-zinc-200 text-sm md:text-base translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-150 drop-shadow-md font-sans">
           <div className="flex items-center gap-3">
             <Calendar className="w-4 h-4 md:w-5 md:h-5" />
             {formatDateRange(story.startDate, story.endDate)}

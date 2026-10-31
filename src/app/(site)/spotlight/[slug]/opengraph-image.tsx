@@ -15,7 +15,7 @@ export const contentType = "image/png";
  *
  * One photograph filling the frame, the name across the bottom of it, the
  * community mark on the same baseline. A link posted anywhere should look
- * like the site it came from, so this follows SpotlightCard at size "lg"
+ * like the site it came from, so this follows the site's spotlight feature
  * rather than inventing a second treatment for the same thing.
  *
  * Fonts are read from the repository rather than fetched at render time: a
