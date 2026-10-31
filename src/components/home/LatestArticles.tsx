@@ -41,7 +41,9 @@ export async function LatestArticles() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* The home page is always dark, so the cards take the dark theme
+            they have on /articles rather than the site's light default. */}
+        <div className="dark grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {latest.map((article) => (
             <ArticleCard key={article.slug} article={article} />
           ))}
@@ -50,7 +52,7 @@ export async function LatestArticles() {
         <div className="flex justify-start">
           <Link
             href="/articles"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-6 py-3 transition-colors duration-200 group"
+            className="inline-flex items-center gap-3 font-sans font-bold text-xs uppercase tracking-widest text-white border border-zinc-600 hover:border-white hover:bg-white hover:text-black px-8 py-4 transition-colors duration-200 group"
           >
             View all articles{" "}
             <FaArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />

@@ -91,7 +91,7 @@ export default async function RecognitionDetailPage({
       <div className={`${cx} pt-7 sm:pt-8`}>
         <Link
           href="/wall-of-impact"
-          className="uppercase tracking-[0.3em] inline-flex items-center gap-2 font-mono text-xs text-zinc-400 transition-colors hover:text-white"
+          className="uppercase tracking-widest inline-flex items-center gap-2 font-sans text-xs text-zinc-400 transition-colors hover:text-white"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Wall of Impact
@@ -115,7 +115,7 @@ export default async function RecognitionDetailPage({
           </div>
 
           <div className="flex flex-col gap-5 sm:gap-6 md:pb-2">
-            <p className="uppercase tracking-[0.28em] flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs sm:text-xs">
+            <p className="uppercase tracking-widest flex flex-wrap items-center gap-x-2.5 gap-y-1 font-sans text-xs sm:text-xs">
               <span className={accent}>{item.awardName}</span>
               <span aria-hidden="true" className="text-zinc-700">
                 ·
@@ -139,7 +139,7 @@ export default async function RecognitionDetailPage({
             </h1>
 
             {memberRole && (
-              <p className="uppercase tracking-[0.25em] font-mono text-xs sm:text-xs text-zinc-400">
+              <p className="uppercase tracking-widest font-sans text-xs sm:text-xs text-zinc-400">
                 {memberRole}
               </p>
             )}
@@ -217,7 +217,7 @@ export default async function RecognitionDetailPage({
                     className="group flex flex-col gap-2"
                   >
                     <p
-                      className={`uppercase tracking-[0.25em] font-mono text-xs ${accentFor(
+                      className={`uppercase tracking-widest font-sans text-xs ${accentFor(
                         sibling.category,
                       )}`}
                     >
@@ -226,7 +226,7 @@ export default async function RecognitionDetailPage({
                     <p className="uppercase tracking-tight font-sans text-xl sm:text-2xl font-bold leading-none text-zinc-400 transition-colors group-hover:text-white [overflow-wrap:anywhere]">
                       {siblingName}
                     </p>
-                    <p className="uppercase tracking-widest font-mono text-xs text-zinc-700">
+                    <p className="uppercase tracking-widest font-sans text-xs text-zinc-700">
                       {sibling.period}
                     </p>
                   </Link>

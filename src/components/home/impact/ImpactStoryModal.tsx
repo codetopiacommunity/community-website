@@ -72,7 +72,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
             <button
               type="button"
               onClick={() => setIsPlayingVideo(false)}
-              className="tracking-[0.25em] uppercase inline-flex items-center gap-2 absolute top-4 left-4 z-40 font-mono text-xs text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer group"
+              className="uppercase tracking-widest inline-flex items-center gap-2 absolute top-4 left-4 z-40 font-sans font-bold text-xs text-white border border-white/60 px-4 py-2 bg-black/60 hover:bg-white hover:text-black transition-colors cursor-pointer group"
             >
               <FaArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
               BACK
@@ -111,7 +111,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="tracking-[0.2em] uppercase font-mono text-xs text-white border border-zinc-700 hover:border-white hover:bg-white hover:text-black px-4 py-2 transition-colors cursor-pointer"
+                className="uppercase tracking-widest font-sans font-bold text-xs text-white border border-zinc-600 hover:border-white hover:bg-white hover:text-black px-4 py-2 transition-colors cursor-pointer"
               >
                 CLOSE ✕
               </button>
@@ -126,7 +126,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
             <div className="absolute bottom-0 left-0 right-0 z-20 p-8 lg:p-16 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
               {/* Left: title + meta */}
               <div className="flex-1">
-                <div className="uppercase tracking-[0.3em] flex items-center gap-6 mb-4 font-mono text-zinc-400 text-xs">
+                <div className="uppercase tracking-widest flex items-center gap-6 mb-4 font-sans text-zinc-400 text-xs">
                   <span className="flex items-center gap-2">
                     <Calendar className="w-3 h-3" />
                     {formatDateRange(story.startDate, story.endDate)}
@@ -150,7 +150,7 @@ export function ImpactStoryModal({ story, onClose }: ImpactStoryModalProps) {
                   <button
                     type="button"
                     onClick={() => setIsPlayingVideo(true)}
-                    className="uppercase tracking-widest flex items-center gap-3 bg-white text-black font-bold text-xs px-6 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
+                    className="uppercase tracking-widest flex items-center gap-3 bg-white text-black font-bold text-xs font-sans px-6 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
                   >
                     <PlayCircle className="w-4 h-4" /> Watch Video
                   </button>

@@ -61,7 +61,7 @@ export default async function ConfirmPage({
           <input type="hidden" name="token" value={token} />
           <button
             type="submit"
-            className="uppercase tracking-wider font-sans inline-block bg-white text-black font-bold text-sm px-10 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
+            className="uppercase tracking-widest font-sans inline-block bg-white text-black font-bold text-xs px-8 py-4 hover:bg-zinc-200 transition-colors cursor-pointer"
           >
             Confirm subscription
           </button>

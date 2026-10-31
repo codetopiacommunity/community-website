@@ -77,7 +77,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
         <div className={`${cx} pt-12 pb-8 flex flex-col gap-8`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
             <div className="flex flex-col gap-4">
-              <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-2">
+              <span className="uppercase tracking-widest font-sans text-xs text-zinc-400 flex items-center gap-2">
                 When
               </span>
               <div className="flex flex-wrap gap-2">
@@ -86,7 +86,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                     type="button"
                     key={opt.id}
                     onClick={() => setStatusFilter(opt.id)}
-                    className={`uppercase tracking-widest px-4 py-2 font-mono text-xs border transition-all duration-300 ${
+                    className={`uppercase tracking-widest px-4 py-2 font-sans text-xs border transition-all duration-300 ${
                       statusFilter === opt.id
                         ? "bg-white text-black border-white"
                         : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
@@ -99,7 +99,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
             </div>
 
             <div className="flex flex-col gap-4">
-              <span className="uppercase tracking-[0.3em] font-mono text-xs text-zinc-400 flex items-center gap-2">
+              <span className="uppercase tracking-widest font-sans text-xs text-zinc-400 flex items-center gap-2">
                 Where
               </span>
               <div className="flex flex-wrap gap-2">
@@ -108,7 +108,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                     type="button"
                     key={opt.id}
                     onClick={() => setFormatFilter(opt.id)}
-                    className={`uppercase tracking-widest px-4 py-2 font-mono text-xs border transition-all duration-300 ${
+                    className={`uppercase tracking-widest px-4 py-2 font-sans text-xs border transition-all duration-300 ${
                       formatFilter === opt.id
                         ? "bg-white text-black border-white"
                         : "bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300"
@@ -123,7 +123,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
 
           {(statusFilter !== "ALL" || formatFilter !== "ALL") && (
             <div className="flex items-center gap-6 animate-in fade-in slide-in-from-left-4 duration-500">
-              <span className="uppercase tracking-widest font-mono text-xs text-zinc-400">
+              <span className="uppercase tracking-widest font-sans text-xs text-zinc-400">
                 Showing:
               </span>
               <button
@@ -132,7 +132,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                   setStatusFilter("ALL");
                   setFormatFilter("ALL");
                 }}
-                className="uppercase tracking-[0.2em] group flex items-center gap-2 font-mono text-xs text-white border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-all"
+                className="uppercase tracking-widest group flex items-center gap-2 font-sans text-xs text-white border-b border-white pb-1 hover:text-zinc-400 hover:border-zinc-400 transition-all"
               >
                 Clear filters
                 <X className="w-3 h-3 group-hover:rotate-90 transition-transform" />
@@ -145,7 +145,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
       {/* Table header — full-width borders, content contained */}
       <div className="hidden lg:block w-full border-b border-zinc-800">
         <div
-          className={`uppercase tracking-[0.2em] ${cx} grid grid-cols-[1.5fr_2fr_4fr_1fr] gap-6 py-6 text-zinc-500 font-mono text-xs`}
+          className={`uppercase tracking-widest ${cx} grid grid-cols-[1.5fr_2fr_4fr_1fr] gap-6 py-6 text-zinc-500 font-sans text-xs`}
         >
           <div>Date</div>
           <div>Type</div>
@@ -167,7 +167,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                     setStatusFilter("ALL");
                     setFormatFilter("ALL");
                   }}
-                  className="border border-white px-6 py-2.5 font-sans text-sm font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                  className="uppercase tracking-widest border border-white px-8 py-4 font-sans text-xs font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black"
                 >
                   Show all events
                 </button>
@@ -189,7 +189,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
               </span>
 
               {/* Datetime & Status */}
-              <div className="uppercase tracking-wider relative z-10 flex flex-col items-start gap-4 font-mono">
+              <div className="uppercase tracking-widest relative z-10 flex flex-col items-start gap-4 font-sans">
                 <div className="space-y-1">
                   <div className="text-zinc-400 text-sm">
                     {format(new Date(item.startDate), "MMM d, yyyy")}
@@ -207,7 +207,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                   </div>
                 </div>
                 <span
-                  className={`uppercase tracking-[0.15em] inline-flex items-center px-4 py-1 font-mono text-xs font-bold border rounded-none transition-colors ${
+                  className={`uppercase tracking-widest inline-flex items-center px-4 py-1 font-sans text-xs font-bold border rounded-none transition-colors ${
                     getEventStatus(item) === "LIVE"
                       ? "border-green-500/40 text-[#00D154]"
                       : "border-zinc-700 text-zinc-400"
@@ -218,7 +218,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
               </div>
 
               {/* Classification */}
-              <div className="uppercase tracking-[0.05em] relative z-10 font-mono text-sm font-bold text-white">
+              <div className="uppercase tracking-widest relative z-10 font-sans text-sm font-bold text-white">
                 {item.classification}
               </div>
 
@@ -242,7 +242,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                         <Link
                           href={item.recordedVideoLink}
                           target="_blank"
-                          className="uppercase tracking-[0.2em] group/btn flex items-center justify-between w-full px-6 py-4 font-mono text-xs font-bold transition-all bg-[#0066FF] text-white hover:bg-[#0052CC] border border-transparent shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-none translate-x-[-2px] translate-y-[-2px] hover:translate-x-0 hover:translate-y-0"
+                          className="uppercase tracking-widest group/btn flex items-center justify-between w-full px-6 py-4 font-sans text-xs font-bold transition-all bg-[#0066FF] text-white hover:bg-[#0052CC] border border-transparent shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-none translate-x-[-2px] translate-y-[-2px] hover:translate-x-0 hover:translate-y-0"
                         >
                           View recording
                           <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -250,7 +250,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                       );
                     }
                     return (
-                      <div className="uppercase tracking-[0.2em] flex items-center justify-between w-full px-6 py-4 font-mono text-xs font-bold bg-zinc-900 text-white/10 border border-zinc-500/10 cursor-not-allowed">
+                      <div className="uppercase tracking-widest flex items-center justify-between w-full px-6 py-4 font-sans text-xs font-bold bg-zinc-900 text-white/10 border border-zinc-500/10 cursor-not-allowed">
                         Finished
                         <ArrowUpRight className="w-4 h-4 opacity-5" />
                       </div>
@@ -262,7 +262,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                         <Link
                           href={item.reserveSpotLink}
                           target="_blank"
-                          className="uppercase tracking-[0.2em] group/reserve flex items-center justify-between w-full px-6 py-4 bg-white text-black font-mono text-xs font-bold transition-all hover:bg-zinc-200"
+                          className="uppercase tracking-widest group/reserve flex items-center justify-between w-full px-6 py-4 bg-white text-black font-sans text-xs font-bold transition-all hover:bg-zinc-200"
                         >
                           Reserve spot
                           <ArrowUpRight className="w-4 h-4 transition-transform group-hover/reserve:translate-x-0.5 group-hover/reserve:-translate-y-0.5" />
@@ -276,14 +276,14 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                                 item.locationUrl) as string
                             }
                             target="_blank"
-                            className="uppercase tracking-[0.2em] group/btn flex items-center justify-between w-full px-6 py-4 font-mono text-xs font-bold transition-all bg-[#00D154] text-black hover:bg-[#00b247]"
+                            className="uppercase tracking-widest group/btn flex items-center justify-between w-full px-6 py-4 font-sans text-xs font-bold transition-all bg-[#00D154] text-black hover:bg-[#00b247]"
                           >
                             {item.isOnline ? "Join session" : "View location"}
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                           </Link>
                         )}
                       {status === "UPCOMING" && !item.reserveSpotLink && (
-                        <div className="uppercase tracking-[0.2em] flex items-center justify-between w-full px-6 py-4 font-mono text-xs font-bold bg-zinc-900 text-zinc-400 border border-zinc-800">
+                        <div className="uppercase tracking-widest flex items-center justify-between w-full px-6 py-4 font-sans text-xs font-bold bg-zinc-900 text-zinc-400 border border-zinc-800">
                           Coming soon
                           <Clock className="w-4 h-4 opacity-20" />
                         </div>

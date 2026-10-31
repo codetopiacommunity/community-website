@@ -34,7 +34,7 @@ export default function NotFound() {
 
             <Link
               href="/"
-              className="uppercase tracking-tight group inline-flex items-center gap-3 bg-white text-black font-bold text-sm px-8 py-4 hover:bg-zinc-200 transition-colors font-sans self-start shrink-0"
+              className="uppercase tracking-widest group inline-flex items-center gap-3 bg-white text-black font-bold text-xs px-8 py-4 hover:bg-zinc-200 transition-colors font-sans self-start shrink-0"
             >
               Return home
               <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

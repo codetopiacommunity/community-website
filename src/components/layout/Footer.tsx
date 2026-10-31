@@ -17,6 +17,7 @@ import { SiBluesky } from "react-icons/si";
 import logo from "@/assets/images/logos/codetopia-community.png";
 import { Newsletter } from "@/components/home/Newsletter";
 import { Container } from "@/components/layout/Container";
+import { FooterWordmark } from "@/components/layout/FooterWordmark";
 
 const linkColumns = [
   {
@@ -110,8 +111,12 @@ const socialIcons = [
 export function Footer() {
   return (
     <footer className="w-full bg-black text-white border-t border-zinc-900">
+      <FooterWordmark />
+
       <Container className="px-4 pt-16 pb-12">
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_auto] lg:gap-24">
+        {/* Brand beside the links only once there is room for both; below
+            that it sits on top, so it is never squeezed into a sliver. */}
+        <div className="grid grid-cols-1 gap-14 xl:grid-cols-[minmax(18rem,1fr)_auto] xl:gap-24">
           {/* Brand */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="inline-block">
@@ -120,7 +125,7 @@ export function Footer() {
                 alt="Codetopia Community"
                 width={150}
                 height={90}
-                className="object-contain grayscale brightness-200"
+                className="w-[150px] h-auto object-contain grayscale brightness-200"
               />
             </Link>
             <p className="font-mono text-sm text-zinc-400 max-w-xs leading-relaxed">
@@ -144,7 +149,7 @@ export function Footer() {
           </div>
 
           {/* Links, grouped like the menu */}
-          <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-14">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:gap-10 xl:gap-14">
             {linkColumns.map((column) => (
               <div key={column.title} className="flex flex-col gap-4">
                 <p className="font-sans text-sm font-black text-white uppercase tracking-tighter">
@@ -185,10 +190,16 @@ export function Footer() {
                   href="https://github.com/codetopiacommunity/community-website"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-400 hover:text-white transition-colors group"
+                  className="font-mono text-sm text-zinc-400 hover:text-white transition-colors group"
                 >
-                  Contribute on GitHub
-                  <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Inline rather than flex, with the last word and the
+                      arrow held together, so in a narrow column the arrow
+                      wraps with "GitHub" instead of floating on its own. */}
+                  Contribute on{" "}
+                  <span className="whitespace-nowrap">
+                    GitHub
+                    <ArrowUpRight className="inline-block ml-1.5 w-3 h-3 align-[-1px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
                 </a>
               </div>
             </div>
@@ -205,12 +216,12 @@ export function Footer() {
         <Container className="px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p
             suppressHydrationWarning
-            className="font-mono text-xs text-zinc-400 uppercase tracking-widest"
+            className="font-sans text-xs text-zinc-400 uppercase tracking-widest"
           >
             &copy; {new Date().getFullYear()} Codetopia. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <p className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
+            <p className="font-sans text-xs text-zinc-400 uppercase tracking-widest">
               A{" "}
               <a
                 href="https://codetopia.org"
@@ -224,7 +235,7 @@ export function Footer() {
             </p>
             <Link
               href="/privacy"
-              className="font-mono text-xs text-zinc-400 uppercase tracking-widest hover:text-white transition-colors"
+              className="font-sans text-xs text-zinc-400 uppercase tracking-widest hover:text-white transition-colors"
             >
               Privacy
             </Link>
