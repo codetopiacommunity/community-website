@@ -1,10 +1,11 @@
 import { render } from "@react-email/render";
 import { type NextRequest, NextResponse } from "next/server";
 import { VerificationTemplate, WelcomeTemplate } from "@/lib/email-templates";
+import { getBaseUrl } from "@/lib/site-url";
 
 export async function GET(req: NextRequest) {
   const type = req.nextUrl.searchParams.get("type") || "verification";
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = getBaseUrl();
 
   let html = "";
 

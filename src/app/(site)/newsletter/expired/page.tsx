@@ -35,7 +35,8 @@ export default function ExpiredPage() {
         <p className="text-zinc-400 text-lg md:text-xl max-w-md mx-auto">
           The verification link you used has expired or is invalid. Please{" "}
           <strong className="text-white">subscribe again</strong> to receive a
-          new one.
+          new one. If you already confirmed, you&apos;re subscribed and
+          don&apos;t need to do anything else.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">

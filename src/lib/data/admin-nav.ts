@@ -62,7 +62,7 @@ export const adminNavData = {
       items: [
         {
           title: "Newsletter",
-          url: "/admin/newsletter",
+          url: "https://resend.com/broadcasts",
           icon: Mail,
         },
       ],
