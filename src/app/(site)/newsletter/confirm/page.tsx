@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 export default async function ConfirmPage({
   searchParams,
 }: {
-  searchParams: Promise<{ token?: string }>;
+  searchParams: Promise<{ token?: string; error?: string }>;
 }) {
-  const { token } = await searchParams;
+  const { token, error } = await searchParams;
 
   if (!token) {
     return (
@@ -56,6 +56,13 @@ export default async function ConfirmPage({
           Click the button below to confirm your email address and subscribe to{" "}
           <strong className="text-white">The Dispatch</strong>.
         </p>
+
+        {error && (
+          <p role="alert" className="text-red-400 text-sm">
+            We couldn&apos;t confirm your subscription just now. Please try
+            again.
+          </p>
+        )}
 
         <form method="POST" action="/api/newsletter/verify">
           <input type="hidden" name="token" value={token} />

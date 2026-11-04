@@ -11,6 +11,7 @@ export function Newsletter() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = new FormData(e.currentTarget).get("website");
     setStatus("loading");
     setMessage("");
 
@@ -18,7 +19,7 @@ export function Newsletter() {
       const res = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, website }),
       });
 
       const data = await res.json();
@@ -49,6 +50,15 @@ export function Newsletter() {
       </div>
 
       <form className="w-full lg:max-w-md" onSubmit={handleSubmit}>
+        {/* Hidden from people. Bots that fill it in get no email sent. */}
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-px w-px opacity-0"
+        />
         <div className="flex gap-2">
           <input
             type="email"

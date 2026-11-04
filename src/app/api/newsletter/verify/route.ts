@@ -1,80 +1,67 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { sendWelcomeEmail } from "@/lib/email";
-import { prisma } from "../../../../../prisma/prisma";
+import { subscribeContact } from "@/lib/newsletter/contacts";
+import { readConfirmToken } from "@/lib/newsletter/token";
+import { getBaseUrl } from "@/lib/site-url";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:4000";
+// 303 makes the browser follow with a GET. The default 307 repeats the POST,
+// and pages answer that with a 405 in production.
+function redirectTo(path: string) {
+  return NextResponse.redirect(`${getBaseUrl()}${path}`, { status: 303 });
+}
+
+function confirmPath(token: string) {
+  return `/newsletter/confirm?token=${encodeURIComponent(token)}`;
+}
 
 // GET: validate the token and redirect to the confirmation page.
-// No writes happen here — email prefetchers and security scanners follow
-// GET links automatically, so keeping this step read-only prevents them
-// from silently consuming the one-time token before the user sees the email.
+// No writes happen here. Email prefetchers and security scanners follow GET
+// links automatically, so keeping this step read-only stops them subscribing
+// someone who never clicked.
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token");
 
-  if (!token) {
-    return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
+  if (!token || !(await readConfirmToken(token))) {
+    return redirectTo("/newsletter/expired");
   }
 
-  const subscriber = await prisma.subscriber.findUnique({
-    where: { verificationToken: token },
-  });
-
-  if (!subscriber) {
-    return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
-  }
-
-  if (subscriber.status === "verified") {
-    return NextResponse.redirect(`${baseUrl}/newsletter/verified`);
-  }
-
-  if (subscriber.tokenExpiresAt && subscriber.tokenExpiresAt < new Date()) {
-    return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
-  }
-
-  return NextResponse.redirect(`${baseUrl}/newsletter/confirm?token=${token}`);
+  return redirectTo(confirmPath(token));
 }
 
-// POST: called by the confirmation page form — performs the actual verification.
+// POST: called by the confirmation page form. Performs the actual subscribe.
 export async function POST(req: NextRequest) {
+  let token: FormDataEntryValue | null = null;
+
   try {
-    const formData = await req.formData();
-    const token = formData.get("token") as string | null;
-
-    if (!token) {
-      return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
-    }
-
-    const subscriber = await prisma.subscriber.findUnique({
-      where: { verificationToken: token },
-    });
-
-    if (!subscriber) {
-      return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
-    }
-
-    if (subscriber.status === "verified") {
-      return NextResponse.redirect(`${baseUrl}/newsletter/verified`);
-    }
-
-    if (subscriber.tokenExpiresAt && subscriber.tokenExpiresAt < new Date()) {
-      return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
-    }
-
-    await prisma.subscriber.update({
-      where: { id: subscriber.id },
-      data: {
-        status: "verified",
-        verificationToken: null,
-        tokenExpiresAt: null,
-        verifiedAt: new Date(),
-      },
-    });
-
-    await sendWelcomeEmail(subscriber.email);
-
-    return NextResponse.redirect(`${baseUrl}/newsletter/verified`);
-  } catch (error) {
-    console.error("Newsletter verification error:", error);
-    return NextResponse.redirect(`${baseUrl}/newsletter/expired`);
+    token = (await req.formData()).get("token");
+  } catch {
+    return redirectTo("/newsletter/expired");
   }
+
+  const email =
+    typeof token === "string" ? await readConfirmToken(token) : null;
+
+  if (typeof token !== "string" || !email) {
+    return redirectTo("/newsletter/expired");
+  }
+
+  let isNew: boolean;
+
+  try {
+    isNew = await subscribeContact(email);
+  } catch (error) {
+    console.error("Newsletter confirmation error:", error);
+    return redirectTo(`${confirmPath(token)}&error=1`);
+  }
+
+  if (isNew) {
+    // They're on the list by now, so a failed welcome shouldn't show an error.
+    try {
+      await sendWelcomeEmail(email);
+    } catch (error) {
+      console.error("Newsletter welcome email error:", error);
+    }
+  }
+
+  return redirectTo("/newsletter/verified");
 }

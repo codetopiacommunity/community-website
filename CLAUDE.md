@@ -24,7 +24,7 @@ src/
     (site)/       # public pages — about, articles, careers, events,
                   # gallery, howtos, impact, mentorships, team
     admin/        # admin panel — gallery, impact, careers, mentorships,
-                  # newsletter, spotlight, team, events, articles config
+                  # spotlight, team, events, articles config
     api/          # public read endpoints + admin CRUD endpoints
   components/
     home/         # homepage sections
@@ -48,6 +48,7 @@ prisma/
 - Pages use `export const revalidate = 60` (ISR) — the DB is never queried at build time.
 - How-to guides are MDX files in a separate repo (`codetopiacommunity/community-howtos`), fetched live via the GitHub API.
 - Articles are read from the Hashnode publication's RSS feed (`https://<host>/rss.xml`). Hashnode's GraphQL API needs a Pro plan for every request since May 2026, so it is not used. The site only lists articles; cards link to the article on Hashnode, and `/articles/<slug>` permanently redirects there (no article pages on this site). The Hashnode host and featured slugs are stored in the DB and configurable from the admin panel.
+- The Dispatch newsletter runs on Resend: subscribers live in a Resend segment (`RESEND_NEWSLETTER_SEGMENT_ID`), and newsletters are written and sent as Broadcasts in the Resend dashboard, which also handles unsubscribes. Resend has no double opt-in, so this site keeps only the subscribe form and the confirm step (`/api/newsletter/subscribe`, `/api/newsletter/verify`). Confirm tokens use a key derived from `JWT_SECRET`, never the secret itself, because the admin session check accepts any JWT signed with it.
 - Admin auth uses SSO via the Community Portal (OAuth2 + PKCE). Optional — the app runs without the SSO env vars but admin login will fail.
 
 ---
@@ -64,8 +65,8 @@ prisma/
 | `Mentorship` | Mentorship programmes, linked to `TeamMember` |
 | `Career` | Open roles / job listings |
 | `Spotlight` | Technical spotlights on community members |
-| `Newsletter` + `NewsletterDeliveryLog` | Email campaigns and delivery tracking |
-| `Subscriber` | Newsletter subscribers (email-verified) |
+| `Newsletter` + `NewsletterDeliveryLog` | Legacy: past campaigns from before the move to Resend, no longer used by the app |
+| `Subscriber` | Legacy: source for `pnpm import:subscribers`, no longer used by the app |
 | `ArticlesConfig` | Hashnode host + featured article slugs (one row, admin-configurable) |
 
 ---
@@ -92,6 +93,7 @@ pnpm dev          # start dev server
 pnpm build        # production build
 pnpm check        # lint + format check
 pnpm check:fix    # auto-fix lint + format
+pnpm test         # unit tests
 pnpm doctor       # React Doctor checks
 ```
 

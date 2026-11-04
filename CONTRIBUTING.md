@@ -77,7 +77,8 @@ The table below is for maintainers who have the keys:
 | `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
 | `CLOUDINARY_API_KEY` | Cloudinary API key |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret |
-| `RESEND_API_KEY` | Resend API key for emails |
+| `RESEND_API_KEY` | Resend API key with full access (sends email and manages contacts) |
+| `RESEND_NEWSLETTER_SEGMENT_ID` | Resend segment that holds The Dispatch's subscribers |
 | `EMAIL_FROM` | Sender address (e.g. `Name <email@domain.com>`) |
 | `JWT_SECRET` | Secret used to sign JWT tokens |
 | `NEXT_PUBLIC_BASE_URL` | Base URL of the app (e.g. `http://localhost:3000`) |

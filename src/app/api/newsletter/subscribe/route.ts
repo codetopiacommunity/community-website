@@ -1,21 +1,28 @@
 import { NextResponse } from "next/server";
-import { generateVerificationToken, getTokenExpiry } from "@/lib/auth/token";
 import { sendVerificationEmail } from "@/lib/email";
-import { prisma } from "../../../../../prisma/prisma";
+import { isSubscribed } from "@/lib/newsletter/contacts";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// The same answer for new and existing addresses, so this endpoint can't be
+// used to find out who is subscribed.
+const CHECK_INBOX = "Check your inbox to confirm your subscription.";
 
 export async function POST(req: Request) {
   try {
     const body: unknown = await req.json();
+    const fields =
+      typeof body === "object" && body !== null
+        ? (body as Record<string, unknown>)
+        : {};
+
+    // Hidden field that people never see, so only bots fill it in.
+    if (fields.website) {
+      return NextResponse.json({ message: CHECK_INBOX });
+    }
 
     const email =
-      typeof body === "object" &&
-      body !== null &&
-      "email" in body &&
-      typeof body.email === "string"
-        ? body.email.trim().toLowerCase()
-        : "";
+      typeof fields.email === "string" ? fields.email.trim().toLowerCase() : "";
 
     if (!email) {
       return NextResponse.json(
@@ -38,66 +45,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const existing = await prisma.subscriber.findUnique({
-      where: { email },
-    });
-
-    if (existing) {
-      if (existing.status === "verified") {
-        return NextResponse.json(
-          { message: "Email already part of the community." },
-          { status: 409 },
-        );
-      }
-
-      if (existing.tokenExpiresAt && existing.tokenExpiresAt > new Date()) {
-        return NextResponse.json(
-          {
-            message:
-              "A verification email was already sent recently. Please check your inbox (and spam folder).",
-          },
-          { status: 200 },
-        );
-      }
-
-      const token = generateVerificationToken();
-      const expiresAt = getTokenExpiry();
-
-      await prisma.subscriber.update({
-        where: { email },
-        data: {
-          verificationToken: token,
-          tokenExpiresAt: expiresAt,
-        },
-      });
-
-      await sendVerificationEmail(email, token);
-
-      return NextResponse.json(
-        {
-          message: "Re-sent. Check your email.",
-        },
-        { status: 200 },
-      );
+    if (!(await isSubscribed(email))) {
+      await sendVerificationEmail(email);
     }
 
-    const token = generateVerificationToken();
-    const expiresAt = getTokenExpiry();
-
-    await prisma.subscriber.create({
-      data: {
-        email,
-        verificationToken: token,
-        tokenExpiresAt: expiresAt,
-      },
-    });
-
-    await sendVerificationEmail(email, token);
-
-    return NextResponse.json(
-      { message: "Almost there. Check your inbox to verify." },
-      { status: 201 },
-    );
+    return NextResponse.json({ message: CHECK_INBOX });
   } catch (error) {
     console.error("Newsletter subscription error:", error);
 

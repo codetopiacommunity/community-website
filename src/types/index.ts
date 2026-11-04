@@ -77,12 +77,3 @@ export interface ArticlesConfig {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface Newsletter {
-  id: number;
-  slug: string | null;
-  subject: string;
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-}

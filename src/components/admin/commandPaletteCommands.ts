@@ -51,14 +51,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     keywords: ["impact", "stories"],
     group: "Navigate",
   },
-  {
-    id: "nav-newsletter",
-    label: "Go to Newsletter",
-    iconName: "Mail",
-    path: "/admin/newsletter",
-    keywords: ["newsletter", "email", "broadcast"],
-    group: "Navigate",
-  },
   // Create
   {
     id: "new-event",
@@ -94,15 +86,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     iconName: "Plus",
     path: "/admin/impact",
     keywords: ["add impact", "new impact", "story"],
-    group: "Create",
-  },
-  {
-    id: "new-newsletter",
-    label: "Compose Newsletter",
-    description: "Write a new newsletter",
-    iconName: "Plus",
-    path: "/admin/newsletter/new",
-    keywords: ["compose", "new newsletter", "write newsletter", "broadcast"],
     group: "Create",
   },
 
@@ -144,16 +127,6 @@ export const COMMAND_DEFS: CommandDef[] = [
     iconName: "Trash2",
     path: "/admin/impact",
     keywords: ["delete impact", "remove story"],
-    group: "Manage",
-    variant: "danger",
-  },
-  {
-    id: "delete-newsletter",
-    label: "Delete a Newsletter",
-    description: "Go to newsletter to delete",
-    iconName: "Trash2",
-    path: "/admin/newsletter",
-    keywords: ["delete newsletter", "remove newsletter"],
     group: "Manage",
     variant: "danger",
   },
