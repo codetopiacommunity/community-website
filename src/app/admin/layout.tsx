@@ -18,7 +18,6 @@ const routeLabels: Record<string, string> = {
   events: "Events",
   gallery: "Gallery",
   impact: "Impact",
-  newsletter: "Newsletter",
   spotlight: "Spotlight",
   careers: "Careers",
   new: "New",

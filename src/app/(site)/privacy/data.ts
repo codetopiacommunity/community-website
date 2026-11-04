@@ -13,7 +13,7 @@ export const sections = [
   },
   {
     title: "How Long We Keep It",
-    body: "We retain your email address for as long as you remain subscribed. When you unsubscribe, your email is removed from our mailing list. You can unsubscribe at any time via the unsubscribe link in any newsletter email.",
+    body: "We retain your email address for as long as you remain subscribed. When you unsubscribe, we stop sending you The Dispatch. You can unsubscribe at any time via the unsubscribe link in any newsletter email. To have your address deleted entirely, contact us at the email below.",
   },
   {
     title: "Analytics",
@@ -21,7 +21,7 @@ export const sections = [
   },
   {
     title: "Third-Party Services",
-    body: "This site is hosted on Vercel. Email delivery is handled by our email service provider. These services may process data on our behalf under their own privacy policies. We do not sell your data to any third party.",
+    body: "This site is hosted on Vercel. Our mailing list and email delivery are handled by Resend. These services may process data on our behalf under their own privacy policies. We do not sell your data to any third party.",
   },
   {
     title: "Your Rights",
