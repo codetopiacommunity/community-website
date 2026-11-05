@@ -9,14 +9,12 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { BODY_FONT, HEADING_FONT } from "./styles";
 
 // Mirrors the portal's emails (portal-core apps/common/email_templates.py) so
 // everything Codetopia Community sends looks the same. The light palette is
 // the inline base, and readers in dark mode get the overrides below.
-
-const HEADING_FONT = "'Space Grotesk', Helvetica, Arial, sans-serif";
-const BODY_FONT = "'Inter', Helvetica, Arial, sans-serif";
 
 const STYLES = `
 @font-face {
@@ -98,22 +96,6 @@ const SOCIAL_LINKS = [
     href: "https://whatsapp.com/channel/0029VaFHtkR8KMqpEVu24v2o",
   },
 ];
-
-export const bodyText: CSSProperties = {
-  margin: "0 0 26px 0",
-  fontFamily: BODY_FONT,
-  fontSize: "15px",
-  lineHeight: 1.65,
-  color: "#3f3f46",
-};
-
-export const reassuranceText: CSSProperties = {
-  margin: "0 0 8px 0",
-  fontFamily: BODY_FONT,
-  fontSize: "13px",
-  lineHeight: 1.6,
-  color: "#71717a",
-};
 
 export function EmailButton({
   href,

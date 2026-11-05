@@ -1,5 +1,6 @@
 import { Link, Text } from "@react-email/components";
-import { bodyText, EmailButton, EmailLayout, reassuranceText } from "./layout";
+import { EmailButton, EmailLayout } from "./layout";
+import { bodyText, reassuranceText } from "./styles";
 
 export function VerificationTemplate({
   verifyUrl,
