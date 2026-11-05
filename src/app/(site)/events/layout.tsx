@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Events & Activities - Codetopia Community",
+  title: "Events & Activities · Codetopia Community",
   description:
     "Upcoming Build Together sessions, Open Source Sprints, and Engineering Syncs.",
 };

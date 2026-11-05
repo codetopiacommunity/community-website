@@ -232,7 +232,7 @@ export function CareerForm({ editingCareer }: CareerFormProps) {
             <div className={sectionCls}>
               <h2 className={sectionHeadingCls}>About the Role</h2>
               <p className="text-[9px] font-mono text-grey-400 uppercase tracking-widest -mt-2">
-                A short summary of what this role is and its purpose (2–4
+                A short summary of what this role is and its purpose (2 to 4
                 sentences)
               </p>
               <Textarea

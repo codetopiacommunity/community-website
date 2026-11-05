@@ -32,7 +32,7 @@ export function ImpactStoryList({ stories, onSelect }: ImpactStoryListProps) {
           </div>
           <div className="space-y-3">
             <p className="uppercase tracking-widest font-sans text-xs text-zinc-400">
-              — LOG EMPTY —
+              LOG EMPTY
             </p>
             <h3 className="uppercase tracking-tighter text-4xl md:text-5xl font-bold text-zinc-400 leading-none font-sans">
               NO IMPACT <br /> RECORDED YET

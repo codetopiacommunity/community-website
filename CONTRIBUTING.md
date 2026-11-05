@@ -1,6 +1,6 @@
 # Contributing to the Codetopia Community
 
-> *A utopia for tech enthusiasts — and we are glad you are here.*
+> *A utopia for tech enthusiasts, and we are glad you are here.*
 
 First off, thank you for taking the time to contribute to the Codetopia Community! Every contribution, big or small, helps us build a better community for tech enthusiasts everywhere.
 
@@ -83,11 +83,11 @@ The table below is for maintainers who have the keys:
 | `JWT_SECRET` | Secret used to sign JWT tokens |
 | `NEXT_PUBLIC_BASE_URL` | Base URL of the app (e.g. `http://localhost:3000`) |
 | `NEXT_PUBLIC_SITE_URL` | Public site URL |
-| `PORTAL_WEB_URL` | *(Optional)* Community Portal frontend URL — needed for admin SSO login |
-| `PORTAL_API_URL` | *(Optional)* Community Portal backend URL — needed for admin SSO login |
-| `OAUTH_CLIENT_ID` | *(Optional)* OAuth client ID from the portal — needed for admin SSO login |
-| `OAUTH_CLIENT_SECRET` | *(Optional)* OAuth client secret from the portal — needed for admin SSO login |
-| `OAUTH_REDIRECT_URI` | *(Optional)* OAuth redirect URI — needed for admin SSO login |
+| `PORTAL_WEB_URL` | *(Optional)* Community Portal frontend URL, needed for admin SSO login |
+| `PORTAL_API_URL` | *(Optional)* Community Portal backend URL, needed for admin SSO login |
+| `OAUTH_CLIENT_ID` | *(Optional)* OAuth client ID from the portal, needed for admin SSO login |
+| `OAUTH_CLIENT_SECRET` | *(Optional)* OAuth client secret from the portal, needed for admin SSO login |
+| `OAUTH_REDIRECT_URI` | *(Optional)* OAuth redirect URI, needed for admin SSO login |
 
 > The SSO variables are only required if you are working on the admin authentication flow. The app starts and runs normally without them.
 
@@ -191,7 +191,7 @@ In your PR description, please include:
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Production — live at community.codetopia.org |
+| `main` | Production, live at community.codetopia.org |
 | `dev` | Staging |
 | `feat/*` | Feature branches |
 | `fix/*` | Bug fix branches |

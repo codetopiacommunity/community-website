@@ -3,7 +3,7 @@ import { format, parseISO } from "date-fns";
 /**
  * Returns a formatted date range string.
  * If endDate is the same month+year, only shows the day for the end.
- * e.g. "Feb 21 – 22, 2025" or "Feb 21, 2025 – Mar 3, 2025"
+ * e.g. "Feb 21 to 22, 2025" or "Feb 21, 2025 to Mar 3, 2025"
  */
 export function formatDateRange(
   startDate: string,
@@ -19,10 +19,10 @@ export function formatDateRange(
       start.getFullYear() === end.getFullYear();
 
     if (sameMonthYear) {
-      return `${format(start, "MMM d")} – ${format(end, "d, yyyy")}`;
+      return `${format(start, "MMM d")} to ${format(end, "d, yyyy")}`;
     }
-    return `${format(start, "MMM d, yyyy")} – ${format(end, "MMM d, yyyy")}`;
+    return `${format(start, "MMM d, yyyy")} to ${format(end, "MMM d, yyyy")}`;
   } catch {
-    return endDate ? `${startDate} – ${endDate}` : startDate;
+    return endDate ? `${startDate} to ${endDate}` : startDate;
   }
 }

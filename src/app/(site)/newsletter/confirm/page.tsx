@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Confirm subscription — Codetopia Community",
+  title: "Confirm subscription · Codetopia Community",
   description: "Confirm your subscription to The Dispatch.",
 };
 

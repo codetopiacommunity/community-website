@@ -81,6 +81,6 @@ We welcome contributions from everyone! Please read our [Contributing Guide](CON
 
 <div align="center">
 
-<a href="https://codetopia.org">Codetopia</a> — Engineering the future. 
+<a href="https://codetopia.org">Codetopia</a>. Engineering the future. 
 
 </div>
