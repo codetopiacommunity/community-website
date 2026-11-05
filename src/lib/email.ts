@@ -16,11 +16,8 @@ export const resend = new Resend(
 const FROM_ADDRESS =
   process.env.EMAIL_FROM ?? "Codetopia Community <dispatch@codetopia.org>";
 
-// Both mean Resend already has this email from an earlier request.
-const ALREADY_ACCEPTED = new Set([
-  "concurrent_idempotent_requests",
-  "invalid_idempotent_request",
-]);
+// The same request is still in progress, so the email is on its way.
+const ALREADY_IN_PROGRESS = "concurrent_idempotent_requests";
 
 /** Resend returns failures rather than throwing, so they have to be raised here. */
 async function sendEmail(
@@ -32,7 +29,7 @@ async function sendEmail(
     { idempotencyKey },
   );
 
-  if (error && !ALREADY_ACCEPTED.has(error.name)) {
+  if (error && error.name !== ALREADY_IN_PROGRESS) {
     throw new Error(`Resend rejected the email: ${error.name}`);
   }
 }
@@ -59,6 +56,8 @@ export async function sendWelcomeEmail(to: string): Promise<void> {
       subject: "You're subscribed to The Dispatch",
       react: WelcomeTemplate({ baseUrl: getBaseUrl() }),
     },
-    `dispatch-welcome/${hashEmail(to)}`,
+    // Short-lived on purpose. It only needs to catch a double click, and someone
+    // who leaves and comes back later should get welcomed again.
+    `dispatch-welcome/${hashEmail(to)}/${currentConfirmWindow()}`,
   );
 }
