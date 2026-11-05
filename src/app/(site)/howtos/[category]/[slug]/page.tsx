@@ -16,7 +16,6 @@ import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdxComponents";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
-  estimateReadingTime,
   getAllHowtos,
   getCategoryInfo,
   getHowtoRaw,
@@ -90,7 +89,6 @@ export default async function HowtoPage({
 
   const toc = extractMarkdownToc(content);
   const hasToc = toc.length >= 3;
-  const readingMinutes = estimateReadingTime(content);
 
   // Every guide, for the list down the side; this guide's section, for
   // "Guide 3 of 12" and the previous and next links at the foot.
@@ -183,8 +181,6 @@ export default async function HowtoPage({
                     Guide {position + 1} of {siblings.length}
                   </span>
                 )}
-                {position >= 0 && <span aria-hidden="true">·</span>}
-                <span>{readingMinutes} min read</span>
                 {meta.author && <span>· {meta.author}</span>}
                 {formattedDate && <span>· {formattedDate}</span>}
               </p>
