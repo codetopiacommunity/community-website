@@ -118,7 +118,7 @@ export function ImpactTable({
                       )}
                       {!story.link && !story.galleryLink && (
                         <span className="font-mono text-[10px] text-zinc-300">
-                          —
+                          None
                         </span>
                       )}
                     </div>

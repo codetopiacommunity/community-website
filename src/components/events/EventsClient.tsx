@@ -201,7 +201,7 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
                         format(new Date(item.endDate), "MMM d") && (
                         <span>
                           {" "}
-                          – {format(new Date(item.endDate), "MMM d, yyyy")}
+                          to {format(new Date(item.endDate), "MMM d, yyyy")}
                         </span>
                       )}
                   </div>

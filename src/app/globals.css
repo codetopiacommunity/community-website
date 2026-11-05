@@ -412,7 +412,7 @@ html {
 }
 
 .career-description ul li::before {
-  content: "—";
+  content: "-";
   color: #3f3f46;
   font-weight: 700;
   flex-shrink: 0;
