@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { type HowtoCategory, type HowtoSummary, howtoHref } from "@/lib/howtos";
 
@@ -62,17 +63,18 @@ export function GuideSidebar(props: GuideNavProps) {
 /** The same list on a phone, folded into an "All guides" menu above the guide. */
 export function GuideMenu(props: GuideNavProps) {
   return (
-    <details className="group mb-10 lg:hidden">
-      <summary className="flex cursor-pointer list-none items-center gap-2 py-2 font-sans text-base font-bold underline decoration-1 underline-offset-4 [&::-webkit-details-marker]:hidden">
+    <details className="group mb-10 border border-border rounded-none lg:hidden">
+      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 font-sans text-base font-bold transition-colors duration-200 hover:bg-foreground/[0.03] [&::-webkit-details-marker]:hidden">
         See all guides
-        <span
+        <ChevronDown
           aria-hidden="true"
-          className="text-base transition-transform duration-200 group-open:rotate-45"
-        >
-          +
-        </span>
+          className="size-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+        />
       </summary>
-      <nav aria-label="All guides" className="pb-6 pt-2">
+      <nav
+        aria-label="All guides"
+        className="border-t border-border px-4 pb-6 pt-4"
+      >
         <GuideList {...props} />
       </nav>
     </details>

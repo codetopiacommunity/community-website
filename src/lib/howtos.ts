@@ -19,8 +19,6 @@ export interface HowtoSummary {
   category: string;
   /** URL segment for the folder, e.g. "getting-started". */
   categorySlug: string;
-  /** Estimated reading time in minutes. */
-  minutes: number;
   meta: HowtoMeta;
 }
 
@@ -113,9 +111,8 @@ export async function getHowtosByCategory(
       const name = file.name.replace(/\.mdx$/, "");
       const raw = await getHowtoRaw(category, name);
       if (!raw) return null;
-      const { data: meta, content } = matter(raw);
+      const { data: meta } = matter(raw);
       return {
-        minutes: estimateReadingTime(content),
         slug: cleanSlug(name),
         file: name,
         category,
@@ -205,22 +202,4 @@ export function splitReadme(readme: string) {
  */
 export function stripLeadingH1(markdown: string): string {
   return markdown.replace(/^\s*#\s+.+\n+/, "");
-}
-
-const WORDS_PER_MINUTE = 200;
-
-/**
- * Rough word-count estimate off the raw markdown body, stripping code
- * fences/inline code/links so dense snippets don't inflate the count.
- */
-export function estimateReadingTime(markdown: string): number {
-  const stripped = markdown
-    .replace(/```[\s\S]*?```/g, "")
-    .replace(/`[^`]*`/g, "")
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
-    .replace(/[#>*_~`-]/g, "");
-
-  const words = stripped.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
 }

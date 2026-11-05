@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { type HowtoSummary, howtoHref } from "@/lib/howtos";
 
-/** One guide in the "All guides" list: an underlined title, what it covers, and the reading time. */
+/** One guide in the "All guides" list: an underlined title and what it covers. */
 export function HowtoRow({ howto }: { howto: HowtoSummary }) {
   return (
     <li className="flex flex-col gap-1">
@@ -16,9 +16,6 @@ export function HowtoRow({ howto }: { howto: HowtoSummary }) {
           {howto.meta.description}
         </span>
       )}
-      <span className="font-mono text-xs text-muted-foreground">
-        {howto.minutes} min read
-      </span>
     </li>
   );
 }
