@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { TocEntry } from "@/lib/toc";
 
@@ -77,6 +78,14 @@ export function TableOfContents({ entries }: TableOfContentsProps) {
           );
         })}
       </ul>
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0 })}
+        className="mt-4 flex cursor-pointer items-center gap-2 pl-3 text-[13px] leading-snug text-muted-foreground transition-colors duration-200 hover:text-foreground"
+      >
+        <ArrowUp aria-hidden="true" className="size-3.5" />
+        Back to top
+      </button>
     </nav>
   );
 }

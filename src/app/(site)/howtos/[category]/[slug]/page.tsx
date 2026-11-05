@@ -8,13 +8,14 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { remarkAlert } from "remark-github-blockquote-alert";
 import type { PluggableList } from "unified";
+import { BackToTop } from "@/components/articles/BackToTop";
+import { GuideTocMenu } from "@/components/articles/GuideTocMenu";
 import { TableOfContents } from "@/components/articles/TableOfContents";
 import { GuideMenu, GuideSidebar } from "@/components/howtos/GuideNav";
 import { HOWTO_MDX_COMPONENTS } from "@/components/howtos/mdxComponents";
 import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
-  estimateReadingTime,
   getAllHowtos,
   getCategoryInfo,
   getHowtoRaw,
@@ -88,7 +89,6 @@ export default async function HowtoPage({
 
   const toc = extractMarkdownToc(content);
   const hasToc = toc.length >= 3;
-  const readingMinutes = estimateReadingTime(content);
 
   // Every guide, for the list down the side; this guide's section, for
   // "Guide 3 of 12" and the previous and next links at the foot.
@@ -181,8 +181,6 @@ export default async function HowtoPage({
                     Guide {position + 1} of {siblings.length}
                   </span>
                 )}
-                {position >= 0 && <span aria-hidden="true">·</span>}
-                <span>{readingMinutes} min read</span>
                 {meta.author && <span>· {meta.author}</span>}
                 {formattedDate && <span>· {formattedDate}</span>}
               </p>
@@ -194,6 +192,8 @@ export default async function HowtoPage({
               current={howto}
             />
 
+            <BackToTop />
+            {hasToc && <GuideTocMenu entries={toc} />}
             <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-4">
               <main id="article-content" className="min-w-0 max-w-3xl">
                 {article}
