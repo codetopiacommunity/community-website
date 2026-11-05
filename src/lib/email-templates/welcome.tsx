@@ -1,6 +1,7 @@
 import { Text } from "@react-email/components";
 import { JOIN_URL } from "@/lib/data/links";
-import { bodyText, EmailButton, EmailLayout, reassuranceText } from "./layout";
+import { EmailButton, EmailLayout } from "./layout";
+import { bodyText, reassuranceText } from "./styles";
 
 export function WelcomeTemplate({ baseUrl }: { baseUrl: string }) {
   return (
