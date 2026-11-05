@@ -8,6 +8,7 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { remarkAlert } from "remark-github-blockquote-alert";
 import type { PluggableList } from "unified";
+import { BackToTop } from "@/components/articles/BackToTop";
 import { GuideTocMenu } from "@/components/articles/GuideTocMenu";
 import { TableOfContents } from "@/components/articles/TableOfContents";
 import { GuideMenu, GuideSidebar } from "@/components/howtos/GuideNav";
@@ -195,6 +196,7 @@ export default async function HowtoPage({
               current={howto}
             />
 
+            <BackToTop />
             {hasToc && <GuideTocMenu entries={toc} />}
             <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-4">
               <main id="article-content" className="min-w-0 max-w-3xl">
