@@ -21,7 +21,7 @@ import { getTeamData } from "@/lib/team";
 import { coreValues, programmes, reviewRules, whatYouGet } from "./data";
 
 export const metadata: Metadata = {
-  title: "About us — Codetopia Community",
+  title: "About us · Codetopia Community",
   description:
     "Who we are, what we do, and what we expect from each other. Read this before you join.",
 };
@@ -256,7 +256,7 @@ export default async function AboutPage() {
         <Prose>
           One example is the website you&rsquo;re reading. Members built it,
           members write the articles on it, and the how-to library was started
-          by our June&ndash;July 2026 intern cohort.{" "}
+          by our June to July 2026 intern cohort.{" "}
           <Lit>
             The guides that teach you to join were written by people who joined
             before you. Eventually you write one for whoever comes next.

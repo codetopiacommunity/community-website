@@ -1,14 +1,14 @@
 # Codetopia Community Code of Conduct
 
-> *A utopia for tech enthusiasts — where everyone belongs.*
+> *A utopia for tech enthusiasts, where everyone belongs.*
 
 ---
 
 ## Who We Are
 
-Codetopia Community is an inclusive and collaborative initiative of the mother company **[Codetopia](https://codetopia.org)**. It was created to empower aspiring and practicing technologists. We believe technology is more than a tool — it is the foundation of innovation, creativity, and problem-solving.
+Codetopia Community is an inclusive and collaborative initiative of the mother company **[Codetopia](https://codetopia.org)**. It was created to empower aspiring and practicing technologists. We believe technology is more than a tool. It is the foundation of innovation, creativity, and problem-solving.
 
-Our community is guided by six core values: **Inclusivity, Collaboration, Continuous Learning, Practical Application, Innovation, and Integrity**. These values are not just words — they shape how we treat each other, how we build together, and how we grow as a community.
+Our community is guided by six core values: **Inclusivity, Collaboration, Continuous Learning, Practical Application, Innovation, and Integrity**. These values are not just words. They shape how we treat each other, how we build together, and how we grow as a community.
 
 Whether you are writing your first line of code or exploring tech, the Codetopia Community is your home.
 
@@ -28,13 +28,13 @@ The same privileges of participation are extended to everyone who participates i
 
 As a Codetopia community member, we encourage you to:
 
-- **Be inclusive** — Welcome people of all skill levels. We were all beginners once. Never gatekeep knowledge or make others feel inferior for what they do not yet know.
-- **Be collaborative** — Share knowledge freely. Lift others as you climb. Collective effort drives greater outcomes than individual effort alone.
-- **Be respectful** — Engage with empathy and kindness. Respect different viewpoints and experiences.
-- **Be constructive** — Give feedback that helps people grow. Critique ideas, not people.
-- **Be accountable** — Take responsibility for your actions and contributions. Commit to repairing harm when it occurs.
-- **Be a learner** — Stay curious, stay humble, and embrace the fact that in technology there is always more to learn.
-- **Give credit** — Always properly credit the sources, ideas, and work of others.
+- **Be inclusive**: Welcome people of all skill levels. We were all beginners once. Never gatekeep knowledge or make others feel inferior for what they do not yet know.
+- **Be collaborative**: Share knowledge freely. Lift others as you climb. Collective effort drives greater outcomes than individual effort alone.
+- **Be respectful**: Engage with empathy and kindness. Respect different viewpoints and experiences.
+- **Be constructive**: Give feedback that helps people grow. Critique ideas, not people.
+- **Be accountable**: Take responsibility for your actions and contributions. Commit to repairing harm when it occurs.
+- **Be a learner**: Stay curious, stay humble, and embrace the fact that in technology there is always more to learn.
+- **Give credit**: Always properly credit the sources, ideas, and work of others.
 
 ---
 
@@ -43,19 +43,19 @@ As a Codetopia community member, we encourage you to:
 The following behaviours are violations of this Code of Conduct. Instances, threats, and promotion of these behaviours will not be tolerated in any Codetopia space:
 
 ### General Violations
-- **Harassment** — Violating explicitly expressed boundaries or engaging in unnecessary personal attention after any clear request to stop.
-- **Character attacks** — Making insulting, demeaning, or pejorative comments directed at a community member or group.
-- **Discrimination or stereotyping** — Characterizing anyone's personality or behaviour on the basis of immutable identities or traits.
-- **Sexualization** — Behaving in a way that would generally be considered inappropriately intimate in the context of the community.
-- **Violating confidentiality** — Sharing or acting on someone's personal or private information without their permission.
-- **Endangerment** — Causing, encouraging, or threatening violence or other harm toward any person or group.
+- **Harassment**: Violating explicitly expressed boundaries or engaging in unnecessary personal attention after any clear request to stop.
+- **Character attacks**: Making insulting, demeaning, or pejorative comments directed at a community member or group.
+- **Discrimination or stereotyping**: Characterizing anyone's personality or behaviour on the basis of immutable identities or traits.
+- **Sexualization**: Behaving in a way that would generally be considered inappropriately intimate in the context of the community.
+- **Violating confidentiality**: Sharing or acting on someone's personal or private information without their permission.
+- **Endangerment**: Causing, encouraging, or threatening violence or other harm toward any person or group.
 
 ### Tech Community Specific Violations
-- **Gatekeeping** — Deliberately making others feel unwelcome or inadequate because of their skill level or background.
-- **Elitism** — Dismissing or belittling contributions, questions, or ideas because they are considered too basic or simple.
-- **Plagiarism** — Misrepresenting others' code, ideas, or work as your own.
-- **Misleading identity** — Impersonating someone else or pretending to be someone else to evade enforcement actions.
-- **Unsolicited promotion** — Sharing marketing or commercial content outside the norms of the community.
+- **Gatekeeping**: Deliberately making others feel unwelcome or inadequate because of their skill level or background.
+- **Elitism**: Dismissing or belittling contributions, questions, or ideas because they are considered too basic or simple.
+- **Plagiarism**: Misrepresenting others' code, ideas, or work as your own.
+- **Misleading identity**: Impersonating someone else or pretending to be someone else to evade enforcement actions.
+- **Unsolicited promotion**: Sharing marketing or commercial content outside the norms of the community.
 
 ---
 
@@ -102,7 +102,7 @@ This enforcement ladder is a guideline. It does not limit the ability of Communi
 
 ## Scope
 
-This Code of Conduct applies within all Codetopia spaces — including our GitHub repositories, Discord server, website, events, and any other space where you are representing the Codetopia community.
+This Code of Conduct applies within all Codetopia spaces, including our GitHub repositories, Discord server, website, events, and any other space where you are representing the Codetopia community.
 
 ---
 
@@ -113,4 +113,4 @@ This Code of Conduct is an original document written for the Codetopia Community
 
 ---
 
-*Codetopia — Engineering the future.* 🚀
+*Codetopia: Engineering the future.* 🚀
