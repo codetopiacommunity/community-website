@@ -45,7 +45,7 @@ export async function sendVerificationEmail(to: string): Promise<void> {
   await sendEmail(
     {
       to,
-      subject: "Verify your subscription to The Dispatch",
+      subject: "Confirm your subscription to The Dispatch",
       react: VerificationTemplate({ verifyUrl, baseUrl }),
     },
     `dispatch-confirm/${hashEmail(to)}/${currentConfirmWindow()}`,
@@ -56,7 +56,7 @@ export async function sendWelcomeEmail(to: string): Promise<void> {
   await sendEmail(
     {
       to,
-      subject: "Welcome to the Codetopia Community Dispatch!",
+      subject: "You're subscribed to The Dispatch",
       react: WelcomeTemplate({ baseUrl: getBaseUrl() }),
     },
     `dispatch-welcome/${hashEmail(to)}`,
