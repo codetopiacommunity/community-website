@@ -6,7 +6,8 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // The same answer for new and existing addresses, so this endpoint can't be
 // used to find out who is subscribed.
-const CHECK_INBOX = "Check your inbox to confirm your subscription.";
+const CHECK_INBOX =
+  "Check your inbox to confirm your subscription. If you're already subscribed, there's nothing else to do.";
 
 export async function POST(req: Request) {
   try {
