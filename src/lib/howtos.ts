@@ -31,11 +31,24 @@ export function howtoHref(howto: Pick<HowtoSummary, "categorySlug" | "slug">) {
   return `/howtos/${howto.categorySlug}/${howto.slug}`;
 }
 
+/**
+ * GitHub allows 60 requests an hour without a token and 5,000 with one, and a
+ * refresh of the guides takes about 25. A rejected token would otherwise take
+ * every guide down, so fall back to asking without it.
+ */
 async function ghFetch(path: string) {
-  const res = await fetch(`${API}${path}`, {
-    headers: { Accept: "application/vnd.github+json" },
-    next: { revalidate: 60 },
-  });
+  const request = (headers: Record<string, string> = {}) =>
+    fetch(`${API}${path}`, {
+      headers: { Accept: "application/vnd.github+json", ...headers },
+      next: { revalidate: 60 },
+    });
+
+  const token = process.env.GITHUB_TOKEN;
+  let res = await request(token ? { Authorization: `Bearer ${token}` } : {});
+  if (res.status === 401 && token) {
+    console.error("GITHUB_TOKEN was rejected. Loading guides without it.");
+    res = await request();
+  }
   if (!res.ok) return null;
   return res.json();
 }
